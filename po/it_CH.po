@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: it_CH\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-08 03:31+0100\n"
-"PO-Revision-Date: 2008-01-17 11:42+0100\n"
+"PO-Revision-Date: 2008-03-15 02:10+0100\n"
 "Last-Translator: Luca Pagliero <luca@lucapagliero.it>\n"
 "Language-Team: Italian_CH\n"
 "MIME-Version: 1.0\n"
@@ -24,6 +24,7 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "X-Poedit-Language: Italian_CH\n"
 "X-Poedit-Country: ITALY\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/libs/ec/cpp/RemoteConnect.cpp:86 src/libs/ec/cpp/RemoteConnect.cpp:94
 msgid "You must specify a non-empty password."
@@ -182,32 +183,32 @@ msgid "NickName: %s ID: %u"
 msgstr "Nickname: %s ID: %u"
 
 #: src/BaseClient.cpp:1876
-#, fuzzy, c-format
+#, c-format
 msgid "Requested: %s\n"
-msgstr "Richiesto:"
+msgstr "Richiesto: %s\n"
 
 #: src/BaseClient.cpp:1878
-#, fuzzy, c-format
+#, c-format
 msgid "Filestats for this session: Accepted %d of %d request, %s transferred\n"
 msgid_plural ""
 "Filestats for this session: Accepted %d of %d requests, %s transferred\n"
 msgstr[0] ""
-"Statistiche file per questa sessione: accettate %d di %d richieste, %s "
-"trasferite\n"
+"Statistiche file per questa sessione: accettata %d di %d richiesta, %s "
+"trasferita\n"
 msgstr[1] ""
 "Statistiche file per questa sessione: accettate %d di %d richieste, %s "
 "trasferite\n"
 
 #: src/BaseClient.cpp:1881
-#, fuzzy, c-format
+#, c-format
 msgid "Filestats for all sessions: Accepted %d of %d request, %s transferred\n"
 msgid_plural ""
 "Filestats for all sessions: Accepted %d of %d requests, %s transferred\n"
 msgstr[0] ""
-"Statistiche file per tutte le sezioni: accettate %d di %d richieste, %s "
-"trasferite\n"
+"Statistiche file per tutte le sessioni: accettata %d di %d richiesta, %s "
+"trasferita\n"
 msgstr[1] ""
-"Statistiche file per tutte le sezioni: accettate %d di %d richieste, %s "
+"Statistiche file per tutte le sessioni: accettate %d di %d richieste, %s "
 "trasferite\n"
 
 #: src/BaseClient.cpp:1884
@@ -256,14 +257,12 @@ msgid "Establish Friend Slot"
 msgstr "Crea slot amico"
 
 #: src/FriendListCtrl.cpp:273
-#, fuzzy
 msgid "Are you sure that you wish to delete the selected friend?"
-msgstr "Sei sicuro di voler cancellare l'amico/i selezionato/i?"
+msgstr "Sei sicuro di voler cancellare l'amico selezionato?"
 
 #: src/FriendListCtrl.cpp:275
-#, fuzzy
 msgid "Are you sure that you wish to delete the selected friends?"
-msgstr "Sei sicuro di voler cancellare l'amico/i selezionato/i?"
+msgstr "Sei sicuro di voler cancellare gli amici selezionati?"
 
 #: src/FriendListCtrl.cpp:278 src/utils/wxCas/src/wxcasprefs.cpp:298
 #: src/ServerListCtrl.cpp:149 src/ServerListCtrl.cpp:556
@@ -903,9 +902,8 @@ msgid " is on "
 msgstr " e' attivo "
 
 #: src/utils/wxCas/src/wxcasframe.cpp:1064
-#, fuzzy
 msgid " with "
-msgstr "] con "
+msgstr "con "
 
 #: src/utils/wxCas/src/wxcasframe.cpp:1082
 msgid "Total Download: "
@@ -929,9 +927,8 @@ msgid " kB/s, Upload: "
 msgstr "kB/s, Upload: "
 
 #: src/utils/wxCas/src/wxcasframe.cpp:1108
-#, fuzzy
 msgid " kB/s"
-msgstr "kB/s"
+msgstr " kB/s"
 
 #: src/utils/wxCas/src/wxcasframe.cpp:1116
 msgid "Sharing: "
@@ -1028,9 +1025,8 @@ msgstr "%.2f TB"
 #: src/utils/aLinkCreator/src/md4.cpp:359
 #: src/utils/aLinkCreator/src/alcframe.cpp:566
 #: src/utils/aLinkCreator/src/alcframe.cpp:567
-#, fuzzy
 msgid "Cancelled !"
-msgstr "Cancellato!"
+msgstr "Annullato!"
 
 #: src/utils/aLinkCreator/src/ed2khash.cpp:82
 #, c-format
@@ -1584,34 +1580,28 @@ msgid "Connect to server"
 msgstr "Connesso al server"
 
 #: src/ServerListCtrl.cpp:428
-#, fuzzy
 msgid "Mark server as static"
-msgstr "Segna il server come statico"
+msgstr "Marca il server come statico"
 
 #: src/ServerListCtrl.cpp:429
-#, fuzzy
 msgid "Mark server as non-static"
-msgstr "Segna il server come non statico"
+msgstr "Marca il server come non statico"
 
 #: src/ServerListCtrl.cpp:431
-#, fuzzy
 msgid "Mark servers as static"
-msgstr "Segna il server come statico"
+msgstr "Marca i servers come statici"
 
 #: src/ServerListCtrl.cpp:432
-#, fuzzy
 msgid "Mark servers as non-static"
-msgstr "Segna il server come non statico"
+msgstr "Marca i servers come non statici"
 
 #: src/ServerListCtrl.cpp:438
-#, fuzzy
 msgid "Remove server"
 msgstr "Rimuovi server"
 
 #: src/ServerListCtrl.cpp:440
-#, fuzzy
 msgid "Remove servers"
-msgstr "Rimuovi server"
+msgstr "Rimuovi servers"
 
 #: src/ServerListCtrl.cpp:442
 msgid "Remove all servers"
@@ -1622,9 +1612,8 @@ msgid "Copy ED2k link to clipboard"
 msgstr "Copia link ed2k negli appunti"
 
 #: src/ServerListCtrl.cpp:449
-#, fuzzy
 msgid "Copy ED2k links to clipboard"
-msgstr "Copia link ed2k negli appunti"
+msgstr "Copia link ED2k negli appunti"
 
 #: src/ServerListCtrl.cpp:457
 msgid "Reconnect to server"
@@ -1635,12 +1624,10 @@ msgid "Are you sure that you wish to delete all servers?"
 msgstr "Sei sicuro di voler cancellare tutti i server?"
 
 #: src/ServerListCtrl.cpp:570
-#, fuzzy
 msgid "Are you sure that you wish to delete the selected server?"
-msgstr "Sei sicuro di voler cancellare i server selezionati?"
+msgstr "Sei sicuro di voler cancellare il server selezionato?"
 
 #: src/ServerListCtrl.cpp:572
-#, fuzzy
 msgid "Are you sure that you wish to delete the selected servers?"
 msgstr "Sei sicuro di voler cancellare i server selezionati?"
 
@@ -1739,37 +1726,30 @@ msgid "Status text"
 msgstr "Messaggio di status"
 
 #: src/amuleDlg.cpp:666
-#, fuzzy
 msgid "ED2K: Connecting"
-msgstr "Connessione in corso"
+msgstr "ED2k: Connessione in corso"
 
 #: src/amuleDlg.cpp:670
-#, fuzzy
 msgid "ED2K: Disconnected"
-msgstr "Disconnesso"
+msgstr "ED2k: Disconnesso"
 
 #: src/amuleDlg.cpp:676
-#, fuzzy
 msgid "Kad: Firewalled"
-msgstr "Firewalled"
+msgstr "Kad: Con Firewall"
 
 #: src/amuleDlg.cpp:680
-#, fuzzy
 msgid "Kad: Connected"
-msgstr "Connesso"
+msgstr "Kad: Connesso"
 
 #: src/amuleDlg.cpp:685
-#, fuzzy
 msgid "Kad: Connecting"
-msgstr "Connessione in corso"
+msgstr "Kad: Connessione in corso"
 
 #: src/amuleDlg.cpp:689
-#, fuzzy
 msgid "Kad: Off"
-msgstr " Kad: "
+msgstr "Kad: Spento"
 
 #: src/amuleDlg.cpp:735
-#, fuzzy
 msgid "Stop the current connection attempts"
 msgstr "Ferma i tentativi di connessione in corso"
 
@@ -1778,9 +1758,8 @@ msgid "Disconnect"
 msgstr "Disconnetti"
 
 #: src/amuleDlg.cpp:741
-#, fuzzy
 msgid "Disconnect from the currently connected networks"
-msgstr "Disconnetti dalla rete."
+msgstr "Disconnetti dalla reti attualmente connesse"
 
 #: src/amuleDlg.cpp:746 src/muuli_wdr.cpp:3276 src/muuli_wdr.cpp:3767
 #: src/muuli_wdr.cpp:3993 src/MuleTrayIcon.cpp:542
@@ -1788,9 +1767,8 @@ msgid "Connect"
 msgstr "Connetti"
 
 #: src/amuleDlg.cpp:747
-#, fuzzy
 msgid "Connect to the currently enabled networks"
-msgstr "Connessione al network."
+msgstr "Connetti alle reti attualmente abilitate"
 
 #: src/amuleDlg.cpp:794
 #, c-format
@@ -2090,17 +2068,17 @@ msgstr ""
 "Solo un URL per riga"
 
 #: src/PrefsUnifiedDlg.cpp:985
-#, fuzzy, c-format
+#, c-format
 msgid "Update delay: %d second"
 msgid_plural "Update delay: %d seconds"
-msgstr[0] "Intervallo aggiornamento: %d secondi"
+msgstr[0] "Intervallo aggiornamento: %d secondo"
 msgstr[1] "Intervallo aggiornamento: %d secondi"
 
 #: src/PrefsUnifiedDlg.cpp:992
-#, fuzzy, c-format
+#, c-format
 msgid "Time for average graph: %d minute"
 msgid_plural "Time for average graph: %d minutes"
-msgstr[0] "Intervallo grafico della media: %d minuti"
+msgstr[0] "Intervallo grafico della media: %d minuto"
 msgstr[1] "Intervallo grafico della media: %d minuti"
 
 #: src/PrefsUnifiedDlg.cpp:998
@@ -2109,31 +2087,31 @@ msgid "Connections Graph Scale: %d"
 msgstr "Scala grafico delle connessioni: %d"
 
 #: src/PrefsUnifiedDlg.cpp:1004
-#, fuzzy, c-format
+#, c-format
 msgid "Update delay : %d second"
 msgid_plural "Update delay : %d seconds"
-msgstr[0] "Intervallo aggiornamento: %d secondi"
+msgstr[0] "Intervallo aggiornamento: %d secondo"
 msgstr[1] "Intervallo aggiornamento: %d secondi"
 
 #: src/PrefsUnifiedDlg.cpp:1010
-#, fuzzy, c-format
+#, c-format
 msgid "File Buffer Size: %d byte"
 msgid_plural "File Buffer Size: %d bytes"
 msgstr[0] "Dimensione buffer file: %d byte"
-msgstr[1] "Dimensione buffer file: %d byte"
+msgstr[1] "Dimensione buffer file: %d bytes"
 
 #: src/PrefsUnifiedDlg.cpp:1016
-#, fuzzy, c-format
+#, c-format
 msgid "Upload Queue Size: %d client"
 msgid_plural "Upload Queue Size: %d clients"
 msgstr[0] "Dimensione coda upload: %d client"
-msgstr[1] "Dimensione coda upload: %d client"
+msgstr[1] "Dimensione coda upload: %d clients"
 
 #: src/PrefsUnifiedDlg.cpp:1023
-#, fuzzy, c-format
+#, c-format
 msgid "Server connection refresh interval: %d minute"
 msgid_plural "Server connection refresh interval: %d minutes"
-msgstr[0] "Intervallo aggiornamento connessione ai server: %d minuti"
+msgstr[0] "Intervallo aggiornamento connessione ai server: %d minuto"
 msgstr[1] "Intervallo aggiornamento connessione ai server: %d minuti"
 
 #: src/PrefsUnifiedDlg.cpp:1025
@@ -2976,14 +2954,12 @@ msgid "Last Reception"
 msgstr "Ultima ricezione"
 
 #: src/DownloadListCtrl.cpp:578
-#, fuzzy
 msgid "Are you sure that you wish to delete the selected file?"
-msgstr "Sei sicuro di voler cancellare i file selezionati?"
+msgstr "Sei sicuro di voler cancellare il file selezionato?"
 
 #: src/DownloadListCtrl.cpp:580
-#, fuzzy
 msgid "Are you sure that you wish to delete the selected files?"
-msgstr "Sei sicuro di voler cancellare i file selezionati?"
+msgstr "Sei sicuro di voler cancellare i files selezionati?"
 
 #: src/DownloadListCtrl.cpp:836 src/ClientListCtrl.cpp:358
 msgid "Send message to user"
@@ -3100,7 +3076,6 @@ msgid "Downloads (%i)"
 msgstr "Download (%i)"
 
 #: src/DownloadListCtrl.cpp:2222
-#, fuzzy
 msgid ""
 "Please set your preferred video player on preferences.\n"
 "Meanwhile, aMule will attempt to use mplayer and you will get this warning "
@@ -3115,9 +3090,9 @@ msgid "File preview"
 msgstr "Anteprima"
 
 #: src/DownloadListCtrl.cpp:2260
-#, fuzzy, c-format
+#, c-format
 msgid "ERROR: Failed to execute external media-player! Command: `%s'"
-msgstr "ERRORE: impossibile eseguire il media player esterno!"
+msgstr "ERRORE: impossibile eseguire il media player esterno! Comando: '%s'"
 
 #: src/PartFile.cpp:284
 msgid "ERROR: Failed to open partfile)"
@@ -3204,10 +3179,10 @@ msgid "Failed to save part.met.seeds file for %s"
 msgstr "Impossibile salvare il file part.met.seeds per %s"
 
 #: src/PartFile.cpp:1019
-#, fuzzy, c-format
+#, c-format
 msgid "Saved %i source seed for partfile: %s (%s)"
 msgid_plural "Saved %i source seeds for partfile: %s (%s)"
-msgstr[0] "Salvate %i fonti per il file incompleto: %s (%s)"
+msgstr[0] "Salvata %i fonte per il file incompleto: %s (%s)"
 msgstr[1] "Salvate %i fonti per il file incompleto: %s (%s)"
 
 #: src/PartFile.cpp:1048
@@ -3226,7 +3201,7 @@ msgid "Error reading partfile's seeds file (%s - %s): %s"
 msgstr "Errore nella lettura del file delle fonti del partfile (%s - %s): %s"
 
 #: src/PartFile.cpp:1131 src/PartFile.cpp:1159
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Found corrupted part (%d) in %d part file %s - FileResultHash |%s| FileHash |"
 "%s|"
@@ -3234,11 +3209,11 @@ msgid_plural ""
 "Found corrupted part (%d) in %d parts file %s - FileResultHash |%s| FileHash "
 "|%s|"
 msgstr[0] ""
-"Trovata parte corrotta (%d) su %d parti totali %s - FileResultHash |%s| "
-"FileHash |%s|"
+"Trovata parte corrotta (%d) in %d parte %s - FileResultHash |%s| FileHash |%"
+"s|"
 msgstr[1] ""
-"Trovata parte corrotta (%d) su %d parti totali %s - FileResultHash |%s| "
-"FileHash |%s|"
+"Trovata parte corrotta (%d) in %d parti %s - FileResultHash |%s| FileHash |%"
+"s|"
 
 #: src/PartFile.cpp:1176
 #, c-format
@@ -3315,8 +3290,8 @@ msgstr "Attenzione: impossibile aprire known.met."
 #: src/KnownFileList.cpp:86
 msgid "Warning: Knownfile list corrupted, contains invalid header."
 msgstr ""
-"Attenzione: lista dei file conosciuti corrotta, potrebbe contenere un header "
-"non valido."
+"Attenzione: lista dei files conosciuti corrotta, potrebbe contenere un "
+"header non valido."
 
 #: src/KnownFileList.cpp:112
 #, c-format
@@ -3329,18 +3304,18 @@ msgid "Error while saving known.met file: %s"
 msgstr "Errore nel salvataggio del file known.met: %s"
 
 #: src/SharedFileList.cpp:352
-#, fuzzy, c-format
+#, c-format
 msgid "Found %i known shared file"
 msgid_plural "Found %i known shared files"
-msgstr[0] "Trovati %i file condivisi conosciuti"
-msgstr[1] "Trovati %i file condivisi conosciuti"
+msgstr[0] "Trovato %i file condiviso conosciuto"
+msgstr[1] "Trovati %i files condivisi conosciuti"
 
 #: src/SharedFileList.cpp:358
-#, fuzzy, c-format
+#, c-format
 msgid "Found %i known shared file, %i unknown"
 msgid_plural "Found %i known shared files, %i unknown"
-msgstr[0] "Trovati %i file condivisi conosciuti, %i sconosciuti"
-msgstr[1] "Trovati %i file condivisi conosciuti, %i sconosciuti"
+msgstr[0] "Trovato %i file condiviso conosciuto, %i sconosciuto"
+msgstr[1] "Trovati %i files condivisi conosciuti, %i sconosciuti"
 
 #: src/SharedFileList.cpp:367
 #, c-format
@@ -3364,11 +3339,11 @@ msgid "No comments"
 msgstr "Nessun commento"
 
 #: src/CommentDialogLst.cpp:104
-#, fuzzy, c-format
+#, c-format
 msgid "%u comment"
 msgid_plural "%u comments"
-msgstr[0] "%s commento(i)"
-msgstr[1] "%s commento(i)"
+msgstr[0] "%u commento"
+msgstr[1] "%u commenti"
 
 #: src/ServerConnect.cpp:69
 msgid ""
@@ -3426,10 +3401,10 @@ msgid "%s (%s:%i) appears to be full."
 msgstr "%s (%s:%i) sembra essere pieno"
 
 #: src/ServerConnect.cpp:391
-#, fuzzy, c-format
+#, c-format
 msgid "Automatic connection to server will retry in %d second"
 msgid_plural "Automatic connection to server will retry in %d seconds"
-msgstr[0] "Riconnessione automatica al server tra %d secondi"
+msgstr[0] "Riconnessione automatica al server tra %d secondo"
 msgstr[1] "Riconnessione automatica al server tra %d secondi"
 
 #: src/ServerConnect.cpp:411
@@ -3463,11 +3438,11 @@ msgid "No part files found"
 msgstr "Non e' stato trovato alcun file incompleto"
 
 #: src/DownloadQueue.cpp:175
-#, fuzzy, c-format
+#, c-format
 msgid "Found %u part file"
 msgid_plural "Found %u part files"
-msgstr[0] "Trovati %u file part."
-msgstr[1] "Trovati %u file part."
+msgstr[0] "Trovato %u file part."
+msgstr[1] "Trovati %u files part."
 
 #: src/DownloadQueue.cpp:315
 #, c-format
@@ -3513,23 +3488,20 @@ msgid "Invalid IP format. Use xxx.xxx.xxx.xxx:xxxx\n"
 msgstr "Formato IP non valido. Usa xxx.xxx.xxx.xxx:xxxx\n"
 
 #: src/TextClient.cpp:305
-#, fuzzy
 msgid ""
 "This command requires an argument. Valid arguments: 'all', filename, or a "
 "number.\n"
 msgstr ""
-"Questo comando necessita di un argomento. Argomenti validi: 'all' oppure un "
-"numero.\n"
+"Questo comando necessita di un argomento. Argomenti validi: 'all', nome del "
+"file oppure un numero.\n"
 
 #: src/TextClient.cpp:343
-#, fuzzy
 msgid "Processing by hash: "
-msgstr "Elaborazione del file numero %u: %s"
+msgstr "Elaborazione in base all'hash:"
 
 #: src/TextClient.cpp:358
-#, fuzzy
 msgid "Processing by filename: "
-msgstr "Elaborazione del file numero %u: %s"
+msgstr "Elaborazione in base al nome del file:"
 
 #: src/TextClient.cpp:381
 msgid "This command requires an argument. Valid arguments: a file hash.\n"
@@ -4054,11 +4026,11 @@ msgid "Unknown server info received! - too short"
 msgstr "Ricevute informazioni sconosciute dal server! - troppo corto"
 
 #: src/ServerSocket.cpp:539
-#, fuzzy, c-format
+#, c-format
 msgid "Received %d new server"
 msgid_plural "Received %d new servers"
-msgstr[0] "Ricevuti %d nuovi server"
-msgstr[1] "Ricevuti %d nuovi server"
+msgstr[0] "Ricevuto %d nuovo server"
+msgstr[1] "Ricevuti %d nuovi servers"
 
 #: src/ServerSocket.cpp:542
 msgid "Saving of server-list completed."
@@ -4109,10 +4081,10 @@ msgid "CIP2Country::CIP2Country(): Failed to load country data from "
 msgstr "CIP2Country::CIP2Country(): Impossibile ottenere i dati sul Paese da "
 
 #: src/IP2Country.cpp:73
-#, fuzzy, c-format
+#, c-format
 msgid "Loaded %d flag bitmap."
 msgid_plural "Loaded %d flag bitmaps."
-msgstr[0] "Caricati %d flag bitmaps."
+msgstr[0] "Caricato %d flag bitmap."
 msgstr[1] "Caricati %d flag bitmaps."
 
 #: src/TransferWnd.cpp:194
@@ -4295,11 +4267,10 @@ msgid "%s (Disk: %s)"
 msgstr "%s (Disco: %s)"
 
 #: src/OtherFunctions.cpp:121
-#, fuzzy
 msgid "byte"
 msgid_plural "bytes"
 msgstr[0] "byte"
-msgstr[1] "byte"
+msgstr[1] "bytes"
 
 #: src/OtherFunctions.cpp:123
 msgid "kB"
@@ -4334,11 +4305,10 @@ msgid "T"
 msgstr "T"
 
 #: src/OtherFunctions.cpp:156
-#, fuzzy
 msgid "byte/sec"
 msgid_plural "bytes/sec"
 msgstr[0] "byte/s"
-msgstr[1] "byte/s"
+msgstr[1] "bytes/s"
 
 #: src/OtherFunctions.cpp:160
 msgid "MB/s"
@@ -4429,26 +4399,18 @@ msgstr ""
 "Impossibile caricare il file ipfilter.dat '%s', impossibile aprire il file."
 
 #: src/IPFilter.cpp:330
-#, fuzzy, c-format
+#, c-format
 msgid "Loaded %u IP-range from '%s'."
 msgid_plural "Loaded %u IP-ranges from '%s'."
-msgstr[0] ""
-"Caricati %u intervalli di IP da '%s'. %u righe non valide sono state "
-"scartate."
-msgstr[1] ""
-"Caricati %u intervalli di IP da '%s'. %u righe non valide sono state "
-"scartate."
+msgstr[0] "Caricato %u intervallo di IP da '%s'."
+msgstr[1] "Caricati %u intervalli di IP da '%s'."
 
 #: src/IPFilter.cpp:332
-#, fuzzy, c-format
+#, c-format
 msgid "%u malformed line was discarded."
 msgid_plural "%u malformed lines were discarded."
-msgstr[0] ""
-"Caricati %u intervalli di IP da '%s'. %u righe non valide sono state "
-"scartate."
-msgstr[1] ""
-"Caricati %u intervalli di IP da '%s'. %u righe non valide sono state "
-"scartate."
+msgstr[0] "%u riga non valida e' stata scartata."
+msgstr[1] "%u righe non valide sono state scartate."
 
 #: src/StatisticsDlg.cpp:189
 #, c-format
@@ -6284,7 +6246,7 @@ msgid "Available commands:\n"
 msgstr "Comandi disponibili:\n"
 
 #: src/ExternalConnector.cpp:188
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "\n"
 "All commands are case insensitive.\n"
@@ -6292,8 +6254,7 @@ msgid ""
 msgstr ""
 "\n"
 "Tutti i comandi possono essere digitati in maiuscolo o minuscolo.\n"
-"Digitare 'help <comando>' per avere informazioni dettagliate su un "
-"<comando>.\n"
+"Digitare '%s <comando>' per avere informazioni dettagliate su <comando>.\n"
 
 #: src/ExternalConnector.cpp:217 src/ExternalConnector.cpp:218
 msgid "Exits from the application."
@@ -6445,18 +6406,18 @@ msgid "Print program version."
 msgstr "Mostra la versione del programma"
 
 #: src/ClientCreditsList.cpp:168
-#, fuzzy, c-format
+#, c-format
 msgid "Creditfile loaded, %u client is known"
 msgid_plural "Creditfile loaded, %u clients are known"
-msgstr[0] "Il file dei crediti e' stato caricato, %u client conosciuti"
+msgstr[0] "Il file dei crediti e' stato caricato, %u client conosciuto"
 msgstr[1] "Il file dei crediti e' stato caricato, %u client conosciuti"
 
 #: src/ClientCreditsList.cpp:171
-#, fuzzy, c-format
+#, c-format
 msgid " - Credits expired for %u client!"
 msgid_plural " - Credits expired for %u clients!"
-msgstr[0] "Crediti scaduti per %u client!"
-msgstr[1] "Crediti scaduti per %u client!"
+msgstr[0] " - Crediti scaduti per %u client!"
+msgstr[1] " - Crediti scaduti per %u clients!"
 
 #: src/ClientCreditsList.cpp:315
 msgid "No 'cryptkey.dat' file found, creating."
@@ -6604,9 +6565,9 @@ msgid "Not Available"
 msgstr "Non disponibile"
 
 #: src/ClientDetailDialog.cpp:190
-#, fuzzy, c-format
+#, c-format
 msgid "%u (QR: %u)"
-msgstr "QR: %u"
+msgstr "%u (QR: %u)"
 
 #: src/SearchDlg.cpp:491
 msgid "Min size must be smaller than max size. Max size ignored."
@@ -6804,18 +6765,18 @@ msgstr ""
 "Server.met corrotto, trovato tag di versione non valido: 0x%x, dimensione %i"
 
 #: src/ServerList.cpp:168
-#, fuzzy, c-format
+#, c-format
 msgid "%i server in server.met found"
 msgid_plural "%i servers in server.met found"
-msgstr[0] "Trovati %i server nel file server.met"
-msgstr[1] "Trovati %i server nel file server.met"
+msgstr[0] "Trovato %i server nel file server.met"
+msgstr[1] "Trovati %i servers nel file server.met"
 
 #: src/ServerList.cpp:170
-#, fuzzy, c-format
+#, c-format
 msgid "%d server added"
 msgid_plural "%d servers added"
-msgstr[0] "Aggiunti %d server"
-msgstr[1] "Aggiunti %d server"
+msgstr[0] "Aggiunto %d server"
+msgstr[1] "Aggiunti %d servers"
 
 #: src/ServerList.cpp:191
 #, c-format
@@ -6939,7 +6900,7 @@ msgstr ""
 #: src/amule.cpp:919
 #, c-format
 msgid "Could not bind ports to the specified address: %s"
-msgstr ""
+msgstr "Impossibile associare porte all'indirizzo specificato: %s"
 
 #: src/amule.cpp:946
 #, c-format
