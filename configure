@@ -8310,7 +8310,7 @@ echo "${ECHO_T}$result" >&6
 #
 # FLAGS
 #
-CRYPTO_PP_CXXFLAGS="-isystem $crypto_pp_include_i -D$CRYPTO_PP_DEFINE"
+CRYPTO_PP_CXXFLAGS="-I$crypto_pp_include_i -D$CRYPTO_PP_DEFINE"
 CRYPTO_PP_LDFLAGS="-L$CRYPTO_PP_LIB"
 
 
@@ -17658,11 +17658,6 @@ WX_LIBS=`$WX_CONFIG_WITH_ARGS --libs adv,core,net`
 WXBASE_LIBS=`$WX_CONFIG_WITH_ARGS --libs net`
 WXBASE_CXXFLAGS="$WX_CXXFLAGS -DwxUSE_GUI=0"
 WXBASE_CFLAGS="$WX_CFLAGS -DwxUSE_GUI=0"
-
-WX_CFLAGS="`echo $WX_CFLAGS | sed "s#-I/#-isystem /#g"`"
-WX_CXXFLAGS="`echo $WX_CXXFLAGS | sed "s#-I/#-isystem /#g"`"
-WXBASE_CFLAGS="`echo $WXBASE_CFLAGS | sed "s#-I/#-isystem /#g"`"
-WXBASE_CXXFLAGS="`echo $WXBASE_CXXFLAGS | sed "s#-I/#-isystem /#g"`"
 
 
 
