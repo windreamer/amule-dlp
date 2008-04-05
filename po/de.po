@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-25 21:03+0100\n"
-"PO-Revision-Date: 2008-03-19 08:23+0100\n"
+"PO-Revision-Date: 2008-03-26 18:23+0100\n"
 "Last-Translator: Johannes Krampf <wuischke@amule.org>\n"
 "Language-Team:  <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -280,47 +280,47 @@ msgstr "Mehrfachauswahl"
 
 #: src/UserEvents.h:60
 msgid "Download completed"
-msgstr ""
+msgstr "Download fertig gestellt."
 
 #: src/UserEvents.h:63 src/UserEvents.h:103
 msgid "The full path to the file."
-msgstr ""
+msgstr "Der vollständige Pfad zur Datei."
 
 #: src/UserEvents.h:67
 msgid "The name of the file without path component."
-msgstr ""
+msgstr "Der Name der Datei ohne den Pfadanteil."
 
 #: src/UserEvents.h:71
 msgid "The ed2k hash of the file."
-msgstr ""
+msgstr "Der ed2k-Hash der Datei."
 
 #: src/UserEvents.h:75
 msgid "The size of the file in bytes."
-msgstr ""
+msgstr "Die Dateigröße in Byte."
 
 #: src/UserEvents.h:79
 msgid "Cumulative download activity time."
-msgstr ""
+msgstr "Die gesamte Downloadaktivitätszeit."
 
 #: src/UserEvents.h:84
 msgid "New chat session started"
-msgstr ""
+msgstr "Neue Chat-Sitzung gestartet."
 
 #: src/UserEvents.h:87
 msgid "Message sender."
-msgstr ""
+msgstr "Nachrichtensender."
 
 #: src/UserEvents.h:92
 msgid "Out of space"
-msgstr ""
+msgstr "Kein Speicherplatz mehr vorhanden."
 
 #: src/UserEvents.h:95
 msgid "Disk partition."
-msgstr ""
+msgstr "Festplattenpartition."
 
 #: src/UserEvents.h:100
 msgid "Error on completion"
-msgstr ""
+msgstr "Fehler beim Fertigstellen der Datei."
 
 #: src/SharedFilesCtrl.cpp:102 src/SearchListCtrl.cpp:87
 #: src/DownloadListCtrl.cpp:189 src/CommentDialogLst.cpp:56
@@ -505,17 +505,17 @@ msgstr "Aussetzen des Hochladens der Datei '%s'."
 
 #: src/TextClient.h:60
 msgid "aMule text client"
-msgstr ""
+msgstr "aMule Textclient"
 
 #: src/kademlia/kademlia/SearchManager.cpp:132
 msgid "Kademlia: search keyword too short"
 msgstr "Kademlia: Suchbegriff zu kurz"
 
 #: src/kademlia/routing/RoutingZone.cpp:141
-#, fuzzy, c-format
+#, c-format
 msgid "Read %u Kad contact"
 msgid_plural "Read %u Kad contacts"
-msgstr[0] "Lese %u Kad-Kontakte"
+msgstr[0] "Lese %u Kad-Kontakt"
 msgstr[1] "Lese %u Kad-Kontakte"
 
 #: src/ListenSocket.cpp:68

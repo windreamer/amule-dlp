@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: amule\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-25 21:03+0100\n"
-"PO-Revision-Date: 2008-03-25 10:28+0200\n"
+"PO-Revision-Date: 2008-03-26 10:47+0200\n"
 "Last-Translator: Atilla ÖNTAŞ <atilla_ontas@hotmail.com>\n"
 "Language-Team: Türkçe <tr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -269,47 +269,47 @@ msgstr "Çoklu seçim"
 
 #: src/UserEvents.h:60
 msgid "Download completed"
-msgstr ""
+msgstr "İndirme tamamlandı"
 
 #: src/UserEvents.h:63 src/UserEvents.h:103
 msgid "The full path to the file."
-msgstr ""
+msgstr "Dosyanın tam yolu."
 
 #: src/UserEvents.h:67
 msgid "The name of the file without path component."
-msgstr ""
+msgstr "Yol eki olmaksızın dosyanın tam adı."
 
 #: src/UserEvents.h:71
 msgid "The ed2k hash of the file."
-msgstr ""
+msgstr "Dosyanın ed2k adreslemesi"
 
 #: src/UserEvents.h:75
 msgid "The size of the file in bytes."
-msgstr ""
+msgstr "Dosyanın bayt cinsinden boyutu."
 
 #: src/UserEvents.h:79
 msgid "Cumulative download activity time."
-msgstr ""
+msgstr "Toplam indirme hareketleri süresi."
 
 #: src/UserEvents.h:84
 msgid "New chat session started"
-msgstr ""
+msgstr "Yeni sohbet oturumu başladı"
 
 #: src/UserEvents.h:87
 msgid "Message sender."
-msgstr ""
+msgstr "İleti göndericisi."
 
 #: src/UserEvents.h:92
 msgid "Out of space"
-msgstr ""
+msgstr "Dolu"
 
 #: src/UserEvents.h:95
 msgid "Disk partition."
-msgstr ""
+msgstr "Disk bölümü."
 
 #: src/UserEvents.h:100
 msgid "Error on completion"
-msgstr ""
+msgstr "Hata"
 
 #: src/SharedFilesCtrl.cpp:102 src/SearchListCtrl.cpp:87
 #: src/DownloadListCtrl.cpp:189 src/CommentDialogLst.cpp:56
@@ -494,7 +494,7 @@ msgstr "Şu dosya için gönderimler bekletiliyor: %s"
 
 #: src/TextClient.h:60
 msgid "aMule text client"
-msgstr ""
+msgstr "aMule"
 
 #: src/kademlia/kademlia/SearchManager.cpp:132
 msgid "Kademlia: search keyword too short"
@@ -504,7 +504,7 @@ msgstr "Kademlia: Arama sözcüğü çok kısa"
 #, c-format
 msgid "Read %u Kad contact"
 msgid_plural "Read %u Kad contacts"
-msgstr[0] ""
+msgstr[0] "%u adet Kademlia bağlantısı okundu"
 
 #: src/ListenSocket.cpp:68
 msgid "Error: Could not listen to TCP port."
