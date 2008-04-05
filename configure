@@ -311,7 +311,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS build build_cpu build_vendor build_os host host_cpu host_vendor host_os INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot AMTAR am__tar am__untar MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT RESOLV_LIB X11LIBS CXX CXXFLAGS LDFLAGS CPPFLAGS ac_ct_CXX EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE CXXCPP CC CFLAGS ac_ct_CC CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE CPP BUILD_CC ac_ct_BUILD_CC EXEEXT BUILD_EXEEXT BUILD_CPPFLAGS BUILD_CFLAGS BUILD_LDFLAGS EGREP LEX LEXLIB LEX_OUTPUT_ROOT RANLIB ac_ct_RANLIB YACC AR ac_ct_AR LD ac_ct_LD GDLIB_CONFIG_PATH GDLIB_CFLAGS GDLIB_LDFLAGS GDLIB_LIBS CAS_DEFS LIBPNG_CONFIG_PATH LIBPNG_CFLAGS LIBPNG_CXXFLAGS LIBPNG_LDFLAGS LIBPNG_LIBS AMULEWEB_DEFS GEOIP_INCLUDE GEOIP_LIB WX_CONFIG_PATH WX_CPPFLAGS WX_CFLAGS WX_CXXFLAGS WX_CFLAGS_ONLY WX_CXXFLAGS_ONLY WX_LIBS WX_LIBS_STATIC WX_VERSION_FULL WX_RESCOMP WX_VERSION_MAJOR WX_VERSION_MINOR WX_UNICODE WX_DEBUG WX_SHARED WX_PORT RC ac_ct_RC RCFLAGS CRYPTO_PP_PREFIX CRYPTO_PP_VERSION_STRING CRYPTO_PP_VERSION_NUMBER CRYPTO_PP_STYLE CRYPTO_PP_LIB_NAME CRYPTO_PP_INCLUDE_PREFIX CRYPTO_PP_CXXFLAGS CRYPTO_PP_LDFLAGS CRYPTOLIBS BFD_FLAGS BFD_LIB HAVE_GETTEXT HAVE_FLEX_EXTENDED ALLOCA MKINSTALLDIRS MSGFMT GMSGFMT XGETTEXT MSGMERGE GLIBC21 LIBICONV LTLIBICONV INTLBISON USE_NLS BUILD_INCLUDED_LIBINTL USE_INCLUDED_LIBINTL CATOBJEXT INTLOBJS DATADIRNAME INSTOBJEXT GENCAT INTL_LIBTOOL_SUFFIX_PREFIX INTLLIBS LIBINTL LTLIBINTL POSUB LIBOBJS POW_LIB WXBASE_LIBS WXBASE_CFLAGS WXBASE_CXXFLAGS docdir SVNDATE AMULE_DAEMON_MANPAGES AMULECMD_MANPAGES WEB_MANPAGES AMULE_GUI_MANPAGES CAS_MANPAGES WXCAS_MANPAGES ED2K_MANPAGES ALC_MANPAGES ALCC_MANPAGES MONOLITHIC_MANPAGES WEB_TRUE WEB_FALSE ED2K_TRUE ED2K_FALSE CAS_TRUE CAS_FALSE WXCAS_TRUE WXCAS_FALSE ALC_TRUE ALC_FALSE ALCC_TRUE ALCC_FALSE AMULE_GUI_TRUE AMULE_GUI_FALSE AMULE_DAEMON_TRUE AMULE_DAEMON_FALSE COMPILE_CMD_TRUE COMPILE_CMD_FALSE MONOLITHIC_TRUE MONOLITHIC_FALSE ENABLE_UPNP_TRUE ENABLE_UPNP_FALSE ENABLE_IP2COUNTRY_TRUE ENABLE_IP2COUNTRY_FALSE SYS_WIN32_TRUE SYS_WIN32_FALSE NEED_RC_TRUE NEED_RC_FALSE NEED_CORESERVICES_TRUE NEED_CORESERVICES_FALSE COMPILE_NLS_TRUE COMPILE_NLS_FALSE GENERATE_FLEX_HEADER_TRUE GENERATE_FLEX_HEADER_FALSE READLINE_LIBS ccache CCACHE ccache_prefix LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS build build_cpu build_vendor build_os host host_cpu host_vendor host_os INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot AMTAR am__tar am__untar MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT RESOLV_LIB X11LIBS CXX CXXFLAGS LDFLAGS CPPFLAGS ac_ct_CXX EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE CXXCPP CC CFLAGS ac_ct_CC CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE CPP BUILD_CC ac_ct_BUILD_CC EXEEXT BUILD_EXEEXT BUILD_CPPFLAGS BUILD_CFLAGS BUILD_LDFLAGS EGREP LEX LEXLIB LEX_OUTPUT_ROOT RANLIB ac_ct_RANLIB YACC AR ac_ct_AR LD ac_ct_LD GDLIB_CONFIG_PATH GDLIB_CFLAGS GDLIB_LDFLAGS GDLIB_LIBS CAS_DEFS REGEX_LIB LIBPNG_CONFIG_PATH LIBPNG_CFLAGS LIBPNG_CXXFLAGS LIBPNG_LDFLAGS LIBPNG_LIBS AMULEWEB_DEFS GEOIP_INCLUDE GEOIP_LIB WX_CONFIG_PATH WX_CPPFLAGS WX_CFLAGS WX_CXXFLAGS WX_CFLAGS_ONLY WX_CXXFLAGS_ONLY WX_LIBS WX_LIBS_STATIC WX_VERSION_FULL WX_RESCOMP WX_VERSION_MAJOR WX_VERSION_MINOR WX_UNICODE WX_DEBUG WX_SHARED WX_PORT RC ac_ct_RC RCFLAGS CRYPTO_PP_PREFIX CRYPTO_PP_VERSION_STRING CRYPTO_PP_VERSION_NUMBER CRYPTO_PP_STYLE CRYPTO_PP_LIB_NAME CRYPTO_PP_INCLUDE_PREFIX CRYPTO_PP_CXXFLAGS CRYPTO_PP_LDFLAGS CRYPTOLIBS BFD_FLAGS BFD_LIB HAVE_GETTEXT HAVE_FLEX_EXTENDED ALLOCA MKINSTALLDIRS MSGFMT GMSGFMT XGETTEXT MSGMERGE GLIBC21 LIBICONV LTLIBICONV INTLBISON USE_NLS BUILD_INCLUDED_LIBINTL USE_INCLUDED_LIBINTL CATOBJEXT INTLOBJS DATADIRNAME INSTOBJEXT GENCAT INTL_LIBTOOL_SUFFIX_PREFIX INTLLIBS LIBINTL LTLIBINTL POSUB LIBOBJS POW_LIB WXBASE_LIBS WXBASE_CFLAGS WXBASE_CXXFLAGS docdir SVNDATE AMULE_DAEMON_MANPAGES AMULECMD_MANPAGES WEB_MANPAGES AMULE_GUI_MANPAGES CAS_MANPAGES WXCAS_MANPAGES ED2K_MANPAGES ALC_MANPAGES ALCC_MANPAGES MONOLITHIC_MANPAGES WEB_TRUE WEB_FALSE ED2K_TRUE ED2K_FALSE CAS_TRUE CAS_FALSE WXCAS_TRUE WXCAS_FALSE ALC_TRUE ALC_FALSE ALCC_TRUE ALCC_FALSE AMULE_GUI_TRUE AMULE_GUI_FALSE AMULE_DAEMON_TRUE AMULE_DAEMON_FALSE COMPILE_CMD_TRUE COMPILE_CMD_FALSE MONOLITHIC_TRUE MONOLITHIC_FALSE ENABLE_UPNP_TRUE ENABLE_UPNP_FALSE ENABLE_IP2COUNTRY_TRUE ENABLE_IP2COUNTRY_FALSE SYS_WIN32_TRUE SYS_WIN32_FALSE NEED_RC_TRUE NEED_RC_FALSE NEED_CORESERVICES_TRUE NEED_CORESERVICES_FALSE COMPILE_NLS_TRUE COMPILE_NLS_FALSE GENERATE_FLEX_HEADER_TRUE GENERATE_FLEX_HEADER_FALSE READLINE_LIBS ccache CCACHE ccache_prefix LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -6413,6 +6413,91 @@ fi
 
 
 
+if test x$WEB = xyes; then
+
+	echo "$as_me:$LINENO: checking for a POSIX compliant regex library" >&5
+echo $ECHO_N "checking for a POSIX compliant regex library... $ECHO_C" >&6
+	regex_found=no
+	for lib in '' -lgnurx -lregex; do
+		saved_LIBS="$LIBS"
+		LIBS="$lib $LIBS"
+		cat >conftest.$ac_ext <<_ACEOF
+
+			/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+
+				#include <regex.h>
+
+int
+main ()
+{
+
+				regex_t preg;
+				regcomp(&preg, "", REG_EXTENDED);
+				regmatch_t *pmatch;
+				regexec(&preg, "", 0, pmatch, 0);
+				regfree(&preg);
+
+  ;
+  return 0;
+}
+
+_ACEOF
+rm -f conftest.$ac_objext conftest$ac_exeext
+if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
+  (eval $ac_link) 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } &&
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; } &&
+	 { ac_try='test -s conftest$ac_exeext'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; }; then
+
+			LIBS="$saved_LIBS"
+			regex_found=yes
+			break;
+
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+
+			LIBS="$saved_LIBS"
+
+fi
+rm -f conftest.err conftest.$ac_objext \
+      conftest$ac_exeext conftest.$ac_ext
+	done
+	echo "$as_me:$LINENO: result: $regex_found" >&5
+echo "${ECHO_T}$regex_found" >&6
+	if test $regex_found = yes; then
+
+		REGEX_LIB=$lib
+
+
+else
+  WEB=disabled
+fi
+
+
+
+fi
 
 if test x$WEB = xyes; then
 # Check for libpng
@@ -19437,6 +19522,7 @@ s,@GDLIB_CFLAGS@,$GDLIB_CFLAGS,;t t
 s,@GDLIB_LDFLAGS@,$GDLIB_LDFLAGS,;t t
 s,@GDLIB_LIBS@,$GDLIB_LIBS,;t t
 s,@CAS_DEFS@,$CAS_DEFS,;t t
+s,@REGEX_LIB@,$REGEX_LIB,;t t
 s,@LIBPNG_CONFIG_PATH@,$LIBPNG_CONFIG_PATH,;t t
 s,@LIBPNG_CFLAGS@,$LIBPNG_CFLAGS,;t t
 s,@LIBPNG_CXXFLAGS@,$LIBPNG_CXXFLAGS,;t t
@@ -20434,6 +20520,20 @@ fi
 
 echo "                                       wxWidgets             ${WX_VERSION_FULL} ($wxinfo)"
 echo "                                       crypto++              ${CRYPTO_PP_VERSION_STRING} (${CRYPTO_PP_STYLE})"
+if test x${WEB:-no} != xno; then
+if test $regex_found = no; then
+  regex_found="Not detected"
+else
+  if test x$REGEX_LIB = x; then
+  regex_found=system
+else
+  regex_found="standalone (in $REGEX_LIB)"
+fi
+
+fi
+
+echo "                                       regex                 $regex_found"
+fi
 if test x$LIBPNG_VERSION != xnot_needed; then
 echo "                                       libpng                ${LIBPNG_VERSION:-Not detected}"
 fi
@@ -20441,6 +20541,13 @@ if test x$GDLIB_VERSION != xnot_needed; then
 echo "                                       libgd                 ${GDLIB_VERSION:-Not detected}"
 fi
 echo "                                       zlib                  ${ZLIB_VERSION:-Not detected}"
+if test x$WEB = xdisabled; then
+echo ""
+echo ""
+echo "WARNING! amuleweb has been disabled because configure could not find"
+echo "a POSIX compliant regex library."
+echo ""
+fi
 if test x"$LIBPNG_VERSION" = x""; then
 echo ""
 echo ""
