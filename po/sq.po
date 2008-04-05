@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: sq\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-19 03:31+0100\n"
-"PO-Revision-Date: 2008-03-20 19:26+0100\n"
+"PO-Revision-Date: 2008-03-20 23:07+0100\n"
 "Last-Translator: Fation <dj_barthezz@linuxmail.org>\n"
 "Language-Team: albanian <fation_1983@hotmail.it  lushnja_corps@hotmail.com "
 ">\n"
@@ -110,10 +110,10 @@ msgid "Converting old AICH hashsets in '%s' to 64b in '%s'."
 msgstr "Duke kembyer hashsetet e vjetra AICH ne '%s' 64b ne '%s'."
 
 #: src/ThreadTasks.cpp:429
-#, fuzzy, c-format
+#, c-format
 msgid "WARNING: The filename '%s' is invalid and has been renamed to '%s'."
 msgstr ""
-"KUJDES: Emri i failit '%s' eshte i gabuar dhe eshte riemertuar ne '%s'."
+"KUJDES: Emri i failit '%s' eshte i pavlere dhe eshte riemeruar ne '%s'."
 
 #: src/ThreadTasks.cpp:442
 #, c-format
@@ -181,28 +181,28 @@ msgid "Requested: %s\n"
 msgstr "Kerkuar: %s\n"
 
 #: src/BaseClient.cpp:1878
-#, fuzzy, c-format
+#, c-format
 msgid "Filestats for this session: Accepted %d of %d request, %s transferred\n"
 msgid_plural ""
 "Filestats for this session: Accepted %d of %d requests, %s transferred\n"
 msgstr[0] ""
-"Statistikat e failit per kete sesion:Pranohet %d e %d te kerkuara, %s te "
+"Statistikat e failit per kete sesion:Pranohen %d nga %d e kerkuar, %s te "
 "transferuara\n"
 msgstr[1] ""
-"Statistikat e failit per kete sesion:Pranohet %d e %d te kerkuara, %s te "
+"Statistikat e failit per kete sesion:Pranohen %d nga %d te kerkuara, %s te "
 "transferuara\n"
 
 #: src/BaseClient.cpp:1881
-#, fuzzy, c-format
+#, c-format
 msgid "Filestats for all sessions: Accepted %d of %d request, %s transferred\n"
 msgid_plural ""
 "Filestats for all sessions: Accepted %d of %d requests, %s transferred\n"
 msgstr[0] ""
-"Statistikat e failit per te gjithe sesionet: Pranohet %d e %d te kerkesave, %"
+"Statistikat e failit per te gjithe sesionet: Pranohet %d nga %d e kerkeses, %"
 "s te transferuara\n"
 msgstr[1] ""
-"Statistikat e failit per te gjithe sesionet: Pranohet %d e %d te kerkesave, %"
-"s te transferuara\n"
+"Statistikat e failit per te gjithe sesionet: Pranohen %d nga %d te "
+"kerkesave, %s te transferuara\n"
 
 #: src/BaseClient.cpp:1884
 msgid "Requested unknown file"
@@ -702,9 +702,9 @@ msgid "Folder where generating the statistic image"
 msgstr "Kartela ku prodhohet imazhi i statistikave"
 
 #: src/utils/wxCas/src/linuxmon.cpp:86
-#, fuzzy, c-format
+#, c-format
 msgid "%i day(s) %i hour(s) %i min %i s"
-msgstr "%i dita(et) %i ora(et) %i minuti(at) %i s"
+msgstr "%i dita(et) %i ora(et) %i min %i s"
 
 #: src/utils/wxCas/src/wxcas.cpp:85
 msgid "wxCas, aMule Online Statistics"
@@ -800,7 +800,6 @@ msgid "Printing"
 msgstr "Duke printuar"
 
 #: src/utils/wxCas/src/wxcasframe.cpp:402
-#, fuzzy
 msgid ""
 "wxCas, aMule OnLine Signature Statistics\n"
 "\n"
@@ -816,7 +815,7 @@ msgstr ""
 "\n"
 "Bazuar ne CAS nga Pedro de Oliveira <falso@rdk.homeip.net>\n"
 "\n"
-"Distributed under GPL"
+"Shperndare nga GPL"
 
 #: src/utils/wxCas/src/wxcasframe.cpp:573
 msgid "Oh Oh, aMule is not running..."
@@ -958,9 +957,9 @@ msgid "System uptime: "
 msgstr "Uptime i Sistemit: "
 
 #: src/utils/wxCas/src/onlinesig.cpp:234
-#, fuzzy, c-format
+#, c-format
 msgid "%02uD %02uh %02umin %02us"
-msgstr "%02uD %02uh %02umin %02us"
+msgstr "%02uD %02uo %02umin %02us"
 
 #: src/utils/wxCas/src/onlinesig.cpp:236
 #, c-format
@@ -1057,7 +1056,7 @@ msgid ""
 "Enter here the URL you want to add to the Ed2k link: Add / at the end to let "
 "aLinkCreator append the current file name"
 msgstr ""
-"Futni ketu URL qe doni te shtoni ne linkun Ed2k: Shto/ne fund derisa "
+"Futni ketu URL qe doni te shtoni ne linkun Ed2k: Shto / ne fund derisa "
 "aLinkCreator ta shtoje ne fund te emrit te failit"
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:144 src/muuli_wdr.cpp:1073
@@ -1339,7 +1338,7 @@ msgstr "E vendosur nga sistemi"
 
 #: src/Preferences.cpp:627
 msgid "Albanian"
-msgstr ""
+msgstr "Shqip"
 
 #: src/Preferences.cpp:628
 msgid "Arabic"
@@ -1634,9 +1633,9 @@ msgid "Are you sure that you wish to delete the selected servers?"
 msgstr "Jeni te sigurte qe deshironi te fshini serverat e zgjedhur?"
 
 #: src/OScopeCtrl.cpp:288
-#, fuzzy, c-format
+#, c-format
 msgid "Disabled [%s]"
-msgstr "E c'aktivizuar [%s]"
+msgstr "Jo aktive [%s]"
 
 #: src/amuleDlg.cpp:219
 #, c-format
@@ -2103,11 +2102,11 @@ msgstr[0] "Madhesia buffer e failit: %d byte"
 msgstr[1] "Madesia Buffer e failit: %d bytes"
 
 #: src/PrefsUnifiedDlg.cpp:1016
-#, fuzzy, c-format
+#, c-format
 msgid "Upload Queue Size: %d client"
 msgid_plural "Upload Queue Size: %d clients"
-msgstr[0] "Madhesia e radhes se ngarkimit: %d kliente(a)"
-msgstr[1] "Madhesia e radhes se ngarkimit: %d kliente(a)"
+msgstr[0] "Madhesia e radhes se ngarkimit: %d klienti"
+msgstr[1] "Madhesia e radhes se ngarkimit: %d klientet"
 
 #: src/PrefsUnifiedDlg.cpp:1023
 #, c-format
@@ -2313,7 +2312,7 @@ msgstr "Jam i lidhur ne Kad."
 
 #: src/ExternalConn.cpp:1420
 msgid "Connecting to Kad..."
-msgstr "DUke u lidhur me Kad..."
+msgstr "Duke u lidhur me Kad..."
 
 #: src/ExternalConn.cpp:1425
 msgid "All networks are disabled."
@@ -2423,7 +2422,7 @@ msgstr "Perdorues mesatare:"
 
 #: src/ServerWnd.cpp:246
 msgid "Average Files:"
-msgstr "File mesatare:"
+msgstr "Mesatarja e faileve:"
 
 #: src/ServerWnd.cpp:253 src/TextClient.cpp:715
 msgid "Not running"
@@ -3306,7 +3305,7 @@ msgstr[1] "U gjenden %i faile te njohura te ndara"
 #, c-format
 msgid "Found %i known shared file, %i unknown"
 msgid_plural "Found %i known shared files, %i unknown"
-msgstr[0] "U gjenden %i faile te ndara te njohura, %i te panjohura"
+msgstr[0] "U gjenden %i faile te njohur te ndare, %i te panjohura"
 msgstr[1] "U gjenden %i faile te njohura te ndara,%i te panjohura"
 
 #: src/SharedFileList.cpp:367
@@ -3334,8 +3333,8 @@ msgstr "Nuk ka komente"
 #, c-format
 msgid "%u comment"
 msgid_plural "%u comments"
-msgstr[0] "%u komente"
-msgstr[1] "%u koment(e)"
+msgstr[0] "%u koment"
+msgstr[1] "%u komente"
 
 #: src/ServerConnect.cpp:69
 msgid ""
@@ -3429,7 +3428,7 @@ msgstr "Nuk u gjenden part-files"
 #, c-format
 msgid "Found %u part file"
 msgid_plural "Found %u part files"
-msgstr[0] "U gjenden %u part files"
+msgstr[0] "U gjend %u part file"
 msgstr[1] "U gjenden %u part files"
 
 #: src/DownloadQueue.cpp:315
@@ -4263,7 +4262,7 @@ msgstr "%s (Disku: %s)"
 msgid "byte"
 msgid_plural "bytes"
 msgstr[0] "byte"
-msgstr[1] "byte"
+msgstr[1] "bytes"
 
 #: src/OtherFunctions.cpp:123
 msgid "kB"
@@ -4397,7 +4396,7 @@ msgstr ""
 #, c-format
 msgid "Loaded %u IP-range from '%s'."
 msgid_plural "Loaded %u IP-ranges from '%s'."
-msgstr[0] "U ngarkua %u intervali i adresen se IP nga '%s'."
+msgstr[0] "U ngarkua %u intervali i adreses se IP nga '%s'."
 msgstr[1] "U ngarkuan %u intervale te adresave IP nga '%s'."
 
 #: src/IPFilter.cpp:332
@@ -5761,7 +5760,6 @@ msgid "Kad Info"
 msgstr "Informacioni i Kad"
 
 #: src/muuli_wdr.cpp:3126
-#, fuzzy
 msgid ""
 "The selected locale seems not to be installed on your box\n"
 "You must generate it to use this language.\n"
@@ -5775,7 +5773,7 @@ msgstr ""
 "Nje nisje e mire ne sistemin linux eshte faili /etc/locale.gen dhe paketa "
 "'locales'\n"
 "Fat te mbare!\n"
-"(Note: I'll try to set it anyway)"
+"(Shenim: Megjithate une do te mundohem ta vendos ate)"
 
 #: src/muuli_wdr.cpp:3136
 msgid "Never show this again"
@@ -6414,11 +6412,11 @@ msgstr[0] "Faili i kreditit u ngarkua, %u klienti eshte njohur"
 msgstr[1] "Faili i kreditit u ngarkua, %u klientet u njohen"
 
 #: src/ClientCreditsList.cpp:171
-#, fuzzy, c-format
+#, c-format
 msgid " - Credits expired for %u client!"
 msgid_plural " - Credits expired for %u clients!"
-msgstr[0] "Kreditet mbaruan per %u klientin!"
-msgstr[1] "Kreditet mbaruan per %u klientin!"
+msgstr[0] " - Kreditet mbaruan per %u klientin!"
+msgstr[1] " - Kreditet mbaruan per %u klientet!"
 
 #: src/ClientCreditsList.cpp:315
 msgid "No 'cryptkey.dat' file found, creating."
