@@ -5585,7 +5585,12 @@ fi;
 # Check whether --with-language or --without-language was given.
 if test "${with_language+set}" = set; then
   withval="$with_language"
+  if test "$withval" = "all"; then
+  LINGUAS='%UNSET%'
+else
   LINGUAS="`echo $withval | sed -e 's/,/ /g'`"
+fi
+
 fi;
 
 # Checking for libs before all other stuff to break
