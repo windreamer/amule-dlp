@@ -87,13 +87,10 @@ BEGIN_EVENT_TABLE(PrefsUnifiedDlg,wxDialog)
 	EVT_CHECKBOX(IDC_ENFORCE_PO_INCOMING,	PrefsUnifiedDlg::OnCheckBoxChange)
 
 	EVT_BUTTON(ID_PREFS_OK_TOP,		PrefsUnifiedDlg::OnOk)
-	EVT_BUTTON(ID_OK,			PrefsUnifiedDlg::OnOk)
-
 	EVT_BUTTON(ID_PREFS_CANCEL_TOP,		PrefsUnifiedDlg::OnCancel)
 
 	// Browse buttons
 //	EVT_BUTTON(IDC_SELSKIN,		PrefsUnifiedDlg::OnButtonDir)
-	EVT_BUTTON(IDC_BTN_BROWSE_WAV,		PrefsUnifiedDlg::OnButtonBrowseWav)
 	EVT_BUTTON(IDC_BROWSEV,			PrefsUnifiedDlg::OnButtonBrowseApplication)
 	EVT_BUTTON(IDC_SELTEMPDIR,		PrefsUnifiedDlg::OnButtonDir)
 	EVT_BUTTON(IDC_SELINCDIR,		PrefsUnifiedDlg::OnButtonDir)
@@ -180,8 +177,6 @@ PrefsPage pages[] =
 	{ wxTRANSLATE("Directories"),		PreferencesDirectoriesTab,	17, NULL },
 	{ wxTRANSLATE("Statistics"),		PreferencesStatisticsTab,	10, NULL },
 	{ wxTRANSLATE("Security"),		PreferencesSecurityTab,		22, NULL },
-	//Notications are disabled since they havent been implemented
-	//{ wxTRANSLATE("Notifications"),	PreferencesNotifyTab,		18, NULL },
 	{ wxTRANSLATE("Gui Tweaks"),		PreferencesGuiTweaksTab,	19, NULL },
 	{ wxTRANSLATE("Core Tweaks"),		PreferencesaMuleTweaksTab,	12, NULL },
 	{ wxTRANSLATE("Events"),		PreferencesEventsTab,		5,  NULL }
@@ -869,20 +864,6 @@ void PrefsUnifiedDlg::OnButtonDir(wxCommandEvent& event)
 		wxDefaultPosition, this);
 	if (!str.IsEmpty()) {
 		widget->SetValue(str);
-	}
-}
-
-
-void PrefsUnifiedDlg::OnButtonBrowseWav(wxCommandEvent& WXUNUSED(evt))
-{
-	wxString str = wxFileSelector( 
-		_("Browse wav"), wxEmptyString, wxEmptyString,
-		wxT("*.wav"), _("File wav (*.wav)|*.wav||"), 0, this );
-	
-	if ( !str.IsEmpty() ) {
-		wxTextCtrl* widget = CastChild( IDC_EDIT_TBN_WAVFILE, wxTextCtrl );
-
-		widget->SetValue( str );
 	}
 }
 
