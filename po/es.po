@@ -1,4 +1,4 @@
-# translation of es.po to Spanish
+# translation of new_es.po to Spanish
 # Copyright (C) 2004 aMule Team
 # This file is distributed under the terms of the GNU General Public
 # License
@@ -8,13 +8,12 @@
 # Ignacio Casal Quinteiro <icq@cvs.gnome.org>, 2007.
 # Carlos Diaz <cskyline@gmail.com>, 2007.
 # Festor Wailon Dacoba <festor90@gmail.com>, 2007.
-# mad_soft <mad.soft@gmail.com>, 2007, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: es\n"
+"Project-Id-Version: new_es\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-31 03:30+0200\n"
-"PO-Revision-Date: 2008-03-27 00:27+0100\n"
+"PO-Revision-Date: 2008-04-01 00:00+0200\n"
 "Last-Translator: Mad-Soft <mad.soft@gmail.com>\n"
 "Language-Team: Spanish <mad.soft@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -1463,7 +1462,7 @@ msgstr "Griego"
 
 #: src/Preferences.cpp:646
 msgid "Hebrew"
-msgstr ""
+msgstr "Hebreo"
 
 #: src/Preferences.cpp:647
 msgid "Hungarian"
