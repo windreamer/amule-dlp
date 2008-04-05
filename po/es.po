@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: new_es\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-19 03:31+0100\n"
-"PO-Revision-Date: 2008-02-26 02:00+0100\n"
+"PO-Revision-Date: 2008-03-19 12:02+0100\n"
 "Last-Translator: mad_soft <mad.soft@gmail.com>\n"
 "Language-Team: Spanish <mad.soft@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -1336,7 +1336,7 @@ msgstr "Por defecto"
 
 #: src/Preferences.cpp:627
 msgid "Albanian"
-msgstr ""
+msgstr "Albanés"
 
 #: src/Preferences.cpp:628
 msgid "Arabic"
@@ -2731,7 +2731,7 @@ msgstr ""
 #, c-format
 msgid "User %s (%u) requested your shareddirectories-list -> Denied"
 msgstr ""
-"Usuario %s (%u) ha solicitado tu lista de directorios compartidos -> Aceptada"
+"Usuario %s (%u) ha solicitado tu lista de directorios compartidos -> Denegada"
 
 #: src/ClientTCPSocket.cpp:934
 #, c-format
@@ -7108,10 +7108,3 @@ msgstr ""
 msgid "Failed to open friendlist file 'emfriends.met' for writing!"
 msgstr ""
 "¡Error al abrir el archivo lista de amigos 'emfriends.met' para la escritura!"
-
-#~ msgid "You can't bootstrap an specific ip from remote GUI yet."
-#~ msgstr ""
-#~ "Todavía no puedes conectar a una ip especifica desde una interfaz remota."
-
-#~ msgid "You can't update server.met from remote GUI yet."
-#~ msgstr "No puedes actualizar server.met desde una interfaz remota."

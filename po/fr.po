@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: fr\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-19 03:31+0100\n"
-"PO-Revision-Date: 2008-02-29 18:55+0100\n"
+"PO-Revision-Date: 2008-03-19 18:40+0100\n"
 "Last-Translator: OBones <obones@altern.org>\n"
 "Language-Team: Français <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1350,7 +1350,7 @@ msgstr "Défaut du Système"
 
 #: src/Preferences.cpp:627
 msgid "Albanian"
-msgstr ""
+msgstr "Albanais"
 
 #: src/Preferences.cpp:628
 msgid "Arabic"

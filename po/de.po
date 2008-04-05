@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-19 03:31+0100\n"
-"PO-Revision-Date: 2008-02-26 10:56+0100\n"
+"PO-Revision-Date: 2008-03-19 08:23+0100\n"
 "Last-Translator: Johannes Krampf <wuischke@amule.org>\n"
 "Language-Team:  <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1336,7 +1336,7 @@ msgstr "Systemvorgabe"
 
 #: src/Preferences.cpp:627
 msgid "Albanian"
-msgstr ""
+msgstr "Albanisch"
 
 #: src/Preferences.cpp:628
 msgid "Arabic"
