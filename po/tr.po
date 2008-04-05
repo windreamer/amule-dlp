@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: amule\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-25 03:31+0100\n"
-"PO-Revision-Date: 2008-02-28 12:48+0200\n"
+"POT-Creation-Date: 2008-03-25 21:03+0100\n"
+"PO-Revision-Date: 2008-03-25 10:28+0200\n"
 "Last-Translator: Atilla ÖNTAŞ <atilla_ontas@hotmail.com>\n"
 "Language-Team: Türkçe <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms:  nplurals=1; plural=0;\n"
 "X-Generator: KBabel 1.11.4\n"
 
 #: src/libs/ec/cpp/RemoteConnect.cpp:86 src/libs/ec/cpp/RemoteConnect.cpp:94
@@ -267,6 +267,50 @@ msgstr ""
 msgid "Multiple selection"
 msgstr "Çoklu seçim"
 
+#: src/UserEvents.h:60
+msgid "Download completed"
+msgstr ""
+
+#: src/UserEvents.h:63 src/UserEvents.h:103
+msgid "The full path to the file."
+msgstr ""
+
+#: src/UserEvents.h:67
+msgid "The name of the file without path component."
+msgstr ""
+
+#: src/UserEvents.h:71
+msgid "The ed2k hash of the file."
+msgstr ""
+
+#: src/UserEvents.h:75
+msgid "The size of the file in bytes."
+msgstr ""
+
+#: src/UserEvents.h:79
+msgid "Cumulative download activity time."
+msgstr ""
+
+#: src/UserEvents.h:84
+msgid "New chat session started"
+msgstr ""
+
+#: src/UserEvents.h:87
+msgid "Message sender."
+msgstr ""
+
+#: src/UserEvents.h:92
+msgid "Out of space"
+msgstr ""
+
+#: src/UserEvents.h:95
+msgid "Disk partition."
+msgstr ""
+
+#: src/UserEvents.h:100
+msgid "Error on completion"
+msgstr ""
+
 #: src/SharedFilesCtrl.cpp:102 src/SearchListCtrl.cpp:87
 #: src/DownloadListCtrl.cpp:189 src/CommentDialogLst.cpp:56
 #: src/FileDetailListCtrl.cpp:43
@@ -448,9 +492,19 @@ msgstr "Şu dosya için gönderimler başlatılıyor:%s"
 msgid "Suspending upload of file: %s"
 msgstr "Şu dosya için gönderimler bekletiliyor: %s"
 
+#: src/TextClient.h:60
+msgid "aMule text client"
+msgstr ""
+
 #: src/kademlia/kademlia/SearchManager.cpp:132
 msgid "Kademlia: search keyword too short"
 msgstr "Kademlia: Arama sözcüğü çok kısa"
+
+#: src/kademlia/routing/RoutingZone.cpp:141
+#, c-format
+msgid "Read %u Kad contact"
+msgid_plural "Read %u Kad contacts"
+msgstr[0] ""
 
 #: src/ListenSocket.cpp:68
 msgid "Error: Could not listen to TCP port."
@@ -1324,7 +1378,7 @@ msgstr "Sistem Varsayılanı"
 
 #: src/Preferences.cpp:628
 msgid "Albanian"
-msgstr ""
+msgstr "Arnavutça"
 
 #: src/Preferences.cpp:629
 msgid "Arabic"
@@ -2076,7 +2130,7 @@ msgstr[0] "Güncelleme gecikmesi: %d saniye"
 #, c-format
 msgid "File Buffer Size: %d byte"
 msgid_plural "File Buffer Size: %d bytes"
-msgstr[0] "Dosya Alım Boyutu: %d bit"
+msgstr[0] "Dosya Alım Boyutu: %d bayt"
 
 #: src/PrefsUnifiedDlg.cpp:1016
 #, c-format
@@ -4199,7 +4253,7 @@ msgstr "%s (Disk: %s)"
 #: src/OtherFunctions.cpp:121
 msgid "byte"
 msgid_plural "bytes"
-msgstr[0] "bit"
+msgstr[0] "bayt"
 
 #: src/OtherFunctions.cpp:123
 msgid "kB"
@@ -4236,7 +4290,7 @@ msgstr "T"
 #: src/OtherFunctions.cpp:156
 msgid "byte/sec"
 msgid_plural "bytes/sec"
-msgstr[0] "bit/sn"
+msgstr[0] "bayt/sn"
 
 #: src/OtherFunctions.cpp:160
 msgid "MB/s"
@@ -4465,7 +4519,7 @@ msgstr "En Az Boyut"
 
 #: src/muuli_wdr.cpp:267 src/muuli_wdr.cpp:290
 msgid "Bytes"
-msgstr "Bit"
+msgstr "bayt"
 
 #: src/muuli_wdr.cpp:268 src/muuli_wdr.cpp:291
 msgid "KB"
