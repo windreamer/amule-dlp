@@ -76,7 +76,7 @@ enum {
 /****************************************************/
 
 BEGIN_EVENT_TABLE(CMuleTrayIcon, wxTaskBarIcon)
-	EVT_TASKBAR_LEFT_DOWN(CMuleTrayIcon::SwitchShow)
+	EVT_TASKBAR_LEFT_DCLICK(CMuleTrayIcon::SwitchShow)
 	EVT_MENU( TRAY_MENU_EXIT, CMuleTrayIcon::Close)
 	EVT_MENU( TRAY_MENU_CONNECT, CMuleTrayIcon::ServerConnection)
 	EVT_MENU( TRAY_MENU_DISCONNECT, CMuleTrayIcon::ServerConnection)
@@ -161,17 +161,15 @@ void CMuleTrayIcon::ServerConnection(wxCommandEvent& WXUNUSED(event))
 
 void CMuleTrayIcon::ShowHide(wxCommandEvent& WXUNUSED(event))
 {
-	if (theApp->amuledlg->IsShown()) {
-		theApp->amuledlg->Hide_aMule();
-	} else {
-		theApp->amuledlg->Show_aMule();
-	}
+	theApp->amuledlg->DoIconize(theApp->amuledlg->IsShown());
 }
 
 
 void CMuleTrayIcon::Close(wxCommandEvent& WXUNUSED(event))
 {
-	theApp->amuledlg->Close();
+	if (theApp->amuledlg->IsEnabled()) {
+		theApp->amuledlg->Close();
+	}
 }
 
 
@@ -562,11 +560,17 @@ wxMenu* CMuleTrayIcon::CreatePopupMenu()
 	return traymenu;
 }		
 
-void CMuleTrayIcon::SwitchShow(wxTaskBarIconEvent&) {
-	if ( theApp->amuledlg->IsShown() ) {		
-		theApp->amuledlg->Hide_aMule();
+void CMuleTrayIcon::SwitchShow(wxTaskBarIconEvent&)
+{
+	if ( !theApp->amuledlg->IsIconized() ) {
+		theApp->amuledlg->Iconize(true);
+		if (thePrefs::DoMinToTray()) {
+			theApp->amuledlg->Show(false);
+		}
 	} else {
-		theApp->amuledlg->Show_aMule();
+		theApp->amuledlg->Iconize(false);
+		theApp->amuledlg->Show(true);
+		theApp->amuledlg->Raise();
 	}
 }
 // File_checked_for_headers
