@@ -119,6 +119,7 @@ am_libmuleappcore_a_OBJECTS = libmuleappcore_a-AsyncDNS.$(OBJEXT) \
 	libmuleappcore_a-DeadSourceList.$(OBJEXT) \
 	libmuleappcore_a-Scanner.$(OBJEXT) \
 	libmuleappcore_a-Parser.$(OBJEXT) \
+	libmuleappcore_a-PlatformSpecific.$(OBJEXT) \
 	libmuleappcore_a-LittleEndian.$(OBJEXT) \
 	libmuleappcore_a-SearchManager.$(OBJEXT) \
 	libmuleappcore_a-RoutingBin.$(OBJEXT) \
@@ -665,6 +666,7 @@ libmuleappcore_a_SOURCES = \
 	DeadSourceList.cpp \
 	Scanner.cpp \
 	Parser.cpp \
+	PlatformSpecific.cpp \
 	kademlia/utils/LittleEndian.cpp \
 	kademlia/kademlia/SearchManager.cpp \
 	kademlia/routing/RoutingBin.cpp \
@@ -898,6 +900,7 @@ noinst_HEADERS = \
 		Parser.hpp \
 		PartFileConvert.h \
 		PartFile.h \
+		PlatformSpecific.h \
 		Preferences.h \
 		PrefsUnifiedDlg.h \
 		Proxy.h \
@@ -1263,6 +1266,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-DeadSourceList.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-LittleEndian.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-Parser.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-PlatformSpecific.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-RoutingBin.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-Scanner.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-SearchManager.Po@am__quote@
@@ -1549,6 +1553,20 @@ libmuleappcore_a-Parser.obj: Parser.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Parser.cpp' object='libmuleappcore_a-Parser.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmuleappcore_a_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcore_a-Parser.obj `if test -f 'Parser.cpp'; then $(CYGPATH_W) 'Parser.cpp'; else $(CYGPATH_W) '$(srcdir)/Parser.cpp'; fi`
+
+libmuleappcore_a-PlatformSpecific.o: PlatformSpecific.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmuleappcore_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcore_a-PlatformSpecific.o -MD -MP -MF "$(DEPDIR)/libmuleappcore_a-PlatformSpecific.Tpo" -c -o libmuleappcore_a-PlatformSpecific.o `test -f 'PlatformSpecific.cpp' || echo '$(srcdir)/'`PlatformSpecific.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleappcore_a-PlatformSpecific.Tpo" "$(DEPDIR)/libmuleappcore_a-PlatformSpecific.Po"; else rm -f "$(DEPDIR)/libmuleappcore_a-PlatformSpecific.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='PlatformSpecific.cpp' object='libmuleappcore_a-PlatformSpecific.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmuleappcore_a_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcore_a-PlatformSpecific.o `test -f 'PlatformSpecific.cpp' || echo '$(srcdir)/'`PlatformSpecific.cpp
+
+libmuleappcore_a-PlatformSpecific.obj: PlatformSpecific.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmuleappcore_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcore_a-PlatformSpecific.obj -MD -MP -MF "$(DEPDIR)/libmuleappcore_a-PlatformSpecific.Tpo" -c -o libmuleappcore_a-PlatformSpecific.obj `if test -f 'PlatformSpecific.cpp'; then $(CYGPATH_W) 'PlatformSpecific.cpp'; else $(CYGPATH_W) '$(srcdir)/PlatformSpecific.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleappcore_a-PlatformSpecific.Tpo" "$(DEPDIR)/libmuleappcore_a-PlatformSpecific.Po"; else rm -f "$(DEPDIR)/libmuleappcore_a-PlatformSpecific.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='PlatformSpecific.cpp' object='libmuleappcore_a-PlatformSpecific.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmuleappcore_a_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcore_a-PlatformSpecific.obj `if test -f 'PlatformSpecific.cpp'; then $(CYGPATH_W) 'PlatformSpecific.cpp'; else $(CYGPATH_W) '$(srcdir)/PlatformSpecific.cpp'; fi`
 
 libmuleappcore_a-LittleEndian.o: kademlia/utils/LittleEndian.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmuleappcore_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcore_a-LittleEndian.o -MD -MP -MF "$(DEPDIR)/libmuleappcore_a-LittleEndian.Tpo" -c -o libmuleappcore_a-LittleEndian.o `test -f 'kademlia/utils/LittleEndian.cpp' || echo '$(srcdir)/'`kademlia/utils/LittleEndian.cpp; \
