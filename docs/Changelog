@@ -384,6 +384,7 @@ Version 2.2.1 - ???
 		* Fix for crash on receiving zero-sized UDP packet.
 		* New BarShader code.
 		* Sparse partfiles on Windows.
+		* Fix for zlib detection with an optimizing compiler on configure.
 
 	Tiziano Müller:
 		* Fixed compilation when --enable-geoip is used in conjunction
@@ -729,6 +730,7 @@ Version 2.2.1 - ???
 		  startup.
 
 	Special Thanks to:
+		* GeVauDan and gulp for their incredible 'litoral' webserver skin.
 		* FreeToGo for implementing the first version of IP2Country on
 		  the forum.
 		* Mark James (http://www.famfamfam.com) for providing the

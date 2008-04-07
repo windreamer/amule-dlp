@@ -5647,12 +5647,13 @@ cat >>conftest.$ac_ext <<_ACEOF
 /* end confdefs.h.  */
 
 				#include <zlib.h>
+				#include <stdio.h>
 
 int
 main ()
 {
 
-				const char zver[] = "\nZLIB_VERSION_START" ZLIB_VERSION "ZLIB_VERSION_END\n";
+				printf("\nZLIB_VERSION_START" ZLIB_VERSION "ZLIB_VERSION_END\n\n");
 				zlibVersion();
 
   ;
@@ -18759,7 +18760,7 @@ echo "${ECHO_T}$result" >&6
 	fi
 esac
 
-                                                                                                                                                                                                                                                                                                                                                                                  ac_config_files="$ac_config_files Makefile docs/Makefile docs/man/Makefile intl/Makefile src/Makefile src/kademlia/Makefile src/kademlia/utils/Makefile src/kademlia/kademlia/Makefile src/kademlia/routing/Makefile src/kademlia/net/Makefile src/pixmaps/Makefile src/pixmaps/flags_xpm/Makefile src/libs/Makefile src/libs/ec/Makefile src/libs/ec/cpp/Makefile src/libs/common/Makefile src/utils/Makefile src/utils/aLinkCreator/Makefile src/utils/aLinkCreator/docs/Makefile src/utils/aLinkCreator/src/Makefile src/utils/cas/Makefile src/utils/cas/docs/Makefile src/utils/wxCas/Makefile src/utils/wxCas/docs/Makefile src/utils/wxCas/src/Makefile src/utils/xas/Makefile src/utils/xas/autostart-xas src/utils/xas/docs/Makefile src/skins/Makefile src/webserver/Makefile src/webserver/src/Makefile src/webserver/default/Makefile src/webserver/php-default/Makefile src/webserver/chicane/Makefile unittests/Makefile unittests/muleunit/Makefile unittests/tests/Makefile"
+                                                                                                                                                                                                                                                                                                                                                                                            ac_config_files="$ac_config_files Makefile docs/Makefile docs/man/Makefile intl/Makefile src/Makefile src/kademlia/Makefile src/kademlia/utils/Makefile src/kademlia/kademlia/Makefile src/kademlia/routing/Makefile src/kademlia/net/Makefile src/pixmaps/Makefile src/pixmaps/flags_xpm/Makefile src/libs/Makefile src/libs/ec/Makefile src/libs/ec/cpp/Makefile src/libs/common/Makefile src/utils/Makefile src/utils/aLinkCreator/Makefile src/utils/aLinkCreator/docs/Makefile src/utils/aLinkCreator/src/Makefile src/utils/cas/Makefile src/utils/cas/docs/Makefile src/utils/wxCas/Makefile src/utils/wxCas/docs/Makefile src/utils/wxCas/src/Makefile src/utils/xas/Makefile src/utils/xas/autostart-xas src/utils/xas/docs/Makefile src/skins/Makefile src/webserver/Makefile src/webserver/src/Makefile src/webserver/default/Makefile src/webserver/php-default/Makefile src/webserver/chicane/Makefile src/webserver/litoral/Makefile unittests/Makefile unittests/muleunit/Makefile unittests/tests/Makefile"
 
                     ac_config_files="$ac_config_files po/Makefile.in Compilation.flags"
 
@@ -19492,6 +19493,7 @@ do
   "src/webserver/default/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/webserver/default/Makefile" ;;
   "src/webserver/php-default/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/webserver/php-default/Makefile" ;;
   "src/webserver/chicane/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/webserver/chicane/Makefile" ;;
+  "src/webserver/litoral/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/webserver/litoral/Makefile" ;;
   "unittests/Makefile" ) CONFIG_FILES="$CONFIG_FILES unittests/Makefile" ;;
   "unittests/muleunit/Makefile" ) CONFIG_FILES="$CONFIG_FILES unittests/muleunit/Makefile" ;;
   "unittests/tests/Makefile" ) CONFIG_FILES="$CONFIG_FILES unittests/tests/Makefile" ;;
