@@ -392,7 +392,7 @@ RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
 HEADERS = $(noinst_HEADERS)
 ETAGS = etags
 CTAGS = ctags
-DIST_SUBDIRS = libs utils pixmaps kademlia skins webserver
+DIST_SUBDIRS = libs utils pixmaps skins webserver
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALCC_FALSE = @ALCC_FALSE@
@@ -625,7 +625,7 @@ sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 @WEB_TRUE@OPT_WEB = webserver
-SUBDIRS = libs utils pixmaps kademlia skins $(OPT_WEB)
+SUBDIRS = libs utils pixmaps skins $(OPT_WEB)
 EXTRA_DIST = \
 	aMule.xpm \
 	Parser.y \
@@ -960,7 +960,7 @@ MAINTAINERCLEANFILES = Makefile.in
 @NEED_RC_TRUE@nodist_amulecmd_SOURCES = amulecmd-version.rc
 @NEED_RC_TRUE@nodist_ed2k_SOURCES = ed2k-version.rc
 @NEED_RC_TRUE@CLEANFILES = *-version.rc
-EXTRA__DIST__SUBDIRS = include remote-gui.net
+EXTRA__DIST__SUBDIRS = include kademlia remote-gui.net
 all: all-recursive
 
 .SUFFIXES:

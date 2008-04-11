@@ -18760,7 +18760,7 @@ echo "${ECHO_T}$result" >&6
 	fi
 esac
 
-                                                                                                                                                                                                                                                                                                                                                                                            ac_config_files="$ac_config_files Makefile docs/Makefile docs/man/Makefile intl/Makefile src/Makefile src/kademlia/Makefile src/kademlia/utils/Makefile src/kademlia/kademlia/Makefile src/kademlia/routing/Makefile src/kademlia/net/Makefile src/pixmaps/Makefile src/pixmaps/flags_xpm/Makefile src/libs/Makefile src/libs/ec/Makefile src/libs/ec/cpp/Makefile src/libs/common/Makefile src/utils/Makefile src/utils/aLinkCreator/Makefile src/utils/aLinkCreator/docs/Makefile src/utils/aLinkCreator/src/Makefile src/utils/cas/Makefile src/utils/cas/docs/Makefile src/utils/wxCas/Makefile src/utils/wxCas/docs/Makefile src/utils/wxCas/src/Makefile src/utils/xas/Makefile src/utils/xas/autostart-xas src/utils/xas/docs/Makefile src/skins/Makefile src/webserver/Makefile src/webserver/src/Makefile src/webserver/default/Makefile src/webserver/php-default/Makefile src/webserver/chicane/Makefile src/webserver/litoral/Makefile unittests/Makefile unittests/muleunit/Makefile unittests/tests/Makefile"
+                                                                                                                                                                                                                                                                                                                                          ac_config_files="$ac_config_files Makefile docs/Makefile docs/man/Makefile intl/Makefile src/Makefile src/pixmaps/Makefile src/pixmaps/flags_xpm/Makefile src/libs/Makefile src/libs/ec/Makefile src/libs/ec/cpp/Makefile src/libs/common/Makefile src/utils/Makefile src/utils/aLinkCreator/Makefile src/utils/aLinkCreator/docs/Makefile src/utils/aLinkCreator/src/Makefile src/utils/cas/Makefile src/utils/cas/docs/Makefile src/utils/wxCas/Makefile src/utils/wxCas/docs/Makefile src/utils/wxCas/src/Makefile src/utils/xas/Makefile src/utils/xas/autostart-xas src/utils/xas/docs/Makefile src/skins/Makefile src/webserver/Makefile src/webserver/src/Makefile src/webserver/default/Makefile src/webserver/php-default/Makefile src/webserver/chicane/Makefile src/webserver/litoral/Makefile unittests/Makefile unittests/muleunit/Makefile unittests/tests/Makefile"
 
                     ac_config_files="$ac_config_files po/Makefile.in Compilation.flags"
 
@@ -19464,11 +19464,6 @@ do
   "docs/man/Makefile" ) CONFIG_FILES="$CONFIG_FILES docs/man/Makefile" ;;
   "intl/Makefile" ) CONFIG_FILES="$CONFIG_FILES intl/Makefile" ;;
   "src/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
-  "src/kademlia/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kademlia/Makefile" ;;
-  "src/kademlia/utils/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kademlia/utils/Makefile" ;;
-  "src/kademlia/kademlia/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kademlia/kademlia/Makefile" ;;
-  "src/kademlia/routing/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kademlia/routing/Makefile" ;;
-  "src/kademlia/net/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/kademlia/net/Makefile" ;;
   "src/pixmaps/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/pixmaps/Makefile" ;;
   "src/pixmaps/flags_xpm/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/pixmaps/flags_xpm/Makefile" ;;
   "src/libs/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/libs/Makefile" ;;
