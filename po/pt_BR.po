@@ -1,24 +1,26 @@
+# translation of pt_BR.po to Português (Brasileiro)
+# Kry <elkry@users.sourceforge.net>, 2004.
+# IgoR <igor.spy@gmx.net>, 2004.
+# Fabio Jr. Beneditto <kamikazenh@yahoo.com.br>, 2004, 2005.
+# felipe augusto <flipeicl@gmail.com>, 2007.
+# Israel Rodrigo Faria <israel.faria@gmail.com>, 2007.
+# Fabio Junior Beneditto <fabiobeneditto@uol.com.br>, 2008.
 # aMule i18n resource file.
 # Copyright (C) 2004 aMule Team
 # This file is distributed under the same license as the aMule package.
-# Kry <elkry@users.sourceforge.net>, 2004.
-# IgoR <igor.spy@gmx.net>, 2004.
-# Fabio Jr. Beneditto <kamikazenh@yahoo.com.br>, 2004, 2005,
-# felipe augusto <flipeicl@gmail.com>, 2007,
-# Israel Rodrigo Faria <israel.faria@gmail.com>, 2007.
-# Fabio Jr. Beneditto <kamikazenh@uol.com.br>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: aMule CVS\n"
+"Project-Id-Version: pt_BR\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-04-16 03:31+0200\n"
-"PO-Revision-Date: 2008-04-08 22:05-0300\n"
-"Last-Translator: Fabio Jr. Beneditto <kamikazenh@uol.com.br>\n"
-"Language-Team: Brazilian Portuguese aMule TeaM (see header for more)\n"
+"PO-Revision-Date: 2008-04-15 19:33-0300\n"
+"Last-Translator: Fabio Junior Beneditto <fabiobeneditto@uol.com.br>\n"
+"Language-Team: Português (Brasileiro) <pt@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms:  nplurals=2; plural=(n > 1);\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: src/libs/ec/cpp/RemoteConnect.cpp:86 src/libs/ec/cpp/RemoteConnect.cpp:94
 msgid "You must specify a non-empty password."
@@ -46,7 +48,7 @@ msgstr "ConexaoExterna: Acesso negado"
 
 #: src/libs/ec/cpp/RemoteConnect.cpp:207
 msgid "ExternalConn: Bad reply from server. Connection closed."
-msgstr "ConexaoExterna: Resposta incorreta do servidor. Conexao Encerrada."
+msgstr "ConexaoExterna: Resposta incorreta do servidor. Conexão Encerrada."
 
 #: src/libs/ec/cpp/RemoteConnect.cpp:211
 msgid "Succeeded! Connection established to aMule "
@@ -350,7 +352,7 @@ msgstr "Pedidos aceitos"
 
 #: src/SharedFilesCtrl.cpp:109
 msgid "Transferred Data"
-msgstr "Dados tranferidos"
+msgstr "Dados transferidos"
 
 #: src/SharedFilesCtrl.cpp:110
 msgid "Share Ratio"
@@ -423,11 +425,11 @@ msgstr "Renomear"
 
 #: src/SharedFilesCtrl.cpp:158
 msgid "Add files in collection to transfer list"
-msgstr "Adcionar arquivo na coleção para lista de transfência"
+msgstr "Adicionar arquivo na coleção para lista de transgênica"
 
 #: src/SharedFilesCtrl.cpp:161
 msgid "Copy magnet &URI to clipboard"
-msgstr "Copiar &URL Magnet para Área de Tranferência"
+msgstr "Copiar &URL Magnet para Área de Transferência"
 
 #: src/SharedFilesCtrl.cpp:162 src/DownloadListCtrl.cpp:937
 msgid "Copy ED2k &link to clipboard"
@@ -516,8 +518,8 @@ msgstr[1] "Lendo %u contatos Kad"
 #, c-format
 msgid "Wrote %d Kad contact"
 msgid_plural "Wrote %d Kad contacts"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Gravado %d contato Kad"
+msgstr[1] "Gravados %d contatos Kad"
 
 #: src/ListenSocket.cpp:68
 msgid "Error: Could not listen to TCP port."
@@ -839,7 +841,7 @@ msgstr "Arquivo não foi salvo"
 
 #: src/utils/wxCas/src/wxcasframe.cpp:379
 msgid "aMule Online Statistics"
-msgstr "Eststísticas Online do aMule"
+msgstr "Estatísticas Online do aMule"
 
 #: src/utils/wxCas/src/wxcasframe.cpp:383
 msgid ""
@@ -1225,7 +1227,7 @@ msgstr ""
 "Pixmaps de http://www.everaldo.com e http://www.icomania.com\n"
 "e http://jimmac.musichall.cz/ikony.php3\n"
 "\n"
-"Distribído sob licença GPL"
+"Distribuído sob licença GPL"
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:511
 #: src/utils/aLinkCreator/src/alcframe.cpp:512
@@ -1490,7 +1492,7 @@ msgstr "Lituânia"
 
 #: src/Preferences.cpp:653
 msgid "Norwegian (Nynorsk)"
-msgstr "Noruêga (Nynorsk)"
+msgstr "Noruega (Nynorsk)"
 
 #: src/Preferences.cpp:654
 msgid "Polish"
@@ -1531,7 +1533,7 @@ msgstr "Impossível determinar browser selecionado!"
 #: src/Preferences.cpp:1664
 msgid ""
 "TCP port can't be higher than 65532 due to server UDP socket being TCP+3"
-msgstr "Porta TCP nao pode ser maior do que 65532, pois a UDP escuta em TCP+3"
+msgstr "Porta TCP não pode ser maior do que 65532, pois a UDP escuta em TCP+3"
 
 #: src/Preferences.cpp:1665
 #, c-format
@@ -2023,7 +2025,7 @@ msgstr "-Idioma alterado.\n"
 
 #: src/PrefsUnifiedDlg.cpp:540
 msgid "- Temp folder changed.\n"
-msgstr "-Diretório temp alterado.\n"
+msgstr "-Diretório temporário alterado.\n"
 
 #: src/PrefsUnifiedDlg.cpp:565 src/muuli_wdr.cpp:113
 msgid "Up: 0.0 | Down: 0.0"
@@ -2035,7 +2037,7 @@ msgid ""
 "You won't be able to connect until you enable at least one of them."
 msgstr ""
 "Ambos ED2K e rede Kad estão desabilitados.\n"
-"Voce não será capaz de conectar até que você habilite uma delas."
+"Você não será capaz de conectar até que você habilite uma delas."
 
 #: src/PrefsUnifiedDlg.cpp:611
 msgid ""
@@ -2088,7 +2090,7 @@ msgstr "Escolha uma pasta para %s"
 
 #: src/PrefsUnifiedDlg.cpp:878
 msgid "Browse for videoplayer"
-msgstr "Defina seu videoplayer preferido"
+msgstr "Defina seu Player de Vídeo preferido"
 
 #: src/PrefsUnifiedDlg.cpp:882
 msgid "Select browser"
@@ -2097,7 +2099,7 @@ msgstr "Selecione o Browser"
 #: src/PrefsUnifiedDlg.cpp:888
 #, c-format
 msgid "Executable%s"
-msgstr "Executavel%s"
+msgstr "Executável%s"
 
 #: src/PrefsUnifiedDlg.cpp:909
 msgid "Edit Serverlist"
@@ -2478,7 +2480,7 @@ msgstr "Uptime: %s"
 
 #: src/Statistics.cpp:644 src/muuli_wdr.cpp:644
 msgid "Transfer"
-msgstr "Tranferência"
+msgstr "Transferência"
 
 #: src/Statistics.cpp:646 src/TransferWnd.cpp:445 src/muuli_wdr.cpp:464
 msgid "Uploads"
@@ -2744,7 +2746,7 @@ msgstr "A busca do ED2K não pode ser feita se o ED2K não estiver conectado"
 
 #: src/SearchList.cpp:311
 msgid "Unexpected error while attempting Kad search: "
-msgstr "Erro inexperado quando tentava fazer a busca do Kad:"
+msgstr "Erro inesperado quando tentava fazer a busca do Kad:"
 
 #: src/ClientTCPSocket.cpp:796
 #, c-format
@@ -2826,7 +2828,7 @@ msgstr "Nodes (%u)"
 
 #: src/KadDlg.cpp:167
 msgid "Invalid ip to bootstrap"
-msgstr "IP Inválido para incialização"
+msgstr "IP Inválido para inicialização"
 
 #: src/KadDlg.cpp:173
 msgid "Invalid port to bootstrap"
@@ -3368,7 +3370,7 @@ msgid ""
 "without obfuscation."
 msgstr ""
 "Falha ao conectar em todos servidores obscurecidos listados. Tentando de "
-"novo sem obfuscação."
+"novo sem ofuscação."
 
 #: src/ServerConnect.cpp:74
 msgid "Failed to connect to all servers listed. Making another pass."
@@ -4144,7 +4146,7 @@ msgstr "Texto"
 
 #: src/TransferWnd.cpp:364
 msgid "Select view filter"
-msgstr "Selecione o filtro de exibiçao"
+msgstr "Selecione o filtro de exibição"
 
 #: src/TransferWnd.cpp:367
 msgid "Add category"
@@ -4412,7 +4414,7 @@ msgstr[1] "Carregadas %u Faixas de Ip de '%s'."
 #, c-format
 msgid "%u malformed line was discarded."
 msgid_plural "%u malformed lines were discarded."
-msgstr[0] "%u linha mal-formada foi ignorada."
+msgstr[0] "%u linha malformada foi ignorada."
 msgstr[1] "%u linhas mal-formadas foram ignoradas."
 
 #: src/StatisticsDlg.cpp:189
@@ -4489,7 +4491,7 @@ msgid ""
 "optimal connection type)."
 msgstr ""
 "Exibe o status atual da conexão e transferências ativas. Seta VERMELHA "
-"significa que você nao está conectado, AMARELA significa que você está com "
+"significa que você não está conectado, AMARELA significa que você está com "
 "low ID (sob firewall) e VERDE significa que você está com uma Id Alta (High "
 "ID, o melhor tipo de conexão)."
 
@@ -4523,7 +4525,7 @@ msgstr "ArquivoHash"
 
 #: src/muuli_wdr.cpp:203
 msgid "Extended Parameters"
-msgstr "Paramêtros Extendidos"
+msgstr "Parâmetros Estendidos"
 
 #: src/muuli_wdr.cpp:209
 msgid "Filtering"
@@ -4775,7 +4777,7 @@ msgstr "Informação necessária"
 
 #: src/muuli_wdr.cpp:1023
 msgid "IP Address :"
-msgstr "Endereco IP:"
+msgstr "Endereço IP:"
 
 #: src/muuli_wdr.cpp:1029
 msgid "Port :"
@@ -5112,11 +5114,11 @@ msgstr "Essa é uma porta essencial do ED2K e não pode ser desativada."
 
 #: src/muuli_wdr.cpp:1821
 msgid "Extended client UDP Port:"
-msgstr "Porta UDP do cliente (Extendida):"
+msgstr "Porta UDP do cliente (Estendida):"
 
 #: src/muuli_wdr.cpp:1825
 msgid "This UDP port is used for extended Ed2K requests and Kad network"
-msgstr "Essa porta UDP é usada para solicitações ED2K extendidas e rede Kad"
+msgstr "Essa porta UDP é usada para solicitações ED2K estendidas e rede Kad"
 
 #: src/muuli_wdr.cpp:1828
 msgid "disable"
@@ -5128,7 +5130,7 @@ msgstr "Fixar esse Endereço"
 
 #: src/muuli_wdr.cpp:1846
 msgid "UDP port for extended server requests (TCP+3): 4665"
-msgstr "Porta UDP para solicitações extendidas (TCP+3):4665"
+msgstr "Porta UDP para solicitações estendidas (TCP+3):4665"
 
 #: src/muuli_wdr.cpp:1853
 msgid "Max Sources per File"
@@ -5328,7 +5330,7 @@ msgstr "Tempo para gráfico de média: 100min"
 
 #: src/muuli_wdr.cpp:2234
 msgid "Connections Graph Scale: 100 "
-msgstr "Escala dos graficos das conexões: 100 "
+msgstr "Escala dos gráficos das conexões: 100 "
 
 #: src/muuli_wdr.cpp:2240
 msgid "Select Statistics Colors"
@@ -5408,7 +5410,7 @@ msgid ""
 "these settings."
 msgstr ""
 "Não mude esses valores, a menos que você saiba o\n"
-"que esteje fazendo, se não você poderá facilmente\n"
+"que esteja fazendo, se não você poderá facilmente\n"
 "tornar as coisas uma bagunça.\n"
 "\n"
 "O aMule funciona corretamente sem qualquer tipo de\n"
@@ -5545,7 +5547,7 @@ msgstr "Tempo atualização (secs)"
 
 #: src/muuli_wdr.cpp:2543
 msgid "Enable Gzip compression"
-msgstr "Ativar compactção Gzip"
+msgstr "Ativar compactação Gzip"
 
 #: src/muuli_wdr.cpp:2547
 msgid "Enable Low rights User"
@@ -5906,7 +5908,7 @@ msgstr "Frequência de atualização (Seg):"
 
 #: src/muuli_wdr.cpp:3324
 msgid "Change the frequency (in seconds) of Online Signature updates."
-msgstr "Alterar frequencia (em segundos) da atualização da Assinatura."
+msgstr "Alterar frequência (em segundos) da atualização da Assinatura."
 
 #: src/muuli_wdr.cpp:3332
 msgid "Online Signature Directory:"
@@ -6333,7 +6335,7 @@ msgid ""
 "the file ~/.aMule/amule.conf"
 msgstr ""
 "ERRO: O daemon aMule não pode ser usado quando conexões externas estão "
-"disabilitadas. Para habilitar conexões externas, use um dos dois normal no "
+"desabilitadas. Para habilitar conexões externas, use um dos dois normal no "
 "aMule, inicie o amuled com a opção --ec-config ou mude o comando"
 "\"AcceptExternalConnections\" para 1 no arquivo ~/.aMule/amule.conf"
 
@@ -6521,7 +6523,7 @@ msgstr "Velocidade de UP: %.1f"
 
 #: src/MuleTrayIcon.cpp:366
 msgid "Client Information"
-msgstr "Informacao do Cliente"
+msgstr "Informação do Cliente"
 
 #: src/MuleTrayIcon.cpp:370
 #, c-format
@@ -6556,7 +6558,7 @@ msgstr "Porta TCP: %d"
 
 #: src/MuleTrayIcon.cpp:417
 msgid "TCP Port: Not Ready"
-msgstr "Porta TCP: Nao pronta"
+msgstr "Porta TCP: Não pronta"
 
 #: src/MuleTrayIcon.cpp:426
 #, c-format
@@ -6565,7 +6567,7 @@ msgstr "Porta UDP: %d"
 
 #: src/MuleTrayIcon.cpp:428
 msgid "UDP Port: Not Ready"
-msgstr "Porta UDP: Nao pronta"
+msgstr "Porta UDP: Não pronta"
 
 #: src/MuleTrayIcon.cpp:437
 msgid "Online Signature: Enabled"
@@ -7027,150 +7029,3 @@ msgstr "Falha ao abrir a lista de amigos 'emfriends.met' para leitura!"
 #: src/FriendList.cpp:146
 msgid "Failed to open friendlist file 'emfriends.met' for writing!"
 msgstr "Falha ao abrir a lista de amigos 'emfriends.met' para escrita!"
-
-#~ msgid "Browse wav"
-#~ msgstr "Defina um arquivo .wav "
-
-#~ msgid "File wav (*.wav)|*.wav||"
-#~ msgstr "Arquivo wav (*.wav)|*.wav||"
-
-#~ msgid "No comment(s)"
-#~ msgstr "Sem comentário(s)"
-
-#~ msgid ""
-#~ "Note: These values are\n"
-#~ "only used for statistics."
-#~ msgstr ""
-#~ "Nota: Esses valores são\n"
-#~ "usados só nas estatísticas."
-
-#~ msgid "Notifications"
-#~ msgstr "Notificações"
-
-#~ msgid "Messages popup"
-#~ msgstr "Mensagens PopUp"
-
-#~ msgid "Use sound"
-#~ msgstr "Usar som"
-
-#~ msgid "Pop out when :"
-#~ msgstr "PopUp quando :"
-
-#~ msgid "New entry on log"
-#~ msgstr "Nova entrada no log"
-
-#~ msgid "Starts a new chat session"
-#~ msgstr "Iniciar nova sessão de Chat"
-
-#~ msgid "A new chat message is received"
-#~ msgstr "Nova mensagem de Chat recebida"
-
-#~ msgid "A download is added or finished"
-#~ msgstr "Download adicionado ou concluído"
-
-#~ msgid "New aMule version detected"
-#~ msgstr "Nova versão do aMule detectada"
-
-#~ msgid "Urgent OOD, serverconnection lost"
-#~ msgstr "Urgente OOD, conexão com o servidor perdida"
-
-#~ msgid "Notify by Mail"
-#~ msgstr "Notificar via eMail"
-
-#~ msgid "Send an Email when transfer complete."
-#~ msgstr "Enviar eMail quando uma transf. concluir"
-
-#~ msgid "SMTP server :"
-#~ msgstr "Servidor SMTP:"
-
-#~ msgid "Email Address :"
-#~ msgstr "Endereço de eMail:"
-
-#~ msgid ":"
-#~ msgstr ":"
-
-#~ msgid ""
-#~ "The selected locale seems not to be installed on your box\n"
-#~ "You must generate it to use this language.\n"
-#~ "A good start on linux systems is the file /etc/locale.gen and the package "
-#~ "'locales'\n"
-#~ "Good luck!\n"
-#~ "(Note: I'll try to set it anyway)"
-#~ msgstr ""
-#~ "O locale (idioma) selecionado aparentemente não esta instalado.\n"
-#~ "Você tem que gerar ele para usar esta lingua.\n"
-#~ "Um bom início em sistemas linux e o arquivo /etc/locale.gen e o pacote "
-#~ "'locales'\n"
-#~ "Boa sorte!\n"
-#~ "(Nota: Eu vou tentar definir ele mesmo assim)"
-
-#~ msgid "Never show this again"
-#~ msgstr "Nunca exiba isto novamente"
-
-#~ msgid "Enable/Disable"
-#~ msgstr "Ativar/Desativar"
-
-#~ msgid "You can't bootstrap an specific ip from remote GUI yet."
-#~ msgstr ""
-#~ "Você não pode auto-suficientizar um ip específico da GUI remota ainda."
-
-#~ msgid "You can't update server.met from remote GUI yet."
-#~ msgstr "Você ainda não pode atualizar o arquivo server.met pela GUI remota."
-
-#~ msgid "Disconnect from "
-#~ msgstr "Desconectar de "
-
-#~ msgid "current server"
-#~ msgstr "servidor atual"
-
-#~ msgid " and "
-#~ msgstr " e "
-
-#~ msgid "Disconnect from any server and/or Kad"
-#~ msgstr "Desconectar de qualquer servidor e/ou Kad"
-
-#~ msgid " ["
-#~ msgstr " ["
-
-#~ msgid " | Kad: "
-#~ msgstr " | Kad: "
-
-#~ msgid "TCP Flags"
-#~ msgstr "Flags TCP"
-
-#~ msgid "UDP Flags"
-#~ msgstr "Flags UDP"
-
-#~ msgid "Copy ED2k link(s) to clipboard"
-#~ msgstr "Copiar links ED2K da Área de Transferência"
-
-#~ msgid "Client requests %u"
-#~ msgstr "Requisição do cliente %u"
-
-#~ msgid "File block %u-%u (%d bytes):"
-#~ msgstr "Bloco do arquivo %u-%u (%d bytes):"
-
-#~ msgid "Client request is invalid!"
-#~ msgstr "Requisição do cliente é inválida!"
-
-#~ msgid "Client request is invalid! %i / %i"
-#~ msgstr "Requisição do cliente é inválida! %i / %i"
-
-#~ msgid "Command: %s"
-#~ msgstr "Comando: %s"
-
-#~ msgid "Unable to open %s file - using %s file."
-#~ msgstr "Não foi possível carregar o arquivo %s - usando arquivo %s."
-
-#~ msgid "Warning: known.met does not exist."
-#~ msgstr "Cuidado: Known.met não existe."
-
-#~ msgid ""
-#~ "CSharedFileList::FindSharedFiles: Removing %s from shared directory list: "
-#~ "directory not found."
-#~ msgstr ""
-#~ "CSharedFileList::FindSharedFiles: Removendo %s da lista do diretório de "
-#~ "compartilhamento: diretório não encontrado."
-
-#~ msgid "Waiting for subprocess termination failed"
-#~ msgstr "Esperando pela terminação de subprocessos falhados"
