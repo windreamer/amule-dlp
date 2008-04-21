@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-04-20 03:31+0200\n"
-"PO-Revision-Date: 2008-04-16 08:24+0100\n"
+"PO-Revision-Date: 2008-04-20 13:34+0100\n"
 "Last-Translator: Johannes Krampf <wuischke@amule.org>\n"
 "Language-Team:  <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1944,15 +1944,15 @@ msgstr "Über/Hilfe - Hinweise zur Version usw."
 
 #: src/amuleDlg.cpp:1485
 msgid "ed2k network"
-msgstr ""
+msgstr "ed2k-Netzwerk"
 
 #: src/amuleDlg.cpp:1489
 msgid "Kad network"
-msgstr ""
+msgstr "Kad-Netzwerk"
 
 #: src/amuleDlg.cpp:1494
 msgid "No network"
-msgstr ""
+msgstr "Kein Netzwerk"
 
 #: src/PrefsUnifiedDlg.cpp:169 src/muuli_wdr.cpp:566 src/muuli_wdr.cpp:1373
 #: src/muuli_wdr.cpp:3451
