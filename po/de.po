@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-04-20 03:31+0200\n"
-"PO-Revision-Date: 2008-04-20 13:34+0100\n"
+"PO-Revision-Date: 2008-04-26 12:37+0200\n"
 "Last-Translator: Johannes Krampf <wuischke@amule.org>\n"
 "Language-Team:  <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -185,11 +185,7 @@ msgid "Filestats for this session: Accepted %d of %d request, %s transferred\n"
 msgid_plural ""
 "Filestats for this session: Accepted %d of %d requests, %s transferred\n"
 msgstr[0] ""
-"Dateistatistik für diese Sitzung: %d von %d Anfrage akzeptiert, %s "
-"übertragen\n"
 msgstr[1] ""
-"Dateistatistik für diese Sitzung: %d von %d Anfragen akzeptiert, %s "
-"übertragen\n"
 
 #: src/BaseClient.cpp:1881
 #, c-format
@@ -197,11 +193,7 @@ msgid "Filestats for all sessions: Accepted %d of %d request, %s transferred\n"
 msgid_plural ""
 "Filestats for all sessions: Accepted %d of %d requests, %s transferred\n"
 msgstr[0] ""
-"Dateistatistik für alle Sitzungen: %d von %d Anfrage akzeptiert, %s "
-"übertragen\n"
 msgstr[1] ""
-"Dateistatistik für alle Sitzungen: %d von %d Anfragen akzeptiert, %s "
-"übertragen\n"
 
 #: src/BaseClient.cpp:1884
 msgid "Requested unknown file"
@@ -280,7 +272,7 @@ msgstr "Mehrfachauswahl"
 
 #: src/UserEvents.h:60
 msgid "Download completed"
-msgstr "Download fertig gestellt."
+msgstr "Download fertiggestellt"
 
 #: src/UserEvents.h:63 src/UserEvents.h:103
 msgid "The full path to the file."
@@ -292,7 +284,7 @@ msgstr "Der Name der Datei ohne den Pfadanteil."
 
 #: src/UserEvents.h:71
 msgid "The ed2k hash of the file."
-msgstr "Der ed2k-Hash der Datei."
+msgstr "Die eD2k-Prüfsumme der Datei."
 
 #: src/UserEvents.h:75
 msgid "The size of the file in bytes."
@@ -300,7 +292,7 @@ msgstr "Die Dateigröße in Byte."
 
 #: src/UserEvents.h:79
 msgid "Cumulative download activity time."
-msgstr "Die gesamte Downloadaktivitätszeit."
+msgstr "Die Gesamtzeit aktiven Herunterladens."
 
 #: src/UserEvents.h:84
 msgid "New chat session started"
@@ -450,7 +442,7 @@ msgstr "Kopiere eD2k-Verweis in Zwischenablage (Source) (&With Crypt options)"
 
 #: src/SharedFilesCtrl.cpp:165
 msgid "Copy ED2k link to clipboard (&Hostname)"
-msgstr "ED2k-Link in Zwischenablage kopieren (&Hostname)"
+msgstr "eD2k-Link in Zwischenablage kopieren (&Hostname)"
 
 #: src/SharedFilesCtrl.cpp:166
 msgid "Copy ED2k link to clipboard (Hostname) (With &Crypt options)"
@@ -580,7 +572,7 @@ msgstr "Prüfe Passwort\n"
 
 #: src/webserver/src/WebServer.cpp:1853
 msgid "Password hash invalid\n"
-msgstr "Passwort-Prüsumme ungültig\n"
+msgstr "Passwort-Prüfsumme ungültig\n"
 
 #: src/webserver/src/WebServer.cpp:1868
 msgid "Password ok\n"
@@ -1731,7 +1723,7 @@ msgstr "Schnappschuss:"
 msgid ""
 " 'All-Platform' p2p client based on eMule \n"
 "\n"
-msgstr "portabler P2P-Client basierend auf eMule\n"
+msgstr "portabler P2P-Client, basierend auf eMule\n"
 
 #: src/amuleDlg.cpp:461
 msgid " Website: http://www.amule.org \n"
@@ -1789,15 +1781,15 @@ msgstr "Statustext"
 
 #: src/amuleDlg.cpp:680
 msgid "ED2K: Connecting"
-msgstr "ED2k: Baue Verbindung auf"
+msgstr "eD2k: Baue Verbindung auf"
 
 #: src/amuleDlg.cpp:684
 msgid "ED2K: Disconnected"
-msgstr "ED2K: Verbindung getrennt"
+msgstr "eD2k: Verbindung getrennt"
 
 #: src/amuleDlg.cpp:690
 msgid "Kad: Firewalled"
-msgstr "KAD: Firewalled"
+msgstr "Kad: Firewalled"
 
 #: src/amuleDlg.cpp:694
 msgid "Kad: Connected"
@@ -1809,7 +1801,7 @@ msgstr "Kad: Baue Verbindung auf"
 
 #: src/amuleDlg.cpp:703
 msgid "Kad: Off"
-msgstr "Kad: "
+msgstr "Kad: aus"
 
 #: src/amuleDlg.cpp:750
 msgid "Stop the current connection attempts"
@@ -1944,7 +1936,7 @@ msgstr "Über/Hilfe - Hinweise zur Version usw."
 
 #: src/amuleDlg.cpp:1485
 msgid "ed2k network"
-msgstr "ed2k-Netzwerk"
+msgstr "eD2k-Netzwerk"
 
 #: src/amuleDlg.cpp:1489
 msgid "Kad network"
@@ -2139,7 +2131,7 @@ msgstr ""
 #, c-format
 msgid "Update delay: %d second"
 msgid_plural "Update delay: %d seconds"
-msgstr[0] "Update-Verzögerung: %d Sekunde"
+msgstr[0] "Aktualisierungsverzögerung: %d Sekunde"
 msgstr[1] "Update-Verzögerung: %d Sekunden"
 
 #: src/PrefsUnifiedDlg.cpp:977
@@ -2944,7 +2936,7 @@ msgstr "Suche verwandte Dateien (eD2k, lokale Server)"
 
 #: src/SearchListCtrl.cpp:573
 msgid "Mark as known file"
-msgstr "Als unbekannte Datei kennzeichnen"
+msgstr "Als bekannte Datei kennzeichnen"
 
 #: src/amule-remote-gui.cpp:73
 msgid "Connect to remote amule"
@@ -3271,11 +3263,7 @@ msgid_plural ""
 "Found corrupted part (%d) in %d parts file %s - FileResultHash |%s| FileHash "
 "|%s|"
 msgstr[0] ""
-"Fehlerhaften Teil (%d) in %d Part-Datei %s gefunden - FileResultHash |%s| "
-"FileHash |%s|"
 msgstr[1] ""
-"Fehlerhaften Teil (%d) in %d Part-Datei %s gefunden - FileResultHash |%s| "
-"FileHash |%s|"
 
 #: src/PartFile.cpp:1176
 #, c-format
@@ -5837,7 +5825,7 @@ msgid ""
 "This option makes aMule use Protocol Obfuscation when connecting other "
 "clients/servers."
 msgstr ""
-"Diese Option verfügt aMule Protokollverschleierung zu verwenden bei der "
+"Diese Option verfügt aMule, Protokollverschleierung zu verwenden bei der "
 "Verbindung zu anderen Clients und/oder Servern."
 
 #: src/muuli_wdr.cpp:3197
@@ -6050,7 +6038,7 @@ msgstr "Aktiviere/Deaktiviere Proxy-Unterstützung"
 
 #: src/muuli_wdr.cpp:3463
 msgid "Proxy type:"
-msgstr "Proxytyp:"
+msgstr "Proxy-Typ:"
 
 #: src/muuli_wdr.cpp:3468
 msgid "SOCKS5"
@@ -6110,7 +6098,7 @@ msgstr "Passwort:"
 
 #: src/muuli_wdr.cpp:3516
 msgid "The password to use to connect to the proxy"
-msgstr "Proxyverbindungspasswort"
+msgstr "Proxy-Verbindungspasswort"
 
 #: src/muuli_wdr.cpp:3523
 msgid "Automatic server connect without proxy"
@@ -6494,7 +6482,7 @@ msgstr "In Warteschlange seit"
 
 #: src/ClientListCtrl.cpp:972
 msgid "Upload Status"
-msgstr "Uploadstatus"
+msgstr "Upload-Status"
 
 #: src/ClientListCtrl.cpp:973
 msgid "Transferred Up"
@@ -6502,7 +6490,7 @@ msgstr "Übertragen Up"
 
 #: src/ClientListCtrl.cpp:974
 msgid "Download Status"
-msgstr "Downloadstatus"
+msgstr "Download-Status"
 
 #: src/ClientListCtrl.cpp:975
 msgid "Transferred Down"
@@ -6574,7 +6562,7 @@ msgstr "aMule-Traymenü"
 
 #: src/MuleTrayIcon.cpp:336
 msgid "Speed Limits:"
-msgstr "Geschwindigkeitseinstellungen:"
+msgstr "Geschwindigkeitsbegrenzungen:"
 
 #: src/MuleTrayIcon.cpp:341
 msgid "UL: None"
@@ -7123,6 +7111,33 @@ msgstr "Konnte Freundes-Liste 'emfriends.dat' nicht lesen!"
 #: src/FriendList.cpp:146
 msgid "Failed to open friendlist file 'emfriends.met' for writing!"
 msgstr "Konnte Freundes-Liste 'emfriends.dat' nicht schreiben!"
+
+#~ msgid ""
+#~ "Filestats for this session: Accepted %d of %d request, %s transferred\n"
+#~ "Filestats for this session: Accepted %d of %d requests, %s transferred\n"
+#~ msgstr ""
+#~ "Dateistatistik für diese Sitzung: %d von %d Anfrage akzeptiert, %s "
+#~ "übertragen\n"
+#~ "Dateistatistik für diese Sitzung: %d von %d Anfragen akzeptiert, %s "
+#~ "übertragen\n"
+
+#~ msgid ""
+#~ "Filestats for all sessions: Accepted %d of %d request, %s transferred\n"
+#~ "Filestats for all sessions: Accepted %d of %d requests, %s transferred\n"
+#~ msgstr ""
+#~ "Dateistatistik für alle Sitzungen: %d von %d Anfrage akzeptiert, %s "
+#~ "übertragen\n"
+#~ "Dateistatistik für alle Sitzungen: %d von %d Anfragen akzeptiert, %s "
+#~ "übertragen\n"
+
+#~ msgid ""
+#~ "Found corrupted part (%d) in %d part file %s - FileResultHash |%s| "
+#~ "FileHash |%s|Found corrupted part (%d) in %d parts file %s - "
+#~ "FileResultHash |%s| FileHash |%s|"
+#~ msgstr ""
+#~ "Fehlerhaften Teil (%d) in %d Part-Datei %s gefunden - FileResultHash |%s| "
+#~ "FileHash |%s|Fehlerhaften Teil (%d) in %d Part-Datei %s gefunden - "
+#~ "FileResultHash |%s| FileHash |%s|"
 
 #~ msgid "LowID: %u (%.2f%% Total %.2f%% Known)"
 #~ msgstr "LowID: %u (%.2f%% Gesamt %.2f%% Bekannt)"
