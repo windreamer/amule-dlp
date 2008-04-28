@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-04-20 03:31+0200\n"
-"PO-Revision-Date: 2008-03-29 13:40+0100\n"
+"PO-Revision-Date: 2008-04-27 13:55+0100\n"
 "Last-Translator: Festor Wailon Dacoba <festor90@gmail.com>\n"
 "Language-Team: Galego <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -532,8 +532,8 @@ msgstr[1] "Lidos %u contactos Kad"
 #, c-format
 msgid "Wrote %d Kad contact"
 msgid_plural "Wrote %d Kad contacts"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Escribio %d contacto Kad"
+msgstr[1] "Escribio %d contactos Kad"
 
 #: src/ListenSocket.cpp:68
 msgid "Error: Could not listen to TCP port."
@@ -1959,15 +1959,15 @@ msgstr "Acerca de/Axuda"
 
 #: src/amuleDlg.cpp:1485
 msgid "ed2k network"
-msgstr ""
+msgstr "Red ed2k"
 
 #: src/amuleDlg.cpp:1489
 msgid "Kad network"
-msgstr ""
+msgstr "Red Kad"
 
 #: src/amuleDlg.cpp:1494
 msgid "No network"
-msgstr ""
+msgstr "Sin red"
 
 #: src/PrefsUnifiedDlg.cpp:169 src/muuli_wdr.cpp:566 src/muuli_wdr.cpp:1373
 #: src/muuli_wdr.cpp:3451
@@ -5154,6 +5154,8 @@ msgid ""
 "Note: These values are\n"
 " only used for statistics."
 msgstr ""
+"Nota: Estos valores sólo\n"
+" se usan para las estadísticas."
 
 #: src/muuli_wdr.cpp:1813
 msgid "Standard client TCP Port:"
