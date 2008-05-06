@@ -12,14 +12,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-05 03:30+0200\n"
-"PO-Revision-Date: 2008-04-26 12:37+0200\n"
+"POT-Creation-Date: 2008-05-06 03:30+0200\n"
+"PO-Revision-Date: 2008-05-05 09:48+0100\n"
 "Last-Translator: Johannes Krampf <wuischke@amule.org>\n"
 "Language-Team:  <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Basepath: ../\n"
 
 #: src/libs/ec/cpp/RemoteConnect.cpp:86 src/libs/ec/cpp/RemoteConnect.cpp:94
 msgid "You must specify a non-empty password."
@@ -57,34 +58,34 @@ msgstr "Gelungen! Verbindung aufgebaut zu aMule "
 msgid "Succeeded! Connection established."
 msgstr "Verbindung hergestellt."
 
-#: src/libs/ec/cpp/ECSpecialTags.cpp:39 src/PartFile.cpp:3837
+#: src/libs/ec/cpp/ECSpecialTags.cpp:39 src/PartFile.cpp:3840
 msgid "Hashing"
 msgstr "Prüfsumme erstellen"
 
-#: src/libs/ec/cpp/ECSpecialTags.cpp:43 src/PartFile.cpp:3841
+#: src/libs/ec/cpp/ECSpecialTags.cpp:43 src/PartFile.cpp:3844
 msgid "Completing"
 msgstr "Wird abgeschlossen"
 
-#: src/libs/ec/cpp/ECSpecialTags.cpp:45 src/PartFile.cpp:3844
+#: src/libs/ec/cpp/ECSpecialTags.cpp:45 src/PartFile.cpp:3847
 msgid "Complete"
 msgstr "Vollständig"
 
-#: src/libs/ec/cpp/ECSpecialTags.cpp:47 src/PartFile.cpp:3847
+#: src/libs/ec/cpp/ECSpecialTags.cpp:47 src/PartFile.cpp:3850
 #: src/TransferWnd.cpp:351 src/OtherFunctions.cpp:748
 msgid "Paused"
 msgstr "Pausiert"
 
-#: src/libs/ec/cpp/ECSpecialTags.cpp:49 src/PartFile.cpp:3850
+#: src/libs/ec/cpp/ECSpecialTags.cpp:49 src/PartFile.cpp:3853
 #: src/TransferWnd.cpp:350 src/OtherFunctions.cpp:747
 msgid "Erroneous"
 msgstr "Fehlerhaft"
 
-#: src/libs/ec/cpp/ECSpecialTags.cpp:52 src/PartFile.cpp:3857
+#: src/libs/ec/cpp/ECSpecialTags.cpp:52 src/PartFile.cpp:3860
 #: src/TransferWnd.cpp:349 src/OtherFunctions.cpp:746
 msgid "Downloading"
 msgstr "Herunterladen"
 
-#: src/libs/ec/cpp/ECSpecialTags.cpp:54 src/PartFile.cpp:3859
+#: src/libs/ec/cpp/ECSpecialTags.cpp:54 src/PartFile.cpp:3862
 #: src/TransferWnd.cpp:348 src/OtherFunctions.cpp:745
 msgid "Waiting"
 msgstr "Warten"
@@ -185,7 +186,9 @@ msgid "Filestats for this session: Accepted %d of %d request, %s transferred\n"
 msgid_plural ""
 "Filestats for this session: Accepted %d of %d requests, %s transferred\n"
 msgstr[0] ""
+"Dateistatistik dieser Sitzung: %d von %d Anfrage akzeptiert, %s übertragen\n"
 msgstr[1] ""
+"Dateistatistik dieser Sitzung: %d von %d Anfragen akzeptiert, %s übertragen\n"
 
 #: src/BaseClient.cpp:1881
 #, c-format
@@ -193,7 +196,10 @@ msgid "Filestats for all sessions: Accepted %d of %d request, %s transferred\n"
 msgid_plural ""
 "Filestats for all sessions: Accepted %d of %d requests, %s transferred\n"
 msgstr[0] ""
+"Dateistatistik aller Sitzungen: %d von %d Anfrage akzeptiert, %s übertragen\n"
 msgstr[1] ""
+"Dateistatistik aller Sitzungen: %d von %d Anfragen akzeptiert, %s "
+"übertragen\n"
 
 #: src/BaseClient.cpp:1884
 msgid "Requested unknown file"
@@ -463,6 +469,8 @@ msgid ""
 "Feedback from: %s (%s)\n"
 "\n"
 msgstr ""
+"Rückmeldung von: %s (%s)\n"
+"\n"
 
 #: src/SharedFilesCtrl.cpp:306
 msgid "You need a HighID to create a valid sourcelink"
@@ -2910,7 +2918,7 @@ msgid "The specified userhash is not valid!"
 msgstr "Die angegebene Benutzerprüfsumme ist nicht gültig!"
 
 #: src/SearchListCtrl.cpp:89 src/DownloadListCtrl.cpp:195
-#: src/PartFile.cpp:3903 src/FileDetailListCtrl.cpp:44
+#: src/PartFile.cpp:3906 src/FileDetailListCtrl.cpp:44
 msgid "Sources"
 msgstr "Quellen"
 
@@ -2998,7 +3006,7 @@ msgstr "Geschwindigkeit"
 msgid "Progress"
 msgstr "Fortschritt"
 
-#: src/DownloadListCtrl.cpp:197 src/PartFile.cpp:3905
+#: src/DownloadListCtrl.cpp:197 src/PartFile.cpp:3908
 #: src/ClientListCtrl.cpp:511
 msgid "Status"
 msgstr "Status"
@@ -3271,7 +3279,11 @@ msgid_plural ""
 "Found corrupted part (%d) in %d parts file %s - FileResultHash |%s| FileHash "
 "|%s|"
 msgstr[0] ""
+"korrumpierter Teil (%1$d) in Datei %3$s mit %2$d Teil gefunden - "
+"Dateiergebnishash |%4$s| Dateihash |%5$s|"
 msgstr[1] ""
+"korrumpierter Teil (%1$d) in Datei %3$s mit %2$d Teilen gefunden - "
+"Dateiergebnishash |%4$s| Dateihash |%5$s|"
 
 #: src/PartFile.cpp:1176
 #, c-format
@@ -3331,17 +3343,17 @@ msgstr "Heruntergeladener Teil %i in Datei '%s' ist defekt"
 msgid "ICH: Recovered corrupted part %i for %s -> Saved bytes: %s"
 msgstr "ICH: Defekter Teil %i in %s wiederhergestellt -> Gesparte Bytes: %s"
 
-#: src/PartFile.cpp:3853
+#: src/PartFile.cpp:3856
 msgid "Insufficient Diskspace"
 msgstr "Ungenügender Festplattenplatz"
 
-#: src/PartFile.cpp:3864 src/TransferWnd.cpp:352 src/OtherFunctions.cpp:749
+#: src/PartFile.cpp:3867 src/TransferWnd.cpp:352 src/OtherFunctions.cpp:749
 msgid "Stopped"
 msgstr "Angehalten"
 
-#: src/PartFile.cpp:3902
+#: src/PartFile.cpp:3905
 msgid "Downloaded"
-msgstr ""
+msgstr "Heruntergeladen"
 
 #: src/KnownFileList.cpp:79
 msgid "Warning: known.met cannot be opened."
@@ -4220,27 +4232,27 @@ msgstr "Dateiname"
 
 #: src/KnownFile.cpp:1360
 msgid "File size"
-msgstr ""
+msgstr "Dateigröße"
 
 #: src/KnownFile.cpp:1361
 msgid "Share ratio"
-msgstr ""
+msgstr "Tauschverhältnis"
 
 #: src/KnownFile.cpp:1362
 msgid "Uploaded"
-msgstr ""
+msgstr "Hochgeladen"
 
 #: src/KnownFile.cpp:1363
 msgid "Requested"
-msgstr ""
+msgstr "Angefordert"
 
 #: src/KnownFile.cpp:1364
 msgid "Accepted"
-msgstr ""
+msgstr "Akzeptiert"
 
 #: src/KnownFile.cpp:1365
 msgid "Complete sources"
-msgstr ""
+msgstr "vollständige Quellen"
 
 #: src/PartFileConvert.cpp:236
 #, c-format
@@ -4975,11 +4987,11 @@ msgstr "Servername:"
 
 #: src/muuli_wdr.cpp:1454
 msgid "Obfuscation:"
-msgstr ""
+msgstr "Verschleierung:"
 
 #: src/muuli_wdr.cpp:1463
 msgid "Kad:"
-msgstr ""
+msgstr "Kad:"
 
 #: src/muuli_wdr.cpp:1474
 msgid "Transfers to client"
@@ -6559,19 +6571,19 @@ msgstr "Client-Details"
 
 #: src/ClientDetailDialog.cpp:129
 msgid "Enabled"
-msgstr ""
+msgstr "Aktiviert"
 
 #: src/ClientDetailDialog.cpp:131
 msgid "Supported"
-msgstr ""
+msgstr "Unterstützt"
 
 #: src/ClientDetailDialog.cpp:134 src/ClientDetailDialog.cpp:193
 msgid "Not supported"
-msgstr ""
+msgstr "Nicht Unterstützt"
 
 #: src/ClientDetailDialog.cpp:137
 msgid "Disabled"
-msgstr ""
+msgstr "Deaktiviert"
 
 #: src/ClientDetailDialog.cpp:168 src/ClientDetailDialog.cpp:173
 #, c-format
