@@ -18760,7 +18760,7 @@ echo "${ECHO_T}$result" >&6
 	fi
 esac
 
-                                                                                                                                                                                                                                                                                                                                          ac_config_files="$ac_config_files Makefile docs/Makefile docs/man/Makefile intl/Makefile src/Makefile src/pixmaps/Makefile src/pixmaps/flags_xpm/Makefile src/libs/Makefile src/libs/ec/Makefile src/libs/ec/cpp/Makefile src/libs/common/Makefile src/utils/Makefile src/utils/aLinkCreator/Makefile src/utils/aLinkCreator/docs/Makefile src/utils/aLinkCreator/src/Makefile src/utils/cas/Makefile src/utils/cas/docs/Makefile src/utils/wxCas/Makefile src/utils/wxCas/docs/Makefile src/utils/wxCas/src/Makefile src/utils/xas/Makefile src/utils/xas/autostart-xas src/utils/xas/docs/Makefile src/skins/Makefile src/webserver/Makefile src/webserver/src/Makefile src/webserver/default/Makefile src/webserver/php-default/Makefile src/webserver/chicane/Makefile src/webserver/litoral/Makefile unittests/Makefile unittests/muleunit/Makefile unittests/tests/Makefile"
+                                                                                                                                                                                                                                                                                                                                                    ac_config_files="$ac_config_files Makefile docs/Makefile docs/man/Makefile intl/Makefile src/Makefile src/pixmaps/Makefile src/pixmaps/flags_xpm/Makefile src/libs/Makefile src/libs/ec/Makefile src/libs/ec/cpp/Makefile src/libs/common/Makefile src/utils/Makefile src/utils/aLinkCreator/Makefile src/utils/aLinkCreator/docs/Makefile src/utils/aLinkCreator/src/Makefile src/utils/cas/Makefile src/utils/cas/docs/Makefile src/utils/fileview/Makefile src/utils/wxCas/Makefile src/utils/wxCas/docs/Makefile src/utils/wxCas/src/Makefile src/utils/xas/Makefile src/utils/xas/autostart-xas src/utils/xas/docs/Makefile src/skins/Makefile src/webserver/Makefile src/webserver/src/Makefile src/webserver/default/Makefile src/webserver/php-default/Makefile src/webserver/chicane/Makefile src/webserver/litoral/Makefile unittests/Makefile unittests/muleunit/Makefile unittests/tests/Makefile"
 
                     ac_config_files="$ac_config_files po/Makefile.in Compilation.flags"
 
@@ -19476,6 +19476,7 @@ do
   "src/utils/aLinkCreator/src/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/utils/aLinkCreator/src/Makefile" ;;
   "src/utils/cas/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/utils/cas/Makefile" ;;
   "src/utils/cas/docs/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/utils/cas/docs/Makefile" ;;
+  "src/utils/fileview/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/utils/fileview/Makefile" ;;
   "src/utils/wxCas/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/utils/wxCas/Makefile" ;;
   "src/utils/wxCas/docs/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/utils/wxCas/docs/Makefile" ;;
   "src/utils/wxCas/src/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/utils/wxCas/src/Makefile" ;;

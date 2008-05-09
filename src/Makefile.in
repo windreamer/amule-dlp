@@ -120,6 +120,7 @@ am_libmuleappcore_a_OBJECTS = libmuleappcore_a-AsyncDNS.$(OBJEXT) \
 	libmuleappcore_a-Scanner.$(OBJEXT) \
 	libmuleappcore_a-Parser.$(OBJEXT) \
 	libmuleappcore_a-PlatformSpecific.$(OBJEXT) \
+	libmuleappcore_a-Entry.$(OBJEXT) \
 	libmuleappcore_a-SearchManager.$(OBJEXT) \
 	libmuleappcore_a-RoutingBin.$(OBJEXT) \
 	libmuleappcore_a-StateMachine.$(OBJEXT) \
@@ -161,23 +162,25 @@ am__amule_SOURCES_DIST = RC4Encrypt.cpp amule.cpp BaseClient.cpp \
 	SearchList.cpp ServerConnect.cpp ServerList.cpp \
 	ServerSocket.cpp ServerUDPSocket.cpp SharedFileList.cpp \
 	ThreadTasks.cpp UploadBandwidthThrottler.cpp UploadClient.cpp \
-	UploadQueue.cpp kademlia/kademlia/Kademlia.cpp \
-	kademlia/kademlia/Search.cpp kademlia/kademlia/Indexed.cpp \
+	UploadQueue.cpp kademlia/kademlia/Indexed.cpp \
+	kademlia/kademlia/Kademlia.cpp kademlia/kademlia/Prefs.cpp \
+	kademlia/kademlia/Search.cpp \
+	kademlia/kademlia/UDPFirewallTester.cpp \
 	kademlia/net/KademliaUDPListener.cpp \
-	kademlia/kademlia/Prefs.cpp kademlia/routing/RoutingZone.cpp \
-	kademlia/routing/Contact.cpp UPnP.cpp UPnPCompatibility.cpp \
-	amule-gui.cpp amuleDlg.cpp AddFriend.cpp CatDialog.cpp \
-	ChatSelector.cpp ClientDetailDialog.cpp FileDetailDialog.cpp \
-	KadDlg.cpp OScopeCtrl.cpp PartFileConvert.cpp \
-	PrefsUnifiedDlg.cpp SearchDlg.cpp ServerWnd.cpp \
-	SharedFilesWnd.cpp StatisticsDlg.cpp SearchListCtrl.cpp \
-	DownloadListCtrl.cpp ClientListCtrl.cpp FriendListCtrl.cpp \
-	ServerListCtrl.cpp SharedFilesCtrl.cpp MuleTrayIcon.cpp \
-	TransferWnd.cpp IP2Country.cpp ClientCredits.cpp \
-	ECSpecialMuleTags.cpp KnownFile.cpp GetTickCount.cpp \
-	GuiEvents.cpp Logger.cpp PartFile.cpp Preferences.cpp \
-	Proxy.cpp Server.cpp Statistics.cpp StatTree.cpp \
-	SHAHashSet.cpp TerminationProcess.cpp \
+	kademlia/net/PacketTracking.cpp kademlia/routing/Contact.cpp \
+	kademlia/routing/RoutingZone.cpp UPnP.cpp \
+	UPnPCompatibility.cpp amule-gui.cpp amuleDlg.cpp AddFriend.cpp \
+	CatDialog.cpp ChatSelector.cpp ClientDetailDialog.cpp \
+	FileDetailDialog.cpp KadDlg.cpp OScopeCtrl.cpp \
+	PartFileConvert.cpp PrefsUnifiedDlg.cpp SearchDlg.cpp \
+	ServerWnd.cpp SharedFilesWnd.cpp StatisticsDlg.cpp \
+	SearchListCtrl.cpp DownloadListCtrl.cpp ClientListCtrl.cpp \
+	FriendListCtrl.cpp ServerListCtrl.cpp SharedFilesCtrl.cpp \
+	MuleTrayIcon.cpp TransferWnd.cpp IP2Country.cpp \
+	ClientCredits.cpp ECSpecialMuleTags.cpp KnownFile.cpp \
+	GetTickCount.cpp GuiEvents.cpp Logger.cpp PartFile.cpp \
+	Preferences.cpp Proxy.cpp Server.cpp Statistics.cpp \
+	StatTree.cpp SHAHashSet.cpp TerminationProcess.cpp \
 	TerminationProcessAmuleweb.cpp UserEvents.cpp \
 	OtherFunctions.cpp NetworkFunctions.cpp
 @ENABLE_UPNP_TRUE@am__objects_1 = amule-UPnP.$(OBJEXT) \
@@ -201,10 +204,12 @@ am__objects_2 = amule-RC4Encrypt.$(OBJEXT) amule-amule.$(OBJEXT) \
 	amule-SharedFileList.$(OBJEXT) amule-ThreadTasks.$(OBJEXT) \
 	amule-UploadBandwidthThrottler.$(OBJEXT) \
 	amule-UploadClient.$(OBJEXT) amule-UploadQueue.$(OBJEXT) \
-	amule-Kademlia.$(OBJEXT) amule-Search.$(OBJEXT) \
-	amule-Indexed.$(OBJEXT) amule-KademliaUDPListener.$(OBJEXT) \
-	amule-Prefs.$(OBJEXT) amule-RoutingZone.$(OBJEXT) \
-	amule-Contact.$(OBJEXT) $(am__objects_1)
+	amule-Indexed.$(OBJEXT) amule-Kademlia.$(OBJEXT) \
+	amule-Prefs.$(OBJEXT) amule-Search.$(OBJEXT) \
+	amule-UDPFirewallTester.$(OBJEXT) \
+	amule-KademliaUDPListener.$(OBJEXT) \
+	amule-PacketTracking.$(OBJEXT) amule-Contact.$(OBJEXT) \
+	amule-RoutingZone.$(OBJEXT) $(am__objects_1)
 @ENABLE_IP2COUNTRY_TRUE@am__objects_3 = amule-IP2Country.$(OBJEXT)
 am__objects_4 = amule-amule-gui.$(OBJEXT) amule-amuleDlg.$(OBJEXT) \
 	amule-AddFriend.$(OBJEXT) amule-CatDialog.$(OBJEXT) \
@@ -255,17 +260,18 @@ am__amuled_SOURCES_DIST = amuled.cpp Timer.cpp RC4Encrypt.cpp \
 	ServerConnect.cpp ServerList.cpp ServerSocket.cpp \
 	ServerUDPSocket.cpp SharedFileList.cpp ThreadTasks.cpp \
 	UploadBandwidthThrottler.cpp UploadClient.cpp UploadQueue.cpp \
-	kademlia/kademlia/Kademlia.cpp kademlia/kademlia/Search.cpp \
-	kademlia/kademlia/Indexed.cpp \
+	kademlia/kademlia/Indexed.cpp kademlia/kademlia/Kademlia.cpp \
+	kademlia/kademlia/Prefs.cpp kademlia/kademlia/Search.cpp \
+	kademlia/kademlia/UDPFirewallTester.cpp \
 	kademlia/net/KademliaUDPListener.cpp \
-	kademlia/kademlia/Prefs.cpp kademlia/routing/RoutingZone.cpp \
-	kademlia/routing/Contact.cpp UPnP.cpp UPnPCompatibility.cpp \
-	ClientCredits.cpp ECSpecialMuleTags.cpp KnownFile.cpp \
-	GetTickCount.cpp GuiEvents.cpp Logger.cpp PartFile.cpp \
-	Preferences.cpp Proxy.cpp Server.cpp Statistics.cpp \
-	StatTree.cpp SHAHashSet.cpp TerminationProcess.cpp \
-	TerminationProcessAmuleweb.cpp UserEvents.cpp \
-	OtherFunctions.cpp NetworkFunctions.cpp
+	kademlia/net/PacketTracking.cpp kademlia/routing/Contact.cpp \
+	kademlia/routing/RoutingZone.cpp UPnP.cpp \
+	UPnPCompatibility.cpp ClientCredits.cpp ECSpecialMuleTags.cpp \
+	KnownFile.cpp GetTickCount.cpp GuiEvents.cpp Logger.cpp \
+	PartFile.cpp Preferences.cpp Proxy.cpp Server.cpp \
+	Statistics.cpp StatTree.cpp SHAHashSet.cpp \
+	TerminationProcess.cpp TerminationProcessAmuleweb.cpp \
+	UserEvents.cpp OtherFunctions.cpp NetworkFunctions.cpp
 @ENABLE_UPNP_TRUE@am__objects_8 = amuled-UPnP.$(OBJEXT) \
 @ENABLE_UPNP_TRUE@	amuled-UPnPCompatibility.$(OBJEXT)
 am__objects_9 = amuled-RC4Encrypt.$(OBJEXT) amuled-amule.$(OBJEXT) \
@@ -287,10 +293,12 @@ am__objects_9 = amuled-RC4Encrypt.$(OBJEXT) amuled-amule.$(OBJEXT) \
 	amuled-SharedFileList.$(OBJEXT) amuled-ThreadTasks.$(OBJEXT) \
 	amuled-UploadBandwidthThrottler.$(OBJEXT) \
 	amuled-UploadClient.$(OBJEXT) amuled-UploadQueue.$(OBJEXT) \
-	amuled-Kademlia.$(OBJEXT) amuled-Search.$(OBJEXT) \
-	amuled-Indexed.$(OBJEXT) amuled-KademliaUDPListener.$(OBJEXT) \
-	amuled-Prefs.$(OBJEXT) amuled-RoutingZone.$(OBJEXT) \
-	amuled-Contact.$(OBJEXT) $(am__objects_8)
+	amuled-Indexed.$(OBJEXT) amuled-Kademlia.$(OBJEXT) \
+	amuled-Prefs.$(OBJEXT) amuled-Search.$(OBJEXT) \
+	amuled-UDPFirewallTester.$(OBJEXT) \
+	amuled-KademliaUDPListener.$(OBJEXT) \
+	amuled-PacketTracking.$(OBJEXT) amuled-Contact.$(OBJEXT) \
+	amuled-RoutingZone.$(OBJEXT) $(am__objects_8)
 am__objects_10 = amuled-OtherFunctions.$(OBJEXT) \
 	amuled-NetworkFunctions.$(OBJEXT)
 am__objects_11 = amuled-ClientCredits.$(OBJEXT) \
@@ -666,6 +674,7 @@ libmuleappcore_a_SOURCES = \
 	Scanner.cpp \
 	Parser.cpp \
 	PlatformSpecific.cpp \
+	kademlia/kademlia/Entry.cpp \
 	kademlia/kademlia/SearchManager.cpp \
 	kademlia/routing/RoutingBin.cpp \
 	StateMachine.cpp \
@@ -708,11 +717,13 @@ core_sources = RC4Encrypt.cpp amule.cpp BaseClient.cpp ClientList.cpp \
 	SearchList.cpp ServerConnect.cpp ServerList.cpp \
 	ServerSocket.cpp ServerUDPSocket.cpp SharedFileList.cpp \
 	ThreadTasks.cpp UploadBandwidthThrottler.cpp UploadClient.cpp \
-	UploadQueue.cpp kademlia/kademlia/Kademlia.cpp \
-	kademlia/kademlia/Search.cpp kademlia/kademlia/Indexed.cpp \
+	UploadQueue.cpp kademlia/kademlia/Indexed.cpp \
+	kademlia/kademlia/Kademlia.cpp kademlia/kademlia/Prefs.cpp \
+	kademlia/kademlia/Search.cpp \
+	kademlia/kademlia/UDPFirewallTester.cpp \
 	kademlia/net/KademliaUDPListener.cpp \
-	kademlia/kademlia/Prefs.cpp kademlia/routing/RoutingZone.cpp \
-	kademlia/routing/Contact.cpp $(am__append_16)
+	kademlia/net/PacketTracking.cpp kademlia/routing/Contact.cpp \
+	kademlia/routing/RoutingZone.cpp $(am__append_16)
 gui_sources = amule-gui.cpp amuleDlg.cpp AddFriend.cpp CatDialog.cpp \
 	ChatSelector.cpp ClientDetailDialog.cpp FileDetailDialog.cpp \
 	KadDlg.cpp OScopeCtrl.cpp PartFileConvert.cpp \
@@ -1095,6 +1106,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-NetworkFunctions.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-OScopeCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-OtherFunctions.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-PacketTracking.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-PartFile.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-PartFileConvert.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-Preferences.Po@am__quote@
@@ -1126,6 +1138,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-TerminationProcessAmuleweb.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ThreadTasks.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-TransferWnd.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-UDPFirewallTester.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-UPnP.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-UPnPCompatibility.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-UploadBandwidthThrottler.Po@am__quote@
@@ -1170,6 +1183,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-MuleUDPSocket.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-NetworkFunctions.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-OtherFunctions.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-PacketTracking.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-PartFile.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-Preferences.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-Prefs.Po@am__quote@
@@ -1192,6 +1206,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-TerminationProcessAmuleweb.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-ThreadTasks.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-Timer.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-UDPFirewallTester.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-UPnP.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-UPnPCompatibility.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-UploadBandwidthThrottler.Po@am__quote@
@@ -1262,6 +1277,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-UInt128.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-AsyncDNS.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-DeadSourceList.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-Entry.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-Parser.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-PlatformSpecific.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-RoutingBin.Po@am__quote@
@@ -1564,6 +1580,20 @@ libmuleappcore_a-PlatformSpecific.obj: PlatformSpecific.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='PlatformSpecific.cpp' object='libmuleappcore_a-PlatformSpecific.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmuleappcore_a_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcore_a-PlatformSpecific.obj `if test -f 'PlatformSpecific.cpp'; then $(CYGPATH_W) 'PlatformSpecific.cpp'; else $(CYGPATH_W) '$(srcdir)/PlatformSpecific.cpp'; fi`
+
+libmuleappcore_a-Entry.o: kademlia/kademlia/Entry.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmuleappcore_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcore_a-Entry.o -MD -MP -MF "$(DEPDIR)/libmuleappcore_a-Entry.Tpo" -c -o libmuleappcore_a-Entry.o `test -f 'kademlia/kademlia/Entry.cpp' || echo '$(srcdir)/'`kademlia/kademlia/Entry.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleappcore_a-Entry.Tpo" "$(DEPDIR)/libmuleappcore_a-Entry.Po"; else rm -f "$(DEPDIR)/libmuleappcore_a-Entry.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/kademlia/Entry.cpp' object='libmuleappcore_a-Entry.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmuleappcore_a_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcore_a-Entry.o `test -f 'kademlia/kademlia/Entry.cpp' || echo '$(srcdir)/'`kademlia/kademlia/Entry.cpp
+
+libmuleappcore_a-Entry.obj: kademlia/kademlia/Entry.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmuleappcore_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcore_a-Entry.obj -MD -MP -MF "$(DEPDIR)/libmuleappcore_a-Entry.Tpo" -c -o libmuleappcore_a-Entry.obj `if test -f 'kademlia/kademlia/Entry.cpp'; then $(CYGPATH_W) 'kademlia/kademlia/Entry.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/kademlia/Entry.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleappcore_a-Entry.Tpo" "$(DEPDIR)/libmuleappcore_a-Entry.Po"; else rm -f "$(DEPDIR)/libmuleappcore_a-Entry.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/kademlia/Entry.cpp' object='libmuleappcore_a-Entry.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmuleappcore_a_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcore_a-Entry.obj `if test -f 'kademlia/kademlia/Entry.cpp'; then $(CYGPATH_W) 'kademlia/kademlia/Entry.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/kademlia/Entry.cpp'; fi`
 
 libmuleappcore_a-SearchManager.o: kademlia/kademlia/SearchManager.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmuleappcore_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcore_a-SearchManager.o -MD -MP -MF "$(DEPDIR)/libmuleappcore_a-SearchManager.Tpo" -c -o libmuleappcore_a-SearchManager.o `test -f 'kademlia/kademlia/SearchManager.cpp' || echo '$(srcdir)/'`kademlia/kademlia/SearchManager.cpp; \
@@ -2279,34 +2309,6 @@ amule-UploadQueue.obj: UploadQueue.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-UploadQueue.obj `if test -f 'UploadQueue.cpp'; then $(CYGPATH_W) 'UploadQueue.cpp'; else $(CYGPATH_W) '$(srcdir)/UploadQueue.cpp'; fi`
 
-amule-Kademlia.o: kademlia/kademlia/Kademlia.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-Kademlia.o -MD -MP -MF "$(DEPDIR)/amule-Kademlia.Tpo" -c -o amule-Kademlia.o `test -f 'kademlia/kademlia/Kademlia.cpp' || echo '$(srcdir)/'`kademlia/kademlia/Kademlia.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-Kademlia.Tpo" "$(DEPDIR)/amule-Kademlia.Po"; else rm -f "$(DEPDIR)/amule-Kademlia.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/kademlia/Kademlia.cpp' object='amule-Kademlia.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-Kademlia.o `test -f 'kademlia/kademlia/Kademlia.cpp' || echo '$(srcdir)/'`kademlia/kademlia/Kademlia.cpp
-
-amule-Kademlia.obj: kademlia/kademlia/Kademlia.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-Kademlia.obj -MD -MP -MF "$(DEPDIR)/amule-Kademlia.Tpo" -c -o amule-Kademlia.obj `if test -f 'kademlia/kademlia/Kademlia.cpp'; then $(CYGPATH_W) 'kademlia/kademlia/Kademlia.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/kademlia/Kademlia.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-Kademlia.Tpo" "$(DEPDIR)/amule-Kademlia.Po"; else rm -f "$(DEPDIR)/amule-Kademlia.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/kademlia/Kademlia.cpp' object='amule-Kademlia.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-Kademlia.obj `if test -f 'kademlia/kademlia/Kademlia.cpp'; then $(CYGPATH_W) 'kademlia/kademlia/Kademlia.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/kademlia/Kademlia.cpp'; fi`
-
-amule-Search.o: kademlia/kademlia/Search.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-Search.o -MD -MP -MF "$(DEPDIR)/amule-Search.Tpo" -c -o amule-Search.o `test -f 'kademlia/kademlia/Search.cpp' || echo '$(srcdir)/'`kademlia/kademlia/Search.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-Search.Tpo" "$(DEPDIR)/amule-Search.Po"; else rm -f "$(DEPDIR)/amule-Search.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/kademlia/Search.cpp' object='amule-Search.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-Search.o `test -f 'kademlia/kademlia/Search.cpp' || echo '$(srcdir)/'`kademlia/kademlia/Search.cpp
-
-amule-Search.obj: kademlia/kademlia/Search.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-Search.obj -MD -MP -MF "$(DEPDIR)/amule-Search.Tpo" -c -o amule-Search.obj `if test -f 'kademlia/kademlia/Search.cpp'; then $(CYGPATH_W) 'kademlia/kademlia/Search.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/kademlia/Search.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-Search.Tpo" "$(DEPDIR)/amule-Search.Po"; else rm -f "$(DEPDIR)/amule-Search.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/kademlia/Search.cpp' object='amule-Search.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-Search.obj `if test -f 'kademlia/kademlia/Search.cpp'; then $(CYGPATH_W) 'kademlia/kademlia/Search.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/kademlia/Search.cpp'; fi`
-
 amule-Indexed.o: kademlia/kademlia/Indexed.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-Indexed.o -MD -MP -MF "$(DEPDIR)/amule-Indexed.Tpo" -c -o amule-Indexed.o `test -f 'kademlia/kademlia/Indexed.cpp' || echo '$(srcdir)/'`kademlia/kademlia/Indexed.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-Indexed.Tpo" "$(DEPDIR)/amule-Indexed.Po"; else rm -f "$(DEPDIR)/amule-Indexed.Tpo"; exit 1; fi
@@ -2321,19 +2323,19 @@ amule-Indexed.obj: kademlia/kademlia/Indexed.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-Indexed.obj `if test -f 'kademlia/kademlia/Indexed.cpp'; then $(CYGPATH_W) 'kademlia/kademlia/Indexed.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/kademlia/Indexed.cpp'; fi`
 
-amule-KademliaUDPListener.o: kademlia/net/KademliaUDPListener.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-KademliaUDPListener.o -MD -MP -MF "$(DEPDIR)/amule-KademliaUDPListener.Tpo" -c -o amule-KademliaUDPListener.o `test -f 'kademlia/net/KademliaUDPListener.cpp' || echo '$(srcdir)/'`kademlia/net/KademliaUDPListener.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-KademliaUDPListener.Tpo" "$(DEPDIR)/amule-KademliaUDPListener.Po"; else rm -f "$(DEPDIR)/amule-KademliaUDPListener.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/net/KademliaUDPListener.cpp' object='amule-KademliaUDPListener.o' libtool=no @AMDEPBACKSLASH@
+amule-Kademlia.o: kademlia/kademlia/Kademlia.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-Kademlia.o -MD -MP -MF "$(DEPDIR)/amule-Kademlia.Tpo" -c -o amule-Kademlia.o `test -f 'kademlia/kademlia/Kademlia.cpp' || echo '$(srcdir)/'`kademlia/kademlia/Kademlia.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-Kademlia.Tpo" "$(DEPDIR)/amule-Kademlia.Po"; else rm -f "$(DEPDIR)/amule-Kademlia.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/kademlia/Kademlia.cpp' object='amule-Kademlia.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-KademliaUDPListener.o `test -f 'kademlia/net/KademliaUDPListener.cpp' || echo '$(srcdir)/'`kademlia/net/KademliaUDPListener.cpp
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-Kademlia.o `test -f 'kademlia/kademlia/Kademlia.cpp' || echo '$(srcdir)/'`kademlia/kademlia/Kademlia.cpp
 
-amule-KademliaUDPListener.obj: kademlia/net/KademliaUDPListener.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-KademliaUDPListener.obj -MD -MP -MF "$(DEPDIR)/amule-KademliaUDPListener.Tpo" -c -o amule-KademliaUDPListener.obj `if test -f 'kademlia/net/KademliaUDPListener.cpp'; then $(CYGPATH_W) 'kademlia/net/KademliaUDPListener.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/net/KademliaUDPListener.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-KademliaUDPListener.Tpo" "$(DEPDIR)/amule-KademliaUDPListener.Po"; else rm -f "$(DEPDIR)/amule-KademliaUDPListener.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/net/KademliaUDPListener.cpp' object='amule-KademliaUDPListener.obj' libtool=no @AMDEPBACKSLASH@
+amule-Kademlia.obj: kademlia/kademlia/Kademlia.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-Kademlia.obj -MD -MP -MF "$(DEPDIR)/amule-Kademlia.Tpo" -c -o amule-Kademlia.obj `if test -f 'kademlia/kademlia/Kademlia.cpp'; then $(CYGPATH_W) 'kademlia/kademlia/Kademlia.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/kademlia/Kademlia.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-Kademlia.Tpo" "$(DEPDIR)/amule-Kademlia.Po"; else rm -f "$(DEPDIR)/amule-Kademlia.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/kademlia/Kademlia.cpp' object='amule-Kademlia.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-KademliaUDPListener.obj `if test -f 'kademlia/net/KademliaUDPListener.cpp'; then $(CYGPATH_W) 'kademlia/net/KademliaUDPListener.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/net/KademliaUDPListener.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-Kademlia.obj `if test -f 'kademlia/kademlia/Kademlia.cpp'; then $(CYGPATH_W) 'kademlia/kademlia/Kademlia.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/kademlia/Kademlia.cpp'; fi`
 
 amule-Prefs.o: kademlia/kademlia/Prefs.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-Prefs.o -MD -MP -MF "$(DEPDIR)/amule-Prefs.Tpo" -c -o amule-Prefs.o `test -f 'kademlia/kademlia/Prefs.cpp' || echo '$(srcdir)/'`kademlia/kademlia/Prefs.cpp; \
@@ -2349,19 +2351,61 @@ amule-Prefs.obj: kademlia/kademlia/Prefs.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-Prefs.obj `if test -f 'kademlia/kademlia/Prefs.cpp'; then $(CYGPATH_W) 'kademlia/kademlia/Prefs.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/kademlia/Prefs.cpp'; fi`
 
-amule-RoutingZone.o: kademlia/routing/RoutingZone.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-RoutingZone.o -MD -MP -MF "$(DEPDIR)/amule-RoutingZone.Tpo" -c -o amule-RoutingZone.o `test -f 'kademlia/routing/RoutingZone.cpp' || echo '$(srcdir)/'`kademlia/routing/RoutingZone.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-RoutingZone.Tpo" "$(DEPDIR)/amule-RoutingZone.Po"; else rm -f "$(DEPDIR)/amule-RoutingZone.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/routing/RoutingZone.cpp' object='amule-RoutingZone.o' libtool=no @AMDEPBACKSLASH@
+amule-Search.o: kademlia/kademlia/Search.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-Search.o -MD -MP -MF "$(DEPDIR)/amule-Search.Tpo" -c -o amule-Search.o `test -f 'kademlia/kademlia/Search.cpp' || echo '$(srcdir)/'`kademlia/kademlia/Search.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-Search.Tpo" "$(DEPDIR)/amule-Search.Po"; else rm -f "$(DEPDIR)/amule-Search.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/kademlia/Search.cpp' object='amule-Search.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-RoutingZone.o `test -f 'kademlia/routing/RoutingZone.cpp' || echo '$(srcdir)/'`kademlia/routing/RoutingZone.cpp
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-Search.o `test -f 'kademlia/kademlia/Search.cpp' || echo '$(srcdir)/'`kademlia/kademlia/Search.cpp
 
-amule-RoutingZone.obj: kademlia/routing/RoutingZone.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-RoutingZone.obj -MD -MP -MF "$(DEPDIR)/amule-RoutingZone.Tpo" -c -o amule-RoutingZone.obj `if test -f 'kademlia/routing/RoutingZone.cpp'; then $(CYGPATH_W) 'kademlia/routing/RoutingZone.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/routing/RoutingZone.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-RoutingZone.Tpo" "$(DEPDIR)/amule-RoutingZone.Po"; else rm -f "$(DEPDIR)/amule-RoutingZone.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/routing/RoutingZone.cpp' object='amule-RoutingZone.obj' libtool=no @AMDEPBACKSLASH@
+amule-Search.obj: kademlia/kademlia/Search.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-Search.obj -MD -MP -MF "$(DEPDIR)/amule-Search.Tpo" -c -o amule-Search.obj `if test -f 'kademlia/kademlia/Search.cpp'; then $(CYGPATH_W) 'kademlia/kademlia/Search.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/kademlia/Search.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-Search.Tpo" "$(DEPDIR)/amule-Search.Po"; else rm -f "$(DEPDIR)/amule-Search.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/kademlia/Search.cpp' object='amule-Search.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-RoutingZone.obj `if test -f 'kademlia/routing/RoutingZone.cpp'; then $(CYGPATH_W) 'kademlia/routing/RoutingZone.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/routing/RoutingZone.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-Search.obj `if test -f 'kademlia/kademlia/Search.cpp'; then $(CYGPATH_W) 'kademlia/kademlia/Search.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/kademlia/Search.cpp'; fi`
+
+amule-UDPFirewallTester.o: kademlia/kademlia/UDPFirewallTester.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-UDPFirewallTester.o -MD -MP -MF "$(DEPDIR)/amule-UDPFirewallTester.Tpo" -c -o amule-UDPFirewallTester.o `test -f 'kademlia/kademlia/UDPFirewallTester.cpp' || echo '$(srcdir)/'`kademlia/kademlia/UDPFirewallTester.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-UDPFirewallTester.Tpo" "$(DEPDIR)/amule-UDPFirewallTester.Po"; else rm -f "$(DEPDIR)/amule-UDPFirewallTester.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/kademlia/UDPFirewallTester.cpp' object='amule-UDPFirewallTester.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-UDPFirewallTester.o `test -f 'kademlia/kademlia/UDPFirewallTester.cpp' || echo '$(srcdir)/'`kademlia/kademlia/UDPFirewallTester.cpp
+
+amule-UDPFirewallTester.obj: kademlia/kademlia/UDPFirewallTester.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-UDPFirewallTester.obj -MD -MP -MF "$(DEPDIR)/amule-UDPFirewallTester.Tpo" -c -o amule-UDPFirewallTester.obj `if test -f 'kademlia/kademlia/UDPFirewallTester.cpp'; then $(CYGPATH_W) 'kademlia/kademlia/UDPFirewallTester.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/kademlia/UDPFirewallTester.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-UDPFirewallTester.Tpo" "$(DEPDIR)/amule-UDPFirewallTester.Po"; else rm -f "$(DEPDIR)/amule-UDPFirewallTester.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/kademlia/UDPFirewallTester.cpp' object='amule-UDPFirewallTester.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-UDPFirewallTester.obj `if test -f 'kademlia/kademlia/UDPFirewallTester.cpp'; then $(CYGPATH_W) 'kademlia/kademlia/UDPFirewallTester.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/kademlia/UDPFirewallTester.cpp'; fi`
+
+amule-KademliaUDPListener.o: kademlia/net/KademliaUDPListener.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-KademliaUDPListener.o -MD -MP -MF "$(DEPDIR)/amule-KademliaUDPListener.Tpo" -c -o amule-KademliaUDPListener.o `test -f 'kademlia/net/KademliaUDPListener.cpp' || echo '$(srcdir)/'`kademlia/net/KademliaUDPListener.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-KademliaUDPListener.Tpo" "$(DEPDIR)/amule-KademliaUDPListener.Po"; else rm -f "$(DEPDIR)/amule-KademliaUDPListener.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/net/KademliaUDPListener.cpp' object='amule-KademliaUDPListener.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-KademliaUDPListener.o `test -f 'kademlia/net/KademliaUDPListener.cpp' || echo '$(srcdir)/'`kademlia/net/KademliaUDPListener.cpp
+
+amule-KademliaUDPListener.obj: kademlia/net/KademliaUDPListener.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-KademliaUDPListener.obj -MD -MP -MF "$(DEPDIR)/amule-KademliaUDPListener.Tpo" -c -o amule-KademliaUDPListener.obj `if test -f 'kademlia/net/KademliaUDPListener.cpp'; then $(CYGPATH_W) 'kademlia/net/KademliaUDPListener.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/net/KademliaUDPListener.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-KademliaUDPListener.Tpo" "$(DEPDIR)/amule-KademliaUDPListener.Po"; else rm -f "$(DEPDIR)/amule-KademliaUDPListener.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/net/KademliaUDPListener.cpp' object='amule-KademliaUDPListener.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-KademliaUDPListener.obj `if test -f 'kademlia/net/KademliaUDPListener.cpp'; then $(CYGPATH_W) 'kademlia/net/KademliaUDPListener.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/net/KademliaUDPListener.cpp'; fi`
+
+amule-PacketTracking.o: kademlia/net/PacketTracking.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-PacketTracking.o -MD -MP -MF "$(DEPDIR)/amule-PacketTracking.Tpo" -c -o amule-PacketTracking.o `test -f 'kademlia/net/PacketTracking.cpp' || echo '$(srcdir)/'`kademlia/net/PacketTracking.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-PacketTracking.Tpo" "$(DEPDIR)/amule-PacketTracking.Po"; else rm -f "$(DEPDIR)/amule-PacketTracking.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/net/PacketTracking.cpp' object='amule-PacketTracking.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-PacketTracking.o `test -f 'kademlia/net/PacketTracking.cpp' || echo '$(srcdir)/'`kademlia/net/PacketTracking.cpp
+
+amule-PacketTracking.obj: kademlia/net/PacketTracking.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-PacketTracking.obj -MD -MP -MF "$(DEPDIR)/amule-PacketTracking.Tpo" -c -o amule-PacketTracking.obj `if test -f 'kademlia/net/PacketTracking.cpp'; then $(CYGPATH_W) 'kademlia/net/PacketTracking.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/net/PacketTracking.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-PacketTracking.Tpo" "$(DEPDIR)/amule-PacketTracking.Po"; else rm -f "$(DEPDIR)/amule-PacketTracking.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/net/PacketTracking.cpp' object='amule-PacketTracking.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-PacketTracking.obj `if test -f 'kademlia/net/PacketTracking.cpp'; then $(CYGPATH_W) 'kademlia/net/PacketTracking.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/net/PacketTracking.cpp'; fi`
 
 amule-Contact.o: kademlia/routing/Contact.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-Contact.o -MD -MP -MF "$(DEPDIR)/amule-Contact.Tpo" -c -o amule-Contact.o `test -f 'kademlia/routing/Contact.cpp' || echo '$(srcdir)/'`kademlia/routing/Contact.cpp; \
@@ -2376,6 +2420,20 @@ amule-Contact.obj: kademlia/routing/Contact.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/routing/Contact.cpp' object='amule-Contact.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-Contact.obj `if test -f 'kademlia/routing/Contact.cpp'; then $(CYGPATH_W) 'kademlia/routing/Contact.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/routing/Contact.cpp'; fi`
+
+amule-RoutingZone.o: kademlia/routing/RoutingZone.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-RoutingZone.o -MD -MP -MF "$(DEPDIR)/amule-RoutingZone.Tpo" -c -o amule-RoutingZone.o `test -f 'kademlia/routing/RoutingZone.cpp' || echo '$(srcdir)/'`kademlia/routing/RoutingZone.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-RoutingZone.Tpo" "$(DEPDIR)/amule-RoutingZone.Po"; else rm -f "$(DEPDIR)/amule-RoutingZone.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/routing/RoutingZone.cpp' object='amule-RoutingZone.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-RoutingZone.o `test -f 'kademlia/routing/RoutingZone.cpp' || echo '$(srcdir)/'`kademlia/routing/RoutingZone.cpp
+
+amule-RoutingZone.obj: kademlia/routing/RoutingZone.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-RoutingZone.obj -MD -MP -MF "$(DEPDIR)/amule-RoutingZone.Tpo" -c -o amule-RoutingZone.obj `if test -f 'kademlia/routing/RoutingZone.cpp'; then $(CYGPATH_W) 'kademlia/routing/RoutingZone.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/routing/RoutingZone.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-RoutingZone.Tpo" "$(DEPDIR)/amule-RoutingZone.Po"; else rm -f "$(DEPDIR)/amule-RoutingZone.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/routing/RoutingZone.cpp' object='amule-RoutingZone.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-RoutingZone.obj `if test -f 'kademlia/routing/RoutingZone.cpp'; then $(CYGPATH_W) 'kademlia/routing/RoutingZone.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/routing/RoutingZone.cpp'; fi`
 
 amule-UPnP.o: UPnP.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-UPnP.o -MD -MP -MF "$(DEPDIR)/amule-UPnP.Tpo" -c -o amule-UPnP.o `test -f 'UPnP.cpp' || echo '$(srcdir)/'`UPnP.cpp; \
@@ -3525,34 +3583,6 @@ amuled-UploadQueue.obj: UploadQueue.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-UploadQueue.obj `if test -f 'UploadQueue.cpp'; then $(CYGPATH_W) 'UploadQueue.cpp'; else $(CYGPATH_W) '$(srcdir)/UploadQueue.cpp'; fi`
 
-amuled-Kademlia.o: kademlia/kademlia/Kademlia.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-Kademlia.o -MD -MP -MF "$(DEPDIR)/amuled-Kademlia.Tpo" -c -o amuled-Kademlia.o `test -f 'kademlia/kademlia/Kademlia.cpp' || echo '$(srcdir)/'`kademlia/kademlia/Kademlia.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-Kademlia.Tpo" "$(DEPDIR)/amuled-Kademlia.Po"; else rm -f "$(DEPDIR)/amuled-Kademlia.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/kademlia/Kademlia.cpp' object='amuled-Kademlia.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-Kademlia.o `test -f 'kademlia/kademlia/Kademlia.cpp' || echo '$(srcdir)/'`kademlia/kademlia/Kademlia.cpp
-
-amuled-Kademlia.obj: kademlia/kademlia/Kademlia.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-Kademlia.obj -MD -MP -MF "$(DEPDIR)/amuled-Kademlia.Tpo" -c -o amuled-Kademlia.obj `if test -f 'kademlia/kademlia/Kademlia.cpp'; then $(CYGPATH_W) 'kademlia/kademlia/Kademlia.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/kademlia/Kademlia.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-Kademlia.Tpo" "$(DEPDIR)/amuled-Kademlia.Po"; else rm -f "$(DEPDIR)/amuled-Kademlia.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/kademlia/Kademlia.cpp' object='amuled-Kademlia.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-Kademlia.obj `if test -f 'kademlia/kademlia/Kademlia.cpp'; then $(CYGPATH_W) 'kademlia/kademlia/Kademlia.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/kademlia/Kademlia.cpp'; fi`
-
-amuled-Search.o: kademlia/kademlia/Search.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-Search.o -MD -MP -MF "$(DEPDIR)/amuled-Search.Tpo" -c -o amuled-Search.o `test -f 'kademlia/kademlia/Search.cpp' || echo '$(srcdir)/'`kademlia/kademlia/Search.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-Search.Tpo" "$(DEPDIR)/amuled-Search.Po"; else rm -f "$(DEPDIR)/amuled-Search.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/kademlia/Search.cpp' object='amuled-Search.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-Search.o `test -f 'kademlia/kademlia/Search.cpp' || echo '$(srcdir)/'`kademlia/kademlia/Search.cpp
-
-amuled-Search.obj: kademlia/kademlia/Search.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-Search.obj -MD -MP -MF "$(DEPDIR)/amuled-Search.Tpo" -c -o amuled-Search.obj `if test -f 'kademlia/kademlia/Search.cpp'; then $(CYGPATH_W) 'kademlia/kademlia/Search.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/kademlia/Search.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-Search.Tpo" "$(DEPDIR)/amuled-Search.Po"; else rm -f "$(DEPDIR)/amuled-Search.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/kademlia/Search.cpp' object='amuled-Search.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-Search.obj `if test -f 'kademlia/kademlia/Search.cpp'; then $(CYGPATH_W) 'kademlia/kademlia/Search.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/kademlia/Search.cpp'; fi`
-
 amuled-Indexed.o: kademlia/kademlia/Indexed.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-Indexed.o -MD -MP -MF "$(DEPDIR)/amuled-Indexed.Tpo" -c -o amuled-Indexed.o `test -f 'kademlia/kademlia/Indexed.cpp' || echo '$(srcdir)/'`kademlia/kademlia/Indexed.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-Indexed.Tpo" "$(DEPDIR)/amuled-Indexed.Po"; else rm -f "$(DEPDIR)/amuled-Indexed.Tpo"; exit 1; fi
@@ -3567,19 +3597,19 @@ amuled-Indexed.obj: kademlia/kademlia/Indexed.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-Indexed.obj `if test -f 'kademlia/kademlia/Indexed.cpp'; then $(CYGPATH_W) 'kademlia/kademlia/Indexed.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/kademlia/Indexed.cpp'; fi`
 
-amuled-KademliaUDPListener.o: kademlia/net/KademliaUDPListener.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-KademliaUDPListener.o -MD -MP -MF "$(DEPDIR)/amuled-KademliaUDPListener.Tpo" -c -o amuled-KademliaUDPListener.o `test -f 'kademlia/net/KademliaUDPListener.cpp' || echo '$(srcdir)/'`kademlia/net/KademliaUDPListener.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-KademliaUDPListener.Tpo" "$(DEPDIR)/amuled-KademliaUDPListener.Po"; else rm -f "$(DEPDIR)/amuled-KademliaUDPListener.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/net/KademliaUDPListener.cpp' object='amuled-KademliaUDPListener.o' libtool=no @AMDEPBACKSLASH@
+amuled-Kademlia.o: kademlia/kademlia/Kademlia.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-Kademlia.o -MD -MP -MF "$(DEPDIR)/amuled-Kademlia.Tpo" -c -o amuled-Kademlia.o `test -f 'kademlia/kademlia/Kademlia.cpp' || echo '$(srcdir)/'`kademlia/kademlia/Kademlia.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-Kademlia.Tpo" "$(DEPDIR)/amuled-Kademlia.Po"; else rm -f "$(DEPDIR)/amuled-Kademlia.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/kademlia/Kademlia.cpp' object='amuled-Kademlia.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-KademliaUDPListener.o `test -f 'kademlia/net/KademliaUDPListener.cpp' || echo '$(srcdir)/'`kademlia/net/KademliaUDPListener.cpp
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-Kademlia.o `test -f 'kademlia/kademlia/Kademlia.cpp' || echo '$(srcdir)/'`kademlia/kademlia/Kademlia.cpp
 
-amuled-KademliaUDPListener.obj: kademlia/net/KademliaUDPListener.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-KademliaUDPListener.obj -MD -MP -MF "$(DEPDIR)/amuled-KademliaUDPListener.Tpo" -c -o amuled-KademliaUDPListener.obj `if test -f 'kademlia/net/KademliaUDPListener.cpp'; then $(CYGPATH_W) 'kademlia/net/KademliaUDPListener.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/net/KademliaUDPListener.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-KademliaUDPListener.Tpo" "$(DEPDIR)/amuled-KademliaUDPListener.Po"; else rm -f "$(DEPDIR)/amuled-KademliaUDPListener.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/net/KademliaUDPListener.cpp' object='amuled-KademliaUDPListener.obj' libtool=no @AMDEPBACKSLASH@
+amuled-Kademlia.obj: kademlia/kademlia/Kademlia.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-Kademlia.obj -MD -MP -MF "$(DEPDIR)/amuled-Kademlia.Tpo" -c -o amuled-Kademlia.obj `if test -f 'kademlia/kademlia/Kademlia.cpp'; then $(CYGPATH_W) 'kademlia/kademlia/Kademlia.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/kademlia/Kademlia.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-Kademlia.Tpo" "$(DEPDIR)/amuled-Kademlia.Po"; else rm -f "$(DEPDIR)/amuled-Kademlia.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/kademlia/Kademlia.cpp' object='amuled-Kademlia.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-KademliaUDPListener.obj `if test -f 'kademlia/net/KademliaUDPListener.cpp'; then $(CYGPATH_W) 'kademlia/net/KademliaUDPListener.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/net/KademliaUDPListener.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-Kademlia.obj `if test -f 'kademlia/kademlia/Kademlia.cpp'; then $(CYGPATH_W) 'kademlia/kademlia/Kademlia.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/kademlia/Kademlia.cpp'; fi`
 
 amuled-Prefs.o: kademlia/kademlia/Prefs.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-Prefs.o -MD -MP -MF "$(DEPDIR)/amuled-Prefs.Tpo" -c -o amuled-Prefs.o `test -f 'kademlia/kademlia/Prefs.cpp' || echo '$(srcdir)/'`kademlia/kademlia/Prefs.cpp; \
@@ -3595,19 +3625,61 @@ amuled-Prefs.obj: kademlia/kademlia/Prefs.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-Prefs.obj `if test -f 'kademlia/kademlia/Prefs.cpp'; then $(CYGPATH_W) 'kademlia/kademlia/Prefs.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/kademlia/Prefs.cpp'; fi`
 
-amuled-RoutingZone.o: kademlia/routing/RoutingZone.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-RoutingZone.o -MD -MP -MF "$(DEPDIR)/amuled-RoutingZone.Tpo" -c -o amuled-RoutingZone.o `test -f 'kademlia/routing/RoutingZone.cpp' || echo '$(srcdir)/'`kademlia/routing/RoutingZone.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-RoutingZone.Tpo" "$(DEPDIR)/amuled-RoutingZone.Po"; else rm -f "$(DEPDIR)/amuled-RoutingZone.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/routing/RoutingZone.cpp' object='amuled-RoutingZone.o' libtool=no @AMDEPBACKSLASH@
+amuled-Search.o: kademlia/kademlia/Search.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-Search.o -MD -MP -MF "$(DEPDIR)/amuled-Search.Tpo" -c -o amuled-Search.o `test -f 'kademlia/kademlia/Search.cpp' || echo '$(srcdir)/'`kademlia/kademlia/Search.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-Search.Tpo" "$(DEPDIR)/amuled-Search.Po"; else rm -f "$(DEPDIR)/amuled-Search.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/kademlia/Search.cpp' object='amuled-Search.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-RoutingZone.o `test -f 'kademlia/routing/RoutingZone.cpp' || echo '$(srcdir)/'`kademlia/routing/RoutingZone.cpp
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-Search.o `test -f 'kademlia/kademlia/Search.cpp' || echo '$(srcdir)/'`kademlia/kademlia/Search.cpp
 
-amuled-RoutingZone.obj: kademlia/routing/RoutingZone.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-RoutingZone.obj -MD -MP -MF "$(DEPDIR)/amuled-RoutingZone.Tpo" -c -o amuled-RoutingZone.obj `if test -f 'kademlia/routing/RoutingZone.cpp'; then $(CYGPATH_W) 'kademlia/routing/RoutingZone.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/routing/RoutingZone.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-RoutingZone.Tpo" "$(DEPDIR)/amuled-RoutingZone.Po"; else rm -f "$(DEPDIR)/amuled-RoutingZone.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/routing/RoutingZone.cpp' object='amuled-RoutingZone.obj' libtool=no @AMDEPBACKSLASH@
+amuled-Search.obj: kademlia/kademlia/Search.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-Search.obj -MD -MP -MF "$(DEPDIR)/amuled-Search.Tpo" -c -o amuled-Search.obj `if test -f 'kademlia/kademlia/Search.cpp'; then $(CYGPATH_W) 'kademlia/kademlia/Search.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/kademlia/Search.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-Search.Tpo" "$(DEPDIR)/amuled-Search.Po"; else rm -f "$(DEPDIR)/amuled-Search.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/kademlia/Search.cpp' object='amuled-Search.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-RoutingZone.obj `if test -f 'kademlia/routing/RoutingZone.cpp'; then $(CYGPATH_W) 'kademlia/routing/RoutingZone.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/routing/RoutingZone.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-Search.obj `if test -f 'kademlia/kademlia/Search.cpp'; then $(CYGPATH_W) 'kademlia/kademlia/Search.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/kademlia/Search.cpp'; fi`
+
+amuled-UDPFirewallTester.o: kademlia/kademlia/UDPFirewallTester.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-UDPFirewallTester.o -MD -MP -MF "$(DEPDIR)/amuled-UDPFirewallTester.Tpo" -c -o amuled-UDPFirewallTester.o `test -f 'kademlia/kademlia/UDPFirewallTester.cpp' || echo '$(srcdir)/'`kademlia/kademlia/UDPFirewallTester.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-UDPFirewallTester.Tpo" "$(DEPDIR)/amuled-UDPFirewallTester.Po"; else rm -f "$(DEPDIR)/amuled-UDPFirewallTester.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/kademlia/UDPFirewallTester.cpp' object='amuled-UDPFirewallTester.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-UDPFirewallTester.o `test -f 'kademlia/kademlia/UDPFirewallTester.cpp' || echo '$(srcdir)/'`kademlia/kademlia/UDPFirewallTester.cpp
+
+amuled-UDPFirewallTester.obj: kademlia/kademlia/UDPFirewallTester.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-UDPFirewallTester.obj -MD -MP -MF "$(DEPDIR)/amuled-UDPFirewallTester.Tpo" -c -o amuled-UDPFirewallTester.obj `if test -f 'kademlia/kademlia/UDPFirewallTester.cpp'; then $(CYGPATH_W) 'kademlia/kademlia/UDPFirewallTester.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/kademlia/UDPFirewallTester.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-UDPFirewallTester.Tpo" "$(DEPDIR)/amuled-UDPFirewallTester.Po"; else rm -f "$(DEPDIR)/amuled-UDPFirewallTester.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/kademlia/UDPFirewallTester.cpp' object='amuled-UDPFirewallTester.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-UDPFirewallTester.obj `if test -f 'kademlia/kademlia/UDPFirewallTester.cpp'; then $(CYGPATH_W) 'kademlia/kademlia/UDPFirewallTester.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/kademlia/UDPFirewallTester.cpp'; fi`
+
+amuled-KademliaUDPListener.o: kademlia/net/KademliaUDPListener.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-KademliaUDPListener.o -MD -MP -MF "$(DEPDIR)/amuled-KademliaUDPListener.Tpo" -c -o amuled-KademliaUDPListener.o `test -f 'kademlia/net/KademliaUDPListener.cpp' || echo '$(srcdir)/'`kademlia/net/KademliaUDPListener.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-KademliaUDPListener.Tpo" "$(DEPDIR)/amuled-KademliaUDPListener.Po"; else rm -f "$(DEPDIR)/amuled-KademliaUDPListener.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/net/KademliaUDPListener.cpp' object='amuled-KademliaUDPListener.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-KademliaUDPListener.o `test -f 'kademlia/net/KademliaUDPListener.cpp' || echo '$(srcdir)/'`kademlia/net/KademliaUDPListener.cpp
+
+amuled-KademliaUDPListener.obj: kademlia/net/KademliaUDPListener.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-KademliaUDPListener.obj -MD -MP -MF "$(DEPDIR)/amuled-KademliaUDPListener.Tpo" -c -o amuled-KademliaUDPListener.obj `if test -f 'kademlia/net/KademliaUDPListener.cpp'; then $(CYGPATH_W) 'kademlia/net/KademliaUDPListener.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/net/KademliaUDPListener.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-KademliaUDPListener.Tpo" "$(DEPDIR)/amuled-KademliaUDPListener.Po"; else rm -f "$(DEPDIR)/amuled-KademliaUDPListener.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/net/KademliaUDPListener.cpp' object='amuled-KademliaUDPListener.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-KademliaUDPListener.obj `if test -f 'kademlia/net/KademliaUDPListener.cpp'; then $(CYGPATH_W) 'kademlia/net/KademliaUDPListener.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/net/KademliaUDPListener.cpp'; fi`
+
+amuled-PacketTracking.o: kademlia/net/PacketTracking.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-PacketTracking.o -MD -MP -MF "$(DEPDIR)/amuled-PacketTracking.Tpo" -c -o amuled-PacketTracking.o `test -f 'kademlia/net/PacketTracking.cpp' || echo '$(srcdir)/'`kademlia/net/PacketTracking.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-PacketTracking.Tpo" "$(DEPDIR)/amuled-PacketTracking.Po"; else rm -f "$(DEPDIR)/amuled-PacketTracking.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/net/PacketTracking.cpp' object='amuled-PacketTracking.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-PacketTracking.o `test -f 'kademlia/net/PacketTracking.cpp' || echo '$(srcdir)/'`kademlia/net/PacketTracking.cpp
+
+amuled-PacketTracking.obj: kademlia/net/PacketTracking.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-PacketTracking.obj -MD -MP -MF "$(DEPDIR)/amuled-PacketTracking.Tpo" -c -o amuled-PacketTracking.obj `if test -f 'kademlia/net/PacketTracking.cpp'; then $(CYGPATH_W) 'kademlia/net/PacketTracking.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/net/PacketTracking.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-PacketTracking.Tpo" "$(DEPDIR)/amuled-PacketTracking.Po"; else rm -f "$(DEPDIR)/amuled-PacketTracking.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/net/PacketTracking.cpp' object='amuled-PacketTracking.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-PacketTracking.obj `if test -f 'kademlia/net/PacketTracking.cpp'; then $(CYGPATH_W) 'kademlia/net/PacketTracking.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/net/PacketTracking.cpp'; fi`
 
 amuled-Contact.o: kademlia/routing/Contact.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-Contact.o -MD -MP -MF "$(DEPDIR)/amuled-Contact.Tpo" -c -o amuled-Contact.o `test -f 'kademlia/routing/Contact.cpp' || echo '$(srcdir)/'`kademlia/routing/Contact.cpp; \
@@ -3622,6 +3694,20 @@ amuled-Contact.obj: kademlia/routing/Contact.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/routing/Contact.cpp' object='amuled-Contact.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-Contact.obj `if test -f 'kademlia/routing/Contact.cpp'; then $(CYGPATH_W) 'kademlia/routing/Contact.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/routing/Contact.cpp'; fi`
+
+amuled-RoutingZone.o: kademlia/routing/RoutingZone.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-RoutingZone.o -MD -MP -MF "$(DEPDIR)/amuled-RoutingZone.Tpo" -c -o amuled-RoutingZone.o `test -f 'kademlia/routing/RoutingZone.cpp' || echo '$(srcdir)/'`kademlia/routing/RoutingZone.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-RoutingZone.Tpo" "$(DEPDIR)/amuled-RoutingZone.Po"; else rm -f "$(DEPDIR)/amuled-RoutingZone.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/routing/RoutingZone.cpp' object='amuled-RoutingZone.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-RoutingZone.o `test -f 'kademlia/routing/RoutingZone.cpp' || echo '$(srcdir)/'`kademlia/routing/RoutingZone.cpp
+
+amuled-RoutingZone.obj: kademlia/routing/RoutingZone.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-RoutingZone.obj -MD -MP -MF "$(DEPDIR)/amuled-RoutingZone.Tpo" -c -o amuled-RoutingZone.obj `if test -f 'kademlia/routing/RoutingZone.cpp'; then $(CYGPATH_W) 'kademlia/routing/RoutingZone.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/routing/RoutingZone.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-RoutingZone.Tpo" "$(DEPDIR)/amuled-RoutingZone.Po"; else rm -f "$(DEPDIR)/amuled-RoutingZone.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/routing/RoutingZone.cpp' object='amuled-RoutingZone.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-RoutingZone.obj `if test -f 'kademlia/routing/RoutingZone.cpp'; then $(CYGPATH_W) 'kademlia/routing/RoutingZone.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/routing/RoutingZone.cpp'; fi`
 
 amuled-UPnP.o: UPnP.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-UPnP.o -MD -MP -MF "$(DEPDIR)/amuled-UPnP.Tpo" -c -o amuled-UPnP.o `test -f 'UPnP.cpp' || echo '$(srcdir)/'`UPnP.cpp; \
