@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: et_EE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-09 03:31+0200\n"
-"PO-Revision-Date: 2008-04-19 20:23+0300\n"
+"POT-Creation-Date: 2008-05-10 03:31+0200\n"
+"PO-Revision-Date: 2008-05-09 19:17+0300\n"
 "Last-Translator: Hans <herringfish@hot.ee>\n"
 "Language-Team:  <et@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -128,12 +128,12 @@ msgstr "HOIATUS: peale varukoopia tegemist ei suuda '%s' originaali eemaldada"
 msgid "WARNING: Failed to delete %s"
 msgstr "HOIATUS: Ei suutnud %s kustutada"
 
-#: src/BaseClient.cpp:1305
+#: src/BaseClient.cpp:1307
 #, c-format
 msgid "Failed to retrieve shared files from user '%s'"
 msgstr "Ei suuda tõmmata kasutaja '%s' jagatud faili"
 
-#: src/BaseClient.cpp:1716 src/BaseClient.cpp:2238 src/BaseClient.cpp:2510
+#: src/BaseClient.cpp:1717 src/BaseClient.cpp:2239 src/BaseClient.cpp:2511
 #: src/HTTPDownload.cpp:81 src/DataToText.cpp:52 src/DataToText.cpp:68
 #: src/DataToText.cpp:78 src/DataToText.cpp:114 src/DataToText.cpp:134
 #: src/ExternalConn.cpp:251 src/Statistics.cpp:697 src/Statistics.cpp:878
@@ -149,35 +149,35 @@ msgstr "Ei suuda tõmmata kasutaja '%s' jagatud faili"
 msgid "Unknown"
 msgstr "Teadmata"
 
-#: src/BaseClient.cpp:1733
+#: src/BaseClient.cpp:1734
 #, c-format
 msgid " (Fake eMule version %#x)"
 msgstr " (Valetatud eMule versioon %#x)"
 
-#: src/BaseClient.cpp:1744
+#: src/BaseClient.cpp:1745
 msgid " (Fake eMule)"
 msgstr " (Valetatud eMule)"
 
-#: src/BaseClient.cpp:1746
+#: src/BaseClient.cpp:1747
 msgid "xMule (Fake eMule)"
 msgstr "xMule (Valetatud eMule)"
 
-#: src/BaseClient.cpp:1785
+#: src/BaseClient.cpp:1786
 #, c-format
 msgid "1.x (based on eMule v0.%u)"
 msgstr "1.x (baseerub eMule v0.%u)"
 
-#: src/BaseClient.cpp:1955
+#: src/BaseClient.cpp:1956
 #, c-format
 msgid "NickName: %s ID: %u"
 msgstr "Kasutajanimi: %s ID: %u"
 
-#: src/BaseClient.cpp:1957
+#: src/BaseClient.cpp:1958
 #, c-format
 msgid "Requested: %s\n"
 msgstr "Küsitud: %s\n"
 
-#: src/BaseClient.cpp:1959
+#: src/BaseClient.cpp:1960
 #, c-format
 msgid "Filestats for this session: Accepted %d of %d request, %s transferred\n"
 msgid_plural ""
@@ -187,7 +187,7 @@ msgstr[0] ""
 msgstr[1] ""
 "Selle seansi failistatistika: Aksepteeritud %d/%d päringust, %s siirdatud\n"
 
-#: src/BaseClient.cpp:1962
+#: src/BaseClient.cpp:1963
 #, c-format
 msgid "Filestats for all sessions: Accepted %d of %d request, %s transferred\n"
 msgid_plural ""
@@ -199,11 +199,11 @@ msgstr[1] ""
 "Kõikide seansside failistatistika: Aksepteeritud %d/%d päringust, %s "
 "siirdatud\n"
 
-#: src/BaseClient.cpp:1965
+#: src/BaseClient.cpp:1966
 msgid "Requested unknown file"
 msgstr "Küsiti tundmatut faili"
 
-#: src/BaseClient.cpp:2237
+#: src/BaseClient.cpp:2238
 #, c-format
 msgid "Client %s on IP:Port %s:%d using %s %s %s"
 msgstr "Klient %s IP:Port %s:%d kasutab %s %s %s"
@@ -466,6 +466,8 @@ msgid ""
 "Feedback from: %s (%s)\n"
 "\n"
 msgstr ""
+"Tagasiside : %s (%s)\n"
+"\n"
 
 #: src/SharedFilesCtrl.cpp:306
 msgid "You need a HighID to create a valid sourcelink"
@@ -511,14 +513,14 @@ msgstr "aMule tekstiline klient"
 msgid "Kademlia: search keyword too short"
 msgstr "Kademlia: otsingu võtmesõna on liiga lühike"
 
-#: src/kademlia/routing/RoutingZone.cpp:187
+#: src/kademlia/routing/RoutingZone.cpp:188
 #, c-format
 msgid "Read %u Kad contact"
 msgid_plural "Read %u Kad contacts"
 msgstr[0] "Loetud %u Kad kontakti"
 msgstr[1] "Loetud %u Kad kontakti"
 
-#: src/kademlia/routing/RoutingZone.cpp:228
+#: src/kademlia/routing/RoutingZone.cpp:229
 #, c-format
 msgid "Wrote %d Kad contact"
 msgid_plural "Wrote %d Kad contacts"
@@ -3312,7 +3314,7 @@ msgstr "Peatatud"
 
 #: src/PartFile.cpp:3905
 msgid "Downloaded"
-msgstr ""
+msgstr "Allalaetud"
 
 #: src/KnownFileList.cpp:79
 msgid "Warning: known.met cannot be opened."
@@ -4171,27 +4173,27 @@ msgstr "Faili nimi"
 
 #: src/KnownFile.cpp:1360
 msgid "File size"
-msgstr ""
+msgstr "Faili suurus"
 
 #: src/KnownFile.cpp:1361
 msgid "Share ratio"
-msgstr ""
+msgstr "Üles- ja allalaadimise suhe"
 
 #: src/KnownFile.cpp:1362
 msgid "Uploaded"
-msgstr ""
+msgstr "Üleslaaditud"
 
 #: src/KnownFile.cpp:1363
 msgid "Requested"
-msgstr ""
+msgstr "Küsitud"
 
 #: src/KnownFile.cpp:1364
 msgid "Accepted"
-msgstr ""
+msgstr "Aksepteeritud"
 
 #: src/KnownFile.cpp:1365
 msgid "Complete sources"
-msgstr ""
+msgstr "Täielikke allikaid"
 
 #: src/PartFileConvert.cpp:236
 #, c-format
@@ -4918,11 +4920,11 @@ msgstr "Serveri nimi:"
 
 #: src/muuli_wdr.cpp:1454
 msgid "Obfuscation:"
-msgstr ""
+msgstr "Hämatud:"
 
 #: src/muuli_wdr.cpp:1463
 msgid "Kad:"
-msgstr ""
+msgstr "Kad:"
 
 #: src/muuli_wdr.cpp:1474
 msgid "Transfers to client"
@@ -6073,7 +6075,7 @@ msgstr "Proxy kasutamiseks vajalik parool"
 
 #: src/muuli_wdr.cpp:3539
 msgid "Automatic server connect without proxy"
-msgstr "Automaatne serveriga ühendumine ilma proxyt kasutamata"
+msgstr "Automaatne serveriga ühendumine proxyta"
 
 #: src/muuli_wdr.cpp:3558
 msgid "Connect to:"
@@ -6482,19 +6484,19 @@ msgstr "Kliendi detailid"
 
 #: src/ClientDetailDialog.cpp:129
 msgid "Enabled"
-msgstr ""
+msgstr "Lubatud"
 
 #: src/ClientDetailDialog.cpp:131
 msgid "Supported"
-msgstr ""
+msgstr "Toetatud"
 
 #: src/ClientDetailDialog.cpp:134 src/ClientDetailDialog.cpp:193
 msgid "Not supported"
-msgstr ""
+msgstr "Pole toetatud"
 
 #: src/ClientDetailDialog.cpp:137
 msgid "Disabled"
-msgstr ""
+msgstr "Keelatud"
 
 #: src/ClientDetailDialog.cpp:168 src/ClientDetailDialog.cpp:173
 #, c-format
@@ -7035,16 +7037,16 @@ msgstr "Versiooni kontrollfaili tõmbamine ebaõnnestus"
 #: src/amule.cpp:1988
 #, c-format
 msgid "Users: %s | Files: %s"
-msgstr ""
+msgstr "Kasutajaid: %s | Faile: %s"
 
 #: src/amule.cpp:1989
 #, c-format
 msgid "Users: E: %s K: %s | Files: E: %s K: %s"
-msgstr ""
+msgstr "Kasutajaid: E: %s K: %s | Faile E: %s K: %s"
 
 #: src/amule.cpp:1998
 msgid "No networks selected"
-msgstr ""
+msgstr "Ühtegi võrku pole valitud"
 
 #: src/amule.cpp:2065
 #, c-format
@@ -7098,6 +7100,3 @@ msgstr "Sõbralisti faili 'emfriends.met' lugemiseks avamine ebaõnnestus!"
 #: src/FriendList.cpp:146
 msgid "Failed to open friendlist file 'emfriends.met' for writing!"
 msgstr "Sõbralisti faili 'emfriends.met' kirjutamiseks avamine ebaõnnestus!"
-
-#~ msgid "Not Supported"
-#~ msgstr "Pole toetatud"
