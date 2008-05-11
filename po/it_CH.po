@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: it_CH\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-05-10 03:31+0200\n"
-"PO-Revision-Date: 2008-05-05 21:25+0100\n"
+"PO-Revision-Date: 2008-05-10 15:42+0100\n"
 "Last-Translator: Luca Pagliero <luca@lucapagliero.it>\n"
 "Language-Team: Italian_CH\n"
 "MIME-Version: 1.0\n"
@@ -7114,16 +7114,16 @@ msgstr "Impossibile scaricare il file per il controllo della versione"
 #: src/amule.cpp:1988
 #, c-format
 msgid "Users: %s | Files: %s"
-msgstr ""
+msgstr "Utenti: %s | Files: %s"
 
 #: src/amule.cpp:1989
 #, c-format
 msgid "Users: E: %s K: %s | Files: E: %s K: %s"
-msgstr ""
+msgstr "Utenti: E: %s K: %s | Files: E: %s K: %s"
 
 #: src/amule.cpp:1998
 msgid "No networks selected"
-msgstr ""
+msgstr "Nessuna rete selezionata"
 
 #: src/amule.cpp:2065
 #, c-format

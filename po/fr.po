@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: fr\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-05-10 03:31+0200\n"
-"PO-Revision-Date: 2008-05-05 19:43+0100\n"
+"PO-Revision-Date: 2008-05-10 11:21+0100\n"
 "Last-Translator: Youpla <youpla@youpla.com>\n"
 "Language-Team: Français <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -7171,16 +7171,16 @@ msgstr "Échec du téléchargement du fichier de vérification de version"
 #: src/amule.cpp:1988
 #, c-format
 msgid "Users: %s | Files: %s"
-msgstr ""
+msgstr "Utilisateurs : %s | Fichiers : %s"
 
 #: src/amule.cpp:1989
 #, c-format
 msgid "Users: E: %s K: %s | Files: E: %s K: %s"
-msgstr ""
+msgstr "Utilisateurs : E : %s K : %s | Fichiers : E : %s K : %s"
 
 #: src/amule.cpp:1998
 msgid "No networks selected"
-msgstr ""
+msgstr "Aucun réseau sélectionné"
 
 #: src/amule.cpp:2065
 #, c-format
