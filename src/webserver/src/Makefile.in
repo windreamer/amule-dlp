@@ -46,6 +46,7 @@ bin_PROGRAMS = amuleweb$(EXEEXT)
 
 @ENABLE_UPNP_TRUE@am__append_2 = -DENABLE_UPNP
 @ENABLE_UPNP_TRUE@am__append_3 = -DENABLE_UPNP
+@COMPILE_NLS_TRUE@am__append_4 = -lintl
 subdir = src/webserver/src
 DIST_COMMON = $(noinst_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in
@@ -75,7 +76,7 @@ am__amuleweb_SOURCES_DIST = WebServer.cpp WebInterface.cpp \
 	WebSocket.cpp $(top_srcdir)/src/ExternalConnector.cpp \
 	$(top_srcdir)/src/OtherFunctions.cpp $(top_srcdir)/src/RLE.cpp \
 	$(top_srcdir)/src/NetworkFunctions.cpp php_parser.c \
-	php_lexer.c php_syntree.cpp php_core_lib.cpp \
+	php_lexer.c php_syntree.cpp php_amule_lib.cpp php_core_lib.cpp \
 	$(top_srcdir)/src/UPnP.cpp UPnPCompatibility.cpp
 @ENABLE_UPNP_TRUE@am__objects_1 = amuleweb-UPnP.$(OBJEXT) \
 @ENABLE_UPNP_TRUE@	amuleweb-UPnPCompatibility.$(OBJEXT)
@@ -85,8 +86,9 @@ am_amuleweb_OBJECTS = amuleweb-WebServer.$(OBJEXT) \
 	amuleweb-OtherFunctions.$(OBJEXT) amuleweb-RLE.$(OBJEXT) \
 	amuleweb-NetworkFunctions.$(OBJEXT) \
 	amuleweb-php_parser.$(OBJEXT) amuleweb-php_lexer.$(OBJEXT) \
-	amuleweb-php_syntree.$(OBJEXT) amuleweb-php_core_lib.$(OBJEXT) \
-	$(am__objects_1)
+	amuleweb-php_syntree.$(OBJEXT) \
+	amuleweb-php_amule_lib.$(OBJEXT) \
+	amuleweb-php_core_lib.$(OBJEXT) $(am__objects_1)
 @NEED_RC_TRUE@nodist_amuleweb_OBJECTS = amuleweb-version.$(OBJEXT)
 amuleweb_OBJECTS = $(am_amuleweb_OBJECTS) $(nodist_amuleweb_OBJECTS)
 am__DEPENDENCIES_1 =
@@ -342,7 +344,8 @@ amuleweb_SOURCES = WebServer.cpp WebInterface.cpp WebSocket.cpp \
 	$(top_srcdir)/src/ExternalConnector.cpp \
 	$(top_srcdir)/src/OtherFunctions.cpp $(top_srcdir)/src/RLE.cpp \
 	$(top_srcdir)/src/NetworkFunctions.cpp php_parser.c \
-	php_lexer.c php_syntree.cpp php_core_lib.cpp $(am__append_1)
+	php_lexer.c php_syntree.cpp php_amule_lib.cpp php_core_lib.cpp \
+	$(am__append_1)
 amuleweb_DEPENDENCIES = ../../libs/common/libmulecommon.a ../../libs/ec/cpp/libec.a
 amuleweb_CPPFLAGS = -I../.. -I$(top_srcdir)/src -I$(top_srcdir)/src/libs -I$(top_srcdir)/src/include \
 	$(AMULEWEB_DEFS) $(BFD_FLAGS) \
@@ -354,8 +357,8 @@ amuleweb_CXXFLAGS = $(WXBASE_CXXFLAGS) $(LIBPNG_CXXFLAGS) \
 	$(am__append_3)
 amuleweb_LDFLAGS = $(LIBPNG_LDFLAGS) -L../../libs/common -L../../libs/ec/cpp
 amuleweb_LDADD = -lec -lmulecommon $(WXBASE_LIBS) $(ZLIB_LIBS) \
-	$(READLINE_LIBS) $(LIBPNG_LIBS) $(RESOLV_LIB) $(BFD_LIB) $(REGEX_LIB)
-
+	$(READLINE_LIBS) $(LIBPNG_LIBS) $(RESOLV_LIB) $(BFD_LIB) \
+	$(REGEX_LIB) $(am__append_4)
 noinst_HEADERS = \
 		 WebInterface.h \
 		 WebServer.h \
@@ -450,6 +453,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuleweb-WebInterface.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuleweb-WebServer.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuleweb-WebSocket.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuleweb-php_amule_lib.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuleweb-php_core_lib.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuleweb-php_lexer.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuleweb-php_parser.Po@am__quote@
@@ -622,6 +626,20 @@ amuleweb-php_syntree.obj: php_syntree.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='php_syntree.cpp' object='amuleweb-php_syntree.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-php_syntree.obj `if test -f 'php_syntree.cpp'; then $(CYGPATH_W) 'php_syntree.cpp'; else $(CYGPATH_W) '$(srcdir)/php_syntree.cpp'; fi`
+
+amuleweb-php_amule_lib.o: php_amule_lib.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-php_amule_lib.o -MD -MP -MF "$(DEPDIR)/amuleweb-php_amule_lib.Tpo" -c -o amuleweb-php_amule_lib.o `test -f 'php_amule_lib.cpp' || echo '$(srcdir)/'`php_amule_lib.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuleweb-php_amule_lib.Tpo" "$(DEPDIR)/amuleweb-php_amule_lib.Po"; else rm -f "$(DEPDIR)/amuleweb-php_amule_lib.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='php_amule_lib.cpp' object='amuleweb-php_amule_lib.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-php_amule_lib.o `test -f 'php_amule_lib.cpp' || echo '$(srcdir)/'`php_amule_lib.cpp
+
+amuleweb-php_amule_lib.obj: php_amule_lib.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-php_amule_lib.obj -MD -MP -MF "$(DEPDIR)/amuleweb-php_amule_lib.Tpo" -c -o amuleweb-php_amule_lib.obj `if test -f 'php_amule_lib.cpp'; then $(CYGPATH_W) 'php_amule_lib.cpp'; else $(CYGPATH_W) '$(srcdir)/php_amule_lib.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuleweb-php_amule_lib.Tpo" "$(DEPDIR)/amuleweb-php_amule_lib.Po"; else rm -f "$(DEPDIR)/amuleweb-php_amule_lib.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='php_amule_lib.cpp' object='amuleweb-php_amule_lib.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-php_amule_lib.obj `if test -f 'php_amule_lib.cpp'; then $(CYGPATH_W) 'php_amule_lib.cpp'; else $(CYGPATH_W) '$(srcdir)/php_amule_lib.cpp'; fi`
 
 amuleweb-php_core_lib.o: php_core_lib.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-php_core_lib.o -MD -MP -MF "$(DEPDIR)/amuleweb-php_core_lib.Tpo" -c -o amuleweb-php_core_lib.o `test -f 'php_core_lib.cpp' || echo '$(srcdir)/'`php_core_lib.cpp; \

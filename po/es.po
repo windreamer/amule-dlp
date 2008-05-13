@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-05-12 03:30+0200\n"
-"PO-Revision-Date: 2008-04-22 01:38+0200\n"
+"PO-Revision-Date: 2008-05-12 23:29+0200\n"
 "Last-Translator: Mad-Soft <mad.soft@gmail.com>\n"
 "Language-Team: Spanish <mad.soft@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -475,6 +475,8 @@ msgid ""
 "Feedback from: %s (%s)\n"
 "\n"
 msgstr ""
+"Reacción desde: %s (%s)\n"
+"\n"
 
 #: src/SharedFilesCtrl.cpp:306
 msgid "You need a HighID to create a valid sourcelink"
@@ -3333,7 +3335,7 @@ msgstr "Detenido"
 
 #: src/PartFile.cpp:3905
 msgid "Downloaded"
-msgstr ""
+msgstr "Descargado"
 
 #: src/KnownFileList.cpp:79
 msgid "Warning: known.met cannot be opened."
@@ -4204,27 +4206,27 @@ msgstr "Nombre de archivo"
 
 #: src/KnownFile.cpp:1360
 msgid "File size"
-msgstr ""
+msgstr "Tamaño de archivo"
 
 #: src/KnownFile.cpp:1361
 msgid "Share ratio"
-msgstr ""
+msgstr "Media compartido"
 
 #: src/KnownFile.cpp:1362
 msgid "Uploaded"
-msgstr ""
+msgstr "Subido"
 
 #: src/KnownFile.cpp:1363
 msgid "Requested"
-msgstr ""
+msgstr "Pedido"
 
 #: src/KnownFile.cpp:1364
 msgid "Accepted"
-msgstr ""
+msgstr "Aceptado"
 
 #: src/KnownFile.cpp:1365
 msgid "Complete sources"
-msgstr ""
+msgstr "Fuentes completas"
 
 #: src/PartFileConvert.cpp:236
 #, c-format
@@ -4959,11 +4961,11 @@ msgstr "Nombre servidor:"
 
 #: src/muuli_wdr.cpp:1454
 msgid "Obfuscation:"
-msgstr ""
+msgstr "Ofuscación:"
 
 #: src/muuli_wdr.cpp:1463
 msgid "Kad:"
-msgstr ""
+msgstr "Kad:"
 
 #: src/muuli_wdr.cpp:1474
 msgid "Transfers to client"
@@ -6534,19 +6536,19 @@ msgstr "Detalles del cliente"
 
 #: src/ClientDetailDialog.cpp:129
 msgid "Enabled"
-msgstr ""
+msgstr "Habilitado"
 
 #: src/ClientDetailDialog.cpp:131
 msgid "Supported"
-msgstr ""
+msgstr "Soportado"
 
 #: src/ClientDetailDialog.cpp:134 src/ClientDetailDialog.cpp:193
 msgid "Not supported"
-msgstr ""
+msgstr "No soportado"
 
 #: src/ClientDetailDialog.cpp:137
 msgid "Disabled"
-msgstr ""
+msgstr "Deshabilitado"
 
 #: src/ClientDetailDialog.cpp:168 src/ClientDetailDialog.cpp:173
 #, c-format
@@ -7084,16 +7086,16 @@ msgstr "Error al descargar el archivo de comprobación de versión"
 #: src/amule.cpp:1988
 #, c-format
 msgid "Users: %s | Files: %s"
-msgstr ""
+msgstr "Usuarios: %s | Archivos: %s"
 
 #: src/amule.cpp:1989
 #, c-format
 msgid "Users: E: %s K: %s | Files: E: %s K: %s"
-msgstr ""
+msgstr "Usuarios: E: %s K: %s | Archivos: E: %s K: %s"
 
 #: src/amule.cpp:1998
 msgid "No networks selected"
-msgstr ""
+msgstr "Sin redes seleccionadas"
 
 #: src/amule.cpp:2065
 #, c-format
@@ -7150,6 +7152,3 @@ msgstr ""
 msgid "Failed to open friendlist file 'emfriends.met' for writing!"
 msgstr ""
 "¡Error al abrir el archivo lista de amigos 'emfriends.met' para la escritura!"
-
-#~ msgid "Not Supported"
-#~ msgstr "No soportado"

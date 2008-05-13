@@ -11,6 +11,7 @@ amuleweb_SOURCES =  \
 	php_parser.c \
 	php_lexer.c \
 	php_syntree.cpp \
+	php_amule_lib.cpp \
 	php_core_lib.cpp
 
 if ENABLE_UPNP
@@ -41,6 +42,10 @@ endif
 amuleweb_LDFLAGS = $(LIBPNG_LDFLAGS) -L../../libs/common -L../../libs/ec/cpp
 amuleweb_LDADD = -lec -lmulecommon $(WXBASE_LIBS) $(ZLIB_LIBS) \
 	$(READLINE_LIBS) $(LIBPNG_LIBS) $(RESOLV_LIB) $(BFD_LIB) $(REGEX_LIB)
+
+if COMPILE_NLS
+amuleweb_LDADD += -lintl
+endif
 
 noinst_HEADERS = \
 		 WebInterface.h \
