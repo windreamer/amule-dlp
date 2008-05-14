@@ -46,7 +46,6 @@ bin_PROGRAMS = amuleweb$(EXEEXT)
 
 @ENABLE_UPNP_TRUE@am__append_2 = -DENABLE_UPNP
 @ENABLE_UPNP_TRUE@am__append_3 = -DENABLE_UPNP
-@COMPILE_NLS_TRUE@am__append_4 = -lintl
 subdir = src/webserver/src
 DIST_COMMON = $(noinst_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in
@@ -357,8 +356,8 @@ amuleweb_CXXFLAGS = $(WXBASE_CXXFLAGS) $(LIBPNG_CXXFLAGS) \
 	$(am__append_3)
 amuleweb_LDFLAGS = $(LIBPNG_LDFLAGS) -L../../libs/common -L../../libs/ec/cpp
 amuleweb_LDADD = -lec -lmulecommon $(WXBASE_LIBS) $(ZLIB_LIBS) \
-	$(READLINE_LIBS) $(LIBPNG_LIBS) $(RESOLV_LIB) $(BFD_LIB) \
-	$(REGEX_LIB) $(am__append_4)
+	$(READLINE_LIBS) $(LIBPNG_LIBS) $(RESOLV_LIB) $(BFD_LIB) $(REGEX_LIB)
+
 noinst_HEADERS = \
 		 WebInterface.h \
 		 WebServer.h \
