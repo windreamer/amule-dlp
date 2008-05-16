@@ -1,16 +1,16 @@
-# translation of amule.po to Türkçe
+# translation of tr.po to Turkish
 # Copyright (C) 2008 Free Software Foundation, Inc.
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Atilla ÖNTAŞ <atilla_ontas@hotmail.com>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: amule\n"
+"Project-Id-Version: tr\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-15 03:31+0200\n"
-"PO-Revision-Date: 2008-04-23 14:32+0300\n"
+"POT-Creation-Date: 2008-05-16 03:31+0200\n"
+"PO-Revision-Date: 2008-05-15 01:21+0300\n"
 "Last-Translator: Atilla ÖNTAŞ <atilla_ontas@hotmail.com>\n"
-"Language-Team: Türkçe <tr@li.org>\n"
+"Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -445,12 +445,13 @@ msgstr ""
 
 #: src/SharedFilesCtrl.cpp:165
 msgid "Copy ED2k link to clipboard (&Hostname)"
-msgstr "Ed2k bağlantısını panoya kopyala (&Hostname)"
+msgstr "Ed2k bağlantısını panoya kopyala (&Makine adı)"
 
 #: src/SharedFilesCtrl.cpp:166
 msgid "Copy ED2k link to clipboard (Hostname) (With &Crypt options)"
 msgstr ""
-"Ed2k bağlantısını panoya kopyala (Hostname)(Şifreleme &seçeneğiyle birlikte)"
+"Ed2k bağlantısını panoya kopyala (Makine adı)(Şifreleme &seçeneğiyle "
+"birlikte)"
 
 #: src/SharedFilesCtrl.cpp:167
 msgid "Copy ED2k link to clipboard (&AICH info)"
@@ -466,6 +467,8 @@ msgid ""
 "Feedback from: %s (%s)\n"
 "\n"
 msgstr ""
+"Geri besleme: %s (%s)\n"
+"\n"
 
 #: src/SharedFilesCtrl.cpp:306
 msgid "You need a HighID to create a valid sourcelink"
@@ -530,132 +533,132 @@ msgstr[1] "%d adet Kad bağlantısı yazıldı"
 msgid "Error: Could not listen to TCP port."
 msgstr "Hata: TCP portu dinlenilemiyor."
 
-#: src/webserver/src/WebServer.cpp:327
+#: src/webserver/src/WebServer.cpp:341
+msgid "web client connection accepted\n"
+msgstr ""
+
+#: src/webserver/src/WebServer.cpp:344
+msgid "Error: can not accept web client connection\n"
+msgstr ""
+
+#: src/webserver/src/WebServer.cpp:414
 #, c-format
 msgid "Request failed with the following error: %s."
 msgstr "İstem şu hatayla başarısız oldu: %s."
 
-#: src/webserver/src/WebServer.cpp:330 src/TextClient.cpp:623
+#: src/webserver/src/WebServer.cpp:417 src/TextClient.cpp:623
 msgid "Request failed with an unknown error."
 msgstr "İstem bilinmeyen bir hatayla başarısız oldu."
 
-#: src/webserver/src/WebServer.cpp:1691
+#: src/webserver/src/WebServer.cpp:1778
 msgid "Index file not found: "
 msgstr "İndeks dosyası bulunamadı: "
 
-#: src/webserver/src/WebServer.cpp:1711
-msgid "Can't create web socket thread\n"
-msgstr "Web soketi oluşturulamıyor.\n"
-
-#: src/webserver/src/WebServer.cpp:1716
-msgid "Web Server: Started\n"
-msgstr "Web Sunucusu: Başladı\n"
-
-#: src/webserver/src/WebServer.cpp:1794
+#: src/webserver/src/WebServer.cpp:1855
 msgid "Session expired - requesting login\n"
 msgstr "Oturum sona erdi - giriş gerekiyor\n"
 
-#: src/webserver/src/WebServer.cpp:1799
+#: src/webserver/src/WebServer.cpp:1860
 msgid "Session ok, logged in\n"
 msgstr "Oturum tamam, giriş yapıldı.\n"
 
-#: src/webserver/src/WebServer.cpp:1801
+#: src/webserver/src/WebServer.cpp:1862
 msgid "Session ok, not logged in\n"
 msgstr "Oturum tamam, giriş yapılmadı.\n"
 
-#: src/webserver/src/WebServer.cpp:1806
+#: src/webserver/src/WebServer.cpp:1867
 msgid "No session opened - will request login\n"
 msgstr "Hiç oturum açılmadı -  giriş gerekecek\n"
 
-#: src/webserver/src/WebServer.cpp:1815
+#: src/webserver/src/WebServer.cpp:1876
 msgid "Session created - requesting login\n"
 msgstr "Oturum oluşturuldu.-  giriş gerekiyor\n"
 
-#: src/webserver/src/WebServer.cpp:1832
+#: src/webserver/src/WebServer.cpp:1893
 msgid "Processing request [original]: "
 msgstr "İstem işleniyor [özgün]: "
 
-#: src/webserver/src/WebServer.cpp:1848
+#: src/webserver/src/WebServer.cpp:1909
 msgid "Checking password\n"
 msgstr "Şifre kontrol ediliyor\n"
 
-#: src/webserver/src/WebServer.cpp:1853
+#: src/webserver/src/WebServer.cpp:1914
 msgid "Password hash invalid\n"
 msgstr "Şifre adreslemesi geçersiz.\n"
 
-#: src/webserver/src/WebServer.cpp:1868
+#: src/webserver/src/WebServer.cpp:1929
 msgid "Password ok\n"
 msgstr "Şifre kabul edildi.\n"
 
-#: src/webserver/src/WebServer.cpp:1870
+#: src/webserver/src/WebServer.cpp:1931
 msgid "Password bad\n"
 msgstr "Şifre kötü.\n"
 
-#: src/webserver/src/WebServer.cpp:1873
+#: src/webserver/src/WebServer.cpp:1934
 msgid "You did not enter any password. Blank password is not allowed.\n"
 msgstr "Herhangi bir şifre girmediniz. Boş şifre kullanılamaz.\n"
 
-#: src/webserver/src/WebServer.cpp:1881
+#: src/webserver/src/WebServer.cpp:1942
 msgid "Logout requested\n"
 msgstr "Çıkış istendi.\n"
 
-#: src/webserver/src/WebServer.cpp:1886
+#: src/webserver/src/WebServer.cpp:1947
 msgid "Processing request [redirected]: "
 msgstr "İstem işleniyor [yönlendirilmiş]: "
 
-#: src/webserver/src/WebInterface.cpp:198
+#: src/webserver/src/WebInterface.cpp:483
 msgid "Loads template <str>"
 msgstr "Şablonu yükler <str>"
 
-#: src/webserver/src/WebInterface.cpp:202
+#: src/webserver/src/WebInterface.cpp:487
 msgid "Webserver HTTP port"
 msgstr "Web Sunucusu HTTP portu"
 
-#: src/webserver/src/WebInterface.cpp:206
+#: src/webserver/src/WebInterface.cpp:491
 msgid "Use UPnP port forwarding on webserver port"
 msgstr "Web Sunucusu portuna yönlendirmek için UPnP portunu kullanınız"
 
-#: src/webserver/src/WebInterface.cpp:210
+#: src/webserver/src/WebInterface.cpp:495
 msgid "UPnP port"
 msgstr "UPnP portu"
 
-#: src/webserver/src/WebInterface.cpp:214
+#: src/webserver/src/WebInterface.cpp:499
 msgid "Use gzip compression"
 msgstr "Gzip sıkıştırması kullan"
 
-#: src/webserver/src/WebInterface.cpp:222
+#: src/webserver/src/WebInterface.cpp:507
 msgid "Full access password for webserver"
 msgstr "Web Sunucusu için tam giriş şifresi"
 
-#: src/webserver/src/WebInterface.cpp:226
+#: src/webserver/src/WebInterface.cpp:511
 msgid "Guest password for webserver"
 msgstr "Web Sunucusu için konuk şifresi"
 
-#: src/webserver/src/WebInterface.cpp:230
+#: src/webserver/src/WebInterface.cpp:515
 msgid "Allow guest access"
 msgstr "Konuk girişine izin ver"
 
-#: src/webserver/src/WebInterface.cpp:234
+#: src/webserver/src/WebInterface.cpp:519
 msgid "Deny guest access"
 msgstr "Konuk girişini reddet"
 
-#: src/webserver/src/WebInterface.cpp:238
+#: src/webserver/src/WebInterface.cpp:523
 msgid "Load/save webserver settings from/to remote aMule"
 msgstr "web sunucusu ayarlarını aMule'ye/aMule'den Kaydet/Yükle"
 
-#: src/webserver/src/WebInterface.cpp:242
+#: src/webserver/src/WebInterface.cpp:527
 msgid "aMule config file path. DO NOT USE DIRECTLY!"
 msgstr "aMule yapılandırma yolu: DOĞRUDAN KULLANMAYINIZ!"
 
-#: src/webserver/src/WebInterface.cpp:250
+#: src/webserver/src/WebInterface.cpp:535
 msgid "Disable PHP interpreter (deprecated)"
 msgstr "PHP yorumcusunu devreden çıkar. (onaylanmamış)"
 
-#: src/webserver/src/WebInterface.cpp:258
+#: src/webserver/src/WebInterface.cpp:543
 msgid "Recompile PHP pages on each request"
 msgstr "Her istemde PHP sayfalarını yeniden oluştur"
 
-#: src/webserver/src/WebInterface.cpp:356
+#: src/webserver/src/WebInterface.cpp:638
 msgid "aMule Web Server"
 msgstr "aMule Web  Sunucusu"
 
@@ -1394,7 +1397,7 @@ msgstr "Kaynak Girdileri"
 
 #: src/Preferences.cpp:627 src/PrefsUnifiedDlg.cpp:237
 msgid "System default"
-msgstr "Sistem Varsayılanı"
+msgstr "Sistem Ön tanımlısı"
 
 #: src/Preferences.cpp:628
 msgid "Albanian"
@@ -1470,7 +1473,7 @@ msgstr "Yunanca"
 
 #: src/Preferences.cpp:646
 msgid "Hebrew"
-msgstr "İbranicer"
+msgstr "İbranice"
 
 #: src/Preferences.cpp:647
 msgid "Hungarian"
@@ -1545,7 +1548,7 @@ msgstr ""
 #: src/Preferences.cpp:1665
 #, c-format
 msgid "Default port will be used (%d)"
-msgstr "Varsayılan port kullanılacak (%d)"
+msgstr "Ön tanımlı port kullanılacak (%d)"
 
 #: src/ServerListCtrl.cpp:87
 msgid "Server Name"
@@ -1965,7 +1968,7 @@ msgstr "Bağlantı"
 
 #: src/PrefsUnifiedDlg.cpp:171 src/muuli_wdr.cpp:3462
 msgid "Proxy"
-msgstr "Proksi"
+msgstr "Vekil sunucu"
 
 #: src/PrefsUnifiedDlg.cpp:172
 msgid "Message Filter"
@@ -2416,7 +2419,7 @@ msgstr "`%s' komutu, pid `%d' içermekteydi ve durum kodu `%d' ile bitti."
 
 #: src/ServerWnd.cpp:104
 msgid "Server not added: No IP or hostname specified."
-msgstr "Sunucu eklenmedi: Bir IP veya host adı girilmedi."
+msgstr "Sunucu eklenmedi: Bir IP veya makine adı girilmedi."
 
 #: src/ServerWnd.cpp:109
 msgid "Server not added: Invalid server-port specified."
@@ -3315,7 +3318,7 @@ msgstr "Durduruldu"
 
 #: src/PartFile.cpp:3905
 msgid "Downloaded"
-msgstr ""
+msgstr "İndirilen"
 
 #: src/KnownFileList.cpp:79
 msgid "Warning: known.met cannot be opened."
@@ -3829,7 +3832,7 @@ msgid ""
 "Valid filtering levels are in the range 0-255, and it's default (initial)\n"
 "value is 127.\n"
 msgstr ""
-"Geçerli süzme seviyeleri 0-255 aralığındadır.Varsayılan\n"
+"Geçerli süzme seviyeleri 0-255 aralığındadır.Ön tanımlı\n"
 "değer 127'dir.\n"
 
 #: src/TextClient.cpp:896
@@ -4182,27 +4185,27 @@ msgstr "Dosya adı"
 
 #: src/KnownFile.cpp:1360
 msgid "File size"
-msgstr ""
+msgstr "Dosya boyutu"
 
 #: src/KnownFile.cpp:1361
 msgid "Share ratio"
-msgstr ""
+msgstr "Paylaşım oranı"
 
 #: src/KnownFile.cpp:1362
 msgid "Uploaded"
-msgstr ""
+msgstr "Gönderilen"
 
 #: src/KnownFile.cpp:1363
 msgid "Requested"
-msgstr ""
+msgstr "İstenen"
 
 #: src/KnownFile.cpp:1364
 msgid "Accepted"
-msgstr ""
+msgstr "Kabul edilen"
 
 #: src/KnownFile.cpp:1365
 msgid "Complete sources"
-msgstr ""
+msgstr "Tam kaynaklar"
 
 #: src/PartFileConvert.cpp:236
 #, c-format
@@ -4932,11 +4935,11 @@ msgstr "Sunucu:"
 
 #: src/muuli_wdr.cpp:1454
 msgid "Obfuscation:"
-msgstr ""
+msgstr "Gizlenme:"
 
 #: src/muuli_wdr.cpp:1463
 msgid "Kad:"
-msgstr ""
+msgstr "Kad:"
 
 #: src/muuli_wdr.cpp:1474
 msgid "Transfers to client"
@@ -5681,7 +5684,7 @@ msgstr "Değiştirme"
 
 #: src/muuli_wdr.cpp:2756
 msgid "Select color for this Category (currently selected) :"
-msgstr "Bu kategori için renk seçiniz. (varsayılan) :"
+msgstr "Bu kategori için renk seçiniz. (ön tanımlı) :"
 
 #: src/muuli_wdr.cpp:2828
 msgid "Display server motd when connected ..."
@@ -6013,15 +6016,15 @@ msgstr "Şu içerikteki iletileri süz (ayraç olarak ',' kullanınız.):"
 
 #: src/muuli_wdr.cpp:3473
 msgid "Enable Proxy"
-msgstr "Proksiyi Etkinleştir."
+msgstr "Vekil sunucuyu Etkinleştir."
 
 #: src/muuli_wdr.cpp:3474
 msgid "Enable/disable proxy support"
-msgstr "Proksi desteğini etkinleştir/devre dışı bırak"
+msgstr "Vekil sunucu desteğini etkinleştir/devre dışı bırak"
 
 #: src/muuli_wdr.cpp:3479
 msgid "Proxy type:"
-msgstr "Proksi Türü:"
+msgstr "Vekil sunucu Türü:"
 
 #: src/muuli_wdr.cpp:3484
 msgid "SOCKS5"
@@ -6041,23 +6044,23 @@ msgstr "SOCKS4a"
 
 #: src/muuli_wdr.cpp:3490
 msgid "The type of proxy you are connecting to"
-msgstr "Bağlanacağınız proksi türü"
+msgstr "Bağlanacağınız vekil sunucu türü"
 
 #: src/muuli_wdr.cpp:3493
 msgid "Proxy host:"
-msgstr "Proksi host:"
+msgstr "Vekil sunucu makinesi:"
 
 #: src/muuli_wdr.cpp:3497
 msgid "The proxy host name"
-msgstr "Proksi host adı"
+msgstr "Vekil sunucu makine adı"
 
 #: src/muuli_wdr.cpp:3500
 msgid "Proxy port:"
-msgstr "Proksi Portu:"
+msgstr "Vekil sunucu Portu:"
 
 #: src/muuli_wdr.cpp:3504
 msgid "The proxy port"
-msgstr "Proksi portu"
+msgstr "Vekil sunucu portu"
 
 #: src/muuli_wdr.cpp:3511
 msgid "Authentication"
@@ -6073,7 +6076,7 @@ msgstr "Kullanıcı adı/şifre yetkilendirmeyi etkinleştir/devre dışı bıra
 
 #: src/muuli_wdr.cpp:3525
 msgid "The username to use to connect to the proxy"
-msgstr "Proksiye bağlanmak için gerekli kullanıcı adı"
+msgstr "Vekil sunucuya bağlanmak için gerekli kullanıcı adı"
 
 #: src/muuli_wdr.cpp:3528
 msgid "Password:"
@@ -6081,11 +6084,11 @@ msgstr "Şifre:"
 
 #: src/muuli_wdr.cpp:3532
 msgid "The password to use to connect to the proxy"
-msgstr "Proksiye bağlanmak için gerekli şifre"
+msgstr "Vekil sunucuya bağlanmak için gerekli şifre"
 
 #: src/muuli_wdr.cpp:3539
 msgid "Automatic server connect without proxy"
-msgstr "Proksi kullanmadan otomatik sunucu bağlantısı"
+msgstr "Vekil sunucu kullanmadan otomatik sunucu bağlantısı"
 
 #: src/muuli_wdr.cpp:3558
 msgid "Connect to:"
@@ -6290,7 +6293,7 @@ msgstr ""
 
 #: src/ExternalConnector.cpp:404
 msgid "Connection Failed. Unable to connect to the specified host\n"
-msgstr "Belirtilen hosta bağlanılamadı.\n"
+msgstr "Belirtilen makineye bağlanılamadı.\n"
 
 #: src/ExternalConnector.cpp:415
 #, c-format
@@ -6321,11 +6324,11 @@ msgstr "Bu yardım dosyasını göster."
 
 #: src/ExternalConnector.cpp:430
 msgid "Host where aMule is running. (default: localhost)"
-msgstr "aMule'nin çalıştığı host. (varsayılan: localhost)"
+msgstr "aMule'nin çalıştığı makine. (ön tanımlı: yerel makine)"
 
 #: src/ExternalConnector.cpp:433
 msgid "aMule's port for External Connection. (default: 4712)"
-msgstr "Dışarıdan bağlantı için aMule portu. (Varsayılan:4712)"
+msgstr "Dışarıdan bağlantı için aMule portu. (Ön tanımlı:4712)"
 
 #: src/ExternalConnector.cpp:436
 msgid "External Connection password."
@@ -6495,19 +6498,19 @@ msgstr "Kullanıcı Ayrıntıları"
 
 #: src/ClientDetailDialog.cpp:129
 msgid "Enabled"
-msgstr ""
+msgstr "Etkin"
 
 #: src/ClientDetailDialog.cpp:131
 msgid "Supported"
-msgstr ""
+msgstr "Desteklenen"
 
 #: src/ClientDetailDialog.cpp:134 src/ClientDetailDialog.cpp:193
 msgid "Not supported"
-msgstr ""
+msgstr "Desteklenmeyen"
 
 #: src/ClientDetailDialog.cpp:137
 msgid "Disabled"
-msgstr ""
+msgstr "Devre dışı"
 
 #: src/ClientDetailDialog.cpp:168 src/ClientDetailDialog.cpp:173
 #, c-format
@@ -6834,7 +6837,7 @@ msgid ""
 "Your locale has been changed to System Default due to a configuration "
 "change. Sorry."
 msgstr ""
-"Bir yapılandırma değişikliği nedeniyle dil ayarınız 'Sistem Varsayılanı'na "
+"Bir yapılandırma değişikliği nedeniyle dil ayarınız 'Sistem Ön tanımlısı'na "
 "çevrildi.Üzgünüm. Valla..."
 
 #: src/amule.cpp:773
@@ -7043,16 +7046,16 @@ msgstr "Sürüm kontrol dosyasını indirme başarısız oldu."
 #: src/amule.cpp:1991
 #, c-format
 msgid "Users: %s | Files: %s"
-msgstr ""
+msgstr "Kullanıcılar: %s | Dosyalar: %s"
 
 #: src/amule.cpp:1992
 #, c-format
 msgid "Users: E: %s K: %s | Files: E: %s K: %s"
-msgstr ""
+msgstr "Kullanıcılar: E: %s K: %s | Dosyalar: E: %s K: %s "
 
 #: src/amule.cpp:2001
 msgid "No networks selected"
-msgstr ""
+msgstr "Hayır"
 
 #: src/amule.cpp:2068
 #, c-format
@@ -7107,6 +7110,12 @@ msgstr "Okuma için arkadaş listesi dosyası 'emfriends.met'açılamıyor."
 #: src/FriendList.cpp:146
 msgid "Failed to open friendlist file 'emfriends.met' for writing!"
 msgstr "Yazım için arkadaş listesi dosyası 'emfriends.met'açılamıyor."
+
+#~ msgid "Can't create web socket thread\n"
+#~ msgstr "Web soketi oluşturulamıyor.\n"
+
+#~ msgid "Web Server: Started\n"
+#~ msgstr "Web Sunucusu: Başladı\n"
 
 #~ msgid "Not Supported"
 #~ msgstr "Desteklenmiyor."
