@@ -93,7 +93,7 @@ dist_utilDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(dist_icon_DATA) $(dist_util_DATA)
 ETAGS = etags
 CTAGS = ctags
-DIST_SUBDIRS = docs src unittests intl po
+DIST_SUBDIRS = intl po docs src unittests
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
 top_distdir = $(distdir)
@@ -193,7 +193,7 @@ GEOIP_LIB = @GEOIP_LIB@
 GLIBC21 = @GLIBC21@
 GMSGFMT = @GMSGFMT@
 HAVE_FLEX_EXTENDED = @HAVE_FLEX_EXTENDED@
-HAVE_GETTEXT = @HAVE_GETTEXT@
+INCINTL = @INCINTL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
@@ -335,7 +335,7 @@ sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
-SUBDIRS = docs src unittests $(am__append_1)
+SUBDIRS = $(am__append_1) docs src unittests
 EXTRA_DIST = amule.rc amule.ico amule.png convert.ico \
 	README.Debian-Packages aMule-CVS.spec aMule.spec \
 	amule_build_install.sh autogen.sh \
