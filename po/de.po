@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-05-19 03:30+0200\n"
-"PO-Revision-Date: 2008-05-09 12:41+0100\n"
+"PO-Revision-Date: 2008-05-20 17:02+0100\n"
 "Last-Translator: Johannes Krampf <wuischke@amule.org>\n"
 "Language-Team:  <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -538,11 +538,11 @@ msgstr "Fehler: Kann nicht auf TCP-Port lauschen."
 
 #: src/webserver/src/WebServer.cpp:341
 msgid "web client connection accepted\n"
-msgstr ""
+msgstr "Webclient-Verbindung akzeptiert.\n"
 
 #: src/webserver/src/WebServer.cpp:344
 msgid "Error: can not accept web client connection\n"
-msgstr ""
+msgstr "Fehler: Kann Webclient-Verbindung nicht akzeptieren.\n"
 
 #: src/webserver/src/WebServer.cpp:414
 #, c-format
