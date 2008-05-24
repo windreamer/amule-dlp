@@ -59,7 +59,7 @@
 #include "Logger.h"
 #include <common/Format.h>	// Needed for CFormat
 #include <common/FileFunctions.h>	// Needed for GetLastModificationTime
-#include "ThreadTasks.h"	// Needed for CHashingTask/CCompletionTask
+#include "ThreadTasks.h"	// Needed for CHashingTask/CCompletionTask/CAllocateFileTask
 #include "GuiEvents.h"		// Needed for Notify_*
 #include "DataToText.h"		// Needed for OriginToText()
 #include "PlatformSpecific.h"	// Needed for CreateSparseFile()
@@ -260,6 +260,7 @@ CPartFile::~CPartFile()
 
 void CPartFile::CreatePartFile()
 {
+#ifndef CLIENT_GUI
 	// use lowest free partfilenumber for free file (InterCeptor)
 	int i = 0; 
 	do { 
@@ -278,28 +279,32 @@ void CPartFile::CreatePartFile()
 	m_gaplist.push_back(gap);
 	
 	CPath partPath = m_fullname.RemoveExt();
-	if (PlatformSpecific::CreateSparseFile(partPath, GetFileSize())) {
-
-		if(!m_hpartfile.Open(partPath, CFile::read_write)) {
-			AddLogLineM(false,_("ERROR: Failed to open partfile)"));
-			SetPartFileStatus(PS_ERROR);
-		}
+	bool fileCreated;
+	if (thePrefs::GetAllocFullFile()) {
+		fileCreated = m_hpartfile.Create(partPath.GetRaw(), true);
+		m_hpartfile.Close();
 	} else {
+		fileCreated = PlatformSpecific::CreateSparseFile(partPath, GetFileSize());
+	}
+	if (!fileCreated) {
 		AddLogLineM(false,_("ERROR: Failed to create partfile)"));
 		SetPartFileStatus(PS_ERROR);
 	}
 
 	SetFilePath(thePrefs::GetTempDir());
 			
-	if (thePrefs::GetAllocFullPart()) {
-		//#warning Code for full file alloc - should be done on thread.
+	if (thePrefs::GetAllocFullFile()) {
+		SetPartFileStatus(PS_ALLOCATING);
+		CThreadScheduler::AddTask(new CAllocateFileTask(this, thePrefs::AddNewFilesPaused()));
+	} else {
+		AllocationFinished();
 	}
-	
 	
 	m_hashsetneeded = (GetED2KPartHashCount() > 0);
 	
 	SavePartFile(true);
 	SetActive(theApp->IsConnected());
+#endif
 }
 
 
@@ -1764,9 +1769,8 @@ void CPartFile::AddSources(CMemFile& sources,uint32 serverip, uint16 serverport,
 			CUpDownClient* newsource = new CUpDownClient(port,userid,serverip,serverport,this, true, true);
 
 			newsource->SetSourceFrom((ESourceFrom)origin);
-			newsource->SetCryptLayerSupport((byCryptOptions & 0x01) != 0);
-			newsource->SetCryptLayerRequest((byCryptOptions & 0x02) != 0);
-			newsource->SetCryptLayerRequires((byCryptOptions & 0x04) != 0);
+			newsource->SetConnectOptions(byCryptOptions, true, false);
+
 			if ((byCryptOptions & 0x80) != 0) {
 				newsource->SetUserHash(achUserHash);
 			}
@@ -2894,9 +2898,7 @@ void CPartFile::AddClientSources(CMemFile* sources, unsigned nSourceFrom, uint8 
 			}
 			
 			if (uPacketSXVersion >= 4) {
-				newsource->SetCryptLayerSupport((byCryptOptions & 0x01) != 0);
-				newsource->SetCryptLayerRequest((byCryptOptions & 0x02) != 0);
-				newsource->SetCryptLayerRequires((byCryptOptions & 0x04) != 0);
+				newsource->SetConnectOptions(byCryptOptions, true, false);
 			}
 
 			newsource->SetSourceFrom((ESourceFrom)nSourceFrom);
@@ -3838,7 +3840,9 @@ wxString CPartFile::getPartfileStatus() const
 	wxString mybuffer; 
 
 	if ((status == PS_HASHING) || (status == PS_WAITINGFORHASH)) {
-		mybuffer=_("Hashing");		
+		mybuffer=_("Hashing");
+	} else if (status == PS_ALLOCATING) {
+		mybuffer = _("Allocating");
 	} else {	
 		switch (GetStatus()) {
 			case PS_COMPLETING:
@@ -4131,6 +4135,14 @@ CUpDownClient* CPartFile::GetSlowerDownloadingClient(uint32 speed, CUpDownClient
 	}	
 //	printf("End slower source calculation\n");
 	return NULL;
+}
+
+void CPartFile::AllocationFinished()
+{
+	if (!m_hpartfile.Open(GetFullName().RemoveExt(), CFile::read_write)) {
+		AddLogLineM(false, CFormat(_("ERROR: Failed to open partfile '%s'")) % GetFullName());
+		SetPartFileStatus(PS_ERROR);
+	}
 }
 
 #endif

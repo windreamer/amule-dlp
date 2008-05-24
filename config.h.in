@@ -57,6 +57,9 @@
    */
 #undef HAVE_EXECINFO
 
+/* Define to 1 if you have the fallocate() function. */
+#undef HAVE_FALLOCATE
+
 /* Define to 1 if you have the <fcntl.h> header file. */
 #undef HAVE_FCNTL_H
 
@@ -213,6 +216,9 @@
 /* Define to 1 if you have the <nl_types.h> header file. */
 #undef HAVE_NL_TYPES_H
 
+/* Define to 1 if you have posix_fallocate() and it should be used. */
+#undef HAVE_POSIX_FALLOCATE
+
 /* Define to 1 if you have the `pow' function. */
 #undef HAVE_POW
 
@@ -321,6 +327,9 @@
 /* Define to 1 if you have the <sys/dir.h> header file, and it defines `DIR'.
    */
 #undef HAVE_SYS_DIR_H
+
+/* Define to 1 if you have the SYS_fallocate syscall number. */
+#undef HAVE_SYS_FALLOCATE
 
 /* Define to 1 if you have the <sys/ioctl.h> header file. */
 #undef HAVE_SYS_IOCTL_H

@@ -30,6 +30,7 @@
 #include "amule.h"			// Interface declarations.
 
 #include <csignal>
+#include <cstring>
 #include <wx/process.h>
 #include <wx/sstream.h>	
 
@@ -737,6 +738,16 @@ bool CamuleApp::OnInit()
 	// Create main dialog, or fork to background (daemon).
 	InitGui(geometry_enabled, geom_string);
 	
+#if !defined(__WXMAC__) && defined(AMULE_DAEMON)
+	// Need to refresh wxSingleInstanceChecker after the daemon fork() !
+	if (enable_daemon_fork) {
+        	//#warning TODO: fix wxSingleInstanceChecker for amuled on Mac (wx link problems)
+	        delete m_singleInstance;
+	        m_singleInstance = new wxSingleInstanceChecker(wxT("muleLock"), ConfigDir);
+		// No need to check IsAnotherRunning() - we've done it before.
+	}
+#endif
+
 	// Has to be created after the call to InitGui, as fork 
 	// (when using posix threads) only replicates the mainthread,
 	// and the UBT constructor creates a thread.
@@ -1596,6 +1607,27 @@ void CamuleApp::OnFinishedCompletion(CCompletionEvent& evt)
 	CUserEvents::ProcessEvent(CUserEvents::DownloadCompleted, completed);
 }
 
+void CamuleApp::OnFinishedAllocation(CAllocFinishedEvent& evt)
+{
+	CPartFile *file = evt.GetFile();
+	wxCHECK_RET(file, wxT("Allocation finished event sent for unspecified file"));
+	wxASSERT_MSG(downloadqueue->IsPartFile(file), wxT("CAllocFinishedEvent for unknown partfile"));
+
+	file->SetPartFileStatus(PS_EMPTY);
+
+	if (evt.Succeeded()) {
+		if (evt.IsPaused()) {
+			file->StopFile();
+		} else {
+			file->ResumeFile();
+		}
+	} else {
+		AddLogLineM(false, CFormat(_("Disk space preallocation for file '%s' failed: %s")) % file->GetFileName() % wxString(UTF82unicode(std::strerror(evt.GetResult()))));
+		file->StopFile();
+	}
+
+	file->AllocationFinished();
+};
 
 void CamuleApp::OnNotifyEvent(CMuleGUIEvent& evt)
 {
