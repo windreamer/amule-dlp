@@ -66,12 +66,13 @@ bin_PROGRAMS = $(am__EXEEXT_1) $(am__EXEEXT_2) $(am__EXEEXT_3) \
 @ENABLE_IP2COUNTRY_TRUE@am__append_17 = \
 @ENABLE_IP2COUNTRY_TRUE@	IP2Country.cpp
 
-@ENABLE_UPNP_TRUE@am__append_18 = -DENABLE_UPNP=1
-@ENABLE_IP2COUNTRY_TRUE@am__append_19 = -DENABLE_IP2COUNTRY=1
-@NEED_RC_TRUE@am__append_20 = amulerc.$(OBJEXT)
+@SYS_WIN32_TRUE@am__append_18 = -lshlwapi
+@ENABLE_UPNP_TRUE@am__append_19 = -DENABLE_UPNP=1
+@ENABLE_IP2COUNTRY_TRUE@am__append_20 = -DENABLE_IP2COUNTRY=1
 @NEED_RC_TRUE@am__append_21 = amulerc.$(OBJEXT)
-@NEED_RC_TRUE@am__append_22 = amuleguirc.$(OBJEXT)
+@NEED_RC_TRUE@am__append_22 = amulerc.$(OBJEXT)
 @NEED_RC_TRUE@am__append_23 = amuleguirc.$(OBJEXT)
+@NEED_RC_TRUE@am__append_24 = amuleguirc.$(OBJEXT)
 DIST_COMMON = $(noinst_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/automake/dist-hook.am
 subdir = src
@@ -243,7 +244,8 @@ amule_OBJECTS = $(am_amule_OBJECTS)
 am__DEPENDENCIES_1 =
 am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 am__DEPENDENCIES_3 = $(am__DEPENDENCIES_2) $(am__DEPENDENCIES_1)
-@NEED_RC_TRUE@am__DEPENDENCIES_4 = amulerc.$(OBJEXT)
+am__DEPENDENCIES_4 = $(am__DEPENDENCIES_1)
+@NEED_RC_TRUE@am__DEPENDENCIES_5 = amulerc.$(OBJEXT)
 am__objects_7 = amulecmd-OtherFunctions.$(OBJEXT) \
 	amulecmd-NetworkFunctions.$(OBJEXT)
 am_amulecmd_OBJECTS = amulecmd-TextClient.$(OBJEXT) \
@@ -367,7 +369,7 @@ am__objects_15 = amulegui-ClientCredits.$(OBJEXT) \
 am_amulegui_OBJECTS = amulegui-amule-remote-gui.$(OBJEXT) \
 	$(am__objects_13) $(am__objects_15)
 amulegui_OBJECTS = $(am_amulegui_OBJECTS)
-@NEED_RC_TRUE@am__DEPENDENCIES_5 = amuleguirc.$(OBJEXT)
+@NEED_RC_TRUE@am__DEPENDENCIES_6 = amuleguirc.$(OBJEXT)
 am_ed2k_OBJECTS = ed2k-ED2KLinkParser.$(OBJEXT) \
 	ed2k-MagnetURI.$(OBJEXT) ed2k-MuleCollection.$(OBJEXT)
 @NEED_RC_TRUE@nodist_ed2k_OBJECTS = ed2k-version.$(OBJEXT)
@@ -758,7 +760,7 @@ common_sources = \
 
 
 # Libs
-core_libs = -L. -lmuleappcore
+core_libs = -L. -lmuleappcore $(am__append_18)
 gui_libs = -L. -lmuleappgui $(X11LIBS) $(WX_LIBS)
 remote_common_libs = -Llibs/common -Llibs/ec/cpp -lmulecommon -lec $(ZLIB_LIBS) $(RESOLV_LIB) $(BFD_LIB)
 common_libs = -L. -lmuleappcommon $(remote_common_libs) $(CRYPTOLIBS)
@@ -770,8 +772,8 @@ common_deps = libmuleappcommon.a $(remote_common_deps)
 #
 # Flags
 #
-core_flags = $(am__append_18)
-gui_flags = $(WX_CXXFLAGS) $(XRCFLAGS) $(am__append_19)
+core_flags = $(am__append_19)
+gui_flags = $(WX_CXXFLAGS) $(XRCFLAGS) $(am__append_20)
 common_flags = -I$(srcdir)/libs -Ilibs -I$(srcdir)/include
 
 # --------- Apps ---------
@@ -795,15 +797,15 @@ amuled_SOURCES = \
 	$(common_sources)
 
 amule_DEPENDENCIES = $(common_deps) $(core_deps) $(gui_deps) \
-	$(am__append_21)
+	$(am__append_22)
 amule_CFLAGS = $(core_flags) $(gui_flags) $(common_flags)
 amule_CXXFLAGS = $(core_flags) $(gui_flags) $(common_flags)
-amule_LDADD = $(common_libs) $(core_libs) $(gui_libs) $(am__append_20)
-amulegui_DEPENDENCIES = $(common_deps) $(gui_deps) $(am__append_23)
+amule_LDADD = $(common_libs) $(core_libs) $(gui_libs) $(am__append_21)
+amulegui_DEPENDENCIES = $(common_deps) $(gui_deps) $(am__append_24)
 amulegui_CFLAGS = $(gui_flags) $(common_flags) -DCLIENT_GUI -DEC_REMOTE
 amulegui_CXXFLAGS = $(gui_flags) $(common_flags) -DCLIENT_GUI -DEC_REMOTE
 amulegui_LDADD = $(gui_libs) $(common_libs) $(WXBASE_LIBS) \
-	$(am__append_22)
+	$(am__append_23)
 amuled_DEPENDENCIES = $(core_deps) $(common_deps)
 amuled_CFLAGS = $(WXBASE_CFLAGS) $(core_flags) $(common_flags) -DAMULE_DAEMON 
 amuled_CXXFLAGS = $(WXBASE_CXXFLAGS) $(core_flags) $(common_flags) -DAMULE_DAEMON 

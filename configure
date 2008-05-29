@@ -6950,7 +6950,7 @@ if test x$AMULE_GUI = xyes; then
   need_gui=yes
 fi
 
-if test ${need_gui:+set} != xset; then
+if test x${need_gui:+set} != xset; then
   need_gui=no
 fi
 
@@ -6962,7 +6962,7 @@ echo "${ECHO_T}$need_gui" >&6
 if test x"$ENABLE_IP2COUNTRY" = x"yes" ; then
 	GEOIP_LIB="-lGeoIP"
 	CXXFLAGS="$CXXFLAGS $GEOIP_INCLUDE"
-	LIBS="$LIBS $GEOIP_LIB"
+	LIBS="$LIBS"
 	if test "${ac_cv_header_GeoIP_h+set}" = set; then
   echo "$as_me:$LINENO: checking for GeoIP.h" >&5
 echo $ECHO_N "checking for GeoIP.h... $ECHO_C" >&6
@@ -7179,6 +7179,7 @@ cat >>confdefs.h <<\_ACEOF
 #define SUPPORT_GEOIP 1
 _ACEOF
 
+		LIBS="$GEOIP_LIB $LIBS"
 else
   { { echo "$as_me:$LINENO: error: --enable-geoip passed to configure, but the GeoIP libraries were not found" >&5
 echo "$as_me: error: --enable-geoip passed to configure, but the GeoIP libraries were not found" >&2;}

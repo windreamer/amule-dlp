@@ -324,7 +324,7 @@ AS_IF([test x$MONOLITHIC = xyes], [need_gui=yes])
 AS_IF([test x$WXCAS = xyes], [need_gui=yes])
 AS_IF([test x$ALC = xyes], [need_gui=yes])
 AS_IF([test x$AMULE_GUI = xyes], [need_gui=yes])
-AS_IF([test ${need_gui:+set} != xset], [need_gui=no])
+AS_IF([test x${need_gui:+set} != xset], [need_gui=no])
 AC_MSG_RESULT($need_gui)
 
 
@@ -332,11 +332,12 @@ AC_MSG_RESULT($need_gui)
 if test x"$ENABLE_IP2COUNTRY" = x"yes" ; then
 	GEOIP_LIB="-lGeoIP"
 	CXXFLAGS="$CXXFLAGS $GEOIP_INCLUDE"
-	LIBS="$LIBS $GEOIP_LIB"
+	LIBS="$LIBS"
 	AC_CHECK_HEADER(GeoIP.h,,
 		[AC_MSG_ERROR([--enable-geoip passed to configure, but the GeoIP header files were not found])])
 	AC_CHECK_LIB(GeoIP, GeoIP_open,
-		[AC_DEFINE(SUPPORT_GEOIP, 1, Define if you want GeoIP support.)],
+		[AC_DEFINE(SUPPORT_GEOIP, 1, Define if you want GeoIP support.)
+		LIBS="$GEOIP_LIB $LIBS"],
 		[AC_MSG_ERROR([--enable-geoip passed to configure, but the GeoIP libraries were not found])])
 fi
 AC_SUBST(GEOIP_INCLUDE)

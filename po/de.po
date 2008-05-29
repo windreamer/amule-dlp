@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-28 03:31+0200\n"
-"PO-Revision-Date: 2008-05-20 17:02+0100\n"
+"POT-Creation-Date: 2008-05-29 03:30+0200\n"
+"PO-Revision-Date: 2008-05-28 08:28+0100\n"
 "Last-Translator: Johannes Krampf <wuischke@amule.org>\n"
 "Language-Team:  <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -90,43 +90,43 @@ msgstr "Herunterladen"
 msgid "Waiting"
 msgstr "Warten"
 
-#: src/ThreadTasks.cpp:131
+#: src/ThreadTasks.cpp:130
 #, c-format
 msgid "Starting to create MD4 and AICH hash for file: %s"
 msgstr "Beginne, MD4- und AICH-Prüfsummen zu berechnen für Datei %s"
 
-#: src/ThreadTasks.cpp:135
+#: src/ThreadTasks.cpp:134
 #, c-format
 msgid "Starting to create MD4 hash for file: %s"
 msgstr "Beginne, MD4-Prüfsumme zu berechnen für Datei %s"
 
-#: src/ThreadTasks.cpp:139
+#: src/ThreadTasks.cpp:138
 #, c-format
 msgid "Starting to create AICH hash for file: %s"
 msgstr "Beginne, AICH-Prüfsumme zu berechnen für Datei %s"
 
-#: src/ThreadTasks.cpp:348
+#: src/ThreadTasks.cpp:347
 #, c-format
 msgid "Converting old AICH hashsets in '%s' to 64b in '%s'."
 msgstr "Wandle alte AICH-Prüfsummensätze von '%s' um in 64b in '%s'."
 
-#: src/ThreadTasks.cpp:429
+#: src/ThreadTasks.cpp:426
 #, c-format
 msgid "WARNING: The filename '%s' is invalid and has been renamed to '%s'."
 msgstr "WARNUNG: Der Dateiname '%s' ist ungültig und wurde in '%s' umbenannt."
 
-#: src/ThreadTasks.cpp:442
+#: src/ThreadTasks.cpp:439
 #, c-format
 msgid "WARNING: The file '%s' already exists, new file renamed to '%s'."
 msgstr "WARNUNG: Die Datei '%s' gibt es schon, neue Datei in '%s' umbenannt."
 
-#: src/ThreadTasks.cpp:455
+#: src/ThreadTasks.cpp:452
 #, c-format
 msgid "WARNING: Could not remove original '%s' after creating backup"
 msgstr ""
 "WARNUNG: Konnte original '%s' nach Erstellen des Backups nicht entfernen"
 
-#: src/ThreadTasks.cpp:467
+#: src/ThreadTasks.cpp:464
 #, c-format
 msgid "WARNING: Failed to delete %s"
 msgstr "WARNUNG: Fehler beim Löschen von %s"
@@ -1399,158 +1399,158 @@ msgstr "Verweis"
 msgid "Source Seeds"
 msgstr "Einstiegsquellen"
 
-#: src/Preferences.cpp:626 src/PrefsUnifiedDlg.cpp:237
+#: src/Preferences.cpp:628 src/PrefsUnifiedDlg.cpp:237
 msgid "System default"
 msgstr "Systemvorgabe"
 
-#: src/Preferences.cpp:627
+#: src/Preferences.cpp:629
 msgid "Albanian"
 msgstr "Albanisch"
 
-#: src/Preferences.cpp:628
+#: src/Preferences.cpp:630
 msgid "Arabic"
 msgstr "Arabisch"
 
-#: src/Preferences.cpp:629
+#: src/Preferences.cpp:631
 msgid "Basque"
 msgstr "Baskisch"
 
-#: src/Preferences.cpp:630
+#: src/Preferences.cpp:632
 msgid "Bulgarian"
 msgstr "Bulgarisch"
 
-#: src/Preferences.cpp:631
+#: src/Preferences.cpp:633
 msgid "Catalan"
 msgstr "Katalanisch"
 
-#: src/Preferences.cpp:632
+#: src/Preferences.cpp:634
 msgid "Chinese (Simplified)"
 msgstr "Chinesisch (vereinfacht)"
 
-#: src/Preferences.cpp:633
+#: src/Preferences.cpp:635
 msgid "Chinese (Traditional)"
 msgstr "Chinesisch (traditionell)"
 
-#: src/Preferences.cpp:634
+#: src/Preferences.cpp:636
 msgid "Croatian"
 msgstr "Kroatisch"
 
-#: src/Preferences.cpp:635
+#: src/Preferences.cpp:637
 msgid "Czech"
 msgstr "Tschechisch"
 
-#: src/Preferences.cpp:636
+#: src/Preferences.cpp:638
 msgid "Danish"
 msgstr "Dänisch"
 
-#: src/Preferences.cpp:637
+#: src/Preferences.cpp:639
 msgid "Dutch"
 msgstr "Holländisch"
 
-#: src/Preferences.cpp:638
+#: src/Preferences.cpp:640
 msgid "English (U.K.)"
 msgstr "Englisch (UK)"
 
-#: src/Preferences.cpp:639
+#: src/Preferences.cpp:641
 msgid "Estonian"
 msgstr "Estnisch"
 
-#: src/Preferences.cpp:640
+#: src/Preferences.cpp:642
 msgid "Finnish"
 msgstr "Finnisch"
 
-#: src/Preferences.cpp:641
+#: src/Preferences.cpp:643
 msgid "French"
 msgstr "Französisch"
 
-#: src/Preferences.cpp:642
+#: src/Preferences.cpp:644
 msgid "Galician"
 msgstr "Galizisch"
 
-#: src/Preferences.cpp:643
+#: src/Preferences.cpp:645
 msgid "German"
 msgstr "Deutsch"
 
-#: src/Preferences.cpp:644
+#: src/Preferences.cpp:646
 msgid "Greek"
 msgstr "Griechisch"
 
-#: src/Preferences.cpp:645
+#: src/Preferences.cpp:647
 msgid "Hebrew"
 msgstr "Hebräisch"
 
-#: src/Preferences.cpp:646
+#: src/Preferences.cpp:648
 msgid "Hungarian"
 msgstr "Ungarisch"
 
-#: src/Preferences.cpp:647
+#: src/Preferences.cpp:649
 msgid "Italian"
 msgstr "Italienisch"
 
-#: src/Preferences.cpp:648
+#: src/Preferences.cpp:650
 msgid "Italian (Swiss)"
 msgstr "Italienisch (Schweiz)"
 
-#: src/Preferences.cpp:649
+#: src/Preferences.cpp:651
 msgid "Japanese"
 msgstr "Japanisch"
 
-#: src/Preferences.cpp:650
+#: src/Preferences.cpp:652
 msgid "Korean"
 msgstr "Koreanisch"
 
-#: src/Preferences.cpp:651
+#: src/Preferences.cpp:653
 msgid "Lithuanian"
 msgstr "Litauisch"
 
-#: src/Preferences.cpp:652
+#: src/Preferences.cpp:654
 msgid "Norwegian (Nynorsk)"
 msgstr "Norwegisch"
 
-#: src/Preferences.cpp:653
+#: src/Preferences.cpp:655
 msgid "Polish"
 msgstr "Polnisch"
 
-#: src/Preferences.cpp:654
+#: src/Preferences.cpp:656
 msgid "Portuguese"
 msgstr "Portugiesisch"
 
-#: src/Preferences.cpp:655
+#: src/Preferences.cpp:657
 msgid "Portuguese (Brazilian)"
 msgstr "Portugiesisch (Brasilianisch)"
 
-#: src/Preferences.cpp:656
+#: src/Preferences.cpp:658
 msgid "Russian"
 msgstr "Russisch"
 
-#: src/Preferences.cpp:657
+#: src/Preferences.cpp:659
 msgid "Slovenian"
 msgstr "Slowenisch"
 
-#: src/Preferences.cpp:658
+#: src/Preferences.cpp:660
 msgid "Spanish"
 msgstr "Spanisch"
 
-#: src/Preferences.cpp:659
+#: src/Preferences.cpp:661
 msgid "Swedish"
 msgstr "Schwedisch"
 
-#: src/Preferences.cpp:660
+#: src/Preferences.cpp:662
 msgid "Turkish"
 msgstr "Türkisch"
 
-#: src/Preferences.cpp:1612 src/Preferences.cpp:1626 src/Preferences.cpp:1633
+#: src/Preferences.cpp:1618 src/Preferences.cpp:1632 src/Preferences.cpp:1639
 msgid "Unable to determine selected browser!"
 msgstr "Kann ausgewählten Browser nicht bestimmen!"
 
-#: src/Preferences.cpp:1664
+#: src/Preferences.cpp:1670
 msgid ""
 "TCP port can't be higher than 65532 due to server UDP socket being TCP+3"
 msgstr ""
 "TCP-Port kann nicht größer als 65532 sein, da der Server-UDP-Port=TCP-Port+3 "
 "ist"
 
-#: src/Preferences.cpp:1665
+#: src/Preferences.cpp:1671
 #, c-format
 msgid "Default port will be used (%d)"
 msgstr "Standard-Port wird verwendet (%d)"
@@ -2551,7 +2551,7 @@ msgstr "Kad-Overhead (Pakete): %s"
 #: src/Statistics.cpp:660 src/Statistics.cpp:681
 #, c-format
 msgid "Crypt overhead (UDP): %s"
-msgstr ""
+msgstr "zusätzlicher Datenverkehr durch Verschlüsselung (UDP): %s"
 
 #: src/Statistics.cpp:662
 #, c-format
@@ -3346,7 +3346,7 @@ msgstr "ICH: Defekter Teil %i in %s wiederhergestellt -> Gesparte Bytes: %s"
 
 #: src/PartFile.cpp:3845
 msgid "Allocating"
-msgstr ""
+msgstr "Reserviere"
 
 #: src/PartFile.cpp:3861
 msgid "Insufficient Diskspace"
@@ -3363,7 +3363,7 @@ msgstr "Heruntergeladen"
 #: src/PartFile.cpp:4143
 #, c-format
 msgid "ERROR: Failed to open partfile '%s'"
-msgstr ""
+msgstr "FEHLER: Öffnen von Partfile '%s' fehlgeschlagen"
 
 #: src/KnownFileList.cpp:79
 msgid "Warning: known.met cannot be opened."
@@ -3508,7 +3508,7 @@ msgstr "Fehler: Ungültiger Socket bei Prüfung auf Zeitüberschreitung"
 msgid "Connection attempt to %s (%s:%i) timed out."
 msgstr "Verbindungsversuch zu %s (%s:%i): Timeout."
 
-#: src/DownloadQueue.cpp:159
+#: src/DownloadQueue.cpp:160
 msgid ""
 "Error: Failed to load backup file. Search http://forum.amule.org for .part."
 "met recovery solutions."
@@ -3516,48 +3516,56 @@ msgstr ""
 "Fehler: Konnte Sicherungsdatei nicht laden.Suche aufhttp://forum.amule.org "
 "nach .part.met Wiederherstellungslösungen."
 
-#: src/DownloadQueue.cpp:173
+#: src/DownloadQueue.cpp:174
 msgid "No part files found"
 msgstr "Keine Part-Dateien gefunden"
 
-#: src/DownloadQueue.cpp:175
+#: src/DownloadQueue.cpp:176
 #, c-format
 msgid "Found %u part file"
 msgid_plural "Found %u part files"
 msgstr[0] "%u part-Dateie gefunden"
 msgstr[1] "%u part-Dateien gefunden"
 
-#: src/DownloadQueue.cpp:317
+#: src/DownloadQueue.cpp:232 src/DownloadQueue.cpp:1375
+msgid "Filesystem for Temp directory cannot handle large files."
+msgstr ""
+
+#: src/DownloadQueue.cpp:235 src/DownloadQueue.cpp:1378
+msgid "Filesystem for Incoming directory cannot handle large files."
+msgstr ""
+
+#: src/DownloadQueue.cpp:327
 #, c-format
 msgid "Downloading %s"
 msgstr "Herunterladen von %s"
 
-#: src/DownloadQueue.cpp:325
+#: src/DownloadQueue.cpp:335
 #, c-format
 msgid "You are already trying to download the file '%s'"
 msgstr "Du versuchst bereits, die Datei '%s' herunterzuladen"
 
-#: src/DownloadQueue.cpp:337
+#: src/DownloadQueue.cpp:347
 #, c-format
 msgid "You already have the file '%s'"
 msgstr "Die Datei '%s' ist bereits vorhanden"
 
-#: src/DownloadQueue.cpp:342
+#: src/DownloadQueue.cpp:352
 #, c-format
 msgid "You are already trying to download the file %s"
 msgstr "Die Datei %s wird bereits heruntergeladen"
 
-#: src/DownloadQueue.cpp:1299
+#: src/DownloadQueue.cpp:1309
 #, c-format
 msgid "Cannot convert magnet link to ed2k: %s"
 msgstr "Kann Magnet-Verweis nicht in eD2k umwandeln: %s"
 
-#: src/DownloadQueue.cpp:1307
+#: src/DownloadQueue.cpp:1317
 #, c-format
 msgid "Unknown protocol of link: %s"
 msgstr "Unbekanntes Protokoll von Verweis: %s"
 
-#: src/DownloadQueue.cpp:1328
+#: src/DownloadQueue.cpp:1338
 #, c-format
 msgid "Invalid ed2k link! Error: %s"
 msgstr "Ungültiger eD2k-Link! Fehler: %s"
@@ -5410,13 +5418,15 @@ msgstr "Hier den minimalen erwünschten Festplattenplatz angeben."
 
 #: src/muuli_wdr.cpp:2128
 msgid "Preallocate disk space for new files"
-msgstr ""
+msgstr "Reserviere Speicherplatz für neue Dateien"
 
 #: src/muuli_wdr.cpp:2129
 msgid ""
 "For new files preallocates disk space for the whole file, thus reduces "
 "fragmentation"
 msgstr ""
+"Reserviert für neue Dateien Speicherplatz für die ganze Datei und reduziert "
+"so Fragmentierung."
 
 #: src/muuli_wdr.cpp:2158
 msgid "Incoming Directory :"
@@ -7089,7 +7099,7 @@ msgstr ""
 #: src/amule.cpp:1625
 #, c-format
 msgid "Disk space preallocation for file '%s' failed: %s"
-msgstr ""
+msgstr "Speicherplatzvorbelegung für Datei '%s' fehlgeschlagen: %s"
 
 #: src/amule.cpp:1773
 msgid "ERROR: can't open logfile"
