@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-05-29 03:30+0200\n"
-"PO-Revision-Date: 2008-05-28 08:28+0100\n"
+"PO-Revision-Date: 2008-05-30 01:43+0100\n"
 "Last-Translator: Johannes Krampf <wuischke@amule.org>\n"
 "Language-Team:  <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -3530,10 +3530,11 @@ msgstr[1] "%u part-Dateien gefunden"
 #: src/DownloadQueue.cpp:232 src/DownloadQueue.cpp:1375
 msgid "Filesystem for Temp directory cannot handle large files."
 msgstr ""
+"Das Dateisystem für temporäre Dateien unterstützt keine großen Dateien."
 
 #: src/DownloadQueue.cpp:235 src/DownloadQueue.cpp:1378
 msgid "Filesystem for Incoming directory cannot handle large files."
-msgstr ""
+msgstr "Das Dateisystem für fertige Dateien unterstützt keine großen Dateien."
 
 #: src/DownloadQueue.cpp:327
 #, c-format
