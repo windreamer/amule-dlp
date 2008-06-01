@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-05-29 03:30+0200\n"
-"PO-Revision-Date: 2008-05-09 13:44+0100\n"
+"PO-Revision-Date: 2008-05-31 11:53+0100\n"
 "Last-Translator: Festor Wailon Dacoba <festor90@gmail.com>\n"
 "Language-Team: Galego <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -550,11 +550,11 @@ msgstr "Erro: Non se puido escoitar o porto TCP."
 
 #: src/webserver/src/WebServer.cpp:301
 msgid "web client connection accepted\n"
-msgstr ""
+msgstr "conexión do cliente web aceptada\n"
 
 #: src/webserver/src/WebServer.cpp:304
 msgid "Error: can not accept web client connection\n"
-msgstr ""
+msgstr "Error: no se pode acceptar conexións do cliente web\n"
 
 #: src/webserver/src/WebServer.cpp:374
 #, c-format
@@ -2565,7 +2565,7 @@ msgstr "Overhead Kad (Paquetes ): %s"
 #: src/Statistics.cpp:660 src/Statistics.cpp:681
 #, c-format
 msgid "Crypt overhead (UDP): %s"
-msgstr ""
+msgstr "Cripta xerais (UDP): %s"
 
 #: src/Statistics.cpp:662
 #, c-format
@@ -3349,7 +3349,7 @@ msgstr "ICH: Part corrupto recuperado %i para %s -> Bytes gardados: %s"
 
 #: src/PartFile.cpp:3845
 msgid "Allocating"
-msgstr ""
+msgstr "Reservando"
 
 #: src/PartFile.cpp:3861
 msgid "Insufficient Diskspace"
@@ -3366,7 +3366,7 @@ msgstr "Descargado"
 #: src/PartFile.cpp:4143
 #, c-format
 msgid "ERROR: Failed to open partfile '%s'"
-msgstr ""
+msgstr "ERROR: Fallou ó abrir o partfile '%s'"
 
 #: src/KnownFileList.cpp:79
 msgid "Warning: known.met cannot be opened."
@@ -3525,10 +3525,12 @@ msgstr[1] "Atopados %u ficheiros part"
 #: src/DownloadQueue.cpp:232 src/DownloadQueue.cpp:1375
 msgid "Filesystem for Temp directory cannot handle large files."
 msgstr ""
+"O sistema de arquivos do directorio temporal non soporta arquivos grandes."
 
 #: src/DownloadQueue.cpp:235 src/DownloadQueue.cpp:1378
 msgid "Filesystem for Incoming directory cannot handle large files."
 msgstr ""
+"O sistema de arquivos do directorio de descarga non soporta arquivos grandes."
 
 #: src/DownloadQueue.cpp:327
 #, c-format
@@ -5405,13 +5407,15 @@ msgstr "Introduza o espazo mínimo de disco desexado."
 
 #: src/muuli_wdr.cpp:2128
 msgid "Preallocate disk space for new files"
-msgstr ""
+msgstr "Reserva de espazo para os novos arquivos"
 
 #: src/muuli_wdr.cpp:2129
 msgid ""
 "For new files preallocates disk space for the whole file, thus reduces "
 "fragmentation"
 msgstr ""
+"Para os novos arquivos a reserva de espazo no disco duro para o arquivo "
+"enteiro reduce a fragmentación"
 
 #: src/muuli_wdr.cpp:2158
 msgid "Incoming Directory :"
@@ -7070,7 +7074,7 @@ msgstr ""
 #: src/amule.cpp:1625
 #, c-format
 msgid "Disk space preallocation for file '%s' failed: %s"
-msgstr ""
+msgstr "A reserva do espazo no disco duro para o arquivo '%s' fallou: %s"
 
 #: src/amule.cpp:1773
 msgid "ERROR: can't open logfile"
