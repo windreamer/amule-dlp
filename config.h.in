@@ -105,9 +105,6 @@
 /* Define to 1 if you have the `getmntent' function. */
 #undef HAVE_GETMNTENT
 
-/* Define to 1 if you have the `getmntinfo' function. */
-#undef HAVE_GETMNTINFO
-
 /* Define to 1 if you have the `getpagesize' function. */
 #undef HAVE_GETPAGESIZE
 
