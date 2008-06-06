@@ -1,5 +1,5 @@
-# translation of fr.po to Français
-# Copyright (C) 2005-2006, 2007Free Software Foundation, Inc.
+# translation of fr.po to Español
+# Copyright (C) 2005-2006, 2007, 2008Free Software Foundation, Inc.
 # This file is distributed under the same license as the new_fr package.
 #
 #
@@ -7,18 +7,20 @@
 # kaouete <kaouete@crazydwarves.org>, 2005, 2006.
 # kaouete <kaouete@crazydwarves.org>, 2006.
 # Guillaume <guilo19@free.fr>, 2007.
+# Carlos Diaz <cskyline@gmail.com>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: fr\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-06-02 03:30+0200\n"
-"PO-Revision-Date: 2008-05-21 17:29+0100\n"
-"Last-Translator: Youpla <youpla@youpla.com>\n"
-"Language-Team: Français <fr@li.org>\n"
+"PO-Revision-Date: 2008-06-03 22:54+0200\n"
+"Last-Translator: Carlos Díaz <cskyline@gmail.com>\n"
+"Language-Team: Español <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: src/libs/ec/cpp/RemoteConnect.cpp:86 src/libs/ec/cpp/RemoteConnect.cpp:94
 msgid "You must specify a non-empty password."
@@ -2575,7 +2577,7 @@ msgstr "Bande Passante Supplémentaire par Kad (Paquets) : %s"
 #: src/Statistics.cpp:660 src/Statistics.cpp:681
 #, c-format
 msgid "Crypt overhead (UDP): %s"
-msgstr ""
+msgstr "Overhead crypt (UDP): %s"
 
 #: src/Statistics.cpp:662
 #, c-format
@@ -3369,7 +3371,7 @@ msgstr "ICH : Partie corrompue %i récupérée pour %s -> Octets sauvés: %s"
 
 #: src/PartFile.cpp:3845
 msgid "Allocating"
-msgstr ""
+msgstr "En procés de réserve"
 
 #: src/PartFile.cpp:3861
 msgid "Insufficient Diskspace"
@@ -3386,7 +3388,7 @@ msgstr "Téléchargé"
 #: src/PartFile.cpp:4143
 #, c-format
 msgid "ERROR: Failed to open partfile '%s'"
-msgstr ""
+msgstr "Erreur: Impossible d'ouvrir fichier .part: '%s'"
 
 #: src/KnownFileList.cpp:79
 msgid "Warning: known.met cannot be opened."
@@ -3550,10 +3552,14 @@ msgstr[1] "%u fichiers .part trouvés"
 #: src/DownloadQueue.cpp:232 src/DownloadQueue.cpp:1375
 msgid "Filesystem for Temp directory cannot handle large files."
 msgstr ""
+"Le sistème de fichiers pour le repertoire Temp ne peut pas traiter des "
+"grands fichiers."
 
 #: src/DownloadQueue.cpp:235 src/DownloadQueue.cpp:1378
 msgid "Filesystem for Incoming directory cannot handle large files."
 msgstr ""
+"Le sistème de fichiers pour le repertoire Incoming ne peut pas traiter des "
+"grands fichiers."
 
 #: src/DownloadQueue.cpp:327
 #, c-format
@@ -5457,13 +5463,15 @@ msgstr "Entrez ici l'espace disque minimum désiré."
 
 #: src/muuli_wdr.cpp:2128
 msgid "Preallocate disk space for new files"
-msgstr ""
+msgstr "Réserver de la mémoire pour les nouveaux fichiers"
 
 #: src/muuli_wdr.cpp:2129
 msgid ""
 "For new files preallocates disk space for the whole file, thus reduces "
 "fragmentation"
 msgstr ""
+"Réserve de la mémoire (en disque) pour un nouveau fichier, ceci réduit la "
+"fragmentation"
 
 #: src/muuli_wdr.cpp:2158
 msgid "Incoming Directory :"
@@ -7138,7 +7146,7 @@ msgstr ""
 #: src/amule.cpp:1625
 #, c-format
 msgid "Disk space preallocation for file '%s' failed: %s"
-msgstr ""
+msgstr "Erreur lors de la réserve d'espace pour le fichier '%s' : %s"
 
 #: src/amule.cpp:1773
 msgid "ERROR: can't open logfile"
@@ -7269,476 +7277,3 @@ msgid "Failed to open friendlist file 'emfriends.met' for writing!"
 msgstr ""
 "Échec de l'ouverture du fichier de liste d'amis 'emfriends.met' pour "
 "l'écriture!"
-
-#~ msgid "ERROR: Failed to open partfile)"
-#~ msgstr "Erreur : Échec du l'ouverture du fichier .part)"
-
-#~ msgid "Mb"
-#~ msgstr "Mo"
-
-#~ msgid "Can't create web socket thread\n"
-#~ msgstr "Impossible de créer un thread pour la socket Web\n"
-
-#~ msgid "Web Server: Started\n"
-#~ msgstr "Serveur Web : démarré\n"
-
-#~ msgid "Not Supported"
-#~ msgstr "Non supporté"
-
-#~ msgid "LowID: %u (%.2f%% Total %.2f%% Known)"
-#~ msgstr "LowID : %u (%.2f%% Total %.2f%% Connus)"
-
-#~ msgid "SecIdent On/Off: %u (%.2f%%) : %u (%.2f%%)"
-#~ msgstr "SecIdent Marche/Arrêt : %u (%.2f%%) : %u (%.2f%%)"
-
-#~ msgid "Browse wav"
-#~ msgstr "Chercher un son"
-
-#~ msgid "File wav (*.wav)|*.wav||"
-#~ msgstr "Fichier wav (*.wav)|*.wav||"
-
-#~ msgid "No comment(s)"
-#~ msgstr "Pas de commentaire"
-
-#~ msgid ""
-#~ "Note: These values are\n"
-#~ "only used for statistics."
-#~ msgstr ""
-#~ "Note : Ces valeurs sont uniquement\n"
-#~ "utilisées pour les statistiques."
-
-#~ msgid "Notifications"
-#~ msgstr "Notifications"
-
-#~ msgid "Messages popup"
-#~ msgstr "Popup de messages"
-
-#~ msgid "Use sound"
-#~ msgstr "Utiliser des sons"
-
-#~ msgid "Pop out when :"
-#~ msgstr "Ouvrir une fenêtre quand il y a :"
-
-#~ msgid "New entry on log"
-#~ msgstr "Une nouvelle entrée dans le journal"
-
-#~ msgid "Starts a new chat session"
-#~ msgstr "Le début d'une session de chat"
-
-#~ msgid "A new chat message is received"
-#~ msgstr "Un nouveau message de chat reçu"
-
-#~ msgid "A download is added or finished"
-#~ msgstr "Un téléchargement ajouté ou terminé"
-
-#~ msgid "New aMule version detected"
-#~ msgstr "Une nouvelle version d'aMule détectée"
-
-#~ msgid "Urgent OOD, serverconnection lost"
-#~ msgstr "OOD urgent, connexion au serveur perdue"
-
-#~ msgid "Notify by Mail"
-#~ msgstr "Alertes par e-mail"
-
-#~ msgid "Send an Email when transfer complete."
-#~ msgstr "Envoyer un e-mail quand un téléchargement est terminé."
-
-#~ msgid "SMTP server :"
-#~ msgstr "Serveur SMTP :"
-
-#~ msgid "Email Address :"
-#~ msgstr "Adresse e-mail:"
-
-#~ msgid ":"
-#~ msgstr ":"
-
-#~ msgid ""
-#~ "The selected locale seems not to be installed on your box\n"
-#~ "You must generate it to use this language.\n"
-#~ "A good start on linux systems is the file /etc/locale.gen and the package "
-#~ "'locales'\n"
-#~ "Good luck!\n"
-#~ "(Note: I'll try to set it anyway)"
-#~ msgstr ""
-#~ "La localisation choisie ne semble pas être installée sur votre machine\n"
-#~ "Vous devez la générer pour pouvoir utiliser votre langue.\n"
-#~ "Un bon début sous Linux est d'aller voir du côté de /etc/locale.gen et du "
-#~ "paquet 'locales'\n"
-#~ "Bonne chance !\n"
-#~ "(Note: je vais quand même essayer de la forcer)"
-
-#~ msgid "Never show this again"
-#~ msgstr "Ne plus jamais montrer ceci"
-
-#~ msgid "Enable/Disable"
-#~ msgstr "Marche/Arrêt"
-
-#~ msgid "You can't bootstrap an specific ip from remote GUI yet."
-#~ msgstr ""
-#~ "Vous ne pouvez pas amorcer une ip particulière depuis l'interface "
-#~ "distante pour le moment."
-
-#~ msgid "You can't update server.met from remote GUI yet."
-#~ msgstr ""
-#~ "Vous ne pouvez pas mettre à jour le server.met depuis le GUI distant pour "
-#~ "le moment."
-
-#~ msgid "Disconnect from "
-#~ msgstr "Se déconnecter de"
-
-#~ msgid "current server"
-#~ msgstr "serveur actuel"
-
-#~ msgid " and "
-#~ msgstr " et "
-
-#~ msgid "Disconnect from any server and/or Kad"
-#~ msgstr "Déconnecter d'un serveur et/ou du réseau Kad"
-
-#~ msgid " ["
-#~ msgstr " ["
-
-#~ msgid " | Kad: "
-#~ msgstr " | Kad : "
-
-#~ msgid "TCP Flags"
-#~ msgstr "Flags TCP"
-
-#~ msgid "UDP Flags"
-#~ msgstr "Flags UDP"
-
-#~ msgid "Copy ED2k link(s) to clipboard"
-#~ msgstr "Copier le(s) lien(s) Ed2k dans le presse-papiers"
-
-#~ msgid "Client requests %u"
-#~ msgstr "Le client demande %u"
-
-#~ msgid "File block %u-%u (%d bytes):"
-#~ msgstr "Bloc fichier %u-%u (%d octets) :"
-
-#~ msgid "Client request is invalid!"
-#~ msgstr "La requête du client est invalide !"
-
-#~ msgid "Client request is invalid! %i / %i"
-#~ msgstr "La requête du client est invalide! %i / %i"
-
-#~ msgid "Command: %s"
-#~ msgstr "Commande : %s"
-
-#~ msgid "Unable to open %s file - using %s file."
-#~ msgstr "Impossible d'ouvrir le fichier %s - Utilisation du fichier %s."
-
-#~ msgid "Warning: known.met does not exist."
-#~ msgstr "Attention: known.met n'existe pas."
-
-#~ msgid ""
-#~ "CSharedFileList::FindSharedFiles: Removing %s from shared directory list: "
-#~ "directory not found."
-#~ msgstr ""
-#~ "CSharedFileList::FindSharedFiles: Suppression de %s de la liste des "
-#~ "répertoires partagés: répertoire non trouvé"
-
-#~ msgid "Waiting for subprocess termination failed"
-#~ msgstr "Échec de l'attente de la fin des sous-processus"
-
-#~ msgid ""
-#~ "You cannot connect to a release version from an arbitrary CVS version! "
-#~ "*sigh* possible crash prevented"
-#~ msgstr ""
-#~ "Vous ne pouvez pas vous connecter à une version finale depuis n'importe "
-#~ "quelle version CVS! *soupir* prévention d'un crash possible"
-
-#~ msgid "doesn't work"
-#~ msgstr "ne fonctionne pas"
-
-#~ msgid "remote gui"
-#~ msgstr "interface graphique distante"
-
-#~ msgid ""
-#~ "Error: Failed to load backup file. Search http://forum.amule.org for ."
-#~ "part.met recovery solutions"
-#~ msgstr ""
-#~ "Erreur : Échec du chargement du fichier de sauvegarde. Cherchez sur "
-#~ "http://forum.amule.org pour obtenir des solutions de récupération de vos ."
-#~ "part et .met"
-
-#~ msgid ""
-#~ "Error: Backup part.met file is 0 size! Search http://forum.amule.org for ."
-#~ "part.met recovery solutions"
-#~ msgstr ""
-#~ "Erreur : le fichier de backup de part.met est de taille nulle ! Cherchez "
-#~ "sur http://forum.amule.org des solutions pour récupérer le fichier"
-
-#~ msgid "Error: part.met backup file is 0 size: %s ==> %s"
-#~ msgstr ""
-#~ "Erreur : La taille du fichier part.met de sauvegarde est nulle : %s ==> %s"
-
-#~ msgid ""
-#~ " 'All-Platform' p2p client based on eMule \n"
-#~ "\n"
-#~ " Website: http://www.amule.org \n"
-#~ " Forum: http://forum.amule.org \n"
-#~ " FAQ: http://wiki.amule.org \n"
-#~ "\n"
-#~ " Contact: admin@amule.org (administrative issues) \n"
-#~ " Copyright (C) 2003-2008 aMule Team \n"
-#~ "\n"
-#~ " Part of aMule is based on \n"
-#~ " Kademlia: Peer-to-peer routing based on the XOR metric.\n"
-#~ " Copyright (C) 2002 Petar Maymounkov\n"
-#~ " http://kademlia.scs.cs.nyu.edu\n"
-#~ msgstr ""
-#~ " Client p2p multi-plateforme basé sir eMule\n"
-#~ "\n"
-#~ " Site Internet:http://www.amule.org\n"
-#~ " Forum: http://forum.amule.org\n"
-#~ " FAQ: http://wiki.amule.org\n"
-#~ "\n"
-#~ " Contact: admin@amule.org (pour des problèmes d'administration)\n"
-#~ " Copyright (C) 2003-2008 aMule Team\n"
-#~ "\n"
-#~ " Une partie d'aMule est basée sur\n"
-#~ " Kademlia: Routage peer-to-peer basé sur une métrique XOR.\n"
-#~ " Copyright (C) 2002 Petar Maymounkov\n"
-#~ " http://kademlia.scs.cs.nyu.edu\n"
-
-#~ msgid "WARNING: You have recieved Low-ID!"
-#~ msgstr "ATTENTION: Vous êtes en Low-ID !"
-
-#~ msgid ""
-#~ "This command requieres an argument. Valid arguments: 'all' or a number.\n"
-#~ msgstr ""
-#~ "Cette commande requiert un argument. Les arguments valides sont : 'all' "
-#~ "ou en nombre.\n"
-
-#~ msgid "This command requieres an argument. Valid arguments: a file hash.\n"
-#~ msgstr ""
-#~ "Cette commande requiert un argument. Arguments valides: hash d'un "
-#~ "fichier.\n"
-
-#~ msgid "Deprecated command, now 'Status'."
-#~ msgstr "Commande dépréciée, maintenant appelée 'Status'."
-
-#~ msgid ""
-#~ "This is a deprecated command, and may be removed in the future.\n"
-#~ "Use 'Status' instead.\n"
-#~ msgstr ""
-#~ "Ceci est une commande dépréciée, et pourrait être supprimée dans le "
-#~ "futur.\n"
-#~ "Utilisez 'Status' à la place.\n"
-
-#~ msgid "Deprecated command, now 'Set IPFilter'."
-#~ msgstr "Commande dépréciée, maintenant appelée 'Set IPFilter'."
-
-#~ msgid ""
-#~ "This is a deprecated command, and may be removed in the future.\n"
-#~ "Use 'Set IPFilter' instead.\n"
-#~ msgstr ""
-#~ "Ceci est une commande dépréciée, et pourrait être supprimée dans le "
-#~ "futur.\n"
-#~ "Utilisez 'Set IPFilter' à la place.\n"
-
-#~ msgid "Deprecated command, now 'Get IPFilter Level'."
-#~ msgstr "Commande dépréciée, maintenant appelée 'Get IPFilter Level'."
-
-#~ msgid ""
-#~ "This is a deprecated command, and may be removed in the future.\n"
-#~ "Use 'Get IPFilter Level' instead.\n"
-#~ msgstr ""
-#~ "Ceci est une commande dépréciée, et pourrait être supprimée dans le "
-#~ "futur.\n"
-#~ "Utilisez 'Get IPFilter Level' à la place.\n"
-
-#~ msgid "Deprecated command, now 'Set IPFilter Level'."
-#~ msgstr "Commande dépréciée, maintenant appelée 'Set IPFilter Level'."
-
-#~ msgid ""
-#~ "This is a deprecated command, and may be removed in the future.\n"
-#~ "Use 'Set IPFilter Level' instead.\n"
-#~ msgstr ""
-#~ "Ceci est une commande dépréciée, et pourrait être supprimée dans le "
-#~ "futur.\n"
-#~ "Utilisez 'Set IPFilter Level' à la place.\n"
-
-#~ msgid "Deprecated command, now 'Get/Set IPFilter Level'."
-#~ msgstr "Commande dépréciée, maintenant appelée 'Get/Set IPFilter Level'."
-
-#~ msgid ""
-#~ "This is a deprecated command, and may be removed in the future.\n"
-#~ "Use 'Get/Set IPFilter Level' instead.\n"
-#~ msgstr ""
-#~ "Ceci est une commande dépréciée, et pourrait être supprimée dans le "
-#~ "futur.\n"
-#~ "Utilisez 'Get/Set IPFilter Level' à la place.\n"
-
-#~ msgid "Deprecated command, now 'Show Servers'."
-#~ msgstr "Commande dépréciée, maintenant appelée 'Show Servers'."
-
-#~ msgid ""
-#~ "This is a deprecated command, and may be removed in the future.\n"
-#~ "Use 'Show Servers' instead.\n"
-#~ msgstr ""
-#~ "Ceci est une commande dépréciée, et pourrait être supprimée dans le "
-#~ "futur.\n"
-#~ "Utilisez 'Show Servers' à la place.\n"
-
-#~ msgid "Deprecated command, now 'Get BwLimits'."
-#~ msgstr "Commande dépréciée, maintenant appelée 'Get BwLimits'."
-
-#~ msgid ""
-#~ "This is a deprecated command, and may be removed in the future.\n"
-#~ "Use 'Get BwLimits' instead.\n"
-#~ msgstr ""
-#~ "Ceci est une commande dépréciée, et pourrait être supprimée dans le "
-#~ "futur.\n"
-#~ "Utilisez 'Get BwLimits' à la place.\n"
-
-#~ msgid "Deprecated command, now 'Set BwLimit Up'."
-#~ msgstr "Commande dépréciée, maintenant appelée 'Set BwLimit Up'."
-
-#~ msgid ""
-#~ "This is a deprecated command, and may be removed in the future.\n"
-#~ "Use 'Set BwLimit Up' instead.\n"
-#~ msgstr ""
-#~ "Ceci est une commande dépréciée, et pourrait être supprimée dans le "
-#~ "futur.\n"
-#~ "Utilisez 'Set BwLimit Up' à la place.\n"
-
-#~ msgid "Deprecated command, now 'Set BwLimit Down'."
-#~ msgstr "Commande dépréciée, maintenant appelée 'Set BwLimit Down'."
-
-#~ msgid ""
-#~ "This is a deprecated command, and may be removed in the future.\n"
-#~ "Use 'Set BwLimit Down' instead.\n"
-#~ msgstr ""
-#~ "Ceci est une commande dépréciée, et pourrait être supprimée dans le "
-#~ "futur.\n"
-#~ "Utilisez 'Set BwLimit Down' à la place.\n"
-
-#~ msgid "Syncronization thread started."
-#~ msgstr "Thread de synchronisation démarré."
-
-#~ msgid "Masterhashes of known files have been loaded."
-#~ msgstr "Les masterhashes des fichiers connus ont été chargés."
-
-#~ msgid "Error while reading Kad contacts - 0 entries"
-#~ msgstr "Erreur lors de la lecture des contacts Kad - 0 entrées"
-
-#~ msgid "Merge attempt"
-#~ msgstr "Tentative de fusion"
-
-#~ msgid "Recursive merge"
-#~ msgstr "Fusion récursive"
-
-#~ msgid "Sucessful merge!"
-#~ msgstr "Fusion réussie!"
-
-#~ msgid "No merge possible"
-#~ msgstr "Pas de fusion possible"
-
-#~ msgid "Buddy address: "
-#~ msgstr "Adresse du buddy : "
-
-#~ msgid "Allow usage of system wide ipfilter.dat"
-#~ msgstr "Autoriser l'utilisation d'un fichier ipfilter.dat système"
-
-#~ msgid "%d"
-#~ msgstr "%d"
-
-#~ msgid "     %d"
-#~ msgstr "·····%d"
-
-#~ msgid ".%d"
-#~ msgstr ".%d"
-
-#~ msgid "Shows the process of a search."
-#~ msgstr "Montre la progression d'une recherche."
-
-#~ msgid "Shows the process of a search..\n"
-#~ msgstr "Montre la progression d'une recherche..\n"
-
-#~ msgid "Search warning."
-#~ msgstr "Avertissement dans la recherche"
-
-#~ msgid "Client Identification:"
-#~ msgstr "Identification client :"
-
-#~ msgid "Use Secure Identification"
-#~ msgstr "Utiliser l'identification sécurisée"
-
-#~ msgid ""
-#~ "Secure Identification uses a handshake approch to safely identify clients "
-#~ "for use with the credit system."
-#~ msgstr ""
-#~ "L'identification sécurisée utilise une approche 'poignée de mains' pour "
-#~ "identifier les clients de manière sécurisée et utiliser le système de "
-#~ "crédits."
-
-#~ msgid "Sources Dropping"
-#~ msgstr "Nettoyage des sources"
-
-#~ msgid "Source Dropping"
-#~ msgstr "Nettoyage des sources"
-
-#~ msgid "Keep sources"
-#~ msgstr "Garder les sources"
-
-#~ msgid "Drop sources"
-#~ msgstr "Effacer les sources"
-
-#~ msgid "Send sources to any other file before dropping (High CPU)"
-#~ msgstr ""
-#~ "Envoyer les sources vers n'importe quel autre fichier avant de nettoyer "
-#~ "(gourmand en CPU)"
-
-#~ msgid "Sources with no needed file-parts."
-#~ msgstr "Sources avec des parties inutiles (NNS)."
-
-#~ msgid "Full Queue Sources Handling"
-#~ msgstr "Gestion des files d'attente pleines (FQS)"
-
-#~ msgid "Enable auto drop Full Queue Sources"
-#~ msgstr "Activer le nettoyage automatique des files d'attente pleines"
-
-#~ msgid "High Queue Rating Sources Handling"
-#~ msgstr "Gestion des rangs de file d'attente élevés (HQRS)"
-
-#~ msgid "Enable auto drop High Queue Rating Sources"
-#~ msgstr "Activer le nettoyage automatique des rangs de file d'attente élevés"
-
-#~ msgid "High Queue Rating value"
-#~ msgstr "Valeur de rang de file d'attente élevée"
-
-#~ msgid "(Min 300 / Max 3000)"
-#~ msgstr "(Mini 300 / Max 3000)"
-
-#~ msgid "Auto Drop Sources Timer"
-#~ msgstr "Fréquence de nettoyage automatique des sources"
-
-#~ msgid "Timer (in secs)"
-#~ msgstr "Fréquence (en secondes)"
-
-#~ msgid "(Min 60 / 3600 Max)"
-#~ msgstr "(Mini 60 / 3600 Max)"
-
-#~ msgid "Drop No Needed Sources now"
-#~ msgstr "Supprimer les sources inutiles immédiatement (NNS)"
-
-#~ msgid "Drop Full Queue Sources now"
-#~ msgstr ""
-#~ "Supprimer les sources dont la file d'attente est pleine immédiatement "
-#~ "(FQS)"
-
-#~ msgid "Drop High Queue Rating Sources now"
-#~ msgstr ""
-#~ "Supprimer les sources dont la file d'attente est élevée immédiatement "
-#~ "(HQRS)"
-
-#~ msgid "Clean Up Sources now (NNS, FQS && HQRS)"
-#~ msgstr "Nettoyer les sources immédiatement (NNS, FQS && HQRS)"
-
-#~ msgid "English (U.S.)"
-#~ msgstr "Anglais (U.S.)"
-
-#~ msgid "Spanish (Mexican)"
-#~ msgstr "Espagnol (Mexicain)"

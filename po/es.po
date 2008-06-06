@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-06-02 03:30+0200\n"
-"PO-Revision-Date: 2008-05-12 23:29+0200\n"
+"PO-Revision-Date: 2008-06-05 00:17+0200\n"
 "Last-Translator: Mad-Soft <mad.soft@gmail.com>\n"
 "Language-Team: Spanish <mad.soft@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -542,11 +542,11 @@ msgstr "Error: No podía escuchar el puerto TCP."
 
 #: src/webserver/src/WebServer.cpp:301
 msgid "web client connection accepted\n"
-msgstr ""
+msgstr "conexión aceptada del cliente web\n"
 
 #: src/webserver/src/WebServer.cpp:304
 msgid "Error: can not accept web client connection\n"
-msgstr ""
+msgstr "Error: imposible aceptar conexión del cliente web\n"
 
 #: src/webserver/src/WebServer.cpp:374
 #, c-format
@@ -2550,7 +2550,7 @@ msgstr "Tráfico excedente Kad (Paquetes): %s"
 #: src/Statistics.cpp:660 src/Statistics.cpp:681
 #, c-format
 msgid "Crypt overhead (UDP): %s"
-msgstr ""
+msgstr "Encriptación excedente (UDP): %s"
 
 #: src/Statistics.cpp:662
 #, c-format
@@ -3328,7 +3328,7 @@ msgstr "ICH: Recuperada parte corrupta %i de %s -> Bytes salvados: %s"
 
 #: src/PartFile.cpp:3845
 msgid "Allocating"
-msgstr ""
+msgstr "Asignando"
 
 #: src/PartFile.cpp:3861
 msgid "Insufficient Diskspace"
@@ -3345,7 +3345,7 @@ msgstr "Descargado"
 #: src/PartFile.cpp:4143
 #, c-format
 msgid "ERROR: Failed to open partfile '%s'"
-msgstr ""
+msgstr "ERROR: Fallo al abrir archivo part '%s'"
 
 #: src/KnownFileList.cpp:79
 msgid "Warning: known.met cannot be opened."
@@ -3505,10 +3505,14 @@ msgstr[1] "Encontrado %u partes de archivo"
 #: src/DownloadQueue.cpp:232 src/DownloadQueue.cpp:1375
 msgid "Filesystem for Temp directory cannot handle large files."
 msgstr ""
+"El sistema de ficheros del directorio Temporal, no puede manejar archivos "
+"grandes."
 
 #: src/DownloadQueue.cpp:235 src/DownloadQueue.cpp:1378
 msgid "Filesystem for Incoming directory cannot handle large files."
 msgstr ""
+"El sistema de ficheros del directorio Entrante, no puede manejar archivos "
+"grandes."
 
 #: src/DownloadQueue.cpp:327
 #, c-format
@@ -5390,21 +5394,23 @@ msgstr "Introduce el espacio mínimo de disco deseado."
 
 #: src/muuli_wdr.cpp:2128
 msgid "Preallocate disk space for new files"
-msgstr ""
+msgstr "Reservar espacio en disco para los nuevos archivos"
 
 #: src/muuli_wdr.cpp:2129
 msgid ""
 "For new files preallocates disk space for the whole file, thus reduces "
 "fragmentation"
 msgstr ""
+"Para los nuevos archivos reservar todo el espacio del archivo, esto reduce "
+"la fragmentación"
 
 #: src/muuli_wdr.cpp:2158
 msgid "Incoming Directory :"
-msgstr "Archivos entrantes :"
+msgstr "Directorio Entrante :"
 
 #: src/muuli_wdr.cpp:2169
 msgid "Temporary Directory :"
-msgstr "Archivos temporales :"
+msgstr "Directorio Temporal :"
 
 #: src/muuli_wdr.cpp:2180
 msgid "Shared Directories"
@@ -7056,7 +7062,7 @@ msgstr ""
 #: src/amule.cpp:1625
 #, c-format
 msgid "Disk space preallocation for file '%s' failed: %s"
-msgstr ""
+msgstr "La reserva del espacio en disco para el archivo '%s' falló: %s"
 
 #: src/amule.cpp:1773
 msgid "ERROR: can't open logfile"
@@ -7182,15 +7188,3 @@ msgstr ""
 msgid "Failed to open friendlist file 'emfriends.met' for writing!"
 msgstr ""
 "¡Error al abrir el archivo lista de amigos 'emfriends.met' para la escritura!"
-
-#~ msgid "ERROR: Failed to open partfile)"
-#~ msgstr "ERROR: Error al abrir archivo part)"
-
-#~ msgid "Mb"
-#~ msgstr "Mb"
-
-#~ msgid "Can't create web socket thread\n"
-#~ msgstr "Imposible crear un socket web\n"
-
-#~ msgid "Web Server: Started\n"
-#~ msgstr "Servidor web: Iniciado\n"
