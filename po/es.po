@@ -1,4 +1,4 @@
-# translation of new_es1.po to Spanish
+# translation of es.po to Spanish
 # Copyright (C) 2004 aMule Team
 # This file is distributed under the terms of the GNU General Public
 # License
@@ -10,10 +10,10 @@
 # Festor Wailon Dacoba <festor90@gmail.com>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: new_es1\n"
+"Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-06-09 03:30+0200\n"
-"PO-Revision-Date: 2008-06-08 04:42+0200\n"
+"PO-Revision-Date: 2008-06-10 00:55+0200\n"
 "Last-Translator: Mad-Soft <mad.soft@gmail.com>\n"
 "Language-Team: Spanish <mad.soft@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -450,8 +450,7 @@ msgstr "Copiar el enlace eD2k al portapapeles (&Fuente)"
 #: src/SharedFilesCtrl.cpp:164
 msgid "Copy eD2k link to clipboard (Source) (&With Crypt options)"
 msgstr ""
-"Copiar el enlace eD2k al portapapeles (Fuente) (&Con opciones de "
-"encriptación)"
+"Copiar el enlace eD2k al portapapeles (Fuente) (&Con opciones de cifrado)"
 
 #: src/SharedFilesCtrl.cpp:165
 msgid "Copy eD2k link to clipboard (&Hostname)"
@@ -461,7 +460,7 @@ msgstr "Copiar el enlace eD2k al portapapeles (&Nombre del host)"
 msgid "Copy eD2k link to clipboard (Hostname) (With &Crypt options)"
 msgstr ""
 "Copiar el enlace eD2k al portapapeles (Nombre del host) (&Con opciones de "
-"encriptación)"
+"cifrado)"
 
 #: src/SharedFilesCtrl.cpp:167
 msgid "Copy eD2k link to clipboard (&AICH info)"
@@ -1778,7 +1777,7 @@ msgstr " Parte de aMule está basado en \n"
 
 #: src/amuleDlg.cpp:467
 msgid "Kademlia: Peer-to-peer routing based on the XOR metric.\n"
-msgstr " Kademlia: Enrutamiento P2P basado en la métrica XOR.\n"
+msgstr " Kademlia: Direccionamiento P2P basado en la métrica XOR.\n"
 
 #: src/amuleDlg.cpp:468
 msgid " Copyright (C) 2002 Petar Maymounkov\n"
@@ -1935,11 +1934,11 @@ msgstr "Estadísticas"
 
 #: src/amuleDlg.cpp:1334
 msgid "Statistics graph window"
-msgstr "Ventana de los gráficas de las estadísticas"
+msgstr "Ventana del gráfico de las estadísticas"
 
 #: src/amuleDlg.cpp:1339
 msgid "Preferences settings window"
-msgstr "Ventana de las configuraciones de la preferencias"
+msgstr "Ventana de la configuración de las preferencias"
 
 #: src/amuleDlg.cpp:1341 src/muuli_wdr.cpp:3828
 msgid "Import"
@@ -2552,7 +2551,7 @@ msgstr "Tráfico excedente Kad (Paquetes): %s"
 #: src/Statistics.cpp:660 src/Statistics.cpp:681
 #, c-format
 msgid "Crypt overhead (UDP): %s"
-msgstr "Encriptación excedente (UDP): %s"
+msgstr "Cifrado excedente (UDP): %s"
 
 #: src/Statistics.cpp:662
 #, c-format
@@ -3186,7 +3185,7 @@ msgstr "ERROR: Archivo part.met inválido: ERROR: versión: %s ===> %s"
 #, c-format
 msgid "ERROR: %s (%s) is corrupt (wrong tagcount), unable to load file."
 msgstr ""
-"ERROR: %s (%s) está corrupto (cuenta de etiquetas errónea), no se ha cargar "
+"ERROR: %s (%s) está corrupto (cuenta de etiquetas errónea), imposible cargar "
 "el archivo."
 
 #: src/PartFile.cpp:604
