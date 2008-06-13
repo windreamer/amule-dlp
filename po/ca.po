@@ -1,19 +1,18 @@
 # aMule i18n resource file.
-# Copyright (C) 2004 - 2007 aMule Team
+# Copyright (C) 2004 - 2008 aMule Team
 # This file is distributed under the same license as the aMule package.
 #
-# Translation of aMule to Catalan
+# Translation of aMule to Catalan / Valencian
 #
-# Kry <elkry@users.sourceforge.net>, 2004, 2005, 2006, 2007.
-# pukyxd <pukyxd@yahoo.com> 2004, 2005.
-# Carles Escrig (simkin) <simkin@ono.com> 2005, 2006, 2007.
-# ¿¿¿¿¿¿ Joel Sevilleja <Joelregs@hotmail.com>, 2007 ??????
+# Kry <elkry@users.sourceforge.net>, 2004 - 2008
+# pukyxd <pukyxd@yahoo.com> 2004 - 2005
+# Carles Escrig (simkin) <royo@aditel.org> 2005 - 2008
 msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-06-12 03:30+0200\n"
-"PO-Revision-Date: 2008-06-08 14:17+0100\n"
+"PO-Revision-Date: 2008-06-12 12:08+0100\n"
 "Last-Translator: Carles Escrig i Royo <simkin@ono.com>\n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -311,7 +310,7 @@ msgstr "Temps d'activitat de baixada acumulat."
 
 #: src/UserEvents.h:84
 msgid "New chat session started"
-msgstr "Iniciada nova sessió de xat"
+msgstr "Inici d'una nova sessió de xat"
 
 #: src/UserEvents.h:87
 msgid "Message sender."
@@ -1818,7 +1817,7 @@ msgstr "eD2k: S'està desconnectant"
 
 #: src/amuleDlg.cpp:694
 msgid "Kad: Firewalled"
-msgstr "Kad: bloquejat per un tallafocs"
+msgstr "Kad: Bloquejat"
 
 #: src/amuleDlg.cpp:698
 msgid "Kad: Connected"
@@ -1919,7 +1918,7 @@ msgstr "Finestra de transferència de fitxers"
 
 #: src/amuleDlg.cpp:1299
 msgid "Shared files"
-msgstr "Fitxers compartits"
+msgstr "Compartits"
 
 #: src/amuleDlg.cpp:1301
 msgid "Shared files window"
@@ -2492,7 +2491,7 @@ msgstr "Estat de la connexió:"
 
 #: src/ServerWnd.cpp:219
 msgid "Firewalled"
-msgstr "Rere tallafocs"
+msgstr "Bloquejat per un tallafocs"
 
 #: src/ServerWnd.cpp:219 src/muuli_wdr.cpp:2671 src/muuli_wdr.cpp:2774
 msgid "OK"
@@ -2652,7 +2651,7 @@ msgstr "Temps des de la primera transferència: %s"
 #: src/Statistics.cpp:695
 #, c-format
 msgid "Connected To Server Since: %s"
-msgstr "Connectat al servidor des de: %s"
+msgstr "Connectat al servidor des de fa: %s"
 
 #: src/Statistics.cpp:696
 #, c-format
@@ -4626,8 +4625,8 @@ msgid ""
 "optimal connection type)."
 msgstr ""
 "Mostra l'estat de la connexió i les transferències actives. El roig vol dir "
-"que no esteu connectat actualment, el groc que teniu ID baixa (rere "
-"tallafocs) i el verd que teniu ID alta (El tipus de connexió òptim)."
+"que no esteu connectat actualment, el groc que teniu ID baixa (bloquejat per "
+"un tallafocs) i el verd que teniu ID alta (el tipus de connexió òptim)."
 
 #: src/muuli_wdr.cpp:125
 msgid "Not Connected ..."
@@ -5164,7 +5163,7 @@ msgstr "Selecció del navegador"
 
 #: src/muuli_wdr.cpp:1680
 msgid "System Default"
-msgstr ""
+msgstr "Valor per defecte del sistema"
 
 #: src/muuli_wdr.cpp:1681
 msgid "Konqueror"
@@ -7116,8 +7115,8 @@ msgid ""
 "aMule to work properly."
 msgstr ""
 "\n"
-"Per a més informació sobre els motius d'aquests canvis, cerqueu\n"
-"informació sobre \"fake servers\" al wiki de l'aMule http://wiki.amule.org.\n"
+"Per a més informació sobre els motius d'aquests canvis, cerqueu informació "
+"sobre \"fake servers\" al wiki de l'aMule http://wiki.amule.org.\n"
 "És important que esborreu qualsevol servidor fals de la llista per a que tot "
 "funcioni correctament."
 
@@ -7128,6 +7127,10 @@ msgid ""
 "Additionally, the browser settings have been reset to the system default. "
 "Please configure your browser options again if needed.\n"
 msgstr ""
+"\n"
+"\n"
+"A més a més, s'han reiniciat les preferències del navegador als valors per "
+"defecte del sistema. Per favor configureu-les de nou si és necessari.\n"
 
 #: src/amule.cpp:1324
 msgid "More information, support and new releases can found at our homepage,\n"
@@ -7136,7 +7139,7 @@ msgstr ""
 
 #: src/amule.cpp:1325
 msgid "at www.aMule.org, or in our IRC channel #aMule at irc.freenode.net.\n"
-msgstr "a www.aMule.org, o al nostre canal IRC #aMule de irc.freenode.net.\n"
+msgstr "www.aMule.org, o al nostre canal IRC #aMule de irc.freenode.net.\n"
 
 #: src/amule.cpp:1327
 msgid "Feel free to report any bugs to http://forum.amule.org"
@@ -7284,6 +7287,13 @@ msgid "Failed to open friend list file 'emfriends.met' for writing!"
 msgstr ""
 "No s'ha pogut obrir el fitxer amb la llista d'amics 'emfriends.met' per a "
 "escriptura!"
+
+#~ msgid ""
+#~ "Additionally, the browser settings have been reset to the system default. "
+#~ "Please configure your browser options again if needed."
+#~ msgstr ""
+#~ "A més a més, s'han reiniciat les preferències del navegador als valors "
+#~ "per defecte del sistema. Per favor configureu-les de nou si és necessari."
 
 #~ msgid "Could not determine the command for running the browser."
 #~ msgstr "No s'ha pogut determinar l'ordre per a executar el navegador."
