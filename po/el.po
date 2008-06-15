@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-14 03:30+0200\n"
-"PO-Revision-Date: 2008-06-13 12:19-0600\n"
+"POT-Creation-Date: 2008-06-15 03:30+0200\n"
+"PO-Revision-Date: 2008-06-14 12:50-0600\n"
 "Last-Translator: Dimitrios Galanakis <dimitris.galanakis@gmail.com>\n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -64,7 +64,7 @@ msgstr "Ολοκληρώνεται"
 
 #: src/libs/ec/cpp/ECSpecialTags.cpp:45 src/PartFile.cpp:3852
 msgid "Complete"
-msgstr "Ολοκληρώθηκε"
+msgstr "Ολοκληρομένο"
 
 #: src/libs/ec/cpp/ECSpecialTags.cpp:47 src/PartFile.cpp:3855
 #: src/TransferWnd.cpp:351 src/OtherFunctions.cpp:706
@@ -84,7 +84,7 @@ msgstr "Κατεβαίνει"
 #: src/libs/ec/cpp/ECSpecialTags.cpp:54 src/PartFile.cpp:3867
 #: src/TransferWnd.cpp:348 src/OtherFunctions.cpp:703
 msgid "Waiting"
-msgstr "Περιμένει"
+msgstr "Εν αναμονή"
 
 #: src/ThreadTasks.cpp:130
 #, c-format
@@ -226,7 +226,7 @@ msgstr "Φίλοι"
 #: src/FriendListCtrl.cpp:230 src/DownloadListCtrl.cpp:1021
 #: src/ClientListCtrl.cpp:253
 msgid "Show &Details"
-msgstr "Ενδείξεις &Πληροφορίες"
+msgstr "Εμφάνιση &Λεπτομερειών"
 
 #: src/FriendListCtrl.cpp:234
 msgid "Add a friend"
@@ -243,7 +243,7 @@ msgstr "Στείλε &Μήνυμα"
 #: src/FriendListCtrl.cpp:239 src/DownloadListCtrl.cpp:1023
 #: src/ClientListCtrl.cpp:255
 msgid "View Files"
-msgstr "Δες αρχεία"
+msgstr "Παρουσίαση αρχείων"
 
 #: src/FriendListCtrl.cpp:240
 msgid "Establish Friend Slot"
@@ -521,7 +521,11 @@ msgstr "Διακομιστής κειμένου του aMule"
 
 #: src/kademlia/kademlia/SearchManager.cpp:125
 msgid "Kademlia: search keyword too short"
-msgstr "Kademlia: Η λέξη κλειδί αναζήτησης είναι πολυ μικρούλα"
+msgstr "Kademlia: O κωδικός αναζήτησης είναι πολυ μικρός"
+
+#: src/kademlia/kademlia/SearchManager.cpp:138
+msgid "Kademlia: Search keyword is already on search list: "
+msgstr "Kademlia: Ο κωδικός αναζήτησης ύπαρχει ήδη στη λίστα αναζητήσεων: "
 
 #: src/kademlia/routing/RoutingZone.cpp:188
 #, c-format
@@ -809,7 +813,7 @@ msgstr ""
 #: src/utils/wxCas/src/wxcasframe.cpp:142 src/muuli_wdr.cpp:2838
 #: src/muuli_wdr.cpp:2873
 msgid "Reset"
-msgstr "Επαναφορά"
+msgstr "Καθαρισμός"
 
 #: src/utils/wxCas/src/wxcasframe.cpp:147
 msgid "System"
@@ -1295,15 +1299,15 @@ msgstr "aLinkCreator, ο δημιουργός συνδέσμων eD2k του aMu
 
 #: src/DataToText.cpp:35
 msgid "Auto [Lo]"
-msgstr "Αυτόματο [Χαμηλό]"
+msgstr "Αυτόματη [Χαμηλή]"
 
 #: src/DataToText.cpp:36
 msgid "Auto [No]"
-msgstr "Αυτόματο [Όχι]"
+msgstr "Αυτόματη [Κανονική]"
 
 #: src/DataToText.cpp:37
 msgid "Auto [Hi]"
-msgstr "Αυτόματο [Υψηλό]"
+msgstr "Αυτόματη [Υψηλή]"
 
 #: src/DataToText.cpp:59 src/amuleDlg.cpp:539 src/ClientListCtrl.cpp:652
 #: src/amule.cpp:801
@@ -1325,7 +1329,7 @@ msgstr "Ουρά γεμάτη"
 
 #: src/DataToText.cpp:62 src/TransferWnd.cpp:449 src/ClientListCtrl.cpp:669
 msgid "On Queue"
-msgstr "Στην ουρά"
+msgstr "Εν αναμονή"
 
 #: src/DataToText.cpp:63 src/ClientListCtrl.cpp:661
 msgid "Transferring"
@@ -1358,7 +1362,7 @@ msgstr "Υπερβολικά πολλές συνδέσεις Kad"
 #: src/DataToText.cpp:71 src/Statistics.cpp:710 src/TransferWnd.cpp:309
 #: src/ClientListCtrl.cpp:838
 msgid "Banned"
-msgstr "Απαγορευμένο"
+msgstr "Απαγορευμένοι"
 
 #: src/DataToText.cpp:72
 msgid "Connection Error"
@@ -1992,7 +1996,7 @@ msgstr "Φίλτρο μηνυμάτων"
 
 #: src/PrefsUnifiedDlg.cpp:173
 msgid "Remote Controls"
-msgstr "Τηλεχειριστήριο"
+msgstr "Τηλεχειρισμός"
 
 #: src/PrefsUnifiedDlg.cpp:174 src/muuli_wdr.cpp:3325
 msgid "Online Signature"
@@ -2008,11 +2012,11 @@ msgstr "Ασφάλεια"
 
 #: src/PrefsUnifiedDlg.cpp:180
 msgid "Gui Tweaks"
-msgstr "Φινίρισματα γραφικού περιβάλλοντος"
+msgstr "Φινίρισμα γραφικού περιβάλλοντος"
 
 #: src/PrefsUnifiedDlg.cpp:181 src/muuli_wdr.cpp:2335
 msgid "Core Tweaks"
-msgstr "Φινιρίσματα πυρήνα"
+msgstr "Φινιρίσμα πυρήνα"
 
 #: src/PrefsUnifiedDlg.cpp:182 src/muuli_wdr.cpp:3787
 msgid "Events"
@@ -2149,8 +2153,8 @@ msgid ""
 "Add here URL's to download server.met files.\n"
 "Only one url on each line."
 msgstr ""
-"Βάλτε εδώ τη διεύθηνση για το κατέβασμα των αρχείων server.met. \n"
-"Μία διεύθηνση σε κάθε γραμμή"
+"Βάλτε εδώ τη διεύθυνση για το κατέβασμα των αρχείων server.met. \n"
+"Μία διεύθυνση σε κάθε γραμμή"
 
 #: src/PrefsUnifiedDlg.cpp:973
 #, c-format
@@ -2459,7 +2463,7 @@ msgstr "Συνδεδεμένο"
 
 #: src/ServerWnd.cpp:169 src/muuli_wdr.cpp:2919
 msgid "IP:Port"
-msgstr "Διεύθηνση:Θύρα"
+msgstr "Διεύθυνση:Θύρα"
 
 #: src/ServerWnd.cpp:173
 msgid "ID"
@@ -2931,7 +2935,7 @@ msgstr "Ο προσδιορισμένος κατακερματισμός χρή�
 #: src/SearchListCtrl.cpp:89 src/DownloadListCtrl.cpp:195
 #: src/PartFile.cpp:3911 src/FileDetailListCtrl.cpp:44
 msgid "Sources"
-msgstr "Πηγές"
+msgstr "Αρ. πηγών"
 
 #: src/SearchListCtrl.cpp:566 src/ClientListCtrl.cpp:505
 #: src/ClientListCtrl.cpp:830
@@ -3002,12 +3006,12 @@ msgstr "Συνολικοί Χρήστες: %s | Συνολικά Αρχεία: %
 
 #: src/DownloadListCtrl.cpp:191 src/ClientListCtrl.cpp:508
 msgid "Transferred"
-msgstr "Έχουν μεταφερθεί"
+msgstr "Μεταφέρθηκαν"
 
 #: src/DownloadListCtrl.cpp:192 src/TransferWnd.cpp:347
 #: src/PartFileConvert.cpp:611 src/OtherFunctions.cpp:702
 msgid "Completed"
-msgstr "Έχουν ολοκληρωθεί"
+msgstr "Ολοκληρώθηκαν"
 
 #: src/DownloadListCtrl.cpp:193 src/ClientListCtrl.cpp:507
 msgid "Speed"
@@ -3024,7 +3028,7 @@ msgstr "Κατάσταση"
 
 #: src/DownloadListCtrl.cpp:198
 msgid "Time Remaining"
-msgstr "Εναπομείνων χρόνος"
+msgstr "Υπόλοιπος Χρόνος"
 
 #: src/DownloadListCtrl.cpp:199
 msgid "Last Seen Complete"
@@ -3556,7 +3560,7 @@ msgstr "Κατεβάζοντας %s"
 #: src/DownloadQueue.cpp:335
 #, c-format
 msgid "You are already trying to download the file '%s'"
-msgstr "Ήδη προσπαθείτε να κατεβάσετε το αρχείο '%s'"
+msgstr "Προσπαθείτε ήδη να κατεβάσετε αυτό το αρχείο '%s'"
 
 #: src/DownloadQueue.cpp:347
 #, c-format
@@ -4090,7 +4094,7 @@ msgstr "Δείξε τη λίστα των διακομιστών."
 
 #: src/TextClient.cpp:945
 msgid "Reset log."
-msgstr "Επαναφορά αρχείου καταγραφής."
+msgstr "Καθάρισμα αρχείου καταγραφής."
 
 #: src/TextClient.cpp:952
 #, c-format
@@ -5375,7 +5379,7 @@ msgstr "Ενημέρωση της λίστας διακομιστών κατά �
 
 #: src/muuli_wdr.cpp:2013
 msgid "Update server list when a client connects"
-msgstr "Ενημέρωση της λίστας διακομιστών όταν συνδέεται πελάτης"
+msgstr "Ενημέρωση της λίστας διακομιστών κατά τη σύνδεση σε πελάτη"
 
 #: src/muuli_wdr.cpp:2016
 msgid "Use priority system"
@@ -5391,12 +5395,11 @@ msgstr "Ασφαλής σύνδεση"
 
 #: src/muuli_wdr.cpp:2028
 msgid "Autoconnect to servers in static list only"
-msgstr "Αυτόματη σύνδεση μόνο στους διακομιστές της στατικής λίστας"
+msgstr "Αυτόματη σύνδεση μόνο με τους διακομιστές της στατικής λίστας"
 
 #: src/muuli_wdr.cpp:2031
 msgid "Set manually added servers to High Priority"
-msgstr ""
-"Θέσε τους διακομιστές που προστέθηκαν με το χέρι σε υψηλή προτεραιότητα"
+msgstr "Υψηλή προτεραιότητα στους διακομιστές που προστέθηκαν με το χέρι"
 
 #: src/muuli_wdr.cpp:2064
 msgid "I.C.H. active"
@@ -5637,7 +5640,7 @@ msgstr "Εμφάνιση μπάρας προόδου"
 
 #: src/muuli_wdr.cpp:2421
 msgid "Progressbar Style"
-msgstr "Τύπος μπάρας προόδου"
+msgstr "Μορφή μπάρας προόδου"
 
 #: src/muuli_wdr.cpp:2431
 msgid "Flat"
@@ -5657,11 +5660,11 @@ msgstr "Ενεργοποίηση υποστήριξης θεμάτων"
 
 #: src/muuli_wdr.cpp:2453
 msgid "Skin:"
-msgstr "Εξωτερική εμφάνιση:"
+msgstr "Θέμα:"
 
 #: src/muuli_wdr.cpp:2458
 msgid "- no skins available -"
-msgstr "- δεν υπάρχουν εξωτερικές εμφανίσεις -"
+msgstr "- δεν υπάρχουν θέματα -"
 
 #: src/muuli_wdr.cpp:2467
 msgid "Column Sorting"
@@ -5739,7 +5742,7 @@ msgstr "Ενεργοποίηση χρήστη μειωμένων δικαιωμ�
 
 #: src/muuli_wdr.cpp:2574
 msgid "Full rights password"
-msgstr "Κωδικών πλήρων δικαιωμάτων"
+msgstr "Κωδικός πλήρων δικαιωμάτων"
 
 #: src/muuli_wdr.cpp:2580
 msgid "Low rights password"
@@ -5827,7 +5830,7 @@ msgstr "Πληροφορίες διακομιστή"
 
 #: src/muuli_wdr.cpp:2839 src/muuli_wdr.cpp:2874
 msgid "Click this button to reset the log."
-msgstr "Πατήστε αυτό το κουμπί για την επαναφορά του αρχείου καταγραφής."
+msgstr "Πατήστε αυτό το κουμπί για το καθάρισμα του αρχείου καταγραφής."
 
 #: src/muuli_wdr.cpp:2863 src/muuli_wdr.cpp:2972
 msgid "aMule Log"
@@ -5983,7 +5986,7 @@ msgstr "Οι πάντες"
 
 #: src/muuli_wdr.cpp:3222
 msgid "No one"
-msgstr "Κανένα"
+msgstr "Κανείς"
 
 #: src/muuli_wdr.cpp:3224
 msgid "Who can see shared files:"
@@ -6605,7 +6608,7 @@ msgstr "Λογισμικό πελάτη"
 
 #: src/ClientListCtrl.cpp:509
 msgid "Waited"
-msgstr "Έχει περιμένει"
+msgstr "Περιμένε"
 
 #: src/ClientListCtrl.cpp:510
 msgid "Upload Time"
@@ -6650,7 +6653,7 @@ msgstr "Κατάσταση ανεβάσματος"
 
 #: src/ClientListCtrl.cpp:999
 msgid "Transferred Up"
-msgstr "Μεταφέρθηκαν προς τα πάνω"
+msgstr "Εστάλησαν"
 
 #: src/ClientListCtrl.cpp:1000
 msgid "Download Status"
@@ -6658,11 +6661,11 @@ msgstr "Κατάσταση κατεβάσματος"
 
 #: src/ClientListCtrl.cpp:1001
 msgid "Transferred Down"
-msgstr "Μεταφέρθηκαν προς τα κάτω"
+msgstr "Ελήφθησαν"
 
 #: src/ClientListCtrl.cpp:1004
 msgid "Userhash"
-msgstr "Πίνακας ατακερματισμού χρηστών"
+msgstr "Πίνακας κατακερματισμού χρηστών"
 
 #: src/ClientListCtrl.cpp:1005
 msgid "Encrypted"
