@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-06-15 03:30+0200\n"
-"PO-Revision-Date: 2008-06-11 22:43+0100\n"
+"PO-Revision-Date: 2008-06-16 00:54+0100\n"
 "Last-Translator: Festor Wailon Dacoba <festor90@gmail.com>\n"
 "Language-Team: Galego <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -534,7 +534,7 @@ msgstr "Kademlia: palabra de busca demasiado corta"
 
 #: src/kademlia/kademlia/SearchManager.cpp:138
 msgid "Kademlia: Search keyword is already on search list: "
-msgstr ""
+msgstr "Kademlia: A palabra buscada xa está na lista de búsqueda:"
 
 #: src/kademlia/routing/RoutingZone.cpp:188
 #, c-format
@@ -7098,6 +7098,11 @@ msgid ""
 "Additionally, the browser settings have been reset to the system default. "
 "Please configure your browser options again if needed.\n"
 msgstr ""
+"\n"
+"\n"
+"Adicionalmente, has opción do navegador foron reiniciadas as por defecto no "
+"sistema. Por favor configure as opción do seu navegador de novo se fora "
+"preciso.\n"
 
 #: src/amule.cpp:1324
 msgid "More information, support and new releases can found at our homepage,\n"
