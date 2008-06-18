@@ -150,6 +150,13 @@ AC_ARG_ENABLE(
 	[ENABLE_UPNP=$enableval], [ENABLE_UPNP=yes])
 
 AC_ARG_ENABLE(
+	[xas],
+	[AS_HELP_STRING(
+		[--disable-xas],
+		[do not install xas XChat2 plugin])],
+	[XAS=$enableval], [XAS=yes])
+
+AC_ARG_ENABLE(
 	[geoip],
 	[AS_HELP_STRING(
 		[--enable-geoip],
@@ -331,7 +338,7 @@ AC_PATH_X
 AC_FUNC_ALLOCA
 AC_HEADER_DIRENT
 AC_HEADER_STDC
-AC_CHECK_HEADERS([argz.h arpa/inet.h fcntl.h inttypes.h langinfo.h libintl.h limits.h locale.h malloc.h mntent.h netdb.h netinet/in.h stddef.h  nl_types.h stdint.h stdio_ext.h stdlib.h string.h strings.h sys/ioctl.h sys/mount.h sys/param.h sys/resource.h sys/select.h sys/socket.h sys/statvfs.h sys/time.h sys/timeb.h sys/types.h unistd.h])
+AC_CHECK_HEADERS([argz.h arpa/inet.h fcntl.h inttypes.h langinfo.h libintl.h limits.h locale.h malloc.h mntent.h netdb.h netinet/in.h stddef.h  nl_types.h stdint.h stdio_ext.h stdlib.h string.h strings.h sys/ioctl.h sys/mntent.h sys/mnttab.h sys/mount.h sys/param.h sys/resource.h sys/select.h sys/socket.h sys/statvfs.h sys/time.h sys/timeb.h sys/types.h unistd.h])
 AC_HEADER_SYS_WAIT
 
 # Checks for typedefs, structures, and compiler characteristics.
@@ -449,6 +456,7 @@ AM_CONDITIONAL(AMULE_GUI, test x$AMULE_GUI = xyes)
 AM_CONDITIONAL(AMULE_DAEMON, test x$AMULE_DAEMON = xyes)
 AM_CONDITIONAL(COMPILE_CMD, test x$AMULECMD = xyes)
 AM_CONDITIONAL(MONOLITHIC, test x$MONOLITHIC = xyes)
+AM_CONDITIONAL(XAS, test x$XAS = xyes)
 AM_CONDITIONAL(ENABLE_UPNP, test x$ENABLE_UPNP = xyes -a x$SYS != xwin32)
 AM_CONDITIONAL(ENABLE_IP2COUNTRY, test x$ENABLE_IP2COUNTRY = xyes)
 AM_CONDITIONAL(SYS_WIN32, test x$SYS = xwin32)
@@ -549,6 +557,7 @@ echo
 echo "  **** aMule Statistics ****"
 echo "  Should C aMule Statistics (CAS) be built?                  ${CAS:-no}"
 echo "  Should aMule GUI Statistics (wxCas) be built?              ${WXCAS:-no}"
+echo "  Should xas XChat2 plugin be installed?                     ${XAS:-yes}"
 
 echo
 echo "  **** General Libraries and Tools ****"

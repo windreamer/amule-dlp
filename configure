@@ -311,7 +311,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot AMTAR am__tar am__untar MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT build build_cpu build_vendor build_os host host_cpu host_vendor host_os RESOLV_LIB X11LIBS MULECPPFLAGS MULECFLAGS MULECXXFLAGS MULELDFLAGS MULERCFLAGS CXX CXXFLAGS LDFLAGS CPPFLAGS ac_ct_CXX EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE CXXCPP CC CFLAGS ac_ct_CC CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE CPP BUILD_CC ac_ct_BUILD_CC EXEEXT BUILD_EXEEXT BUILD_CPPFLAGS BUILD_CFLAGS BUILD_LDFLAGS EGREP LEX LEXLIB LEX_OUTPUT_ROOT RANLIB ac_ct_RANLIB YACC AR ac_ct_AR LD ac_ct_LD ZLIB_CPPFLAGS ZLIB_LDFLAGS ZLIB_LIBS GDLIB_CONFIG_PATH GDLIB_CFLAGS GDLIB_LDFLAGS GDLIB_LIBS CAS_DEFS REGEX_LIBS LIBPNG_CONFIG_PATH LIBPNG_CFLAGS LIBPNG_LDFLAGS LIBPNG_LIBS AMULEWEB_DEFS GEOIP_CPPFLAGS GEOIP_LDFLAGS GEOIP_LIBS WX_CONFIG_PATH WX_CPPFLAGS WX_CFLAGS WX_CXXFLAGS WX_CFLAGS_ONLY WX_CXXFLAGS_ONLY WX_LIBS WX_LIBS_STATIC WX_VERSION_FULL WX_RESCOMP WX_VERSION_MAJOR WX_VERSION_MINOR WX_UNICODE WX_DEBUG WX_SHARED WX_PORT WXBASE_LIBS WXBASE_CPPFLAGS RC RCFLAGS ac_ct_RC CRYPTOPP_CPPFLAGS CRYPTOPP_LDFLAGS CRYPTOPP_LIBS BFD_CPPFLAGS BFD_LIBS ALLOCA LIBOBJS POW_LIB MKINSTALLDIRS MSGFMT GMSGFMT XGETTEXT MSGMERGE GLIBC21 LIBICONV LTLIBICONV INTLBISON USE_NLS BUILD_INCLUDED_LIBINTL USE_INCLUDED_LIBINTL CATOBJEXT INTLOBJS DATADIRNAME INSTOBJEXT GENCAT INTL_LIBTOOL_SUFFIX_PREFIX INTLLIBS LIBINTL LTLIBINTL POSUB AMULE_DAEMON_MANPAGES AMULECMD_MANPAGES WEB_MANPAGES AMULE_GUI_MANPAGES CAS_MANPAGES WXCAS_MANPAGES ED2K_MANPAGES ALC_MANPAGES ALCC_MANPAGES MONOLITHIC_MANPAGES INCINTL docdir SVNDATE WEB_TRUE WEB_FALSE ED2K_TRUE ED2K_FALSE CAS_TRUE CAS_FALSE WXCAS_TRUE WXCAS_FALSE ALC_TRUE ALC_FALSE ALCC_TRUE ALCC_FALSE AMULE_GUI_TRUE AMULE_GUI_FALSE AMULE_DAEMON_TRUE AMULE_DAEMON_FALSE COMPILE_CMD_TRUE COMPILE_CMD_FALSE MONOLITHIC_TRUE MONOLITHIC_FALSE ENABLE_UPNP_TRUE ENABLE_UPNP_FALSE ENABLE_IP2COUNTRY_TRUE ENABLE_IP2COUNTRY_FALSE SYS_WIN32_TRUE SYS_WIN32_FALSE NEED_RC_TRUE NEED_RC_FALSE NEED_CORESERVICES_TRUE NEED_CORESERVICES_FALSE COMPILE_NLS_TRUE COMPILE_NLS_FALSE GENERATE_FLEX_HEADER_TRUE GENERATE_FLEX_HEADER_FALSE READLINE_LIBS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot AMTAR am__tar am__untar MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT build build_cpu build_vendor build_os host host_cpu host_vendor host_os RESOLV_LIB X11LIBS MULECPPFLAGS MULECFLAGS MULECXXFLAGS MULELDFLAGS MULERCFLAGS CXX CXXFLAGS LDFLAGS CPPFLAGS ac_ct_CXX EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE CXXCPP CC CFLAGS ac_ct_CC CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE CPP BUILD_CC ac_ct_BUILD_CC EXEEXT BUILD_EXEEXT BUILD_CPPFLAGS BUILD_CFLAGS BUILD_LDFLAGS EGREP LEX LEXLIB LEX_OUTPUT_ROOT RANLIB ac_ct_RANLIB YACC AR ac_ct_AR LD ac_ct_LD ZLIB_CPPFLAGS ZLIB_LDFLAGS ZLIB_LIBS GDLIB_CONFIG_PATH GDLIB_CFLAGS GDLIB_LDFLAGS GDLIB_LIBS CAS_DEFS REGEX_LIBS LIBPNG_CONFIG_PATH LIBPNG_CFLAGS LIBPNG_LDFLAGS LIBPNG_LIBS AMULEWEB_DEFS GEOIP_CPPFLAGS GEOIP_LDFLAGS GEOIP_LIBS WX_CONFIG_PATH WX_CPPFLAGS WX_CFLAGS WX_CXXFLAGS WX_CFLAGS_ONLY WX_CXXFLAGS_ONLY WX_LIBS WX_LIBS_STATIC WX_VERSION_FULL WX_RESCOMP WX_VERSION_MAJOR WX_VERSION_MINOR WX_UNICODE WX_DEBUG WX_SHARED WX_PORT WXBASE_LIBS WXBASE_CPPFLAGS RC RCFLAGS ac_ct_RC CRYPTOPP_CPPFLAGS CRYPTOPP_LDFLAGS CRYPTOPP_LIBS BFD_CPPFLAGS BFD_LIBS ALLOCA LIBOBJS POW_LIB MKINSTALLDIRS MSGFMT GMSGFMT XGETTEXT MSGMERGE GLIBC21 LIBICONV LTLIBICONV INTLBISON USE_NLS BUILD_INCLUDED_LIBINTL USE_INCLUDED_LIBINTL CATOBJEXT INTLOBJS DATADIRNAME INSTOBJEXT GENCAT INTL_LIBTOOL_SUFFIX_PREFIX INTLLIBS LIBINTL LTLIBINTL POSUB AMULE_DAEMON_MANPAGES AMULECMD_MANPAGES WEB_MANPAGES AMULE_GUI_MANPAGES CAS_MANPAGES WXCAS_MANPAGES ED2K_MANPAGES ALC_MANPAGES ALCC_MANPAGES MONOLITHIC_MANPAGES INCINTL docdir SVNDATE WEB_TRUE WEB_FALSE ED2K_TRUE ED2K_FALSE CAS_TRUE CAS_FALSE WXCAS_TRUE WXCAS_FALSE ALC_TRUE ALC_FALSE ALCC_TRUE ALCC_FALSE AMULE_GUI_TRUE AMULE_GUI_FALSE AMULE_DAEMON_TRUE AMULE_DAEMON_FALSE COMPILE_CMD_TRUE COMPILE_CMD_FALSE MONOLITHIC_TRUE MONOLITHIC_FALSE XAS_TRUE XAS_FALSE ENABLE_UPNP_TRUE ENABLE_UPNP_FALSE ENABLE_IP2COUNTRY_TRUE ENABLE_IP2COUNTRY_FALSE SYS_WIN32_TRUE SYS_WIN32_FALSE NEED_RC_TRUE NEED_RC_FALSE NEED_CORESERVICES_TRUE NEED_CORESERVICES_FALSE COMPILE_NLS_TRUE COMPILE_NLS_FALSE GENERATE_FLEX_HEADER_TRUE GENERATE_FLEX_HEADER_FALSE READLINE_LIBS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -892,6 +892,7 @@ Optional Features:
   --enable-alc            compile aMuleLinkCreator GUI version
   --enable-alcc           compile aMuleLinkCreator for console
   --disable-upnp          do not compile UPnP code
+  --disable-xas           do not install xas XChat2 plugin
   --enable-geoip          compile with GeoIP IP2Country library
   --disable-rpath         do not hardcode runtime library paths
   --disable-nls           do not use Native Language Support
@@ -5521,6 +5522,14 @@ else
   ENABLE_UPNP=yes
 fi;
 
+# Check whether --enable-xas or --disable-xas was given.
+if test "${enable_xas+set}" = set; then
+  enableval="$enable_xas"
+  XAS=$enableval
+else
+  XAS=yes
+fi;
+
 # Check whether --enable-geoip or --disable-geoip was given.
 if test "${enable_geoip+set}" = set; then
   enableval="$enable_geoip"
@@ -6176,6 +6185,11 @@ else
 
 			echo "$as_me:$LINENO: result: yes (version $GDLIB_VERSION)" >&5
 echo "${ECHO_T}yes (version $GDLIB_VERSION)" >&6
+			GDLIB_CFLAGS="`$GDLIB_CONFIG_WITH_ARGS --cflags`"
+			GDLIB_LDFLAGS="`$GDLIB_CONFIG_WITH_ARGS --ldflags`"
+			GDLIB_LIBS="`$GDLIB_CONFIG_WITH_ARGS --libs`"
+			mule_backup_CFLAGS="$CFLAGS"
+			CFLAGS="$CFLAGS $GDLIB_CFLAGS"
 			if test "${ac_cv_header_gd_h+set}" = set; then
   echo "$as_me:$LINENO: checking for gd.h" >&5
 echo $ECHO_N "checking for gd.h... $ECHO_C" >&6
@@ -6314,16 +6328,13 @@ echo "${ECHO_T}$ac_cv_header_gd_h" >&6
 
 fi
 if test $ac_cv_header_gd_h = yes; then
-
-				GDLIB_CFLAGS="`$GDLIB_CONFIG_WITH_ARGS --cflags`"
-				GDLIB_LDFLAGS="`$GDLIB_CONFIG_WITH_ARGS --ldflags`"
-				GDLIB_LIBS="`$GDLIB_CONFIG_WITH_ARGS --libs`"
-
+  :
 else
   GDLIB_VERSION=
 fi
 
 
+			CFLAGS="$mule_backup_CFLAGS"
 
 fi
 
@@ -9894,7 +9905,9 @@ fi
 
 
 
-for ac_header in argz.h arpa/inet.h fcntl.h inttypes.h langinfo.h libintl.h limits.h locale.h malloc.h mntent.h netdb.h netinet/in.h stddef.h  nl_types.h stdint.h stdio_ext.h stdlib.h string.h strings.h sys/ioctl.h sys/mount.h sys/param.h sys/resource.h sys/select.h sys/socket.h sys/statvfs.h sys/time.h sys/timeb.h sys/types.h unistd.h
+
+
+for ac_header in argz.h arpa/inet.h fcntl.h inttypes.h langinfo.h libintl.h limits.h locale.h malloc.h mntent.h netdb.h netinet/in.h stddef.h  nl_types.h stdint.h stdio_ext.h stdlib.h string.h strings.h sys/ioctl.h sys/mntent.h sys/mnttab.h sys/mount.h sys/param.h sys/resource.h sys/select.h sys/socket.h sys/statvfs.h sys/time.h sys/timeb.h sys/types.h unistd.h
 do
 as_ac_Header=`echo "ac_cv_header_$ac_header" | $as_tr_sh`
 if eval "test \"\${$as_ac_Header+set}\" = set"; then
@@ -18451,6 +18464,16 @@ fi
 
 
 
+if test x$XAS = xyes; then
+  XAS_TRUE=
+  XAS_FALSE='#'
+else
+  XAS_TRUE='#'
+  XAS_FALSE=
+fi
+
+
+
 if test x$ENABLE_UPNP = xyes -a x$SYS != xwin32; then
   ENABLE_UPNP_TRUE=
   ENABLE_UPNP_FALSE='#'
@@ -19242,6 +19265,13 @@ if test -z "${MONOLITHIC_TRUE}" && test -z "${MONOLITHIC_FALSE}"; then
   { { echo "$as_me:$LINENO: error: conditional \"MONOLITHIC\" was never defined.
 Usually this means the macro was only invoked conditionally." >&5
 echo "$as_me: error: conditional \"MONOLITHIC\" was never defined.
+Usually this means the macro was only invoked conditionally." >&2;}
+   { (exit 1); exit 1; }; }
+fi
+if test -z "${XAS_TRUE}" && test -z "${XAS_FALSE}"; then
+  { { echo "$as_me:$LINENO: error: conditional \"XAS\" was never defined.
+Usually this means the macro was only invoked conditionally." >&5
+echo "$as_me: error: conditional \"XAS\" was never defined.
 Usually this means the macro was only invoked conditionally." >&2;}
    { (exit 1); exit 1; }; }
 fi
@@ -20055,6 +20085,8 @@ s,@COMPILE_CMD_TRUE@,$COMPILE_CMD_TRUE,;t t
 s,@COMPILE_CMD_FALSE@,$COMPILE_CMD_FALSE,;t t
 s,@MONOLITHIC_TRUE@,$MONOLITHIC_TRUE,;t t
 s,@MONOLITHIC_FALSE@,$MONOLITHIC_FALSE,;t t
+s,@XAS_TRUE@,$XAS_TRUE,;t t
+s,@XAS_FALSE@,$XAS_FALSE,;t t
 s,@ENABLE_UPNP_TRUE@,$ENABLE_UPNP_TRUE,;t t
 s,@ENABLE_UPNP_FALSE@,$ENABLE_UPNP_FALSE,;t t
 s,@ENABLE_IP2COUNTRY_TRUE@,$ENABLE_IP2COUNTRY_TRUE,;t t
@@ -20931,6 +20963,7 @@ echo
 echo "  **** aMule Statistics ****"
 echo "  Should C aMule Statistics (CAS) be built?                  ${CAS:-no}"
 echo "  Should aMule GUI Statistics (wxCas) be built?              ${WXCAS:-no}"
+echo "  Should xas XChat2 plugin be installed?                     ${XAS:-yes}"
 
 echo
 echo "  **** General Libraries and Tools ****"
