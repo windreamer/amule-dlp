@@ -5538,6 +5538,11 @@ else
   ENABLE_IP2COUNTRY=no
 fi;
 
+if test ${ENABLE_IP2COUNTRY:-no} = yes; then
+  GEOIP_LIBS="-lGeoIP"
+fi
+
+
 
 # Check whether --with-geoip-headers or --without-geoip-headers was given.
 if test "${with_geoip_headers+set}" = set; then
@@ -7074,10 +7079,11 @@ echo "${ECHO_T}$need_gui" >&6
 # Check for GeoIP (required for IP2Country capability)
 if test ${ENABLE_IP2COUNTRY:-no} = yes; then
 
-	GEOIP_LIBS="-lGeoIP"
 	GEOIP_CPPFLAGS="$GEOIP_CPPFLAGS -DENABLE_IP2COUNTRY=1"
 	mule_backup_CPPFLAGS="$CPPFLAGS"
 	CPPFLAGS="$CPPFLAGS $GEOIP_CPPFLAGS"
+	mule_backup_LDFLAGS="$LDFLAGS"
+	LDFLAGS="$LDFLAGS $GEOIP_LDFLAGS"
 	if test "${ac_cv_header_GeoIP_h+set}" = set; then
   echo "$as_me:$LINENO: checking for GeoIP.h" >&5
 echo $ECHO_N "checking for GeoIP.h... $ECHO_C" >&6
@@ -7301,6 +7307,7 @@ echo "$as_me: error: --enable-geoip passed to configure, but the GeoIP libraries
 fi
 
 	CPPFLAGS="$mule_backup_CPPFLAGS"
+	LDFLAGS="$mule_backup_LDFLAGS"
 
 fi
 
