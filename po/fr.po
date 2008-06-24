@@ -630,7 +630,7 @@ msgstr "Charge le template <str>"
 
 #: src/webserver/src/WebInterface.cpp:487
 msgid "Web server HTTP port"
-msgstr ""
+msgstr "Port HTTP du serveur Web"
 
 #: src/webserver/src/WebInterface.cpp:491
 msgid "Use UPnP port forwarding on web server port"
@@ -650,7 +650,7 @@ msgstr ""
 
 #: src/webserver/src/WebInterface.cpp:511
 msgid "Guest password for web server"
-msgstr ""
+msgstr "Mot de passe invité pour le serveur web"
 
 #: src/webserver/src/WebInterface.cpp:515
 msgid "Allow guest access"
@@ -1175,11 +1175,11 @@ msgstr "Hash MD4 du fichier"
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:204
 msgid "eD2k File Hash"
-msgstr ""
+msgstr "Hash du fichier eD2k"
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:215
 msgid "eD2k link"
-msgstr ""
+msgstr "Lien eD2k"
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:228 src/muuli_wdr.cpp:344
 msgid "Start"
@@ -1250,6 +1250,14 @@ msgid ""
 "\n"
 "Distributed under GPL"
 msgstr ""
+"aLinkCreator, le créateur de liens d'aMule\n"
+"\n"
+"(c) 2004 ThePolish <thepolish@vipmail.ru>\n"
+"\n"
+"Pixmaps depuis http://www.everaldo.com and http://www.icomania.com\n"
+"et http://jimmac.musichall.cz/ikony.php3\n"
+"\n"
+"Distribué sous licence GPL"
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:511
 #: src/utils/aLinkCreator/src/alcframe.cpp:512
@@ -1279,7 +1287,7 @@ msgstr "Traitement du fichier numéro %u : %s"
 msgid "You have asked for part hashes (Only used for files > 9.5 MB)"
 msgstr ""
 "Vous avez demandé les hashs partiels (Seulement utilisés pour des fichiers "
-"dont la tailles est > 9.5 Mo)"
+"dont les tailles sont > 9.5 Mo)"
 
 #: src/utils/aLinkCreator/src/alcc.cpp:83
 #, c-format
@@ -1288,7 +1296,7 @@ msgstr "%s ---> Fichier inexistant !\n"
 
 #: src/utils/aLinkCreator/src/alc.cpp:55
 msgid "aLinkCreator, the aMule eD2k link creator"
-msgstr ""
+msgstr "aLinkCreator, le créateur de liens d'aMule"
 
 #: src/DataToText.cpp:35
 msgid "Auto [Lo]"
@@ -1408,7 +1416,7 @@ msgstr "Sources Seeds"
 
 #: src/DataToText.cpp:133
 msgid "Search Result"
-msgstr ""
+msgstr "Résultat de la recherche"
 
 #: src/Preferences.cpp:627
 msgid "System default"
@@ -1897,6 +1905,7 @@ msgstr "Le répertoire de skins '%s' n'existe pas"
 #, c-format
 msgid "WARNING: Unable to open skin file '%s' for read"
 msgstr ""
+"AVERTISSEMENT : Impossible d'ouvrir le fichier skin '%s' pour la lecture"
 
 #: src/amuleDlg.cpp:1285 src/amuleDlg.cpp:1446 src/muuli_wdr.cpp:1863
 #: src/muuli_wdr.cpp:3624
@@ -1905,7 +1914,7 @@ msgstr "Réseaux"
 
 #: src/amuleDlg.cpp:1287
 msgid "Networks window"
-msgstr ""
+msgstr "Fenêtre des Réseaux"
 
 #: src/amuleDlg.cpp:1289 src/muuli_wdr.cpp:3625
 msgid "Searches"
@@ -2258,7 +2267,7 @@ msgstr "Nouvelle connexion externe (EC) acceptée"
 
 #: src/ExternalConn.cpp:221
 msgid "ERROR: couldn't accept a new external connection"
-msgstr ""
+msgstr "ERREUR : n'a pas pu accepté de nouvelle connexion externe"
 
 #: src/ExternalConn.cpp:240
 msgid "External connection refused due to empty password in preferences!"
@@ -2633,12 +2642,12 @@ msgstr "Vitesse moyenne d'envoi (Session) : %s"
 #: src/Statistics.cpp:691
 #, c-format
 msgid "Max download rate (Session): %s"
-msgstr ""
+msgstr "Vitesse maximale de réception (Session) : %s"
 
 #: src/Statistics.cpp:692
 #, c-format
 msgid "Max upload rate (Session): %s"
-msgstr ""
+msgstr "Vitesse maximale d'émission (Session) : %s"
 
 #: src/Statistics.cpp:693
 #, c-format
@@ -3515,6 +3524,8 @@ msgid ""
 "ERROR: Failed to load backup file. Search http://forum.amule.org for .part."
 "met recovery solutions."
 msgstr ""
+"ERREUR : Echec du chargement du fichier de récupération. Recherchez sur "
+"http://forum.amule.org .part.met recovery solutions"
 
 #: src/DownloadQueue.cpp:174
 msgid "No part files found"
@@ -3649,7 +3660,7 @@ msgstr "Le niveau d'IPFilter actuel est %d.\n"
 #: src/TextClient.cpp:671
 #, c-format
 msgid "Bandwidth limits: Up: %u kB/s, Down: %u kB/s.\n"
-msgstr ""
+msgstr "Limites de la bande passante : E: %u ko/s, R : %u kB/s.\n"
 
 #: src/TextClient.cpp:689
 msgid "eD2k"
@@ -4705,7 +4716,7 @@ msgstr "Plus"
 
 #: src/muuli_wdr.cpp:352
 msgid "Searches for more results on eD2k. Not supported for Kad yet."
-msgstr ""
+msgstr "Recherche plus de résultats sur eD2k. Toujours non supporté par Kad."
 
 #: src/muuli_wdr.cpp:359
 msgid "Stop"
@@ -5172,7 +5183,7 @@ msgstr ""
 
 #: src/muuli_wdr.cpp:1702
 msgid "Bandwith limits"
-msgstr ""
+msgstr "Limites de bande passante"
 
 #: src/muuli_wdr.cpp:1718 src/muuli_wdr.cpp:1762
 msgid "Upload"
@@ -5200,7 +5211,7 @@ msgstr "Port TCP standard du client:"
 
 #: src/muuli_wdr.cpp:1790
 msgid "This is the standard eD2k port and cannot be disabled."
-msgstr ""
+msgstr "Ceci est le port eD2k standard et ne peut pas être activé."
 
 #: src/muuli_wdr.cpp:1795
 msgid "Extended client UDP Port:"
@@ -5228,7 +5239,7 @@ msgstr "Nombre maximum de sources par fichier"
 
 #: src/muuli_wdr.cpp:1835
 msgid "Connection limits"
-msgstr ""
+msgstr "Limites de connexion"
 
 #: src/muuli_wdr.cpp:1845
 msgid "Universal Plug and Play"
@@ -5361,6 +5372,7 @@ msgstr "Vérifier l'espace disque"
 #: src/muuli_wdr.cpp:2024
 msgid "Select this if you want aMule to check your disk space"
 msgstr ""
+"Sélectionnez ceci si vous souhaitez que aMule vérifie votre espace disque"
 
 #: src/muuli_wdr.cpp:2031
 msgid "Min disk space:"
@@ -5408,7 +5420,7 @@ msgstr "Lecteur vidéo"
 
 #: src/muuli_wdr.cpp:2114
 msgid "Create Backup for preview"
-msgstr ""
+msgstr "Créer une sauvegarde pour la prévisualisation"
 
 #: src/muuli_wdr.cpp:2133
 msgid "Graphs"
@@ -5611,7 +5623,7 @@ msgstr "Montrer le numéro du fichier .part avant le nom du fichier."
 
 #: src/muuli_wdr.cpp:2388
 msgid "Web server parameters"
-msgstr ""
+msgstr "Paramètres du serveur Web"
 
 #: src/muuli_wdr.cpp:2391
 msgid "Run amuleweb on startup"
@@ -5619,7 +5631,7 @@ msgstr "Démarrer amuleweb au lancement"
 
 #: src/muuli_wdr.cpp:2396
 msgid "Web server port"
-msgstr ""
+msgstr "Port du serveur Web"
 
 #: src/muuli_wdr.cpp:2404
 msgid "Enable UPnP port forwarding on the web server port"
@@ -6880,6 +6892,9 @@ msgid ""
 "No server list address entry in 'addresses.dat' found. Please paste a valid "
 "server list address into this file in order to auto-update your server list"
 msgstr ""
+"Aucune entrée trouvée d'adresses de liste de serveurs dans 'addresses.dat' "
+"Veuillez coller une liste de serveurs valide dans ce fichier afin de mettre "
+"à jour automatiquement votre liste de serveurs."
 
 #: src/ServerList.cpp:830
 #, c-format
@@ -7202,10 +7217,14 @@ msgstr "Le réseau Kad est désactivé dans les préférences, pas de connexion.
 #: src/FriendList.cpp:120
 msgid "Failed to open friend list file 'emfriends.met' for reading!"
 msgstr ""
+"Echec de l'ouverture du fichier de la liste d'amis 'emfriends.met' pour la "
+"lecture !"
 
 #: src/FriendList.cpp:146
 msgid "Failed to open friend list file 'emfriends.met' for writing!"
 msgstr ""
+"Echec de l'ouverture du fichier de la liste d'amis 'emfriends.met' pour "
+"l'écriture !"
 
 #~ msgid "Unable to determine selected browser!"
 #~ msgstr "Impossible de déterminer le navigateur sélectionné!"
@@ -7218,6 +7237,9 @@ msgstr ""
 
 #~ msgid "http://www.aMule.org - the Linux Mule"
 #~ msgstr "http://www.aMule.org - La Mule Linux"
+
+#~ msgid "System Default"
+#~ msgstr "Par défaut"
 
 #~ msgid "Konqueror"
 #~ msgstr "Konqueror"
