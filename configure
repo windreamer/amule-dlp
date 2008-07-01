@@ -311,7 +311,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot AMTAR am__tar am__untar MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT build build_cpu build_vendor build_os host host_cpu host_vendor host_os RESOLV_LIB X11LIBS MULECPPFLAGS MULECFLAGS MULECXXFLAGS MULELDFLAGS MULERCFLAGS CXX CXXFLAGS LDFLAGS CPPFLAGS ac_ct_CXX EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE CXXCPP CC CFLAGS ac_ct_CC CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE CPP BUILD_CC ac_ct_BUILD_CC EXEEXT BUILD_EXEEXT BUILD_CPPFLAGS BUILD_CFLAGS BUILD_LDFLAGS EGREP LEX LEXLIB LEX_OUTPUT_ROOT RANLIB ac_ct_RANLIB YACC AR ac_ct_AR LD ac_ct_LD ZLIB_CPPFLAGS ZLIB_LDFLAGS ZLIB_LIBS GDLIB_CONFIG_PATH GDLIB_CFLAGS GDLIB_LDFLAGS GDLIB_LIBS CAS_DEFS REGEX_LIBS LIBPNG_CONFIG_PATH LIBPNG_CFLAGS LIBPNG_LDFLAGS LIBPNG_LIBS AMULEWEB_DEFS GEOIP_CPPFLAGS GEOIP_LDFLAGS GEOIP_LIBS WX_CONFIG_PATH WX_CPPFLAGS WX_CFLAGS WX_CXXFLAGS WX_CFLAGS_ONLY WX_CXXFLAGS_ONLY WX_LIBS WX_LIBS_STATIC WX_VERSION_FULL WX_RESCOMP WX_VERSION_MAJOR WX_VERSION_MINOR WX_UNICODE WX_DEBUG WX_SHARED WX_PORT WXBASE_LIBS WXBASE_CPPFLAGS RC RCFLAGS ac_ct_RC CRYPTOPP_CPPFLAGS CRYPTOPP_LDFLAGS CRYPTOPP_LIBS BFD_CPPFLAGS BFD_LIBS ALLOCA LIBOBJS POW_LIB MKINSTALLDIRS MSGFMT GMSGFMT XGETTEXT MSGMERGE GLIBC21 LIBICONV LTLIBICONV INTLBISON USE_NLS BUILD_INCLUDED_LIBINTL USE_INCLUDED_LIBINTL CATOBJEXT INTLOBJS DATADIRNAME INSTOBJEXT GENCAT INTL_LIBTOOL_SUFFIX_PREFIX INTLLIBS LIBINTL LTLIBINTL POSUB AMULE_DAEMON_MANPAGES AMULECMD_MANPAGES WEB_MANPAGES AMULE_GUI_MANPAGES CAS_MANPAGES WXCAS_MANPAGES ED2K_MANPAGES ALC_MANPAGES ALCC_MANPAGES MONOLITHIC_MANPAGES INCINTL docdir SVNDATE WEB_TRUE WEB_FALSE ED2K_TRUE ED2K_FALSE CAS_TRUE CAS_FALSE WXCAS_TRUE WXCAS_FALSE ALC_TRUE ALC_FALSE ALCC_TRUE ALCC_FALSE AMULE_GUI_TRUE AMULE_GUI_FALSE AMULE_DAEMON_TRUE AMULE_DAEMON_FALSE COMPILE_CMD_TRUE COMPILE_CMD_FALSE MONOLITHIC_TRUE MONOLITHIC_FALSE XAS_TRUE XAS_FALSE ENABLE_UPNP_TRUE ENABLE_UPNP_FALSE ENABLE_IP2COUNTRY_TRUE ENABLE_IP2COUNTRY_FALSE SYS_WIN32_TRUE SYS_WIN32_FALSE NEED_RC_TRUE NEED_RC_FALSE NEED_CORESERVICES_TRUE NEED_CORESERVICES_FALSE COMPILE_NLS_TRUE COMPILE_NLS_FALSE GENERATE_FLEX_HEADER_TRUE GENERATE_FLEX_HEADER_FALSE READLINE_LIBS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot AMTAR am__tar am__untar MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT build build_cpu build_vendor build_os host host_cpu host_vendor host_os RESOLV_LIB X11LIBS MULECPPFLAGS MULECFLAGS MULECXXFLAGS MULELDFLAGS MULERCFLAGS CXX CXXFLAGS LDFLAGS CPPFLAGS ac_ct_CXX EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE CXXCPP CC CFLAGS ac_ct_CC CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE CPP BUILD_CC ac_ct_BUILD_CC EXEEXT BUILD_EXEEXT BUILD_CPPFLAGS BUILD_CFLAGS BUILD_LDFLAGS EGREP LEX LEXLIB LEX_OUTPUT_ROOT RANLIB ac_ct_RANLIB YACC AR ac_ct_AR LD ac_ct_LD ZLIB_CPPFLAGS ZLIB_LDFLAGS ZLIB_LIBS GDLIB_CONFIG_PATH GDLIB_CFLAGS GDLIB_LDFLAGS GDLIB_LIBS CAS_DEFS REGEX_LIBS LIBPNG_CONFIG_PATH LIBPNG_CFLAGS LIBPNG_LDFLAGS LIBPNG_LIBS AMULEWEB_DEFS GEOIP_CPPFLAGS GEOIP_LDFLAGS GEOIP_LIBS WX_CONFIG_PATH WX_CPPFLAGS WX_CFLAGS WX_CXXFLAGS WX_CFLAGS_ONLY WX_CXXFLAGS_ONLY WX_LIBS WX_LIBS_STATIC WX_VERSION_FULL WX_RESCOMP WX_VERSION_MAJOR WX_VERSION_MINOR WX_UNICODE WX_DEBUG WX_SHARED WX_PORT WXBASE_LIBS WXBASE_CPPFLAGS RC RCFLAGS ac_ct_RC LIBUPNP_CPPFLAGS LIBUPNP_CFLAGS LIBUPNP_LDFLAGS LIBUPNP_LDADD CRYPTOPP_CPPFLAGS CRYPTOPP_LDFLAGS CRYPTOPP_LIBS BFD_CPPFLAGS BFD_LIBS ALLOCA LIBOBJS POW_LIB MKINSTALLDIRS MSGFMT GMSGFMT XGETTEXT MSGMERGE GLIBC21 LIBICONV LTLIBICONV INTLBISON USE_NLS BUILD_INCLUDED_LIBINTL USE_INCLUDED_LIBINTL CATOBJEXT INTLOBJS DATADIRNAME INSTOBJEXT GENCAT INTL_LIBTOOL_SUFFIX_PREFIX INTLLIBS LIBINTL LTLIBINTL POSUB AMULE_DAEMON_MANPAGES AMULECMD_MANPAGES WEB_MANPAGES AMULE_GUI_MANPAGES CAS_MANPAGES WXCAS_MANPAGES ED2K_MANPAGES ALC_MANPAGES ALCC_MANPAGES MONOLITHIC_MANPAGES INCINTL docdir SVNDATE WEB_TRUE WEB_FALSE ED2K_TRUE ED2K_FALSE CAS_TRUE CAS_FALSE WXCAS_TRUE WXCAS_FALSE ALC_TRUE ALC_FALSE ALCC_TRUE ALCC_FALSE AMULE_GUI_TRUE AMULE_GUI_FALSE AMULE_DAEMON_TRUE AMULE_DAEMON_FALSE COMPILE_CMD_TRUE COMPILE_CMD_FALSE MONOLITHIC_TRUE MONOLITHIC_FALSE XAS_TRUE XAS_FALSE ENABLE_UPNP_TRUE ENABLE_UPNP_FALSE ENABLE_IP2COUNTRY_TRUE ENABLE_IP2COUNTRY_FALSE SYS_WIN32_TRUE SYS_WIN32_FALSE NEED_RC_TRUE NEED_RC_FALSE NEED_CORESERVICES_TRUE NEED_CORESERVICES_FALSE COMPILE_NLS_TRUE COMPILE_NLS_FALSE GENERATE_FLEX_HEADER_TRUE GENERATE_FLEX_HEADER_FALSE READLINE_LIBS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -933,6 +933,8 @@ Optional Packages:
                           even if --disable-debug is given (default is auto)
   --with-wxversion        Build against a specific version of wxWidgets
                           (default is auto)
+  --with-libupnp-prefix=PREFIX
+                          UPnP library location
   --with-crypto-prefix=PREFIX
                           prefix where crypto++ is installed
   --with-x                use the X Window System
@@ -8148,6 +8150,95 @@ else
 fi
 
 	MULERCFLAGS=`$WX_CONFIG_WITH_ARGS --cflags | $AWK '{ for (i = 1; i <= NF; i++) if (index($i, "-I") != 1 && index($i, "-D") != 1) $i = ""; print }'`
+
+fi
+
+
+
+# Check for libupnp
+if test "${ENABLE_UPNP:-yes}" = yes; then
+
+
+
+# Check whether --with-libupnp-prefix or --without-libupnp-prefix was given.
+if test "${with_libupnp_prefix+set}" = set; then
+  withval="$with_libupnp_prefix"
+  LIBUPNP_PREFIX="$withval"
+fi;
+
+	echo "$as_me:$LINENO: checking for libupnp presence" >&5
+echo $ECHO_N "checking for libupnp presence... $ECHO_C" >&6
+	if test -n "$LIBUPNP_PREFIX"; then
+  		LIBUPNP_STYLE=prefix
+		LIBUPNP_VERSION_STRING=$(PKG_CONFIG_PATH=$LIBUPNP_PREFIX/lib/pkgconfig pkg-config libupnp --modversion)
+		if test -n "LIBUPNP_VERSION_STRING"; then
+  			result=yes
+			resultstr=" (prefix specified in --with-libupnp-prefix=PREFIX)"
+else
+  			result=no
+			resultstr=" (maybe an invalid prefix was specified in --with-libupnp-prefix=PREFIX)"
+fi
+
+else
+  		LIBUPNP_PREFIX=$(PKG_CONFIG_PATH=$LIBUPNP_PREFIX/lib/pkgconfig pkg-config libupnp --prefix)
+		LIBUPNP_STYLE=system
+		LIBUPNP_VERSION_STRING=$(PKG_CONFIG_PATH=$LIBUPNP_PREFIX/lib/pkgconfig pkg-config libupnp --modversion)
+		if test -n "LIBUPNP_VERSION_STRING"; then
+  			result=yes
+			resultstr=" (installed in the system)"
+else
+  			result=no
+			resultstr=" (try to use --with-libupnp-prefix=PREFIX)"
+fi
+
+fi
+
+	echo "$as_me:$LINENO: result: $result$resultstr" >&5
+echo "${ECHO_T}$result$resultstr" >&6
+
+	if test x$result = xyes; then
+  		echo "$as_me:$LINENO: checking for libupnp version >= 1.6.6" >&5
+echo $ECHO_N "checking for libupnp version >= 1.6.6... $ECHO_C" >&6
+		# Find out the libupnp version and check against the minimum required
+		LIBUPNP_VERSION_NUMBER=`echo $LIBUPNP_VERSION_STRING | $AWK 'BEGIN { FS = "."; } { printf "%d", ($1 * 1000 + $2) * 1000 + $3;}'`
+		minvers=`echo 1.6.6 | $AWK 'BEGIN { FS = "."; } { printf "%d", ($1 * 1000 + $2) * 1000 + $3;}'`
+
+		if test -n "$LIBUPNP_VERSION_NUMBER" && test "$LIBUPNP_VERSION_NUMBER" -ge $minvers; then
+  			result=yes
+			resultstr=" (version $LIBUPNP_VERSION_STRING)"
+			LIBUPNP_CPPFLAGS=$(PKG_CONFIG_PATH=$LIBUPNP_PREFIX/lib/pkgconfig pkg-config libupnp --cflags-only-I)
+			LIBUPNP_CFLAGS=$(PKG_CONFIG_PATH=$LIBUPNP_PREFIX/lib/pkgconfig pkg-config libupnp --cflags-only-other)
+			LIBUPNP_LDFLAGS=$(PKG_CONFIG_PATH=$LIBUPNP_PREFIX/lib/pkgconfig pkg-config libupnp --libs-only-other)
+			LIBUPNP_LDADD=$(PKG_CONFIG_PATH=$LIBUPNP_PREFIX/lib/pkgconfig pkg-config libupnp --libs-only-L)
+			LIBUPNP_LDADD="$LIBUPNP_LDADD $(PKG_CONFIG_PATH=$LIBUPNP_PREFIX/lib/pkgconfig pkg-config libupnp --libs-only-l)"
+
+
+			cat >>confdefs.h <<_ACEOF
+#define LIBUPNP_INCLUDE_PREFIX $LIBUPNP_INCLUDE_PREFIX
+_ACEOF
+
+else
+  			result=no
+			resultstr=" (version $LIBUPNP_VERSION_STRING is not new enough)"
+fi
+
+		echo "$as_me:$LINENO: result: $result$resultstr" >&5
+echo "${ECHO_T}$result$resultstr" >&6
+
+fi
+
+
+	if test ${result:-no} = yes; then
+  :
+else
+  { { echo "$as_me:$LINENO: error: Unable to find libupnp." >&5
+echo "$as_me: error: Unable to find libupnp." >&2;}
+   { (exit 1); exit 1; }; }
+
+fi
+
+
+
 
 fi
 
@@ -20031,6 +20122,10 @@ s,@WXBASE_CPPFLAGS@,$WXBASE_CPPFLAGS,;t t
 s,@RC@,$RC,;t t
 s,@RCFLAGS@,$RCFLAGS,;t t
 s,@ac_ct_RC@,$ac_ct_RC,;t t
+s,@LIBUPNP_CPPFLAGS@,$LIBUPNP_CPPFLAGS,;t t
+s,@LIBUPNP_CFLAGS@,$LIBUPNP_CFLAGS,;t t
+s,@LIBUPNP_LDFLAGS@,$LIBUPNP_LDFLAGS,;t t
+s,@LIBUPNP_LDADD@,$LIBUPNP_LDADD,;t t
 s,@CRYPTOPP_CPPFLAGS@,$CRYPTOPP_CPPFLAGS,;t t
 s,@CRYPTOPP_LDFLAGS@,$CRYPTOPP_LDFLAGS,;t t
 s,@CRYPTOPP_LIBS@,$CRYPTOPP_LIBS,;t t
@@ -20991,6 +21086,10 @@ fi
 
 echo "                                       wxWidgets             ${WX_VERSION_FULL} ($wxinfo)"
 echo "                                       crypto++              ${CRYPTOPP_VERSION_STRING} (${CRYPTOPP_STYLE}, in ${CRYPTOPP_PREFIX})"
+if test x${ENABLE_UPNP} = xyes; then
+  echo "                                       libupnp               ${LIBUPNP_VERSION_STRING} (${LIBUPNP_STYLE}, in ${LIBUPNP_PREFIX})"
+fi
+
 if test x${WEB:-no} != xno; then
 if test $regex_found = no; then
   regex_found="Not detected"

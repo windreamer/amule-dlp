@@ -48,7 +48,6 @@
 #include "php_core_lib.h"
 
 //-------------------------------------------------------------------
-
 typedef uint32_t COLORTYPE;
 
 inline unsigned long RGB(int r, int g, int b)

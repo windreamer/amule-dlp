@@ -62,7 +62,7 @@ bin_PROGRAMS = $(am__EXEEXT_1) $(am__EXEEXT_2) $(am__EXEEXT_3) \
 @ENABLE_IP2COUNTRY_TRUE@	IP2Country.cpp
 
 @SYS_WIN32_TRUE@am__append_15 = -lshlwapi
-@ENABLE_UPNP_TRUE@am__append_16 = -DENABLE_UPNP=1
+@ENABLE_UPNP_TRUE@am__append_16 = -DENABLE_UPNP=1 $(LIBUPNP_CPPFLAGS) $(LIBUPNP_CFLAGS)
 @NEED_RC_TRUE@am__append_17 = amulerc.$(OBJEXT)
 @NEED_RC_TRUE@am__append_18 = amulerc.$(OBJEXT)
 @NEED_RC_TRUE@am__append_19 = amuleguirc.$(OBJEXT)
@@ -80,11 +80,12 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/build-tools.m4 \
 	$(top_srcdir)/m4/inttypes_h.m4 $(top_srcdir)/m4/lcmessage.m4 \
 	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/lib-link.m4 \
 	$(top_srcdir)/m4/lib-prefix.m4 $(top_srcdir)/m4/libpng.m4 \
-	$(top_srcdir)/m4/nls.m4 $(top_srcdir)/m4/progtest.m4 \
-	$(top_srcdir)/m4/readline.m4 $(top_srcdir)/m4/stdint_h.m4 \
-	$(top_srcdir)/m4/uintmax_t.m4 $(top_srcdir)/m4/ulonglong.m4 \
-	$(top_srcdir)/m4/wxwin.m4 $(top_srcdir)/m4/zlib.m4 \
-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+	$(top_srcdir)/m4/libupnp.m4 $(top_srcdir)/m4/nls.m4 \
+	$(top_srcdir)/m4/progtest.m4 $(top_srcdir)/m4/readline.m4 \
+	$(top_srcdir)/m4/stdint_h.m4 $(top_srcdir)/m4/uintmax_t.m4 \
+	$(top_srcdir)/m4/ulonglong.m4 $(top_srcdir)/m4/wxwin.m4 \
+	$(top_srcdir)/m4/zlib.m4 $(top_srcdir)/acinclude.m4 \
+	$(top_srcdir)/configure.in
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
@@ -240,7 +241,7 @@ am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 am__DEPENDENCIES_3 = $(am__DEPENDENCIES_2) $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1)
-am__DEPENDENCIES_4 = $(am__DEPENDENCIES_1)
+am__DEPENDENCIES_4 = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 @NEED_RC_TRUE@am__DEPENDENCIES_5 = amulerc.$(OBJEXT)
 am__objects_7 = amulecmd-OtherFunctions.$(OBJEXT) \
 	amulecmd-NetworkFunctions.$(OBJEXT)
@@ -504,6 +505,10 @@ LIBPNG_CONFIG_PATH = @LIBPNG_CONFIG_PATH@
 LIBPNG_LDFLAGS = @LIBPNG_LDFLAGS@
 LIBPNG_LIBS = @LIBPNG_LIBS@
 LIBS = @LIBS@
+LIBUPNP_CFLAGS = @LIBUPNP_CFLAGS@
+LIBUPNP_CPPFLAGS = @LIBUPNP_CPPFLAGS@
+LIBUPNP_LDADD = @LIBUPNP_LDADD@
+LIBUPNP_LDFLAGS = @LIBUPNP_LDFLAGS@
 LTLIBICONV = @LTLIBICONV@
 LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
@@ -753,7 +758,7 @@ common_sources = \
 
 
 # Libs
-core_libs = -L. -lmuleappcore $(am__append_15)
+core_libs = -L. -lmuleappcore $(LIBUPNP_LDADD) $(am__append_15)
 gui_libs = -L. -lmuleappgui $(X11LIBS) $(WX_LIBS) $(GEOIP_LDFLAGS) $(GEOIP_LIBS)
 remote_common_libs = -Llibs/common -Llibs/ec/cpp -lmulecommon -lec $(ZLIB_LDFLAGS) $(ZLIB_LIBS) $(RESOLV_LIB) $(BFD_LIBS)
 common_libs = -L. -lmuleappcommon $(remote_common_libs) $(CRYPTOPP_LDFLAGS) $(CRYPTOPP_LIBS)

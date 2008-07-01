@@ -44,7 +44,11 @@ bin_PROGRAMS = amuleweb$(EXEEXT)
 @ENABLE_UPNP_TRUE@	$(top_srcdir)/src/UPnP.cpp \
 @ENABLE_UPNP_TRUE@	UPnPCompatibility.cpp
 
-@ENABLE_UPNP_TRUE@am__append_2 = -DENABLE_UPNP
+@ENABLE_UPNP_TRUE@am__append_2 = -DENABLE_UPNP=1 $(LIBUPNP_CPPFLAGS)
+@ENABLE_UPNP_TRUE@am__append_3 = $(LIBUPNP_CFLAGS)
+@ENABLE_UPNP_TRUE@am__append_4 = $(LIBUPNP_CFLAGS)
+@ENABLE_UPNP_TRUE@am__append_5 = $(LIBUPNP_LDFLAGS)
+@ENABLE_UPNP_TRUE@am__append_6 = $(LIBUPNP_LDADD)
 subdir = src/webserver/src
 DIST_COMMON = $(noinst_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in
@@ -58,11 +62,12 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/build-tools.m4 \
 	$(top_srcdir)/m4/inttypes_h.m4 $(top_srcdir)/m4/lcmessage.m4 \
 	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/lib-link.m4 \
 	$(top_srcdir)/m4/lib-prefix.m4 $(top_srcdir)/m4/libpng.m4 \
-	$(top_srcdir)/m4/nls.m4 $(top_srcdir)/m4/progtest.m4 \
-	$(top_srcdir)/m4/readline.m4 $(top_srcdir)/m4/stdint_h.m4 \
-	$(top_srcdir)/m4/uintmax_t.m4 $(top_srcdir)/m4/ulonglong.m4 \
-	$(top_srcdir)/m4/wxwin.m4 $(top_srcdir)/m4/zlib.m4 \
-	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
+	$(top_srcdir)/m4/libupnp.m4 $(top_srcdir)/m4/nls.m4 \
+	$(top_srcdir)/m4/progtest.m4 $(top_srcdir)/m4/readline.m4 \
+	$(top_srcdir)/m4/stdint_h.m4 $(top_srcdir)/m4/uintmax_t.m4 \
+	$(top_srcdir)/m4/ulonglong.m4 $(top_srcdir)/m4/wxwin.m4 \
+	$(top_srcdir)/m4/zlib.m4 $(top_srcdir)/acinclude.m4 \
+	$(top_srcdir)/configure.in
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
@@ -91,6 +96,7 @@ am_amuleweb_OBJECTS = amuleweb-WebServer.$(OBJEXT) \
 @NEED_RC_TRUE@nodist_amuleweb_OBJECTS = amuleweb-version.$(OBJEXT)
 amuleweb_OBJECTS = $(am_amuleweb_OBJECTS) $(nodist_amuleweb_OBJECTS)
 am__DEPENDENCIES_1 =
+@ENABLE_UPNP_TRUE@am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1)
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -213,6 +219,10 @@ LIBPNG_CONFIG_PATH = @LIBPNG_CONFIG_PATH@
 LIBPNG_LDFLAGS = @LIBPNG_LDFLAGS@
 LIBPNG_LIBS = @LIBPNG_LIBS@
 LIBS = @LIBS@
+LIBUPNP_CFLAGS = @LIBUPNP_CFLAGS@
+LIBUPNP_CPPFLAGS = @LIBUPNP_CPPFLAGS@
+LIBUPNP_LDADD = @LIBUPNP_LDADD@
+LIBUPNP_LDFLAGS = @LIBUPNP_LDFLAGS@
 LTLIBICONV = @LTLIBICONV@
 LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
@@ -352,12 +362,16 @@ amuleweb_CPPFLAGS = -I../.. -I$(top_srcdir)/src \
 	-DWEBSERVERDIR="\"$(pkgdatadir)/webserver\"" \
 	-DECSOCKET_USE_EVENTS=0 $(INCINTL) $(ZLIB_CPPFLAGS) \
 	$(am__append_2)
-amuleweb_CFLAGS = $(MULECFLAGS) $(WX_CFLAGS_ONLY) $(LIBPNG_CFLAGS)
-amuleweb_CXXFLAGS = $(MULECXXFLAGS) $(WX_CFLAGS_ONLY) $(WX_CXXFLAGS_ONLY) $(LIBPNG_CFLAGS)
-amuleweb_LDFLAGS = $(MULELDFLAGS) -L../../libs/common -L../../libs/ec/cpp $(LIBPNG_LDFLAGS) $(ZLIB_LDFLAGS)
+amuleweb_CFLAGS = $(MULECFLAGS) $(WX_CFLAGS_ONLY) $(LIBPNG_CFLAGS) \
+	$(am__append_3)
+amuleweb_CXXFLAGS = $(MULECXXFLAGS) $(WX_CFLAGS_ONLY) \
+	$(WX_CXXFLAGS_ONLY) $(LIBPNG_CFLAGS) $(am__append_4)
+amuleweb_LDFLAGS = $(MULELDFLAGS) -L../../libs/common \
+	-L../../libs/ec/cpp $(LIBPNG_LDFLAGS) $(ZLIB_LDFLAGS) \
+	$(am__append_5)
 amuleweb_LDADD = -lec -lmulecommon $(WXBASE_LIBS) $(ZLIB_LIBS) \
-	$(READLINE_LIBS) $(LIBPNG_LIBS) $(RESOLV_LIB) $(BFD_LIBS) $(REGEX_LIBS) $(LIBINTL)
-
+	$(READLINE_LIBS) $(LIBPNG_LIBS) $(RESOLV_LIB) $(BFD_LIBS) \
+	$(REGEX_LIBS) $(LIBINTL) $(am__append_6)
 noinst_HEADERS = \
 		 WebInterface.h \
 		 WebServer.h \

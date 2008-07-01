@@ -419,6 +419,9 @@
 /* Define if integer division by zero raises signal SIGFPE. */
 #undef INTDIV0_RAISES_SIGFPE
 
+/* Define this to the include prefix of libupnp */
+#undef LIBUPNP_INCLUDE_PREFIX
+
 /* Define to 1 if `lstat' dereferences a symlink specified with a trailing
    slash. */
 #undef LSTAT_FOLLOWS_SLASHED_SYMLINK
