@@ -8170,8 +8170,8 @@ fi;
 echo $ECHO_N "checking for libupnp presence... $ECHO_C" >&6
 	if test -n "$LIBUPNP_PREFIX"; then
   		LIBUPNP_STYLE=prefix
-		LIBUPNP_VERSION_STRING=$(PKG_CONFIG_PATH=$LIBUPNP_PREFIX/lib/pkgconfig pkg-config libupnp --modversion)
-		if test -n "LIBUPNP_VERSION_STRING"; then
+		LIBUPNP_VERSION_STRING=`PKG_CONFIG_PATH=$LIBUPNP_PREFIX/lib/pkgconfig pkg-config libupnp --modversion`
+		if test -n "$LIBUPNP_VERSION_STRING"; then
   			result=yes
 			resultstr=" (prefix specified in --with-libupnp-prefix=PREFIX)"
 else
@@ -8180,10 +8180,13 @@ else
 fi
 
 else
-  		LIBUPNP_PREFIX=$(PKG_CONFIG_PATH=$LIBUPNP_PREFIX/lib/pkgconfig pkg-config libupnp --prefix)
-		LIBUPNP_STYLE=system
-		LIBUPNP_VERSION_STRING=$(PKG_CONFIG_PATH=$LIBUPNP_PREFIX/lib/pkgconfig pkg-config libupnp --modversion)
-		if test -n "LIBUPNP_VERSION_STRING"; then
+  		if pkg-config libupnp --exists; then
+  			LIBUPNP_PREFIX=`pkg-config libupnp --prefix`
+			LIBUPNP_STYLE=system
+			LIBUPNP_VERSION_STRING=`pkg-config libupnp --modversion`
+
+fi
+		if test -n "$LIBUPNP_VERSION_STRING"; then
   			result=yes
 			resultstr=" (installed in the system)"
 else
@@ -8206,11 +8209,11 @@ echo $ECHO_N "checking for libupnp version >= 1.6.6... $ECHO_C" >&6
 		if test -n "$LIBUPNP_VERSION_NUMBER" && test "$LIBUPNP_VERSION_NUMBER" -ge $minvers; then
   			result=yes
 			resultstr=" (version $LIBUPNP_VERSION_STRING)"
-			LIBUPNP_CPPFLAGS=$(PKG_CONFIG_PATH=$LIBUPNP_PREFIX/lib/pkgconfig pkg-config libupnp --cflags-only-I)
-			LIBUPNP_CFLAGS=$(PKG_CONFIG_PATH=$LIBUPNP_PREFIX/lib/pkgconfig pkg-config libupnp --cflags-only-other)
-			LIBUPNP_LDFLAGS=$(PKG_CONFIG_PATH=$LIBUPNP_PREFIX/lib/pkgconfig pkg-config libupnp --libs-only-other)
-			LIBUPNP_LDADD=$(PKG_CONFIG_PATH=$LIBUPNP_PREFIX/lib/pkgconfig pkg-config libupnp --libs-only-L)
-			LIBUPNP_LDADD="$LIBUPNP_LDADD $(PKG_CONFIG_PATH=$LIBUPNP_PREFIX/lib/pkgconfig pkg-config libupnp --libs-only-l)"
+			LIBUPNP_CPPFLAGS=`PKG_CONFIG_PATH=$LIBUPNP_PREFIX/lib/pkgconfig pkg-config libupnp --cflags-only-I`
+			LIBUPNP_CFLAGS=`PKG_CONFIG_PATH=$LIBUPNP_PREFIX/lib/pkgconfig pkg-config libupnp --cflags-only-other`
+			LIBUPNP_LDFLAGS=`PKG_CONFIG_PATH=$LIBUPNP_PREFIX/lib/pkgconfig pkg-config libupnp --libs-only-other`
+			LIBUPNP_LDADD=`PKG_CONFIG_PATH=$LIBUPNP_PREFIX/lib/pkgconfig pkg-config libupnp --libs-only-L`
+			LIBUPNP_LDADD="$LIBUPNP_LDADD `PKG_CONFIG_PATH=$LIBUPNP_PREFIX/lib/pkgconfig pkg-config libupnp --libs-only-l`"
 
 
 			cat >>confdefs.h <<_ACEOF
@@ -8231,9 +8234,7 @@ fi
 	if test ${result:-no} = yes; then
   :
 else
-  { { echo "$as_me:$LINENO: error: Unable to find libupnp." >&5
-echo "$as_me: error: Unable to find libupnp." >&2;}
-   { (exit 1); exit 1; }; }
+  ENABLE_UPNP=disabled
 
 fi
 
@@ -18574,7 +18575,7 @@ fi
 
 
 
-if test x$ENABLE_UPNP = xyes -a x$SYS != xwin32; then
+if test x$ENABLE_UPNP = xyes; then
   ENABLE_UPNP_TRUE=
   ENABLE_UPNP_FALSE='#'
 else
@@ -21088,6 +21089,9 @@ echo "                                       wxWidgets             ${WX_VERSION_
 echo "                                       crypto++              ${CRYPTOPP_VERSION_STRING} (${CRYPTOPP_STYLE}, in ${CRYPTOPP_PREFIX})"
 if test x${ENABLE_UPNP} = xyes; then
   echo "                                       libupnp               ${LIBUPNP_VERSION_STRING} (${LIBUPNP_STYLE}, in ${LIBUPNP_PREFIX})"
+elif test x${ENABLE_UPNP} = xdisabled; then
+  echo "                                       libupnp               Not Detected"
+
 fi
 
 if test x${WEB:-no} != xno; then
@@ -21135,7 +21139,14 @@ fi
 if test -z "$LIBPNG_VERSION"; then
 echo ""
 echo ""
-echo " WARNING! libpng >= 1.2.0 not found."
-echo " amuleweb will be compiled but file download progress bar images will NOT be generated."
+echo "WARNING! libpng >= 1.2.0 not found."
+echo "amuleweb will be compiled but file download progress bar images will NOT be generated."
+echo ""
+fi
+if test x$ENABLE_UPNP = xdisabled; then
+echo ""
+echo ""
+echo "WARNING! UPnP code has been disabled because configure could not find the"
+echo "libupnp library."
 echo ""
 fi
