@@ -51,22 +51,18 @@ bin_PROGRAMS = $(am__EXEEXT_1) $(am__EXEEXT_2) $(am__EXEEXT_3) \
 @MONOLITHIC_TRUE@am__append_7 = libmuleappcore.a libmuleappgui.a libmuleappcommon.a
 @AMULE_DAEMON_TRUE@@MONOLITHIC_FALSE@am__append_8 = libmuleappcore.a libmuleappcommon.a
 @AMULE_DAEMON_FALSE@@AMULE_GUI_TRUE@@MONOLITHIC_FALSE@am__append_9 = libmuleappgui.a libmuleappcommon.a
-@ENABLE_UPNP_TRUE@am__append_10 = -DENABLE_UPNP=1
-@ENABLE_UPNP_TRUE@am__append_11 = -DENABLE_UPNP=1
-@ENABLE_UPNP_TRUE@am__append_12 = -DENABLE_UPNP=1
-@ENABLE_UPNP_TRUE@am__append_13 = \
+@ENABLE_UPNP_TRUE@am__append_10 = \
 @ENABLE_UPNP_TRUE@	UPnP.cpp \
 @ENABLE_UPNP_TRUE@	UPnPCompatibility.cpp
 
-@ENABLE_IP2COUNTRY_TRUE@am__append_14 = \
+@ENABLE_IP2COUNTRY_TRUE@am__append_11 = \
 @ENABLE_IP2COUNTRY_TRUE@	IP2Country.cpp
 
-@SYS_WIN32_TRUE@am__append_15 = -lshlwapi
-@ENABLE_UPNP_TRUE@am__append_16 = -DENABLE_UPNP=1 $(LIBUPNP_CPPFLAGS) $(LIBUPNP_CFLAGS)
-@NEED_RC_TRUE@am__append_17 = amulerc.$(OBJEXT)
-@NEED_RC_TRUE@am__append_18 = amulerc.$(OBJEXT)
-@NEED_RC_TRUE@am__append_19 = amuleguirc.$(OBJEXT)
-@NEED_RC_TRUE@am__append_20 = amuleguirc.$(OBJEXT)
+@SYS_WIN32_TRUE@am__append_12 = -lshlwapi
+@NEED_RC_TRUE@am__append_13 = amulerc.$(OBJEXT)
+@NEED_RC_TRUE@am__append_14 = amulerc.$(OBJEXT)
+@NEED_RC_TRUE@am__append_15 = amuleguirc.$(OBJEXT)
+@NEED_RC_TRUE@am__append_16 = amuleguirc.$(OBJEXT)
 DIST_COMMON = $(noinst_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/automake/dist-hook.am
 subdir = src
@@ -241,7 +237,8 @@ am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 am__DEPENDENCIES_3 = $(am__DEPENDENCIES_2) $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1)
-am__DEPENDENCIES_4 = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
+am__DEPENDENCIES_4 = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1)
 @NEED_RC_TRUE@am__DEPENDENCIES_5 = amulerc.$(OBJEXT)
 am__objects_7 = amulecmd-OtherFunctions.$(OBJEXT) \
 	amulecmd-NetworkFunctions.$(OBJEXT)
@@ -507,8 +504,8 @@ LIBPNG_LIBS = @LIBPNG_LIBS@
 LIBS = @LIBS@
 LIBUPNP_CFLAGS = @LIBUPNP_CFLAGS@
 LIBUPNP_CPPFLAGS = @LIBUPNP_CPPFLAGS@
-LIBUPNP_LDADD = @LIBUPNP_LDADD@
 LIBUPNP_LDFLAGS = @LIBUPNP_LDFLAGS@
+LIBUPNP_LIBS = @LIBUPNP_LIBS@
 LTLIBICONV = @LTLIBICONV@
 LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
@@ -539,6 +536,7 @@ PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
+PKG_CONFIG = @PKG_CONFIG@
 POSUB = @POSUB@
 POW_LIB = @POW_LIB@
 RANLIB = @RANLIB@
@@ -596,6 +594,7 @@ ac_ct_LD = @ac_ct_LD@
 ac_ct_RANLIB = @ac_ct_RANLIB@
 ac_ct_RC = @ac_ct_RC@
 ac_ct_STRIP = @ac_ct_STRIP@
+ac_pt_PKG_CONFIG = @ac_pt_PKG_CONFIG@
 am__fastdepCC_FALSE = @am__fastdepCC_FALSE@
 am__fastdepCC_TRUE = @am__fastdepCC_TRUE@
 am__fastdepCXX_FALSE = @am__fastdepCXX_FALSE@
@@ -667,9 +666,7 @@ libmuleappcommon_a_SOURCES = \
 	RandomFunctions.cpp \
 	kademlia/utils/UInt128.cpp
 
-libmuleappcommon_a_CPPFLAGS = $(AM_CPPFLAGS) $(WXBASE_CPPFLAGS) \
-	-I$(srcdir)/libs -I$(srcdir)/include $(CRYPTOPP_CPPFLAGS) \
-	$(am__append_10)
+libmuleappcommon_a_CPPFLAGS = $(AM_CPPFLAGS) $(WXBASE_CPPFLAGS) -I$(srcdir)/libs -I$(srcdir)/include $(CRYPTOPP_CPPFLAGS) $(LIBUPNP_CPPFLAGS)
 
 # Common to core/monolithic
 libmuleappcore_a_SOURCES = \
@@ -684,9 +681,7 @@ libmuleappcore_a_SOURCES = \
 	StateMachine.cpp \
 	ThreadScheduler.cpp
 
-libmuleappcore_a_CPPFLAGS = $(AM_CPPFLAGS) $(WXBASE_CPPFLAGS) \
-	-I$(srcdir)/libs -I$(srcdir)/include $(CRYPTOPP_CPPFLAGS) \
-	$(am__append_11)
+libmuleappcore_a_CPPFLAGS = $(AM_CPPFLAGS) $(WXBASE_CPPFLAGS) -I$(srcdir)/libs -I$(srcdir)/include $(CRYPTOPP_CPPFLAGS) $(LIBUPNP_CPPFLAGS)
 
 # Common to gui/monolithic
 libmuleappgui_a_SOURCES = \
@@ -706,8 +701,7 @@ libmuleappgui_a_SOURCES = \
 	MuleCollection.cpp \
 	muuli_wdr.cpp 
 
-libmuleappgui_a_CPPFLAGS = $(AM_CPPFLAGS) $(WX_CPPFLAGS) \
-	-I$(srcdir)/libs -I$(srcdir)/include $(am__append_12)
+libmuleappgui_a_CPPFLAGS = $(AM_CPPFLAGS) $(WX_CPPFLAGS) -I$(srcdir)/libs -I$(srcdir)/include $(LIBUPNP_CPPFLAGS)
 core_sources = RC4Encrypt.cpp amule.cpp BaseClient.cpp ClientList.cpp \
 	ClientCreditsList.cpp ClientTCPSocket.cpp ClientUDPSocket.cpp \
 	DownloadClient.cpp DownloadQueue.cpp ECSpecialCoreTags.cpp \
@@ -724,7 +718,7 @@ core_sources = RC4Encrypt.cpp amule.cpp BaseClient.cpp ClientList.cpp \
 	kademlia/kademlia/UDPFirewallTester.cpp \
 	kademlia/net/KademliaUDPListener.cpp \
 	kademlia/net/PacketTracking.cpp kademlia/routing/Contact.cpp \
-	kademlia/routing/RoutingZone.cpp $(am__append_13)
+	kademlia/routing/RoutingZone.cpp $(am__append_10)
 gui_sources = amule-gui.cpp amuleDlg.cpp AddFriend.cpp CatDialog.cpp \
 	ChatSelector.cpp ClientDetailDialog.cpp FileDetailDialog.cpp \
 	KadDlg.cpp OScopeCtrl.cpp PartFileConvert.cpp \
@@ -732,7 +726,7 @@ gui_sources = amule-gui.cpp amuleDlg.cpp AddFriend.cpp CatDialog.cpp \
 	SharedFilesWnd.cpp StatisticsDlg.cpp SearchListCtrl.cpp \
 	DownloadListCtrl.cpp ClientListCtrl.cpp FriendListCtrl.cpp \
 	ServerListCtrl.cpp SharedFilesCtrl.cpp MuleTrayIcon.cpp \
-	TransferWnd.cpp $(am__append_14)
+	TransferWnd.cpp $(am__append_11)
 remote_common_sources = \
 	OtherFunctions.cpp \
 	NetworkFunctions.cpp 
@@ -758,7 +752,8 @@ common_sources = \
 
 
 # Libs
-core_libs = -L. -lmuleappcore $(LIBUPNP_LDADD) $(am__append_15)
+core_libs = -L. -lmuleappcore $(LIBUPNP_LDFLAGS) $(LIBUPNP_LIBS) \
+	$(am__append_12)
 gui_libs = -L. -lmuleappgui $(X11LIBS) $(WX_LIBS) $(GEOIP_LDFLAGS) $(GEOIP_LIBS)
 remote_common_libs = -Llibs/common -Llibs/ec/cpp -lmulecommon -lec $(ZLIB_LDFLAGS) $(ZLIB_LIBS) $(RESOLV_LIB) $(BFD_LIBS)
 common_libs = -L. -lmuleappcommon $(remote_common_libs) $(CRYPTOPP_LDFLAGS) $(CRYPTOPP_LIBS)
@@ -770,7 +765,7 @@ common_deps = libmuleappcommon.a $(remote_common_deps)
 #
 # Flags
 #
-core_flags = $(am__append_16)
+core_flags = $(LIBUPNP_CPPFLAGS) $(LIBUPNP_CFLAGS)
 gui_flags = $(WX_CPPFLAGS) $(GEOIP_CPPFLAGS)
 common_flags = -I$(srcdir)/libs -Ilibs -I$(srcdir)/include $(CRYPTOPP_CPPFLAGS)
 
@@ -795,15 +790,15 @@ amuled_SOURCES = \
 	$(common_sources)
 
 amule_DEPENDENCIES = $(common_deps) $(core_deps) $(gui_deps) \
-	$(am__append_18)
+	$(am__append_14)
 amule_CPPFLAGS = $(AM_CPPFLAGS) $(core_flags) $(gui_flags) $(common_flags)
 amule_CXXFLAGS = $(AM_CXXFLAGS) $(WX_CFLAGS_ONLY) $(WX_CPPFLAGS_ONLY)
-amule_LDADD = $(common_libs) $(core_libs) $(gui_libs) $(am__append_17)
-amulegui_DEPENDENCIES = $(common_deps) $(gui_deps) $(am__append_20)
+amule_LDADD = $(common_libs) $(core_libs) $(gui_libs) $(am__append_13)
+amulegui_DEPENDENCIES = $(common_deps) $(gui_deps) $(am__append_16)
 amulegui_CPPFLAGS = $(AM_CPPFLAGS) $(gui_flags) $(common_flags) -DCLIENT_GUI -DEC_REMOTE
 amulegui_CXXFLAGS = $(AM_CXXFLAGS) $(WX_CFLAGS_ONLY) $(WX_CXXFLAGS_ONLY)
 amulegui_LDADD = $(gui_libs) $(common_libs) $(WXBASE_LIBS) \
-	$(am__append_19)
+	$(am__append_15)
 amuled_DEPENDENCIES = $(core_deps) $(common_deps)
 amuled_CPPFLAGS = $(AM_CPPFLAGS) $(WXBASE_CPPFLAGS) $(core_flags) $(common_flags) -DAMULE_DAEMON 
 amuled_CXXFLAGS = $(AM_CXXFLAGS) $(WX_CFLAGS_ONLY) $(WX_CXXFLAGS_ONLY)
@@ -958,9 +953,7 @@ noinst_HEADERS = \
 		UPnP.h \
 		UPnPCompatibility.h \
 		UserEvents.h \
-		extern/wxWidgets/listctrl.h \
-		extern/upnp/ixml.h \
-		extern/upnp/upnp.h
+		extern/wxWidgets/listctrl.h
 
 MAINTAINERCLEANFILES = Makefile.in
 
@@ -4768,7 +4761,7 @@ distclean-tags:
 	-rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH tags
 
 distdir: $(DISTFILES)
-	$(mkdir_p) $(distdir)/../automake $(distdir)/extern/upnp $(distdir)/extern/wxWidgets
+	$(mkdir_p) $(distdir)/../automake $(distdir)/extern/wxWidgets
 	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
 	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
 	list='$(DISTFILES)'; for file in $$list; do \
