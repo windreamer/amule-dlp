@@ -81,12 +81,11 @@ wxSizer *muleDlg( wxWindow *parent, bool call_fit, bool set_sizer )
 
     wxBoxSizer *item6 = new wxBoxSizer( wxHORIZONTAL );
 
-    wxBitmapButton *item7 = new wxBitmapButton( parent, IDC_SHOWSTATUSTEXT, amuleDlgImages( 31 ), wxDefaultPosition, wxSize(25,25) );
-    item7->SetToolTip( _("Pop-up status text") );
+    wxStaticBitmap *item7 = new wxStaticBitmap( parent, -1, amuleDlgImages( 31 ), wxDefaultPosition, wxDefaultSize );
+    item7->SetToolTip( _("Events are displayed here. For a complete list of events, refer to the log in the Servers-tab.") );
     item6->Add( item7, 0, wxALIGN_CENTER, 5 );
 
     wxStaticText *item8 = new wxStaticText( parent, -1, _("Loading ..."), wxDefaultPosition, wxSize(140,-1), wxST_NO_AUTORESIZE );
-    item8->SetToolTip( _("Events are displayed here. For a complete list of events, refer to the log in the Servers-tab.") );
     item8->SetName( wxT("infoLabel") );
     item6->Add( item8, 1, wxFIXED_MINSIZE|wxALIGN_CENTER|wxLEFT, 5 );
 
@@ -980,7 +979,7 @@ wxSizer *downloadDlg( wxWindow *parent, bool call_fit, bool set_sizer )
     wxStaticText *item2 = new wxStaticText( parent, -1, _("Downloading, please wait ..."), wxDefaultPosition, wxDefaultSize, 0 );
     item0->Add( item2, 0, wxALIGN_CENTER|wxLEFT|wxRIGHT, 5 );
 
-    wxGauge *item3 = new wxGauge( parent, ID_HTTPDOWNLOADPROGRESS, 100, wxDefaultPosition, wxSize(-1,10), wxGA_SMOOTH );
+    wxGauge *item3 = new wxGauge( parent, ID_HTTPDOWNLOADPROGRESS, 100, wxDefaultPosition, wxSize(-1,10), wxGA_SMOOTH|wxGA_PROGRESSBAR );
     item0->Add( item3, 0, wxGROW|wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 
     wxStaticText *item4 = new wxStaticText( parent, IDC_DOWNLOADSIZE, _("Unknown size"), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTRE );

@@ -105,7 +105,6 @@ BEGIN_EVENT_TABLE(CamuleDlg, wxFrame)
 	EVT_ICONIZE(CamuleDlg::OnMinimize)
 
 	EVT_BUTTON(ID_BUTTON_FAST, CamuleDlg::OnBnClickedFast)
-	EVT_BUTTON(IDC_SHOWSTATUSTEXT, CamuleDlg::OnBnStatusText)
 
 	EVT_TIMER(ID_GUI_TIMER_EVENT, CamuleDlg::OnGUITimer)
 
@@ -287,12 +286,12 @@ m_clientSkinNames(CLIENT_SKIN_SIZE)
 	wxASSERT(logs_notebook->GetPageCount() == 4);
 	wxASSERT(networks_notebook->GetPageCount() == 2);
 	
-	for (int i = 0; i < logs_notebook->GetPageCount(); ++i) {
+	for (uint32 i = 0; i < logs_notebook->GetPageCount(); ++i) {
 		m_logpages[i].page = logs_notebook->GetPage(i);
 		m_logpages[i].name = logs_notebook->GetPageText(i);
 	}
 
-	for (int i = 0; i < networks_notebook->GetPageCount(); ++i) {
+	for (uint32 i = 0; i < networks_notebook->GetPageCount(); ++i) {
 		m_networkpages[i].page = networks_notebook->GetPage(i);
 		m_networkpages[i].name = networks_notebook->GetPageText(i);
 	}
@@ -560,16 +559,6 @@ void CamuleDlg::OnBnConnect(wxCommandEvent& WXUNUSED(evt))
 }
 
 
-void CamuleDlg::OnBnStatusText(wxCommandEvent& WXUNUSED(evt))
-{
-	wxString line = CastChild(wxT("infoLabel"), wxStaticText)->GetLabel();
-
-	if (!line.IsEmpty()) {
-		wxMessageBox(line, wxString(_("Status text")), wxOK|wxICON_INFORMATION, this);
-	}
-}
-
-
 void CamuleDlg::ResetLog(int id)
 {
 	wxTextCtrl* ct = CastByID(id, m_serverwnd, wxTextCtrl);
@@ -626,6 +615,7 @@ void CamuleDlg::AddLogLine(bool addtostatusbar, const wxString& line)
 		wxStaticText* text = CastChild( wxT("infoLabel"), wxStaticText );
 		// Only show the first line if multiple lines
 		text->SetLabel( bufferline.BeforeFirst( wxT('\n') ) );
+		text->SetToolTip( bufferline );
 		text->GetParent()->Layout();
 	}
 	
@@ -826,8 +816,8 @@ void CamuleDlg::ShowTransferRate()
 
 	// Show upload/download speed in title
 	if (thePrefs::GetShowRatesOnTitle()) {
-		wxString UpDownSpeed = wxString::Format(wxT(" -- Up: %.1f | Down: %.1f"), kBpsUp, kBpsDown);
-		SetTitle(theApp->m_FrameTitle + UpDownSpeed);
+		wxString UpDownSpeed = wxString::Format(wxT("%.1f | %.1f -- "), kBpsUp, kBpsDown);
+		SetTitle(UpDownSpeed + theApp->m_FrameTitle);
 	}
 
 	wxASSERT((m_wndTaskbarNotifier != NULL) == thePrefs::UseTrayIcon());
