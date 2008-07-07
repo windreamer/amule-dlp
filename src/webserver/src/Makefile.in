@@ -41,7 +41,7 @@ build_triplet = @build@
 host_triplet = @host@
 bin_PROGRAMS = amuleweb$(EXEEXT)
 @ENABLE_UPNP_TRUE@am__append_1 = \
-@ENABLE_UPNP_TRUE@	$(top_srcdir)/src/UPnP.cpp \
+@ENABLE_UPNP_TRUE@	$(top_srcdir)/src/UPnPBase.cpp \
 @ENABLE_UPNP_TRUE@	UPnPCompatibility.cpp
 
 subdir = src/webserver/src
@@ -76,8 +76,8 @@ am__amuleweb_SOURCES_DIST = WebServer.cpp WebInterface.cpp \
 	$(top_srcdir)/src/OtherFunctions.cpp $(top_srcdir)/src/RLE.cpp \
 	$(top_srcdir)/src/NetworkFunctions.cpp php_parser.c \
 	php_lexer.c php_syntree.cpp php_amule_lib.cpp php_core_lib.cpp \
-	$(top_srcdir)/src/UPnP.cpp UPnPCompatibility.cpp
-@ENABLE_UPNP_TRUE@am__objects_1 = amuleweb-UPnP.$(OBJEXT) \
+	$(top_srcdir)/src/UPnPBase.cpp UPnPCompatibility.cpp
+@ENABLE_UPNP_TRUE@am__objects_1 = amuleweb-UPnPBase.$(OBJEXT) \
 @ENABLE_UPNP_TRUE@	amuleweb-UPnPCompatibility.$(OBJEXT)
 am_amuleweb_OBJECTS = amuleweb-WebServer.$(OBJEXT) \
 	amuleweb-WebInterface.$(OBJEXT) amuleweb-WebSocket.$(OBJEXT) \
@@ -451,7 +451,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuleweb-NetworkFunctions.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuleweb-OtherFunctions.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuleweb-RLE.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuleweb-UPnP.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuleweb-UPnPBase.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuleweb-UPnPCompatibility.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuleweb-WebInterface.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuleweb-WebServer.Po@am__quote@
@@ -658,19 +658,19 @@ amuleweb-php_core_lib.obj: php_core_lib.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-php_core_lib.obj `if test -f 'php_core_lib.cpp'; then $(CYGPATH_W) 'php_core_lib.cpp'; else $(CYGPATH_W) '$(srcdir)/php_core_lib.cpp'; fi`
 
-amuleweb-UPnP.o: $(top_srcdir)/src/UPnP.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-UPnP.o -MD -MP -MF "$(DEPDIR)/amuleweb-UPnP.Tpo" -c -o amuleweb-UPnP.o `test -f '$(top_srcdir)/src/UPnP.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/UPnP.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuleweb-UPnP.Tpo" "$(DEPDIR)/amuleweb-UPnP.Po"; else rm -f "$(DEPDIR)/amuleweb-UPnP.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/UPnP.cpp' object='amuleweb-UPnP.o' libtool=no @AMDEPBACKSLASH@
+amuleweb-UPnPBase.o: $(top_srcdir)/src/UPnPBase.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-UPnPBase.o -MD -MP -MF "$(DEPDIR)/amuleweb-UPnPBase.Tpo" -c -o amuleweb-UPnPBase.o `test -f '$(top_srcdir)/src/UPnPBase.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/UPnPBase.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuleweb-UPnPBase.Tpo" "$(DEPDIR)/amuleweb-UPnPBase.Po"; else rm -f "$(DEPDIR)/amuleweb-UPnPBase.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/UPnPBase.cpp' object='amuleweb-UPnPBase.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-UPnP.o `test -f '$(top_srcdir)/src/UPnP.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/UPnP.cpp
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-UPnPBase.o `test -f '$(top_srcdir)/src/UPnPBase.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/UPnPBase.cpp
 
-amuleweb-UPnP.obj: $(top_srcdir)/src/UPnP.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-UPnP.obj -MD -MP -MF "$(DEPDIR)/amuleweb-UPnP.Tpo" -c -o amuleweb-UPnP.obj `if test -f '$(top_srcdir)/src/UPnP.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/UPnP.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/UPnP.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuleweb-UPnP.Tpo" "$(DEPDIR)/amuleweb-UPnP.Po"; else rm -f "$(DEPDIR)/amuleweb-UPnP.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/UPnP.cpp' object='amuleweb-UPnP.obj' libtool=no @AMDEPBACKSLASH@
+amuleweb-UPnPBase.obj: $(top_srcdir)/src/UPnPBase.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-UPnPBase.obj -MD -MP -MF "$(DEPDIR)/amuleweb-UPnPBase.Tpo" -c -o amuleweb-UPnPBase.obj `if test -f '$(top_srcdir)/src/UPnPBase.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/UPnPBase.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/UPnPBase.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuleweb-UPnPBase.Tpo" "$(DEPDIR)/amuleweb-UPnPBase.Po"; else rm -f "$(DEPDIR)/amuleweb-UPnPBase.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/UPnPBase.cpp' object='amuleweb-UPnPBase.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-UPnP.obj `if test -f '$(top_srcdir)/src/UPnP.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/UPnP.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/UPnP.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-UPnPBase.obj `if test -f '$(top_srcdir)/src/UPnPBase.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/UPnPBase.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/UPnPBase.cpp'; fi`
 
 amuleweb-UPnPCompatibility.o: UPnPCompatibility.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-UPnPCompatibility.o -MD -MP -MF "$(DEPDIR)/amuleweb-UPnPCompatibility.Tpo" -c -o amuleweb-UPnPCompatibility.o `test -f 'UPnPCompatibility.cpp' || echo '$(srcdir)/'`UPnPCompatibility.cpp; \

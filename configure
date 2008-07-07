@@ -8273,10 +8273,7 @@ fi
 # Check whether --with-libupnp-prefix or --without-libupnp-prefix was given.
 if test "${with_libupnp_prefix+set}" = set; then
   withval="$with_libupnp_prefix"
-  if test -n "$PKG_CONFIG"; then
-  PKG_CONFIG="PKG_CONFIG_PATH=$withval/lib/pkgconfig $PKG_CONFIG"
-fi
-
+  export PKG_CONFIG_PATH=$withval/lib/pkgconfig
 fi;
 
 	if test $cross_compiling = no; then
@@ -21179,8 +21176,12 @@ fi
 
 echo "                                       wxWidgets             ${WX_VERSION_FULL} ($wxinfo)"
 echo "                                       crypto++              ${CRYPTOPP_VERSION_STRING} (${CRYPTOPP_STYLE}, in ${CRYPTOPP_PREFIX})"
+if test -n "$with_libupnp_prefix"; then
+  libupnp_place=" (in $with_libupnp_prefix)"
+fi
+
 if test x${ENABLE_UPNP} = xyes; then
-  echo "                                       libupnp               ${LIBUPNP_VERSION:-Not detected}"
+  echo "                                       libupnp               ${LIBUPNP_VERSION:-Not detected}${libupnp_place:-}"
 
 fi
 if test x${WEB:-no} != xno; then

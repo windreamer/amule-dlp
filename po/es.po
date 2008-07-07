@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-06 03:30+0200\n"
-"PO-Revision-Date: 2008-06-18 00:19+0200\n"
+"POT-Creation-Date: 2008-07-07 03:30+0200\n"
+"PO-Revision-Date: 2008-07-05 12:44+0100\n"
 "Last-Translator: Mad-Soft <mad.soft@gmail.com>\n"
 "Language-Team: Spanish <mad.soft@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 "X-Poedit-Country: SPAIN\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/libs/ec/cpp/RemoteConnect.cpp:86 src/libs/ec/cpp/RemoteConnect.cpp:94
 msgid "You must specify a non-empty password."
@@ -541,7 +541,7 @@ msgid_plural "Only %d Kad contacts available, nodes.dat not written"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/kademlia/routing/RoutingZone.cpp:236
+#: src/kademlia/routing/RoutingZone.cpp:235
 #, c-format
 msgid "Wrote %d Kad contact"
 msgid_plural "Wrote %d Kad contacts"
@@ -1554,15 +1554,15 @@ msgstr "Turco"
 
 #: src/Preferences.cpp:842
 msgid "User:"
-msgstr ""
+msgstr "Usuario:"
 
 #: src/Preferences.cpp:867
 msgid "System:"
-msgstr ""
+msgstr "Sistema:"
 
 #: src/Preferences.cpp:878
 msgid "no options available"
-msgstr ""
+msgstr "opciones no disponibles"
 
 #: src/Preferences.cpp:1672
 msgid ""
@@ -1760,34 +1760,40 @@ msgid ""
 "'All-Platform' p2p client based on eMule \n"
 "\n"
 msgstr ""
+"Cliente p2p multiplataforma basado en eMule \n"
+"\n"
 
 #: src/amuleDlg.cpp:465
 msgid "Website: http://www.amule.org \n"
-msgstr ""
+msgstr "Web: http://www.amule.org \n"
 
 #: src/amuleDlg.cpp:466
 msgid "Forum: http://forum.amule.org \n"
-msgstr ""
+msgstr "Foro: http://forum.amule.org \n"
 
 #: src/amuleDlg.cpp:467
 msgid ""
 "FAQ: http://wiki.amule.org \n"
 "\n"
 msgstr ""
+"FAQ: http://wiki.amule.org \n"
+"\n"
 
 #: src/amuleDlg.cpp:468
 msgid "Contact: admin@amule.org (administrative issues) \n"
-msgstr ""
+msgstr "Contactar: admin@amule.org (problemas administrativos) \n"
 
 #: src/amuleDlg.cpp:469
 msgid ""
 "Copyright (C) 2003-2008 aMule Team \n"
 "\n"
 msgstr ""
+"Copyright (C) 2003-2008 Equipo aMule \n"
+"\n"
 
 #: src/amuleDlg.cpp:470
 msgid "Part of aMule is based on \n"
-msgstr ""
+msgstr "Parte de aMule está basado en \n"
 
 #: src/amuleDlg.cpp:471
 msgid "Kademlia: Peer-to-peer routing based on the XOR metric.\n"
@@ -1795,11 +1801,11 @@ msgstr " Kademlia: Direccionamiento P2P basado en la métrica XOR.\n"
 
 #: src/amuleDlg.cpp:472
 msgid "Copyright (C) 2002 Petar Maymounkov\n"
-msgstr ""
+msgstr "Copyright (C) 2002 Petar Maymounkov\n"
 
 #: src/amuleDlg.cpp:473
 msgid "http://kademlia.scs.cs.nyu.edu\n"
-msgstr ""
+msgstr "http://kademlia.scs.cs.nyu.edu\n"
 
 #: src/amuleDlg.cpp:476 src/PrefsUnifiedDlg.cpp:507
 #: src/PrefsUnifiedDlg.cpp:602 src/PrefsUnifiedDlg.cpp:689 src/KadDlg.cpp:177
@@ -2198,7 +2204,7 @@ msgstr "Intervalo de refresco de la conexión al servidor: Deshabilitado"
 
 #: src/PrefsUnifiedDlg.cpp:1024
 msgid "UDP port for extended server requests (TCP+3):"
-msgstr ""
+msgstr "Puerto UDP para peticiones extendidas del servidor (TCP+3):"
 
 #: src/PrefsUnifiedDlg.cpp:1043
 #, c-format
@@ -4844,6 +4850,9 @@ msgid ""
 "For a film you can say its length, its story, language ...\\n\\nand if it's "
 "a fake, you can tell that to other users of aMule."
 msgstr ""
+"Para una película, puedes poner su duración, su historia, el idioma ...\\n"
+"\\ny si es una falsificación (fake) puedes informar a los demás usuarios de "
+"aMule."
 
 #: src/muuli_wdr.cpp:893
 msgid "File Quality"
@@ -5049,7 +5058,7 @@ msgstr "Alias"
 
 #: src/muuli_wdr.cpp:1589
 msgid "http://www.aMule.org - the multi-platform Mule"
-msgstr ""
+msgstr "http://www.aMule.org - la mula multi-plataforma"
 
 #: src/muuli_wdr.cpp:1590
 msgid "This is the name that other users will see when connecting to you."
@@ -5128,6 +5137,8 @@ msgid ""
 "Enter your browser name here. Leave this field empty to use the system "
 "default browser."
 msgstr ""
+"Introduce el nombre de tú navegador. Dejaló en blanco si quieres usar el de "
+"por defecto."
 
 #: src/muuli_wdr.cpp:1659
 msgid "Open in new tab if possible"
@@ -6004,7 +6015,7 @@ msgstr ""
 
 #: src/muuli_wdr.cpp:3197
 msgid "Show messages in log"
-msgstr ""
+msgstr "Mostrar mensajes en el registro"
 
 #: src/muuli_wdr.cpp:3202
 msgid "Comments"

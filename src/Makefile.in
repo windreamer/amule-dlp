@@ -52,7 +52,7 @@ bin_PROGRAMS = $(am__EXEEXT_1) $(am__EXEEXT_2) $(am__EXEEXT_3) \
 @AMULE_DAEMON_TRUE@@MONOLITHIC_FALSE@am__append_8 = libmuleappcore.a libmuleappcommon.a
 @AMULE_DAEMON_FALSE@@AMULE_GUI_TRUE@@MONOLITHIC_FALSE@am__append_9 = libmuleappgui.a libmuleappcommon.a
 @ENABLE_UPNP_TRUE@am__append_10 = \
-@ENABLE_UPNP_TRUE@	UPnP.cpp \
+@ENABLE_UPNP_TRUE@	UPnPBase.cpp \
 @ENABLE_UPNP_TRUE@	UPnPCompatibility.cpp
 
 @ENABLE_IP2COUNTRY_TRUE@am__append_11 = \
@@ -161,7 +161,7 @@ am__amule_SOURCES_DIST = RC4Encrypt.cpp amule.cpp BaseClient.cpp \
 	kademlia/kademlia/UDPFirewallTester.cpp \
 	kademlia/net/KademliaUDPListener.cpp \
 	kademlia/net/PacketTracking.cpp kademlia/routing/Contact.cpp \
-	kademlia/routing/RoutingZone.cpp UPnP.cpp \
+	kademlia/routing/RoutingZone.cpp UPnPBase.cpp \
 	UPnPCompatibility.cpp amule-gui.cpp amuleDlg.cpp AddFriend.cpp \
 	CatDialog.cpp ChatSelector.cpp ClientDetailDialog.cpp \
 	FileDetailDialog.cpp KadDlg.cpp OScopeCtrl.cpp \
@@ -176,7 +176,7 @@ am__amule_SOURCES_DIST = RC4Encrypt.cpp amule.cpp BaseClient.cpp \
 	StatTree.cpp SHAHashSet.cpp TerminationProcess.cpp \
 	TerminationProcessAmuleweb.cpp UserEvents.cpp \
 	OtherFunctions.cpp NetworkFunctions.cpp
-@ENABLE_UPNP_TRUE@am__objects_1 = amule-UPnP.$(OBJEXT) \
+@ENABLE_UPNP_TRUE@am__objects_1 = amule-UPnPBase.$(OBJEXT) \
 @ENABLE_UPNP_TRUE@	amule-UPnPCompatibility.$(OBJEXT)
 am__objects_2 = amule-RC4Encrypt.$(OBJEXT) amule-amule.$(OBJEXT) \
 	amule-BaseClient.$(OBJEXT) amule-ClientList.$(OBJEXT) \
@@ -262,14 +262,14 @@ am__amuled_SOURCES_DIST = amuled.cpp Timer.cpp RC4Encrypt.cpp \
 	kademlia/kademlia/UDPFirewallTester.cpp \
 	kademlia/net/KademliaUDPListener.cpp \
 	kademlia/net/PacketTracking.cpp kademlia/routing/Contact.cpp \
-	kademlia/routing/RoutingZone.cpp UPnP.cpp \
+	kademlia/routing/RoutingZone.cpp UPnPBase.cpp \
 	UPnPCompatibility.cpp ClientCredits.cpp ECSpecialMuleTags.cpp \
 	KnownFile.cpp GetTickCount.cpp GuiEvents.cpp Logger.cpp \
 	PartFile.cpp Preferences.cpp Proxy.cpp Server.cpp \
 	Statistics.cpp StatTree.cpp SHAHashSet.cpp \
 	TerminationProcess.cpp TerminationProcessAmuleweb.cpp \
 	UserEvents.cpp OtherFunctions.cpp NetworkFunctions.cpp
-@ENABLE_UPNP_TRUE@am__objects_8 = amuled-UPnP.$(OBJEXT) \
+@ENABLE_UPNP_TRUE@am__objects_8 = amuled-UPnPBase.$(OBJEXT) \
 @ENABLE_UPNP_TRUE@	amuled-UPnPCompatibility.$(OBJEXT)
 am__objects_9 = amuled-RC4Encrypt.$(OBJEXT) amuled-amule.$(OBJEXT) \
 	amuled-BaseClient.$(OBJEXT) amuled-ClientList.$(OBJEXT) \
@@ -950,7 +950,7 @@ noinst_HEADERS = \
 		updownclient.h \
 		UploadBandwidthThrottler.h \
 		UploadQueue.h \
-		UPnP.h \
+		UPnPBase.h \
 		UPnPCompatibility.h \
 		UserEvents.h \
 		extern/wxWidgets/listctrl.h
@@ -1133,7 +1133,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ThreadTasks.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-TransferWnd.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-UDPFirewallTester.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-UPnP.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-UPnPBase.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-UPnPCompatibility.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-UploadBandwidthThrottler.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-UploadClient.Po@am__quote@
@@ -1201,7 +1201,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-ThreadTasks.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-Timer.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-UDPFirewallTester.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-UPnP.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-UPnPBase.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-UPnPCompatibility.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-UploadBandwidthThrottler.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-UploadClient.Po@am__quote@
@@ -2429,19 +2429,19 @@ amule-RoutingZone.obj: kademlia/routing/RoutingZone.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-RoutingZone.obj `if test -f 'kademlia/routing/RoutingZone.cpp'; then $(CYGPATH_W) 'kademlia/routing/RoutingZone.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/routing/RoutingZone.cpp'; fi`
 
-amule-UPnP.o: UPnP.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-UPnP.o -MD -MP -MF "$(DEPDIR)/amule-UPnP.Tpo" -c -o amule-UPnP.o `test -f 'UPnP.cpp' || echo '$(srcdir)/'`UPnP.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-UPnP.Tpo" "$(DEPDIR)/amule-UPnP.Po"; else rm -f "$(DEPDIR)/amule-UPnP.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='UPnP.cpp' object='amule-UPnP.o' libtool=no @AMDEPBACKSLASH@
+amule-UPnPBase.o: UPnPBase.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-UPnPBase.o -MD -MP -MF "$(DEPDIR)/amule-UPnPBase.Tpo" -c -o amule-UPnPBase.o `test -f 'UPnPBase.cpp' || echo '$(srcdir)/'`UPnPBase.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-UPnPBase.Tpo" "$(DEPDIR)/amule-UPnPBase.Po"; else rm -f "$(DEPDIR)/amule-UPnPBase.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='UPnPBase.cpp' object='amule-UPnPBase.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-UPnP.o `test -f 'UPnP.cpp' || echo '$(srcdir)/'`UPnP.cpp
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-UPnPBase.o `test -f 'UPnPBase.cpp' || echo '$(srcdir)/'`UPnPBase.cpp
 
-amule-UPnP.obj: UPnP.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-UPnP.obj -MD -MP -MF "$(DEPDIR)/amule-UPnP.Tpo" -c -o amule-UPnP.obj `if test -f 'UPnP.cpp'; then $(CYGPATH_W) 'UPnP.cpp'; else $(CYGPATH_W) '$(srcdir)/UPnP.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-UPnP.Tpo" "$(DEPDIR)/amule-UPnP.Po"; else rm -f "$(DEPDIR)/amule-UPnP.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='UPnP.cpp' object='amule-UPnP.obj' libtool=no @AMDEPBACKSLASH@
+amule-UPnPBase.obj: UPnPBase.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-UPnPBase.obj -MD -MP -MF "$(DEPDIR)/amule-UPnPBase.Tpo" -c -o amule-UPnPBase.obj `if test -f 'UPnPBase.cpp'; then $(CYGPATH_W) 'UPnPBase.cpp'; else $(CYGPATH_W) '$(srcdir)/UPnPBase.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-UPnPBase.Tpo" "$(DEPDIR)/amule-UPnPBase.Po"; else rm -f "$(DEPDIR)/amule-UPnPBase.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='UPnPBase.cpp' object='amule-UPnPBase.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-UPnP.obj `if test -f 'UPnP.cpp'; then $(CYGPATH_W) 'UPnP.cpp'; else $(CYGPATH_W) '$(srcdir)/UPnP.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-UPnPBase.obj `if test -f 'UPnPBase.cpp'; then $(CYGPATH_W) 'UPnPBase.cpp'; else $(CYGPATH_W) '$(srcdir)/UPnPBase.cpp'; fi`
 
 amule-UPnPCompatibility.o: UPnPCompatibility.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-UPnPCompatibility.o -MD -MP -MF "$(DEPDIR)/amule-UPnPCompatibility.Tpo" -c -o amule-UPnPCompatibility.o `test -f 'UPnPCompatibility.cpp' || echo '$(srcdir)/'`UPnPCompatibility.cpp; \
@@ -3703,19 +3703,19 @@ amuled-RoutingZone.obj: kademlia/routing/RoutingZone.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-RoutingZone.obj `if test -f 'kademlia/routing/RoutingZone.cpp'; then $(CYGPATH_W) 'kademlia/routing/RoutingZone.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/routing/RoutingZone.cpp'; fi`
 
-amuled-UPnP.o: UPnP.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-UPnP.o -MD -MP -MF "$(DEPDIR)/amuled-UPnP.Tpo" -c -o amuled-UPnP.o `test -f 'UPnP.cpp' || echo '$(srcdir)/'`UPnP.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-UPnP.Tpo" "$(DEPDIR)/amuled-UPnP.Po"; else rm -f "$(DEPDIR)/amuled-UPnP.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='UPnP.cpp' object='amuled-UPnP.o' libtool=no @AMDEPBACKSLASH@
+amuled-UPnPBase.o: UPnPBase.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-UPnPBase.o -MD -MP -MF "$(DEPDIR)/amuled-UPnPBase.Tpo" -c -o amuled-UPnPBase.o `test -f 'UPnPBase.cpp' || echo '$(srcdir)/'`UPnPBase.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-UPnPBase.Tpo" "$(DEPDIR)/amuled-UPnPBase.Po"; else rm -f "$(DEPDIR)/amuled-UPnPBase.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='UPnPBase.cpp' object='amuled-UPnPBase.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-UPnP.o `test -f 'UPnP.cpp' || echo '$(srcdir)/'`UPnP.cpp
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-UPnPBase.o `test -f 'UPnPBase.cpp' || echo '$(srcdir)/'`UPnPBase.cpp
 
-amuled-UPnP.obj: UPnP.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-UPnP.obj -MD -MP -MF "$(DEPDIR)/amuled-UPnP.Tpo" -c -o amuled-UPnP.obj `if test -f 'UPnP.cpp'; then $(CYGPATH_W) 'UPnP.cpp'; else $(CYGPATH_W) '$(srcdir)/UPnP.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-UPnP.Tpo" "$(DEPDIR)/amuled-UPnP.Po"; else rm -f "$(DEPDIR)/amuled-UPnP.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='UPnP.cpp' object='amuled-UPnP.obj' libtool=no @AMDEPBACKSLASH@
+amuled-UPnPBase.obj: UPnPBase.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-UPnPBase.obj -MD -MP -MF "$(DEPDIR)/amuled-UPnPBase.Tpo" -c -o amuled-UPnPBase.obj `if test -f 'UPnPBase.cpp'; then $(CYGPATH_W) 'UPnPBase.cpp'; else $(CYGPATH_W) '$(srcdir)/UPnPBase.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-UPnPBase.Tpo" "$(DEPDIR)/amuled-UPnPBase.Po"; else rm -f "$(DEPDIR)/amuled-UPnPBase.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='UPnPBase.cpp' object='amuled-UPnPBase.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-UPnP.obj `if test -f 'UPnP.cpp'; then $(CYGPATH_W) 'UPnP.cpp'; else $(CYGPATH_W) '$(srcdir)/UPnP.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-UPnPBase.obj `if test -f 'UPnPBase.cpp'; then $(CYGPATH_W) 'UPnPBase.cpp'; else $(CYGPATH_W) '$(srcdir)/UPnPBase.cpp'; fi`
 
 amuled-UPnPCompatibility.o: UPnPCompatibility.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-UPnPCompatibility.o -MD -MP -MF "$(DEPDIR)/amuled-UPnPCompatibility.Tpo" -c -o amuled-UPnPCompatibility.o `test -f 'UPnPCompatibility.cpp' || echo '$(srcdir)/'`UPnPCompatibility.cpp; \
