@@ -30,6 +30,9 @@ Version 2.2.2 - Whatever comes next.
 		* Added the m4 macro to test for libupnp.
 		* Updated amule_build_install.sh to work with
 		  --with-libupnp-prefix.
+		* Added a search for WANCommonInterfaceConfig and
+		  Layer3Forwarding services for UPnP, aside from
+		  WANIPConnection and WANPPPConnection.
 
 	Stu Redman:
 		* Scanner fix for MSVC compilation
@@ -40,8 +43,6 @@ Version 2.2.2 - Whatever comes next.
 		* Fixed free disc space check
 		* Sanity check before writing nodes.dat - don't write it 
 		  if there are less than 25 contacts
-		* Moved transfer rates in title to the front (so they are visible
-		  in a task bar)
 
 	Vollstrecker:
 		* Made possible to deactivate xas
