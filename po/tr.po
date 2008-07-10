@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: tr\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-07-09 03:31+0200\n"
-"PO-Revision-Date: 2008-07-05 14:04+0300\n"
+"PO-Revision-Date: 2008-07-08 17:35+0300\n"
 "Last-Translator: Atilla ÖNTAŞ <atilla_ontas@hotmail.com>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -527,8 +527,8 @@ msgstr[1] "%u adet Kademlia bağlantısı okundu"
 #, c-format
 msgid "Only %d Kad contact available, nodes.dat not written"
 msgid_plural "Only %d Kad contacts available, nodes.dat not written"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Sadece %d Kad bağlantısı var. Nodes.dat yazılamadı"
+msgstr[1] "Sadece %d adet Kad bağlantısı var. Nodes.dat yazılamadı"
 
 #: src/kademlia/routing/RoutingZone.cpp:235
 #, c-format
@@ -547,7 +547,7 @@ msgstr "web aracı bağlantısı kabul edildi\n"
 
 #: src/webserver/src/WebServer.cpp:309
 msgid "ERROR: cannot accept web client connection\n"
-msgstr ""
+msgstr "HATA: web aracı bağlantısı kabul edilemiyor\n"
 
 #: src/webserver/src/WebServer.cpp:379
 #, c-format
@@ -588,7 +588,7 @@ msgstr "İstem işleniyor [özgün]: "
 
 #: src/webserver/src/WebServer.cpp:1874
 msgid "Checking password\n"
-msgstr "Şifre kontrol ediliyor\n"
+msgstr "Şifre denetleniyor\n"
 
 #: src/webserver/src/WebServer.cpp:1879
 msgid "Password hash invalid\n"
@@ -939,7 +939,7 @@ msgstr "bağlanıyor..."
 
 #: src/utils/wxCas/src/wxcasframe.cpp:1023
 msgid " is doing something strange, check it !"
-msgstr "garip şeyler yapıyor, kontrol ediniz !"
+msgstr "garip şeyler yapıyor, denetleyiniz !"
 
 #: src/utils/wxCas/src/wxcasframe.cpp:1044
 msgid " is connected to "
@@ -1537,11 +1537,11 @@ msgstr "Türkçe"
 
 #: src/Preferences.cpp:841
 msgid "User:"
-msgstr "Kullanıcı:"
+msgstr "User:"
 
 #: src/Preferences.cpp:867
 msgid "System:"
-msgstr "Sistem:"
+msgstr "System:"
 
 #: src/Preferences.cpp:878
 msgid "no options available"
@@ -1721,7 +1721,7 @@ msgstr "%s üzerinde çalışıyor"
 
 #: src/amuleDlg.cpp:227
 msgid "Visit http://www.amule.org to check if a new version is available."
-msgstr "Yeni sürüm kontrolü için http://www.amule.org adresini ziyaret ediniz."
+msgstr "Yeni sürüm denetimi için http://www.amule.org adresini ziyaret ediniz."
 
 #: src/amuleDlg.cpp:250
 msgid "FATAL ERROR: Failed to create Timer"
@@ -1729,7 +1729,7 @@ msgstr "Başarısız"
 
 #: src/amuleDlg.cpp:456
 msgid "aMule remote control "
-msgstr "aMule uzak kontrolü"
+msgstr "aMule uzak denetimi"
 
 #: src/amuleDlg.cpp:462
 msgid "Snapshot:"
@@ -1977,7 +1977,7 @@ msgstr "İleti Süzgeci"
 
 #: src/PrefsUnifiedDlg.cpp:173
 msgid "Remote Controls"
-msgstr "Uzaktan Kontroller"
+msgstr "Uzaktan Denetimler"
 
 #: src/PrefsUnifiedDlg.cpp:174
 msgid "Online Signature"
@@ -2026,6 +2026,8 @@ msgid ""
 "Your Auto-update server list is empty.\n"
 "'Auto-update server list at startup' will be disabled."
 msgstr ""
+"Otomatik Sunucu güncelleme listeniz boş.\n"
+"'Sunucu listesini başlangıçta otomatikman güncelle' devre dışı bırakılacak."
 
 #: src/PrefsUnifiedDlg.cpp:523
 msgid ""
@@ -2956,7 +2958,7 @@ msgstr "Toplam Kullanıcılar: %s | Toplam Dosyalar: %s"
 
 #: src/DownloadListCtrl.cpp:187
 msgid "Part"
-msgstr ""
+msgstr "Parça"
 
 #: src/DownloadListCtrl.cpp:190 src/ClientListCtrl.cpp:503
 msgid "Transferred"
@@ -3151,7 +3153,7 @@ msgstr "HATA: part.met dosyası 0 boyuta sahip: %s ==> %s"
 #: src/PartFile.cpp:351
 #, c-format
 msgid "ERROR: Invalid part.met file version: %s ==> %s"
-msgstr ""
+msgstr "HATA: Geçersiz part.met dosya sürümü: %s ==> %s"
 
 #: src/PartFile.cpp:601
 #, c-format
@@ -3325,7 +3327,7 @@ msgstr "UYARI."
 
 #: src/KnownFileList.cpp:86
 msgid "WARNING: Known file list corrupted, contains invalid header."
-msgstr ""
+msgstr "UYARI: Bilinen dosya listesi bozuk. Geçersiz başlık içeriyor."
 
 #: src/KnownFileList.cpp:112
 #, c-format
@@ -5009,7 +5011,7 @@ msgstr "Arayüzde kullanılacak dil."
 
 #: src/muuli_wdr.cpp:1608
 msgid "Check for new version at startup"
-msgstr "Yeni sürümü başlangıçta kontrol et."
+msgstr "Yeni sürümü başlangıçta denetle."
 
 #: src/muuli_wdr.cpp:1609
 msgid "Enabling this will make aMule check for new version at startup"
@@ -5029,7 +5031,7 @@ msgstr "Çıkışta uyar"
 
 #: src/muuli_wdr.cpp:1618
 msgid "Makes aMule prompt before exiting."
-msgstr ""
+msgstr "aMule' nin çıkıştan önce uyarmasını sağlar."
 
 #: src/muuli_wdr.cpp:1621
 msgid "Enable Tray Icon"
@@ -5085,11 +5087,11 @@ msgstr "Ortam Çalıcısı"
 
 #: src/muuli_wdr.cpp:1677
 msgid "Create backup for preview"
-msgstr ""
+msgstr "Ön izleme için yedekleme oluştur"
 
 #: src/muuli_wdr.cpp:1698
 msgid "Bandwidth limits"
-msgstr ""
+msgstr "Bağlantı sınırları"
 
 #: src/muuli_wdr.cpp:1714 src/muuli_wdr.cpp:1758
 msgid "Upload"
@@ -5125,7 +5127,7 @@ msgstr "Genişletilmiş UDP Portu:"
 
 #: src/muuli_wdr.cpp:1796
 msgid "This UDP port is used for extended eD2k requests and Kad network"
-msgstr ""
+msgstr "Bu UDP portu genişletilmiş eD2k istemleri ve Kad ağı için kullanılır"
 
 #: src/muuli_wdr.cpp:1799
 msgid "disable"
@@ -5140,6 +5142,8 @@ msgid ""
 "Advanced users only: If you have multiple network interfaces, enter the "
 "address of the interface to which aMule should be bound."
 msgstr ""
+"Sadece ileri düzey kullanıcılar: Birden fazla ağ arayüzünüz varsa; aMule'nin "
+"izleyeceği arayüz adresini giriniz."
 
 #: src/muuli_wdr.cpp:1818
 msgid "UDP port for extended server requests (TCP+3): 4665"
@@ -5183,7 +5187,7 @@ msgstr "Bağlantı koptuğunda yeniden bağlan"
 
 #: src/muuli_wdr.cpp:1884
 msgid "Show overhead bandwidth"
-msgstr ""
+msgstr "Ek yük ağ genişliğini göster"
 
 #: src/muuli_wdr.cpp:1911
 msgid "Remove dead server after"
@@ -5215,7 +5219,7 @@ msgstr "Öncelik sistemini kullan"
 
 #: src/muuli_wdr.cpp:1942
 msgid "Use smart LowID check on connect"
-msgstr "Bağlanırken akıllı DüşükID kontrolü yap"
+msgstr "Bağlanırken akıllı DüşükID denetimi yap"
 
 #: src/muuli_wdr.cpp:1946
 msgid "Safe connect"
@@ -5231,11 +5235,11 @@ msgstr "Elle eklenmiş sunuculara Yüksek Öncelik ata"
 
 #: src/muuli_wdr.cpp:1976
 msgid "Activate Intelligent Corruption Handling (I.C.H.)"
-msgstr ""
+msgstr "Akıllı Bozulma Yakalayıcısı' nı (I.C.H.) etkinleştir."
 
 #: src/muuli_wdr.cpp:1980
 msgid "Advanced I.C.H. trusts every hash (not recommended)"
-msgstr ""
+msgstr "Gelişmiş I.C.H. her adreslemeye güvensin. ( önerilmez )"
 
 #: src/muuli_wdr.cpp:1988
 msgid "Add files to download in pause mode"
@@ -5447,7 +5451,7 @@ msgstr "İşlem çubuğunu göster. "
 
 #: src/muuli_wdr.cpp:2280
 msgid "Progressbar style"
-msgstr ""
+msgstr "İşlem çubuğu biçemi"
 
 #: src/muuli_wdr.cpp:2290
 msgid "Flat"
@@ -5492,11 +5496,11 @@ msgstr "Başlık çubuğunda aktarım oranlarını göster."
 
 #: src/muuli_wdr.cpp:2345
 msgid "Before application name"
-msgstr ""
+msgstr "Uygulama adından önce"
 
 #: src/muuli_wdr.cpp:2348
 msgid "After application name"
-msgstr ""
+msgstr "Uygulama adından sonra"
 
 #: src/muuli_wdr.cpp:2352
 msgid "Vertical toolbar orientation"
@@ -6656,7 +6660,7 @@ msgstr "Diğer sekmeleri kapat"
 
 #: src/amule-gui.cpp:196
 msgid "aMule remote control"
-msgstr ""
+msgstr "aMule Uzak Denetimi"
 
 #: src/ServerList.cpp:83
 #, c-format
@@ -6833,8 +6837,8 @@ msgstr ""
 "\n"
 "Bunun anlamı DÜŞÜKID alacağınızdır.\n"
 "\n"
-"Ağ ayarlarınızı kontrol ederek portun giriş ve çıkışlar için açık olup "
-"olmadığını kontrol ediniz."
+"Ağ ayarlarınıza göz atarak portun giriş ve çıkışlar için açık olup "
+"olmadığını denetleyiniz."
 
 #: src/amule.cpp:1122
 msgid "Failed to create OnlineSig File"
@@ -6971,11 +6975,11 @@ msgstr "Nod listesini indirme başarısız."
 
 #: src/amule.cpp:1876
 msgid "Failed to open the downloaded version check file"
-msgstr "İndirilen sürüm kontrol dosyasını açma başarısız oldu."
+msgstr "İndirilen sürüm denetleme dosyasını açma başarısız oldu."
 
 #: src/amule.cpp:1879 src/amule.cpp:1889 src/amule.cpp:1895
 msgid "Corrupted version check file"
-msgstr "Bozuk sürüm kontrol dosyası"
+msgstr "Bozuk sürüm denetleme dosyası"
 
 #: src/amule.cpp:1905
 msgid "You are using an outdated version of aMule!"
@@ -7001,7 +7005,7 @@ msgstr "aMule sürümünüz güncel."
 
 #: src/amule.cpp:1921
 msgid "Failed to download the version check file"
-msgstr "Sürüm kontrol dosyasını indirme başarısız oldu."
+msgstr "Sürüm denetleme dosyasını indirme başarısız oldu."
 
 #: src/amule.cpp:2024
 #, c-format
@@ -7070,199 +7074,3 @@ msgstr "Arkadaş listesi  'emfriends.met'  dosyası okunamıyor!"
 #: src/FriendList.cpp:146
 msgid "Failed to open friend list file 'emfriends.met' for writing!"
 msgstr "Arkadaş listesi  'emfriends.met'  dosyasına yazılamıyor!"
-
-#~ msgid "ERROR: can not accept web client connection\n"
-#~ msgstr "HATA: web aracı bağlantısı kabul edilemiyor\n"
-
-#~ msgid ""
-#~ "Your Auto-update server list is empty.\n"
-#~ "'Auto-update server list at startup will be disabled."
-#~ msgstr "Otomatik Otomatik başlangıç pasifleştirilmiş."
-
-#~ msgid "ERROR: Invalid part.met fileversion: %s ==> %s"
-#~ msgstr "HATA: geçersiz part.met dosya sürümü: %s ==> %s"
-
-#~ msgid "WARNING: Knownfile list corrupted, contains invalid header."
-#~ msgstr "UYARI."
-
-#~ msgid "Makes aMule promt before exiting."
-#~ msgstr "aMule'nin çıkışta sizi uyarmasını sağlar."
-
-#~ msgid "Bandwith limits"
-#~ msgstr "Bağlantı sınırları"
-
-#~ msgid "This UDP port is used for extended ed2k requests and Kad network"
-#~ msgstr "Kademlia"
-
-#~ msgid "Show overhead bandwith"
-#~ msgstr "Ek Yük Sınırını Göster"
-
-#~ msgid "I.C.H. active"
-#~ msgstr "I.C.H aktif"
-
-#~ msgid "AICH trusts every hash (not recomended)"
-#~ msgstr "AICH her adreslemeyi doğru kabul etsin. (önerilmez)"
-
-#~ msgid "Disk space"
-#~ msgstr "Disk alanı"
-
-#~ msgid "Create Backup for preview"
-#~ msgstr "Ön izleme için yedekleme oluştur"
-
-#~ msgid "Advanced Settings"
-#~ msgstr "İleri Ayarlar"
-
-#~ msgid "Progressbar Style"
-#~ msgstr "İşlem çubuğu biçemi"
-
-#~ msgid "Skin Support"
-#~ msgstr "Kaplama Desteği"
-
-#~ msgid "Column Sorting"
-#~ msgstr "Sütun Sıralama"
-
-#~ msgid "Misc Gui Tweaks"
-#~ msgstr "Çeşitli Arayüz Seçenekleri"
-
-#~ msgid "Show part file number before file name"
-#~ msgstr "İsimden önce parça dosyası numarasını göster."
-
-#~ msgid "File Options"
-#~ msgstr "Dosya Seçenekleri"
-
-#~ msgid "Status text"
-#~ msgstr "Durum iletisi"
-
-#~ msgid "Pop-up status text"
-#~ msgstr "Durum bilgi penceresi"
-
-#~ msgid ""
-#~ " 'All-Platform' p2p client based on eMule \n"
-#~ "\n"
-#~ msgstr ""
-#~ " eMule üzerine kurulu 'Sistem-Üstü' p2p yazılımı\n"
-#~ "\n"
-
-#~ msgid " Website: http://www.amule.org \n"
-#~ msgstr " Website: http://www.amule.org \n"
-
-#~ msgid " Forum: http://forum.amule.org \n"
-#~ msgstr " Forum: http://forum.amule.org \n"
-
-#~ msgid ""
-#~ " FAQ: http://wiki.amule.org \n"
-#~ "\n"
-#~ msgstr ""
-#~ " S.S.S.: http://wiki.amule.org \n"
-#~ "\n"
-
-#~ msgid " Contact: admin@amule.org (administrative issues) \n"
-#~ msgstr " İletişim: admin@amule.org (administrative issues) \n"
-
-#~ msgid ""
-#~ " Copyright (C) 2003-2008 aMule Team \n"
-#~ "\n"
-#~ msgstr ""
-#~ " Copyright (C) 2003-2008 aMule Ekibi \n"
-#~ "\n"
-
-#~ msgid " Part of aMule is based on \n"
-#~ msgstr " aMule'nin üzerine kurulduğu parçalar: \n"
-
-#~ msgid " Copyright (C) 2002 Petar Maymounkov\n"
-#~ msgstr " Copyright (C) 2002 Petar Maymounkov\n"
-
-#~ msgid " http://kademlia.scs.cs.nyu.edu\n"
-#~ msgstr " http://kademlia.scs.cs.nyu.edu\n"
-
-#~ msgid ""
-#~ "For a film you can say its length, its story, language ...\n"
-#~ "and if it's a fake, you can tell that to other users of aMule."
-#~ msgstr ""
-#~ "Bir filmin uzunluğu, öyküsü, dili hakkında yorumda bulunabilir\n"
-#~ " ve sahteyse diğer kullanıcıları uyarabilirsiniz."
-
-#~ msgid "Misc Options"
-#~ msgstr "Çeşitli Seçenekler"
-
-#~ msgid "Server Options"
-#~ msgstr "Sunucu Seçenekleri"
-
-#~ msgid "Display server motd when connected ..."
-#~ msgstr "Bağlanıldığında sunucu motd göster...."
-
-#~ msgid "eD2k Info"
-#~ msgstr "Bilgi"
-
-#~ msgid "Disable/Enable"
-#~ msgstr "Etkinleştir/Devre dışı bırak"
-
-#~ msgid "Authentication"
-#~ msgstr "Yetkilendirme"
-
-#~ msgid "General Settings"
-#~ msgstr "Genel Ayarlar"
-
-#~ msgid "Hard limit"
-#~ msgstr "Katı sınır"
-
-#~ msgid "Max Connections"
-#~ msgstr "En Fazla bağlantı sayısı"
-
-#~ msgid "GUI Tweaks"
-#~ msgstr "Arayüz Seçenekleri:"
-
-#~ msgid "Remote Control"
-#~ msgstr "Uzaktan Kontrol"
-
-#~ msgid "Unable to determine selected browser!"
-#~ msgstr "Seçili tarayıcı tanımlanamıyor!"
-
-#~ msgid "User Defined"
-#~ msgstr "Kullanıcı Tanımlı"
-
-#~ msgid "http://www.aMule.org - the Linux Mule"
-#~ msgstr "http://www.aMule.org - Linux Katırı"
-
-#~ msgid "Konqueror"
-#~ msgstr "Konqueror"
-
-#~ msgid "Mozilla"
-#~ msgstr "Mozilla"
-
-#~ msgid "Firefox"
-#~ msgstr "Firefox"
-
-#~ msgid "Firebird"
-#~ msgstr "Firebird"
-
-#~ msgid "Opera"
-#~ msgstr "Opera"
-
-#~ msgid "Netscape"
-#~ msgstr "Netscape"
-
-#~ msgid "Galeon"
-#~ msgstr "Galeon"
-
-#~ msgid "Epiphany"
-#~ msgstr "Epiphany"
-
-#~ msgid "Select your browser here"
-#~ msgstr "Tarayıcınızı burada seçiniz"
-
-#~ msgid "Custom Browser:"
-#~ msgstr "Kullanıcı Tanımlı Tarayıcı:"
-
-#~ msgid ""
-#~ "Enter your browser name here. To use the custom browser, select the "
-#~ "Custom menu-item from the dropdown-menu above."
-#~ msgstr ""
-#~ "Tarayıcınızın adını buraya giriniz. Kişisel bir tarayıcı kullanmak için "
-#~ "yukarıdaki 'Kullanıcı Tanımlı' seçeneğini seçiniz."
-
-#~ msgid "Please wait... "
-#~ msgstr "Lütfen bekleyiniz... "
-
-#~ msgid "Could not determine the command for running the browser."
-#~ msgstr "Tarayıcıyı çalıştırmak için gerekli komut belirlenemedi."
