@@ -84,7 +84,7 @@ uint16		CPreferences::s_slotallocation;
 wxString	CPreferences::s_Addr;
 uint16		CPreferences::s_port;
 uint16		CPreferences::s_udpport;
-bool		CPreferences::s_UDPDisable;
+bool		CPreferences::s_UDPEnable;
 uint16		CPreferences::s_maxconnections;
 bool		CPreferences::s_reconnect;
 bool		CPreferences::s_autoconnect;
@@ -188,6 +188,7 @@ wxString	CPreferences::s_Skin;
 bool		CPreferences::s_UseSkinFiles;
 bool		CPreferences::s_FastED2KLinksHandler;
 bool		CPreferences::s_ToolbarOrientation;
+bool		CPreferences::s_ShowPartFileNumber;
 bool		CPreferences::s_AICHTrustEveryHash;
 wxString 	CPreferences::s_CommentFilterString;
 bool		CPreferences::s_IPFilterAutoLoad;
@@ -209,11 +210,11 @@ bool		CPreferences::s_DropSlowSources;
 bool		CPreferences::s_IsClientCryptLayerSupported;
 bool		CPreferences::s_bCryptLayerRequested;
 bool		CPreferences::s_IsClientCryptLayerRequired;
-uint32	CPreferences::s_dwKadUDPKey;
-uint8	CPreferences::s_byCryptTCPPaddingLength;
+uint32		CPreferences::s_dwKadUDPKey;
+uint8		CPreferences::s_byCryptTCPPaddingLength;
 
-wxString CPreferences::s_Ed2kURL;
-wxString CPreferences::s_KadURL;
+wxString 	CPreferences::s_Ed2kURL;
+wxString 	CPreferences::s_KadURL;
 
 
 /**
@@ -990,7 +991,7 @@ void CPreferences::BuildItemList( const wxString& appdir )
 	NewCfgItem(IDC_SLOTALLOC,	(MkCfg_Int( wxT("/eMule/SlotAllocation"), s_slotallocation, 2 )));
 	NewCfgItem(IDC_PORT,		(MkCfg_Int( wxT("/eMule/Port"), s_port, DEFAULT_TCP_PORT )));
 	NewCfgItem(IDC_UDPPORT,		(MkCfg_Int( wxT("/eMule/UDPPort"), s_udpport, DEFAULT_UDP_PORT )));
-	NewCfgItem(IDC_UDPDISABLE,	(new Cfg_Bool( wxT("/eMule/UDPDisable"), s_UDPDisable, false )));
+	NewCfgItem(IDC_UDPENABLE,	(new Cfg_Bool( wxT("/eMule/UDPEnable"), s_UDPEnable, true )));
 	NewCfgItem(IDC_ADDRESS,		(new Cfg_Str( wxT("/eMule/Address"), s_Addr, wxEmptyString)));
 	NewCfgItem(IDC_AUTOCONNECT,	(new Cfg_Bool( wxT("/eMule/Autoconnect"), s_autoconnect, true )));
 	NewCfgItem(IDC_MAXSOURCEPERFILE,	(MkCfg_Int( wxT("/eMule/MaxSourcesPerFile"), s_maxsourceperfile, 300 )));
@@ -1113,6 +1114,7 @@ void CPreferences::BuildItemList( const wxString& appdir )
 	NewCfgItem(IDC_USESKINFILES,	(new Cfg_Bool( wxT("/SkinGUIOptions/UseSkinFiles"), s_UseSkinFiles, false )));
 	NewCfgItem(IDC_SKIN,		(new Cfg_Skin(  wxT("/SkinGUIOptions/Skin"), s_Skin, wxEmptyString )));
 	NewCfgItem(IDC_VERTTOOLBAR,	(new Cfg_Bool( wxT("/eMule/VerticalToolbar"), s_ToolbarOrientation, false )));
+	NewCfgItem(IDC_SHOWPARTFILENUMBER,(new Cfg_Bool( wxT("/eMule/ShowPartFileNumber"), s_ShowPartFileNumber, false )));
 	
 	/**
 	 * External Apps
@@ -1248,13 +1250,19 @@ void CPreferences::LoadAllItems(wxConfigBase* cfg)
 #ifndef CLIENT_GUI
 	// Preserve values from old config. The global config object may not be set yet
 	// when BuildItemList() is called, so we need to provide defaults later - here.
-	bool ExecOnCompletion;
-	wxString ExecOnCompletionCommand;
-	cfg->Read(wxT("/eMule/ExecOnCompletion"), &ExecOnCompletion, false);
-	cfg->Read(wxT("/eMule/ExecOnCompletionCommand"), &ExecOnCompletionCommand, wxEmptyString);
-	// Assign to core command, that's the most likely it was.
-	static_cast<Cfg_Bool*>(s_CfgList[USEREVENTS_FIRST_ID + CUserEvents::DownloadCompleted * USEREVENTS_IDS_PER_EVENT + 1])->SetDefault(ExecOnCompletion);
-	static_cast<Cfg_Str*>(s_CfgList[USEREVENTS_FIRST_ID + CUserEvents::DownloadCompleted * USEREVENTS_IDS_PER_EVENT + 2])->SetDefault(ExecOnCompletionCommand);
+	if (cfg->HasEntry(wxT("/eMule/ExecOnCompletion"))) {
+		bool ExecOnCompletion;
+		cfg->Read(wxT("/eMule/ExecOnCompletion"), &ExecOnCompletion, false);
+		// Assign to core command, that's the most likely it was.
+		static_cast<Cfg_Bool*>(s_CfgList[USEREVENTS_FIRST_ID + CUserEvents::DownloadCompleted * USEREVENTS_IDS_PER_EVENT + 1])->SetDefault(ExecOnCompletion);
+		cfg->DeleteEntry(wxT("/eMule/ExecOnCompletion"));
+	}
+	if (cfg->HasEntry(wxT("/eMule/ExecOnCompletionCommand"))) {
+		wxString ExecOnCompletionCommand;
+		cfg->Read(wxT("/eMule/ExecOnCompletionCommand"), &ExecOnCompletionCommand, wxEmptyString);
+		static_cast<Cfg_Str*>(s_CfgList[USEREVENTS_FIRST_ID + CUserEvents::DownloadCompleted * USEREVENTS_IDS_PER_EVENT + 2])->SetDefault(ExecOnCompletionCommand);
+		cfg->DeleteEntry(wxT("/eMule/ExecOnCompletionCommand"));
+	}
 #endif
 	CFGMap::iterator it_a = s_CfgList.begin();
 	for ( ; it_a != s_CfgList.end(); ++it_a ) {
@@ -1266,8 +1274,16 @@ void CPreferences::LoadAllItems(wxConfigBase* cfg)
 		(*it_b)->LoadFromFile( cfg ); 
 	}
 
-// Load debug-categories
+	// Preserve old value of UDPDisable
+	if (cfg->HasEntry(wxT("/eMule/UDPDisable"))) {
+		bool UDPDisable;
+		cfg->Read(wxT("/eMule/UDPDisable"), &UDPDisable, false);
+		SetUDPDisable(UDPDisable);
+		cfg->DeleteEntry(wxT("/eMule/UDPDisable"));
+	}
+
 #ifdef __DEBUG__
+	// Load debug-categories
 	int count = CLogger::GetDebugCategoryCount();
 
 	for ( int i = 0; i < count; i++ ) {
