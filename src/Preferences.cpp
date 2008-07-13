@@ -185,10 +185,8 @@ wxString	CPreferences::s_CustomBrowser;
 bool		CPreferences::s_BrowserTab;
 CPath		CPreferences::s_OSDirectory;
 wxString	CPreferences::s_Skin;
-bool		CPreferences::s_UseSkinFiles;
 bool		CPreferences::s_FastED2KLinksHandler;
 bool		CPreferences::s_ToolbarOrientation;
-bool		CPreferences::s_ShowPartFileNumber;
 bool		CPreferences::s_AICHTrustEveryHash;
 wxString 	CPreferences::s_CommentFilterString;
 bool		CPreferences::s_IPFilterAutoLoad;
@@ -783,24 +781,22 @@ protected:
 class Cfg_Skin : public Cfg_Str
 {
 public:
-//	Cfg_Tmpl( const wxString& keyname, TYPE& value, const TYPE& defaultVal )
-//	 : Cfg_Base( keyname ),
-//	   m_value( value ),
-//	   m_default( defaultVal ),
-//	   m_widget( NULL )
-//	{}
-//	Cfg_Str( const wxString& keyname, wxString& value, const wxString& defaultVal = wxEmptyString )
-//	 : Cfg_Tmpl<wxString>( keyname, value, defaultVal )
-//	{}
 	Cfg_Skin( const wxString& keyname, wxString& value, const wxString& defaultVal = wxEmptyString )
-	 : Cfg_Str( keyname, value, defaultVal )
-	{
-	}
+		: Cfg_Str( keyname, value, defaultVal ),
+		  m_is_skin(false)
+	{}
 
 #ifndef AMULE_DAEMON
 	virtual bool TransferFromWindow()
 	{
 		if ( Cfg_Str::TransferFromWindow() ) {
+			if (m_is_skin) {
+				wxChoice *skinSelector = dynamic_cast<wxChoice*>(m_widget);
+				// "- default -" is always the first
+				if (skinSelector->GetSelection() == 0) {
+					m_value.Clear();
+				}
+			}
 			return true;
 		}
 
@@ -815,15 +811,15 @@ public:
 		skinSelector->Clear();
 
 		wxString folder;
-		bool skins = false;
 		int flags = wxDIR_DIRS;
 		wxString filespec = wxEmptyString;
 //#warning there has to be a better way...
 		if ( GetKey() == wxT("/SkinGUIOptions/Skin") ) {
 			folder = wxT("skins");
-			skins = true;
+			m_is_skin = true;
 			flags = wxDIR_FILES;
 			filespec = wxT("*.zip");
+			skinSelector->Append(_("- default -"));
 		} else {
 			folder = wxT("webserver");
 		}
@@ -838,7 +834,7 @@ public:
 		{
 			do
 			{
-				if (skins == true) {
+				if (m_is_skin) {
 					Filename = _("User:") + Filename;
 				}
 				skinSelector->Append(Filename);
@@ -847,7 +843,7 @@ public:
 		}
 
 		wxString dataDir;
-		if (skins) {
+		if (m_is_skin) {
 			dataDir = wxStandardPaths::Get().GetDataDir();
 		} else {
 			dataDir = wxStandardPaths::Get().GetResourcesDir();
@@ -864,7 +860,7 @@ public:
 		{
 			do
 			{
-				if (skins == true) {
+				if (m_is_skin) {
 					Filename = _("System:") +  Filename;
 				}
 				// avoid duplicates for webserver templates
@@ -873,7 +869,7 @@ public:
 				}
 			}
 			while (d.GetNext(&Filename));
-		}			
+		}
 
 		if ( skinSelector->GetCount() == 0 ) {
 			skinSelector->Append(_("no options available"));	
@@ -889,6 +885,8 @@ public:
 	}
 #endif /* ! AMULE_DAEMON */
 
+      protected:
+	bool	m_is_skin;
 };
 
 
@@ -1111,10 +1109,8 @@ void CPreferences::BuildItemList( const wxString& appdir )
 	NewCfgItem(IDC_FED2KLH,		(new Cfg_Bool( wxT("/Razor_Preferences/FastED2KLinksHandler"), s_FastED2KLinksHandler, true )));
 	NewCfgItem(IDC_PROGBAR,		(new Cfg_Bool( wxT("/ExternalConnect/ShowProgressBar"), s_ProgBar, true )));
 	NewCfgItem(IDC_PERCENT,		(new Cfg_Bool( wxT("/ExternalConnect/ShowPercent"), s_Percent, true )));
-	NewCfgItem(IDC_USESKINFILES,	(new Cfg_Bool( wxT("/SkinGUIOptions/UseSkinFiles"), s_UseSkinFiles, false )));
 	NewCfgItem(IDC_SKIN,		(new Cfg_Skin(  wxT("/SkinGUIOptions/Skin"), s_Skin, wxEmptyString )));
 	NewCfgItem(IDC_VERTTOOLBAR,	(new Cfg_Bool( wxT("/eMule/VerticalToolbar"), s_ToolbarOrientation, false )));
-	NewCfgItem(IDC_SHOWPARTFILENUMBER,(new Cfg_Bool( wxT("/eMule/ShowPartFileNumber"), s_ShowPartFileNumber, false )));
 	
 	/**
 	 * External Apps
@@ -1280,6 +1276,16 @@ void CPreferences::LoadAllItems(wxConfigBase* cfg)
 		cfg->Read(wxT("/eMule/UDPDisable"), &UDPDisable, false);
 		SetUDPDisable(UDPDisable);
 		cfg->DeleteEntry(wxT("/eMule/UDPDisable"));
+	}
+
+	// Preserve old value of UseSkinFiles
+	if (cfg->HasEntry(wxT("/SkinGUIOptions/UseSkinFiles"))) {
+		bool UseSkinFiles;
+		cfg->Read(wxT("/SkinGUIOptions/UseSkinFiles"), &UseSkinFiles, false);
+		if (!UseSkinFiles) {
+			s_Skin.Clear();
+		}
+		cfg->DeleteEntry(wxT("/SkinGUIOptions/UseSkinFiles"));
 	}
 
 #ifdef __DEBUG__

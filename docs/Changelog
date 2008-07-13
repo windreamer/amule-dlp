@@ -19,6 +19,9 @@ Version 2.2.2 - Whatever comes next.
 		* Fix NULL pointer dereference
 		* Fix for configure not using --with-geo-ip value in library check
 
+	Greek:
+		* Part number is now an extra column in the download list
+
 	MalaPraxis:
 		* Remap colours on Windows
 		* Add resources
@@ -30,9 +33,6 @@ Version 2.2.2 - Whatever comes next.
 		* Added the m4 macro to test for libupnp.
 		* Updated amule_build_install.sh to work with
 		  --with-libupnp-prefix.
-		* Added a search for WANCommonInterfaceConfig and
-		  Layer3Forwarding services for UPnP, aside from
-		  WANIPConnection and WANPPPConnection.
 		* Changed the UPnP code to allow the use of a service without
 		  having successfully subscribed to it. That should be enough
 		  to deal with some lazy router implementations.

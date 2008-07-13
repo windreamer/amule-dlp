@@ -441,12 +441,8 @@ public:
 	
 	static const wxString&	GetSkin()			{ return s_Skin; }
 	
-	static bool		UseSkins()			{ return s_UseSkinFiles; }
-
 	static bool		VerticalToolbar()		{ return s_ToolbarOrientation; }
 
-	static bool		ShowPartFileNumber()		{ return s_ShowPartFileNumber; }
-		
 	static const CPath&	GetOSDir()			{ return s_OSDirectory; }
 	static uint16		GetOSUpdate()			{ return s_OSUpdate; }
 
@@ -657,7 +653,6 @@ protected:
 	static wxString	s_datetimeformat;
 	
 	static bool	s_ToolbarOrientation;
-	static bool	s_ShowPartFileNumber;
 
 	// Web Server [kuchin]
 	static wxString	s_sWebPassword;
@@ -713,7 +708,6 @@ protected:
 	static uint16	s_OSUpdate;
 	
 	static wxString	s_Skin;
-	static bool	s_UseSkinFiles;
 	
 	static bool	s_FastED2KLinksHandler;	// Madcat - Toggle Fast ED2K Links Handler
 	
