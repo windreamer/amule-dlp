@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: tr\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-07-16 03:30+0200\n"
-"PO-Revision-Date: 2008-07-12 19:11+0300\n"
+"PO-Revision-Date: 2008-07-16 16:58+0300\n"
 "Last-Translator: Atilla ÖNTAŞ <atilla_ontas@hotmail.com>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1537,7 +1537,7 @@ msgstr "Türkçe"
 
 #: src/Preferences.cpp:822 src/muuli_wdr.cpp:2223
 msgid "- default -"
-msgstr ""
+msgstr "- ön tanımlı -"
 
 #: src/Preferences.cpp:838
 msgid "User:"
@@ -1985,7 +1985,7 @@ msgstr "Güvenlik"
 
 #: src/PrefsUnifiedDlg.cpp:174
 msgid "Interface"
-msgstr ""
+msgstr "Arayüz"
 
 #: src/PrefsUnifiedDlg.cpp:176
 msgid "Proxy"
@@ -1993,7 +1993,7 @@ msgstr "Vekil sunucu"
 
 #: src/PrefsUnifiedDlg.cpp:177
 msgid "Filters"
-msgstr ""
+msgstr "Süzgeçler"
 
 #: src/PrefsUnifiedDlg.cpp:178
 msgid "Remote Controls"
@@ -2005,7 +2005,7 @@ msgstr "Çevrim içi İmza"
 
 #: src/PrefsUnifiedDlg.cpp:180
 msgid "Advanced"
-msgstr ""
+msgstr "Gelişmiş"
 
 #: src/PrefsUnifiedDlg.cpp:181
 msgid "Events"
@@ -2959,7 +2959,7 @@ msgstr "Toplam Kullanıcılar: %s | Toplam Dosyalar: %s"
 
 #: src/DownloadListCtrl.cpp:187
 msgid "Part"
-msgstr ""
+msgstr "Parça"
 
 #: src/DownloadListCtrl.cpp:190 src/ClientListCtrl.cpp:520
 msgid "Transferred"
@@ -5004,7 +5004,7 @@ msgstr "Bağlandığınızda diğerlerinin göreceği isminiz budur."
 
 #: src/muuli_wdr.cpp:1594
 msgid "Language: "
-msgstr ""
+msgstr "Dil: "
 
 #: src/muuli_wdr.cpp:1595 src/muuli_wdr.cpp:1629 src/muuli_wdr.cpp:1633
 #: src/muuli_wdr.cpp:1637
@@ -5046,8 +5046,8 @@ msgstr "Sistem tablası simgesini etkinleştir."
 #: src/muuli_wdr.cpp:1619
 msgid "This Enables/Disables the system tray (or taskbar) icon."
 msgstr ""
-"Bu, sistem tablası (ya da görev çubuğu) simgesini Etkinleştirir/Etkinn "
-"çıkarır."
+"Bu, sistem tablası (ya da görev çubuğu) simgesini Etkinleştirir/Devre dışı "
+"bırakır."
 
 #: src/muuli_wdr.cpp:1622
 msgid "Minimize to Tray Icon"
@@ -5061,11 +5061,11 @@ msgstr "Bu, aMule'nin görev çubuğu yerine sistem tablasına küçülmesini sa
 
 #: src/muuli_wdr.cpp:1628
 msgid "Tooltip delay time: "
-msgstr ""
+msgstr "İpucu gecikme süresi: "
 
 #: src/muuli_wdr.cpp:1636
 msgid "seconds"
-msgstr ""
+msgstr "saniye"
 
 #: src/muuli_wdr.cpp:1642
 msgid "Browser Selection"
@@ -5441,7 +5441,7 @@ msgstr "Sunucu bağlantısı yenileme sıklığı :Devre dışı"
 
 #: src/muuli_wdr.cpp:2218
 msgid "Skin to use: "
-msgstr ""
+msgstr "Kullanılacak kaplama: "
 
 #: src/muuli_wdr.cpp:2230
 msgid "Show \"Fast eD2k Links Handler\" in every window."
@@ -5854,7 +5854,7 @@ msgstr ""
 
 #: src/muuli_wdr.cpp:3052
 msgid "Enable Online-Signature"
-msgstr "Çevrimiçi-İmza Etkin"
+msgstr "Çevrimiçi-İmza' yı Etkinleştir"
 
 #: src/muuli_wdr.cpp:3054
 msgid ""
@@ -5875,7 +5875,7 @@ msgstr ""
 
 #: src/muuli_wdr.cpp:3072
 msgid "Save online signature file in: "
-msgstr ""
+msgstr "Çevrim içi imza dosyasını buraya sakla: "
 
 #: src/muuli_wdr.cpp:3079
 msgid ""
@@ -5909,7 +5909,7 @@ msgstr ""
 
 #: src/muuli_wdr.cpp:3120
 msgid "Show received messages in the log"
-msgstr ""
+msgstr "Günlükte alınan iletileri göster"
 
 #: src/muuli_wdr.cpp:3125
 msgid "Comments"
@@ -7063,39 +7063,3 @@ msgstr "Arkadaş listesi  'emfriends.met'  dosyası okunamıyor!"
 #: src/FriendList.cpp:146
 msgid "Failed to open friend list file 'emfriends.met' for writing!"
 msgstr "Arkadaş listesi  'emfriends.met'  dosyasına yazılamıyor!"
-
-#~ msgid "Message Filter"
-#~ msgstr "İleti Süzgeci"
-
-#~ msgid "Gui Tweaks"
-#~ msgstr "Görünüm Seçenekleri"
-
-#~ msgid "Core Tweaks"
-#~ msgstr "Hassas Ayarlar"
-
-#~ msgid "Language"
-#~ msgstr "Dil"
-
-#~ msgid "Tooltip Delay Time in secs"
-#~ msgstr "İpucu gösterme gecikmesi"
-
-#~ msgid "Show part file number before file name"
-#~ msgstr "İsimden önce parça dosyası numarasını göster"
-
-#~ msgid "Skin Support"
-#~ msgstr "Kaplama Desteği"
-
-#~ msgid "- no skins available -"
-#~ msgstr "-kaplama yok-"
-
-#~ msgid "Other"
-#~ msgstr "Diğer"
-
-#~ msgid "Online Signature Directory:"
-#~ msgstr "Çevrim içi İmza Dizini:"
-
-#~ msgid "Show messages in log"
-#~ msgstr "Günlükte iletileri göster"
-
-#~ msgid "Filtering Options:"
-#~ msgstr "Süzgeç Seçenekleri:"
