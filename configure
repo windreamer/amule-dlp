@@ -8391,7 +8391,7 @@ fi
 	done
 
 	if test $CRYPTOPP_STYLE = "unknown"; then
-  result=no
+  result=no; resultstr=""
 else
 
 		# Find out the crypto++ version and check against the minimum required
