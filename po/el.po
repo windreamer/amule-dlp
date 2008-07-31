@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-07-29 03:30+0200\n"
-"PO-Revision-Date: 2008-07-12 10:12-0600\n"
+"PO-Revision-Date: 2008-07-30 01:25-0600\n"
 "Last-Translator: Dimitris <dgalanak@yahoo.com>\n"
 "Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
@@ -1804,6 +1804,8 @@ msgid ""
 "Copyright (c) 2003-2008 aMule Team \n"
 "\n"
 msgstr ""
+"Πνευματικά Δικαιώματα (c) 2003-2008 η ομάδα του aMule \n"
+"\n"
 
 #: src/amuleDlg.cpp:472
 msgid "Part of aMule is based on \n"
@@ -1816,6 +1818,7 @@ msgstr "Kademlia: Δρομολόγηση Peer-to-peer βασισμένη στη�
 #: src/amuleDlg.cpp:474
 msgid " Copyright (C) 2002 Petar Maymounkov <petar@post.harvard.edu>\n"
 msgstr ""
+"Πνευματικά Δικαιώματα (C) 2002 Petar Maymounkov <petar@post.harvard.edu>\n"
 
 #: src/amuleDlg.cpp:475
 msgid "http://kademlia.scs.cs.nyu.edu\n"
