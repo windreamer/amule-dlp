@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: tr\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-08-03 03:30+0200\n"
-"PO-Revision-Date: 2008-07-23 19:00+0300\n"
+"PO-Revision-Date: 2008-08-07 05:25+0300\n"
 "Last-Translator: Atilla ÖNTAŞ <atilla_ontas@hotmail.com>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -527,6 +527,8 @@ msgstr[1] "%u adet Kademlia bağlantısı okundu"
 #: src/kademlia/routing/RoutingZone.cpp:282
 msgid "No contacts found, please bootstrap, or download a nodes.dat file."
 msgstr ""
+"Hiç bağlantı bulunamadı. Lütfen, ön yükleme veya nodest.dat dosyası "
+"indirmeyi deneyin."
 
 #: src/kademlia/routing/RoutingZone.cpp:300
 #, c-format
