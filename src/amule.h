@@ -2,7 +2,7 @@
 // This file is part of the aMule Project.
 //
 // Copyright (c) 2003-2008 aMule Team ( admin@amule.org / http://www.amule.org )
-// Copyright (c) 2002 Merkur ( devs@emule-project.net / http://www.emule-project.net )
+// Copyright (c) 2002-2008 Merkur ( devs@emule-project.net / http://www.emule-project.net )
 //
 // Any parts of this program derived from the xMule, lMule or eMule project,
 // or contributed by third-party developers are copyrighted by their
@@ -36,7 +36,7 @@
 #ifndef __WXMSW__
 	#include <map>
 	#include <signal.h>
-	#include <wx/unix/execute.h>
+//	#include <wx/unix/execute.h>
 #endif // __WXMSW__
 
 
@@ -404,7 +404,7 @@ public:
 };
 
 
-typedef std::map<int, wxEndProcessData *> EndProcessDataMap;
+typedef std::map<int, class wxEndProcessData *> EndProcessDataMap;
 
 
 class CDaemonAppTraits : public wxConsoleAppTraits

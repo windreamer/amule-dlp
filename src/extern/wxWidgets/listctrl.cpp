@@ -3,8 +3,8 @@
 // Purpose:     generic implementation of wxListCtrl
 // Author:      Robert Roebling
 //              Vadim Zeitlin (virtual list control support)
-// Id:          $Id: listctrl.cpp 8843 2008-07-11 01:08:58Z kry $
-// Copyright:   (c) 1998 Robert Roebling
+// Id:          $Id: listctrl.cpp 8991 2008-08-09 20:38:01Z phoenix $
+// Copyright:   Copyright (c) 1998-2008 Robert Roebling
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
 
