@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: et_EE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-10 03:30+0200\n"
-"PO-Revision-Date: 2008-07-23 18:30+0300\n"
+"POT-Creation-Date: 2008-08-11 03:30+0200\n"
+"PO-Revision-Date: 2008-08-10 12:14+0300\n"
 "Last-Translator: Hans <herringfish@hot.ee>\n"
 "Language-Team:  <et@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -528,7 +528,7 @@ msgstr[1] "Loetud %u Kad kontakti"
 #: src/kademlia/routing/RoutingZone.cpp:215
 #: src/kademlia/routing/RoutingZone.cpp:282
 msgid "No contacts found, please bootstrap, or download a nodes.dat file."
-msgstr ""
+msgstr "Kontakte ei leitud, palun bootstrap või tõmba nodes.dat fail."
 
 #: src/kademlia/routing/RoutingZone.cpp:300
 #, c-format
@@ -1319,7 +1319,8 @@ msgstr "Ühendun serveri kaudu"
 msgid "Queue Full"
 msgstr "Järjekord täis"
 
-#: src/DataToText.cpp:62 src/TransferWnd.cpp:449 src/ClientListCtrl.cpp:687
+#: src/DataToText.cpp:62 src/TransferWnd.cpp:449 src/KnownFile.cpp:1365
+#: src/ClientListCtrl.cpp:687
 msgid "On Queue"
 msgstr "Järjekorras"
 
@@ -1798,7 +1799,7 @@ msgstr "Kademlia: Sõlmest-Sõlmeni ruutimine põhineb XOR meetrikal.\n"
 
 #: src/amuleDlg.cpp:475
 msgid " Copyright (c) 2002-2008 Petar Maymounkov ( petar@post.harvard.edu )\n"
-msgstr ""
+msgstr " Copyright (C) 2002-2008 Petar Maymounkov <petar@post.harvard.edu>\n"
 
 #: src/amuleDlg.cpp:476
 msgid "http://kademlia.scs.cs.nyu.edu\n"
@@ -4225,7 +4226,7 @@ msgstr "Küsitud"
 msgid "Accepted"
 msgstr "Aksepteeritud"
 
-#: src/KnownFile.cpp:1365
+#: src/KnownFile.cpp:1366
 msgid "Complete sources"
 msgstr "Täielikke allikaid"
 
@@ -7092,6 +7093,3 @@ msgstr "Sõprade faili 'emfriends.met' avamine lugemiseks ebaõnnestus!"
 #: src/FriendList.cpp:146
 msgid "Failed to open friend list file 'emfriends.met' for writing!"
 msgstr "Sõprade faili 'emfriends.met' avamine kirjutamiseks ebaõnnestus!"
-
-#~ msgid " Copyright (C) 2002 Petar Maymounkov <petar@post.harvard.edu>\n"
-#~ msgstr " Copyright (C) 2002 Petar Maymounkov <petar@post.harvard.edu>\n"
