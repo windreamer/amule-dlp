@@ -309,7 +309,7 @@ target_alias = @target_alias@
 SUBDIRS = cpp
 
 # Sources
-MAINTAINERCLEANFILES = Makefile.in
+MAINTAINERCLEANFILES = Makefile.in 
 BUILT_SOURCES = ECGeneratedFiles
 ECGeneratedFilesSources = \
 	abstracts/ECTagTypes.abstract \
@@ -565,8 +565,6 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 	-test -z "$(MAINTAINERCLEANFILES)" || rm -f $(MAINTAINERCLEANFILES)
-clean: clean-recursive
-
 clean-am: clean-generic mostlyclean-am
 
 distclean: distclean-recursive
@@ -640,6 +638,9 @@ dist-hook:
 			fi ; \
 		done ; \
 	done
+
+clean:
+	rm -f ECGeneratedFiles
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:

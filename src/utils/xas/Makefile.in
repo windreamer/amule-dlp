@@ -323,7 +323,6 @@ SUBDIRS = docs
 dist_plugins_DATA = xas.pl
 pluginsdir = $(libdir)/xchat/plugins
 bin_SCRIPTS = autostart-xas
-DISTCLEANFILES = autostart-xas
 EXTRA_DIST = autostart-xas.in
 MAINTAINERCLEANFILES = Makefile.in
 all: all-recursive
@@ -600,7 +599,6 @@ clean-generic:
 
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
-	-test -z "$(DISTCLEANFILES)" || rm -f $(DISTCLEANFILES)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"

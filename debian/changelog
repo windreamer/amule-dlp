@@ -1,3 +1,15 @@
+amule (2.2.2+SVN20080812) testing; urgency=low
+
+  * Corrected Copyright file
+
+ -- Vollstrecker <amule@vollstreckernet.de>  Tue, 12 Aug 2008  14:41:01 +0100
+
+amule (2.2.2) testing; urgency=low
+
+  * New Upstream Release
+
+ -- Vollstrecker <amule@vollstreckernet.de>  Fri, 08 Aug 2008 16:21:02 +0100
+
 amule (2.2.1+CVS20080802) testing; urgency=low
 
   * debian/control

@@ -244,6 +244,7 @@ mostlyclean:
 	rm -fr *.o
 
 clean: mostlyclean
+	rm -f *.gmo
 
 distclean: clean
 	rm -f Makefile Makefile.in POTFILES *.mo
