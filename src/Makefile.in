@@ -4993,6 +4993,7 @@ $(srcdir)/Parser.cpp: Parser.y
 @NEED_RC_TRUE@	     -e 's/VER_INTERNALNAME_STR/"ed2k"/' \
 @NEED_RC_TRUE@	     -e 's/VER_ORIGINALFILENAME_STR/"ed2k$(EXEEXT)"/' "$<" > "$@"
 dist-hook:
+	test -z "$(EXTRA__DIST__SUBDIRS)" || \
 	for d in $(EXTRA__DIST__SUBDIRS) ; do \
 		mkdir $(distdir)/$$d ; \
 		for f in `find $(srcdir)/$$d -name '.svn' -prune -o -printf "%P\n"` ; do \
