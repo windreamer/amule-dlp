@@ -18116,7 +18116,7 @@ fi
 echo $ECHO_N "checking for requested languages... $ECHO_C" >&6
 		Generate_Langs=`echo $LINGUAS | $AWK 'OFS="\\\\|" { for (i = 1; i <= NF; ++i) $i = "\\\\." $i; print }'`
 
-	if test "$AMULE_DAEMON" == "yes"; then
+	if test "$AMULE_DAEMON" = "yes"; then
 
 		if test -z "$LINGUAS"; then
   AMULE_DAEMON_MANPAGES=`ls -1 ${srcdir}/docs/man/amuled.* | sed -e 's:.*/::g'`
@@ -18136,7 +18136,7 @@ fi
 
 
 
-	if test "$AMULECMD" == "yes"; then
+	if test "$AMULECMD" = "yes"; then
 
 		if test -z "$LINGUAS"; then
   AMULECMD_MANPAGES=`ls -1 ${srcdir}/docs/man/amulecmd.* | sed -e 's:.*/::g'`
@@ -18156,7 +18156,7 @@ fi
 
 
 
-	if test "$WEB" == "yes"; then
+	if test "$WEB" = "yes"; then
 
 		if test -z "$LINGUAS"; then
   WEB_MANPAGES=`ls -1 ${srcdir}/docs/man/amuleweb.* | sed -e 's:.*/::g'`
@@ -18176,7 +18176,7 @@ fi
 
 
 
-	if test "$AMULE_GUI" == "yes"; then
+	if test "$AMULE_GUI" = "yes"; then
 
 		if test -z "$LINGUAS"; then
   AMULE_GUI_MANPAGES=`ls -1 ${srcdir}/docs/man/amulegui.* | sed -e 's:.*/::g'`
@@ -18196,7 +18196,7 @@ fi
 
 
 
-	if test "$CAS" == "yes"; then
+	if test "$CAS" = "yes"; then
 
 		if test -z "$LINGUAS"; then
   CAS_MANPAGES=`ls -1 ${srcdir}/src/utils/cas/docs/cas.* | sed -e 's:.*/::g'`
@@ -18216,7 +18216,7 @@ fi
 
 
 
-	if test "$WXCAS" == "yes"; then
+	if test "$WXCAS" = "yes"; then
 
 		if test -z "$LINGUAS"; then
   WXCAS_MANPAGES=`ls -1 ${srcdir}/src/utils/wxCas/docs/wxcas.* | sed -e 's:.*/::g'`
@@ -18236,7 +18236,7 @@ fi
 
 
 
-	if test "$ED2K" == "yes"; then
+	if test "$ED2K" = "yes"; then
 
 		if test -z "$LINGUAS"; then
   ED2K_MANPAGES=`ls -1 ${srcdir}/docs/man/ed2k.* | sed -e 's:.*/::g'`
@@ -18256,7 +18256,7 @@ fi
 
 
 
-	if test "$ALC" == "yes"; then
+	if test "$ALC" = "yes"; then
 
 		if test -z "$LINGUAS"; then
   ALC_MANPAGES=`ls -1 ${srcdir}/src/utils/aLinkCreator/docs/alc.* | sed -e 's:.*/::g'`
@@ -18276,7 +18276,7 @@ fi
 
 
 
-	if test "$ALCC" == "yes"; then
+	if test "$ALCC" = "yes"; then
 
 		if test -z "$LINGUAS"; then
   ALCC_MANPAGES=`ls -1 ${srcdir}/src/utils/aLinkCreator/docs/alcc.* | sed -e 's:.*/::g'`
@@ -18296,7 +18296,7 @@ fi
 
 
 
-	if test "$MONOLITHIC" == "yes"; then
+	if test "$MONOLITHIC" = "yes"; then
 
 		if test -z "$LINGUAS"; then
   MONOLITHIC_MANPAGES=`ls -1 ${srcdir}/docs/man/amule.* | sed -e 's:.*/::g'`
