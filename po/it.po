@@ -1,4 +1,4 @@
-# translation of it-cvs.po to
+# translation of it-cvs_beta.po to
 # Kry <elkry@users.sourceforge.net>, 2004,2005.
 # ilbuio <ilbuio.bnf@iol.it>, 2004,2005.
 # AnonimoVeneziano <voloterreno@tin.it>, 2004.
@@ -7,6 +7,7 @@
 # Vincenzo Reale <smart2128@baslug.org>, 2007.
 # Giuseppe Bilotta <giuseppe.bilotta@gmail.com>, 2007.
 # rik <rik_kornellatyahoo.com>, 2008.
+# translation of it-cvs.po to
 # translation of it2.po to
 # translation of it.po to
 # Italian language translation
@@ -16,10 +17,10 @@
 # This file is distributed under the same license as the aMule package.
 msgid ""
 msgstr ""
-"Project-Id-Version: it-cvs\n"
+"Project-Id-Version: it-cvs_beta\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-08-19 03:30+0200\n"
-"PO-Revision-Date: 2008-08-02 20:43+0200\n"
+"PO-Revision-Date: 2008-08-19 11:33+0200\n"
 "Last-Translator: rik <rik_kornellatyahoo.com>\n"
 "Language-Team:  <it@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1823,7 +1824,7 @@ msgstr " Kademlia: Peer-to-peer routing basato sulla metrica XOR.\n"
 
 #: src/amuleDlg.cpp:475
 msgid " Copyright (c) 2002-2008 Petar Maymounkov ( petar@post.harvard.edu )\n"
-msgstr ""
+msgstr " Copyright (c) 2002-2008 Petar Maymounkov ( petar@post.harvard.edu )\n"
 
 #: src/amuleDlg.cpp:476
 msgid "http://kademlia.scs.cs.nyu.edu\n"
@@ -3020,12 +3021,12 @@ msgstr "Parte"
 
 #: src/DownloadListCtrl.cpp:190 src/ClientListCtrl.cpp:520
 msgid "Transferred"
-msgstr "Trasferito"
+msgstr "Trasferiti"
 
 #: src/DownloadListCtrl.cpp:191 src/TransferWnd.cpp:347
 #: src/PartFileConvert.cpp:611 src/OtherFunctions.cpp:703
 msgid "Completed"
-msgstr "Completato"
+msgstr "Completati"
 
 #: src/DownloadListCtrl.cpp:192 src/ClientListCtrl.cpp:519
 msgid "Speed"
@@ -3457,8 +3458,8 @@ msgid ""
 "Failed to connect to all obfuscated servers listed. Making another pass "
 "without obfuscation."
 msgstr ""
-"Impossibile collegarsi ai server con offuscamento di protocollo. Ci riprovo "
-"senza offuscamento."
+"Impossibile stabilire una connessione offuscata con tutti i server elencati. "
+"Ci riprovo senza offuscamento."
 
 #: src/ServerConnect.cpp:74
 msgid "Failed to connect to all servers listed. Making another pass."
@@ -6336,7 +6337,7 @@ msgstr ""
 #: src/ExternalConnector.cpp:403
 #, c-format
 msgid "Connection Failed. Unable to connect to %s:%d\n"
-msgstr ""
+msgstr "Connessione Fallita. Impossibile connettersi a %s:%d\n"
 
 #: src/ExternalConnector.cpp:414
 #, c-format
@@ -7180,9 +7181,3 @@ msgid "Failed to open friend list file 'emfriends.met' for writing!"
 msgstr ""
 "Impossibile aprire in scrittura il file della lista degli amici 'emfriend."
 "met'!"
-
-#~ msgid "Connection Failed. Unable to connect to the specified host\n"
-#~ msgstr "Connessione fallita. Impossibile connettersi all'host specificato\n"
-
-#~ msgid " Copyright (C) 2002 Petar Maymounkov <petar@post.harvard.edu>\n"
-#~ msgstr " Copyright (C) 2002 Petar Maymounkov <petar@post.harvard.edu>\n"
