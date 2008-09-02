@@ -64,8 +64,11 @@ CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 PROGRAMS = $(noinst_PROGRAMS)
 am_mulefileview_OBJECTS = mulefileview-CFile.$(OBJEXT) \
-	mulefileview-SafeFile.$(OBJEXT) mulefileview-Tag.$(OBJEXT) \
-	mulefileview-UInt128.$(OBJEXT) mulefileview-FileView.$(OBJEXT) \
+	mulefileview-SafeFile.$(OBJEXT) \
+	mulefileview-OtherFunctions.$(OBJEXT) \
+	mulefileview-Tag.$(OBJEXT) mulefileview-UInt128.$(OBJEXT) \
+	mulefileview-eD2kFiles.$(OBJEXT) \
+	mulefileview-FileView.$(OBJEXT) \
 	mulefileview-KadFiles.$(OBJEXT) mulefileview-Print.$(OBJEXT)
 mulefileview_OBJECTS = $(am_mulefileview_OBJECTS)
 am__DEPENDENCIES_1 =
@@ -324,8 +327,11 @@ target_alias = @target_alias@
 mulefileview_SOURCES = \
 	../../CFile.cpp \
 	../../SafeFile.cpp \
+	../../OtherFunctions.cpp \
 	../../Tag.cpp \
 	../../kademlia/utils/UInt128.cpp \
+	eD2kFiles.h \
+	eD2kFiles.cpp \
 	FileView.cpp \
 	KadFiles.h \
 	KadFiles.cpp \
@@ -386,10 +392,12 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mulefileview-CFile.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mulefileview-FileView.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mulefileview-KadFiles.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mulefileview-OtherFunctions.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mulefileview-Print.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mulefileview-SafeFile.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mulefileview-Tag.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mulefileview-UInt128.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mulefileview-eD2kFiles.Po@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	if $(CXXCOMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ $<; \
@@ -433,6 +441,20 @@ mulefileview-SafeFile.obj: ../../SafeFile.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mulefileview_CPPFLAGS) $(CPPFLAGS) $(mulefileview_CXXFLAGS) $(CXXFLAGS) -c -o mulefileview-SafeFile.obj `if test -f '../../SafeFile.cpp'; then $(CYGPATH_W) '../../SafeFile.cpp'; else $(CYGPATH_W) '$(srcdir)/../../SafeFile.cpp'; fi`
 
+mulefileview-OtherFunctions.o: ../../OtherFunctions.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mulefileview_CPPFLAGS) $(CPPFLAGS) $(mulefileview_CXXFLAGS) $(CXXFLAGS) -MT mulefileview-OtherFunctions.o -MD -MP -MF "$(DEPDIR)/mulefileview-OtherFunctions.Tpo" -c -o mulefileview-OtherFunctions.o `test -f '../../OtherFunctions.cpp' || echo '$(srcdir)/'`../../OtherFunctions.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/mulefileview-OtherFunctions.Tpo" "$(DEPDIR)/mulefileview-OtherFunctions.Po"; else rm -f "$(DEPDIR)/mulefileview-OtherFunctions.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../../OtherFunctions.cpp' object='mulefileview-OtherFunctions.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mulefileview_CPPFLAGS) $(CPPFLAGS) $(mulefileview_CXXFLAGS) $(CXXFLAGS) -c -o mulefileview-OtherFunctions.o `test -f '../../OtherFunctions.cpp' || echo '$(srcdir)/'`../../OtherFunctions.cpp
+
+mulefileview-OtherFunctions.obj: ../../OtherFunctions.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mulefileview_CPPFLAGS) $(CPPFLAGS) $(mulefileview_CXXFLAGS) $(CXXFLAGS) -MT mulefileview-OtherFunctions.obj -MD -MP -MF "$(DEPDIR)/mulefileview-OtherFunctions.Tpo" -c -o mulefileview-OtherFunctions.obj `if test -f '../../OtherFunctions.cpp'; then $(CYGPATH_W) '../../OtherFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/../../OtherFunctions.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/mulefileview-OtherFunctions.Tpo" "$(DEPDIR)/mulefileview-OtherFunctions.Po"; else rm -f "$(DEPDIR)/mulefileview-OtherFunctions.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../../OtherFunctions.cpp' object='mulefileview-OtherFunctions.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mulefileview_CPPFLAGS) $(CPPFLAGS) $(mulefileview_CXXFLAGS) $(CXXFLAGS) -c -o mulefileview-OtherFunctions.obj `if test -f '../../OtherFunctions.cpp'; then $(CYGPATH_W) '../../OtherFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/../../OtherFunctions.cpp'; fi`
+
 mulefileview-Tag.o: ../../Tag.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mulefileview_CPPFLAGS) $(CPPFLAGS) $(mulefileview_CXXFLAGS) $(CXXFLAGS) -MT mulefileview-Tag.o -MD -MP -MF "$(DEPDIR)/mulefileview-Tag.Tpo" -c -o mulefileview-Tag.o `test -f '../../Tag.cpp' || echo '$(srcdir)/'`../../Tag.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/mulefileview-Tag.Tpo" "$(DEPDIR)/mulefileview-Tag.Po"; else rm -f "$(DEPDIR)/mulefileview-Tag.Tpo"; exit 1; fi
@@ -460,6 +482,20 @@ mulefileview-UInt128.obj: ../../kademlia/utils/UInt128.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='../../kademlia/utils/UInt128.cpp' object='mulefileview-UInt128.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mulefileview_CPPFLAGS) $(CPPFLAGS) $(mulefileview_CXXFLAGS) $(CXXFLAGS) -c -o mulefileview-UInt128.obj `if test -f '../../kademlia/utils/UInt128.cpp'; then $(CYGPATH_W) '../../kademlia/utils/UInt128.cpp'; else $(CYGPATH_W) '$(srcdir)/../../kademlia/utils/UInt128.cpp'; fi`
+
+mulefileview-eD2kFiles.o: eD2kFiles.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mulefileview_CPPFLAGS) $(CPPFLAGS) $(mulefileview_CXXFLAGS) $(CXXFLAGS) -MT mulefileview-eD2kFiles.o -MD -MP -MF "$(DEPDIR)/mulefileview-eD2kFiles.Tpo" -c -o mulefileview-eD2kFiles.o `test -f 'eD2kFiles.cpp' || echo '$(srcdir)/'`eD2kFiles.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/mulefileview-eD2kFiles.Tpo" "$(DEPDIR)/mulefileview-eD2kFiles.Po"; else rm -f "$(DEPDIR)/mulefileview-eD2kFiles.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='eD2kFiles.cpp' object='mulefileview-eD2kFiles.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mulefileview_CPPFLAGS) $(CPPFLAGS) $(mulefileview_CXXFLAGS) $(CXXFLAGS) -c -o mulefileview-eD2kFiles.o `test -f 'eD2kFiles.cpp' || echo '$(srcdir)/'`eD2kFiles.cpp
+
+mulefileview-eD2kFiles.obj: eD2kFiles.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mulefileview_CPPFLAGS) $(CPPFLAGS) $(mulefileview_CXXFLAGS) $(CXXFLAGS) -MT mulefileview-eD2kFiles.obj -MD -MP -MF "$(DEPDIR)/mulefileview-eD2kFiles.Tpo" -c -o mulefileview-eD2kFiles.obj `if test -f 'eD2kFiles.cpp'; then $(CYGPATH_W) 'eD2kFiles.cpp'; else $(CYGPATH_W) '$(srcdir)/eD2kFiles.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/mulefileview-eD2kFiles.Tpo" "$(DEPDIR)/mulefileview-eD2kFiles.Po"; else rm -f "$(DEPDIR)/mulefileview-eD2kFiles.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='eD2kFiles.cpp' object='mulefileview-eD2kFiles.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mulefileview_CPPFLAGS) $(CPPFLAGS) $(mulefileview_CXXFLAGS) $(CXXFLAGS) -c -o mulefileview-eD2kFiles.obj `if test -f 'eD2kFiles.cpp'; then $(CYGPATH_W) 'eD2kFiles.cpp'; else $(CYGPATH_W) '$(srcdir)/eD2kFiles.cpp'; fi`
 
 mulefileview-FileView.o: FileView.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mulefileview_CPPFLAGS) $(CPPFLAGS) $(mulefileview_CXXFLAGS) $(CXXFLAGS) -MT mulefileview-FileView.o -MD -MP -MF "$(DEPDIR)/mulefileview-FileView.Tpo" -c -o mulefileview-FileView.o `test -f 'FileView.cpp' || echo '$(srcdir)/'`FileView.cpp; \

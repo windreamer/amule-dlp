@@ -6367,27 +6367,30 @@ fi
 
 
 	if test -z "$CAS_DEFS"; then
-
-		{ echo "$as_me:$LINENO: WARNING:
-	gd-lib >= 2.0.0, or a functional gd.h (from gd-devel) not found.
-	Please check that gdlib-config is in your default path, check out
-	LD_LIBRARY_PATH or equivalent variable.
-	Or this might also be that your gdlib-config has other name.
-	Please try again with --with-gdlib-config=/usr/bin/gdlib-config
-	(replace /usr/bin/gdlib-config with a valid path to your gdlib-config).
-	If you use compiled packages check if you have devel pack installed.
-	To download the latest version check http://www.boutell.com/gd
-	for sources." >&5
+  { echo "$as_me:$LINENO: WARNING:
+        gd-lib >= 2.0.0, or a functional gd.h (from gd-devel) not found.
+        Please check that gdlib-config is in your default path, check out
+        LD_LIBRARY_PATH or equivalent variable.
+        Or this might also be that your gdlib-config has other name.
+        Please try again with --with-gdlib-config=/usr/bin/gdlib-config
+        (replace /usr/bin/gdlib-config with a valid path to your
+        gdlib-config).
+        If you use compiled packages check if you have devel pack installed.
+        To download the latest version check http://www.boutell.com/gd for
+        sources." >&5
 echo "$as_me: WARNING:
-	gd-lib >= 2.0.0, or a functional gd.h (from gd-devel) not found.
-	Please check that gdlib-config is in your default path, check out
-	LD_LIBRARY_PATH or equivalent variable.
-	Or this might also be that your gdlib-config has other name.
-	Please try again with --with-gdlib-config=/usr/bin/gdlib-config
-	(replace /usr/bin/gdlib-config with a valid path to your gdlib-config).
-	If you use compiled packages check if you have devel pack installed.
-	To download the latest version check http://www.boutell.com/gd
-	for sources." >&2;}
+        gd-lib >= 2.0.0, or a functional gd.h (from gd-devel) not found.
+        Please check that gdlib-config is in your default path, check out
+        LD_LIBRARY_PATH or equivalent variable.
+        Or this might also be that your gdlib-config has other name.
+        Please try again with --with-gdlib-config=/usr/bin/gdlib-config
+        (replace /usr/bin/gdlib-config with a valid path to your
+        gdlib-config).
+        If you use compiled packages check if you have devel pack installed.
+        To download the latest version check http://www.boutell.com/gd for
+        sources." >&2;}
+_mule_warning_0=yes
+_mule_has_warnings=yes
 
 fi
 
@@ -6625,8 +6628,20 @@ echo "${ECHO_T}$regex_found" >&6
 	if test $regex_found = yes; then
   :
 else
-  WEB=disabled
+
+		WEB=disabled
+		{ echo "$as_me:$LINENO: WARNING:
+        amuleweb has been disabled because configure could not find a POSIX
+        compliant regex library." >&5
+echo "$as_me: WARNING:
+        amuleweb has been disabled because configure could not find a POSIX
+        compliant regex library." >&2;}
+_mule_warning_1=yes
+_mule_has_warnings=yes
+
+
 fi
+
 
 
 fi
@@ -7029,9 +7044,21 @@ fi
 	if test -n "$LIBPNG_VERSION"; then
   AMULEWEB_DEFS="-DWITH_LIBPNG"
 else
-  { echo "$as_me:$LINENO: WARNING: libpng-devel >= 1.2.0 is needed for amuleweb" >&5
-echo "$as_me: WARNING: libpng-devel >= 1.2.0 is needed for amuleweb" >&2;}
+
+		{ echo "$as_me:$LINENO: WARNING:
+        libpng >= 1.2.0 not found.
+        amuleweb will be compiled but file download progress bar images will
+        NOT be generated." >&5
+echo "$as_me: WARNING:
+        libpng >= 1.2.0 not found.
+        amuleweb will be compiled but file download progress bar images will
+        NOT be generated." >&2;}
+_mule_warning_2=yes
+_mule_has_warnings=yes
+
+
 fi
+
 
 
 
@@ -8322,6 +8349,13 @@ fi
   LIBUPNP_CPPFLAGS="$LIBUPNP_CPPFLAGS -DENABLE_UPNP=1"
 else
   ENABLE_UPNP=disabled
+		{ echo "$as_me:$LINENO: WARNING:
+        UPnP code has been disabled because ${libupnp_error}." >&5
+echo "$as_me: WARNING:
+        UPnP code has been disabled because ${libupnp_error}." >&2;}
+_mule_warning_3=yes
+_mule_has_warnings=yes
+
 
 fi
 
@@ -8600,13 +8634,16 @@ echo $ECHO_N "checking for exception-handling... $ECHO_C" >&6
 		echo "$as_me:$LINENO: result: undeterminable" >&5
 echo "${ECHO_T}undeterminable" >&6
 		{ echo "$as_me:$LINENO: WARNING:
-	Cross-compilation detected, so exception handling cannot be tested.
-	Note that broken exception handling in your compiler may lead to
-	unexpected crashes." >&5
+        Cross-compilation detected, so exception handling cannot be tested.
+        Note that broken exception handling in your compiler may lead to
+        unexpected crashes." >&5
 echo "$as_me: WARNING:
-	Cross-compilation detected, so exception handling cannot be tested.
-	Note that broken exception handling in your compiler may lead to
-	unexpected crashes." >&2;}
+        Cross-compilation detected, so exception handling cannot be tested.
+        Note that broken exception handling in your compiler may lead to
+        unexpected crashes." >&2;}
+_mule_warning_4=yes
+_mule_has_warnings=yes
+
 
 else
   cat >conftest.$ac_ext <<_ACEOF
@@ -8807,11 +8844,14 @@ sed 's/^/| /' conftest.$ac_ext >&5
 		echo "$as_me:$LINENO: result: no" >&5
 echo "${ECHO_T}no" >&6
 		{ echo "$as_me:$LINENO: WARNING:
-	bfd.h not found or unusable, please install binutils development
-	package if you are a developer or want to help testing aMule" >&5
+        bfd.h not found or unusable, please install binutils development
+        package if you are a developer or want to help testing aMule" >&5
 echo "$as_me: WARNING:
-	bfd.h not found or unusable, please install binutils development
-	package if you are a developer or want to help testing aMule" >&2;}
+        bfd.h not found or unusable, please install binutils development
+        package if you are a developer or want to help testing aMule" >&2;}
+_mule_warning_5=yes
+_mule_has_warnings=yes
+
 
 fi
 rm -f conftest.err conftest.$ac_objext \
@@ -14041,13 +14081,16 @@ done
 if test $cross_compiling = yes -a $gnumalloc = yes; then
 
 	{ echo "$as_me:$LINENO: WARNING:
-    configure cannot check whether malloc() and realloc() are GNU libc
-    compatible. You have to be ABSOLUTELY sure that they are, otherwise
-    run configure with the --without-gnu-malloc switch." >&5
+        configure cannot check whether malloc() and realloc() are GNU libc
+        compatible. You have to be ABSOLUTELY sure that they are, otherwise
+        run configure with the --without-gnu-malloc switch." >&5
 echo "$as_me: WARNING:
-    configure cannot check whether malloc() and realloc() are GNU libc
-    compatible. You have to be ABSOLUTELY sure that they are, otherwise
-    run configure with the --without-gnu-malloc switch." >&2;}
+        configure cannot check whether malloc() and realloc() are GNU libc
+        compatible. You have to be ABSOLUTELY sure that they are, otherwise
+        run configure with the --without-gnu-malloc switch." >&2;}
+_mule_warning_6=yes
+_mule_has_warnings=yes
+
 	ac_cv_func_malloc_0_nonnull=yes
 	ac_cv_func_realloc_0_nonnull=yes
 
@@ -18105,8 +18148,15 @@ fi
 fi
 
 	if test x$USE_NLS = xno -a x${enable_nls:-yes} = xyes; then
-  { echo "$as_me:$LINENO: WARNING: You need to install GNU gettext/gettext-tools to compile aMule with i18n support." >&5
-echo "$as_me: WARNING: You need to install GNU gettext/gettext-tools to compile aMule with i18n support." >&2;}
+  { echo "$as_me:$LINENO: WARNING:
+        You need to install GNU gettext/gettext-tools to compile aMule with
+        i18n support." >&5
+echo "$as_me: WARNING:
+        You need to install GNU gettext/gettext-tools to compile aMule with
+        i18n support." >&2;}
+_mule_warning_7=yes
+_mule_has_warnings=yes
+
 fi
 
 
@@ -21219,23 +21269,72 @@ if test x$GDLIB_VERSION != xnot_needed; then
 echo "                                       libgd                 ${GDLIB_VERSION:-Not detected}"
 fi
 echo "                                       zlib                  ${ZLIB_VERSION:-Not detected}"
-if test x$WEB = xdisabled; then
+if test ${_mule_has_warnings:-no} = yes; then
 echo ""
 echo ""
-echo "WARNING! amuleweb has been disabled because configure could not find"
-echo "a POSIX compliant regex library."
-echo ""
+echo " *** Warnings during configuration ***"
 fi
-if test -z "$LIBPNG_VERSION"; then
-echo ""
-echo ""
-echo "WARNING! libpng >= 1.2.0 not found."
-echo "amuleweb will be compiled but file download progress bar images will NOT be generated."
-echo ""
+if test ${_mule_warning_0:-no} = yes; then
+cat <<_MULEEOT
+
+* gd-lib >= 2.0.0, or a functional gd.h (from gd-devel) not found.
+  Please check that gdlib-config is in your default path, check out
+  LD_LIBRARY_PATH or equivalent variable.
+  Or this might also be that your gdlib-config has other name.
+  Please try again with --with-gdlib-config=/usr/bin/gdlib-config (replace
+  /usr/bin/gdlib-config with a valid path to your gdlib-config).
+  If you use compiled packages check if you have devel pack installed.
+  To download the latest version check http://www.boutell.com/gd for sources.
+_MULEEOT
 fi
-if test x$ENABLE_UPNP = xdisabled; then
-echo ""
-echo ""
-echo "WARNING! UPnP code has been disabled because ${libupnp_error}."
-echo ""
+if test ${_mule_warning_1:-no} = yes; then
+cat <<_MULEEOT
+
+* amuleweb has been disabled because configure could not find a POSIX
+  compliant regex library.
+_MULEEOT
+fi
+if test ${_mule_warning_2:-no} = yes; then
+cat <<_MULEEOT
+
+* libpng >= 1.2.0 not found.
+  amuleweb will be compiled but file download progress bar images will NOT be
+  generated.
+_MULEEOT
+fi
+if test ${_mule_warning_3:-no} = yes; then
+cat <<_MULEEOT
+
+* UPnP code has been disabled because ${libupnp_error}.
+_MULEEOT
+fi
+if test ${_mule_warning_4:-no} = yes; then
+cat <<_MULEEOT
+
+* Cross-compilation detected, so exception handling cannot be tested.
+  Note that broken exception handling in your compiler may lead to unexpected
+  crashes.
+_MULEEOT
+fi
+if test ${_mule_warning_5:-no} = yes; then
+cat <<_MULEEOT
+
+* bfd.h not found or unusable, please install binutils development package if
+  you are a developer or want to help testing aMule
+_MULEEOT
+fi
+if test ${_mule_warning_6:-no} = yes; then
+cat <<_MULEEOT
+
+* configure cannot check whether malloc() and realloc() are GNU libc
+  compatible. You have to be ABSOLUTELY sure that they are, otherwise run
+  configure with the --without-gnu-malloc switch.
+_MULEEOT
+fi
+if test ${_mule_warning_7:-no} = yes; then
+cat <<_MULEEOT
+
+* You need to install GNU gettext/gettext-tools to compile aMule with i18n
+  support.
+_MULEEOT
 fi
