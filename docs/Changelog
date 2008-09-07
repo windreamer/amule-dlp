@@ -20,7 +20,7 @@ Version 2.3.0 - The river knows.
 		* Fixes to Windows build
 		* Allow compilation with wxCocoa
 		* Replace Color.h by new class implementation MuleColour
-		* Lower class overhead and user two-level cache for pen/brushes
+		* Lower class overhead and use two-level cache for pens/brushes
 		* Preferences changes
 
 	lfroen:
@@ -49,11 +49,28 @@ Version 2.3.0 - The river knows.
 		* Fix minimizing from tray icon
 		* Add option to show chat messages in log
 		* Add option to specify amuleweb binary location
-		* Add checks to cas to prevent segfaults
-		* Fix wxCas save file dialog for file types
 
 	Special Thanks To:
 		* Greek for his contributions to aMule's user interface.
+
+--------------------------------------------------------------------------------
+
+Version 2.2.3 - The "Vampires suck" version.
+----------
+2008-10-??
+
+	GonoszTopi:
+		* Fixed improper handling of EC connection failures.
+		* Fix for shells not properly handling empty lists.
+		* POSIX fixes in shell code.
+		* Made not finding GeoIP non-fatal.
+		* Check if --enable-geoip-static can be fulfilled.
+		* Fixed loading of zipped ipfilter files. Thanks to CtrlAltDel
+		  for the investigation of the problem.
+
+	Wuischke:
+		* Add checks to cas to prevent segfaults
+		* Fix wxCas save file dialog for file types
 
 --------------------------------------------------------------------------------
 
