@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
-	Name="libmuleunittest"
-	ProjectGUID="{5FE132E5-83CB-4880-B2D9-CA828E008786}"
-	RootNamespace="libmuleunittest"
+	Version="9,00"
+	Name="ed2k"
+	ProjectGUID="{FF560C5D-4369-4DEF-B2EC-6F507D554DB6}"
+	RootNamespace="ed2k"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="131072"
 	>
@@ -20,7 +20,7 @@
 			Name="Debug|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
+			ConfigurationType="1"
 			CharacterSet="1"
 			>
 			<Tool
@@ -41,15 +41,14 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)\..\..\wxWidgets\include&quot;;&quot;$(SolutionDir)\..\..\wxWidgets\lib\vc_lib\mswud&quot;;&quot;$(SolutionDir)\..\src\libs&quot;"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;MULEUNIT"
+				AdditionalIncludeDirectories=""
+				PreprocessorDefinitions="WIN32;__WIN32__;_DEBUG;_WINDOWS;USE_STD_STRING;_SCL_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				ExceptionHandling="2"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="4"
 			/>
 			<Tool
@@ -62,10 +61,20 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
+				Name="VCLinkerTool"
+				AdditionalDependencies="shlwapi.lib"
+				LinkIncremental="2"
+				GenerateDebugInformation="true"
+				SubSystem="1"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -77,6 +86,9 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
 			/>
 		</Configuration>
@@ -84,7 +96,7 @@
 			Name="Release|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
+			ConfigurationType="1"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
@@ -105,12 +117,11 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)\..\..\wxWidgets\include&quot;;&quot;$(SolutionDir)\..\..\wxWidgets\lib\vc_lib\mswu&quot;;&quot;$(SolutionDir)\..\src\libs&quot;"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;MULEUNIT"
+				AdditionalIncludeDirectories=""
+				PreprocessorDefinitions="WIN32;__WIN32__;NDEBUG;_WINDOWS;USE_STD_STRING;_SCL_SECURE_NO_WARNINGS"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="true"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -123,10 +134,22 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
+				Name="VCLinkerTool"
+				AdditionalDependencies="shlwapi.lib"
+				LinkIncremental="1"
+				GenerateDebugInformation="true"
+				SubSystem="1"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -136,6 +159,9 @@
 			/>
 			<Tool
 				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -151,19 +177,15 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\..\..\unittests\muleunit\main.cpp"
+				RelativePath="..\..\src\ED2KLinkParser.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\unittests\muleunit\test.cpp"
+				RelativePath="..\..\src\MagnetURI.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\unittests\muleunit\testcase.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\unittests\muleunit\testregistry.cpp"
+				RelativePath="..\..\src\MuleCollection.cpp"
 				>
 			</File>
 		</Filter>
@@ -173,15 +195,15 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\..\..\unittests\muleunit\test.h"
+				RelativePath="..\..\src\FileLock.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\unittests\muleunit\testcase.h"
+				RelativePath="..\..\src\MagnetURI.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\unittests\muleunit\testregistry.h"
+				RelativePath="..\..\src\MuleCollection.h"
 				>
 			</File>
 		</Filter>
