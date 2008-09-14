@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: aMule\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-09-11 03:31+0200\n"
-"PO-Revision-Date: 2008-09-05 03:37+0100\n"
+"PO-Revision-Date: 2008-09-13 01:00+0100\n"
 "Last-Translator: Aïssi Dylan <aissi.dylan@free.fr>\n"
 "Language-Team: Français\n"
 "MIME-Version: 1.0\n"
@@ -444,35 +444,35 @@ msgstr "Copier le &lien magnétique dans le presse-papiers"
 
 #: src/SharedFilesCtrl.cpp:167 src/DownloadListCtrl.cpp:949
 msgid "Copy eD2k &link to clipboard"
-msgstr "Copier le &lien eD2k dans le presse-papier"
+msgstr "Copier le &lien eD2k dans le presse-papiers"
 
 #: src/SharedFilesCtrl.cpp:168
 msgid "Copy eD2k link to clipboard (&Source)"
-msgstr "Copier le lien eD2k dans le presse-papier (&Source)"
+msgstr "Copier le lien eD2k dans le presse-papiers (&Source)"
 
 #: src/SharedFilesCtrl.cpp:169
 msgid "Copy eD2k link to clipboard (Source) (&With Crypt options)"
 msgstr ""
-"Copier le lien eD2k dans le presse-papier (Source) (Avec &options de "
+"Copier le lien eD2k dans le presse-papiers (Source) (Avec &options de "
 "chiffrage)"
 
 #: src/SharedFilesCtrl.cpp:170
 msgid "Copy eD2k link to clipboard (&Hostname)"
-msgstr "Copier le lien eD2k dans le presse-papier (Nom d'&hôte)"
+msgstr "Copier le lien eD2k dans le presse-papiers (Nom d'&hôte)"
 
 #: src/SharedFilesCtrl.cpp:171
 msgid "Copy eD2k link to clipboard (Hostname) (With &Crypt options)"
 msgstr ""
-"Copier le lien eD2k dans le presse-papier (Nom d'hôte) (Avec options de "
+"Copier le lien eD2k dans le presse-papiers (Nom d'hôte) (Avec options de "
 "&chiffrage)"
 
 #: src/SharedFilesCtrl.cpp:172
 msgid "Copy eD2k link to clipboard (&AICH info)"
-msgstr "Copier le lien eD2k dans le presse-papier (Info &AICH)"
+msgstr "Copier le lien eD2k dans le presse-papiers (Info &AICH)"
 
 #: src/SharedFilesCtrl.cpp:173 src/DownloadListCtrl.cpp:951
 msgid "Copy feedback to clipboard"
-msgstr "Copier le rapport dans le presse papier"
+msgstr "Copier le rapport dans le presse-papiers"
 
 #: src/SharedFilesCtrl.cpp:205 src/DownloadListCtrl.cpp:734
 #, c-format
@@ -710,7 +710,7 @@ msgstr "Jamais"
 
 #: src/HTTPDownload.cpp:55
 msgid "Downloading..."
-msgstr "Téléchargement..."
+msgstr "Téléchargement…"
 
 #: src/HTTPDownload.cpp:75
 #, c-format
@@ -917,7 +917,7 @@ msgstr ""
 
 #: src/utils/wxCas/src/wxcasframe.cpp:585
 msgid "Oh Oh, aMule is not running..."
-msgstr "Oh Oh, aMule n'est pas lancé..."
+msgstr "Oh Oh, aMule n'est pas lancé…"
 
 #: src/utils/wxCas/src/wxcasframe.cpp:661
 #: src/utils/wxCas/src/wxcasframe.cpp:731
@@ -931,11 +931,11 @@ msgstr "aMule est lancé, mais est déconnecté"
 
 #: src/utils/wxCas/src/wxcasframe.cpp:941
 msgid "aMule is connecting..."
-msgstr "aMule se connecte..."
+msgstr "aMule se connecte…"
 
 #: src/utils/wxCas/src/wxcasframe.cpp:945
 msgid "Oh Oh, aMule status is unknown..."
-msgstr "Oh Oh, l'état d'aMule est inconnu..."
+msgstr "Oh Oh, l'état d'aMule est inconnu…"
 
 #: src/utils/wxCas/src/wxcasframe.cpp:1016
 #: src/utils/wxCas/src/wxcasframe.cpp:1021
@@ -960,7 +960,7 @@ msgstr " n'est pas connecté !"
 
 #: src/utils/wxCas/src/wxcasframe.cpp:1031
 msgid " is connecting..."
-msgstr " se connecte..."
+msgstr " se connecte…"
 
 #: src/utils/wxCas/src/wxcasframe.cpp:1035
 msgid " is doing something strange, check it !"
@@ -1206,7 +1206,7 @@ msgstr "Quitter"
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:259
 msgid "Open"
-msgstr ""
+msgstr "Ouvrir"
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:260
 msgid "Open a file to compute its eD2k link"
@@ -1219,11 +1219,11 @@ msgstr "Copier"
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:263
 msgid "Copy computed eD2k link to clipboard"
-msgstr "Copie du lien eD2k calculé dans le presse-papier"
+msgstr "Copie du lien eD2k calculé dans le presse-papiers"
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:265
 msgid "Save as"
-msgstr ""
+msgstr "Enregistrer sous"
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:266
 msgid "Save computed eD2k link to file"
@@ -1245,7 +1245,7 @@ msgstr "Sélectionnez le fichier auquel vous souhaitez calculer le lien eD2k"
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:398
 msgid "Can't open the clipboard"
-msgstr ""
+msgstr "Impossible d'ouvrir le presse-papiers"
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:407
 msgid "Nothing to copy for now !"
@@ -1292,20 +1292,20 @@ msgstr ""
 #: src/utils/aLinkCreator/src/alcframe.cpp:512
 #: src/utils/aLinkCreator/src/alcframe.cpp:518
 msgid "Hashing..."
-msgstr "Hachage en cours..."
+msgstr "Hachage en cours…"
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:516
 #: src/utils/aLinkCreator/src/alcframe.cpp:531
 msgid "aLinkCreator is working for you"
-msgstr ""
+msgstr "aLinkCreator fonctionne pour vous"
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:516
 msgid "Computing MD4 Hash..."
-msgstr ""
+msgstr "Calcul du hachage MD4…"
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:531
 msgid "Computing eD2k Hashes..."
-msgstr ""
+msgstr "Calcul des hachages eD2k…"
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:575
 #, c-format
@@ -1745,11 +1745,11 @@ msgstr "Supprimer tous les serveurs"
 
 #: src/ServerListCtrl.cpp:452 src/SearchListCtrl.cpp:609
 msgid "Copy eD2k link to clipboard"
-msgstr "Copier le lien eD2k dans le presse-papier"
+msgstr "Copier le lien eD2k dans le presse-papiers"
 
 #: src/ServerListCtrl.cpp:454
 msgid "Copy eD2k links to clipboard"
-msgstr "Copier les liens eD2k dans le presse-papier"
+msgstr "Copier les liens eD2k dans le presse-papiers"
 
 #: src/ServerListCtrl.cpp:462
 msgid "Reconnect to server"
@@ -2436,7 +2436,7 @@ msgstr "Déjà connecté à eD2k."
 
 #: src/ExternalConn.cpp:1423
 msgid "Connecting to eD2k..."
-msgstr "Connexion à eD2k..."
+msgstr "Connexion à eD2k…"
 
 #: src/ExternalConn.cpp:1431
 msgid "Already connected to Kad."
@@ -2444,7 +2444,7 @@ msgstr "Déjà connecté à Kad."
 
 #: src/ExternalConn.cpp:1434
 msgid "Connecting to Kad..."
-msgstr "Connexion à Kad..."
+msgstr "Connexion à Kad…"
 
 #: src/ExternalConn.cpp:1439
 msgid "All networks are disabled."
@@ -3139,7 +3139,7 @@ msgstr "Afficher tous les commentaires"
 
 #: src/DownloadListCtrl.cpp:947
 msgid "Copy magnet URI to clipboard"
-msgstr "Copier le lien magnétique dans le presse-papiers."
+msgstr "Copier le lien magnétique dans le presse-papiers"
 
 #: src/DownloadListCtrl.cpp:960
 msgid "unassign"
@@ -3251,7 +3251,7 @@ msgstr ""
 
 #: src/PartFile.cpp:604
 msgid "Trying to recover file info..."
-msgstr "Tentative de récupération des infos du fichier..."
+msgstr "Tentative de récupération des infos du fichier…"
 
 #: src/PartFile.cpp:619
 msgid "Recovering no-named file - will try to recover it as RecoveredFile.dat"
@@ -3262,7 +3262,7 @@ msgstr ""
 #: src/PartFile.cpp:624
 msgid "Recovered all available file info :D - Trying to use it..."
 msgstr ""
-"Récupération de toutes les infos du fichier :D - Essayons de les utiliser..."
+"Récupération de toutes les infos du fichier :D - Essayons de les utiliser…"
 
 #: src/PartFile.cpp:626
 msgid "Unable to recover file info :("
@@ -3895,9 +3895,9 @@ msgid ""
 "The magnet link must contain the eD2k hash and file length.\n"
 msgstr ""
 "Le lien eD2k à ajouter peut être :\n"
-"*) un lien fichier (ed2k://|fichier|...), il sera ajouté à la file de "
+"*) un lien fichier (ed2k://|fichier|…), il sera ajouté à la file de "
 "téléchargement,\n"
-"*) un lien serveur (ed2k://|serveur|...), il sera ajouté à la liste des "
+"*) un lien serveur (ed2k://|serveur|…), il sera ajouté à la liste des "
 "serveurs,\n"
 "*) ou un lien de liste de serveurs, dans ce cas tous les serveurs dans la "
 "liste\n"
@@ -4381,7 +4381,7 @@ msgstr "Ajout du téléchargement et sauvegarde du nouveau fichier .part"
 
 #: src/PartFileConvert.cpp:548
 msgid "Fetching status..."
-msgstr "Récupération du statut..."
+msgstr "Récupération du statut…"
 
 #: src/PartFileConvert.cpp:612
 msgid "In progress"
@@ -4448,7 +4448,7 @@ msgstr "Supprimer les sources ?"
 
 #: src/PartFileConvert.cpp:723 src/muuli_wdr.cpp:3323
 msgid "Waiting..."
-msgstr "En attente..."
+msgstr "En attente…"
 
 #: src/PartFileConvert.cpp:738
 #, c-format
@@ -4641,11 +4641,11 @@ msgstr ""
 
 #: src/muuli_wdr.cpp:88
 msgid "Loading ..."
-msgstr "Chargement en cours..."
+msgstr "Chargement en cours…"
 
 #: src/muuli_wdr.cpp:96
 msgid "Number of users on the server you are connected to ..."
-msgstr "Nombre d'utilisateur du serveur auquel vous êtes connecté..."
+msgstr "Nombre d'utilisateur du serveur auquel vous êtes connecté…"
 
 #: src/muuli_wdr.cpp:99
 msgid "Users: 0"
@@ -4686,7 +4686,7 @@ msgstr ""
 
 #: src/muuli_wdr.cpp:124
 msgid "Not Connected ..."
-msgstr "Non connecté..."
+msgstr "Non connecté…"
 
 #: src/muuli_wdr.cpp:125
 msgid "Currently connected server."
@@ -4934,9 +4934,8 @@ msgid ""
 "For a film you can say its length, its story, language ...\\n\\nand if it's "
 "a fake, you can tell that to other users of aMule."
 msgstr ""
-"Pour un film vous pouvez indiquer sa durée, l'histoire, la langue ...\\n"
-"\\net s'il s'agit d'un faux, vous pouvez prévenir les autres utilisateurs "
-"d'aMule."
+"Pour un film vous pouvez indiquer sa durée, l'histoire, la langue…\\n\\net "
+"s'il s'agit d'un faux, vous pouvez prévenir les autres utilisateurs d'aMule."
 
 #: src/muuli_wdr.cpp:893
 msgid "File Quality"
@@ -4946,7 +4945,7 @@ msgstr "Qualité du fichier"
 msgid "Choose the file rating or advice users if the file is invalid ..."
 msgstr ""
 "Choisissez une évaluation pour le fichier ou avertissez les autres "
-"utilisateurs qu'il est invalide..."
+"utilisateurs qu'il est invalide…"
 
 #: src/muuli_wdr.cpp:950
 msgid "Refresh"
@@ -4954,7 +4953,7 @@ msgstr "Rafraîchir"
 
 #: src/muuli_wdr.cpp:977
 msgid "Downloading, please wait ..."
-msgstr "En téléchargement, veuillez patienter..."
+msgstr "En téléchargement, veuillez patienter…"
 
 #: src/muuli_wdr.cpp:983
 msgid "Unknown size"
@@ -5746,7 +5745,7 @@ msgstr "Répertoire entrant :"
 
 #: src/muuli_wdr.cpp:2505
 msgid "..."
-msgstr "..."
+msgstr "…"
 
 #: src/muuli_wdr.cpp:2512
 msgid "Change priority for new assigned files :"
@@ -5767,7 +5766,7 @@ msgstr "Cliquer ici pour effacer le journal."
 #: src/muuli_wdr.cpp:2653
 msgid "Click on this button to update the servers list from URL ..."
 msgstr ""
-"Cliquer ici pour mettre à jour la liste des serveurs à partir de l'URL..."
+"Cliquer ici pour mettre à jour la liste des serveurs à partir de l'URL…"
 
 #: src/muuli_wdr.cpp:2657
 msgid "Server list"
@@ -5799,7 +5798,7 @@ msgstr "Entrer ici le port du serveur."
 
 #: src/muuli_wdr.cpp:2691
 msgid "Add manually a server (fill fields to the left before) ..."
-msgstr "Ajouter manuellement un serveur (remplir les champs à gauche avant)..."
+msgstr "Ajouter manuellement un serveur (remplir les champs à gauche avant)…"
 
 #: src/muuli_wdr.cpp:2729
 msgid "aMule Log"
@@ -5820,7 +5819,7 @@ msgstr "Infos Kad"
 #: src/muuli_wdr.cpp:2770
 msgid "Click on this button to update the nodes list from URL ..."
 msgstr ""
-"Cliquer sur le bouton pour mettre à jour la liste des nœuds depuis l'URL..."
+"Cliquer sur le bouton pour mettre à jour la liste des nœuds depuis l'URL…"
 
 #: src/muuli_wdr.cpp:2774
 msgid "Nodes (0)"
@@ -6388,7 +6387,7 @@ msgid ""
 "Creating client...\n"
 msgstr ""
 "\n"
-"Création du client en cours...\n"
+"Création du client en cours…\n"
 
 #: src/ExternalConnector.cpp:403
 #, c-format
@@ -6402,7 +6401,7 @@ msgid ""
 "Ok, exiting %s...\n"
 msgstr ""
 "\n"
-"Ok, fin de %s...\n"
+"Ok, fin de %s…\n"
 
 #: src/ExternalConnector.cpp:419
 msgid ""
@@ -6416,7 +6415,7 @@ msgstr ""
 "Vous devez spécifier un mot de passe, soit dans le fichier de configuration, "
 "soit sur la ligne de commande ; ou l'entrer lorsque l'on vous le demande.\n"
 "\n"
-"Fin d'exécution...\n"
+"Fin d'exécution…\n"
 
 #: src/ExternalConnector.cpp:426
 msgid "Show this help text."
