@@ -39,8 +39,8 @@
 #include "bw.xpm"
 #include "by.xpm"
 #include "bz.xpm"
-#include "ca.xpm"
 #include "catalonia.xpm"
+#include "ca.xpm"
 #include "cc.xpm"
 #include "cd.xpm"
 #include "cf.xpm"
@@ -196,8 +196,8 @@
 #include "rw.xpm"
 #include "sa.xpm"
 #include "sb.xpm"
-#include "sc.xpm"
 #include "scotland.xpm"
+#include "sc.xpm"
 #include "sd.xpm"
 #include "se.xpm"
 #include "sg.xpm"
@@ -297,8 +297,8 @@ static struct FlagXPMCode flagXPMCodeVector[] = {
 	{bw, "bw"},
 	{by, "by"},
 	{bz, "bz"},
-	{ca, "ca"},
 	{catalonia, "catalonia"},
+	{ca, "ca"},
 	{cc, "cc"},
 	{cd, "cd"},
 	{cf, "cf"},
@@ -454,8 +454,8 @@ static struct FlagXPMCode flagXPMCodeVector[] = {
 	{rw, "rw"},
 	{sa, "sa"},
 	{sb, "sb"},
-	{sc, "sc"},
 	{scotland, "scotland"},
+	{sc, "sc"},
 	{sd, "sd"},
 	{se, "se"},
 	{sg, "sg"},
