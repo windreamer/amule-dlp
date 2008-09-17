@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-16 03:30+0200\n"
-"PO-Revision-Date: 2008-08-25 16:25+0100\n"
+"POT-Creation-Date: 2008-09-17 03:30+0200\n"
+"PO-Revision-Date: 2008-09-16 22:49+0100\n"
 "Last-Translator: Johannes Krampf <wuischke@amule.org>\n"
 "Language-Team:  <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -555,76 +555,76 @@ msgstr[1] "%d Kad-Kontakte geschrieben."
 msgid "ERROR: Could not listen to TCP port."
 msgstr "FEHLER: Kann nicht auf TCP-Port lauschen."
 
-#: src/webserver/src/WebServer.cpp:306
+#: src/webserver/src/WebServer.cpp:294
 msgid "web client connection accepted\n"
 msgstr "Webclient-Verbindung akzeptiert.\n"
 
-#: src/webserver/src/WebServer.cpp:309
+#: src/webserver/src/WebServer.cpp:297
 msgid "ERROR: cannot accept web client connection\n"
 msgstr "FEHLER: Kann Webclientverbindung nicht akzeptieren.\n"
 
-#: src/webserver/src/WebServer.cpp:378
+#: src/webserver/src/WebServer.cpp:366
 #, c-format
 msgid "Request failed with the following error: %s."
 msgstr "Anfrage mit folgendem Fehler gescheitert: %s."
 
-#: src/webserver/src/WebServer.cpp:381 src/TextClient.cpp:626
+#: src/webserver/src/WebServer.cpp:369 src/TextClient.cpp:626
 msgid "Request failed with an unknown error."
 msgstr "Anfrage ist mit unbekanntem Fehler gescheitert."
 
-#: src/webserver/src/WebServer.cpp:1742
+#: src/webserver/src/WebServer.cpp:1730
 msgid "Index file not found: "
 msgstr "Index-Datei nicht gefunden: "
 
-#: src/webserver/src/WebServer.cpp:1819
+#: src/webserver/src/WebServer.cpp:1807
 msgid "Session expired - requesting login\n"
 msgstr "Sitzung abgelaufen - fordere Anmeldung\n"
 
-#: src/webserver/src/WebServer.cpp:1824
+#: src/webserver/src/WebServer.cpp:1812
 msgid "Session ok, logged in\n"
 msgstr "Sitzung ok, angemeldet\n"
 
-#: src/webserver/src/WebServer.cpp:1826
+#: src/webserver/src/WebServer.cpp:1814
 msgid "Session ok, not logged in\n"
 msgstr "Sitzung ok, nicht angemeldet\n"
 
-#: src/webserver/src/WebServer.cpp:1831
+#: src/webserver/src/WebServer.cpp:1819
 msgid "No session opened - will request login\n"
 msgstr "Keine Sitzung geöffnet - fordere Anmeldung\n"
 
-#: src/webserver/src/WebServer.cpp:1840
+#: src/webserver/src/WebServer.cpp:1828
 msgid "Session created - requesting login\n"
 msgstr "Sitzung eröffnet - fordere Anmeldung\n"
 
-#: src/webserver/src/WebServer.cpp:1855
+#: src/webserver/src/WebServer.cpp:1843
 msgid "Processing request [original]: "
 msgstr "Anfrage verarbeiten [original]: "
 
-#: src/webserver/src/WebServer.cpp:1871
+#: src/webserver/src/WebServer.cpp:1859
 msgid "Checking password\n"
 msgstr "Prüfe Passwort\n"
 
-#: src/webserver/src/WebServer.cpp:1876
+#: src/webserver/src/WebServer.cpp:1864
 msgid "Password hash invalid\n"
 msgstr "Passwort-Prüfsumme ungültig\n"
 
-#: src/webserver/src/WebServer.cpp:1891
+#: src/webserver/src/WebServer.cpp:1879
 msgid "Password ok\n"
 msgstr "Passwort ok\n"
 
-#: src/webserver/src/WebServer.cpp:1893
+#: src/webserver/src/WebServer.cpp:1881
 msgid "Password bad\n"
 msgstr "Falsches Passwort\n"
 
-#: src/webserver/src/WebServer.cpp:1896
+#: src/webserver/src/WebServer.cpp:1884
 msgid "You did not enter any password. Blank password is not allowed.\n"
 msgstr "Du hast kein Passwort angegeben. Leeres Passwort ist nicht erlaubt.\n"
 
-#: src/webserver/src/WebServer.cpp:1904
+#: src/webserver/src/WebServer.cpp:1892
 msgid "Logout requested\n"
 msgstr "Fordere Abmeldung\n"
 
-#: src/webserver/src/WebServer.cpp:1909
+#: src/webserver/src/WebServer.cpp:1897
 msgid "Processing request [redirected]: "
 msgstr "Anfrage verarbeiten [umgeleitet]: "
 
@@ -1187,7 +1187,7 @@ msgstr "Schließen"
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:259
 msgid "Open"
-msgstr ""
+msgstr "Öffnen..."
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:260
 msgid "Open a file to compute its eD2k link"
@@ -1204,7 +1204,7 @@ msgstr "Kopiere erstellten eD2k-Verweis in die Zwischenablage"
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:265
 msgid "Save as"
-msgstr ""
+msgstr "Speichern unter..."
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:266
 msgid "Save computed eD2k link to file"
@@ -1226,7 +1226,7 @@ msgstr "Datei zum Erstellen des eD2k-Verweises auswählen"
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:398
 msgid "Can't open the clipboard"
-msgstr ""
+msgstr "Kann die Zwischenablage nicht öffnen."
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:407
 msgid "Nothing to copy for now !"
@@ -1279,15 +1279,15 @@ msgstr "Prüfsummenberechnung..."
 #: src/utils/aLinkCreator/src/alcframe.cpp:516
 #: src/utils/aLinkCreator/src/alcframe.cpp:531
 msgid "aLinkCreator is working for you"
-msgstr ""
+msgstr "aLinkCreator arbeitet gerade für dich"
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:516
 msgid "Computing MD4 Hash..."
-msgstr ""
+msgstr "Berechne MD4-Hash..."
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:531
 msgid "Computing eD2k Hashes..."
-msgstr ""
+msgstr "Berechne eD2k-Hash..."
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:575
 #, c-format
@@ -1581,22 +1581,26 @@ msgstr "Schwedisch"
 msgid "Turkish"
 msgstr "Türkisch"
 
-#: src/Preferences.cpp:825 src/muuli_wdr.cpp:2223
+#: src/Preferences.cpp:692
+msgid "Ukrainian"
+msgstr "Ukrainisch"
+
+#: src/Preferences.cpp:826 src/muuli_wdr.cpp:2223
 msgid "- default -"
 msgstr "- Voreinstellung -"
 
-#: src/Preferences.cpp:878
+#: src/Preferences.cpp:879
 msgid "no options available"
 msgstr "keine Optionen verfügbar"
 
-#: src/Preferences.cpp:1699
+#: src/Preferences.cpp:1700
 msgid ""
 "TCP port can't be higher than 65532 due to server UDP socket being TCP+3"
 msgstr ""
 "TCP-Port kann nicht größer als 65532 sein, da der Server-UDP-Port=TCP-Port+3 "
 "ist"
 
-#: src/Preferences.cpp:1700
+#: src/Preferences.cpp:1701
 #, c-format
 msgid "Default port will be used (%d)"
 msgstr "Standard-Port wird verwendet (%d)"
@@ -4194,28 +4198,34 @@ msgid "Could not solve dns for server %s: Unable to connect!"
 msgstr "Konnte DNS-Namen von Server %s nicht auflösen: Kann nicht verbinden!"
 
 #: src/IP2Country.cpp:97
-msgid "Download new GeoIP.dat from "
-msgstr ""
+#, c-format
+msgid "Download new GeoIP.dat from %s"
+msgstr "Lade neue GeoIP.dat-Datei von %s."
 
 #: src/IP2Country.cpp:121
 msgid "Failed to remove GeoIP.dat file, aborting update."
 msgstr ""
+"Das Entfernen der GeoIP.dat-Datei ist fehlgeschlagen, breche Aktualisierung "
+"ab."
 
 #: src/IP2Country.cpp:127
 msgid "Failed to rename new GeoIP.dat file, aborting update."
 msgstr ""
+"Das Umbennenen der neuen GeoIP.dat-Datei ist fehlgeschlagen, breche "
+"Aktualisierung ab."
 
 #: src/IP2Country.cpp:133
 msgid "Successfully updated GeoIP.dat"
-msgstr ""
+msgstr "GeoIP.dat erfolgreich aktualisiert."
 
 #: src/IP2Country.cpp:135
 msgid "Error updating GeoIP.dat"
-msgstr ""
+msgstr "Fehler beim aktualisieren der Datei GeoIP.dat"
 
 #: src/IP2Country.cpp:138
-msgid "Failed to download GeoIP.dat from "
-msgstr ""
+#, c-format
+msgid "Failed to download GeoIP.dat from %s"
+msgstr "Herunterladen der Datei GeoIP.dat von %s fehlgeschlagen."
 
 #: src/IP2Country.cpp:155
 msgid "CIP2Country::CIP2Country(): Failed to load country data from "
@@ -4224,7 +4234,7 @@ msgstr "CIP2Country::CIP2Country():·Misslungenes Laden von Länderdaten von "
 #: src/IP2Country.cpp:160
 #, c-format
 msgid "Loaded %d flag bitmaps."
-msgstr ""
+msgstr "%d Flaggenbitmaps geladen."
 
 #: src/TransferWnd.cpp:194
 msgid "Are you sure you wish to cancel and delete all files in this category?"

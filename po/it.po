@@ -1,4 +1,4 @@
-# translation of it-cvs_beta.po to
+# translation of it_new.po to
 # Kry <elkry@users.sourceforge.net>, 2004,2005.
 # ilbuio <ilbuio.bnf@iol.it>, 2004,2005.
 # AnonimoVeneziano <voloterreno@tin.it>, 2004.
@@ -7,6 +7,7 @@
 # Vincenzo Reale <smart2128@baslug.org>, 2007.
 # Giuseppe Bilotta <giuseppe.bilotta@gmail.com>, 2007.
 # rik <rik_kornellatyahoo.com>, 2008.
+# translation of it-cvs_beta.po to
 # translation of it-cvs.po to
 # translation of it2.po to
 # translation of it.po to
@@ -17,10 +18,10 @@
 # This file is distributed under the same license as the aMule package.
 msgid ""
 msgstr ""
-"Project-Id-Version: it-cvs_beta\n"
+"Project-Id-Version: it_new\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-16 03:30+0200\n"
-"PO-Revision-Date: 2008-08-19 11:33+0200\n"
+"POT-Creation-Date: 2008-09-17 03:30+0200\n"
+"PO-Revision-Date: 2008-09-16 09:26+0200\n"
 "Last-Translator: rik <rik_kornellatyahoo.com>\n"
 "Language-Team:  <it@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -568,77 +569,77 @@ msgstr[1] "Scritti %d contatti Kad"
 msgid "ERROR: Could not listen to TCP port."
 msgstr "ERRORE: Impossibile mettersi in ascolto sulla porta TCP."
 
-#: src/webserver/src/WebServer.cpp:306
+#: src/webserver/src/WebServer.cpp:294
 msgid "web client connection accepted\n"
 msgstr "connessione web client accettata\n"
 
-#: src/webserver/src/WebServer.cpp:309
+#: src/webserver/src/WebServer.cpp:297
 msgid "ERROR: cannot accept web client connection\n"
 msgstr "ERRORE: impossibile accettare la connessione del client web\n"
 
-#: src/webserver/src/WebServer.cpp:378
+#: src/webserver/src/WebServer.cpp:366
 #, c-format
 msgid "Request failed with the following error: %s."
 msgstr "Richiesta non riuscita per l'errore: %s."
 
-#: src/webserver/src/WebServer.cpp:381 src/TextClient.cpp:626
+#: src/webserver/src/WebServer.cpp:369 src/TextClient.cpp:626
 msgid "Request failed with an unknown error."
 msgstr "Richiesta non riuscita con errore sconosciuto."
 
-#: src/webserver/src/WebServer.cpp:1742
+#: src/webserver/src/WebServer.cpp:1730
 msgid "Index file not found: "
 msgstr "File indice non trovato: "
 
-#: src/webserver/src/WebServer.cpp:1819
+#: src/webserver/src/WebServer.cpp:1807
 msgid "Session expired - requesting login\n"
 msgstr "Sessione scaduta - accesso richiesto\n"
 
-#: src/webserver/src/WebServer.cpp:1824
+#: src/webserver/src/WebServer.cpp:1812
 msgid "Session ok, logged in\n"
 msgstr "Sessione valida, utente registrato\n"
 
-#: src/webserver/src/WebServer.cpp:1826
+#: src/webserver/src/WebServer.cpp:1814
 msgid "Session ok, not logged in\n"
 msgstr "Sessione valida, utente registrato\n"
 
-#: src/webserver/src/WebServer.cpp:1831
+#: src/webserver/src/WebServer.cpp:1819
 msgid "No session opened - will request login\n"
 msgstr "Nessuna sessione aperta - richiesta di accesso\n"
 
-#: src/webserver/src/WebServer.cpp:1840
+#: src/webserver/src/WebServer.cpp:1828
 msgid "Session created - requesting login\n"
 msgstr "Sessione creata - richiesta di accesso\n"
 
-#: src/webserver/src/WebServer.cpp:1855
+#: src/webserver/src/WebServer.cpp:1843
 msgid "Processing request [original]: "
 msgstr "Elaborazione richiesta [originale]: "
 
-#: src/webserver/src/WebServer.cpp:1871
+#: src/webserver/src/WebServer.cpp:1859
 msgid "Checking password\n"
 msgstr "Verifica password\n"
 
-#: src/webserver/src/WebServer.cpp:1876
+#: src/webserver/src/WebServer.cpp:1864
 msgid "Password hash invalid\n"
 msgstr "Hash della password non valido\n"
 
-#: src/webserver/src/WebServer.cpp:1891
+#: src/webserver/src/WebServer.cpp:1879
 msgid "Password ok\n"
 msgstr "Password valida\n"
 
-#: src/webserver/src/WebServer.cpp:1893
+#: src/webserver/src/WebServer.cpp:1881
 msgid "Password bad\n"
 msgstr "Password errata\n"
 
-#: src/webserver/src/WebServer.cpp:1896
+#: src/webserver/src/WebServer.cpp:1884
 msgid "You did not enter any password. Blank password is not allowed.\n"
 msgstr ""
 "Non hai inserito alcuna password e le password vuote non sono ammesse.\n"
 
-#: src/webserver/src/WebServer.cpp:1904
+#: src/webserver/src/WebServer.cpp:1892
 msgid "Logout requested\n"
 msgstr "Disconnessone richiesta\n"
 
-#: src/webserver/src/WebServer.cpp:1909
+#: src/webserver/src/WebServer.cpp:1897
 msgid "Processing request [redirected]: "
 msgstr "Elaborazione richiesta [rediretta]: "
 
@@ -1011,7 +1012,7 @@ msgstr "Download: "
 
 #: src/utils/wxCas/src/wxcasframe.cpp:1118
 msgid " kB/s, Upload: "
-msgstr "kB/s, Upload: "
+msgstr " kB/s, Upload: "
 
 #: src/utils/wxCas/src/wxcasframe.cpp:1120
 msgid " kB/s"
@@ -1023,7 +1024,7 @@ msgstr "Condivisione: "
 
 #: src/utils/wxCas/src/wxcasframe.cpp:1130
 msgid " file(s), Clients on queue: "
-msgstr "file, client in coda: "
+msgstr " file, client in coda: "
 
 #: src/utils/wxCas/src/wxcasframe.cpp:1140
 msgid "Time: "
@@ -1038,7 +1039,7 @@ msgstr "%.2f kB/s"
 #: src/utils/wxCas/src/wxcasframe.cpp:1150
 #: src/utils/wxCas/src/wxcasframe.cpp:1160
 msgid " on "
-msgstr "attivo "
+msgstr " attivo "
 
 #: src/utils/wxCas/src/wxcasframe.cpp:1170
 msgid "System Load Average (1-5-15 min): "
@@ -1200,7 +1201,7 @@ msgstr "Esci"
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:259
 msgid "Open"
-msgstr ""
+msgstr "Apri"
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:260
 msgid "Open a file to compute its eD2k link"
@@ -1217,7 +1218,7 @@ msgstr "Copia il link eD2k generato negli appunti"
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:265
 msgid "Save as"
-msgstr ""
+msgstr "Salva come"
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:266
 msgid "Save computed eD2k link to file"
@@ -1239,7 +1240,7 @@ msgstr "Seleziona il file di cui vuoi creare il link eD2k"
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:398
 msgid "Can't open the clipboard"
-msgstr ""
+msgstr "Non posso aprire gli appunti"
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:407
 msgid "Nothing to copy for now !"
@@ -1291,15 +1292,15 @@ msgstr "Hashing..."
 #: src/utils/aLinkCreator/src/alcframe.cpp:516
 #: src/utils/aLinkCreator/src/alcframe.cpp:531
 msgid "aLinkCreator is working for you"
-msgstr ""
+msgstr "aLinkCreator sta lavorando per voi"
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:516
 msgid "Computing MD4 Hash..."
-msgstr ""
+msgstr "Calcolo Hash MD4 in corso..."
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:531
 msgid "Computing eD2k Hashes..."
-msgstr ""
+msgstr "Calcolo Hash eD2k in corso..."
 
 #: src/utils/aLinkCreator/src/alcframe.cpp:575
 #, c-format
@@ -1593,22 +1594,26 @@ msgstr "Svedese"
 msgid "Turkish"
 msgstr "Turco"
 
-#: src/Preferences.cpp:825 src/muuli_wdr.cpp:2223
+#: src/Preferences.cpp:692
+msgid "Ukrainian"
+msgstr ""
+
+#: src/Preferences.cpp:826 src/muuli_wdr.cpp:2223
 msgid "- default -"
 msgstr "- predefinita -"
 
-#: src/Preferences.cpp:878
+#: src/Preferences.cpp:879
 msgid "no options available"
 msgstr "nessuna opzione disponibile"
 
-#: src/Preferences.cpp:1699
+#: src/Preferences.cpp:1700
 msgid ""
 "TCP port can't be higher than 65532 due to server UDP socket being TCP+3"
 msgstr ""
 "La porta TCP non può essere superiore a 65532 perché il socket UDP è fissato "
 "a TCP+3"
 
-#: src/Preferences.cpp:1700
+#: src/Preferences.cpp:1701
 #, c-format
 msgid "Default port will be used (%d)"
 msgstr "Sarà usata la porta di predefinita (%d)"
@@ -1796,7 +1801,7 @@ msgid ""
 "'All-Platform' p2p client based on eMule \n"
 "\n"
 msgstr ""
-"Client p2p multipiattaforma basato su eMule \n"
+" Client p2p multipiattaforma basato su eMule \n"
 "\n"
 
 #: src/amuleDlg.cpp:477
@@ -1833,7 +1838,7 @@ msgstr "Parte di aMule è basata su \n"
 
 #: src/amuleDlg.cpp:483
 msgid "Kademlia: Peer-to-peer routing based on the XOR metric.\n"
-msgstr " Kademlia: Peer-to-peer routing basato sulla metrica XOR.\n"
+msgstr "Kademlia: Peer-to-peer routing basato sulla metrica XOR.\n"
 
 #: src/amuleDlg.cpp:484
 msgid " Copyright (c) 2002-2008 Petar Maymounkov ( petar@post.harvard.edu )\n"
@@ -4204,27 +4209,30 @@ msgstr ""
 "Non è possibile risolvere il DNS per il server %s: impossibile connettersi!"
 
 #: src/IP2Country.cpp:97
-msgid "Download new GeoIP.dat from "
+#, c-format
+msgid "Download new GeoIP.dat from %s"
 msgstr ""
 
 #: src/IP2Country.cpp:121
 msgid "Failed to remove GeoIP.dat file, aborting update."
-msgstr ""
+msgstr "Impossibile rimuovere il file GeoIP.dat, interrompo l'aggiornamento."
 
 #: src/IP2Country.cpp:127
 msgid "Failed to rename new GeoIP.dat file, aborting update."
 msgstr ""
+"Impossibile rinominare il nuovo file GeoIP.dat, interrompo l'aggiornamento."
 
 #: src/IP2Country.cpp:133
 msgid "Successfully updated GeoIP.dat"
-msgstr ""
+msgstr "GeoIP.dat aggiornato con successo"
 
 #: src/IP2Country.cpp:135
 msgid "Error updating GeoIP.dat"
-msgstr ""
+msgstr "Errore durante l'aggiornamento di GeoIP.dat"
 
 #: src/IP2Country.cpp:138
-msgid "Failed to download GeoIP.dat from "
+#, c-format
+msgid "Failed to download GeoIP.dat from %s"
 msgstr ""
 
 #: src/IP2Country.cpp:155
@@ -4234,7 +4242,7 @@ msgstr "CIP2Country::CIP2Country(): Impossibile ottenere i dati sul Paese da "
 #: src/IP2Country.cpp:160
 #, c-format
 msgid "Loaded %d flag bitmaps."
-msgstr ""
+msgstr "Caricati %d flag bitmap."
 
 #: src/TransferWnd.cpp:194
 msgid "Are you sure you wish to cancel and delete all files in this category?"
@@ -7209,23 +7217,8 @@ msgstr ""
 "Impossibile aprire in scrittura il file della lista degli amici 'emfriend."
 "met'!"
 
-#~ msgid "Loaded %d flag bitmap."
-#~ msgid_plural "Loaded %d flag bitmaps."
-#~ msgstr[0] "Caricato %d flag bitmap."
-#~ msgstr[1] "Caricati %d flag bitmap."
+#~ msgid "Download new GeoIP.dat from "
+#~ msgstr "Scarico il nuovo GeoIP.dat da "
 
-#~ msgid "The file %s is to big for the Donkey: maximum allowed is 4 GB."
-#~ msgstr ""
-#~ "Il file %s è troppo grande per la rete eDonkey: dimensione massima 4 GB."
-
-#~ msgid "User:"
-#~ msgstr "Utente:"
-
-#~ msgid "System:"
-#~ msgstr "Sistema:"
-
-#~ msgid "No handler for this file type."
-#~ msgstr "Nessun gestore per questo tipo di file."
-
-#~ msgid "File was not saved"
-#~ msgstr "Il file non è stato salvato"
+#~ msgid "Failed to download GeoIP.dat from "
+#~ msgstr "Impossibile scaricare GeoIP.dat da "

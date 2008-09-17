@@ -57,6 +57,12 @@ class CEC_SearchFile_Tag;
 class CProgressImage;
 class CEC_KadNode_Tag;
 
+class CURLDecoder
+{
+      public:
+	static wxString	Decode(const wxString& url);
+};
+
 class DownloadFile {
 	public:
 		wxString	sFileName;
@@ -632,20 +638,6 @@ class CImageLib {
 		void RemoveImage(const wxString &name);
 };
 
-class CUrlDecodeTable {
-		static CUrlDecodeTable*		ms_instance;
-		static wxCriticalSection	ms_instance_guard;
-
-		wxString m_enc_u_str[256], m_enc_l_str[256], m_dec_str[256];
-
-		CUrlDecodeTable();
-		
-	public:
-		static CUrlDecodeTable* GetInstance();
-
-		void DecodeString(wxString &str);
-};
-
 class CParsedUrl {
 		wxString m_path, m_file;
 		std::map<wxString, wxString> m_params;
@@ -674,7 +666,7 @@ struct ThreadData {
 enum {
     // Socket handlers
     ID_WEBLISTENSOCKET_EVENT = wxID_HIGHEST+123,  // random safe ID
-    ID_WEBCLIENTSOCKET_ENENT,
+    ID_WEBCLIENTSOCKET_EVENT,
 };
 
 #ifdef ENABLE_UPNP

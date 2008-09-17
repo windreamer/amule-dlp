@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aMule\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-16 03:30+0200\n"
-"PO-Revision-Date: 2008-09-13 01:00+0100\n"
+"POT-Creation-Date: 2008-09-17 03:30+0200\n"
+"PO-Revision-Date: 2008-09-15 21:31+0100\n"
 "Last-Translator: Aïssi Dylan <aissi.dylan@free.fr>\n"
 "Language-Team: Français\n"
 "MIME-Version: 1.0\n"
@@ -566,78 +566,78 @@ msgstr[1] "%d contacts Kad écrits"
 msgid "ERROR: Could not listen to TCP port."
 msgstr "ERREUR : Le port TCP n'a pas pu être écouté."
 
-#: src/webserver/src/WebServer.cpp:306
+#: src/webserver/src/WebServer.cpp:294
 msgid "web client connection accepted\n"
 msgstr "connexion du client web acceptée\n"
 
-#: src/webserver/src/WebServer.cpp:309
+#: src/webserver/src/WebServer.cpp:297
 msgid "ERROR: cannot accept web client connection\n"
 msgstr "ERREUR : impossible d'accepter la connexion au client web\n"
 
-#: src/webserver/src/WebServer.cpp:378
+#: src/webserver/src/WebServer.cpp:366
 #, c-format
 msgid "Request failed with the following error: %s."
 msgstr "La requête a échouée avec le message d'erreur suivant: %s."
 
-#: src/webserver/src/WebServer.cpp:381 src/TextClient.cpp:626
+#: src/webserver/src/WebServer.cpp:369 src/TextClient.cpp:626
 msgid "Request failed with an unknown error."
 msgstr "La requête a échouée avec une erreur inconnue."
 
-#: src/webserver/src/WebServer.cpp:1742
+#: src/webserver/src/WebServer.cpp:1730
 msgid "Index file not found: "
 msgstr "Fichier d'index non trouvé:"
 
-#: src/webserver/src/WebServer.cpp:1819
+#: src/webserver/src/WebServer.cpp:1807
 msgid "Session expired - requesting login\n"
 msgstr "La session a expirée - demande de l'identifiant\n"
 
-#: src/webserver/src/WebServer.cpp:1824
+#: src/webserver/src/WebServer.cpp:1812
 msgid "Session ok, logged in\n"
 msgstr "Session correcte, identifié\n"
 
-#: src/webserver/src/WebServer.cpp:1826
+#: src/webserver/src/WebServer.cpp:1814
 msgid "Session ok, not logged in\n"
 msgstr "Session correcte, non identifié\n"
 
-#: src/webserver/src/WebServer.cpp:1831
+#: src/webserver/src/WebServer.cpp:1819
 msgid "No session opened - will request login\n"
 msgstr "Pas de session ouverte - l'identifiant va être demandé\n"
 
-#: src/webserver/src/WebServer.cpp:1840
+#: src/webserver/src/WebServer.cpp:1828
 msgid "Session created - requesting login\n"
 msgstr "Session crée - demande de l'identifiant\n"
 
-#: src/webserver/src/WebServer.cpp:1855
+#: src/webserver/src/WebServer.cpp:1843
 msgid "Processing request [original]: "
 msgstr "Requête en cours [originale] : "
 
-#: src/webserver/src/WebServer.cpp:1871
+#: src/webserver/src/WebServer.cpp:1859
 msgid "Checking password\n"
 msgstr "Vérification du mot de passe\n"
 
-#: src/webserver/src/WebServer.cpp:1876
+#: src/webserver/src/WebServer.cpp:1864
 msgid "Password hash invalid\n"
 msgstr "Hachage du mot de passe invalide\n"
 
-#: src/webserver/src/WebServer.cpp:1891
+#: src/webserver/src/WebServer.cpp:1879
 msgid "Password ok\n"
 msgstr "Mot de passe correct\n"
 
-#: src/webserver/src/WebServer.cpp:1893
+#: src/webserver/src/WebServer.cpp:1881
 msgid "Password bad\n"
 msgstr "Mauvais mot de passe\n"
 
-#: src/webserver/src/WebServer.cpp:1896
+#: src/webserver/src/WebServer.cpp:1884
 msgid "You did not enter any password. Blank password is not allowed.\n"
 msgstr ""
 "Vous n'avez pas entré de mot de passe. Les mots de passe vides ne sont pas "
 "autorisés.\n"
 
-#: src/webserver/src/WebServer.cpp:1904
+#: src/webserver/src/WebServer.cpp:1892
 msgid "Logout requested\n"
 msgstr "Déconnexion demandée\n"
 
-#: src/webserver/src/WebServer.cpp:1909
+#: src/webserver/src/WebServer.cpp:1897
 msgid "Processing request [redirected]: "
 msgstr "Requête en cours [redirigée] :"
 
@@ -1601,22 +1601,26 @@ msgstr "Suédois"
 msgid "Turkish"
 msgstr "Turque"
 
-#: src/Preferences.cpp:825 src/muuli_wdr.cpp:2223
+#: src/Preferences.cpp:692
+msgid "Ukrainian"
+msgstr ""
+
+#: src/Preferences.cpp:826 src/muuli_wdr.cpp:2223
 msgid "- default -"
 msgstr "- défaut -"
 
-#: src/Preferences.cpp:878
+#: src/Preferences.cpp:879
 msgid "no options available"
 msgstr "pas d'option disponible"
 
-#: src/Preferences.cpp:1699
+#: src/Preferences.cpp:1700
 msgid ""
 "TCP port can't be higher than 65532 due to server UDP socket being TCP+3"
 msgstr ""
 "Le port TCP ne peut pas dépasser 65532 car le socket UDP du serveur sera à "
 "TCP+3"
 
-#: src/Preferences.cpp:1700
+#: src/Preferences.cpp:1701
 #, c-format
 msgid "Default port will be used (%d)"
 msgstr "Le port par défaut sera utilisé (%d)"
@@ -4234,27 +4238,30 @@ msgstr ""
 "Ne peut résoudre le nom DNS pour le serveur %s : Impossible de se connecter !"
 
 #: src/IP2Country.cpp:97
-msgid "Download new GeoIP.dat from "
+#, c-format
+msgid "Download new GeoIP.dat from %s"
 msgstr ""
 
 #: src/IP2Country.cpp:121
 msgid "Failed to remove GeoIP.dat file, aborting update."
-msgstr ""
+msgstr "Impossible de supprimer le fichier GeoIP.dat, mise à jour annulée."
 
 #: src/IP2Country.cpp:127
 msgid "Failed to rename new GeoIP.dat file, aborting update."
 msgstr ""
+"Impossible de renommer le nouveau fichier GeoIP.dat, mise à jour annulée."
 
 #: src/IP2Country.cpp:133
 msgid "Successfully updated GeoIP.dat"
-msgstr ""
+msgstr "Réussite de la mise à jour de GeoIP.dat"
 
 #: src/IP2Country.cpp:135
 msgid "Error updating GeoIP.dat"
-msgstr ""
+msgstr "Erreur lors de la mise à jour de GeoIP.dat"
 
 #: src/IP2Country.cpp:138
-msgid "Failed to download GeoIP.dat from "
+#, c-format
+msgid "Failed to download GeoIP.dat from %s"
 msgstr ""
 
 #: src/IP2Country.cpp:155
@@ -4266,7 +4273,7 @@ msgstr ""
 #: src/IP2Country.cpp:160
 #, c-format
 msgid "Loaded %d flag bitmaps."
-msgstr ""
+msgstr "%d images de drapeaux chargées."
 
 #: src/TransferWnd.cpp:194
 msgid "Are you sure you wish to cancel and delete all files in this category?"
@@ -7275,6 +7282,12 @@ msgid "Failed to open friend list file 'emfriends.met' for writing!"
 msgstr ""
 "Échec de l'ouverture du fichier de la liste d'amis 'emfriends.met' pour "
 "l'écriture !"
+
+#~ msgid "Download new GeoIP.dat from "
+#~ msgstr "Télécharger un nouveau GeoIP.dat à partir de "
+
+#~ msgid "Failed to download GeoIP.dat from "
+#~ msgstr "Impossible de télécharger GeoIP.dat à partir de "
 
 #~ msgid "Loaded %d flag bitmap."
 #~ msgid_plural "Loaded %d flag bitmaps."
