@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: et_EE\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-09-17 03:30+0200\n"
-"PO-Revision-Date: 2008-09-09 14:24+0300\n"
+"PO-Revision-Date: 2008-09-17 08:29+0300\n"
 "Last-Translator: Hans <herringfish@hot.ee>\n"
 "Language-Team:  <et@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1574,7 +1574,7 @@ msgstr "Türgi"
 
 #: src/Preferences.cpp:692
 msgid "Ukrainian"
-msgstr ""
+msgstr "Ukraina"
 
 #: src/Preferences.cpp:826 src/muuli_wdr.cpp:2223
 msgid "- default -"
@@ -4140,28 +4140,28 @@ msgstr "Ei suuda masina %s dns nime lahendada: Ei saa ühenduda!"
 #: src/IP2Country.cpp:97
 #, c-format
 msgid "Download new GeoIP.dat from %s"
-msgstr ""
+msgstr "Tõmban uut GeoIP.dat faili aadressilt %s"
 
 #: src/IP2Country.cpp:121
 msgid "Failed to remove GeoIP.dat file, aborting update."
-msgstr ""
+msgstr "GeoIP.dat faili eemaldamine ebaõnnastus, katkestan uuendamise."
 
 #: src/IP2Country.cpp:127
 msgid "Failed to rename new GeoIP.dat file, aborting update."
-msgstr ""
+msgstr "GeoIP.dat faili ümbernimetamine ebaõnnestus, katkestan uuendamise."
 
 #: src/IP2Country.cpp:133
 msgid "Successfully updated GeoIP.dat"
-msgstr ""
+msgstr "GeoIP.dat uuendamine õnnestus"
 
 #: src/IP2Country.cpp:135
 msgid "Error updating GeoIP.dat"
-msgstr ""
+msgstr "GeoIP.dat uuendamise viga"
 
 #: src/IP2Country.cpp:138
 #, c-format
 msgid "Failed to download GeoIP.dat from %s"
-msgstr ""
+msgstr "GeoIP.dat faili tõmbamine aadressilt %s ebaõnnestus"
 
 #: src/IP2Country.cpp:155
 msgid "CIP2Country::CIP2Country(): Failed to load country data from "
@@ -4170,7 +4170,7 @@ msgstr "CIP2Country::CIP2Country(): Riigi info laadimine ebaõnnestus "
 #: src/IP2Country.cpp:160
 #, c-format
 msgid "Loaded %d flag bitmaps."
-msgstr ""
+msgstr "Laetud %d riigilipu pilti."
 
 #: src/TransferWnd.cpp:194
 msgid "Are you sure you wish to cancel and delete all files in this category?"
@@ -7128,8 +7128,3 @@ msgstr "Sõprade faili 'emfriends.met' avamine lugemiseks ebaõnnestus!"
 #: src/FriendList.cpp:146
 msgid "Failed to open friend list file 'emfriends.met' for writing!"
 msgstr "Sõprade faili 'emfriends.met' avamine kirjutamiseks ebaõnnestus!"
-
-#~ msgid "Loaded %d flag bitmap."
-#~ msgid_plural "Loaded %d flag bitmaps."
-#~ msgstr[0] "Laetud %d riigilipu pilti."
-#~ msgstr[1] "Laetud %d riigilipu pilti."

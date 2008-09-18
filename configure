@@ -7085,8 +7085,6 @@ fi;
 
 	if test ${ENABLE_IP2COUNTRY:-no} = yes; then
 
-		GEOIP_LIBS="-lGeoIP"
-
 
 # Check whether --with-geoip-headers or --without-geoip-headers was given.
 if test "${with_geoip_headers+set}" = set; then
@@ -7094,14 +7092,12 @@ if test "${with_geoip_headers+set}" = set; then
   GEOIP_CPPFLAGS="-I$withval"
 fi;
 
-
 # Check whether --with-geoip-lib or --without-geoip-lib was given.
 if test "${with_geoip_lib+set}" = set; then
   withval="$with_geoip_lib"
   GEOIP_LDFLAGS="-L$withval"
 fi;
 
-		GEOIP_CPPFLAGS="$GEOIP_CPPFLAGS -DENABLE_IP2COUNTRY=1"
 		mule_backup_CPPFLAGS="$CPPFLAGS"
 		CPPFLAGS="$CPPFLAGS $GEOIP_CPPFLAGS"
 		mule_backup_LDFLAGS="$LDFLAGS"
@@ -7316,6 +7312,8 @@ cat >>confdefs.h <<\_ACEOF
 #define SUPPORT_GEOIP 1
 _ACEOF
 
+				GEOIP_LIBS="-lGeoIP"
+				GEOIP_CPPFLAGS="$GEOIP_CPPFLAGS -DENABLE_IP2COUNTRY=1"
 
 # Check whether --with-geoip-static or --without-geoip-static was given.
 if test "${with_geoip_static+set}" = set; then

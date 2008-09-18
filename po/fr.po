@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: aMule\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-09-17 03:30+0200\n"
-"PO-Revision-Date: 2008-09-15 21:31+0100\n"
+"PO-Revision-Date: 2008-09-17 20:06+0100\n"
 "Last-Translator: Aïssi Dylan <aissi.dylan@free.fr>\n"
 "Language-Team: Français\n"
 "MIME-Version: 1.0\n"
@@ -1603,7 +1603,7 @@ msgstr "Turque"
 
 #: src/Preferences.cpp:692
 msgid "Ukrainian"
-msgstr ""
+msgstr "Ukrainien"
 
 #: src/Preferences.cpp:826 src/muuli_wdr.cpp:2223
 msgid "- default -"
@@ -4240,7 +4240,7 @@ msgstr ""
 #: src/IP2Country.cpp:97
 #, c-format
 msgid "Download new GeoIP.dat from %s"
-msgstr ""
+msgstr "Télécharger un nouveau fichier GeoIP.dat à partir de %s"
 
 #: src/IP2Country.cpp:121
 msgid "Failed to remove GeoIP.dat file, aborting update."
@@ -4262,7 +4262,7 @@ msgstr "Erreur lors de la mise à jour de GeoIP.dat"
 #: src/IP2Country.cpp:138
 #, c-format
 msgid "Failed to download GeoIP.dat from %s"
-msgstr ""
+msgstr "Impossible de télécharger le fichier GeoIP.dat à partir de %s"
 
 #: src/IP2Country.cpp:155
 msgid "CIP2Country::CIP2Country(): Failed to load country data from "
