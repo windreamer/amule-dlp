@@ -18,10 +18,10 @@
 # This file is distributed under the same license as the aMule package.
 msgid ""
 msgstr ""
-"Project-Id-Version: it_new\n"
+"Project-Id-Version: it\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-09-17 03:30+0200\n"
-"PO-Revision-Date: 2008-09-16 09:26+0200\n"
+"PO-Revision-Date: 2008-09-17 09:01+0200\n"
 "Last-Translator: rik <rik_kornellatyahoo.com>\n"
 "Language-Team:  <it@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1596,7 +1596,7 @@ msgstr "Turco"
 
 #: src/Preferences.cpp:692
 msgid "Ukrainian"
-msgstr ""
+msgstr "Ucraino"
 
 #: src/Preferences.cpp:826 src/muuli_wdr.cpp:2223
 msgid "- default -"
@@ -4211,7 +4211,7 @@ msgstr ""
 #: src/IP2Country.cpp:97
 #, c-format
 msgid "Download new GeoIP.dat from %s"
-msgstr ""
+msgstr "Scarico il nuovo GeoIP.dat da %s"
 
 #: src/IP2Country.cpp:121
 msgid "Failed to remove GeoIP.dat file, aborting update."
@@ -4233,7 +4233,7 @@ msgstr "Errore durante l'aggiornamento di GeoIP.dat"
 #: src/IP2Country.cpp:138
 #, c-format
 msgid "Failed to download GeoIP.dat from %s"
-msgstr ""
+msgstr "Impossibile scaricare GeoIP.dat da %s"
 
 #: src/IP2Country.cpp:155
 msgid "CIP2Country::CIP2Country(): Failed to load country data from "
@@ -7216,9 +7216,3 @@ msgid "Failed to open friend list file 'emfriends.met' for writing!"
 msgstr ""
 "Impossibile aprire in scrittura il file della lista degli amici 'emfriend."
 "met'!"
-
-#~ msgid "Download new GeoIP.dat from "
-#~ msgstr "Scarico il nuovo GeoIP.dat da "
-
-#~ msgid "Failed to download GeoIP.dat from "
-#~ msgstr "Impossibile scaricare GeoIP.dat da "
