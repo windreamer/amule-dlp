@@ -53,6 +53,7 @@ using std::auto_ptr;
 #include "GuiEvents.h"
 #ifdef ENABLE_IP2COUNTRY
 	#include "IP2Country.h"		// Needed for IP2Country
+	#include "InternalEvents.h"	// Needed for wxEVT_CORE_FINISHED_HTTP_DOWNLOAD
 #endif
 #include "Logger.h"
 #include "muuli_wdr.h"			// Needed for IDs
@@ -126,6 +127,11 @@ BEGIN_EVENT_TABLE(CamuleRemoteGuiApp, wxApp)
 	
 	EVT_MULE_NOTIFY(CamuleRemoteGuiApp::OnNotifyEvent)
 	EVT_MULE_LOGGING(CamuleRemoteGuiApp::OnLoggingEvent)
+
+#ifdef ENABLE_IP2COUNTRY
+	// HTTPDownload finished
+	EVT_MULE_INTERNAL(wxEVT_CORE_FINISHED_HTTP_DOWNLOAD, -1, CamuleRemoteGuiApp::OnFinishedHTTPDownload)
+#endif
 END_EVENT_TABLE()
 
 
@@ -198,6 +204,18 @@ void CamuleRemoteGuiApp::OnPollTimer(wxTimerEvent&)
 		printf("WTF?\n");
 		request_step = 0;
 	}
+}
+
+
+void CamuleRemoteGuiApp::OnFinishedHTTPDownload(CMuleInternalEvent& event)
+{
+#ifdef ENABLE_IP2COUNTRY
+	if (event.GetInt() == HTTP_GeoIP) {
+		amuledlg->IP2CountryDownloadFinished(event.GetExtraLong());
+		// If we updated, the dialog is already up. Redraw it to show the flags.
+		amuledlg->Refresh();
+	}
+#endif	
 }
 
 
@@ -382,6 +400,13 @@ void CamuleRemoteGuiApp::Startup() {
 	// Start the Poll Timer
 	poll_timer->Start(1000);	
 	amuledlg->StartGuiTimer();
+
+	// Now activate GeoIP, so that the download dialog doesn't get destroyed immediately 
+#ifdef ENABLE_IP2COUNTRY
+	if (thePrefs::IsGeoIPEnabled()) {
+		amuledlg->m_IP2Country->Enable();
+	}
+#endif
 }
 
 
@@ -617,7 +642,7 @@ void CPreferencesRem::HandlePacket(const CECPacket *packet)
 	((CEC_Prefs_Packet *)packet)->Apply();
 
 	if ( packet->GetTagByName(EC_TAG_PREFS_CATEGORIES) != 0 ) {
-		for (int i = 0; i < packet->GetTagByName(EC_TAG_PREFS_CATEGORIES)->GetTagCount(); i++) {
+		for (size_t i = 0; i < packet->GetTagByName(EC_TAG_PREFS_CATEGORIES)->GetTagCount(); i++) {
 			const CECTag *cat_tag = packet->GetTagByName(EC_TAG_PREFS_CATEGORIES)->GetTagByIndex(i);
 			Category_Struct *cat = new Category_Struct;
 			cat->title = cat_tag->GetTagByName(EC_TAG_CATEGORY_TITLE)->GetStringData();
