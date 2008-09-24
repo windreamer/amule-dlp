@@ -306,7 +306,7 @@ sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
-SUBDIRS = default php-default chicane litoral src
+SUBDIRS = default src
 MAINTAINERCLEANFILES = Makefile.in
 all: all-recursive
 
