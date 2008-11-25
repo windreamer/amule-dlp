@@ -25,8 +25,11 @@
 #include "Logger.h"
 #include "amule.h"
 #include "Preferences.h"
-
+#include <wx/tokenzr.h>
+#include <wx/wfstream.h>
+#include <wx/sstream.h>
 #include <wx/filename.h>
+#include <sstream>
 
 
 DEFINE_LOCAL_EVENT_TYPE(MULE_EVT_LOGLINE)
@@ -141,67 +144,15 @@ void CLogger::SetEnabled( DebugType type, bool enabled )
 }
 
 
-struct LogEntry
+bool CLogger::IsEnabledStdoutLog()
 {
-	bool critical;
-	wxString entry;
-};
-
-
-static std::deque<LogEntry*> s_backLog;
-static wxMutex s_mutex;
-
-
-void PushEntry(bool critical, const wxString& str)
-{
-	wxMutexLocker lock(s_mutex);
-
-	LogEntry* item = new LogEntry;
-	item->critical = critical;
-	item->entry = str;
-	
-	s_backLog.push_back(item);
+	return m_StdoutLog;
 }
 
 
-LogEntry* PopEntry()
+void CLogger::SetEnabledStdoutLog(bool enabled)
 {
-	wxMutexLocker lock(s_mutex);
-
-	if (s_backLog.empty()) {
-		return NULL;
-	}
-
-	LogEntry* entry = s_backLog.front();
-	s_backLog.pop_front();
-
-	return entry;
-}
-
-
-
-
-void CLogger::FlushPendingEntries()
-{
-	wxCHECK_RET(wxThread::IsMain(), wxT("Must be called by main thread."));
-	
-	LogEntry* entry = NULL;
-	while ((entry = PopEntry())) {
-		CLoggingEvent event(entry->critical, entry->entry);
-	
-#ifdef CLIENT_GUI
-		theApp->ProcessEvent(event);
-#else
-		// Try to handle events immediatly when possible (to save to file).
-		if (theApp->applog) {
-			theApp->ProcessEvent(event);			
-		} else {
-			theApp->AddPendingEvent(event);
-		}
-#endif
-
-		delete entry;
-	}
+	m_StdoutLog = enabled;
 }
 
 
@@ -209,17 +160,41 @@ void CLogger::AddLogLine(
 	const wxString &file,
 	int line,
 	bool critical,
-	const wxString &str)
+	DebugType type,
+	const wxString &str,
+	bool toStdout)
 {
-	wxString msg;
-#ifdef __DEBUG__
-	msg << file.AfterLast(wxFileName::GetPathSeparator()).AfterLast(wxT('/')) << wxT("(") << line << wxT("): ");
-#endif
-	msg << str;
-	PushEntry(critical, msg);
+	wxString msg(str);
+// handle Debug messages
+	if (type != logStandard) {
+		if (!critical && !IsEnabled(type)) {
+			return;
+		}
+		int index = (int)type;
+		
+		if ( index >= 0 && index < categoryCount ) {
+			const CDebugCategory& cat = g_debugcats[ index ];
+			wxASSERT(type == cat.GetType());
 
+			msg = cat.GetName() + wxT(": ") + msg;
+		} else {
+			wxASSERT( false );
+		}
+	}
+
+#ifdef __DEBUG__
+	msg = file.AfterLast(wxFileName::GetPathSeparator()).AfterLast(wxT('/')) << wxT("(") << line << wxT("): ") + msg;
+#endif
+
+	CLoggingEvent Event(critical, toStdout, msg);
+
+	// Try to handle events immediatly when possible (to save to file).
 	if (wxThread::IsMain()) {
-		FlushPendingEntries();
+		// main thread and log file available: process directly
+		ProcessEvent(Event);			
+	} else {
+		// otherwise put to background
+		AddPendingEvent(Event);
 	}
 }
 
@@ -229,7 +204,7 @@ void CLogger::AddLogLine(
 	int line,
 	bool critical,
 	DebugType type,
-	const wxString& str)
+	const std::ostringstream &msg)
 {
 	int index = (int)type;
 	
@@ -237,9 +212,7 @@ void CLogger::AddLogLine(
 		const CDebugCategory& cat = g_debugcats[ index ];
 		wxASSERT(type == cat.GetType());
 
-		AddLogLine(file, line, critical, cat.GetName() + wxT(": ") + str);
-	} else {
-		wxASSERT( false );
+		AddLogLine(file, line, critical, logStandard, cat.GetName() + wxT(": ") + char2unicode(msg.str().c_str()));
 	}
 }
 
@@ -258,6 +231,94 @@ unsigned int CLogger::GetDebugCategoryCount()
 }
 
 
+bool CLogger::OpenLogfile(const wxString & name)
+{
+	applog = new wxFFileOutputStream(name);
+	bool ret = applog->Ok();
+	if (ret) {
+		FlushApplog();
+		m_LogfileName = name;
+	} else {
+		CloseLogfile();
+	}
+	return ret; 
+}
+
+
+void CLogger::CloseLogfile()
+{
+	delete applog;
+	applog = NULL;
+	m_LogfileName = wxT("");
+}
+
+
+void CLogger::OnLoggingEvent(class CLoggingEvent& evt)
+{
+	// Remove newspace at end
+	wxString bufferline = evt.Message().Strip(wxString::trailing);
+
+	// Create the timestamp
+	wxString stamp = wxDateTime::Now().FormatISODate() + wxT(" ") + wxDateTime::Now().FormatISOTime()
+#ifdef CLIENT_GUI
+ 					+ wxT(" (remote-GUI): ");
+#else
+ 					+ wxT(": ");
+#endif
+
+	// critical lines get a ! prepended, others a blank
+	wxString prefix = evt.IsCritical() ? wxT("!") : wxT(" ");
+
+	if ( bufferline.IsEmpty() ) {
+		// If it's empty we just write a blank line with no timestamp.
+		DoLine(wxT(" \n"), evt.ToStdout());
+	} else {
+		// Split multi-line messages into individual lines
+		wxStringTokenizer tokens( bufferline, wxT("\n") );		
+		while ( tokens.HasMoreTokens() ) {
+			wxString fullline = prefix + stamp + tokens.GetNextToken() + wxT("\n");
+			DoLine(fullline, evt.ToStdout());
+		}
+	}
+}
+
+
+void CLogger::DoLine(const wxString & line, bool toStdout)
+{
+	++m_count;
+
+	// write to logfile
+	m_ApplogBuf += line;
+	FlushApplog();
+
+	// write to Stdout
+	if (m_StdoutLog || toStdout) {
+		printf("%s", (const char*)unicode2char(line));
+	}
+#ifndef AMULE_DAEMON
+	// write to Listcontrol
+	theApp->AddGuiLogLine(line);
+#endif
+}
+
+
+void CLogger::FlushApplog()
+{
+	if (applog) { // Wait with output until logfile is actually opened
+		wxStringInputStream stream(m_ApplogBuf);
+		(*applog) << stream;
+		applog->Sync();
+		m_ApplogBuf = wxEmptyString;
+	}
+}
+
+CLogger theLogger;
+
+BEGIN_EVENT_TABLE(CLogger, wxEvtHandler)
+	EVT_MULE_LOGGING(CLogger::OnLoggingEvent)
+END_EVENT_TABLE()
+
+
 CLoggerTarget::CLoggerTarget()
 {
 }
@@ -265,6 +326,13 @@ CLoggerTarget::CLoggerTarget()
 
 void CLoggerTarget::DoLogString(const wxChar* msg, time_t)
 {
+	// prevent infinite recursion
+	static bool recursion = false;
+	if (recursion) {
+		return;
+	}
+	recursion = true;
+
 	wxCHECK_RET(msg, wxT("Log message is NULL in DoLogString!"));
 	
 	wxString str(msg);
@@ -272,7 +340,63 @@ void CLoggerTarget::DoLogString(const wxChar* msg, time_t)
 	// This is much simpler than manually handling all wx log-types.
 	bool critical = str.StartsWith(_("ERROR: ")) || str.StartsWith(_("WARNING: "));
 
-	CLogger::AddLogLine(__TFILE__, __LINE__, critical, str);
+	AddLogLineM(critical, str);
+
+	recursion = false;
+}
+
+
+CLoggerAccess::CLoggerAccess()
+{
+	m_bufferlen = 4096;
+	m_buffer = new wxCharBuffer(m_bufferlen);
+	m_logfile = new wxFFileInputStream(theLogger.GetLogfileName());
+	m_pos = 0;
+	m_ready = false;
+}
+
+
+CLoggerAccess::~CLoggerAccess()
+{
+	delete m_buffer;
+	delete m_logfile;
+}
+
+
+//
+// read a line of text from the logfile if available
+// (can't believe there's no library function for this >:( )
+//
+bool CLoggerAccess::HasString()
+{
+	while (!m_ready) {
+		int c = m_logfile->GetC();
+		if (c == wxEOF) {
+			break;
+		}
+		// check for buffer overrun
+		if (m_pos == m_bufferlen) {
+			m_bufferlen += 1024;
+			m_buffer->extend(m_bufferlen);
+		}
+		m_buffer->data()[m_pos++] = c;
+		if (c == '\n') {
+			m_ready = true;
+		}
+	}
+	return m_ready;
+}
+
+
+bool CLoggerAccess::GetString(wxString & s)
+{
+	if (!HasString()) {
+		return false;
+	}
+	s = wxString(m_buffer->data(), wxConvUTF8, m_pos);
+	m_pos = 0;
+	m_ready = false;
+	return true;
 }
 
 // File_checked_for_headers

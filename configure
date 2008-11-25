@@ -18631,9 +18631,9 @@ echo "${ECHO_T}$docdir" >&6
 # Try to set the SVN checkout-date
 echo "$as_me:$LINENO: checking for SVNDATE" >&5
 echo $ECHO_N "checking for SVNDATE... $ECHO_C" >&6
-if test -f "$srcdir/SVNDATE" # SVNDATE for tarballs
+if test -f "$srcdir/.svn-revision" # SVNDATE for tarballs
 then
-	svndate=`cat $srcdir/SVNDATE`
+	svndate="rev. `cat $srcdir/.svn-revision`"
 elif test -d $srcdir/.svn # SVNDATE for svn
 then
 	svndate="rev. `svnversion $srcdir | sed -e 's/[0-9][0-9]*:\(.*\)/\1/' -e 's/\([0-9][0-9]*\).*/\1/'`"

@@ -1297,15 +1297,15 @@ void CPreferences::LoadAllItems(wxConfigBase* cfg)
 
 #ifdef __DEBUG__
 	// Load debug-categories
-	int count = CLogger::GetDebugCategoryCount();
+	int count = theLogger.GetDebugCategoryCount();
 
 	for ( int i = 0; i < count; i++ ) {
-		const CDebugCategory& cat = CLogger::GetDebugCategory( i );
+		const CDebugCategory& cat = theLogger.GetDebugCategory( i );
 		
 		bool enabled = false;
 		cfg->Read( wxT("/Debug/Cat_") + cat.GetName(), &enabled );
 
-		CLogger::SetEnabled( cat.GetType(), enabled );
+		theLogger.SetEnabled( cat.GetType(), enabled );
 	}	
 #endif
 	
@@ -1332,10 +1332,10 @@ void CPreferences::SaveAllItems(wxConfigBase* cfg)
 
 // Save debug-categories
 #ifdef __DEBUG__
-	int count = CLogger::GetDebugCategoryCount();
+	int count = theLogger.GetDebugCategoryCount();
 
 	for ( int i = 0; i < count; i++ ) {
-		const CDebugCategory& cat = CLogger::GetDebugCategory( i );
+		const CDebugCategory& cat = theLogger.GetDebugCategory( i );
 
 		cfg->Write( wxT("/Debug/Cat_") + cat.GetName(), cat.IsEnabled() );
 	}	
@@ -1533,7 +1533,7 @@ void CPreferences::LoadCats()
 
 		// Some sainity checking
 		if ( newcat->title.IsEmpty() || !newcat->path.IsOk() ) {
-			printf("Invalid category found, skipping\n");
+			AddLogLineN(_("Invalid category found, skipping"));
 			
 			delete newcat;
 			continue;
@@ -1721,8 +1721,7 @@ void CPreferences::ReloadSharedFolders()
 			if (path.DirExists()) {
 				shareddir_list.push_back(path);
 			} else {
-				printf("Dropping non-existing shared directory: %s\n",
-					(const char*)unicode2char(path.GetRaw()));
+				AddLogLineN(CFormat(_("Dropping non-existing shared directory: %s")) % path.GetRaw());
 			}
 		}
 	}
