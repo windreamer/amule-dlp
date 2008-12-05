@@ -1162,12 +1162,6 @@ int CUpDownClient::unzip(Pending_Block_Struct *block, byte *zipped, uint32 lenZi
 }
 
 
-float CUpDownClient::GetKBpsDown() const
-{ 
-	return kBpsDown * theStats::GetDownloadRateAdjust(); 
-}
-
-
 // Speed is now updated only when data was received, calculated as
 // (data received) / (time since last receiption)
 // and slightly filtered (10s average).
@@ -1189,8 +1183,8 @@ float CUpDownClient::CalculateKBpsDown()
 		} else {
 			kBpsDown = (kBpsDown * (tAverage - dt) + kBpsDownCur * dt) / tAverage;
 		}
-		AddDebugLogLineM( false, logLocalClient, CFormat(wxT("CalculateKBpsDown %X kbps %.1f kbpsCur %.1f dt %.3f rcv %d ")) 
-					% (uint32)this % kBpsDown  % kBpsDownCur % dt % bytesReceivedCycle);
+		AddDebugLogLineM( false, logLocalClient, CFormat(wxT("CalculateKBpsDown %p kbps %.1f kbpsCur %.1f dt %.3f rcv %d ")) 
+					% this % kBpsDown  % kBpsDownCur % dt % bytesReceivedCycle);
 		bytesReceivedCycle = 0;
 		msReceivedPrev = msCur;	
 	}

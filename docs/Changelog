@@ -2,6 +2,9 @@ Version 2.3.0 - The river knows.
 ----------
 2008-??-??
 
+	FreeToGo:
+		* Add comment to desktop file to allow autostart in Gnome
+
 	GonoszTopi:
 		* Various fixes to new colour code
 		* Allow user to select display of transfer rates
@@ -36,8 +39,6 @@ Version 2.3.0 - The river knows.
 
 	Stu Redman:
 		* Sort source list on opening and add file name to A4AF files
-		* Adjust displayed download rates for files and sources 
-		  so that the sum matches the total download rate.
 		* MSVC: optional GeoIP support
 		* Faster progress bars with less overhead (without pens/brushes)
 		* Show log messages in remote gui
@@ -82,6 +83,9 @@ Version 2.2.3 - The "Vampires suck" version.
 		* Fixed alc progress bar for files >4GB.
 		* Fixed #1056: amulegui: incorrect results when searching with
 		  min size >= 4GB
+		* Disable automatic sorting of dowload list while there is a
+		  pop-up menu or file detail dialog displayed.
+		* MinGW compilation fix.
 
 	LittleAbacus:
 		* Support multiple selections on CSearchListCtrl::OnMarkAsKnown().
