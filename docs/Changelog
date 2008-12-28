@@ -31,6 +31,9 @@ Version 2.3.0 - The river knows.
 	lfroen:
 		* php prefix for lex/yacc
 
+	LittleAbacus:
+		* Search results can now be sorted by "knownness" state.
+
 	morph:
 		* Patch to uniform and fix minor errors on man pages
 
@@ -43,6 +46,7 @@ Version 2.3.0 - The river knows.
 		* Faster progress bars with less overhead (without pens/brushes)
 		* Show log messages in remote gui
 		* More info in the Kad tab
+		* Fixed Windows lag when opening preferences dialog
 
 	Vollstrecker:
 		* Unify copyright lines
@@ -87,6 +91,7 @@ Version 2.2.3 - The "Vampires suck" version.
 		* Disable automatic sorting of dowload list while there is a
 		  pop-up menu or file detail dialog displayed.
 		* MinGW compilation fix.
+		* Fixed GTK crash on closing search tabs. Thanks to btkaos.
 
 	LittleAbacus:
 		* Support multiple selections on CSearchListCtrl::OnMarkAsKnown().
