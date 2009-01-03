@@ -23,7 +23,11 @@
 //
 
 #include "Format.h"
-#include <stdint.h>
+
+#ifndef _MSC_VER
+#	include <stdint.h>
+#endif
+
 
 //! Known type-modifiers. 
 enum Modifiers

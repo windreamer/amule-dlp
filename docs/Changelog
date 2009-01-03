@@ -40,6 +40,9 @@ Version 2.3.0 - The river knows.
 	myth:
 		* Feedback from shared files - add number of clients on queue.
 
+	Skolnick:
+		* Fixed autogen.sh for Bourne Shell
+
 	Stu Redman:
 		* Sort source list on opening and add file name to A4AF files
 		* MSVC: optional GeoIP support
@@ -47,6 +50,7 @@ Version 2.3.0 - The river knows.
 		* Show log messages in remote gui
 		* More info in the Kad tab
 		* Fixed Windows lag when opening preferences dialog
+		* Fixed finished files sometimes getting rehashed (thanks to Skolnick)
 
 	Vollstrecker:
 		* Unify copyright lines
