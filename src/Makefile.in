@@ -39,30 +39,31 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 @WEB_TRUE@am__append_1 = webserver
+@INSTALL_SKINS_TRUE@am__append_2 = skins
 bin_PROGRAMS = $(am__EXEEXT_1) $(am__EXEEXT_2) $(am__EXEEXT_3) \
 	$(am__EXEEXT_4) $(am__EXEEXT_5)
-@MONOLITHIC_TRUE@am__append_2 = amule
-@COMPILE_CMD_TRUE@am__append_3 = amulecmd   
-@ED2K_TRUE@am__append_4 = ed2k
-@AMULE_GUI_TRUE@am__append_5 = amulegui
-@AMULE_DAEMON_TRUE@am__append_6 = amuled
-@MONOLITHIC_TRUE@am__append_7 = libmuleappcore.a libmuleappgui.a libmuleappcommon.a
-@AMULE_DAEMON_TRUE@@MONOLITHIC_FALSE@am__append_8 = libmuleappcore.a libmuleappcommon.a
-@AMULE_DAEMON_FALSE@@AMULE_GUI_TRUE@@MONOLITHIC_FALSE@am__append_9 = libmuleappgui.a libmuleappcommon.a
-@ENABLE_UPNP_TRUE@am__append_10 = \
+@MONOLITHIC_TRUE@am__append_3 = amule
+@COMPILE_CMD_TRUE@am__append_4 = amulecmd   
+@ED2K_TRUE@am__append_5 = ed2k
+@AMULE_GUI_TRUE@am__append_6 = amulegui
+@AMULE_DAEMON_TRUE@am__append_7 = amuled
+@MONOLITHIC_TRUE@am__append_8 = libmuleappcore.a libmuleappgui.a libmuleappcommon.a
+@AMULE_DAEMON_TRUE@@MONOLITHIC_FALSE@am__append_9 = libmuleappcore.a libmuleappcommon.a
+@AMULE_DAEMON_FALSE@@AMULE_GUI_TRUE@@MONOLITHIC_FALSE@am__append_10 = libmuleappgui.a libmuleappcommon.a
+@ENABLE_UPNP_TRUE@am__append_11 = \
 @ENABLE_UPNP_TRUE@	UPnPBase.cpp
 
-@ENABLE_IP2COUNTRY_TRUE@am__append_11 = \
+@ENABLE_IP2COUNTRY_TRUE@am__append_12 = \
 @ENABLE_IP2COUNTRY_TRUE@	IP2Country.cpp
 
-@SYS_WIN32_TRUE@am__append_12 = -lshlwapi
-@ENABLE_IP2COUNTRY_TRUE@am__append_13 = \
+@SYS_WIN32_TRUE@am__append_13 = -lshlwapi
+@ENABLE_IP2COUNTRY_TRUE@am__append_14 = \
 @ENABLE_IP2COUNTRY_TRUE@	HTTPDownload.cpp
 
-@NEED_RC_TRUE@am__append_14 = amulerc.$(OBJEXT)
 @NEED_RC_TRUE@am__append_15 = amulerc.$(OBJEXT)
-@NEED_RC_TRUE@am__append_16 = amuleguirc.$(OBJEXT)
+@NEED_RC_TRUE@am__append_16 = amulerc.$(OBJEXT)
 @NEED_RC_TRUE@am__append_17 = amuleguirc.$(OBJEXT)
+@NEED_RC_TRUE@am__append_18 = amuleguirc.$(OBJEXT)
 DIST_COMMON = $(noinst_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/automake/dist-hook.am
 subdir = src
@@ -171,10 +172,10 @@ am__amule_SOURCES_DIST = RC4Encrypt.cpp amule.cpp BaseClient.cpp \
 	ClientListCtrl.cpp FriendListCtrl.cpp ServerListCtrl.cpp \
 	SharedFilesCtrl.cpp MuleTrayIcon.cpp MuleColour.cpp \
 	TransferWnd.cpp IP2Country.cpp ClientCredits.cpp \
-	ECSpecialMuleTags.cpp KnownFile.cpp GetTickCount.cpp \
-	GuiEvents.cpp Logger.cpp PartFile.cpp Preferences.cpp \
-	Proxy.cpp Server.cpp Statistics.cpp StatTree.cpp \
-	SHAHashSet.cpp TerminationProcess.cpp \
+	ECSpecialMuleTags.cpp KnownFile.cpp GapList.cpp \
+	GetTickCount.cpp GuiEvents.cpp Logger.cpp PartFile.cpp \
+	Preferences.cpp Proxy.cpp Server.cpp Statistics.cpp \
+	StatTree.cpp SHAHashSet.cpp TerminationProcess.cpp \
 	TerminationProcessAmuleweb.cpp UserEvents.cpp \
 	OtherFunctions.cpp NetworkFunctions.cpp
 @ENABLE_UPNP_TRUE@am__objects_1 = amule-UPnPBase.$(OBJEXT)
@@ -222,12 +223,12 @@ am__objects_5 = amule-OtherFunctions.$(OBJEXT) \
 	amule-NetworkFunctions.$(OBJEXT)
 am__objects_6 = amule-ClientCredits.$(OBJEXT) \
 	amule-ECSpecialMuleTags.$(OBJEXT) amule-KnownFile.$(OBJEXT) \
-	amule-GetTickCount.$(OBJEXT) amule-GuiEvents.$(OBJEXT) \
-	amule-Logger.$(OBJEXT) amule-PartFile.$(OBJEXT) \
-	amule-Preferences.$(OBJEXT) amule-Proxy.$(OBJEXT) \
-	amule-Server.$(OBJEXT) amule-Statistics.$(OBJEXT) \
-	amule-StatTree.$(OBJEXT) amule-SHAHashSet.$(OBJEXT) \
-	amule-TerminationProcess.$(OBJEXT) \
+	amule-GapList.$(OBJEXT) amule-GetTickCount.$(OBJEXT) \
+	amule-GuiEvents.$(OBJEXT) amule-Logger.$(OBJEXT) \
+	amule-PartFile.$(OBJEXT) amule-Preferences.$(OBJEXT) \
+	amule-Proxy.$(OBJEXT) amule-Server.$(OBJEXT) \
+	amule-Statistics.$(OBJEXT) amule-StatTree.$(OBJEXT) \
+	amule-SHAHashSet.$(OBJEXT) amule-TerminationProcess.$(OBJEXT) \
 	amule-TerminationProcessAmuleweb.$(OBJEXT) \
 	amule-UserEvents.$(OBJEXT) $(am__objects_5)
 am_amule_OBJECTS = $(am__objects_2) $(am__objects_4) $(am__objects_6)
@@ -264,11 +265,11 @@ am__amuled_SOURCES_DIST = amuled.cpp Timer.cpp RC4Encrypt.cpp \
 	kademlia/net/PacketTracking.cpp kademlia/routing/Contact.cpp \
 	kademlia/routing/RoutingZone.cpp UPnPBase.cpp \
 	ClientCredits.cpp ECSpecialMuleTags.cpp KnownFile.cpp \
-	GetTickCount.cpp GuiEvents.cpp Logger.cpp PartFile.cpp \
-	Preferences.cpp Proxy.cpp Server.cpp Statistics.cpp \
-	StatTree.cpp SHAHashSet.cpp TerminationProcess.cpp \
-	TerminationProcessAmuleweb.cpp UserEvents.cpp \
-	OtherFunctions.cpp NetworkFunctions.cpp
+	GapList.cpp GetTickCount.cpp GuiEvents.cpp Logger.cpp \
+	PartFile.cpp Preferences.cpp Proxy.cpp Server.cpp \
+	Statistics.cpp StatTree.cpp SHAHashSet.cpp \
+	TerminationProcess.cpp TerminationProcessAmuleweb.cpp \
+	UserEvents.cpp OtherFunctions.cpp NetworkFunctions.cpp
 @ENABLE_UPNP_TRUE@am__objects_8 = amuled-UPnPBase.$(OBJEXT)
 am__objects_9 = amuled-RC4Encrypt.$(OBJEXT) amuled-amule.$(OBJEXT) \
 	amuled-BaseClient.$(OBJEXT) amuled-ClientList.$(OBJEXT) \
@@ -299,11 +300,12 @@ am__objects_10 = amuled-OtherFunctions.$(OBJEXT) \
 	amuled-NetworkFunctions.$(OBJEXT)
 am__objects_11 = amuled-ClientCredits.$(OBJEXT) \
 	amuled-ECSpecialMuleTags.$(OBJEXT) amuled-KnownFile.$(OBJEXT) \
-	amuled-GetTickCount.$(OBJEXT) amuled-GuiEvents.$(OBJEXT) \
-	amuled-Logger.$(OBJEXT) amuled-PartFile.$(OBJEXT) \
-	amuled-Preferences.$(OBJEXT) amuled-Proxy.$(OBJEXT) \
-	amuled-Server.$(OBJEXT) amuled-Statistics.$(OBJEXT) \
-	amuled-StatTree.$(OBJEXT) amuled-SHAHashSet.$(OBJEXT) \
+	amuled-GapList.$(OBJEXT) amuled-GetTickCount.$(OBJEXT) \
+	amuled-GuiEvents.$(OBJEXT) amuled-Logger.$(OBJEXT) \
+	amuled-PartFile.$(OBJEXT) amuled-Preferences.$(OBJEXT) \
+	amuled-Proxy.$(OBJEXT) amuled-Server.$(OBJEXT) \
+	amuled-Statistics.$(OBJEXT) amuled-StatTree.$(OBJEXT) \
+	amuled-SHAHashSet.$(OBJEXT) \
 	amuled-TerminationProcess.$(OBJEXT) \
 	amuled-TerminationProcessAmuleweb.$(OBJEXT) \
 	amuled-UserEvents.$(OBJEXT) $(am__objects_10)
@@ -320,10 +322,10 @@ am__amulegui_SOURCES_DIST = amule-remote-gui.cpp amule-gui.cpp \
 	ClientListCtrl.cpp FriendListCtrl.cpp ServerListCtrl.cpp \
 	SharedFilesCtrl.cpp MuleTrayIcon.cpp MuleColour.cpp \
 	TransferWnd.cpp IP2Country.cpp ClientCredits.cpp \
-	ECSpecialMuleTags.cpp KnownFile.cpp GetTickCount.cpp \
-	GuiEvents.cpp Logger.cpp PartFile.cpp Preferences.cpp \
-	Proxy.cpp Server.cpp Statistics.cpp StatTree.cpp \
-	SHAHashSet.cpp TerminationProcess.cpp \
+	ECSpecialMuleTags.cpp KnownFile.cpp GapList.cpp \
+	GetTickCount.cpp GuiEvents.cpp Logger.cpp PartFile.cpp \
+	Preferences.cpp Proxy.cpp Server.cpp Statistics.cpp \
+	StatTree.cpp SHAHashSet.cpp TerminationProcess.cpp \
 	TerminationProcessAmuleweb.cpp UserEvents.cpp \
 	OtherFunctions.cpp NetworkFunctions.cpp HTTPDownload.cpp
 @ENABLE_IP2COUNTRY_TRUE@am__objects_12 =  \
@@ -351,12 +353,12 @@ am__objects_14 = amulegui-OtherFunctions.$(OBJEXT) \
 	amulegui-NetworkFunctions.$(OBJEXT)
 am__objects_15 = amulegui-ClientCredits.$(OBJEXT) \
 	amulegui-ECSpecialMuleTags.$(OBJEXT) \
-	amulegui-KnownFile.$(OBJEXT) amulegui-GetTickCount.$(OBJEXT) \
-	amulegui-GuiEvents.$(OBJEXT) amulegui-Logger.$(OBJEXT) \
-	amulegui-PartFile.$(OBJEXT) amulegui-Preferences.$(OBJEXT) \
-	amulegui-Proxy.$(OBJEXT) amulegui-Server.$(OBJEXT) \
-	amulegui-Statistics.$(OBJEXT) amulegui-StatTree.$(OBJEXT) \
-	amulegui-SHAHashSet.$(OBJEXT) \
+	amulegui-KnownFile.$(OBJEXT) amulegui-GapList.$(OBJEXT) \
+	amulegui-GetTickCount.$(OBJEXT) amulegui-GuiEvents.$(OBJEXT) \
+	amulegui-Logger.$(OBJEXT) amulegui-PartFile.$(OBJEXT) \
+	amulegui-Preferences.$(OBJEXT) amulegui-Proxy.$(OBJEXT) \
+	amulegui-Server.$(OBJEXT) amulegui-Statistics.$(OBJEXT) \
+	amulegui-StatTree.$(OBJEXT) amulegui-SHAHashSet.$(OBJEXT) \
 	amulegui-TerminationProcess.$(OBJEXT) \
 	amulegui-TerminationProcessAmuleweb.$(OBJEXT) \
 	amulegui-UserEvents.$(OBJEXT) $(am__objects_14)
@@ -398,7 +400,7 @@ RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
 HEADERS = $(noinst_HEADERS)
 ETAGS = etags
 CTAGS = ctags
-DIST_SUBDIRS = libs utils pixmaps skins webserver
+DIST_SUBDIRS = libs utils pixmaps webserver skins
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALCC_FALSE = @ALCC_FALSE@
@@ -485,6 +487,8 @@ INCINTL = @INCINTL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
+INSTALL_SKINS_FALSE = @INSTALL_SKINS_FALSE@
+INSTALL_SKINS_TRUE = @INSTALL_SKINS_TRUE@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
 INSTOBJEXT = @INSTOBJEXT@
 INTLBISON = @INTLBISON@
@@ -639,7 +643,7 @@ AM_CPPFLAGS = $(MULECPPFLAGS)
 AM_CFLAGS = $(MULECFLAGS)
 AM_CXXFLAGS = $(MULECXXFLAGS)
 AM_LDFLAGS = $(MULELDFLAGS)
-SUBDIRS = libs utils pixmaps skins $(am__append_1)
+SUBDIRS = libs utils pixmaps $(am__append_1) $(am__append_2)
 EXTRA_DIST = \
 	aMule.xpm \
 	Parser.y \
@@ -649,7 +653,7 @@ EXTRA_DIST = \
 
 
 # Sources
-noinst_LIBRARIES = $(am__append_7) $(am__append_8) $(am__append_9)
+noinst_LIBRARIES = $(am__append_8) $(am__append_9) $(am__append_10)
 
 # Common to core/gui/monolithic
 libmuleappcommon_a_SOURCES = \
@@ -720,7 +724,7 @@ core_sources = RC4Encrypt.cpp amule.cpp BaseClient.cpp ClientList.cpp \
 	kademlia/kademlia/UDPFirewallTester.cpp \
 	kademlia/net/KademliaUDPListener.cpp \
 	kademlia/net/PacketTracking.cpp kademlia/routing/Contact.cpp \
-	kademlia/routing/RoutingZone.cpp $(am__append_10)
+	kademlia/routing/RoutingZone.cpp $(am__append_11)
 gui_sources = amule-gui.cpp amuleDlg.cpp AddFriend.cpp CatDialog.cpp \
 	ChatSelector.cpp ClientDetailDialog.cpp FileDetailDialog.cpp \
 	KadDlg.cpp OScopeCtrl.cpp PartFileConvert.cpp \
@@ -728,7 +732,7 @@ gui_sources = amule-gui.cpp amuleDlg.cpp AddFriend.cpp CatDialog.cpp \
 	SharedFilesWnd.cpp StatisticsDlg.cpp SearchListCtrl.cpp \
 	DownloadListCtrl.cpp ClientListCtrl.cpp FriendListCtrl.cpp \
 	ServerListCtrl.cpp SharedFilesCtrl.cpp MuleTrayIcon.cpp \
-	MuleColour.cpp TransferWnd.cpp $(am__append_11)
+	MuleColour.cpp TransferWnd.cpp $(am__append_12)
 remote_common_sources = \
 	OtherFunctions.cpp \
 	NetworkFunctions.cpp 
@@ -737,6 +741,7 @@ common_sources = \
 	ClientCredits.cpp \
 	ECSpecialMuleTags.cpp \
 	KnownFile.cpp \
+	GapList.cpp \
 	GetTickCount.cpp \
 	GuiEvents.cpp \
 	Logger.cpp \
@@ -755,7 +760,7 @@ common_sources = \
 
 # Libs
 core_libs = -L. -lmuleappcore $(LIBUPNP_LDFLAGS) $(LIBUPNP_LIBS) \
-	$(am__append_12)
+	$(am__append_13)
 gui_libs = -L. -lmuleappgui $(X11LIBS) $(WX_LIBS) $(GEOIP_LDFLAGS) $(GEOIP_LIBS)
 remote_common_libs = -Llibs/common -Llibs/ec/cpp -lmulecommon -lec $(BFD_LIBS) $(ZLIB_LDFLAGS) $(ZLIB_LIBS) $(RESOLV_LIB)
 common_libs = -L. -lmuleappcommon $(remote_common_libs) $(CRYPTOPP_LDFLAGS) $(CRYPTOPP_LIBS)
@@ -773,7 +778,7 @@ common_flags = -I$(srcdir)/libs -Ilibs -I$(srcdir)/include $(CRYPTOPP_CPPFLAGS)
 
 # --------- Apps ---------
 amulegui_SOURCES = amule-remote-gui.cpp $(gui_sources) $(ec_sources) \
-	$(common_sources) $(am__append_13)
+	$(common_sources) $(am__append_14)
 amule_SOURCES = \
 	$(core_sources) \
 	$(gui_sources) \
@@ -788,15 +793,15 @@ amuled_SOURCES = \
 	$(common_sources)
 
 amule_DEPENDENCIES = $(common_deps) $(core_deps) $(gui_deps) \
-	$(am__append_15)
+	$(am__append_16)
 amule_CPPFLAGS = $(AM_CPPFLAGS) $(core_flags) $(gui_flags) $(common_flags)
 amule_CXXFLAGS = $(AM_CXXFLAGS) $(WX_CFLAGS_ONLY) $(WX_CPPFLAGS_ONLY)
-amule_LDADD = $(common_libs) $(core_libs) $(gui_libs) $(am__append_14)
-amulegui_DEPENDENCIES = $(common_deps) $(gui_deps) $(am__append_17)
+amule_LDADD = $(common_libs) $(core_libs) $(gui_libs) $(am__append_15)
+amulegui_DEPENDENCIES = $(common_deps) $(gui_deps) $(am__append_18)
 amulegui_CPPFLAGS = $(AM_CPPFLAGS) $(gui_flags) $(common_flags) -DCLIENT_GUI -DEC_REMOTE
 amulegui_CXXFLAGS = $(AM_CXXFLAGS) $(WX_CFLAGS_ONLY) $(WX_CXXFLAGS_ONLY)
 amulegui_LDADD = $(gui_libs) $(common_libs) $(WXBASE_LIBS) \
-	$(am__append_16)
+	$(am__append_17)
 amuled_DEPENDENCIES = $(core_deps) $(common_deps)
 amuled_CPPFLAGS = $(AM_CPPFLAGS) $(WXBASE_CPPFLAGS) $(core_flags) $(common_flags) -DAMULE_DAEMON 
 amuled_CXXFLAGS = $(AM_CXXFLAGS) $(WX_CFLAGS_ONLY) $(WX_CXXFLAGS_ONLY)
@@ -867,6 +872,7 @@ noinst_HEADERS = \
 		Friend.h \
 		FriendListCtrl.h \
 		FriendList.h \
+		GapList.h \
 		GetTickCount.h \
 		GuiEvents.h \
 		HTTPDownload.h \
@@ -1079,6 +1085,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-Friend.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-FriendList.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-FriendListCtrl.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-GapList.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-GetTickCount.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-GuiEvents.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-HTTPDownload.Po@am__quote@
@@ -1160,6 +1167,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-ExternalConn.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-Friend.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-FriendList.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-GapList.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-GetTickCount.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-GuiEvents.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-HTTPDownload.Po@am__quote@
@@ -1215,6 +1223,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-ECSpecialMuleTags.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-FileDetailDialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-FriendListCtrl.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-GapList.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-GetTickCount.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-GuiEvents.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-HTTPDownload.Po@am__quote@
@@ -2833,6 +2842,20 @@ amule-KnownFile.obj: KnownFile.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-KnownFile.obj `if test -f 'KnownFile.cpp'; then $(CYGPATH_W) 'KnownFile.cpp'; else $(CYGPATH_W) '$(srcdir)/KnownFile.cpp'; fi`
 
+amule-GapList.o: GapList.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-GapList.o -MD -MP -MF "$(DEPDIR)/amule-GapList.Tpo" -c -o amule-GapList.o `test -f 'GapList.cpp' || echo '$(srcdir)/'`GapList.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-GapList.Tpo" "$(DEPDIR)/amule-GapList.Po"; else rm -f "$(DEPDIR)/amule-GapList.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='GapList.cpp' object='amule-GapList.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-GapList.o `test -f 'GapList.cpp' || echo '$(srcdir)/'`GapList.cpp
+
+amule-GapList.obj: GapList.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-GapList.obj -MD -MP -MF "$(DEPDIR)/amule-GapList.Tpo" -c -o amule-GapList.obj `if test -f 'GapList.cpp'; then $(CYGPATH_W) 'GapList.cpp'; else $(CYGPATH_W) '$(srcdir)/GapList.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-GapList.Tpo" "$(DEPDIR)/amule-GapList.Po"; else rm -f "$(DEPDIR)/amule-GapList.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='GapList.cpp' object='amule-GapList.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-GapList.obj `if test -f 'GapList.cpp'; then $(CYGPATH_W) 'GapList.cpp'; else $(CYGPATH_W) '$(srcdir)/GapList.cpp'; fi`
+
 amule-GetTickCount.o: GetTickCount.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-GetTickCount.o -MD -MP -MF "$(DEPDIR)/amule-GetTickCount.Tpo" -c -o amule-GetTickCount.o `test -f 'GetTickCount.cpp' || echo '$(srcdir)/'`GetTickCount.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-GetTickCount.Tpo" "$(DEPDIR)/amule-GetTickCount.Po"; else rm -f "$(DEPDIR)/amule-GetTickCount.Tpo"; exit 1; fi
@@ -3757,6 +3780,20 @@ amuled-KnownFile.obj: KnownFile.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-KnownFile.obj `if test -f 'KnownFile.cpp'; then $(CYGPATH_W) 'KnownFile.cpp'; else $(CYGPATH_W) '$(srcdir)/KnownFile.cpp'; fi`
 
+amuled-GapList.o: GapList.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-GapList.o -MD -MP -MF "$(DEPDIR)/amuled-GapList.Tpo" -c -o amuled-GapList.o `test -f 'GapList.cpp' || echo '$(srcdir)/'`GapList.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-GapList.Tpo" "$(DEPDIR)/amuled-GapList.Po"; else rm -f "$(DEPDIR)/amuled-GapList.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='GapList.cpp' object='amuled-GapList.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-GapList.o `test -f 'GapList.cpp' || echo '$(srcdir)/'`GapList.cpp
+
+amuled-GapList.obj: GapList.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-GapList.obj -MD -MP -MF "$(DEPDIR)/amuled-GapList.Tpo" -c -o amuled-GapList.obj `if test -f 'GapList.cpp'; then $(CYGPATH_W) 'GapList.cpp'; else $(CYGPATH_W) '$(srcdir)/GapList.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-GapList.Tpo" "$(DEPDIR)/amuled-GapList.Po"; else rm -f "$(DEPDIR)/amuled-GapList.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='GapList.cpp' object='amuled-GapList.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-GapList.obj `if test -f 'GapList.cpp'; then $(CYGPATH_W) 'GapList.cpp'; else $(CYGPATH_W) '$(srcdir)/GapList.cpp'; fi`
+
 amuled-GetTickCount.o: GetTickCount.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-GetTickCount.o -MD -MP -MF "$(DEPDIR)/amuled-GetTickCount.Tpo" -c -o amuled-GetTickCount.o `test -f 'GetTickCount.cpp' || echo '$(srcdir)/'`GetTickCount.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-GetTickCount.Tpo" "$(DEPDIR)/amuled-GetTickCount.Po"; else rm -f "$(DEPDIR)/amuled-GetTickCount.Tpo"; exit 1; fi
@@ -4372,6 +4409,20 @@ amulegui-KnownFile.obj: KnownFile.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='KnownFile.cpp' object='amulegui-KnownFile.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-KnownFile.obj `if test -f 'KnownFile.cpp'; then $(CYGPATH_W) 'KnownFile.cpp'; else $(CYGPATH_W) '$(srcdir)/KnownFile.cpp'; fi`
+
+amulegui-GapList.o: GapList.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-GapList.o -MD -MP -MF "$(DEPDIR)/amulegui-GapList.Tpo" -c -o amulegui-GapList.o `test -f 'GapList.cpp' || echo '$(srcdir)/'`GapList.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amulegui-GapList.Tpo" "$(DEPDIR)/amulegui-GapList.Po"; else rm -f "$(DEPDIR)/amulegui-GapList.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='GapList.cpp' object='amulegui-GapList.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-GapList.o `test -f 'GapList.cpp' || echo '$(srcdir)/'`GapList.cpp
+
+amulegui-GapList.obj: GapList.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-GapList.obj -MD -MP -MF "$(DEPDIR)/amulegui-GapList.Tpo" -c -o amulegui-GapList.obj `if test -f 'GapList.cpp'; then $(CYGPATH_W) 'GapList.cpp'; else $(CYGPATH_W) '$(srcdir)/GapList.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amulegui-GapList.Tpo" "$(DEPDIR)/amulegui-GapList.Po"; else rm -f "$(DEPDIR)/amulegui-GapList.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='GapList.cpp' object='amulegui-GapList.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-GapList.obj `if test -f 'GapList.cpp'; then $(CYGPATH_W) 'GapList.cpp'; else $(CYGPATH_W) '$(srcdir)/GapList.cpp'; fi`
 
 amulegui-GetTickCount.o: GetTickCount.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-GetTickCount.o -MD -MP -MF "$(DEPDIR)/amulegui-GetTickCount.Tpo" -c -o amulegui-GetTickCount.o `test -f 'GetTickCount.cpp' || echo '$(srcdir)/'`GetTickCount.cpp; \

@@ -3,10 +3,14 @@ AM_CFLAGS = $(MULECFLAGS)
 AM_CXXFLAGS = $(MULECXXFLAGS)
 AM_LDFLAGS = $(MULELDFLAGS)
 
-SUBDIRS = libs utils pixmaps skins
+SUBDIRS = libs utils pixmaps
 
 if WEB
 SUBDIRS += webserver
+endif
+
+if INSTALL_SKINS
+SUBDIRS += skins
 endif
 
 EXTRA_DIST = \
@@ -200,6 +204,7 @@ common_sources = \
 	ClientCredits.cpp \
 	ECSpecialMuleTags.cpp \
 	KnownFile.cpp \
+	GapList.cpp \
 	GetTickCount.cpp \
 	GuiEvents.cpp \
 	Logger.cpp \
@@ -350,6 +355,7 @@ noinst_HEADERS = \
 		Friend.h \
 		FriendListCtrl.h \
 		FriendList.h \
+		GapList.h \
 		GetTickCount.h \
 		GuiEvents.h \
 		HTTPDownload.h \
