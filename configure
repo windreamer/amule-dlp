@@ -7326,6 +7326,10 @@ cat >>confdefs.h <<\_ACEOF
 _ACEOF
 
 				GEOIP_LIBS="-lGeoIP"
+				if test x$SYS = xwin32; then
+  GEOIP_LIBS="$GEOIP_LIBS -lwsock32"
+fi
+
 				GEOIP_CPPFLAGS="$GEOIP_CPPFLAGS -DENABLE_IP2COUNTRY=1"
 
 # Check whether --with-geoip-static or --without-geoip-static was given.
