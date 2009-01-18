@@ -172,7 +172,7 @@ am__amule_SOURCES_DIST = RC4Encrypt.cpp amule.cpp BaseClient.cpp \
 	ClientListCtrl.cpp FriendListCtrl.cpp ServerListCtrl.cpp \
 	SharedFilesCtrl.cpp MuleTrayIcon.cpp MuleColour.cpp \
 	TransferWnd.cpp IP2Country.cpp ClientCredits.cpp \
-	ECSpecialMuleTags.cpp KnownFile.cpp GapList.cpp \
+	ECSpecialMuleTags.cpp FileArea.cpp KnownFile.cpp GapList.cpp \
 	GetTickCount.cpp GuiEvents.cpp Logger.cpp PartFile.cpp \
 	Preferences.cpp Proxy.cpp Server.cpp Statistics.cpp \
 	StatTree.cpp SHAHashSet.cpp TerminationProcess.cpp \
@@ -222,13 +222,14 @@ am__objects_4 = amule-amule-gui.$(OBJEXT) amule-amuleDlg.$(OBJEXT) \
 am__objects_5 = amule-OtherFunctions.$(OBJEXT) \
 	amule-NetworkFunctions.$(OBJEXT)
 am__objects_6 = amule-ClientCredits.$(OBJEXT) \
-	amule-ECSpecialMuleTags.$(OBJEXT) amule-KnownFile.$(OBJEXT) \
-	amule-GapList.$(OBJEXT) amule-GetTickCount.$(OBJEXT) \
-	amule-GuiEvents.$(OBJEXT) amule-Logger.$(OBJEXT) \
-	amule-PartFile.$(OBJEXT) amule-Preferences.$(OBJEXT) \
-	amule-Proxy.$(OBJEXT) amule-Server.$(OBJEXT) \
-	amule-Statistics.$(OBJEXT) amule-StatTree.$(OBJEXT) \
-	amule-SHAHashSet.$(OBJEXT) amule-TerminationProcess.$(OBJEXT) \
+	amule-ECSpecialMuleTags.$(OBJEXT) amule-FileArea.$(OBJEXT) \
+	amule-KnownFile.$(OBJEXT) amule-GapList.$(OBJEXT) \
+	amule-GetTickCount.$(OBJEXT) amule-GuiEvents.$(OBJEXT) \
+	amule-Logger.$(OBJEXT) amule-PartFile.$(OBJEXT) \
+	amule-Preferences.$(OBJEXT) amule-Proxy.$(OBJEXT) \
+	amule-Server.$(OBJEXT) amule-Statistics.$(OBJEXT) \
+	amule-StatTree.$(OBJEXT) amule-SHAHashSet.$(OBJEXT) \
+	amule-TerminationProcess.$(OBJEXT) \
 	amule-TerminationProcessAmuleweb.$(OBJEXT) \
 	amule-UserEvents.$(OBJEXT) $(am__objects_5)
 am_amule_OBJECTS = $(am__objects_2) $(am__objects_4) $(am__objects_6)
@@ -264,9 +265,9 @@ am__amuled_SOURCES_DIST = amuled.cpp Timer.cpp RC4Encrypt.cpp \
 	kademlia/net/KademliaUDPListener.cpp \
 	kademlia/net/PacketTracking.cpp kademlia/routing/Contact.cpp \
 	kademlia/routing/RoutingZone.cpp UPnPBase.cpp \
-	ClientCredits.cpp ECSpecialMuleTags.cpp KnownFile.cpp \
-	GapList.cpp GetTickCount.cpp GuiEvents.cpp Logger.cpp \
-	PartFile.cpp Preferences.cpp Proxy.cpp Server.cpp \
+	ClientCredits.cpp ECSpecialMuleTags.cpp FileArea.cpp \
+	KnownFile.cpp GapList.cpp GetTickCount.cpp GuiEvents.cpp \
+	Logger.cpp PartFile.cpp Preferences.cpp Proxy.cpp Server.cpp \
 	Statistics.cpp StatTree.cpp SHAHashSet.cpp \
 	TerminationProcess.cpp TerminationProcessAmuleweb.cpp \
 	UserEvents.cpp OtherFunctions.cpp NetworkFunctions.cpp
@@ -299,13 +300,13 @@ am__objects_9 = amuled-RC4Encrypt.$(OBJEXT) amuled-amule.$(OBJEXT) \
 am__objects_10 = amuled-OtherFunctions.$(OBJEXT) \
 	amuled-NetworkFunctions.$(OBJEXT)
 am__objects_11 = amuled-ClientCredits.$(OBJEXT) \
-	amuled-ECSpecialMuleTags.$(OBJEXT) amuled-KnownFile.$(OBJEXT) \
-	amuled-GapList.$(OBJEXT) amuled-GetTickCount.$(OBJEXT) \
-	amuled-GuiEvents.$(OBJEXT) amuled-Logger.$(OBJEXT) \
-	amuled-PartFile.$(OBJEXT) amuled-Preferences.$(OBJEXT) \
-	amuled-Proxy.$(OBJEXT) amuled-Server.$(OBJEXT) \
-	amuled-Statistics.$(OBJEXT) amuled-StatTree.$(OBJEXT) \
-	amuled-SHAHashSet.$(OBJEXT) \
+	amuled-ECSpecialMuleTags.$(OBJEXT) amuled-FileArea.$(OBJEXT) \
+	amuled-KnownFile.$(OBJEXT) amuled-GapList.$(OBJEXT) \
+	amuled-GetTickCount.$(OBJEXT) amuled-GuiEvents.$(OBJEXT) \
+	amuled-Logger.$(OBJEXT) amuled-PartFile.$(OBJEXT) \
+	amuled-Preferences.$(OBJEXT) amuled-Proxy.$(OBJEXT) \
+	amuled-Server.$(OBJEXT) amuled-Statistics.$(OBJEXT) \
+	amuled-StatTree.$(OBJEXT) amuled-SHAHashSet.$(OBJEXT) \
 	amuled-TerminationProcess.$(OBJEXT) \
 	amuled-TerminationProcessAmuleweb.$(OBJEXT) \
 	amuled-UserEvents.$(OBJEXT) $(am__objects_10)
@@ -322,7 +323,7 @@ am__amulegui_SOURCES_DIST = amule-remote-gui.cpp amule-gui.cpp \
 	ClientListCtrl.cpp FriendListCtrl.cpp ServerListCtrl.cpp \
 	SharedFilesCtrl.cpp MuleTrayIcon.cpp MuleColour.cpp \
 	TransferWnd.cpp IP2Country.cpp ClientCredits.cpp \
-	ECSpecialMuleTags.cpp KnownFile.cpp GapList.cpp \
+	ECSpecialMuleTags.cpp FileArea.cpp KnownFile.cpp GapList.cpp \
 	GetTickCount.cpp GuiEvents.cpp Logger.cpp PartFile.cpp \
 	Preferences.cpp Proxy.cpp Server.cpp Statistics.cpp \
 	StatTree.cpp SHAHashSet.cpp TerminationProcess.cpp \
@@ -353,12 +354,13 @@ am__objects_14 = amulegui-OtherFunctions.$(OBJEXT) \
 	amulegui-NetworkFunctions.$(OBJEXT)
 am__objects_15 = amulegui-ClientCredits.$(OBJEXT) \
 	amulegui-ECSpecialMuleTags.$(OBJEXT) \
-	amulegui-KnownFile.$(OBJEXT) amulegui-GapList.$(OBJEXT) \
-	amulegui-GetTickCount.$(OBJEXT) amulegui-GuiEvents.$(OBJEXT) \
-	amulegui-Logger.$(OBJEXT) amulegui-PartFile.$(OBJEXT) \
-	amulegui-Preferences.$(OBJEXT) amulegui-Proxy.$(OBJEXT) \
-	amulegui-Server.$(OBJEXT) amulegui-Statistics.$(OBJEXT) \
-	amulegui-StatTree.$(OBJEXT) amulegui-SHAHashSet.$(OBJEXT) \
+	amulegui-FileArea.$(OBJEXT) amulegui-KnownFile.$(OBJEXT) \
+	amulegui-GapList.$(OBJEXT) amulegui-GetTickCount.$(OBJEXT) \
+	amulegui-GuiEvents.$(OBJEXT) amulegui-Logger.$(OBJEXT) \
+	amulegui-PartFile.$(OBJEXT) amulegui-Preferences.$(OBJEXT) \
+	amulegui-Proxy.$(OBJEXT) amulegui-Server.$(OBJEXT) \
+	amulegui-Statistics.$(OBJEXT) amulegui-StatTree.$(OBJEXT) \
+	amulegui-SHAHashSet.$(OBJEXT) \
 	amulegui-TerminationProcess.$(OBJEXT) \
 	amulegui-TerminationProcessAmuleweb.$(OBJEXT) \
 	amulegui-UserEvents.$(OBJEXT) $(am__objects_14)
@@ -740,6 +742,7 @@ remote_common_sources = \
 common_sources = \
 	ClientCredits.cpp \
 	ECSpecialMuleTags.cpp \
+	FileArea.cpp \
 	KnownFile.cpp \
 	GapList.cpp \
 	GetTickCount.cpp \
@@ -866,6 +869,7 @@ noinst_HEADERS = \
 		EncryptedStreamSocket.h \
 		ExternalConnector.h \
 		ExternalConn.h \
+		FileArea.h \
 		FileDetailDialog.h \
 		FileDetailListCtrl.h \
 		FileLock.h \
@@ -1081,6 +1085,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-EncryptedDatagramSocket.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-EncryptedStreamSocket.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ExternalConn.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-FileArea.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-FileDetailDialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-Friend.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-FriendList.Po@am__quote@
@@ -1165,6 +1170,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-EncryptedDatagramSocket.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-EncryptedStreamSocket.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-ExternalConn.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-FileArea.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-Friend.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-FriendList.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-GapList.Po@am__quote@
@@ -1221,6 +1227,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-ClientListCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-DownloadListCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-ECSpecialMuleTags.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-FileArea.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-FileDetailDialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-FriendListCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-GapList.Po@am__quote@
@@ -2828,6 +2835,20 @@ amule-ECSpecialMuleTags.obj: ECSpecialMuleTags.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-ECSpecialMuleTags.obj `if test -f 'ECSpecialMuleTags.cpp'; then $(CYGPATH_W) 'ECSpecialMuleTags.cpp'; else $(CYGPATH_W) '$(srcdir)/ECSpecialMuleTags.cpp'; fi`
 
+amule-FileArea.o: FileArea.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-FileArea.o -MD -MP -MF "$(DEPDIR)/amule-FileArea.Tpo" -c -o amule-FileArea.o `test -f 'FileArea.cpp' || echo '$(srcdir)/'`FileArea.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-FileArea.Tpo" "$(DEPDIR)/amule-FileArea.Po"; else rm -f "$(DEPDIR)/amule-FileArea.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='FileArea.cpp' object='amule-FileArea.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-FileArea.o `test -f 'FileArea.cpp' || echo '$(srcdir)/'`FileArea.cpp
+
+amule-FileArea.obj: FileArea.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-FileArea.obj -MD -MP -MF "$(DEPDIR)/amule-FileArea.Tpo" -c -o amule-FileArea.obj `if test -f 'FileArea.cpp'; then $(CYGPATH_W) 'FileArea.cpp'; else $(CYGPATH_W) '$(srcdir)/FileArea.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-FileArea.Tpo" "$(DEPDIR)/amule-FileArea.Po"; else rm -f "$(DEPDIR)/amule-FileArea.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='FileArea.cpp' object='amule-FileArea.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-FileArea.obj `if test -f 'FileArea.cpp'; then $(CYGPATH_W) 'FileArea.cpp'; else $(CYGPATH_W) '$(srcdir)/FileArea.cpp'; fi`
+
 amule-KnownFile.o: KnownFile.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-KnownFile.o -MD -MP -MF "$(DEPDIR)/amule-KnownFile.Tpo" -c -o amule-KnownFile.o `test -f 'KnownFile.cpp' || echo '$(srcdir)/'`KnownFile.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-KnownFile.Tpo" "$(DEPDIR)/amule-KnownFile.Po"; else rm -f "$(DEPDIR)/amule-KnownFile.Tpo"; exit 1; fi
@@ -3766,6 +3787,20 @@ amuled-ECSpecialMuleTags.obj: ECSpecialMuleTags.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-ECSpecialMuleTags.obj `if test -f 'ECSpecialMuleTags.cpp'; then $(CYGPATH_W) 'ECSpecialMuleTags.cpp'; else $(CYGPATH_W) '$(srcdir)/ECSpecialMuleTags.cpp'; fi`
 
+amuled-FileArea.o: FileArea.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-FileArea.o -MD -MP -MF "$(DEPDIR)/amuled-FileArea.Tpo" -c -o amuled-FileArea.o `test -f 'FileArea.cpp' || echo '$(srcdir)/'`FileArea.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-FileArea.Tpo" "$(DEPDIR)/amuled-FileArea.Po"; else rm -f "$(DEPDIR)/amuled-FileArea.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='FileArea.cpp' object='amuled-FileArea.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-FileArea.o `test -f 'FileArea.cpp' || echo '$(srcdir)/'`FileArea.cpp
+
+amuled-FileArea.obj: FileArea.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-FileArea.obj -MD -MP -MF "$(DEPDIR)/amuled-FileArea.Tpo" -c -o amuled-FileArea.obj `if test -f 'FileArea.cpp'; then $(CYGPATH_W) 'FileArea.cpp'; else $(CYGPATH_W) '$(srcdir)/FileArea.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-FileArea.Tpo" "$(DEPDIR)/amuled-FileArea.Po"; else rm -f "$(DEPDIR)/amuled-FileArea.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='FileArea.cpp' object='amuled-FileArea.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-FileArea.obj `if test -f 'FileArea.cpp'; then $(CYGPATH_W) 'FileArea.cpp'; else $(CYGPATH_W) '$(srcdir)/FileArea.cpp'; fi`
+
 amuled-KnownFile.o: KnownFile.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-KnownFile.o -MD -MP -MF "$(DEPDIR)/amuled-KnownFile.Tpo" -c -o amuled-KnownFile.o `test -f 'KnownFile.cpp' || echo '$(srcdir)/'`KnownFile.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-KnownFile.Tpo" "$(DEPDIR)/amuled-KnownFile.Po"; else rm -f "$(DEPDIR)/amuled-KnownFile.Tpo"; exit 1; fi
@@ -4395,6 +4430,20 @@ amulegui-ECSpecialMuleTags.obj: ECSpecialMuleTags.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ECSpecialMuleTags.cpp' object='amulegui-ECSpecialMuleTags.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-ECSpecialMuleTags.obj `if test -f 'ECSpecialMuleTags.cpp'; then $(CYGPATH_W) 'ECSpecialMuleTags.cpp'; else $(CYGPATH_W) '$(srcdir)/ECSpecialMuleTags.cpp'; fi`
+
+amulegui-FileArea.o: FileArea.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-FileArea.o -MD -MP -MF "$(DEPDIR)/amulegui-FileArea.Tpo" -c -o amulegui-FileArea.o `test -f 'FileArea.cpp' || echo '$(srcdir)/'`FileArea.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amulegui-FileArea.Tpo" "$(DEPDIR)/amulegui-FileArea.Po"; else rm -f "$(DEPDIR)/amulegui-FileArea.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='FileArea.cpp' object='amulegui-FileArea.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-FileArea.o `test -f 'FileArea.cpp' || echo '$(srcdir)/'`FileArea.cpp
+
+amulegui-FileArea.obj: FileArea.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-FileArea.obj -MD -MP -MF "$(DEPDIR)/amulegui-FileArea.Tpo" -c -o amulegui-FileArea.obj `if test -f 'FileArea.cpp'; then $(CYGPATH_W) 'FileArea.cpp'; else $(CYGPATH_W) '$(srcdir)/FileArea.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amulegui-FileArea.Tpo" "$(DEPDIR)/amulegui-FileArea.Po"; else rm -f "$(DEPDIR)/amulegui-FileArea.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='FileArea.cpp' object='amulegui-FileArea.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-FileArea.obj `if test -f 'FileArea.cpp'; then $(CYGPATH_W) 'FileArea.cpp'; else $(CYGPATH_W) '$(srcdir)/FileArea.cpp'; fi`
 
 amulegui-KnownFile.o: KnownFile.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-KnownFile.o -MD -MP -MF "$(DEPDIR)/amulegui-KnownFile.Tpo" -c -o amulegui-KnownFile.o `test -f 'KnownFile.cpp' || echo '$(srcdir)/'`KnownFile.cpp; \
