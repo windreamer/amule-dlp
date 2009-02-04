@@ -679,7 +679,7 @@ bool CUpDownClient::ProcessHelloTypePacket(const CMemFile& data)
 bool CUpDownClient::SendHelloPacket() {
 
 	if (m_socket == NULL){
-		wxASSERT(0);
+		wxFAIL;
 		return true;
 	}
 
@@ -709,7 +709,7 @@ bool CUpDownClient::SendHelloPacket() {
 void CUpDownClient::SendMuleInfoPacket(bool bAnswer, bool OSInfo) {
 
 	if (m_socket == NULL){
-		wxASSERT(0);
+		wxFAIL;
 		return;
 	}
 
@@ -971,7 +971,7 @@ bool CUpDownClient::ProcessMuleInfoPacket(const byte* pachPacket, uint32 nSize)
 void CUpDownClient::SendHelloAnswer()
 {
 	if (m_socket == NULL){
-		wxASSERT(0);
+		wxFAIL;
 		return;
 	}
 
@@ -1529,7 +1529,7 @@ bool CUpDownClient::TryToConnect(bool bIgnoreMaxCon)
 							SetDownloadState(DS_WAITCALLBACKKAD);
 						} else {
 							//This should never happen..
-							wxASSERT(0);
+							wxFAIL;
 						}
 					}
 				}
@@ -1986,7 +1986,7 @@ bool CUpDownClient::SafeSendPacket(CPacket* packet)
 void CUpDownClient::SendPublicKeyPacket(){
 	// send our public key to the client who requested it
 	if (m_socket == NULL || credits == NULL || m_SecureIdentState != IS_KEYANDSIGNEEDED){
-		wxASSERT ( false );
+		wxFAIL;
 		return;
 	}
 	if (!theApp->CryptoAvailable())
@@ -2007,7 +2007,7 @@ void CUpDownClient::SendPublicKeyPacket(){
 void CUpDownClient::SendSignaturePacket(){
 	// signate the public key of this client and send it
 	if (m_socket == NULL || credits == NULL || m_SecureIdentState == 0){
-		wxASSERT ( false );
+		wxFAIL;
 		return;
 	}
 
@@ -2047,7 +2047,7 @@ void CUpDownClient::SendSignaturePacket(){
 
 	uint8 siglen = theApp->clientcredits->CreateSignature(credits, achBuffer,  250, ChallengeIP, byChaIPKind );
 	if (siglen == 0){
-		wxASSERT ( false );
+		wxFAIL;
 		return;
 	}
 	CMemFile data;
@@ -2072,7 +2072,7 @@ void CUpDownClient::ProcessPublicKeyPacket(const byte* pachPacket, uint32 nSize)
 
 	if (m_socket == NULL || credits == NULL || pachPacket[0] != nSize-1
 		|| nSize == 0 || nSize > 250){
-		wxASSERT ( false );
+		wxFAIL;
 		return;
 	}
 	if (!theApp->CryptoAvailable())
@@ -2098,7 +2098,7 @@ void CUpDownClient::ProcessSignaturePacket(const byte* pachPacket, uint32 nSize)
 	// here we spread the good guys from the bad ones ;)
 
 	if (m_socket == NULL || credits == NULL || nSize == 0 || nSize > 250){
-		wxASSERT ( false );
+		wxFAIL;
 		return;
 	}
 
@@ -2108,7 +2108,7 @@ void CUpDownClient::ProcessSignaturePacket(const byte* pachPacket, uint32 nSize)
 	else if (pachPacket[0] == nSize-2 && (m_bySupportSecIdent & 2) > 0) //v2
 		byChaIPKind = pachPacket[nSize-1];
 	else{
-		wxASSERT ( false );
+		wxFAIL;
 		return;
 	}
 
@@ -2169,7 +2169,7 @@ void CUpDownClient::SendSecIdentStatePacket(){
 		AddDebugLogLineM( false, logLocalClient, wxT("Local Client: OP_SECIDENTSTATE to ") + GetFullIP() );
 		SendPacket(packet,true,true);
 	} else {
-		wxASSERT ( false );
+		wxFAIL;
 	}
 }
 
@@ -2374,7 +2374,7 @@ uint8 CUpDownClient::GetSecureIdentState()
 			// style Hello packet, and the mule info packet, but between them they
 			// send a secure ident state packet (after a hello but before we have 
 			// the SUI capabilities). This is a misbehaving client, and somehow I
-			// Feel like it should be dropped. But then again, it won't harm to use
+			// feel like it should be dropped. But then again, it won't harm to use
 			// this SUI state if they are reporting no SUI (won't be used) and if 
 			// they report using SUI on the mule info packet, it's ok to use it.
 
@@ -2397,7 +2397,7 @@ bool CUpDownClient::SendMessage(const wxString& message)
 			m_pendingMessage += wxT("\n");
 		} else {
 			// There must be a message to send
-			wxASSERT(0);
+			wxFAIL;
 		}
 		m_pendingMessage += message;		
 		return false;
