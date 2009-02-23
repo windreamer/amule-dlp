@@ -147,19 +147,20 @@ libmuleappgui_a_OBJECTS = $(am_libmuleappgui_a_OBJECTS)
 am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
-am__amule_SOURCES_DIST = CaptchaDialog.cpp RC4Encrypt.cpp amule.cpp \
-	BaseClient.cpp ClientList.cpp ClientCreditsList.cpp \
-	ClientTCPSocket.cpp ClientUDPSocket.cpp DownloadClient.cpp \
-	DownloadQueue.cpp ECSpecialCoreTags.cpp EMSocket.cpp \
-	EncryptedStreamSocket.cpp EncryptedDatagramSocket.cpp \
-	ExternalConn.cpp Friend.cpp FriendList.cpp HTTPDownload.cpp \
-	IPFilter.cpp KnownFileList.cpp ListenSocket.cpp \
-	MuleUDPSocket.cpp SearchFile.cpp SearchList.cpp \
-	ServerConnect.cpp ServerList.cpp ServerSocket.cpp \
-	ServerUDPSocket.cpp SharedFileList.cpp ThreadTasks.cpp \
-	UploadBandwidthThrottler.cpp UploadClient.cpp UploadQueue.cpp \
-	kademlia/kademlia/Indexed.cpp kademlia/kademlia/Kademlia.cpp \
-	kademlia/kademlia/Prefs.cpp kademlia/kademlia/Search.cpp \
+am__amule_SOURCES_DIST = CaptchaDialog.cpp CaptchaGenerator.cpp \
+	RC4Encrypt.cpp amule.cpp BaseClient.cpp ClientList.cpp \
+	ClientCreditsList.cpp ClientTCPSocket.cpp ClientUDPSocket.cpp \
+	DownloadClient.cpp DownloadQueue.cpp ECSpecialCoreTags.cpp \
+	EMSocket.cpp EncryptedStreamSocket.cpp \
+	EncryptedDatagramSocket.cpp ExternalConn.cpp Friend.cpp \
+	FriendList.cpp HTTPDownload.cpp IPFilter.cpp KnownFileList.cpp \
+	ListenSocket.cpp MuleUDPSocket.cpp SearchFile.cpp \
+	SearchList.cpp ServerConnect.cpp ServerList.cpp \
+	ServerSocket.cpp ServerUDPSocket.cpp SharedFileList.cpp \
+	ThreadTasks.cpp UploadBandwidthThrottler.cpp UploadClient.cpp \
+	UploadQueue.cpp kademlia/kademlia/Indexed.cpp \
+	kademlia/kademlia/Kademlia.cpp kademlia/kademlia/Prefs.cpp \
+	kademlia/kademlia/Search.cpp \
 	kademlia/kademlia/UDPFirewallTester.cpp \
 	kademlia/net/KademliaUDPListener.cpp \
 	kademlia/net/PacketTracking.cpp kademlia/routing/Contact.cpp \
@@ -232,7 +233,8 @@ am__objects_6 = amule-ClientCredits.$(OBJEXT) \
 	amule-TerminationProcess.$(OBJEXT) \
 	amule-TerminationProcessAmuleweb.$(OBJEXT) \
 	amule-UserEvents.$(OBJEXT) $(am__objects_5)
-am_amule_OBJECTS = amule-CaptchaDialog.$(OBJEXT) $(am__objects_2) \
+am_amule_OBJECTS = amule-CaptchaDialog.$(OBJEXT) \
+	amule-CaptchaGenerator.$(OBJEXT) $(am__objects_2) \
 	$(am__objects_4) $(am__objects_6)
 amule_OBJECTS = $(am_amule_OBJECTS)
 am__DEPENDENCIES_1 =
@@ -785,6 +787,7 @@ amulegui_SOURCES = amule-remote-gui.cpp $(gui_sources) $(ec_sources) \
 	$(common_sources) $(am__append_14)
 amule_SOURCES = \
 	CaptchaDialog.cpp \
+	CaptchaGenerator.cpp \
 	$(core_sources) \
 	$(gui_sources) \
 	$(ec_sources) \
@@ -844,6 +847,7 @@ noinst_HEADERS = \
 		ArchSpecific.h \
 		BarShader.h \
 		CaptchaDialog.h \
+		CaptchaGenerator.h \
 		CatDialog.h \
 		CFile.h \
 		ChatSelector.h \
@@ -1070,6 +1074,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-AddFriend.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-BaseClient.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-CaptchaDialog.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-CaptchaGenerator.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-CatDialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ChatSelector.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ClientCredits.Po@am__quote@
@@ -1886,6 +1891,20 @@ amule-CaptchaDialog.obj: CaptchaDialog.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CaptchaDialog.cpp' object='amule-CaptchaDialog.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-CaptchaDialog.obj `if test -f 'CaptchaDialog.cpp'; then $(CYGPATH_W) 'CaptchaDialog.cpp'; else $(CYGPATH_W) '$(srcdir)/CaptchaDialog.cpp'; fi`
+
+amule-CaptchaGenerator.o: CaptchaGenerator.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-CaptchaGenerator.o -MD -MP -MF "$(DEPDIR)/amule-CaptchaGenerator.Tpo" -c -o amule-CaptchaGenerator.o `test -f 'CaptchaGenerator.cpp' || echo '$(srcdir)/'`CaptchaGenerator.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-CaptchaGenerator.Tpo" "$(DEPDIR)/amule-CaptchaGenerator.Po"; else rm -f "$(DEPDIR)/amule-CaptchaGenerator.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CaptchaGenerator.cpp' object='amule-CaptchaGenerator.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-CaptchaGenerator.o `test -f 'CaptchaGenerator.cpp' || echo '$(srcdir)/'`CaptchaGenerator.cpp
+
+amule-CaptchaGenerator.obj: CaptchaGenerator.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-CaptchaGenerator.obj -MD -MP -MF "$(DEPDIR)/amule-CaptchaGenerator.Tpo" -c -o amule-CaptchaGenerator.obj `if test -f 'CaptchaGenerator.cpp'; then $(CYGPATH_W) 'CaptchaGenerator.cpp'; else $(CYGPATH_W) '$(srcdir)/CaptchaGenerator.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-CaptchaGenerator.Tpo" "$(DEPDIR)/amule-CaptchaGenerator.Po"; else rm -f "$(DEPDIR)/amule-CaptchaGenerator.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CaptchaGenerator.cpp' object='amule-CaptchaGenerator.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-CaptchaGenerator.obj `if test -f 'CaptchaGenerator.cpp'; then $(CYGPATH_W) 'CaptchaGenerator.cpp'; else $(CYGPATH_W) '$(srcdir)/CaptchaGenerator.cpp'; fi`
 
 amule-RC4Encrypt.o: RC4Encrypt.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-RC4Encrypt.o -MD -MP -MF "$(DEPDIR)/amule-RC4Encrypt.Tpo" -c -o amule-RC4Encrypt.o `test -f 'RC4Encrypt.cpp' || echo '$(srcdir)/'`RC4Encrypt.cpp; \
