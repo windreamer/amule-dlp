@@ -8288,7 +8288,7 @@ else
 
 		# Find out the crypto++ version and check against the minimum required
 		cryptopp_header_path="${cryptopp_includedir+$cryptopp_includedir/}$CRYPTOPP_INCLUDE_PREFIX/$cryptopp_file_with_version"
-		CRYPTOPP_VERSION_STRING=`grep "Reference Manual" $cryptopp_header_path | sed -e 's/[^0-9]*\([0-9.]*\).*/\1/'`
+		CRYPTOPP_VERSION_STRING=`$EGREP "Reference Manual|API Reference" $cryptopp_header_path | sed -e 's/[^0-9]*\([0-9.]*\).*/\1/'`
 		CRYPTOPP_VERSION_NUMBER=`echo $CRYPTOPP_VERSION_STRING | $AWK 'BEGIN { FS = "."; } { printf "%d", ($1 * 1000 + $2) * 1000 + $3;}'`
 		minvers=`echo 5.1 | $AWK 'BEGIN { FS = "."; } { printf "%d", ($1 * 1000 + $2) * 1000 + $3;}'`
 
