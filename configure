@@ -6869,6 +6869,12 @@ fi;
 		CPPFLAGS="$CPPFLAGS $GEOIP_CPPFLAGS"
 		mule_backup_LDFLAGS="$LDFLAGS"
 		LDFLAGS="$LDFLAGS $GEOIP_LDFLAGS"
+
+       		if test x$SYS = xwin32; then
+  OTHERLIBS="-lws2_32"
+fi
+
+
 		if test "${ac_cv_header_GeoIP_h+set}" = set; then
   echo "$as_me:$LINENO: checking for GeoIP.h" >&5
 echo $ECHO_N "checking for GeoIP.h... $ECHO_C" >&6
@@ -7014,7 +7020,7 @@ if test "${ac_cv_lib_GeoIP_GeoIP_open+set}" = set; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
 else
   ac_check_lib_save_LIBS=$LIBS
-LIBS="-lGeoIP  $LIBS"
+LIBS="-lGeoIP ${OTHERLIBS:-} $LIBS"
 cat >conftest.$ac_ext <<_ACEOF
 /* confdefs.h.  */
 _ACEOF
@@ -7081,7 +7087,7 @@ _ACEOF
 
 				GEOIP_LIBS="-lGeoIP"
 				if test x$SYS = xwin32; then
-  GEOIP_LIBS="$GEOIP_LIBS -lwsock32"
+  GEOIP_LIBS="$GEOIP_LIBS -lws2_32"
 fi
 
 				GEOIP_CPPFLAGS="$GEOIP_CPPFLAGS -DENABLE_IP2COUNTRY=1"
