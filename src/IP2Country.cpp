@@ -40,12 +40,14 @@
 // Contact: mjames@gmail.com
 //
 
-#include <GeoIP.h>
-
-#include "IP2Country.h"
-
 // MSVC projects can't include files configuration dependent, so just double-check the #define
 #ifdef ENABLE_IP2COUNTRY
+
+#ifdef _MSC_VER
+// MSVC needs it here, MingW needs it below
+#include <GeoIP.h>
+#include "IP2Country.h"
+#endif
 
 #include "amule.h"			// For theApp
 #include "Preferences.h"	// For thePrefs
@@ -59,6 +61,9 @@
 
 #include <wx/intl.h>
 #include <wx/image.h>
+
+#include <GeoIP.h>
+#include "IP2Country.h"
 
 CIP2Country::CIP2Country()
 {
