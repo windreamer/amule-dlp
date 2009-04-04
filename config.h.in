@@ -53,6 +53,9 @@
 /* Define to 1 if you have the `endpwent' function. */
 #undef HAVE_ENDPWENT
 
+/* Define to 1 if you have the <errno.h> header file. */
+#undef HAVE_ERRNO_H
+
 /* Define to 1 if you have the <execinfo.h> header which declares backtrace()
    */
 #undef HAVE_EXECINFO
@@ -255,6 +258,12 @@
 
 /* Define to 1 if you have the `setrlimit' function. */
 #undef HAVE_SETRLIMIT
+
+/* Define to 1 if you have the `sigaction' function. */
+#undef HAVE_SIGACTION
+
+/* Define to 1 if you have the <signal.h> header file. */
+#undef HAVE_SIGNAL_H
 
 /* Define to 1 if you have the `socket' function. */
 #undef HAVE_SOCKET
