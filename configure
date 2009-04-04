@@ -311,7 +311,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='GEOIP_CPPFLAGS GEOIP_LDFLAGS GEOIP_LIBS SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot AMTAR am__tar am__untar MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT build build_cpu build_vendor build_os host host_cpu host_vendor host_os RESOLV_LIB X11LIBS MULECPPFLAGS MULECFLAGS MULECXXFLAGS MULELDFLAGS MULERCFLAGS CXX CXXFLAGS LDFLAGS CPPFLAGS ac_ct_CXX EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE CXXCPP CC CFLAGS ac_ct_CC CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE CPP BUILD_CC ac_ct_BUILD_CC EXEEXT BUILD_EXEEXT BUILD_CPPFLAGS BUILD_CFLAGS BUILD_LDFLAGS EGREP LEX LEXLIB LEX_OUTPUT_ROOT RANLIB ac_ct_RANLIB YACC AR ac_ct_AR LD ac_ct_LD ZLIB_CPPFLAGS ZLIB_LDFLAGS ZLIB_LIBS GDLIB_CONFIG_PATH GDLIB_CFLAGS GDLIB_LDFLAGS GDLIB_LIBS CAS_DEFS REGEX_LIBS LIBPNG_CONFIG_PATH LIBPNG_CFLAGS LIBPNG_LDFLAGS LIBPNG_LIBS AMULEWEB_DEFS WX_CONFIG_PATH WX_CPPFLAGS WX_CFLAGS WX_CXXFLAGS WX_CFLAGS_ONLY WX_CXXFLAGS_ONLY WX_LIBS WX_LIBS_STATIC WX_VERSION_FULL WX_RESCOMP WX_VERSION_MAJOR WX_VERSION_MINOR WX_UNICODE WX_DEBUG WX_SHARED WX_PORT WXBASE_LIBS WXBASE_CPPFLAGS RC RCFLAGS ac_ct_RC PKG_CONFIG ac_pt_PKG_CONFIG LIBUPNP_CPPFLAGS LIBUPNP_CFLAGS LIBUPNP_LDFLAGS LIBUPNP_LIBS CRYPTOPP_CPPFLAGS CRYPTOPP_LDFLAGS CRYPTOPP_LIBS BFD_CPPFLAGS BFD_LIBS ALLOCA LIBOBJS POW_LIB MKINSTALLDIRS MSGFMT GMSGFMT XGETTEXT MSGMERGE GLIBC21 LIBICONV LTLIBICONV INTLBISON USE_NLS BUILD_INCLUDED_LIBINTL USE_INCLUDED_LIBINTL CATOBJEXT INTLOBJS DATADIRNAME INSTOBJEXT GENCAT INTL_LIBTOOL_SUFFIX_PREFIX INTLLIBS LIBINTL LTLIBINTL POSUB AMULE_DAEMON_MANPAGES AMULECMD_MANPAGES WEB_MANPAGES AMULE_GUI_MANPAGES CAS_MANPAGES WXCAS_MANPAGES ED2K_MANPAGES ALC_MANPAGES ALCC_MANPAGES MONOLITHIC_MANPAGES INCINTL docdir SVNDATE WEB_TRUE WEB_FALSE ED2K_TRUE ED2K_FALSE CAS_TRUE CAS_FALSE WXCAS_TRUE WXCAS_FALSE ALC_TRUE ALC_FALSE ALCC_TRUE ALCC_FALSE AMULE_GUI_TRUE AMULE_GUI_FALSE AMULE_DAEMON_TRUE AMULE_DAEMON_FALSE COMPILE_CMD_TRUE COMPILE_CMD_FALSE MONOLITHIC_TRUE MONOLITHIC_FALSE XAS_TRUE XAS_FALSE ENABLE_UPNP_TRUE ENABLE_UPNP_FALSE ENABLE_IP2COUNTRY_TRUE ENABLE_IP2COUNTRY_FALSE SYS_WIN32_TRUE SYS_WIN32_FALSE NEED_RC_TRUE NEED_RC_FALSE NEED_CORESERVICES_TRUE NEED_CORESERVICES_FALSE COMPILE_NLS_TRUE COMPILE_NLS_FALSE GENERATE_FLEX_HEADER_TRUE GENERATE_FLEX_HEADER_FALSE INSTALL_SKINS_TRUE INSTALL_SKINS_FALSE READLINE_LIBS LTLIBOBJS'
+ac_subst_vars='GEOIP_CPPFLAGS GEOIP_LDFLAGS GEOIP_LIBS SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot AMTAR am__tar am__untar MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT build build_cpu build_vendor build_os host host_cpu host_vendor host_os RESOLV_LIB X11LIBS MULECPPFLAGS MULECFLAGS MULECXXFLAGS MULELDFLAGS MULERCFLAGS CXX CXXFLAGS LDFLAGS CPPFLAGS ac_ct_CXX EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE CXXCPP CC CFLAGS ac_ct_CC CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE CPP BUILD_CC ac_ct_BUILD_CC EXEEXT BUILD_EXEEXT BUILD_CPPFLAGS BUILD_CFLAGS BUILD_LDFLAGS EGREP LEX LEXLIB LEX_OUTPUT_ROOT RANLIB ac_ct_RANLIB YACC AR ac_ct_AR LD ac_ct_LD ZLIB_CPPFLAGS ZLIB_LDFLAGS ZLIB_LIBS GDLIB_CONFIG_PATH GDLIB_CFLAGS GDLIB_LDFLAGS GDLIB_LIBS CAS_DEFS REGEX_LIBS LIBPNG_CONFIG_PATH LIBPNG_CFLAGS LIBPNG_LDFLAGS LIBPNG_LIBS AMULEWEB_DEFS WX_CONFIG_PATH WX_CPPFLAGS WX_CFLAGS WX_CXXFLAGS WX_CFLAGS_ONLY WX_CXXFLAGS_ONLY WX_LIBS WX_LIBS_STATIC WX_VERSION_FULL WX_RESCOMP WX_VERSION_MAJOR WX_VERSION_MINOR WX_UNICODE WX_DEBUG WX_SHARED WX_PORT WXBASE_LIBS WXBASE_CPPFLAGS RC RCFLAGS ac_ct_RC PKG_CONFIG ac_pt_PKG_CONFIG LIBUPNP_CPPFLAGS LIBUPNP_CFLAGS LIBUPNP_LDFLAGS LIBUPNP_LIBS CRYPTOPP_CPPFLAGS CRYPTOPP_LDFLAGS CRYPTOPP_LIBS ALLOCA LIBOBJS POW_LIB MKINSTALLDIRS MSGFMT GMSGFMT XGETTEXT MSGMERGE GLIBC21 LIBICONV LTLIBICONV INTLBISON USE_NLS BUILD_INCLUDED_LIBINTL USE_INCLUDED_LIBINTL CATOBJEXT INTLOBJS DATADIRNAME INSTOBJEXT GENCAT INTL_LIBTOOL_SUFFIX_PREFIX INTLLIBS LIBINTL LTLIBINTL POSUB AMULE_DAEMON_MANPAGES AMULECMD_MANPAGES WEB_MANPAGES AMULE_GUI_MANPAGES CAS_MANPAGES WXCAS_MANPAGES ED2K_MANPAGES ALC_MANPAGES ALCC_MANPAGES MONOLITHIC_MANPAGES INCINTL BFD_CPPFLAGS BFD_LIBS docdir SVNDATE WEB_TRUE WEB_FALSE ED2K_TRUE ED2K_FALSE CAS_TRUE CAS_FALSE WXCAS_TRUE WXCAS_FALSE ALC_TRUE ALC_FALSE ALCC_TRUE ALCC_FALSE AMULE_GUI_TRUE AMULE_GUI_FALSE AMULE_DAEMON_TRUE AMULE_DAEMON_FALSE COMPILE_CMD_TRUE COMPILE_CMD_FALSE MONOLITHIC_TRUE MONOLITHIC_FALSE XAS_TRUE XAS_FALSE ENABLE_UPNP_TRUE ENABLE_UPNP_FALSE ENABLE_IP2COUNTRY_TRUE ENABLE_IP2COUNTRY_FALSE SYS_WIN32_TRUE SYS_WIN32_FALSE NEED_RC_TRUE NEED_RC_FALSE NEED_CORESERVICES_TRUE NEED_CORESERVICES_FALSE COMPILE_NLS_TRUE COMPILE_NLS_FALSE GENERATE_FLEX_HEADER_TRUE GENERATE_FLEX_HEADER_FALSE INSTALL_SKINS_TRUE INSTALL_SKINS_FALSE READLINE_LIBS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -8707,159 +8707,6 @@ ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
-# Check for bfd.h (to have proper backtraces without using wxExecute)
-
-	echo "$as_me:$LINENO: checking for bfd" >&5
-echo $ECHO_N "checking for bfd... $ECHO_C" >&6
-	mule_backup_LIBS="$LIBS"
-	mule_backup_LDFLAGS="$LDFLAGS"
-	LIBS="-lbfd -liberty ${ZLIB_LIBS} $LIBS"
-	LDFLAGS="$LDFLAGS ${ZLIB_LDFLAGS}"
-	cat >conftest.$ac_ext <<_ACEOF
-
-		/* confdefs.h.  */
-_ACEOF
-cat confdefs.h >>conftest.$ac_ext
-cat >>conftest.$ac_ext <<_ACEOF
-/* end confdefs.h.  */
-
-			#include <ansidecl.h>
-			#include <bfd.h>
-
-int
-main ()
-{
-
-			char *dummy = bfd_errmsg(bfd_get_error());
-
-  ;
-  return 0;
-}
-
-_ACEOF
-rm -f conftest.$ac_objext conftest$ac_exeext
-if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
-  (eval $ac_link) 2>conftest.er1
-  ac_status=$?
-  grep -v '^ *+' conftest.er1 >conftest.err
-  rm -f conftest.er1
-  cat conftest.err >&5
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag"
-			 || test ! -s conftest.err'
-  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
-  (eval $ac_try) 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; } &&
-	 { ac_try='test -s conftest$ac_exeext'
-  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
-  (eval $ac_try) 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; }; then
-
-		echo "$as_me:$LINENO: result: yes" >&5
-echo "${ECHO_T}yes" >&6
-		BFD_CPPFLAGS="-DHAVE_BFD"
-		BFD_LIBS="-lbfd -liberty"
-
-else
-  echo "$as_me: failed program was:" >&5
-sed 's/^/| /' conftest.$ac_ext >&5
-
-
-		echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6
-		{ echo "$as_me:$LINENO: WARNING:
-        bfd.h not found or unusable, please install binutils development
-        package if you are a developer or want to help testing aMule" >&5
-echo "$as_me: WARNING:
-        bfd.h not found or unusable, please install binutils development
-        package if you are a developer or want to help testing aMule" >&2;}
-_mule_warning_8=yes
-_mule_has_warnings=yes
-
-
-fi
-rm -f conftest.err conftest.$ac_objext \
-      conftest$ac_exeext conftest.$ac_ext
-	LIBS="$mule_backup_LIBS"
-	LDFLAGS="$mule_backup_LDFLAGS"
-
-
-
-	echo "$as_me:$LINENO: checking for <execinfo.h> and backtrace()" >&5
-echo $ECHO_N "checking for <execinfo.h> and backtrace()... $ECHO_C" >&6
-	cat >conftest.$ac_ext <<_ACEOF
-
-		/* confdefs.h.  */
-_ACEOF
-cat confdefs.h >>conftest.$ac_ext
-cat >>conftest.$ac_ext <<_ACEOF
-/* end confdefs.h.  */
-
-			#include <execinfo.h>
-
-int
-main ()
-{
-
-			void *bt[1];
-			int n = backtrace(&bt, 1);
-			const char **bt_syms = backtrace_symbols(bt, n);
-
-  ;
-  return 0;
-}
-
-_ACEOF
-rm -f conftest.$ac_objext conftest$ac_exeext
-if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
-  (eval $ac_link) 2>conftest.er1
-  ac_status=$?
-  grep -v '^ *+' conftest.er1 >conftest.err
-  rm -f conftest.er1
-  cat conftest.err >&5
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag"
-			 || test ! -s conftest.err'
-  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
-  (eval $ac_try) 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; } &&
-	 { ac_try='test -s conftest$ac_exeext'
-  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
-  (eval $ac_try) 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; }; then
-
-
-
-		cat >>confdefs.h <<\_ACEOF
-#define HAVE_EXECINFO 1
-_ACEOF
-
-		echo "$as_me:$LINENO: result: yes" >&5
-echo "${ECHO_T}yes" >&6
-
-else
-  echo "$as_me: failed program was:" >&5
-sed 's/^/| /' conftest.$ac_ext >&5
-
-
-		echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6
-
-fi
-rm -f conftest.err conftest.$ac_objext \
-      conftest$ac_exeext conftest.$ac_ext
-
-
 # Ok, we have all needed libs, now checking for other stuff
 if test "$LEX" = "flex"; then
 
@@ -14021,7 +13868,7 @@ echo "$as_me: WARNING:
         configure cannot check whether malloc() and realloc() are GNU libc
         compatible. You have to be ABSOLUTELY sure that they are, otherwise
         run configure with the --without-gnu-malloc switch." >&2;}
-_mule_warning_9=yes
+_mule_warning_8=yes
 _mule_has_warnings=yes
 
 	ac_cv_func_malloc_0_nonnull=yes
@@ -18089,7 +17936,7 @@ fi
 echo "$as_me: WARNING:
         You need to install GNU gettext/gettext-tools to compile aMule with
         i18n support." >&2;}
-_mule_warning_10=yes
+_mule_warning_9=yes
 _mule_has_warnings=yes
 
 fi
@@ -18306,6 +18153,167 @@ echo "${ECHO_T}${LINGUAS:-all}" >&6
 fi
 
 
+
+
+# Check for bfd.h (to have proper backtraces without using wxExecute)
+
+	echo "$as_me:$LINENO: checking for bfd" >&5
+echo $ECHO_N "checking for bfd... $ECHO_C" >&6
+	result=no
+	for bfd_ldadd in "" "${LIBINTL}"; do
+		mule_backup_LIBS="$LIBS"
+		mule_backup_LDFLAGS="$LDFLAGS"
+		LIBS="-lbfd -liberty ${bfd_ldadd} ${ZLIB_LIBS} $LIBS"
+		LDFLAGS="$LDFLAGS ${ZLIB_LDFLAGS}"
+		cat >conftest.$ac_ext <<_ACEOF
+
+			/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+
+				#include <ansidecl.h>
+				#include <bfd.h>
+
+int
+main ()
+{
+
+				char *dummy = bfd_errmsg(bfd_get_error());
+
+  ;
+  return 0;
+}
+
+_ACEOF
+rm -f conftest.$ac_objext conftest$ac_exeext
+if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
+  (eval $ac_link) 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } &&
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; } &&
+	 { ac_try='test -s conftest$ac_exeext'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; }; then
+
+			result=yes
+			BFD_CPPFLAGS="-DHAVE_BFD"
+			BFD_LIBS="-lbfd -liberty ${bfd_ldadd}"
+			LIBS="$mule_backup_LIBS"
+			LDFLAGS="$mule_backup_LDFLAGS"
+			break
+
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+fi
+rm -f conftest.err conftest.$ac_objext \
+      conftest$ac_exeext conftest.$ac_ext
+		LIBS="$mule_backup_LIBS"
+		LDFLAGS="$mule_backup_LDFLAGS"
+	done
+
+	echo "$as_me:$LINENO: result: $result" >&5
+echo "${ECHO_T}$result" >&6
+
+	if test $result = no; then
+  { echo "$as_me:$LINENO: WARNING:
+        bfd.h not found or unusable, please install binutils development
+        package if you are a developer or want to help testing aMule" >&5
+echo "$as_me: WARNING:
+        bfd.h not found or unusable, please install binutils development
+        package if you are a developer or want to help testing aMule" >&2;}
+_mule_warning_10=yes
+_mule_has_warnings=yes
+
+fi
+
+
+
+
+	echo "$as_me:$LINENO: checking for <execinfo.h> and backtrace()" >&5
+echo $ECHO_N "checking for <execinfo.h> and backtrace()... $ECHO_C" >&6
+	cat >conftest.$ac_ext <<_ACEOF
+
+		/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+
+			#include <execinfo.h>
+
+int
+main ()
+{
+
+			void *bt[1];
+			int n = backtrace(&bt, 1);
+			const char **bt_syms = backtrace_symbols(bt, n);
+
+  ;
+  return 0;
+}
+
+_ACEOF
+rm -f conftest.$ac_objext conftest$ac_exeext
+if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
+  (eval $ac_link) 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } &&
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; } &&
+	 { ac_try='test -s conftest$ac_exeext'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; }; then
+
+
+
+		cat >>confdefs.h <<\_ACEOF
+#define HAVE_EXECINFO 1
+_ACEOF
+
+		echo "$as_me:$LINENO: result: yes" >&5
+echo "${ECHO_T}yes" >&6
+
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+
+		echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
+
+fi
+rm -f conftest.err conftest.$ac_objext \
+      conftest$ac_exeext conftest.$ac_ext
 
 
 # Flush standard test results for speeding cache
@@ -20218,8 +20226,6 @@ s,@LIBUPNP_LIBS@,$LIBUPNP_LIBS,;t t
 s,@CRYPTOPP_CPPFLAGS@,$CRYPTOPP_CPPFLAGS,;t t
 s,@CRYPTOPP_LDFLAGS@,$CRYPTOPP_LDFLAGS,;t t
 s,@CRYPTOPP_LIBS@,$CRYPTOPP_LIBS,;t t
-s,@BFD_CPPFLAGS@,$BFD_CPPFLAGS,;t t
-s,@BFD_LIBS@,$BFD_LIBS,;t t
 s,@ALLOCA@,$ALLOCA,;t t
 s,@LIBOBJS@,$LIBOBJS,;t t
 s,@POW_LIB@,$POW_LIB,;t t
@@ -20256,6 +20262,8 @@ s,@ALC_MANPAGES@,$ALC_MANPAGES,;t t
 s,@ALCC_MANPAGES@,$ALCC_MANPAGES,;t t
 s,@MONOLITHIC_MANPAGES@,$MONOLITHIC_MANPAGES,;t t
 s,@INCINTL@,$INCINTL,;t t
+s,@BFD_CPPFLAGS@,$BFD_CPPFLAGS,;t t
+s,@BFD_LIBS@,$BFD_LIBS,;t t
 s,@docdir@,$docdir,;t t
 s,@SVNDATE@,$SVNDATE,;t t
 s,@WEB_TRUE@,$WEB_TRUE,;t t
@@ -21306,22 +21314,22 @@ fi
 if test ${_mule_warning_8:-no} = yes; then
 cat <<_MULEEOT
 
-* bfd.h not found or unusable, please install binutils development package if
-  you are a developer or want to help testing aMule
-_MULEEOT
-fi
-if test ${_mule_warning_9:-no} = yes; then
-cat <<_MULEEOT
-
 * configure cannot check whether malloc() and realloc() are GNU libc
   compatible. You have to be ABSOLUTELY sure that they are, otherwise run
   configure with the --without-gnu-malloc switch.
 _MULEEOT
 fi
-if test ${_mule_warning_10:-no} = yes; then
+if test ${_mule_warning_9:-no} = yes; then
 cat <<_MULEEOT
 
 * You need to install GNU gettext/gettext-tools to compile aMule with i18n
   support.
+_MULEEOT
+fi
+if test ${_mule_warning_10:-no} = yes; then
+cat <<_MULEEOT
+
+* bfd.h not found or unusable, please install binutils development package if
+  you are a developer or want to help testing aMule
 _MULEEOT
 fi
