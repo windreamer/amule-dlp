@@ -247,9 +247,7 @@ void CUpDownClient::CreateNextBlockPackage()
 			}
 		
 			uint64 togo;
-			// THIS EndOffset points BEHIND the last byte requested
-			// (other than the offsets used in the PartFile code)
-			if (currentblock->EndOffset > srcfile->GetFileSize()) {
+			if (currentblock->EndOffset >= srcfile->GetFileSize()) {
 				throw wxString(wxT("Asked for data beyond end of file"));
 			} else if (currentblock->StartOffset > currentblock->EndOffset) { 
 				throw wxString(wxT("Asked for invalid block (start > end)"));
