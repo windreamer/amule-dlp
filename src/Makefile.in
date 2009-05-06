@@ -152,8 +152,8 @@ PROGRAMS = $(bin_PROGRAMS)
 am__amule_SOURCES_DIST = CaptchaDialog.cpp CaptchaGenerator.cpp \
 	RC4Encrypt.cpp amule.cpp BaseClient.cpp ClientList.cpp \
 	ClientCreditsList.cpp ClientTCPSocket.cpp ClientUDPSocket.cpp \
-	DownloadClient.cpp DownloadQueue.cpp ECSpecialCoreTags.cpp \
-	EMSocket.cpp EncryptedStreamSocket.cpp \
+	CorruptionBlackBox.cpp DownloadClient.cpp DownloadQueue.cpp \
+	ECSpecialCoreTags.cpp EMSocket.cpp EncryptedStreamSocket.cpp \
 	EncryptedDatagramSocket.cpp ExternalConn.cpp Friend.cpp \
 	FriendList.cpp HTTPDownload.cpp IPFilter.cpp KnownFileList.cpp \
 	ListenSocket.cpp MuleUDPSocket.cpp SearchFile.cpp \
@@ -186,8 +186,9 @@ am__objects_2 = amule-RC4Encrypt.$(OBJEXT) amule-amule.$(OBJEXT) \
 	amule-BaseClient.$(OBJEXT) amule-ClientList.$(OBJEXT) \
 	amule-ClientCreditsList.$(OBJEXT) \
 	amule-ClientTCPSocket.$(OBJEXT) \
-	amule-ClientUDPSocket.$(OBJEXT) amule-DownloadClient.$(OBJEXT) \
-	amule-DownloadQueue.$(OBJEXT) \
+	amule-ClientUDPSocket.$(OBJEXT) \
+	amule-CorruptionBlackBox.$(OBJEXT) \
+	amule-DownloadClient.$(OBJEXT) amule-DownloadQueue.$(OBJEXT) \
 	amule-ECSpecialCoreTags.$(OBJEXT) amule-EMSocket.$(OBJEXT) \
 	amule-EncryptedStreamSocket.$(OBJEXT) \
 	amule-EncryptedDatagramSocket.$(OBJEXT) \
@@ -254,17 +255,18 @@ am_amulecmd_OBJECTS = amulecmd-TextClient.$(OBJEXT) \
 amulecmd_OBJECTS = $(am_amulecmd_OBJECTS) $(nodist_amulecmd_OBJECTS)
 am__amuled_SOURCES_DIST = amuled.cpp Timer.cpp RC4Encrypt.cpp \
 	amule.cpp BaseClient.cpp ClientList.cpp ClientCreditsList.cpp \
-	ClientTCPSocket.cpp ClientUDPSocket.cpp DownloadClient.cpp \
-	DownloadQueue.cpp ECSpecialCoreTags.cpp EMSocket.cpp \
-	EncryptedStreamSocket.cpp EncryptedDatagramSocket.cpp \
-	ExternalConn.cpp Friend.cpp FriendList.cpp HTTPDownload.cpp \
-	IPFilter.cpp KnownFileList.cpp ListenSocket.cpp \
-	MuleUDPSocket.cpp SearchFile.cpp SearchList.cpp \
-	ServerConnect.cpp ServerList.cpp ServerSocket.cpp \
-	ServerUDPSocket.cpp SharedFileList.cpp ThreadTasks.cpp \
-	UploadBandwidthThrottler.cpp UploadClient.cpp UploadQueue.cpp \
-	kademlia/kademlia/Indexed.cpp kademlia/kademlia/Kademlia.cpp \
-	kademlia/kademlia/Prefs.cpp kademlia/kademlia/Search.cpp \
+	ClientTCPSocket.cpp ClientUDPSocket.cpp CorruptionBlackBox.cpp \
+	DownloadClient.cpp DownloadQueue.cpp ECSpecialCoreTags.cpp \
+	EMSocket.cpp EncryptedStreamSocket.cpp \
+	EncryptedDatagramSocket.cpp ExternalConn.cpp Friend.cpp \
+	FriendList.cpp HTTPDownload.cpp IPFilter.cpp KnownFileList.cpp \
+	ListenSocket.cpp MuleUDPSocket.cpp SearchFile.cpp \
+	SearchList.cpp ServerConnect.cpp ServerList.cpp \
+	ServerSocket.cpp ServerUDPSocket.cpp SharedFileList.cpp \
+	ThreadTasks.cpp UploadBandwidthThrottler.cpp UploadClient.cpp \
+	UploadQueue.cpp kademlia/kademlia/Indexed.cpp \
+	kademlia/kademlia/Kademlia.cpp kademlia/kademlia/Prefs.cpp \
+	kademlia/kademlia/Search.cpp \
 	kademlia/kademlia/UDPFirewallTester.cpp \
 	kademlia/net/KademliaUDPListener.cpp \
 	kademlia/net/PacketTracking.cpp kademlia/routing/Contact.cpp \
@@ -281,6 +283,7 @@ am__objects_9 = amuled-RC4Encrypt.$(OBJEXT) amuled-amule.$(OBJEXT) \
 	amuled-ClientCreditsList.$(OBJEXT) \
 	amuled-ClientTCPSocket.$(OBJEXT) \
 	amuled-ClientUDPSocket.$(OBJEXT) \
+	amuled-CorruptionBlackBox.$(OBJEXT) \
 	amuled-DownloadClient.$(OBJEXT) amuled-DownloadQueue.$(OBJEXT) \
 	amuled-ECSpecialCoreTags.$(OBJEXT) amuled-EMSocket.$(OBJEXT) \
 	amuled-EncryptedStreamSocket.$(OBJEXT) \
@@ -717,8 +720,8 @@ libmuleappgui_a_SOURCES = \
 libmuleappgui_a_CPPFLAGS = $(AM_CPPFLAGS) $(WX_CPPFLAGS) -I$(srcdir)/libs -I$(srcdir)/include $(LIBUPNP_CPPFLAGS) $(GEOIP_CPPFLAGS)
 core_sources = RC4Encrypt.cpp amule.cpp BaseClient.cpp ClientList.cpp \
 	ClientCreditsList.cpp ClientTCPSocket.cpp ClientUDPSocket.cpp \
-	DownloadClient.cpp DownloadQueue.cpp ECSpecialCoreTags.cpp \
-	EMSocket.cpp EncryptedStreamSocket.cpp \
+	CorruptionBlackBox.cpp DownloadClient.cpp DownloadQueue.cpp \
+	ECSpecialCoreTags.cpp EMSocket.cpp EncryptedStreamSocket.cpp \
 	EncryptedDatagramSocket.cpp ExternalConn.cpp Friend.cpp \
 	FriendList.cpp HTTPDownload.cpp IPFilter.cpp KnownFileList.cpp \
 	ListenSocket.cpp MuleUDPSocket.cpp SearchFile.cpp \
@@ -864,6 +867,7 @@ noinst_HEADERS = \
 		CommentDialog.h \
 		CommentDialogLst.h \
 		Constants.h \
+		CorruptionBlackBox.h \
 		CryptoPP_Inc.h \
 		DataToText.h \
 		DeadSourceList.h \
@@ -1087,6 +1091,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ClientTCPSocket.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ClientUDPSocket.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-Contact.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-CorruptionBlackBox.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-DownloadClient.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-DownloadListCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-DownloadQueue.Po@am__quote@
@@ -1172,6 +1177,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-ClientTCPSocket.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-ClientUDPSocket.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-Contact.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-CorruptionBlackBox.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-DownloadClient.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-DownloadQueue.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-ECSpecialCoreTags.Po@am__quote@
@@ -2032,6 +2038,20 @@ amule-ClientUDPSocket.obj: ClientUDPSocket.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ClientUDPSocket.cpp' object='amule-ClientUDPSocket.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-ClientUDPSocket.obj `if test -f 'ClientUDPSocket.cpp'; then $(CYGPATH_W) 'ClientUDPSocket.cpp'; else $(CYGPATH_W) '$(srcdir)/ClientUDPSocket.cpp'; fi`
+
+amule-CorruptionBlackBox.o: CorruptionBlackBox.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-CorruptionBlackBox.o -MD -MP -MF "$(DEPDIR)/amule-CorruptionBlackBox.Tpo" -c -o amule-CorruptionBlackBox.o `test -f 'CorruptionBlackBox.cpp' || echo '$(srcdir)/'`CorruptionBlackBox.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-CorruptionBlackBox.Tpo" "$(DEPDIR)/amule-CorruptionBlackBox.Po"; else rm -f "$(DEPDIR)/amule-CorruptionBlackBox.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CorruptionBlackBox.cpp' object='amule-CorruptionBlackBox.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-CorruptionBlackBox.o `test -f 'CorruptionBlackBox.cpp' || echo '$(srcdir)/'`CorruptionBlackBox.cpp
+
+amule-CorruptionBlackBox.obj: CorruptionBlackBox.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-CorruptionBlackBox.obj -MD -MP -MF "$(DEPDIR)/amule-CorruptionBlackBox.Tpo" -c -o amule-CorruptionBlackBox.obj `if test -f 'CorruptionBlackBox.cpp'; then $(CYGPATH_W) 'CorruptionBlackBox.cpp'; else $(CYGPATH_W) '$(srcdir)/CorruptionBlackBox.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-CorruptionBlackBox.Tpo" "$(DEPDIR)/amule-CorruptionBlackBox.Po"; else rm -f "$(DEPDIR)/amule-CorruptionBlackBox.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CorruptionBlackBox.cpp' object='amule-CorruptionBlackBox.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-CorruptionBlackBox.obj `if test -f 'CorruptionBlackBox.cpp'; then $(CYGPATH_W) 'CorruptionBlackBox.cpp'; else $(CYGPATH_W) '$(srcdir)/CorruptionBlackBox.cpp'; fi`
 
 amule-DownloadClient.o: DownloadClient.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-DownloadClient.o -MD -MP -MF "$(DEPDIR)/amule-DownloadClient.Tpo" -c -o amule-DownloadClient.o `test -f 'DownloadClient.cpp' || echo '$(srcdir)/'`DownloadClient.cpp; \
@@ -3320,6 +3340,20 @@ amuled-ClientUDPSocket.obj: ClientUDPSocket.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ClientUDPSocket.cpp' object='amuled-ClientUDPSocket.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-ClientUDPSocket.obj `if test -f 'ClientUDPSocket.cpp'; then $(CYGPATH_W) 'ClientUDPSocket.cpp'; else $(CYGPATH_W) '$(srcdir)/ClientUDPSocket.cpp'; fi`
+
+amuled-CorruptionBlackBox.o: CorruptionBlackBox.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-CorruptionBlackBox.o -MD -MP -MF "$(DEPDIR)/amuled-CorruptionBlackBox.Tpo" -c -o amuled-CorruptionBlackBox.o `test -f 'CorruptionBlackBox.cpp' || echo '$(srcdir)/'`CorruptionBlackBox.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-CorruptionBlackBox.Tpo" "$(DEPDIR)/amuled-CorruptionBlackBox.Po"; else rm -f "$(DEPDIR)/amuled-CorruptionBlackBox.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CorruptionBlackBox.cpp' object='amuled-CorruptionBlackBox.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-CorruptionBlackBox.o `test -f 'CorruptionBlackBox.cpp' || echo '$(srcdir)/'`CorruptionBlackBox.cpp
+
+amuled-CorruptionBlackBox.obj: CorruptionBlackBox.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-CorruptionBlackBox.obj -MD -MP -MF "$(DEPDIR)/amuled-CorruptionBlackBox.Tpo" -c -o amuled-CorruptionBlackBox.obj `if test -f 'CorruptionBlackBox.cpp'; then $(CYGPATH_W) 'CorruptionBlackBox.cpp'; else $(CYGPATH_W) '$(srcdir)/CorruptionBlackBox.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-CorruptionBlackBox.Tpo" "$(DEPDIR)/amuled-CorruptionBlackBox.Po"; else rm -f "$(DEPDIR)/amuled-CorruptionBlackBox.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CorruptionBlackBox.cpp' object='amuled-CorruptionBlackBox.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-CorruptionBlackBox.obj `if test -f 'CorruptionBlackBox.cpp'; then $(CYGPATH_W) 'CorruptionBlackBox.cpp'; else $(CYGPATH_W) '$(srcdir)/CorruptionBlackBox.cpp'; fi`
 
 amuled-DownloadClient.o: DownloadClient.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-DownloadClient.o -MD -MP -MF "$(DEPDIR)/amuled-DownloadClient.Tpo" -c -o amuled-DownloadClient.o `test -f 'DownloadClient.cpp' || echo '$(srcdir)/'`DownloadClient.cpp; \
