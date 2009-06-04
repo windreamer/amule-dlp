@@ -3,7 +3,7 @@
 // Purpose:     Generic list control
 // Author:      Robert Roebling
 // Created:     01/02/97
-// RCS-ID:      $Id: listctrl.h 8991 2008-08-09 20:38:01Z phoenix $
+// RCS-ID:      $Id: listctrl.h 9644 2009-06-01 11:19:24Z sturedman $
 // Copyright:   Copyright (c) 1998-2008 Robert Roebling and Julian Smart
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -17,7 +17,7 @@
 
 #define wxLC_OWNERDRAW 0x10000
 
-class WXDLLIMPEXP_CORE wxImageList;
+#include <wx/imaglist.h>
 
 #if wxUSE_DRAG_AND_DROP
 class WXDLLEXPORT wxDropTarget;
