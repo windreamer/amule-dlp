@@ -8502,7 +8502,7 @@ cat >>conftest.$ac_ext <<_ACEOF
 /* end confdefs.h.  */
 
 			#include <wx/wx.h>
-			#if !HAVE_LARGEFILE_SUPPORT && !defined(_LARGE_FILES) && !defined(__WXMSW__)
+			#if !HAVE_LARGEFILE_SUPPORT && !defined(_LARGE_FILES) && !wxCHECK_VERSION(2, 9, 0) && !defined(__WXMSW__)
 				#error No LargeFile support!
 			#endif
 
