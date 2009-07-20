@@ -104,9 +104,7 @@ am_libmuleappcommon_a_OBJECTS = libmuleappcommon_a-CFile.$(OBJEXT) \
 	libmuleappcommon_a-SafeFile.$(OBJEXT) \
 	libmuleappcommon_a-SHA.$(OBJEXT) \
 	libmuleappcommon_a-Tag.$(OBJEXT) \
-	libmuleappcommon_a-Timer.$(OBJEXT) \
-	libmuleappcommon_a-RandomFunctions.$(OBJEXT) \
-	libmuleappcommon_a-UInt128.$(OBJEXT)
+	libmuleappcommon_a-Timer.$(OBJEXT)
 libmuleappcommon_a_OBJECTS = $(am_libmuleappcommon_a_OBJECTS)
 libmuleappcore_a_AR = $(AR) $(ARFLAGS)
 libmuleappcore_a_LIBADD =
@@ -120,8 +118,10 @@ am_libmuleappcore_a_OBJECTS = libmuleappcore_a-AsyncDNS.$(OBJEXT) \
 	libmuleappcore_a-Entry.$(OBJEXT) \
 	libmuleappcore_a-SearchManager.$(OBJEXT) \
 	libmuleappcore_a-RoutingBin.$(OBJEXT) \
+	libmuleappcore_a-RandomFunctions.$(OBJEXT) \
 	libmuleappcore_a-StateMachine.$(OBJEXT) \
-	libmuleappcore_a-ThreadScheduler.$(OBJEXT)
+	libmuleappcore_a-ThreadScheduler.$(OBJEXT) \
+	libmuleappcore_a-UInt128.$(OBJEXT)
 libmuleappcore_a_OBJECTS = $(am_libmuleappcore_a_OBJECTS)
 libmuleappgui_a_AR = $(AR) $(ARFLAGS)
 libmuleappgui_a_LIBADD =
@@ -676,9 +676,7 @@ libmuleappcommon_a_SOURCES = \
 	SafeFile.cpp \
 	SHA.cpp \
 	Tag.cpp \
-	Timer.cpp \
-	RandomFunctions.cpp \
-	kademlia/utils/UInt128.cpp
+	Timer.cpp
 
 libmuleappcommon_a_CPPFLAGS = $(AM_CPPFLAGS) $(WXBASE_CPPFLAGS) -I$(srcdir)/libs -I$(srcdir)/include $(CRYPTOPP_CPPFLAGS) $(LIBUPNP_CPPFLAGS)
 
@@ -694,8 +692,10 @@ libmuleappcore_a_SOURCES = \
 	kademlia/kademlia/Entry.cpp \
 	kademlia/kademlia/SearchManager.cpp \
 	kademlia/routing/RoutingBin.cpp \
+	RandomFunctions.cpp \
 	StateMachine.cpp \
-	ThreadScheduler.cpp
+	ThreadScheduler.cpp \
+	kademlia/utils/UInt128.cpp
 
 libmuleappcore_a_CPPFLAGS = $(AM_CPPFLAGS) $(WXBASE_CPPFLAGS) -I$(srcdir)/libs -I$(srcdir)/include $(CRYPTOPP_CPPFLAGS) $(LIBUPNP_CPPFLAGS)
 
@@ -1291,12 +1291,10 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-NetworkFunctions.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-Packet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-RLE.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-RandomFunctions.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-SHA.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-SafeFile.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-Tag.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-Timer.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-UInt128.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-AsyncDNS.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-DeadSourceList.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-Entry.Po@am__quote@
@@ -1304,11 +1302,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-FileAutoClose.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-Parser.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-PlatformSpecific.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-RandomFunctions.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-RoutingBin.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-Scanner.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-SearchManager.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-StateMachine.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-ThreadScheduler.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-UInt128.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-BarShader.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-ChatWnd.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-ColorFrameCtrl.Po@am__quote@
@@ -1507,34 +1507,6 @@ libmuleappcommon_a-Timer.obj: Timer.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcommon_a-Timer.obj `if test -f 'Timer.cpp'; then $(CYGPATH_W) 'Timer.cpp'; else $(CYGPATH_W) '$(srcdir)/Timer.cpp'; fi`
 
-libmuleappcommon_a-RandomFunctions.o: RandomFunctions.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcommon_a-RandomFunctions.o -MD -MP -MF "$(DEPDIR)/libmuleappcommon_a-RandomFunctions.Tpo" -c -o libmuleappcommon_a-RandomFunctions.o `test -f 'RandomFunctions.cpp' || echo '$(srcdir)/'`RandomFunctions.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleappcommon_a-RandomFunctions.Tpo" "$(DEPDIR)/libmuleappcommon_a-RandomFunctions.Po"; else rm -f "$(DEPDIR)/libmuleappcommon_a-RandomFunctions.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='RandomFunctions.cpp' object='libmuleappcommon_a-RandomFunctions.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcommon_a-RandomFunctions.o `test -f 'RandomFunctions.cpp' || echo '$(srcdir)/'`RandomFunctions.cpp
-
-libmuleappcommon_a-RandomFunctions.obj: RandomFunctions.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcommon_a-RandomFunctions.obj -MD -MP -MF "$(DEPDIR)/libmuleappcommon_a-RandomFunctions.Tpo" -c -o libmuleappcommon_a-RandomFunctions.obj `if test -f 'RandomFunctions.cpp'; then $(CYGPATH_W) 'RandomFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/RandomFunctions.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleappcommon_a-RandomFunctions.Tpo" "$(DEPDIR)/libmuleappcommon_a-RandomFunctions.Po"; else rm -f "$(DEPDIR)/libmuleappcommon_a-RandomFunctions.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='RandomFunctions.cpp' object='libmuleappcommon_a-RandomFunctions.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcommon_a-RandomFunctions.obj `if test -f 'RandomFunctions.cpp'; then $(CYGPATH_W) 'RandomFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/RandomFunctions.cpp'; fi`
-
-libmuleappcommon_a-UInt128.o: kademlia/utils/UInt128.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcommon_a-UInt128.o -MD -MP -MF "$(DEPDIR)/libmuleappcommon_a-UInt128.Tpo" -c -o libmuleappcommon_a-UInt128.o `test -f 'kademlia/utils/UInt128.cpp' || echo '$(srcdir)/'`kademlia/utils/UInt128.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleappcommon_a-UInt128.Tpo" "$(DEPDIR)/libmuleappcommon_a-UInt128.Po"; else rm -f "$(DEPDIR)/libmuleappcommon_a-UInt128.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/utils/UInt128.cpp' object='libmuleappcommon_a-UInt128.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcommon_a-UInt128.o `test -f 'kademlia/utils/UInt128.cpp' || echo '$(srcdir)/'`kademlia/utils/UInt128.cpp
-
-libmuleappcommon_a-UInt128.obj: kademlia/utils/UInt128.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcommon_a-UInt128.obj -MD -MP -MF "$(DEPDIR)/libmuleappcommon_a-UInt128.Tpo" -c -o libmuleappcommon_a-UInt128.obj `if test -f 'kademlia/utils/UInt128.cpp'; then $(CYGPATH_W) 'kademlia/utils/UInt128.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/utils/UInt128.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleappcommon_a-UInt128.Tpo" "$(DEPDIR)/libmuleappcommon_a-UInt128.Po"; else rm -f "$(DEPDIR)/libmuleappcommon_a-UInt128.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/utils/UInt128.cpp' object='libmuleappcommon_a-UInt128.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcommon_a-UInt128.obj `if test -f 'kademlia/utils/UInt128.cpp'; then $(CYGPATH_W) 'kademlia/utils/UInt128.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/utils/UInt128.cpp'; fi`
-
 libmuleappcore_a-AsyncDNS.o: AsyncDNS.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcore_a-AsyncDNS.o -MD -MP -MF "$(DEPDIR)/libmuleappcore_a-AsyncDNS.Tpo" -c -o libmuleappcore_a-AsyncDNS.o `test -f 'AsyncDNS.cpp' || echo '$(srcdir)/'`AsyncDNS.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleappcore_a-AsyncDNS.Tpo" "$(DEPDIR)/libmuleappcore_a-AsyncDNS.Po"; else rm -f "$(DEPDIR)/libmuleappcore_a-AsyncDNS.Tpo"; exit 1; fi
@@ -1675,6 +1647,20 @@ libmuleappcore_a-RoutingBin.obj: kademlia/routing/RoutingBin.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcore_a-RoutingBin.obj `if test -f 'kademlia/routing/RoutingBin.cpp'; then $(CYGPATH_W) 'kademlia/routing/RoutingBin.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/routing/RoutingBin.cpp'; fi`
 
+libmuleappcore_a-RandomFunctions.o: RandomFunctions.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcore_a-RandomFunctions.o -MD -MP -MF "$(DEPDIR)/libmuleappcore_a-RandomFunctions.Tpo" -c -o libmuleappcore_a-RandomFunctions.o `test -f 'RandomFunctions.cpp' || echo '$(srcdir)/'`RandomFunctions.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleappcore_a-RandomFunctions.Tpo" "$(DEPDIR)/libmuleappcore_a-RandomFunctions.Po"; else rm -f "$(DEPDIR)/libmuleappcore_a-RandomFunctions.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='RandomFunctions.cpp' object='libmuleappcore_a-RandomFunctions.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcore_a-RandomFunctions.o `test -f 'RandomFunctions.cpp' || echo '$(srcdir)/'`RandomFunctions.cpp
+
+libmuleappcore_a-RandomFunctions.obj: RandomFunctions.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcore_a-RandomFunctions.obj -MD -MP -MF "$(DEPDIR)/libmuleappcore_a-RandomFunctions.Tpo" -c -o libmuleappcore_a-RandomFunctions.obj `if test -f 'RandomFunctions.cpp'; then $(CYGPATH_W) 'RandomFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/RandomFunctions.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleappcore_a-RandomFunctions.Tpo" "$(DEPDIR)/libmuleappcore_a-RandomFunctions.Po"; else rm -f "$(DEPDIR)/libmuleappcore_a-RandomFunctions.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='RandomFunctions.cpp' object='libmuleappcore_a-RandomFunctions.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcore_a-RandomFunctions.obj `if test -f 'RandomFunctions.cpp'; then $(CYGPATH_W) 'RandomFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/RandomFunctions.cpp'; fi`
+
 libmuleappcore_a-StateMachine.o: StateMachine.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcore_a-StateMachine.o -MD -MP -MF "$(DEPDIR)/libmuleappcore_a-StateMachine.Tpo" -c -o libmuleappcore_a-StateMachine.o `test -f 'StateMachine.cpp' || echo '$(srcdir)/'`StateMachine.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleappcore_a-StateMachine.Tpo" "$(DEPDIR)/libmuleappcore_a-StateMachine.Po"; else rm -f "$(DEPDIR)/libmuleappcore_a-StateMachine.Tpo"; exit 1; fi
@@ -1702,6 +1688,20 @@ libmuleappcore_a-ThreadScheduler.obj: ThreadScheduler.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ThreadScheduler.cpp' object='libmuleappcore_a-ThreadScheduler.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcore_a-ThreadScheduler.obj `if test -f 'ThreadScheduler.cpp'; then $(CYGPATH_W) 'ThreadScheduler.cpp'; else $(CYGPATH_W) '$(srcdir)/ThreadScheduler.cpp'; fi`
+
+libmuleappcore_a-UInt128.o: kademlia/utils/UInt128.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcore_a-UInt128.o -MD -MP -MF "$(DEPDIR)/libmuleappcore_a-UInt128.Tpo" -c -o libmuleappcore_a-UInt128.o `test -f 'kademlia/utils/UInt128.cpp' || echo '$(srcdir)/'`kademlia/utils/UInt128.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleappcore_a-UInt128.Tpo" "$(DEPDIR)/libmuleappcore_a-UInt128.Po"; else rm -f "$(DEPDIR)/libmuleappcore_a-UInt128.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/utils/UInt128.cpp' object='libmuleappcore_a-UInt128.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcore_a-UInt128.o `test -f 'kademlia/utils/UInt128.cpp' || echo '$(srcdir)/'`kademlia/utils/UInt128.cpp
+
+libmuleappcore_a-UInt128.obj: kademlia/utils/UInt128.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcore_a-UInt128.obj -MD -MP -MF "$(DEPDIR)/libmuleappcore_a-UInt128.Tpo" -c -o libmuleappcore_a-UInt128.obj `if test -f 'kademlia/utils/UInt128.cpp'; then $(CYGPATH_W) 'kademlia/utils/UInt128.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/utils/UInt128.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleappcore_a-UInt128.Tpo" "$(DEPDIR)/libmuleappcore_a-UInt128.Po"; else rm -f "$(DEPDIR)/libmuleappcore_a-UInt128.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/utils/UInt128.cpp' object='libmuleappcore_a-UInt128.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcore_a-UInt128.obj `if test -f 'kademlia/utils/UInt128.cpp'; then $(CYGPATH_W) 'kademlia/utils/UInt128.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/utils/UInt128.cpp'; fi`
 
 libmuleappgui_a-BarShader.o: BarShader.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappgui_a-BarShader.o -MD -MP -MF "$(DEPDIR)/libmuleappgui_a-BarShader.Tpo" -c -o libmuleappgui_a-BarShader.o `test -f 'BarShader.cpp' || echo '$(srcdir)/'`BarShader.cpp; \
