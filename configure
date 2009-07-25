@@ -17415,9 +17415,7 @@ echo "${ECHO_T}$ac_prog_version" >&6
 # Check whether --with-language or --without-language was given.
 if test "${with_language+set}" = set; then
   withval="$with_language"
-  if test "$withval" = "all"; then
-  LINGUAS='%UNSET%'
-else
+  if test "$withval" != "all"; then
   LINGUAS="`echo $withval | sed -e 's/,/ /g'`"
 fi
 
