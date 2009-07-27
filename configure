@@ -311,7 +311,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='GEOIP_CPPFLAGS GEOIP_LDFLAGS GEOIP_LIBS SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot AMTAR am__tar am__untar MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT build build_cpu build_vendor build_os host host_cpu host_vendor host_os RESOLV_LIB X11LIBS MULECPPFLAGS MULECFLAGS MULECXXFLAGS MULELDFLAGS MULERCFLAGS CXX CXXFLAGS LDFLAGS CPPFLAGS ac_ct_CXX EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE CXXCPP CC CFLAGS ac_ct_CC CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE CPP BUILD_CC ac_ct_BUILD_CC EXEEXT BUILD_EXEEXT BUILD_CPPFLAGS BUILD_CFLAGS BUILD_LDFLAGS EGREP LEX LEXLIB LEX_OUTPUT_ROOT RANLIB ac_ct_RANLIB YACC AR ac_ct_AR LD ac_ct_LD ZLIB_CPPFLAGS ZLIB_LDFLAGS ZLIB_LIBS GDLIB_CONFIG_PATH GDLIB_CFLAGS GDLIB_LDFLAGS GDLIB_LIBS CAS_DEFS REGEX_LIBS LIBPNG_CONFIG_PATH LIBPNG_CFLAGS LIBPNG_LDFLAGS LIBPNG_LIBS AMULEWEB_DEFS WX_CONFIG_PATH WX_CPPFLAGS WX_CFLAGS WX_CXXFLAGS WX_CFLAGS_ONLY WX_CXXFLAGS_ONLY WX_LIBS WX_LIBS_STATIC WX_VERSION_FULL WX_RESCOMP WX_VERSION_MAJOR WX_VERSION_MINOR WX_UNICODE WX_DEBUG WX_SHARED WX_PORT WXBASE_LIBS WXBASE_CPPFLAGS RC RCFLAGS ac_ct_RC PKG_CONFIG ac_pt_PKG_CONFIG LIBUPNP_CPPFLAGS LIBUPNP_CFLAGS LIBUPNP_LDFLAGS LIBUPNP_LIBS CRYPTOPP_CPPFLAGS CRYPTOPP_LDFLAGS CRYPTOPP_LIBS ALLOCA LIBOBJS POW_LIB MKINSTALLDIRS MSGFMT GMSGFMT XGETTEXT MSGMERGE GLIBC21 LIBICONV LTLIBICONV INTLBISON USE_NLS BUILD_INCLUDED_LIBINTL USE_INCLUDED_LIBINTL CATOBJEXT INTLOBJS DATADIRNAME INSTOBJEXT GENCAT INTL_LIBTOOL_SUFFIX_PREFIX INTLLIBS LIBINTL LTLIBINTL POSUB AMULE_DAEMON_MANPAGES AMULECMD_MANPAGES WEB_MANPAGES AMULE_GUI_MANPAGES CAS_MANPAGES WXCAS_MANPAGES ED2K_MANPAGES ALC_MANPAGES ALCC_MANPAGES MONOLITHIC_MANPAGES INCINTL BFD_CPPFLAGS BFD_LIBS docdir SVNDATE WEB_TRUE WEB_FALSE ED2K_TRUE ED2K_FALSE CAS_TRUE CAS_FALSE WXCAS_TRUE WXCAS_FALSE ALC_TRUE ALC_FALSE ALCC_TRUE ALCC_FALSE AMULE_GUI_TRUE AMULE_GUI_FALSE AMULE_DAEMON_TRUE AMULE_DAEMON_FALSE COMPILE_CMD_TRUE COMPILE_CMD_FALSE MONOLITHIC_TRUE MONOLITHIC_FALSE XAS_TRUE XAS_FALSE ENABLE_UPNP_TRUE ENABLE_UPNP_FALSE ENABLE_IP2COUNTRY_TRUE ENABLE_IP2COUNTRY_FALSE SYS_WIN32_TRUE SYS_WIN32_FALSE NEED_RC_TRUE NEED_RC_FALSE NEED_CORESERVICES_TRUE NEED_CORESERVICES_FALSE COMPILE_NLS_TRUE COMPILE_NLS_FALSE GENERATE_FLEX_HEADER_TRUE GENERATE_FLEX_HEADER_FALSE INSTALL_SKINS_TRUE INSTALL_SKINS_FALSE READLINE_LIBS LTLIBOBJS'
+ac_subst_vars='GEOIP_CPPFLAGS GEOIP_LDFLAGS GEOIP_LIBS SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot AMTAR am__tar am__untar MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT build build_cpu build_vendor build_os host host_cpu host_vendor host_os RESOLV_LIB X11LIBS MULECPPFLAGS MULECFLAGS MULECXXFLAGS MULELDFLAGS MULERCFLAGS CXX CXXFLAGS LDFLAGS CPPFLAGS ac_ct_CXX EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE CXXCPP CC CFLAGS ac_ct_CC CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE CPP BUILD_CC ac_ct_BUILD_CC EXEEXT BUILD_EXEEXT BUILD_CPPFLAGS BUILD_CFLAGS BUILD_LDFLAGS EGREP LEX LEXLIB LEX_OUTPUT_ROOT RANLIB ac_ct_RANLIB YACC AR ac_ct_AR LD ac_ct_LD ZLIB_CPPFLAGS ZLIB_LDFLAGS ZLIB_LIBS GDLIB_CONFIG_PATH GDLIB_CFLAGS GDLIB_LDFLAGS GDLIB_LIBS CAS_DEFS LIBPNG_CONFIG_PATH LIBPNG_CFLAGS LIBPNG_LDFLAGS LIBPNG_LIBS AMULEWEB_DEFS WX_CONFIG_PATH WX_CPPFLAGS WX_CFLAGS WX_CXXFLAGS WX_CFLAGS_ONLY WX_CXXFLAGS_ONLY WX_LIBS WX_LIBS_STATIC WX_VERSION_FULL WX_RESCOMP WX_VERSION_MAJOR WX_VERSION_MINOR WX_UNICODE WX_DEBUG WX_SHARED WX_PORT WXBASE_LIBS WXBASE_CPPFLAGS RC RCFLAGS ac_ct_RC PKG_CONFIG ac_pt_PKG_CONFIG LIBUPNP_CPPFLAGS LIBUPNP_CFLAGS LIBUPNP_LDFLAGS LIBUPNP_LIBS CRYPTOPP_CPPFLAGS CRYPTOPP_LDFLAGS CRYPTOPP_LIBS ALLOCA LIBOBJS POW_LIB MKINSTALLDIRS MSGFMT GMSGFMT XGETTEXT MSGMERGE GLIBC21 LIBICONV LTLIBICONV INTLBISON USE_NLS BUILD_INCLUDED_LIBINTL USE_INCLUDED_LIBINTL CATOBJEXT INTLOBJS DATADIRNAME INSTOBJEXT GENCAT INTL_LIBTOOL_SUFFIX_PREFIX INTLLIBS LIBINTL LTLIBINTL POSUB AMULE_DAEMON_MANPAGES AMULECMD_MANPAGES WEB_MANPAGES AMULE_GUI_MANPAGES CAS_MANPAGES WXCAS_MANPAGES ED2K_MANPAGES ALC_MANPAGES ALCC_MANPAGES MONOLITHIC_MANPAGES INCINTL BFD_CPPFLAGS BFD_LIBS docdir SVNDATE WEB_TRUE WEB_FALSE ED2K_TRUE ED2K_FALSE CAS_TRUE CAS_FALSE WXCAS_TRUE WXCAS_FALSE ALC_TRUE ALC_FALSE ALCC_TRUE ALCC_FALSE AMULE_GUI_TRUE AMULE_GUI_FALSE AMULE_DAEMON_TRUE AMULE_DAEMON_FALSE COMPILE_CMD_TRUE COMPILE_CMD_FALSE MONOLITHIC_TRUE MONOLITHIC_FALSE XAS_TRUE XAS_FALSE ENABLE_UPNP_TRUE ENABLE_UPNP_FALSE ENABLE_IP2COUNTRY_TRUE ENABLE_IP2COUNTRY_FALSE SYS_WIN32_TRUE SYS_WIN32_FALSE NEED_RC_TRUE NEED_RC_FALSE NEED_CORESERVICES_TRUE NEED_CORESERVICES_FALSE COMPILE_NLS_TRUE COMPILE_NLS_FALSE GENERATE_FLEX_HEADER_TRUE GENERATE_FLEX_HEADER_FALSE INSTALL_SKINS_TRUE INSTALL_SKINS_FALSE READLINE_LIBS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -6372,251 +6372,6 @@ fi
 if test x$WEB = xyes; then
 
 
-for ac_header in sys/types.h
-do
-as_ac_Header=`echo "ac_cv_header_$ac_header" | $as_tr_sh`
-if eval "test \"\${$as_ac_Header+set}\" = set"; then
-  echo "$as_me:$LINENO: checking for $ac_header" >&5
-echo $ECHO_N "checking for $ac_header... $ECHO_C" >&6
-if eval "test \"\${$as_ac_Header+set}\" = set"; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-fi
-echo "$as_me:$LINENO: result: `eval echo '${'$as_ac_Header'}'`" >&5
-echo "${ECHO_T}`eval echo '${'$as_ac_Header'}'`" >&6
-else
-  # Is the header compilable?
-echo "$as_me:$LINENO: checking $ac_header usability" >&5
-echo $ECHO_N "checking $ac_header usability... $ECHO_C" >&6
-cat >conftest.$ac_ext <<_ACEOF
-/* confdefs.h.  */
-_ACEOF
-cat confdefs.h >>conftest.$ac_ext
-cat >>conftest.$ac_ext <<_ACEOF
-/* end confdefs.h.  */
-$ac_includes_default
-#include <$ac_header>
-_ACEOF
-rm -f conftest.$ac_objext
-if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
-  (eval $ac_compile) 2>conftest.er1
-  ac_status=$?
-  grep -v '^ *+' conftest.er1 >conftest.err
-  rm -f conftest.er1
-  cat conftest.err >&5
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag"
-			 || test ! -s conftest.err'
-  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
-  (eval $ac_try) 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; } &&
-	 { ac_try='test -s conftest.$ac_objext'
-  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
-  (eval $ac_try) 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; }; then
-  ac_header_compiler=yes
-else
-  echo "$as_me: failed program was:" >&5
-sed 's/^/| /' conftest.$ac_ext >&5
-
-ac_header_compiler=no
-fi
-rm -f conftest.err conftest.$ac_objext conftest.$ac_ext
-echo "$as_me:$LINENO: result: $ac_header_compiler" >&5
-echo "${ECHO_T}$ac_header_compiler" >&6
-
-# Is the header present?
-echo "$as_me:$LINENO: checking $ac_header presence" >&5
-echo $ECHO_N "checking $ac_header presence... $ECHO_C" >&6
-cat >conftest.$ac_ext <<_ACEOF
-/* confdefs.h.  */
-_ACEOF
-cat confdefs.h >>conftest.$ac_ext
-cat >>conftest.$ac_ext <<_ACEOF
-/* end confdefs.h.  */
-#include <$ac_header>
-_ACEOF
-if { (eval echo "$as_me:$LINENO: \"$ac_cpp conftest.$ac_ext\"") >&5
-  (eval $ac_cpp conftest.$ac_ext) 2>conftest.er1
-  ac_status=$?
-  grep -v '^ *+' conftest.er1 >conftest.err
-  rm -f conftest.er1
-  cat conftest.err >&5
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); } >/dev/null; then
-  if test -s conftest.err; then
-    ac_cpp_err=$ac_c_preproc_warn_flag
-    ac_cpp_err=$ac_cpp_err$ac_c_werror_flag
-  else
-    ac_cpp_err=
-  fi
-else
-  ac_cpp_err=yes
-fi
-if test -z "$ac_cpp_err"; then
-  ac_header_preproc=yes
-else
-  echo "$as_me: failed program was:" >&5
-sed 's/^/| /' conftest.$ac_ext >&5
-
-  ac_header_preproc=no
-fi
-rm -f conftest.err conftest.$ac_ext
-echo "$as_me:$LINENO: result: $ac_header_preproc" >&5
-echo "${ECHO_T}$ac_header_preproc" >&6
-
-# So?  What about this header?
-case $ac_header_compiler:$ac_header_preproc:$ac_c_preproc_warn_flag in
-  yes:no: )
-    { echo "$as_me:$LINENO: WARNING: $ac_header: accepted by the compiler, rejected by the preprocessor!" >&5
-echo "$as_me: WARNING: $ac_header: accepted by the compiler, rejected by the preprocessor!" >&2;}
-    { echo "$as_me:$LINENO: WARNING: $ac_header: proceeding with the compiler's result" >&5
-echo "$as_me: WARNING: $ac_header: proceeding with the compiler's result" >&2;}
-    ac_header_preproc=yes
-    ;;
-  no:yes:* )
-    { echo "$as_me:$LINENO: WARNING: $ac_header: present but cannot be compiled" >&5
-echo "$as_me: WARNING: $ac_header: present but cannot be compiled" >&2;}
-    { echo "$as_me:$LINENO: WARNING: $ac_header:     check for missing prerequisite headers?" >&5
-echo "$as_me: WARNING: $ac_header:     check for missing prerequisite headers?" >&2;}
-    { echo "$as_me:$LINENO: WARNING: $ac_header: see the Autoconf documentation" >&5
-echo "$as_me: WARNING: $ac_header: see the Autoconf documentation" >&2;}
-    { echo "$as_me:$LINENO: WARNING: $ac_header:     section \"Present But Cannot Be Compiled\"" >&5
-echo "$as_me: WARNING: $ac_header:     section \"Present But Cannot Be Compiled\"" >&2;}
-    { echo "$as_me:$LINENO: WARNING: $ac_header: proceeding with the preprocessor's result" >&5
-echo "$as_me: WARNING: $ac_header: proceeding with the preprocessor's result" >&2;}
-    { echo "$as_me:$LINENO: WARNING: $ac_header: in the future, the compiler will take precedence" >&5
-echo "$as_me: WARNING: $ac_header: in the future, the compiler will take precedence" >&2;}
-    (
-      cat <<\_ASBOX
-## ------------------------------ ##
-## Report this to admin@amule.org ##
-## ------------------------------ ##
-_ASBOX
-    ) |
-      sed "s/^/$as_me: WARNING:     /" >&2
-    ;;
-esac
-echo "$as_me:$LINENO: checking for $ac_header" >&5
-echo $ECHO_N "checking for $ac_header... $ECHO_C" >&6
-if eval "test \"\${$as_ac_Header+set}\" = set"; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  eval "$as_ac_Header=\$ac_header_preproc"
-fi
-echo "$as_me:$LINENO: result: `eval echo '${'$as_ac_Header'}'`" >&5
-echo "${ECHO_T}`eval echo '${'$as_ac_Header'}'`" >&6
-
-fi
-if test `eval echo '${'$as_ac_Header'}'` = yes; then
-  cat >>confdefs.h <<_ACEOF
-#define `echo "HAVE_$ac_header" | $as_tr_cpp` 1
-_ACEOF
-
-fi
-
-done
-
-	echo "$as_me:$LINENO: checking for a POSIX compliant regex library" >&5
-echo $ECHO_N "checking for a POSIX compliant regex library... $ECHO_C" >&6
-	regex_found=no
-	for REGEX_LIBS in '' -lgnurx -lregex; do
-		mule_backup_LIBS="$LIBS"
-		LIBS="$REGEX_LIBS $LIBS"
-		cat >conftest.$ac_ext <<_ACEOF
-
-			/* confdefs.h.  */
-_ACEOF
-cat confdefs.h >>conftest.$ac_ext
-cat >>conftest.$ac_ext <<_ACEOF
-/* end confdefs.h.  */
-
-				#ifdef HAVE_SYS_TYPES_H
-				#	include <sys/types.h>
-				#endif
-				#include <regex.h>
-
-int
-main ()
-{
-
-				regex_t preg;
-				regcomp(&preg, "", REG_EXTENDED);
-				regmatch_t *pmatch;
-				regexec(&preg, "", 0, pmatch, 0);
-				regfree(&preg);
-
-  ;
-  return 0;
-}
-
-_ACEOF
-rm -f conftest.$ac_objext conftest$ac_exeext
-if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
-  (eval $ac_link) 2>conftest.er1
-  ac_status=$?
-  grep -v '^ *+' conftest.er1 >conftest.err
-  rm -f conftest.er1
-  cat conftest.err >&5
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag"
-			 || test ! -s conftest.err'
-  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
-  (eval $ac_try) 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; } &&
-	 { ac_try='test -s conftest$ac_exeext'
-  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
-  (eval $ac_try) 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; }; then
-
-			LIBS="$mule_backup_LIBS"
-			regex_found=yes
-			break;
-
-else
-  echo "$as_me: failed program was:" >&5
-sed 's/^/| /' conftest.$ac_ext >&5
-
-LIBS="$mule_backup_LIBS"
-fi
-rm -f conftest.err conftest.$ac_objext \
-      conftest$ac_exeext conftest.$ac_ext
-	done
-	echo "$as_me:$LINENO: result: $regex_found" >&5
-echo "${ECHO_T}$regex_found" >&6
-	if test $regex_found = yes; then
-  :
-else
-
-		WEB=disabled
-		{ echo "$as_me:$LINENO: WARNING:
-        amuleweb has been disabled because configure could not find a POSIX
-        compliant regex library." >&5
-echo "$as_me: WARNING:
-        amuleweb has been disabled because configure could not find a POSIX
-        compliant regex library." >&2;}
-_mule_warning_1=yes
-_mule_has_warnings=yes
-
-
-fi
-
-
-
-fi
-
-if test x$WEB = xyes; then
-
-
 # Check whether --with-libpng-prefix or --without-libpng-prefix was given.
 if test "${with_libpng_prefix+set}" = set; then
   withval="$with_libpng_prefix"
@@ -6771,7 +6526,7 @@ echo "$as_me: WARNING:
         libpng >= 1.2.0 not found.
         amuleweb will be compiled but file download progress bar images will
         NOT be generated." >&2;}
-_mule_warning_2=yes
+_mule_warning_1=yes
 _mule_has_warnings=yes
 
 
@@ -7221,7 +6976,7 @@ sed 's/^/| /' conftest.$ac_ext >&5
 echo "$as_me: WARNING:
         Cannot link GeoIP statically, because your linker ($LD) does not
         support it." >&2;}
-_mule_warning_3=yes
+_mule_warning_2=yes
 _mule_has_warnings=yes
 
 
@@ -7244,7 +6999,7 @@ else
 echo "$as_me: WARNING:
         GeoIP support has been disabled because the GeoIP libraries were not
         found" >&2;}
-_mule_warning_4=yes
+_mule_warning_3=yes
 _mule_has_warnings=yes
 
 
@@ -7260,7 +7015,7 @@ else
 echo "$as_me: WARNING:
         GeoIP support has been disabled because the GeoIP header files were
         not found" >&2;}
-_mule_warning_5=yes
+_mule_warning_4=yes
 _mule_has_warnings=yes
 
 
@@ -8281,7 +8036,7 @@ else
         UPnP code has been disabled because ${libupnp_error}." >&5
 echo "$as_me: WARNING:
         UPnP code has been disabled because ${libupnp_error}." >&2;}
-_mule_warning_6=yes
+_mule_warning_5=yes
 _mule_has_warnings=yes
 
 
@@ -8570,7 +8325,7 @@ echo "$as_me: WARNING:
         Cross-compilation detected, so exception handling cannot be tested.
         Note that broken exception handling in your compiler may lead to
         unexpected crashes." >&2;}
-_mule_warning_7=yes
+_mule_warning_6=yes
 _mule_has_warnings=yes
 
 
@@ -13441,7 +13196,7 @@ echo "$as_me: WARNING:
         configure cannot check whether malloc() and realloc() are GNU libc
         compatible. You have to be ABSOLUTELY sure that they are, otherwise
         run configure with the --without-gnu-malloc switch." >&2;}
-_mule_warning_8=yes
+_mule_warning_7=yes
 _mule_has_warnings=yes
 
 	ac_cv_func_malloc_0_nonnull=yes
@@ -18203,7 +17958,7 @@ fi
 echo "$as_me: WARNING:
         You need to install GNU gettext/gettext-tools to compile aMule with
         i18n support." >&2;}
-_mule_warning_9=yes
+_mule_warning_8=yes
 _mule_has_warnings=yes
 
 fi
@@ -18505,7 +18260,7 @@ echo "${ECHO_T}$result" >&6
 echo "$as_me: WARNING:
         bfd.h not found or unusable, please install binutils development
         package if you are a developer or want to help testing aMule" >&2;}
-_mule_warning_10=yes
+_mule_warning_9=yes
 _mule_has_warnings=yes
 
 fi
@@ -20457,7 +20212,6 @@ s,@GDLIB_CFLAGS@,$GDLIB_CFLAGS,;t t
 s,@GDLIB_LDFLAGS@,$GDLIB_LDFLAGS,;t t
 s,@GDLIB_LIBS@,$GDLIB_LIBS,;t t
 s,@CAS_DEFS@,$CAS_DEFS,;t t
-s,@REGEX_LIBS@,$REGEX_LIBS,;t t
 s,@LIBPNG_CONFIG_PATH@,$LIBPNG_CONFIG_PATH,;t t
 s,@LIBPNG_CFLAGS@,$LIBPNG_CFLAGS,;t t
 s,@LIBPNG_LDFLAGS@,$LIBPNG_LDFLAGS,;t t
@@ -21465,22 +21219,8 @@ fi
 
 if test x${ENABLE_UPNP} = xyes; then
   echo "                                       libupnp               ${LIBUPNP_VERSION:-Not detected}${libupnp_place:-}"
-
-fi
-if test x${WEB:-no} != xno; then
-if test $regex_found = no; then
-  regex_found="Not detected"
-else
-  if test -z "$REGEX_LIB"; then
-  regex_found=system
-else
-  regex_found="standalone (in $REGEX_LIB)"
 fi
 
-fi
-
-echo "                                       regex                 $regex_found"
-fi
 if test ${enable_nls:-yes} = yes; then
 if test x$USE_NLS = xno; then
   libintl_found="Not detected"
@@ -21533,44 +21273,37 @@ fi
 if test ${_mule_warning_1:-no} = yes; then
 cat <<_MULEEOT
 
-* amuleweb has been disabled because configure could not find a POSIX
-  compliant regex library.
-_MULEEOT
-fi
-if test ${_mule_warning_2:-no} = yes; then
-cat <<_MULEEOT
-
 * libpng >= 1.2.0 not found.
   amuleweb will be compiled but file download progress bar images will NOT be
   generated.
 _MULEEOT
 fi
-if test ${_mule_warning_3:-no} = yes; then
+if test ${_mule_warning_2:-no} = yes; then
 cat <<_MULEEOT
 
 * Cannot link GeoIP statically, because your linker ($LD) does not support it.
 _MULEEOT
 fi
-if test ${_mule_warning_4:-no} = yes; then
+if test ${_mule_warning_3:-no} = yes; then
 cat <<_MULEEOT
 
 * GeoIP support has been disabled because the GeoIP libraries were not found
 _MULEEOT
 fi
-if test ${_mule_warning_5:-no} = yes; then
+if test ${_mule_warning_4:-no} = yes; then
 cat <<_MULEEOT
 
 * GeoIP support has been disabled because the GeoIP header files were not
   found
 _MULEEOT
 fi
-if test ${_mule_warning_6:-no} = yes; then
+if test ${_mule_warning_5:-no} = yes; then
 cat <<_MULEEOT
 
 * UPnP code has been disabled because ${libupnp_error}.
 _MULEEOT
 fi
-if test ${_mule_warning_7:-no} = yes; then
+if test ${_mule_warning_6:-no} = yes; then
 cat <<_MULEEOT
 
 * Cross-compilation detected, so exception handling cannot be tested.
@@ -21578,7 +21311,7 @@ cat <<_MULEEOT
   crashes.
 _MULEEOT
 fi
-if test ${_mule_warning_8:-no} = yes; then
+if test ${_mule_warning_7:-no} = yes; then
 cat <<_MULEEOT
 
 * configure cannot check whether malloc() and realloc() are GNU libc
@@ -21586,14 +21319,14 @@ cat <<_MULEEOT
   configure with the --without-gnu-malloc switch.
 _MULEEOT
 fi
-if test ${_mule_warning_9:-no} = yes; then
+if test ${_mule_warning_8:-no} = yes; then
 cat <<_MULEEOT
 
 * You need to install GNU gettext/gettext-tools to compile aMule with i18n
   support.
 _MULEEOT
 fi
-if test ${_mule_warning_10:-no} = yes; then
+if test ${_mule_warning_9:-no} = yes; then
 cat <<_MULEEOT
 
 * bfd.h not found or unusable, please install binutils development package if
