@@ -79,7 +79,7 @@ void DecodeKeyIndexDat(const CFileDataIO& file)
 						cout << ", " << CTimeT(file.ReadUInt32()) << " }\n";
 					}
 				}
-				cout << "\t\t\ttagCount : " << (tagCount = file.ReadUInt8()) << '\n';
+				cout << "\t\t\ttagCount : " << (uint32)(tagCount = file.ReadUInt8()) << '\n';
 				for (uint32_t it = 0; it < tagCount; it++) {
 					CTag *tag = file.ReadTag();
 					cout << "\t\t\t\t" << *tag << '\n';
