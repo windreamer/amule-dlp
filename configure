@@ -14907,6 +14907,8 @@ CPPFLAGS="$mule_backup_CPPFLAGS"
 
 	echo "$as_me:$LINENO: checking for fallocate" >&5
 echo $ECHO_N "checking for fallocate... $ECHO_C" >&6
+	mule_backup_CPPFLAGS="$CPPFLAGS"
+	CPPFLAGS="$CPPFLAGS $WX_CPPFLAGS"
 	cat >conftest.$ac_ext <<_ACEOF
 
 		/* confdefs.h.  */
@@ -14915,6 +14917,10 @@ cat confdefs.h >>conftest.$ac_ext
 cat >>conftest.$ac_ext <<_ACEOF
 /* end confdefs.h.  */
 
+			#define _GNU_SOURCE
+			#ifdef HAVE_FCNTL_H
+			#  include <fcntl.h>
+			#endif
 			#include <linux/falloc.h>
 
 int
@@ -14971,6 +14977,7 @@ echo "${ECHO_T}no" >&6
 fi
 rm -f conftest.err conftest.$ac_objext \
       conftest$ac_exeext conftest.$ac_ext
+	CPPFLAGS="$mule_backup_CPPFLAGS"
 
 
 	echo "$as_me:$LINENO: checking for SYS_fallocate" >&5
@@ -14983,7 +14990,7 @@ cat confdefs.h >>conftest.$ac_ext
 cat >>conftest.$ac_ext <<_ACEOF
 /* end confdefs.h.  */
 
-			#include <sys/sycall.h>
+			#include <sys/syscall.h>
 			#include <sys/types.h>
 			#include <unistd.h>
 
