@@ -7782,6 +7782,22 @@ WXBASE_CPPFLAGS="$WX_CPPFLAGS -DwxUSE_GUI=0"
 
 
 
+if test ${need_gui} = yes -a "${WX_PORT}" = base; then
+  { { echo "$as_me:$LINENO: error:
+		The selected components need a wxWidgets library with GUI,
+		but your installation is base-only.  Please install a GUI
+		enabled version of wxWidgets and then retry.
+	" >&5
+echo "$as_me: error:
+		The selected components need a wxWidgets library with GUI,
+		but your installation is base-only.  Please install a GUI
+		enabled version of wxWidgets and then retry.
+	" >&2;}
+   { (exit 1); exit 1; }; }
+
+fi
+
+
 if test ${SYS:-unknown} = win32; then
 
 	if test -n "$ac_tool_prefix"; then
