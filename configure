@@ -8003,13 +8003,17 @@ if test "${with_libupnp_prefix+set}" = set; then
 fi;
 
 	if test $cross_compiling = no; then
-  		echo "$as_me:$LINENO: checking for libupnp version >= 1.6.6" >&5
+
+		echo "$as_me:$LINENO: checking for libupnp version >= 1.6.6" >&5
 echo $ECHO_N "checking for libupnp version >= 1.6.6... $ECHO_C" >&6
 		if test -n "$PKG_CONFIG"; then
-  			if $PKG_CONFIG libupnp --exists; then
-  				LIBUPNP_VERSION=`$PKG_CONFIG libupnp --modversion`
+
+			if $PKG_CONFIG libupnp --exists; then
+
+				LIBUPNP_VERSION=`$PKG_CONFIG libupnp --modversion`
 				if $PKG_CONFIG libupnp --atleast-version=1.6.6; then
-  					result=yes
+
+					result=yes
 					resultstr=" (version $LIBUPNP_VERSION)"
 					LIBUPNP_CPPFLAGS=`$PKG_CONFIG libupnp --cflags-only-I`
 					LIBUPNP_CFLAGS=`$PKG_CONFIG libupnp --cflags-only-other`
@@ -8018,31 +8022,39 @@ echo $ECHO_N "checking for libupnp version >= 1.6.6... $ECHO_C" >&6
 					LIBUPNP_LIBS="$LIBUPNP_LIBS `$PKG_CONFIG libupnp --libs-only-l`"
 
 else
-  					result=no
+
+					result=no
 					resultstr=" (version $LIBUPNP_VERSION is not new enough)"
 
 fi
 
+
 else
-  				result=no
+
+				result=no
 				resultstr=" (try to use --with-libupnp-prefix=PREFIX)"
 
 fi
 
+
 else
-  			result=no
+
+			result=no
 			resultstr=" (pkg-config not found)"
 
 fi
+
 		echo "$as_me:$LINENO: result: $result$resultstr" >&5
 echo "${ECHO_T}$result$resultstr" >&6
 		libupnp_error="libupnp >= 1.6.6 not found$resultstr"
 
 else
-  		result=no
+
+		result=no
 		libupnp_error="cross compiling"
 
 fi
+
 
 	if test ${result:-no} = yes; then
   LIBUPNP_CPPFLAGS="$LIBUPNP_CPPFLAGS -DENABLE_UPNP=1"
