@@ -8096,44 +8096,75 @@ echo $ECHO_N "checking for crypto++ version >= 5.1... $ECHO_C" >&6
 	CRYPTOPP_INCLUDE_PREFIX="unknown"
 	cryptopp_libdir="unknown"
 
-	for CRYPTOPP_PREFIX in "$with_crypto_prefix" /usr /usr/local /opt /opt/local /usr/pkg /mingw ; do
-		if test -z "$CRYPTOPP_PREFIX"; then
-  continue
-fi
+	if test -n "$with_crypto_prefix"; then
 
-
-		# Find the Cryptopp header
-		if test -f $CRYPTOPP_PREFIX/$cryptopp_file_with_version; then
+		# Find the Cryptopp header in the user-provided location
+		if test -f $with_crypto_prefix/$cryptopp_file_with_version; then
 
 			CRYPTOPP_STYLE="sources"
 			CRYPTOPP_LIB_NAME="cryptopp"
 			cryptopp_includedir=
-			CRYPTOPP_INCLUDE_PREFIX="$CRYPTOPP_PREFIX"
+			CRYPTOPP_INCLUDE_PREFIX="$with_crypto_prefix"
 			cryptopp_libdir=
-			break
 
-elif test -f $CRYPTOPP_PREFIX/include/cryptopp/$cryptopp_file_with_version; then
+elif test -f $with_crypto_prefix/include/cryptopp/$cryptopp_file_with_version; then
 
 			CRYPTOPP_STYLE="installed"
 			CRYPTOPP_LIB_NAME="cryptopp"
-			cryptopp_includedir="$CRYPTOPP_PREFIX/include"
+			cryptopp_includedir="$with_crypto_prefix/include"
 			CRYPTOPP_INCLUDE_PREFIX="$CRYPTOPP_LIB_NAME"
-			cryptopp_libdir="$CRYPTOPP_PREFIX/lib"
-			break
+			cryptopp_libdir="$with_crypto_prefix/lib"
 
-elif test -f $CRYPTOPP_PREFIX/include/crypto++/$cryptopp_file_with_version; then
+elif test -f $with_crypto_prefix/include/crypto++/$cryptopp_file_with_version; then
 
 			# Debian uses libcrypto++5.1 - it's not my fault, please soda patch the package
 			CRYPTOPP_STYLE="gentoo_debian"
 			CRYPTOPP_LIB_NAME="crypto++"
-			cryptopp_includedir="$CRYPTOPP_PREFIX/include"
+			cryptopp_includedir="$with_crypto_prefix/include"
 			CRYPTOPP_INCLUDE_PREFIX="$CRYPTOPP_LIB_NAME"
-			cryptopp_libdir="$CRYPTOPP_PREFIX/lib"
-			break
+			cryptopp_libdir="$with_crypto_prefix/lib"
 
 fi
 
-	done
+
+else
+
+		for CRYPTOPP_PREFIX in /usr /usr/local /opt /opt/local /usr/pkg /mingw ; do
+			# Find the Cryptopp header in system locations
+			if test -f $CRYPTOPP_PREFIX/$cryptopp_file_with_version; then
+
+				CRYPTOPP_STYLE="sources"
+				CRYPTOPP_LIB_NAME="cryptopp"
+				cryptopp_includedir=
+				CRYPTOPP_INCLUDE_PREFIX="$CRYPTOPP_PREFIX"
+				cryptopp_libdir=
+				break
+
+elif test -f $CRYPTOPP_PREFIX/include/cryptopp/$cryptopp_file_with_version; then
+
+				CRYPTOPP_STYLE="installed"
+				CRYPTOPP_LIB_NAME="cryptopp"
+				cryptopp_includedir="$CRYPTOPP_PREFIX/include"
+				CRYPTOPP_INCLUDE_PREFIX="$CRYPTOPP_LIB_NAME"
+				cryptopp_libdir="$CRYPTOPP_PREFIX/lib"
+				break
+
+elif test -f $CRYPTOPP_PREFIX/include/crypto++/$cryptopp_file_with_version; then
+
+				# Debian uses libcrypto++5.1 - it's not my fault, please soda patch the package
+				CRYPTOPP_STYLE="gentoo_debian"
+				CRYPTOPP_LIB_NAME="crypto++"
+				cryptopp_includedir="$CRYPTOPP_PREFIX/include"
+				CRYPTOPP_INCLUDE_PREFIX="$CRYPTOPP_LIB_NAME"
+				cryptopp_libdir="$CRYPTOPP_PREFIX/lib"
+				break
+
+fi
+
+		done
+
+fi
+
 
 	if test $CRYPTOPP_STYLE = "unknown"; then
   result=no; resultstr=""
