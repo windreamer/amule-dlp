@@ -130,7 +130,6 @@ am_libmuleappgui_a_OBJECTS = libmuleappgui_a-BarShader.$(OBJEXT) \
 	libmuleappgui_a-ColorFrameCtrl.$(OBJEXT) \
 	libmuleappgui_a-CommentDialog.$(OBJEXT) \
 	libmuleappgui_a-CommentDialogLst.$(OBJEXT) \
-	libmuleappgui_a-DirectoryTreeCtrl.$(OBJEXT) \
 	libmuleappgui_a-EditServerListDlg.$(OBJEXT) \
 	libmuleappgui_a-listctrl.$(OBJEXT) \
 	libmuleappgui_a-FileDetailListCtrl.$(OBJEXT) \
@@ -168,19 +167,19 @@ am__amule_SOURCES_DIST = CaptchaDialog.cpp CaptchaGenerator.cpp \
 	kademlia/net/PacketTracking.cpp kademlia/routing/Contact.cpp \
 	kademlia/routing/RoutingZone.cpp UPnPBase.cpp amule-gui.cpp \
 	amuleDlg.cpp AddFriend.cpp CatDialog.cpp ChatSelector.cpp \
-	ClientDetailDialog.cpp FileDetailDialog.cpp KadDlg.cpp \
-	OScopeCtrl.cpp PartFileConvert.cpp PrefsUnifiedDlg.cpp \
-	SearchDlg.cpp ServerWnd.cpp SharedFilesWnd.cpp \
-	StatisticsDlg.cpp SearchListCtrl.cpp DownloadListCtrl.cpp \
-	ClientListCtrl.cpp FriendListCtrl.cpp ServerListCtrl.cpp \
-	SharedFilesCtrl.cpp MuleTrayIcon.cpp MuleColour.cpp \
-	TransferWnd.cpp IP2Country.cpp ClientCredits.cpp \
-	ECSpecialMuleTags.cpp KnownFile.cpp GapList.cpp \
-	GetTickCount.cpp GuiEvents.cpp Logger.cpp PartFile.cpp \
-	Preferences.cpp Proxy.cpp Server.cpp Statistics.cpp \
-	StatTree.cpp SHAHashSet.cpp TerminationProcess.cpp \
-	TerminationProcessAmuleweb.cpp UserEvents.cpp \
-	OtherFunctions.cpp NetworkFunctions.cpp
+	ClientDetailDialog.cpp DirectoryTreeCtrl.cpp \
+	FileDetailDialog.cpp KadDlg.cpp OScopeCtrl.cpp \
+	PartFileConvert.cpp PrefsUnifiedDlg.cpp SearchDlg.cpp \
+	ServerWnd.cpp SharedFilesWnd.cpp StatisticsDlg.cpp \
+	SearchListCtrl.cpp DownloadListCtrl.cpp ClientListCtrl.cpp \
+	FriendListCtrl.cpp ServerListCtrl.cpp SharedFilesCtrl.cpp \
+	MuleTrayIcon.cpp MuleColour.cpp TransferWnd.cpp IP2Country.cpp \
+	ClientCredits.cpp ECSpecialMuleTags.cpp KnownFile.cpp \
+	GapList.cpp GetTickCount.cpp GuiEvents.cpp Logger.cpp \
+	PartFile.cpp Preferences.cpp Proxy.cpp Server.cpp \
+	Statistics.cpp StatTree.cpp SHAHashSet.cpp \
+	TerminationProcess.cpp TerminationProcessAmuleweb.cpp \
+	UserEvents.cpp OtherFunctions.cpp NetworkFunctions.cpp
 @ENABLE_UPNP_TRUE@am__objects_1 = amule-UPnPBase.$(OBJEXT)
 am__objects_2 = amule-RC4Encrypt.$(OBJEXT) amule-amule.$(OBJEXT) \
 	amule-BaseClient.$(OBJEXT) amule-ClientList.$(OBJEXT) \
@@ -213,6 +212,7 @@ am__objects_4 = amule-amule-gui.$(OBJEXT) amule-amuleDlg.$(OBJEXT) \
 	amule-AddFriend.$(OBJEXT) amule-CatDialog.$(OBJEXT) \
 	amule-ChatSelector.$(OBJEXT) \
 	amule-ClientDetailDialog.$(OBJEXT) \
+	amule-DirectoryTreeCtrl.$(OBJEXT) \
 	amule-FileDetailDialog.$(OBJEXT) amule-KadDlg.$(OBJEXT) \
 	amule-OScopeCtrl.$(OBJEXT) amule-PartFileConvert.$(OBJEXT) \
 	amule-PrefsUnifiedDlg.$(OBJEXT) amule-SearchDlg.$(OBJEXT) \
@@ -323,25 +323,27 @@ am_amuled_OBJECTS = amuled-amuled.$(OBJEXT) amuled-Timer.$(OBJEXT) \
 amuled_OBJECTS = $(am_amuled_OBJECTS) $(nodist_amuled_OBJECTS)
 am__amulegui_SOURCES_DIST = amule-remote-gui.cpp amule-gui.cpp \
 	amuleDlg.cpp AddFriend.cpp CatDialog.cpp ChatSelector.cpp \
-	ClientDetailDialog.cpp FileDetailDialog.cpp KadDlg.cpp \
-	OScopeCtrl.cpp PartFileConvert.cpp PrefsUnifiedDlg.cpp \
-	SearchDlg.cpp ServerWnd.cpp SharedFilesWnd.cpp \
-	StatisticsDlg.cpp SearchListCtrl.cpp DownloadListCtrl.cpp \
-	ClientListCtrl.cpp FriendListCtrl.cpp ServerListCtrl.cpp \
-	SharedFilesCtrl.cpp MuleTrayIcon.cpp MuleColour.cpp \
-	TransferWnd.cpp IP2Country.cpp ClientCredits.cpp \
-	ECSpecialMuleTags.cpp KnownFile.cpp GapList.cpp \
-	GetTickCount.cpp GuiEvents.cpp Logger.cpp PartFile.cpp \
-	Preferences.cpp Proxy.cpp Server.cpp Statistics.cpp \
-	StatTree.cpp SHAHashSet.cpp TerminationProcess.cpp \
-	TerminationProcessAmuleweb.cpp UserEvents.cpp \
-	OtherFunctions.cpp NetworkFunctions.cpp HTTPDownload.cpp
+	ClientDetailDialog.cpp DirectoryTreeCtrl.cpp \
+	FileDetailDialog.cpp KadDlg.cpp OScopeCtrl.cpp \
+	PartFileConvert.cpp PrefsUnifiedDlg.cpp SearchDlg.cpp \
+	ServerWnd.cpp SharedFilesWnd.cpp StatisticsDlg.cpp \
+	SearchListCtrl.cpp DownloadListCtrl.cpp ClientListCtrl.cpp \
+	FriendListCtrl.cpp ServerListCtrl.cpp SharedFilesCtrl.cpp \
+	MuleTrayIcon.cpp MuleColour.cpp TransferWnd.cpp IP2Country.cpp \
+	ClientCredits.cpp ECSpecialMuleTags.cpp KnownFile.cpp \
+	GapList.cpp GetTickCount.cpp GuiEvents.cpp Logger.cpp \
+	PartFile.cpp Preferences.cpp Proxy.cpp Server.cpp \
+	Statistics.cpp StatTree.cpp SHAHashSet.cpp \
+	TerminationProcess.cpp TerminationProcessAmuleweb.cpp \
+	UserEvents.cpp OtherFunctions.cpp NetworkFunctions.cpp \
+	HTTPDownload.cpp
 @ENABLE_IP2COUNTRY_TRUE@am__objects_12 =  \
 @ENABLE_IP2COUNTRY_TRUE@	amulegui-IP2Country.$(OBJEXT)
 am__objects_13 = amulegui-amule-gui.$(OBJEXT) \
 	amulegui-amuleDlg.$(OBJEXT) amulegui-AddFriend.$(OBJEXT) \
 	amulegui-CatDialog.$(OBJEXT) amulegui-ChatSelector.$(OBJEXT) \
 	amulegui-ClientDetailDialog.$(OBJEXT) \
+	amulegui-DirectoryTreeCtrl.$(OBJEXT) \
 	amulegui-FileDetailDialog.$(OBJEXT) amulegui-KadDlg.$(OBJEXT) \
 	amulegui-OScopeCtrl.$(OBJEXT) \
 	amulegui-PartFileConvert.$(OBJEXT) \
@@ -705,7 +707,6 @@ libmuleappgui_a_SOURCES = \
 	ColorFrameCtrl.cpp \
 	CommentDialog.cpp \
 	CommentDialogLst.cpp \
-	DirectoryTreeCtrl.cpp \
 	EditServerListDlg.cpp \
 	extern/wxWidgets/listctrl.cpp \
 	FileDetailListCtrl.cpp \
@@ -735,13 +736,14 @@ core_sources = RC4Encrypt.cpp amule.cpp BaseClient.cpp ClientList.cpp \
 	kademlia/net/PacketTracking.cpp kademlia/routing/Contact.cpp \
 	kademlia/routing/RoutingZone.cpp $(am__append_11)
 gui_sources = amule-gui.cpp amuleDlg.cpp AddFriend.cpp CatDialog.cpp \
-	ChatSelector.cpp ClientDetailDialog.cpp FileDetailDialog.cpp \
-	KadDlg.cpp OScopeCtrl.cpp PartFileConvert.cpp \
-	PrefsUnifiedDlg.cpp SearchDlg.cpp ServerWnd.cpp \
-	SharedFilesWnd.cpp StatisticsDlg.cpp SearchListCtrl.cpp \
-	DownloadListCtrl.cpp ClientListCtrl.cpp FriendListCtrl.cpp \
-	ServerListCtrl.cpp SharedFilesCtrl.cpp MuleTrayIcon.cpp \
-	MuleColour.cpp TransferWnd.cpp $(am__append_12)
+	ChatSelector.cpp ClientDetailDialog.cpp DirectoryTreeCtrl.cpp \
+	FileDetailDialog.cpp KadDlg.cpp OScopeCtrl.cpp \
+	PartFileConvert.cpp PrefsUnifiedDlg.cpp SearchDlg.cpp \
+	ServerWnd.cpp SharedFilesWnd.cpp StatisticsDlg.cpp \
+	SearchListCtrl.cpp DownloadListCtrl.cpp ClientListCtrl.cpp \
+	FriendListCtrl.cpp ServerListCtrl.cpp SharedFilesCtrl.cpp \
+	MuleTrayIcon.cpp MuleColour.cpp TransferWnd.cpp \
+	$(am__append_12)
 remote_common_sources = \
 	OtherFunctions.cpp \
 	NetworkFunctions.cpp 
@@ -1091,6 +1093,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ClientUDPSocket.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-Contact.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-CorruptionBlackBox.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-DirectoryTreeCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-DownloadClient.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-DownloadListCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-DownloadQueue.Po@am__quote@
@@ -1239,6 +1242,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-ClientCredits.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-ClientDetailDialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-ClientListCtrl.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-DirectoryTreeCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-DownloadListCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-ECSpecialMuleTags.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-FileDetailDialog.Po@am__quote@
@@ -1313,7 +1317,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-ColorFrameCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-CommentDialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-CommentDialogLst.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-DirectoryTreeCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-EditServerListDlg.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-FileDetailListCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-MuleCollection.Po@am__quote@
@@ -1771,20 +1774,6 @@ libmuleappgui_a-CommentDialogLst.obj: CommentDialogLst.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CommentDialogLst.cpp' object='libmuleappgui_a-CommentDialogLst.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappgui_a-CommentDialogLst.obj `if test -f 'CommentDialogLst.cpp'; then $(CYGPATH_W) 'CommentDialogLst.cpp'; else $(CYGPATH_W) '$(srcdir)/CommentDialogLst.cpp'; fi`
-
-libmuleappgui_a-DirectoryTreeCtrl.o: DirectoryTreeCtrl.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappgui_a-DirectoryTreeCtrl.o -MD -MP -MF "$(DEPDIR)/libmuleappgui_a-DirectoryTreeCtrl.Tpo" -c -o libmuleappgui_a-DirectoryTreeCtrl.o `test -f 'DirectoryTreeCtrl.cpp' || echo '$(srcdir)/'`DirectoryTreeCtrl.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleappgui_a-DirectoryTreeCtrl.Tpo" "$(DEPDIR)/libmuleappgui_a-DirectoryTreeCtrl.Po"; else rm -f "$(DEPDIR)/libmuleappgui_a-DirectoryTreeCtrl.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='DirectoryTreeCtrl.cpp' object='libmuleappgui_a-DirectoryTreeCtrl.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappgui_a-DirectoryTreeCtrl.o `test -f 'DirectoryTreeCtrl.cpp' || echo '$(srcdir)/'`DirectoryTreeCtrl.cpp
-
-libmuleappgui_a-DirectoryTreeCtrl.obj: DirectoryTreeCtrl.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappgui_a-DirectoryTreeCtrl.obj -MD -MP -MF "$(DEPDIR)/libmuleappgui_a-DirectoryTreeCtrl.Tpo" -c -o libmuleappgui_a-DirectoryTreeCtrl.obj `if test -f 'DirectoryTreeCtrl.cpp'; then $(CYGPATH_W) 'DirectoryTreeCtrl.cpp'; else $(CYGPATH_W) '$(srcdir)/DirectoryTreeCtrl.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleappgui_a-DirectoryTreeCtrl.Tpo" "$(DEPDIR)/libmuleappgui_a-DirectoryTreeCtrl.Po"; else rm -f "$(DEPDIR)/libmuleappgui_a-DirectoryTreeCtrl.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='DirectoryTreeCtrl.cpp' object='libmuleappgui_a-DirectoryTreeCtrl.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappgui_a-DirectoryTreeCtrl.obj `if test -f 'DirectoryTreeCtrl.cpp'; then $(CYGPATH_W) 'DirectoryTreeCtrl.cpp'; else $(CYGPATH_W) '$(srcdir)/DirectoryTreeCtrl.cpp'; fi`
 
 libmuleappgui_a-EditServerListDlg.o: EditServerListDlg.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappgui_a-EditServerListDlg.o -MD -MP -MF "$(DEPDIR)/libmuleappgui_a-EditServerListDlg.Tpo" -c -o libmuleappgui_a-EditServerListDlg.o `test -f 'EditServerListDlg.cpp' || echo '$(srcdir)/'`EditServerListDlg.cpp; \
@@ -2625,6 +2614,20 @@ amule-ClientDetailDialog.obj: ClientDetailDialog.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ClientDetailDialog.cpp' object='amule-ClientDetailDialog.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-ClientDetailDialog.obj `if test -f 'ClientDetailDialog.cpp'; then $(CYGPATH_W) 'ClientDetailDialog.cpp'; else $(CYGPATH_W) '$(srcdir)/ClientDetailDialog.cpp'; fi`
+
+amule-DirectoryTreeCtrl.o: DirectoryTreeCtrl.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-DirectoryTreeCtrl.o -MD -MP -MF "$(DEPDIR)/amule-DirectoryTreeCtrl.Tpo" -c -o amule-DirectoryTreeCtrl.o `test -f 'DirectoryTreeCtrl.cpp' || echo '$(srcdir)/'`DirectoryTreeCtrl.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-DirectoryTreeCtrl.Tpo" "$(DEPDIR)/amule-DirectoryTreeCtrl.Po"; else rm -f "$(DEPDIR)/amule-DirectoryTreeCtrl.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='DirectoryTreeCtrl.cpp' object='amule-DirectoryTreeCtrl.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-DirectoryTreeCtrl.o `test -f 'DirectoryTreeCtrl.cpp' || echo '$(srcdir)/'`DirectoryTreeCtrl.cpp
+
+amule-DirectoryTreeCtrl.obj: DirectoryTreeCtrl.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-DirectoryTreeCtrl.obj -MD -MP -MF "$(DEPDIR)/amule-DirectoryTreeCtrl.Tpo" -c -o amule-DirectoryTreeCtrl.obj `if test -f 'DirectoryTreeCtrl.cpp'; then $(CYGPATH_W) 'DirectoryTreeCtrl.cpp'; else $(CYGPATH_W) '$(srcdir)/DirectoryTreeCtrl.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-DirectoryTreeCtrl.Tpo" "$(DEPDIR)/amule-DirectoryTreeCtrl.Po"; else rm -f "$(DEPDIR)/amule-DirectoryTreeCtrl.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='DirectoryTreeCtrl.cpp' object='amule-DirectoryTreeCtrl.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-DirectoryTreeCtrl.obj `if test -f 'DirectoryTreeCtrl.cpp'; then $(CYGPATH_W) 'DirectoryTreeCtrl.cpp'; else $(CYGPATH_W) '$(srcdir)/DirectoryTreeCtrl.cpp'; fi`
 
 amule-FileDetailDialog.o: FileDetailDialog.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-FileDetailDialog.o -MD -MP -MF "$(DEPDIR)/amule-FileDetailDialog.Tpo" -c -o amule-FileDetailDialog.o `test -f 'FileDetailDialog.cpp' || echo '$(srcdir)/'`FileDetailDialog.cpp; \
@@ -4207,6 +4210,20 @@ amulegui-ClientDetailDialog.obj: ClientDetailDialog.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ClientDetailDialog.cpp' object='amulegui-ClientDetailDialog.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-ClientDetailDialog.obj `if test -f 'ClientDetailDialog.cpp'; then $(CYGPATH_W) 'ClientDetailDialog.cpp'; else $(CYGPATH_W) '$(srcdir)/ClientDetailDialog.cpp'; fi`
+
+amulegui-DirectoryTreeCtrl.o: DirectoryTreeCtrl.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-DirectoryTreeCtrl.o -MD -MP -MF "$(DEPDIR)/amulegui-DirectoryTreeCtrl.Tpo" -c -o amulegui-DirectoryTreeCtrl.o `test -f 'DirectoryTreeCtrl.cpp' || echo '$(srcdir)/'`DirectoryTreeCtrl.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amulegui-DirectoryTreeCtrl.Tpo" "$(DEPDIR)/amulegui-DirectoryTreeCtrl.Po"; else rm -f "$(DEPDIR)/amulegui-DirectoryTreeCtrl.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='DirectoryTreeCtrl.cpp' object='amulegui-DirectoryTreeCtrl.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-DirectoryTreeCtrl.o `test -f 'DirectoryTreeCtrl.cpp' || echo '$(srcdir)/'`DirectoryTreeCtrl.cpp
+
+amulegui-DirectoryTreeCtrl.obj: DirectoryTreeCtrl.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-DirectoryTreeCtrl.obj -MD -MP -MF "$(DEPDIR)/amulegui-DirectoryTreeCtrl.Tpo" -c -o amulegui-DirectoryTreeCtrl.obj `if test -f 'DirectoryTreeCtrl.cpp'; then $(CYGPATH_W) 'DirectoryTreeCtrl.cpp'; else $(CYGPATH_W) '$(srcdir)/DirectoryTreeCtrl.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amulegui-DirectoryTreeCtrl.Tpo" "$(DEPDIR)/amulegui-DirectoryTreeCtrl.Po"; else rm -f "$(DEPDIR)/amulegui-DirectoryTreeCtrl.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='DirectoryTreeCtrl.cpp' object='amulegui-DirectoryTreeCtrl.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-DirectoryTreeCtrl.obj `if test -f 'DirectoryTreeCtrl.cpp'; then $(CYGPATH_W) 'DirectoryTreeCtrl.cpp'; else $(CYGPATH_W) '$(srcdir)/DirectoryTreeCtrl.cpp'; fi`
 
 amulegui-FileDetailDialog.o: FileDetailDialog.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-FileDetailDialog.o -MD -MP -MF "$(DEPDIR)/amulegui-FileDetailDialog.Tpo" -c -o amulegui-FileDetailDialog.o `test -f 'FileDetailDialog.cpp' || echo '$(srcdir)/'`FileDetailDialog.cpp; \
