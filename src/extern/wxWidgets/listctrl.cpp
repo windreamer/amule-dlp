@@ -3,7 +3,7 @@
 // Purpose:     generic implementation of wxListCtrl
 // Author:      Robert Roebling
 //              Vadim Zeitlin (virtual list control support)
-// Id:          $Id: listctrl.cpp 9385 2009-01-18 21:39:19Z sturedman $
+// Id:          $Id: listctrl.cpp 9813 2009-09-18 19:37:45Z sturedman $
 // Copyright:   Copyright (c) 1998-2008 Robert Roebling
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -40,7 +40,7 @@
 #include <wx/renderer.h>
 #include <wx/dcbuffer.h>
 
-#ifdef __WXMAC__
+#if defined( __WXMAC__ ) && !defined(__WXUNIVERSAL__) && wxOSX_USE_CARBON
     #include <wx/mac/private.h>
 #endif
 
@@ -1415,7 +1415,7 @@ bool wxListLineData::SetAttributes(wxDC *dc,
 #ifdef __WXMAC__
     {
         if (m_owner->HasFocus()
-#ifdef __WXMAC__
+#if defined( __WXMAC__ ) && !defined(__WXUNIVERSAL__) && wxOSX_USE_CARBON
                 && IsControlActive( (ControlRef)m_owner->GetHandle() )
 #endif
         )
@@ -1479,7 +1479,7 @@ void wxListLineData::Draw( wxDC *dc )
         {
             int flags = wxCONTROL_SELECTED;
             if (m_owner->HasFocus()
-#ifdef __WXMAC__
+#if defined( __WXMAC__ ) && !defined(__WXUNIVERSAL__) && wxOSX_USE_CARBON
                 && IsControlActive( (ControlRef)m_owner->GetHandle() )
 #endif
             )
@@ -1542,7 +1542,7 @@ void wxListLineData::DrawInReportMode( wxDC *dc,
         {
             int flags = wxCONTROL_SELECTED;
             if (m_owner->HasFocus()
-#ifdef __WXMAC__
+#if defined( __WXMAC__ ) && !defined(__WXUNIVERSAL__) && wxOSX_USE_CARBON
                 && IsControlActive( (ControlRef)m_owner->GetHandle() )
 #endif
             )
@@ -4973,7 +4973,7 @@ void wxGenericListCtrl::CalculateAndSetHeaderHeight()
 {
     if ( m_headerWin )
     {
-#ifdef __WXMAC__
+#if defined( __WXMAC__ ) && !defined(__WXUNIVERSAL__) && wxOSX_USE_CARBON
         SInt32 h;
         GetThemeMetric( kThemeMetricListHeaderHeight, &h );
 #else
