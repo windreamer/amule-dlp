@@ -701,15 +701,15 @@ int CamuleDaemonApp::InitGui(bool ,wxString &)
 	AddLogLineNS(_("amuled: forking to background - see you"));
 	theLogger.SetEnabledStdoutLog(false);
 	//
-	// fork to background and detouch from controlling tty
+	// fork to background and detach from controlling tty
 	// while redirecting stdout to /dev/null
 	//
 	for(int i_fd = 0;i_fd < 3; i_fd++) {
 		close(i_fd);
 	}
   	int fd = open("/dev/null",O_RDWR);
-  	dup(fd);
-  	dup(fd);
+	if (dup(fd)){}	// prevent GCC warning
+	if (dup(fd)){}
   	pid_t pid = fork();
 
 	wxASSERT(pid != -1);
