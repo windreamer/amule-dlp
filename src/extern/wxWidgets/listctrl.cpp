@@ -3,7 +3,7 @@
 // Purpose:     generic implementation of wxListCtrl
 // Author:      Robert Roebling
 //              Vadim Zeitlin (virtual list control support)
-// Id:          $Id: listctrl.cpp 9813 2009-09-18 19:37:45Z sturedman $
+// Id:          $Id: listctrl.cpp 9834 2009-10-01 20:39:52Z kry $
 // Copyright:   Copyright (c) 1998-2008 Robert Roebling
 // Licence:     wxWindows licence
 /////////////////////////////////////////////////////////////////////////////
@@ -40,7 +40,7 @@
 #include <wx/renderer.h>
 #include <wx/dcbuffer.h>
 
-#if defined( __WXMAC__ ) && !defined(__WXUNIVERSAL__) && wxOSX_USE_CARBON
+#if defined( __WXMAC__ ) && !defined(__WXUNIVERSAL__) && (wxOSX_USE_CARBON || TARGET_CARBON)
     #include <wx/mac/private.h>
 #endif
 
