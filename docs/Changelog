@@ -4,7 +4,7 @@ Version 2.3.0 - The river knows.
 
 	freddy77:
 		* Various optimizations of memory usage
-		* Read files for hashing/sharing using mapped memory
+		* Access files for reading/writing via mapped memory
 		  (with custom exception handling)
 		* Fix download of files > 1GB on ucLibc
 		* Fix autogen.sh under Ubuntu
@@ -24,6 +24,8 @@ Version 2.3.0 - The river knows.
 		  extension if length == 3.
 		* Instead of counting unicode characters in a Kad search now we use the
 		  UTF-8 byte count to determine whether the keyword is allowed or not.
+		* Use actual page size in mmap calls instead of a randomly selected
+		  number.
 
 	Greek:
 		* Part number is now an extra column in the download list

@@ -38,7 +38,6 @@
 
 #include "FileArea.h"		// Interface declarations.
 #include "FileAutoClose.h"	// Needed for CFileAutoClose
-#include "Logger.h"			// Needed for AddDebugLogLineM
 
 #ifdef HAVE_SYS_MMAN_H
 #include <sys/mman.h>
@@ -79,7 +78,17 @@ bool             CFileAreaSigHandler::initialized = false;
 struct sigaction CFileAreaSigHandler::old_segv;
 struct sigaction CFileAreaSigHandler::old_bus;
 
-#define PAGE_SIZE 8192u
+#ifdef HAVE_MMAP
+#	if defined(HAVE_SYSCONF) && defined(HAVE__SC_PAGESIZE)
+static const long gs_pageSize = sysconf(_SC_PAGESIZE);
+#	elif defined(HAVE_SYSCONF) && defined(HAVE__SC_PAGE_SIZE)
+static const long gs_pageSize = sysconf(_SC_PAGE_SIZE);
+#	elif defined(HAVE_GETPAGESIZE)
+static const int gs_pageSize = getpagesize();
+#	else
+#		error "Should use memory mapped files but don't know how to determine page size!"
+#	endif
+#endif
 
 /* define MAP_ANONYMOUS for Mac OS X */
 #if defined(MAP_ANON) && !defined(MAP_ANONYMOUS)
@@ -104,10 +113,10 @@ void CFileAreaSigHandler::Handler(int sig, siginfo_t *info, void *ctx)
 	}
 
 	// mark error if found
-	if (cur) {
+	if (cur && gs_pageSize > 0) {
 		cur->m_error = true;
-		char *start_addr = ((char *) info->si_addr) - (((unsigned long) info->si_addr) % PAGE_SIZE);
-		if (mmap(start_addr, PAGE_SIZE, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) != MAP_FAILED)
+		char *start_addr = ((char *) info->si_addr) - (((unsigned long) info->si_addr) % gs_pageSize);
+		if (mmap(start_addr, gs_pageSize, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) != MAP_FAILED)
 			return;
 	}
 
@@ -195,6 +204,7 @@ bool CFileArea::Close()
 		munmap(m_mmap_buffer, m_length);
 		// remove from list
 		CFileAreaSigHandler::Remove(*this);
+		m_buffer = NULL;
 		m_mmap_buffer = NULL;
 		if (m_file) {
 			m_file->Unlock();
@@ -211,30 +221,69 @@ void CFileArea::ReadAt(CFileAutoClose& file, uint64 offset, size_t count)
 	Close();
 
 #ifdef HAVE_MMAP
-	const uint64 pageSize = 8192u;
-	uint64 offStart = offset & (~(pageSize-1));
-	uint64 offEnd = offset + count;
-	m_length = offEnd - offStart;
-	void *p = mmap(NULL, m_length, PROT_READ, MAP_SHARED, file.fd(), offStart);
-	if (p == MAP_FAILED) {
-		file.Unlock();
-	} else {
-		m_file = &file;
-		m_mmap_buffer = (byte*) p;
-		m_buffer = m_mmap_buffer + (offset - offStart);
+	if (gs_pageSize > 0) {
+		uint64 offStart = offset & (~((uint64)gs_pageSize-1));
+		uint64 offEnd = offset + count;
+		m_length = offEnd - offStart;
+		void *p = mmap(NULL, m_length, PROT_READ, MAP_SHARED, file.fd(), offStart);
+		if (p != MAP_FAILED) {
+			m_file = &file;
+			m_mmap_buffer = (byte*) p;
+			m_buffer = m_mmap_buffer + (offset - offStart);
 
-		// add to list to catch errors correctly
-		CFileAreaSigHandler::Add(*this);
-		return;
+			// add to list to catch errors correctly
+			CFileAreaSigHandler::Add(*this);
+			return;
+		}
 	}
+	file.Unlock();
 #endif
 	m_buffer = new byte[count];
 	file.ReadAt(m_buffer, offset, count);
 }
 
-bool CFileArea::Flush()
+void CFileArea::StartWriteAt(CFileAutoClose& file, uint64 offset, size_t count)
 {
-	/* currently we don't support write */
+	Close();
+
+#ifdef HAVE_MMAP
+	uint64 offEnd = offset + count;
+	if (file.GetLength() >= offEnd && gs_pageSize > 0) {
+		uint64 offStart = offset & (~((uint64)gs_pageSize-1));
+		m_length = offEnd - offStart;
+		void *p = mmap(NULL, m_length, PROT_READ|PROT_WRITE, MAP_SHARED, file.fd(), offStart);
+		if (p != MAP_FAILED)
+		{
+			m_file = &file;
+			m_mmap_buffer = (byte*) p;
+			m_buffer = m_mmap_buffer + (offset - offStart);
+
+			// add to list to catch errors correctly
+			CFileAreaSigHandler::Add(*this);
+			return;
+		}
+		file.Unlock();
+	}
+#endif
+	m_buffer = new byte[count];
+}
+
+
+bool CFileArea::FlushAt(CFileAutoClose& file, uint64 offset, size_t count)
+{
+	if (!m_buffer)
+		return false;
+
+#ifdef HAVE_MMAP
+	if (m_mmap_buffer) {
+		if (msync(m_mmap_buffer, m_length, MS_SYNC))
+			return false;
+		Close();
+		return true;
+	}
+#endif
+	file.WriteAt(m_buffer, offset, count);
+	Close();
 	return true;
 }
 
