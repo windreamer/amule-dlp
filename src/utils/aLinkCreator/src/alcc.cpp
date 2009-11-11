@@ -35,6 +35,8 @@
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"             // Needed for PACKAGE
+#else
+#define PACKAGE "amule"
 #endif
 
 
