@@ -69,6 +69,7 @@ class CUPnPPortMapping;
 class CStatistics;
 class wxSocketEvent;
 class wxCommandEvent;
+class wxCloseEvent;
 class wxFFileOutputStream;
 class CUpDownClient;
 class CTimer;
@@ -104,7 +105,18 @@ using MuleNotify::CMuleGUIEvent;
 #define CONNECTED_KAD_FIREWALLED (1<<3)
 
 
-class CamuleApp : public AMULE_APP_BASE
+// Base class common to amule, aamuled and amulegui
+class CamuleAppCommon
+{
+public:
+	void		AddLinksFromFile();
+	// URL functions
+	wxString	CreateMagnetLink(const CAbstractFile *f);
+	wxString	CreateED2kLink(const CAbstractFile* f, bool add_source = false, bool use_hostname = false, bool addcryptoptions = false);	
+	wxString	CreateED2kAICHLink(const CKnownFile* f);
+};
+
+class CamuleApp : public AMULE_APP_BASE, public CamuleAppCommon
 {
 private:
 	enum APPState {
@@ -168,11 +180,6 @@ public:
 
 	// Check if we should callback this client
 	bool CanDoCallback(CUpDownClient *client);
-
-	// URL functions
-	wxString	CreateMagnetLink(const CAbstractFile *f);
-	wxString	CreateED2kLink(const CAbstractFile* f, bool add_source = false, bool use_hostname = false, bool addcryptoptions = false);	
-	wxString	CreateED2kAICHLink(const CKnownFile* f);
 
 	// Misc functions
 	void		OnlineSig(bool zero = false);

@@ -174,9 +174,9 @@ am__amule_SOURCES_DIST = CaptchaDialog.cpp CaptchaGenerator.cpp \
 	SearchListCtrl.cpp DownloadListCtrl.cpp ClientListCtrl.cpp \
 	FriendListCtrl.cpp ServerListCtrl.cpp SharedFilesCtrl.cpp \
 	MuleTrayIcon.cpp MuleColour.cpp TransferWnd.cpp IP2Country.cpp \
-	ClientCredits.cpp ECSpecialMuleTags.cpp KnownFile.cpp \
-	GapList.cpp GetTickCount.cpp GuiEvents.cpp Logger.cpp \
-	PartFile.cpp Preferences.cpp Proxy.cpp Server.cpp \
+	amuleAppCommon.cpp ClientCredits.cpp ECSpecialMuleTags.cpp \
+	KnownFile.cpp GapList.cpp GetTickCount.cpp GuiEvents.cpp \
+	Logger.cpp PartFile.cpp Preferences.cpp Proxy.cpp Server.cpp \
 	Statistics.cpp StatTree.cpp SHAHashSet.cpp \
 	TerminationProcess.cpp TerminationProcessAmuleweb.cpp \
 	UserEvents.cpp OtherFunctions.cpp NetworkFunctions.cpp
@@ -226,7 +226,8 @@ am__objects_4 = amule-amule-gui.$(OBJEXT) amule-amuleDlg.$(OBJEXT) \
 	amule-TransferWnd.$(OBJEXT) $(am__objects_3)
 am__objects_5 = amule-OtherFunctions.$(OBJEXT) \
 	amule-NetworkFunctions.$(OBJEXT)
-am__objects_6 = amule-ClientCredits.$(OBJEXT) \
+am__objects_6 = amule-amuleAppCommon.$(OBJEXT) \
+	amule-ClientCredits.$(OBJEXT) \
 	amule-ECSpecialMuleTags.$(OBJEXT) amule-KnownFile.$(OBJEXT) \
 	amule-GapList.$(OBJEXT) amule-GetTickCount.$(OBJEXT) \
 	amule-GuiEvents.$(OBJEXT) amule-Logger.$(OBJEXT) \
@@ -272,9 +273,9 @@ am__amuled_SOURCES_DIST = amuled.cpp Timer.cpp RC4Encrypt.cpp \
 	kademlia/net/KademliaUDPListener.cpp \
 	kademlia/net/PacketTracking.cpp kademlia/routing/Contact.cpp \
 	kademlia/routing/RoutingZone.cpp UPnPBase.cpp \
-	ClientCredits.cpp ECSpecialMuleTags.cpp KnownFile.cpp \
-	GapList.cpp GetTickCount.cpp GuiEvents.cpp Logger.cpp \
-	PartFile.cpp Preferences.cpp Proxy.cpp Server.cpp \
+	amuleAppCommon.cpp ClientCredits.cpp ECSpecialMuleTags.cpp \
+	KnownFile.cpp GapList.cpp GetTickCount.cpp GuiEvents.cpp \
+	Logger.cpp PartFile.cpp Preferences.cpp Proxy.cpp Server.cpp \
 	Statistics.cpp StatTree.cpp SHAHashSet.cpp \
 	TerminationProcess.cpp TerminationProcessAmuleweb.cpp \
 	UserEvents.cpp OtherFunctions.cpp NetworkFunctions.cpp
@@ -308,7 +309,8 @@ am__objects_9 = amuled-RC4Encrypt.$(OBJEXT) amuled-amule.$(OBJEXT) \
 	amuled-RoutingZone.$(OBJEXT) $(am__objects_8)
 am__objects_10 = amuled-OtherFunctions.$(OBJEXT) \
 	amuled-NetworkFunctions.$(OBJEXT)
-am__objects_11 = amuled-ClientCredits.$(OBJEXT) \
+am__objects_11 = amuled-amuleAppCommon.$(OBJEXT) \
+	amuled-ClientCredits.$(OBJEXT) \
 	amuled-ECSpecialMuleTags.$(OBJEXT) amuled-KnownFile.$(OBJEXT) \
 	amuled-GapList.$(OBJEXT) amuled-GetTickCount.$(OBJEXT) \
 	amuled-GuiEvents.$(OBJEXT) amuled-Logger.$(OBJEXT) \
@@ -332,9 +334,9 @@ am__amulegui_SOURCES_DIST = amule-remote-gui.cpp amule-gui.cpp \
 	SearchListCtrl.cpp DownloadListCtrl.cpp ClientListCtrl.cpp \
 	FriendListCtrl.cpp ServerListCtrl.cpp SharedFilesCtrl.cpp \
 	MuleTrayIcon.cpp MuleColour.cpp TransferWnd.cpp IP2Country.cpp \
-	ClientCredits.cpp ECSpecialMuleTags.cpp KnownFile.cpp \
-	GapList.cpp GetTickCount.cpp GuiEvents.cpp Logger.cpp \
-	PartFile.cpp Preferences.cpp Proxy.cpp Server.cpp \
+	amuleAppCommon.cpp ClientCredits.cpp ECSpecialMuleTags.cpp \
+	KnownFile.cpp GapList.cpp GetTickCount.cpp GuiEvents.cpp \
+	Logger.cpp PartFile.cpp Preferences.cpp Proxy.cpp Server.cpp \
 	Statistics.cpp StatTree.cpp SHAHashSet.cpp \
 	TerminationProcess.cpp TerminationProcessAmuleweb.cpp \
 	UserEvents.cpp OtherFunctions.cpp NetworkFunctions.cpp \
@@ -363,7 +365,8 @@ am__objects_13 = amulegui-amule-gui.$(OBJEXT) \
 	amulegui-TransferWnd.$(OBJEXT) $(am__objects_12)
 am__objects_14 = amulegui-OtherFunctions.$(OBJEXT) \
 	amulegui-NetworkFunctions.$(OBJEXT)
-am__objects_15 = amulegui-ClientCredits.$(OBJEXT) \
+am__objects_15 = amulegui-amuleAppCommon.$(OBJEXT) \
+	amulegui-ClientCredits.$(OBJEXT) \
 	amulegui-ECSpecialMuleTags.$(OBJEXT) \
 	amulegui-KnownFile.$(OBJEXT) amulegui-GapList.$(OBJEXT) \
 	amulegui-GetTickCount.$(OBJEXT) amulegui-GuiEvents.$(OBJEXT) \
@@ -752,6 +755,7 @@ remote_common_sources = \
 	NetworkFunctions.cpp 
 
 common_sources = \
+	amuleAppCommon.cpp \
 	ClientCredits.cpp \
 	ECSpecialMuleTags.cpp \
 	KnownFile.cpp \
@@ -1172,6 +1176,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-UserEvents.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-amule-gui.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-amule.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-amuleAppCommon.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-amuleDlg.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulecmd-ExternalConnector.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulecmd-NetworkFunctions.Po@am__quote@
@@ -1241,6 +1246,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-UploadQueue.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-UserEvents.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-amule.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-amuleAppCommon.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-amuled.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-AddFriend.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-CatDialog.Po@am__quote@
@@ -1288,6 +1294,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-UserEvents.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-amule-gui.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-amule-remote-gui.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-amuleAppCommon.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-amuleDlg.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ed2k-ED2KLinkParser.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ed2k-MagnetURI.Po@am__quote@
@@ -2915,6 +2922,20 @@ amule-IP2Country.obj: IP2Country.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-IP2Country.obj `if test -f 'IP2Country.cpp'; then $(CYGPATH_W) 'IP2Country.cpp'; else $(CYGPATH_W) '$(srcdir)/IP2Country.cpp'; fi`
 
+amule-amuleAppCommon.o: amuleAppCommon.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-amuleAppCommon.o -MD -MP -MF "$(DEPDIR)/amule-amuleAppCommon.Tpo" -c -o amule-amuleAppCommon.o `test -f 'amuleAppCommon.cpp' || echo '$(srcdir)/'`amuleAppCommon.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-amuleAppCommon.Tpo" "$(DEPDIR)/amule-amuleAppCommon.Po"; else rm -f "$(DEPDIR)/amule-amuleAppCommon.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='amuleAppCommon.cpp' object='amule-amuleAppCommon.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-amuleAppCommon.o `test -f 'amuleAppCommon.cpp' || echo '$(srcdir)/'`amuleAppCommon.cpp
+
+amule-amuleAppCommon.obj: amuleAppCommon.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-amuleAppCommon.obj -MD -MP -MF "$(DEPDIR)/amule-amuleAppCommon.Tpo" -c -o amule-amuleAppCommon.obj `if test -f 'amuleAppCommon.cpp'; then $(CYGPATH_W) 'amuleAppCommon.cpp'; else $(CYGPATH_W) '$(srcdir)/amuleAppCommon.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-amuleAppCommon.Tpo" "$(DEPDIR)/amule-amuleAppCommon.Po"; else rm -f "$(DEPDIR)/amule-amuleAppCommon.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='amuleAppCommon.cpp' object='amule-amuleAppCommon.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-amuleAppCommon.obj `if test -f 'amuleAppCommon.cpp'; then $(CYGPATH_W) 'amuleAppCommon.cpp'; else $(CYGPATH_W) '$(srcdir)/amuleAppCommon.cpp'; fi`
+
 amule-ClientCredits.o: ClientCredits.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-ClientCredits.o -MD -MP -MF "$(DEPDIR)/amule-ClientCredits.Tpo" -c -o amule-ClientCredits.o `test -f 'ClientCredits.cpp' || echo '$(srcdir)/'`ClientCredits.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-ClientCredits.Tpo" "$(DEPDIR)/amule-ClientCredits.Po"; else rm -f "$(DEPDIR)/amule-ClientCredits.Tpo"; exit 1; fi
@@ -3881,6 +3902,20 @@ amuled-UPnPBase.obj: UPnPBase.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-UPnPBase.obj `if test -f 'UPnPBase.cpp'; then $(CYGPATH_W) 'UPnPBase.cpp'; else $(CYGPATH_W) '$(srcdir)/UPnPBase.cpp'; fi`
 
+amuled-amuleAppCommon.o: amuleAppCommon.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-amuleAppCommon.o -MD -MP -MF "$(DEPDIR)/amuled-amuleAppCommon.Tpo" -c -o amuled-amuleAppCommon.o `test -f 'amuleAppCommon.cpp' || echo '$(srcdir)/'`amuleAppCommon.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-amuleAppCommon.Tpo" "$(DEPDIR)/amuled-amuleAppCommon.Po"; else rm -f "$(DEPDIR)/amuled-amuleAppCommon.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='amuleAppCommon.cpp' object='amuled-amuleAppCommon.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-amuleAppCommon.o `test -f 'amuleAppCommon.cpp' || echo '$(srcdir)/'`amuleAppCommon.cpp
+
+amuled-amuleAppCommon.obj: amuleAppCommon.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-amuleAppCommon.obj -MD -MP -MF "$(DEPDIR)/amuled-amuleAppCommon.Tpo" -c -o amuled-amuleAppCommon.obj `if test -f 'amuleAppCommon.cpp'; then $(CYGPATH_W) 'amuleAppCommon.cpp'; else $(CYGPATH_W) '$(srcdir)/amuleAppCommon.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-amuleAppCommon.Tpo" "$(DEPDIR)/amuled-amuleAppCommon.Po"; else rm -f "$(DEPDIR)/amuled-amuleAppCommon.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='amuleAppCommon.cpp' object='amuled-amuleAppCommon.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-amuleAppCommon.obj `if test -f 'amuleAppCommon.cpp'; then $(CYGPATH_W) 'amuleAppCommon.cpp'; else $(CYGPATH_W) '$(srcdir)/amuleAppCommon.cpp'; fi`
+
 amuled-ClientCredits.o: ClientCredits.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-ClientCredits.o -MD -MP -MF "$(DEPDIR)/amuled-ClientCredits.Tpo" -c -o amuled-ClientCredits.o `test -f 'ClientCredits.cpp' || echo '$(srcdir)/'`ClientCredits.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-ClientCredits.Tpo" "$(DEPDIR)/amuled-ClientCredits.Po"; else rm -f "$(DEPDIR)/amuled-ClientCredits.Tpo"; exit 1; fi
@@ -4524,6 +4559,20 @@ amulegui-IP2Country.obj: IP2Country.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IP2Country.cpp' object='amulegui-IP2Country.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-IP2Country.obj `if test -f 'IP2Country.cpp'; then $(CYGPATH_W) 'IP2Country.cpp'; else $(CYGPATH_W) '$(srcdir)/IP2Country.cpp'; fi`
+
+amulegui-amuleAppCommon.o: amuleAppCommon.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-amuleAppCommon.o -MD -MP -MF "$(DEPDIR)/amulegui-amuleAppCommon.Tpo" -c -o amulegui-amuleAppCommon.o `test -f 'amuleAppCommon.cpp' || echo '$(srcdir)/'`amuleAppCommon.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amulegui-amuleAppCommon.Tpo" "$(DEPDIR)/amulegui-amuleAppCommon.Po"; else rm -f "$(DEPDIR)/amulegui-amuleAppCommon.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='amuleAppCommon.cpp' object='amulegui-amuleAppCommon.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-amuleAppCommon.o `test -f 'amuleAppCommon.cpp' || echo '$(srcdir)/'`amuleAppCommon.cpp
+
+amulegui-amuleAppCommon.obj: amuleAppCommon.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-amuleAppCommon.obj -MD -MP -MF "$(DEPDIR)/amulegui-amuleAppCommon.Tpo" -c -o amulegui-amuleAppCommon.obj `if test -f 'amuleAppCommon.cpp'; then $(CYGPATH_W) 'amuleAppCommon.cpp'; else $(CYGPATH_W) '$(srcdir)/amuleAppCommon.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amulegui-amuleAppCommon.Tpo" "$(DEPDIR)/amulegui-amuleAppCommon.Po"; else rm -f "$(DEPDIR)/amulegui-amuleAppCommon.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='amuleAppCommon.cpp' object='amulegui-amuleAppCommon.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-amuleAppCommon.obj `if test -f 'amuleAppCommon.cpp'; then $(CYGPATH_W) 'amuleAppCommon.cpp'; else $(CYGPATH_W) '$(srcdir)/amuleAppCommon.cpp'; fi`
 
 amulegui-ClientCredits.o: ClientCredits.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-ClientCredits.o -MD -MP -MF "$(DEPDIR)/amulegui-ClientCredits.Tpo" -c -o amulegui-ClientCredits.o `test -f 'ClientCredits.cpp' || echo '$(srcdir)/'`ClientCredits.cpp; \

@@ -521,7 +521,7 @@ public:
 	//
 	void StopUDPRequests();
 	void AddFileLinkToDownload(CED2KFileLink*, uint8);
-	bool AddLink(const wxString &link, int category = 0);
+	bool AddLink(const wxString &link, uint8 category = 0);
 	void UnsetCompletedFilesExist();
 	void ResetCatParts(int cat);
 	void AddSearchToDownload(CSearchFile* toadd, uint8 category);
@@ -666,7 +666,7 @@ public:
 	uint32 GetPeakConnections() { return m_peak_connections; }
 };
 
-class CamuleRemoteGuiApp : public wxApp, public CamuleGuiBase {
+class CamuleRemoteGuiApp : public wxApp, public CamuleGuiBase, public CamuleAppCommon {
 	wxTimer*	poll_timer;
 	bool		m_skipConnectionDialog;
 	wxString	m_geom_string;
@@ -724,9 +724,6 @@ public:
 	bool AddServer(CServer *srv, bool fromUser = false);
 
 	uint32 GetPublicIP();
-	wxString CreateMagnetLink(const CAbstractFile *f);
-	wxString CreateED2kLink(const CAbstractFile* f, bool add_source = false, bool use_hostname = false, bool addcryptoptions = false);
-	wxString CreateED2kAICHLink(const CKnownFile* f);
 
 	wxString GetLog(bool reset = false);
 	wxString GetServerLog(bool reset = false);
