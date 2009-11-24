@@ -252,7 +252,8 @@ am__DEPENDENCIES_4 = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
 am__objects_7 = amulecmd-OtherFunctions.$(OBJEXT) \
 	amulecmd-NetworkFunctions.$(OBJEXT)
 am_amulecmd_OBJECTS = amulecmd-TextClient.$(OBJEXT) \
-	amulecmd-ExternalConnector.$(OBJEXT) $(am__objects_7)
+	amulecmd-ExternalConnector.$(OBJEXT) \
+	amulecmd-LoggerConsole.$(OBJEXT) $(am__objects_7)
 @NEED_RC_TRUE@nodist_amulecmd_OBJECTS = amulecmd-version.$(OBJEXT)
 amulecmd_OBJECTS = $(am_amulecmd_OBJECTS) $(nodist_amulecmd_OBJECTS)
 am__amuled_SOURCES_DIST = amuled.cpp Timer.cpp RC4Encrypt.cpp \
@@ -840,6 +841,7 @@ ed2k_CPPFLAGS = $(AM_CPPFLAGS) -DUSE_STD_STRING
 amulecmd_SOURCES = \
 	TextClient.cpp \
 	ExternalConnector.cpp \
+	LoggerConsole.cpp \
 	$(remote_common_sources)
 
 amulecmd_DEPENDENCIES = $(remote_common_deps)
@@ -1179,6 +1181,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-amuleAppCommon.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-amuleDlg.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulecmd-ExternalConnector.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulecmd-LoggerConsole.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulecmd-NetworkFunctions.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulecmd-OtherFunctions.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulecmd-TextClient.Po@am__quote@
@@ -3229,6 +3232,20 @@ amulecmd-ExternalConnector.obj: ExternalConnector.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ExternalConnector.cpp' object='amulecmd-ExternalConnector.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulecmd_CPPFLAGS) $(CPPFLAGS) $(amulecmd_CXXFLAGS) $(CXXFLAGS) -c -o amulecmd-ExternalConnector.obj `if test -f 'ExternalConnector.cpp'; then $(CYGPATH_W) 'ExternalConnector.cpp'; else $(CYGPATH_W) '$(srcdir)/ExternalConnector.cpp'; fi`
+
+amulecmd-LoggerConsole.o: LoggerConsole.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulecmd_CPPFLAGS) $(CPPFLAGS) $(amulecmd_CXXFLAGS) $(CXXFLAGS) -MT amulecmd-LoggerConsole.o -MD -MP -MF "$(DEPDIR)/amulecmd-LoggerConsole.Tpo" -c -o amulecmd-LoggerConsole.o `test -f 'LoggerConsole.cpp' || echo '$(srcdir)/'`LoggerConsole.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amulecmd-LoggerConsole.Tpo" "$(DEPDIR)/amulecmd-LoggerConsole.Po"; else rm -f "$(DEPDIR)/amulecmd-LoggerConsole.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='LoggerConsole.cpp' object='amulecmd-LoggerConsole.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulecmd_CPPFLAGS) $(CPPFLAGS) $(amulecmd_CXXFLAGS) $(CXXFLAGS) -c -o amulecmd-LoggerConsole.o `test -f 'LoggerConsole.cpp' || echo '$(srcdir)/'`LoggerConsole.cpp
+
+amulecmd-LoggerConsole.obj: LoggerConsole.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulecmd_CPPFLAGS) $(CPPFLAGS) $(amulecmd_CXXFLAGS) $(CXXFLAGS) -MT amulecmd-LoggerConsole.obj -MD -MP -MF "$(DEPDIR)/amulecmd-LoggerConsole.Tpo" -c -o amulecmd-LoggerConsole.obj `if test -f 'LoggerConsole.cpp'; then $(CYGPATH_W) 'LoggerConsole.cpp'; else $(CYGPATH_W) '$(srcdir)/LoggerConsole.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amulecmd-LoggerConsole.Tpo" "$(DEPDIR)/amulecmd-LoggerConsole.Po"; else rm -f "$(DEPDIR)/amulecmd-LoggerConsole.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='LoggerConsole.cpp' object='amulecmd-LoggerConsole.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulecmd_CPPFLAGS) $(CPPFLAGS) $(amulecmd_CXXFLAGS) $(CXXFLAGS) -c -o amulecmd-LoggerConsole.obj `if test -f 'LoggerConsole.cpp'; then $(CYGPATH_W) 'LoggerConsole.cpp'; else $(CYGPATH_W) '$(srcdir)/LoggerConsole.cpp'; fi`
 
 amulecmd-OtherFunctions.o: OtherFunctions.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulecmd_CPPFLAGS) $(CPPFLAGS) $(amulecmd_CXXFLAGS) $(CXXFLAGS) -MT amulecmd-OtherFunctions.o -MD -MP -MF "$(DEPDIR)/amulecmd-OtherFunctions.Tpo" -c -o amulecmd-OtherFunctions.o `test -f 'OtherFunctions.cpp' || echo '$(srcdir)/'`OtherFunctions.cpp; \
