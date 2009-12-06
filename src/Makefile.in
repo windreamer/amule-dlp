@@ -158,10 +158,10 @@ am__amule_SOURCES_DIST = CaptchaDialog.cpp CaptchaGenerator.cpp \
 	ListenSocket.cpp MuleUDPSocket.cpp PartFileConvert.cpp \
 	SearchFile.cpp SearchList.cpp ServerConnect.cpp ServerList.cpp \
 	ServerSocket.cpp ServerUDPSocket.cpp SharedFileList.cpp \
-	ThreadTasks.cpp UploadBandwidthThrottler.cpp UploadClient.cpp \
-	UploadQueue.cpp kademlia/kademlia/Indexed.cpp \
-	kademlia/kademlia/Kademlia.cpp kademlia/kademlia/Prefs.cpp \
-	kademlia/kademlia/Search.cpp \
+	TerminationProcessAmuleweb.cpp ThreadTasks.cpp \
+	UploadBandwidthThrottler.cpp UploadClient.cpp UploadQueue.cpp \
+	kademlia/kademlia/Indexed.cpp kademlia/kademlia/Kademlia.cpp \
+	kademlia/kademlia/Prefs.cpp kademlia/kademlia/Search.cpp \
 	kademlia/kademlia/UDPFirewallTester.cpp \
 	kademlia/net/KademliaUDPListener.cpp \
 	kademlia/net/PacketTracking.cpp kademlia/routing/Contact.cpp \
@@ -178,8 +178,8 @@ am__amule_SOURCES_DIST = CaptchaDialog.cpp CaptchaGenerator.cpp \
 	KnownFile.cpp GapList.cpp GetTickCount.cpp GuiEvents.cpp \
 	Logger.cpp PartFile.cpp Preferences.cpp Proxy.cpp Server.cpp \
 	Statistics.cpp StatTree.cpp SHAHashSet.cpp \
-	TerminationProcess.cpp TerminationProcessAmuleweb.cpp \
-	UserEvents.cpp OtherFunctions.cpp NetworkFunctions.cpp
+	TerminationProcess.cpp UserEvents.cpp OtherFunctions.cpp \
+	NetworkFunctions.cpp
 @ENABLE_UPNP_TRUE@am__objects_1 = amule-UPnPBase.$(OBJEXT)
 am__objects_2 = amule-RC4Encrypt.$(OBJEXT) amule-amule.$(OBJEXT) \
 	amule-BaseClient.$(OBJEXT) amule-ClientList.$(OBJEXT) \
@@ -199,6 +199,7 @@ am__objects_2 = amule-RC4Encrypt.$(OBJEXT) amule-amule.$(OBJEXT) \
 	amule-SearchList.$(OBJEXT) amule-ServerConnect.$(OBJEXT) \
 	amule-ServerList.$(OBJEXT) amule-ServerSocket.$(OBJEXT) \
 	amule-ServerUDPSocket.$(OBJEXT) amule-SharedFileList.$(OBJEXT) \
+	amule-TerminationProcessAmuleweb.$(OBJEXT) \
 	amule-ThreadTasks.$(OBJEXT) \
 	amule-UploadBandwidthThrottler.$(OBJEXT) \
 	amule-UploadClient.$(OBJEXT) amule-UploadQueue.$(OBJEXT) \
@@ -235,7 +236,6 @@ am__objects_6 = amule-amuleAppCommon.$(OBJEXT) \
 	amule-Proxy.$(OBJEXT) amule-Server.$(OBJEXT) \
 	amule-Statistics.$(OBJEXT) amule-StatTree.$(OBJEXT) \
 	amule-SHAHashSet.$(OBJEXT) amule-TerminationProcess.$(OBJEXT) \
-	amule-TerminationProcessAmuleweb.$(OBJEXT) \
 	amule-UserEvents.$(OBJEXT) $(am__objects_5)
 am_amule_OBJECTS = amule-CaptchaDialog.$(OBJEXT) \
 	amule-CaptchaGenerator.$(OBJEXT) $(am__objects_2) \
@@ -266,10 +266,10 @@ am__amuled_SOURCES_DIST = amuled.cpp Timer.cpp RC4Encrypt.cpp \
 	ListenSocket.cpp MuleUDPSocket.cpp PartFileConvert.cpp \
 	SearchFile.cpp SearchList.cpp ServerConnect.cpp ServerList.cpp \
 	ServerSocket.cpp ServerUDPSocket.cpp SharedFileList.cpp \
-	ThreadTasks.cpp UploadBandwidthThrottler.cpp UploadClient.cpp \
-	UploadQueue.cpp kademlia/kademlia/Indexed.cpp \
-	kademlia/kademlia/Kademlia.cpp kademlia/kademlia/Prefs.cpp \
-	kademlia/kademlia/Search.cpp \
+	TerminationProcessAmuleweb.cpp ThreadTasks.cpp \
+	UploadBandwidthThrottler.cpp UploadClient.cpp UploadQueue.cpp \
+	kademlia/kademlia/Indexed.cpp kademlia/kademlia/Kademlia.cpp \
+	kademlia/kademlia/Prefs.cpp kademlia/kademlia/Search.cpp \
 	kademlia/kademlia/UDPFirewallTester.cpp \
 	kademlia/net/KademliaUDPListener.cpp \
 	kademlia/net/PacketTracking.cpp kademlia/routing/Contact.cpp \
@@ -278,8 +278,8 @@ am__amuled_SOURCES_DIST = amuled.cpp Timer.cpp RC4Encrypt.cpp \
 	KnownFile.cpp GapList.cpp GetTickCount.cpp GuiEvents.cpp \
 	Logger.cpp PartFile.cpp Preferences.cpp Proxy.cpp Server.cpp \
 	Statistics.cpp StatTree.cpp SHAHashSet.cpp \
-	TerminationProcess.cpp TerminationProcessAmuleweb.cpp \
-	UserEvents.cpp OtherFunctions.cpp NetworkFunctions.cpp
+	TerminationProcess.cpp UserEvents.cpp OtherFunctions.cpp \
+	NetworkFunctions.cpp
 @ENABLE_UPNP_TRUE@am__objects_8 = amuled-UPnPBase.$(OBJEXT)
 am__objects_9 = amuled-RC4Encrypt.$(OBJEXT) amuled-amule.$(OBJEXT) \
 	amuled-BaseClient.$(OBJEXT) amuled-ClientList.$(OBJEXT) \
@@ -299,7 +299,9 @@ am__objects_9 = amuled-RC4Encrypt.$(OBJEXT) amuled-amule.$(OBJEXT) \
 	amuled-SearchList.$(OBJEXT) amuled-ServerConnect.$(OBJEXT) \
 	amuled-ServerList.$(OBJEXT) amuled-ServerSocket.$(OBJEXT) \
 	amuled-ServerUDPSocket.$(OBJEXT) \
-	amuled-SharedFileList.$(OBJEXT) amuled-ThreadTasks.$(OBJEXT) \
+	amuled-SharedFileList.$(OBJEXT) \
+	amuled-TerminationProcessAmuleweb.$(OBJEXT) \
+	amuled-ThreadTasks.$(OBJEXT) \
 	amuled-UploadBandwidthThrottler.$(OBJEXT) \
 	amuled-UploadClient.$(OBJEXT) amuled-UploadQueue.$(OBJEXT) \
 	amuled-Indexed.$(OBJEXT) amuled-Kademlia.$(OBJEXT) \
@@ -320,7 +322,6 @@ am__objects_11 = amuled-amuleAppCommon.$(OBJEXT) \
 	amuled-Statistics.$(OBJEXT) amuled-StatTree.$(OBJEXT) \
 	amuled-SHAHashSet.$(OBJEXT) \
 	amuled-TerminationProcess.$(OBJEXT) \
-	amuled-TerminationProcessAmuleweb.$(OBJEXT) \
 	amuled-UserEvents.$(OBJEXT) $(am__objects_10)
 am_amuled_OBJECTS = amuled-amuled.$(OBJEXT) amuled-Timer.$(OBJEXT) \
 	$(am__objects_9) $(am__objects_11)
@@ -339,9 +340,8 @@ am__amulegui_SOURCES_DIST = amule-remote-gui.cpp amule-gui.cpp \
 	KnownFile.cpp GapList.cpp GetTickCount.cpp GuiEvents.cpp \
 	Logger.cpp PartFile.cpp Preferences.cpp Proxy.cpp Server.cpp \
 	Statistics.cpp StatTree.cpp SHAHashSet.cpp \
-	TerminationProcess.cpp TerminationProcessAmuleweb.cpp \
-	UserEvents.cpp OtherFunctions.cpp NetworkFunctions.cpp \
-	HTTPDownload.cpp
+	TerminationProcess.cpp UserEvents.cpp OtherFunctions.cpp \
+	NetworkFunctions.cpp HTTPDownload.cpp
 @ENABLE_IP2COUNTRY_TRUE@am__objects_12 =  \
 @ENABLE_IP2COUNTRY_TRUE@	amulegui-IP2Country.$(OBJEXT)
 am__objects_13 = amulegui-amule-gui.$(OBJEXT) \
@@ -376,7 +376,6 @@ am__objects_15 = amulegui-amuleAppCommon.$(OBJEXT) \
 	amulegui-Server.$(OBJEXT) amulegui-Statistics.$(OBJEXT) \
 	amulegui-StatTree.$(OBJEXT) amulegui-SHAHashSet.$(OBJEXT) \
 	amulegui-TerminationProcess.$(OBJEXT) \
-	amulegui-TerminationProcessAmuleweb.$(OBJEXT) \
 	amulegui-UserEvents.$(OBJEXT) $(am__objects_14)
 @ENABLE_IP2COUNTRY_TRUE@am__objects_16 =  \
 @ENABLE_IP2COUNTRY_TRUE@	amulegui-HTTPDownload.$(OBJEXT)
@@ -734,10 +733,10 @@ core_sources = RC4Encrypt.cpp amule.cpp BaseClient.cpp ClientList.cpp \
 	ListenSocket.cpp MuleUDPSocket.cpp PartFileConvert.cpp \
 	SearchFile.cpp SearchList.cpp ServerConnect.cpp ServerList.cpp \
 	ServerSocket.cpp ServerUDPSocket.cpp SharedFileList.cpp \
-	ThreadTasks.cpp UploadBandwidthThrottler.cpp UploadClient.cpp \
-	UploadQueue.cpp kademlia/kademlia/Indexed.cpp \
-	kademlia/kademlia/Kademlia.cpp kademlia/kademlia/Prefs.cpp \
-	kademlia/kademlia/Search.cpp \
+	TerminationProcessAmuleweb.cpp ThreadTasks.cpp \
+	UploadBandwidthThrottler.cpp UploadClient.cpp UploadQueue.cpp \
+	kademlia/kademlia/Indexed.cpp kademlia/kademlia/Kademlia.cpp \
+	kademlia/kademlia/Prefs.cpp kademlia/kademlia/Search.cpp \
 	kademlia/kademlia/UDPFirewallTester.cpp \
 	kademlia/net/KademliaUDPListener.cpp \
 	kademlia/net/PacketTracking.cpp kademlia/routing/Contact.cpp \
@@ -772,7 +771,6 @@ common_sources = \
 	StatTree.cpp \
 	SHAHashSet.cpp \
 	TerminationProcess.cpp \
-	TerminationProcessAmuleweb.cpp \
 	UserEvents.cpp \
 	$(remote_common_sources)
 
@@ -1292,7 +1290,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-Statistics.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-StatisticsDlg.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-TerminationProcess.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-TerminationProcessAmuleweb.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-TransferWnd.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-UserEvents.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-amule-gui.Po@am__quote@
@@ -2365,6 +2362,20 @@ amule-SharedFileList.obj: SharedFileList.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-SharedFileList.obj `if test -f 'SharedFileList.cpp'; then $(CYGPATH_W) 'SharedFileList.cpp'; else $(CYGPATH_W) '$(srcdir)/SharedFileList.cpp'; fi`
 
+amule-TerminationProcessAmuleweb.o: TerminationProcessAmuleweb.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-TerminationProcessAmuleweb.o -MD -MP -MF "$(DEPDIR)/amule-TerminationProcessAmuleweb.Tpo" -c -o amule-TerminationProcessAmuleweb.o `test -f 'TerminationProcessAmuleweb.cpp' || echo '$(srcdir)/'`TerminationProcessAmuleweb.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-TerminationProcessAmuleweb.Tpo" "$(DEPDIR)/amule-TerminationProcessAmuleweb.Po"; else rm -f "$(DEPDIR)/amule-TerminationProcessAmuleweb.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TerminationProcessAmuleweb.cpp' object='amule-TerminationProcessAmuleweb.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-TerminationProcessAmuleweb.o `test -f 'TerminationProcessAmuleweb.cpp' || echo '$(srcdir)/'`TerminationProcessAmuleweb.cpp
+
+amule-TerminationProcessAmuleweb.obj: TerminationProcessAmuleweb.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-TerminationProcessAmuleweb.obj -MD -MP -MF "$(DEPDIR)/amule-TerminationProcessAmuleweb.Tpo" -c -o amule-TerminationProcessAmuleweb.obj `if test -f 'TerminationProcessAmuleweb.cpp'; then $(CYGPATH_W) 'TerminationProcessAmuleweb.cpp'; else $(CYGPATH_W) '$(srcdir)/TerminationProcessAmuleweb.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-TerminationProcessAmuleweb.Tpo" "$(DEPDIR)/amule-TerminationProcessAmuleweb.Po"; else rm -f "$(DEPDIR)/amule-TerminationProcessAmuleweb.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TerminationProcessAmuleweb.cpp' object='amule-TerminationProcessAmuleweb.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-TerminationProcessAmuleweb.obj `if test -f 'TerminationProcessAmuleweb.cpp'; then $(CYGPATH_W) 'TerminationProcessAmuleweb.cpp'; else $(CYGPATH_W) '$(srcdir)/TerminationProcessAmuleweb.cpp'; fi`
+
 amule-ThreadTasks.o: ThreadTasks.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-ThreadTasks.o -MD -MP -MF "$(DEPDIR)/amule-ThreadTasks.Tpo" -c -o amule-ThreadTasks.o `test -f 'ThreadTasks.cpp' || echo '$(srcdir)/'`ThreadTasks.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-ThreadTasks.Tpo" "$(DEPDIR)/amule-ThreadTasks.Po"; else rm -f "$(DEPDIR)/amule-ThreadTasks.Tpo"; exit 1; fi
@@ -3149,20 +3160,6 @@ amule-TerminationProcess.obj: TerminationProcess.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-TerminationProcess.obj `if test -f 'TerminationProcess.cpp'; then $(CYGPATH_W) 'TerminationProcess.cpp'; else $(CYGPATH_W) '$(srcdir)/TerminationProcess.cpp'; fi`
 
-amule-TerminationProcessAmuleweb.o: TerminationProcessAmuleweb.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-TerminationProcessAmuleweb.o -MD -MP -MF "$(DEPDIR)/amule-TerminationProcessAmuleweb.Tpo" -c -o amule-TerminationProcessAmuleweb.o `test -f 'TerminationProcessAmuleweb.cpp' || echo '$(srcdir)/'`TerminationProcessAmuleweb.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-TerminationProcessAmuleweb.Tpo" "$(DEPDIR)/amule-TerminationProcessAmuleweb.Po"; else rm -f "$(DEPDIR)/amule-TerminationProcessAmuleweb.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TerminationProcessAmuleweb.cpp' object='amule-TerminationProcessAmuleweb.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-TerminationProcessAmuleweb.o `test -f 'TerminationProcessAmuleweb.cpp' || echo '$(srcdir)/'`TerminationProcessAmuleweb.cpp
-
-amule-TerminationProcessAmuleweb.obj: TerminationProcessAmuleweb.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-TerminationProcessAmuleweb.obj -MD -MP -MF "$(DEPDIR)/amule-TerminationProcessAmuleweb.Tpo" -c -o amule-TerminationProcessAmuleweb.obj `if test -f 'TerminationProcessAmuleweb.cpp'; then $(CYGPATH_W) 'TerminationProcessAmuleweb.cpp'; else $(CYGPATH_W) '$(srcdir)/TerminationProcessAmuleweb.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-TerminationProcessAmuleweb.Tpo" "$(DEPDIR)/amule-TerminationProcessAmuleweb.Po"; else rm -f "$(DEPDIR)/amule-TerminationProcessAmuleweb.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TerminationProcessAmuleweb.cpp' object='amule-TerminationProcessAmuleweb.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-TerminationProcessAmuleweb.obj `if test -f 'TerminationProcessAmuleweb.cpp'; then $(CYGPATH_W) 'TerminationProcessAmuleweb.cpp'; else $(CYGPATH_W) '$(srcdir)/TerminationProcessAmuleweb.cpp'; fi`
-
 amule-UserEvents.o: UserEvents.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-UserEvents.o -MD -MP -MF "$(DEPDIR)/amule-UserEvents.Tpo" -c -o amule-UserEvents.o `test -f 'UserEvents.cpp' || echo '$(srcdir)/'`UserEvents.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-UserEvents.Tpo" "$(DEPDIR)/amule-UserEvents.Po"; else rm -f "$(DEPDIR)/amule-UserEvents.Tpo"; exit 1; fi
@@ -3723,6 +3720,20 @@ amuled-SharedFileList.obj: SharedFileList.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-SharedFileList.obj `if test -f 'SharedFileList.cpp'; then $(CYGPATH_W) 'SharedFileList.cpp'; else $(CYGPATH_W) '$(srcdir)/SharedFileList.cpp'; fi`
 
+amuled-TerminationProcessAmuleweb.o: TerminationProcessAmuleweb.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-TerminationProcessAmuleweb.o -MD -MP -MF "$(DEPDIR)/amuled-TerminationProcessAmuleweb.Tpo" -c -o amuled-TerminationProcessAmuleweb.o `test -f 'TerminationProcessAmuleweb.cpp' || echo '$(srcdir)/'`TerminationProcessAmuleweb.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-TerminationProcessAmuleweb.Tpo" "$(DEPDIR)/amuled-TerminationProcessAmuleweb.Po"; else rm -f "$(DEPDIR)/amuled-TerminationProcessAmuleweb.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TerminationProcessAmuleweb.cpp' object='amuled-TerminationProcessAmuleweb.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-TerminationProcessAmuleweb.o `test -f 'TerminationProcessAmuleweb.cpp' || echo '$(srcdir)/'`TerminationProcessAmuleweb.cpp
+
+amuled-TerminationProcessAmuleweb.obj: TerminationProcessAmuleweb.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-TerminationProcessAmuleweb.obj -MD -MP -MF "$(DEPDIR)/amuled-TerminationProcessAmuleweb.Tpo" -c -o amuled-TerminationProcessAmuleweb.obj `if test -f 'TerminationProcessAmuleweb.cpp'; then $(CYGPATH_W) 'TerminationProcessAmuleweb.cpp'; else $(CYGPATH_W) '$(srcdir)/TerminationProcessAmuleweb.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-TerminationProcessAmuleweb.Tpo" "$(DEPDIR)/amuled-TerminationProcessAmuleweb.Po"; else rm -f "$(DEPDIR)/amuled-TerminationProcessAmuleweb.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TerminationProcessAmuleweb.cpp' object='amuled-TerminationProcessAmuleweb.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-TerminationProcessAmuleweb.obj `if test -f 'TerminationProcessAmuleweb.cpp'; then $(CYGPATH_W) 'TerminationProcessAmuleweb.cpp'; else $(CYGPATH_W) '$(srcdir)/TerminationProcessAmuleweb.cpp'; fi`
+
 amuled-ThreadTasks.o: ThreadTasks.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-ThreadTasks.o -MD -MP -MF "$(DEPDIR)/amuled-ThreadTasks.Tpo" -c -o amuled-ThreadTasks.o `test -f 'ThreadTasks.cpp' || echo '$(srcdir)/'`ThreadTasks.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-ThreadTasks.Tpo" "$(DEPDIR)/amuled-ThreadTasks.Po"; else rm -f "$(DEPDIR)/amuled-ThreadTasks.Tpo"; exit 1; fi
@@ -4142,20 +4153,6 @@ amuled-TerminationProcess.obj: TerminationProcess.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TerminationProcess.cpp' object='amuled-TerminationProcess.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-TerminationProcess.obj `if test -f 'TerminationProcess.cpp'; then $(CYGPATH_W) 'TerminationProcess.cpp'; else $(CYGPATH_W) '$(srcdir)/TerminationProcess.cpp'; fi`
-
-amuled-TerminationProcessAmuleweb.o: TerminationProcessAmuleweb.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-TerminationProcessAmuleweb.o -MD -MP -MF "$(DEPDIR)/amuled-TerminationProcessAmuleweb.Tpo" -c -o amuled-TerminationProcessAmuleweb.o `test -f 'TerminationProcessAmuleweb.cpp' || echo '$(srcdir)/'`TerminationProcessAmuleweb.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-TerminationProcessAmuleweb.Tpo" "$(DEPDIR)/amuled-TerminationProcessAmuleweb.Po"; else rm -f "$(DEPDIR)/amuled-TerminationProcessAmuleweb.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TerminationProcessAmuleweb.cpp' object='amuled-TerminationProcessAmuleweb.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-TerminationProcessAmuleweb.o `test -f 'TerminationProcessAmuleweb.cpp' || echo '$(srcdir)/'`TerminationProcessAmuleweb.cpp
-
-amuled-TerminationProcessAmuleweb.obj: TerminationProcessAmuleweb.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-TerminationProcessAmuleweb.obj -MD -MP -MF "$(DEPDIR)/amuled-TerminationProcessAmuleweb.Tpo" -c -o amuled-TerminationProcessAmuleweb.obj `if test -f 'TerminationProcessAmuleweb.cpp'; then $(CYGPATH_W) 'TerminationProcessAmuleweb.cpp'; else $(CYGPATH_W) '$(srcdir)/TerminationProcessAmuleweb.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-TerminationProcessAmuleweb.Tpo" "$(DEPDIR)/amuled-TerminationProcessAmuleweb.Po"; else rm -f "$(DEPDIR)/amuled-TerminationProcessAmuleweb.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TerminationProcessAmuleweb.cpp' object='amuled-TerminationProcessAmuleweb.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-TerminationProcessAmuleweb.obj `if test -f 'TerminationProcessAmuleweb.cpp'; then $(CYGPATH_W) 'TerminationProcessAmuleweb.cpp'; else $(CYGPATH_W) '$(srcdir)/TerminationProcessAmuleweb.cpp'; fi`
 
 amuled-UserEvents.o: UserEvents.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-UserEvents.o -MD -MP -MF "$(DEPDIR)/amuled-UserEvents.Tpo" -c -o amuled-UserEvents.o `test -f 'UserEvents.cpp' || echo '$(srcdir)/'`UserEvents.cpp; \
@@ -4800,20 +4797,6 @@ amulegui-TerminationProcess.obj: TerminationProcess.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TerminationProcess.cpp' object='amulegui-TerminationProcess.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-TerminationProcess.obj `if test -f 'TerminationProcess.cpp'; then $(CYGPATH_W) 'TerminationProcess.cpp'; else $(CYGPATH_W) '$(srcdir)/TerminationProcess.cpp'; fi`
-
-amulegui-TerminationProcessAmuleweb.o: TerminationProcessAmuleweb.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-TerminationProcessAmuleweb.o -MD -MP -MF "$(DEPDIR)/amulegui-TerminationProcessAmuleweb.Tpo" -c -o amulegui-TerminationProcessAmuleweb.o `test -f 'TerminationProcessAmuleweb.cpp' || echo '$(srcdir)/'`TerminationProcessAmuleweb.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amulegui-TerminationProcessAmuleweb.Tpo" "$(DEPDIR)/amulegui-TerminationProcessAmuleweb.Po"; else rm -f "$(DEPDIR)/amulegui-TerminationProcessAmuleweb.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TerminationProcessAmuleweb.cpp' object='amulegui-TerminationProcessAmuleweb.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-TerminationProcessAmuleweb.o `test -f 'TerminationProcessAmuleweb.cpp' || echo '$(srcdir)/'`TerminationProcessAmuleweb.cpp
-
-amulegui-TerminationProcessAmuleweb.obj: TerminationProcessAmuleweb.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-TerminationProcessAmuleweb.obj -MD -MP -MF "$(DEPDIR)/amulegui-TerminationProcessAmuleweb.Tpo" -c -o amulegui-TerminationProcessAmuleweb.obj `if test -f 'TerminationProcessAmuleweb.cpp'; then $(CYGPATH_W) 'TerminationProcessAmuleweb.cpp'; else $(CYGPATH_W) '$(srcdir)/TerminationProcessAmuleweb.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amulegui-TerminationProcessAmuleweb.Tpo" "$(DEPDIR)/amulegui-TerminationProcessAmuleweb.Po"; else rm -f "$(DEPDIR)/amulegui-TerminationProcessAmuleweb.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TerminationProcessAmuleweb.cpp' object='amulegui-TerminationProcessAmuleweb.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-TerminationProcessAmuleweb.obj `if test -f 'TerminationProcessAmuleweb.cpp'; then $(CYGPATH_W) 'TerminationProcessAmuleweb.cpp'; else $(CYGPATH_W) '$(srcdir)/TerminationProcessAmuleweb.cpp'; fi`
 
 amulegui-UserEvents.o: UserEvents.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-UserEvents.o -MD -MP -MF "$(DEPDIR)/amulegui-UserEvents.Tpo" -c -o amulegui-UserEvents.o `test -f 'UserEvents.cpp' || echo '$(srcdir)/'`UserEvents.cpp; \
