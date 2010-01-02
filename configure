@@ -894,6 +894,7 @@ Optional Features:
   --disable-upnp          do not compile UPnP code
   --enable-xas            install xas XChat2 plugin
   --enable-fileview       compile aMule file viewer for console (EXPERIMENTAL)
+  --enable-static         produce a statically linked executable
   --enable-geoip          compile with GeoIP IP2Country library
   --enable-mmap           enable using mapped memory if supported
   --disable-rpath         do not hardcode runtime library paths
@@ -901,7 +902,6 @@ Optional Features:
   --disable-debug         disable additional debugging output
   --enable-profile        enable code profiling
   --enable-optimize       enable code optimization
-  --enable-static         produce a statically linked executable
   --enable-ccache         enable ccache support for fast recompilation
 
 Optional Packages:
@@ -5629,6 +5629,18 @@ else
   FILEVIEW_FALSE=
 fi
 
+
+
+# Run all the tests with static linkage if we want a statically linked binary
+# Check whether --enable-static or --disable-static was given.
+if test "${enable_static+set}" = set; then
+  enableval="$enable_static"
+
+fi;
+
+if test ${enable_static:-no} = yes; then
+  LDFLAGS="$LDFLAGS -static"
+fi
 
 
 # Default is yes, because they're most likely compatible.
@@ -18372,12 +18384,6 @@ if test "${enable_optimize+set}" = set; then
 
 fi;
 
-	# Check whether --enable-static or --disable-static was given.
-if test "${enable_static+set}" = set; then
-  enableval="$enable_static"
-
-fi;
-
 
 	if test ${enable_debug:-yes} = yes; then
 
@@ -18431,10 +18437,6 @@ fi
 	MULECFLAGS="$MULECFLAGS -O2"
 	MULECXXFLAGS="$MULECXXFLAGS -O2"
 
-fi
-
-	if test ${enable_static:-no} = yes; then
-  MULELDFLAGS="$MULELDFLAGS -static"
 fi
 
 
