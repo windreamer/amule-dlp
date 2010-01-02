@@ -7575,6 +7575,19 @@ echo "$as_me: error:
 
 fi
 
+	if test "${WX_VERSION_FULL}" = "2.9.0"; then
+  { { echo "$as_me:$LINENO: error:
+		This version of wxWidgets is known to not work with aMule.
+		Please upgrade to a newer version.
+		" >&5
+echo "$as_me: error:
+		This version of wxWidgets is known to not work with aMule.
+		Please upgrade to a newer version.
+		" >&2;}
+   { (exit 1); exit 1; }; }
+
+fi
+
 
         WX_VERSION="$WX_VERSION_MAJOR""$WX_VERSION_MINOR"
 
