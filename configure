@@ -891,11 +891,11 @@ Optional Features:
   --disable-ed2k          don't compile aMule ed2k links handler
   --enable-alc            compile aMuleLinkCreator GUI version
   --enable-alcc           compile aMuleLinkCreator for console
-  --disable-upnp          do not compile UPnP code
   --enable-xas            install xas XChat2 plugin
   --enable-fileview       compile aMule file viewer for console (EXPERIMENTAL)
   --enable-static         produce a statically linked executable
   --enable-geoip          compile with GeoIP IP2Country library
+  --disable-upnp          do not compile UPnP code
   --enable-mmap           enable using mapped memory if supported
   --disable-rpath         do not hardcode runtime library paths
   --disable-nls           do not use Native Language Support
@@ -5592,12 +5592,6 @@ else
 fi
 
 
-# Check whether --enable-upnp or --disable-upnp was given.
-if test "${enable_upnp+set}" = set; then
-  enableval="$enable_upnp"
-
-fi;
-
 # Check whether --enable-xas or --disable-xas was given.
 if test "${enable_xas+set}" = set; then
   enableval="$enable_xas"
@@ -5660,6 +5654,7 @@ fi;
 # to avoid losing too much time
 
 # Check for zlib
+if test ${enable_monolithic:-yes} = yes -o ${enable_amule_daemon:-no} = yes -o ${enable_amulecmd:-no} = yes -o ${enable_webserver:-no} = yes -o ${enable_amule_gui:-no} = yes ; then
 
 
 # Check whether --with-zlib or --without-zlib was given.
@@ -5889,6 +5884,8 @@ echo "$as_me: error: zlib >= 1.1.4 is required for aMule" >&2;}
 fi
 
 
+
+fi
 
 
 if test ${enable_cas:-no} = yes; then
@@ -6464,10 +6461,7 @@ _mule_has_warnings=yes
 fi
 
 
-else
-  GDLIB_VERSION="not_needed"
 fi
-
 
 
 if test ${enable_webserver:-no} = yes; then
@@ -6637,8 +6631,6 @@ fi
 
 
 
-else
-  LIBPNG_VERSION="not_needed"
 fi
 
 
@@ -6649,9 +6641,15 @@ if perl -e "require File::Copy" 2>/dev/null; then
   echo "$as_me:$LINENO: result: ok" >&5
 echo "${ECHO_T}ok" >&6
 else
-  { { echo "$as_me:$LINENO: error: File::Copy perl module is required" >&5
-echo "$as_me: error: File::Copy perl module is required" >&2;}
-   { (exit 1); exit 1; }; }
+  { echo "$as_me:$LINENO: WARNING:
+        File::Copy perl module is required by the mldonkey_importer script.
+        If you want to use this script please install File::Copy from CPAN." >&5
+echo "$as_me: WARNING:
+        File::Copy perl module is required by the mldonkey_importer script.
+        If you want to use this script please install File::Copy from CPAN." >&2;}
+_mule_warning_2=yes
+_mule_has_warnings=yes
+
 fi
 
 
@@ -6664,6 +6662,7 @@ fi
 
 
 # Check for GeoIP (required for IP2Country capability)
+if test ${enable_monolithic:-yes} = yes -o ${enable_amule_gui:-no} = yes ; then
 
 	# Check whether --enable-geoip or --disable-geoip was given.
 if test "${enable_geoip+set}" = set; then
@@ -7042,7 +7041,7 @@ sed 's/^/| /' conftest.$ac_ext >&5
 echo "$as_me: WARNING:
         Cannot link GeoIP statically, because your linker ($LD) does not
         support it." >&2;}
-_mule_warning_2=yes
+_mule_warning_3=yes
 _mule_has_warnings=yes
 
 
@@ -7065,7 +7064,7 @@ else
 echo "$as_me: WARNING:
         GeoIP support has been disabled because the GeoIP libraries were not
         found" >&2;}
-_mule_warning_3=yes
+_mule_warning_4=yes
 _mule_has_warnings=yes
 
 
@@ -7081,7 +7080,7 @@ else
 echo "$as_me: WARNING:
         GeoIP support has been disabled because the GeoIP header files were
         not found" >&2;}
-_mule_warning_4=yes
+_mule_warning_5=yes
 _mule_has_warnings=yes
 
 
@@ -7095,8 +7094,11 @@ fi
 fi
 
 
+fi
+
 
 # Check for wx
+if test ${enable_monolithic:-yes} = yes -o ${enable_amule_daemon:-no} = yes -o ${enable_amule_gui:-no} = yes -o ${enable_amulecmd:-no} = yes -o ${enable_webserver:-no} = yes -o ${enable_alc:-no} = yes -o ${enable_alcc:-no} = yes -o ${enable_wxcas:-no} = yes -o ${enable_fileview:-no} = yes ; then
 
 
 # Check whether --with-wxdir or --without-wxdir was given.
@@ -7299,14 +7301,17 @@ echo "${ECHO_T}$WX_VERSION" >&6
             echo "[dbg] VERSION: $VERSION, WX_VERSION: $WX_VERSION"
         fi
 
-# Force using a static wxWidgets library if the executable is to be linked statically.
-if test ${enable_static:-no} = yes; then
+	# Force using a static wxWidgets library if the executable is to be linked statically.
+	if test ${enable_static:-no} = yes; then
   WX_SHARED=0
 fi
 
-# Force using a unicode build of the library
-WX_UNICODE=1
-DEBUG=$WX_DEBUG
+	# Force using a unicode build of the library
+	if test ${enable_monolithic:-yes} = yes -o ${enable_amule_daemon:-no} = yes -o ${enable_amule_gui:-no} = yes -o ${enable_amulecmd:-no} = yes -o ${enable_webserver:-no} = yes -o ${enable_fileview:-no} = yes ; then
+  WX_UNICODE=1
+fi
+
+	DEBUG=$WX_DEBUG
 
         if test "$WX_SHARED" = "1" ; then
             WXCONFIG_FLAGS="--static=no "
@@ -7549,15 +7554,15 @@ echo "$as_me: error: $wx_error_message" >&2;}
 
 
 
-if test "$wxWin" != 1; then
-	{ { echo "$as_me:$LINENO: error:
+	if test "$wxWin" != 1; then
+  { { echo "$as_me:$LINENO: error:
 		wxWidgets must be installed on your system but wx-config
 		script couldn't be found. Please check that wx-config is
 		in path or specified by --with-wx-config=path flag, the
 		directory where wxWidgets libraries are installed (returned
 		by 'wx-config --libs' command) is in LD_LIBRARY_PATH or
 		equivalent variable and wxWidgets version is 2.8.8 or above.
-	" >&5
+		" >&5
 echo "$as_me: error:
 		wxWidgets must be installed on your system but wx-config
 		script couldn't be found. Please check that wx-config is
@@ -7565,9 +7570,11 @@ echo "$as_me: error:
 		directory where wxWidgets libraries are installed (returned
 		by 'wx-config --libs' command) is in LD_LIBRARY_PATH or
 		equivalent variable and wxWidgets version is 2.8.8 or above.
-	" >&2;}
+		" >&2;}
    { (exit 1); exit 1; }; }
+
 fi
+
 
         WX_VERSION="$WX_VERSION_MAJOR""$WX_VERSION_MINOR"
 
@@ -7775,11 +7782,14 @@ echo "$as_me: error:
         fi
 
 
-# We also need wxBase
-WX_LIBS=`$WX_CONFIG_WITH_ARGS --libs adv,core,net`
-WXBASE_LIBS=`$WX_CONFIG_WITH_ARGS --libs net`
-WXBASE_CPPFLAGS="$WX_CPPFLAGS -DwxUSE_GUI=0"
+	# We also need wxBase
+	WX_LIBS=`$WX_CONFIG_WITH_ARGS --libs adv,core,net`
+	WXBASE_LIBS=`$WX_CONFIG_WITH_ARGS --libs net`
+	WXBASE_CPPFLAGS="$WX_CPPFLAGS -DwxUSE_GUI=0"
 
+	MULERCFLAGS=`$WX_CONFIG_WITH_ARGS --cflags | $AWK '{ for (i = 1; i <= NF; i++) if (index($i, "-I") != 1 && index($i, "-D") != 1) $i = ""; print }'`
+
+fi
 
 
 if test ${enable_monolithic:-yes} = yes -o ${enable_amule_gui:-no} = yes -o ${enable_wxcas:-no} = yes -o ${enable_alc:-no} = yes ; then
@@ -7802,8 +7812,7 @@ fi
 
 
 if test ${SYS:-unknown} = win32; then
-
-	if test -n "$ac_tool_prefix"; then
+  if test -n "$ac_tool_prefix"; then
   # Extract the first word of "${ac_tool_prefix}windres", so it can be a program name with args.
 set dummy ${ac_tool_prefix}windres; ac_word=$2
 echo "$as_me:$LINENO: checking for $ac_word" >&5
@@ -7883,13 +7892,23 @@ else
   RC="$ac_cv_prog_RC"
 fi
 
-	MULERCFLAGS=`$WX_CONFIG_WITH_ARGS --cflags | $AWK '{ for (i = 1; i <= NF; i++) if (index($i, "-I") != 1 && index($i, "-D") != 1) $i = ""; print }'`
-
 fi
 
 
 
 # Check for libupnp
+# Check whether --enable-upnp or --disable-upnp was given.
+if test "${enable_upnp+set}" = set; then
+  enableval="$enable_upnp"
+
+fi;
+
+if test ${enable_monolithic:-yes} = yes -o ${enable_amule_daemon:-no} = yes ; then
+  :
+else
+  enable_upnp=no
+fi
+
 if test ${enable_upnp:-yes} = yes; then
 
 
@@ -8067,7 +8086,7 @@ else
         UPnP code has been disabled because ${libupnp_error}." >&5
 echo "$as_me: WARNING:
         UPnP code has been disabled because ${libupnp_error}." >&2;}
-_mule_warning_5=yes
+_mule_warning_6=yes
 _mule_has_warnings=yes
 
 
@@ -8080,6 +8099,7 @@ fi
 
 
 # Check for Crypto++
+if test ${enable_monolithic:-yes} = yes -o ${enable_amule_daemon:-no} = yes -o ${enable_amule_gui:-no} = yes -o ${enable_fileview:-no} = yes ; then
 
 
 # Check whether --with-crypto-prefix or --without-crypto-prefix was given.
@@ -8249,8 +8269,11 @@ fi
 
 
 
+fi
 
-ac_ext=cc
+
+if test ${enable_monolithic:-yes} = yes -o ${enable_amule_daemon:-no} = yes -o ${enable_amule_gui:-no} = yes -o ${enable_amulecmd:-no} = yes -o ${enable_webserver:-no} = yes -o ${enable_ed2k:-yes} = yes -o ${enable_alc:-no} = yes -o ${enable_alcc:-no} = yes -o ${enable_wxcas:-no} = yes -o ${enable_fileview:-no} = yes ; then
+  ac_ext=cc
 ac_cpp='$CXXCPP $CPPFLAGS'
 ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
 ac_link='$CXX -o conftest$ac_exeext $CXXFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
@@ -8305,6 +8328,7 @@ rm -f conftest.err conftest.$ac_ext
 	echo "$as_me:$LINENO: result: $GLIBCXX" >&5
 echo "${ECHO_T}$GLIBCXX" >&6
 
+if test ${enable_monolithic:-yes} = yes -o ${enable_amule_daemon:-no} = yes -o ${enable_alc:-no} = yes -o ${enable_alcc:-no} = yes ; then
 
 		mule_backup_CPPFLAGS="$CPPFLAGS"
 	CPPFLAGS="$CPPFLAGS $WX_CPPFLAGS"
@@ -8371,6 +8395,8 @@ rm -f conftest.err conftest.$ac_ext
 
 		CPPFLAGS="$mule_backup_CPPFLAGS"
 
+fi
+
 
 # Check if the compiler is broken, wrt. exceptions.
 
@@ -8388,7 +8414,7 @@ echo "$as_me: WARNING:
         Cross-compilation detected, so exception handling cannot be tested.
         Note that broken exception handling in your compiler may lead to
         unexpected crashes." >&2;}
-_mule_warning_6=yes
+_mule_warning_7=yes
 _mule_has_warnings=yes
 
 
@@ -8525,6 +8551,9 @@ ac_cpp='$CPP $CPPFLAGS'
 ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
 ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
+
+
+fi
 
 
 # Ok, we have all needed libs, now checking for other stuff
@@ -13025,7 +13054,7 @@ echo "$as_me: WARNING:
         configure cannot check whether malloc() and realloc() are GNU libc
         compatible. You have to be ABSOLUTELY sure that they are, otherwise
         run configure with the --without-gnu-malloc switch." >&2;}
-_mule_warning_7=yes
+_mule_warning_8=yes
 _mule_has_warnings=yes
 
 	ac_cv_func_malloc_0_nonnull=yes
@@ -13739,14 +13768,16 @@ fi
 done
 
 
-# Check whether --enable-mmap or --disable-mmap was given.
+if test ${enable_monolithic:-yes} = yes -o ${enable_amule_daemon:-no} = yes ; then
+
+	# Check whether --enable-mmap or --disable-mmap was given.
 if test "${enable_mmap+set}" = set; then
   enableval="$enable_mmap"
 
 fi;
 
 
-if test ${enable_mmap:-no} = yes; then
+	if test ${enable_mmap:-no} = yes; then
 
 
 for ac_header in sys/mman.h
@@ -14429,67 +14460,10 @@ _ACEOF
 fi
 done
 
-	if test $ac_cv_func_sysconf = yes; then
+		if test $ac_cv_func_sysconf = yes; then
 
-		echo "$as_me:$LINENO: checking for pagesize constant for sysconf" >&5
+			echo "$as_me:$LINENO: checking for pagesize constant for sysconf" >&5
 echo $ECHO_N "checking for pagesize constant for sysconf... $ECHO_C" >&6
-		cat >conftest.$ac_ext <<_ACEOF
-
-			/* confdefs.h.  */
-_ACEOF
-cat confdefs.h >>conftest.$ac_ext
-cat >>conftest.$ac_ext <<_ACEOF
-/* end confdefs.h.  */
-
-				#include <unistd.h>
-
-int
-main ()
-{
-
-				return sysconf(_SC_PAGESIZE);
-
-  ;
-  return 0;
-}
-
-_ACEOF
-rm -f conftest.$ac_objext conftest$ac_exeext
-if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
-  (eval $ac_link) 2>conftest.er1
-  ac_status=$?
-  grep -v '^ *+' conftest.er1 >conftest.err
-  rm -f conftest.er1
-  cat conftest.err >&5
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag"
-			 || test ! -s conftest.err'
-  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
-  (eval $ac_try) 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; } &&
-	 { ac_try='test -s conftest$ac_exeext'
-  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
-  (eval $ac_try) 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; }; then
-
-			echo "$as_me:$LINENO: result: _SC_PAGESIZE" >&5
-echo "${ECHO_T}_SC_PAGESIZE" >&6
-
-cat >>confdefs.h <<\_ACEOF
-#define HAVE__SC_PAGESIZE 1
-_ACEOF
-
-
-else
-  echo "$as_me: failed program was:" >&5
-sed 's/^/| /' conftest.$ac_ext >&5
-
-
 			cat >conftest.$ac_ext <<_ACEOF
 
 				/* confdefs.h.  */
@@ -14504,7 +14478,7 @@ int
 main ()
 {
 
-					return sysconf(_SC_PAGE_SIZE);
+					return sysconf(_SC_PAGESIZE);
 
   ;
   return 0;
@@ -14534,7 +14508,64 @@ if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); }; }; then
 
-				echo "$as_me:$LINENO: result: _SC_PAGE_SIZE" >&5
+				echo "$as_me:$LINENO: result: _SC_PAGESIZE" >&5
+echo "${ECHO_T}_SC_PAGESIZE" >&6
+
+cat >>confdefs.h <<\_ACEOF
+#define HAVE__SC_PAGESIZE 1
+_ACEOF
+
+
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+
+				cat >conftest.$ac_ext <<_ACEOF
+
+					/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+
+						#include <unistd.h>
+
+int
+main ()
+{
+
+						return sysconf(_SC_PAGE_SIZE);
+
+  ;
+  return 0;
+}
+
+_ACEOF
+rm -f conftest.$ac_objext conftest$ac_exeext
+if { (eval echo "$as_me:$LINENO: \"$ac_link\"") >&5
+  (eval $ac_link) 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } &&
+	 { ac_try='test -z "$ac_c_werror_flag"
+			 || test ! -s conftest.err'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; } &&
+	 { ac_try='test -s conftest$ac_exeext'
+  { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
+  (eval $ac_try) 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; }; then
+
+					echo "$as_me:$LINENO: result: _SC_PAGE_SIZE" >&5
 echo "${ECHO_T}_SC_PAGE_SIZE" >&6
 
 cat >>confdefs.h <<\_ACEOF
@@ -14547,7 +14578,7 @@ else
 sed 's/^/| /' conftest.$ac_ext >&5
 
 
-				echo "$as_me:$LINENO: result: none" >&5
+					echo "$as_me:$LINENO: result: none" >&5
 echo "${ECHO_T}none" >&6
 
 fi
@@ -14563,11 +14594,13 @@ fi
 
 else
 
-	# fake the result of the test for munmap() for the gettext macros
-	ac_cv_func_munmap=no
+		# fake the result of the test for munmap() for the gettext macros
+		ac_cv_func_munmap=no
 
 fi
 
+
+fi
 
 
 mule_backup_CPPFLAGS="$CPPFLAGS"
@@ -14866,6 +14899,7 @@ fi
 CPPFLAGS="$mule_backup_CPPFLAGS"
 
 # Look for a way to preallocate disk space for files.
+if test ${enable_monolithic:-yes} = yes -o ${enable_amule_daemon:-no} = yes ; then
 
 	echo "$as_me:$LINENO: checking for fallocate" >&5
 echo $ECHO_N "checking for fallocate... $ECHO_C" >&6
@@ -15081,6 +15115,8 @@ echo "${ECHO_T}no" >&6
 fi
 rm -f conftest.err conftest.$ac_objext \
       conftest$ac_exeext conftest.$ac_ext
+
+fi
 
 
 # Checking Native Language Support
@@ -17927,7 +17963,7 @@ fi
 echo "$as_me: WARNING:
         You need to install GNU gettext/gettext-tools to compile aMule with
         i18n support." >&2;}
-_mule_warning_8=yes
+_mule_warning_9=yes
 _mule_has_warnings=yes
 
 fi
@@ -18229,7 +18265,7 @@ echo "${ECHO_T}$result" >&6
 echo "$as_me: WARNING:
         bfd.h not found or unusable, please install binutils development
         package if you are a developer or want to help testing aMule" >&2;}
-_mule_warning_9=yes
+_mule_warning_10=yes
 _mule_has_warnings=yes
 
 fi
@@ -21042,25 +21078,35 @@ echo
 echo "  **** General Libraries and Tools ****"
 echo "  Should ccache support be enabled?                          ${enable_ccache:-no}"
 echo "  Libraries aMule will use to build:"
-wxinfo="$WX_PORT"
-if test $WX_DEBUG -eq 1; then
+if test ${enable_monolithic:-yes} = yes -o ${enable_amule_daemon:-no} = yes -o ${enable_amule_gui:-no} = yes -o ${enable_amulecmd:-no} = yes -o ${enable_webserver:-no} = yes -o ${enable_alc:-no} = yes -o ${enable_alcc:-no} = yes -o ${enable_wxcas:-no} = yes -o ${enable_fileview:-no} = yes ; then
+
+	wxinfo="$WX_PORT"
+	if test $WX_DEBUG -eq 1; then
   wxinfo="$wxinfo,debug"
 fi
 
-if test $WX_SHARED -eq 1; then
+	if test $WX_SHARED -eq 1; then
   wxinfo="$wxinfo,shared"
 else
   wxinfo="$wxinfo,static"
 fi
 
-echo "                                       wxWidgets             ${WX_VERSION_FULL} ($wxinfo)"
-echo "                                       crypto++              ${CRYPTOPP_VERSION_STRING} (${CRYPTOPP_STYLE}, in ${CRYPTOPP_PREFIX})"
-if test -n "$with_libupnp_prefix"; then
-  libupnp_place=" (in $with_libupnp_prefix)"
+	echo "                                       wxWidgets             ${WX_VERSION_FULL} ($wxinfo)"
+
+fi
+
+if test ${enable_monolithic:-yes} = yes -o ${enable_amule_daemon:-no} = yes -o ${enable_amule_gui:-no} = yes -o ${enable_fileview:-no} = yes ; then
+  echo "                                       crypto++              ${CRYPTOPP_VERSION_STRING} (${CRYPTOPP_STYLE}, in ${CRYPTOPP_PREFIX})"
 fi
 
 if test ${enable_upnp:-yes} = yes; then
-  echo "                                       libupnp               ${LIBUPNP_VERSION:-Not detected}${libupnp_place:-}"
+
+	if test -n "$with_libupnp_prefix"; then
+  libupnp_place=" (in $with_libupnp_prefix)"
+fi
+
+	echo "                                       libupnp               ${LIBUPNP_VERSION:-Not detected}${libupnp_place:-}"
+
 fi
 
 if test ${enable_nls:-yes} = yes; then
@@ -21077,23 +21123,31 @@ fi
 
 echo "                                       libintl               $libintl_found"
 fi
-if test -z "${with_geoip_headers:-}${with_geoip_lib:-}"; then
+if test ${enable_geoip:-no} = yes; then
+  if test -z "${with_geoip_headers:-}${with_geoip_lib:-}"; then
   geoip_style=system
 else
   geoip_style=user
 fi
 
-if test ${enable_geoip:-no} = yes; then
+	if test ${enable_monolithic:-yes} = yes -o ${enable_amule_gui:-no} = yes ; then
   echo "                                       libGeoIP              ${geoip_style}"
 fi
 
-if test x$LIBPNG_VERSION != xnot_needed; then
-echo "                                       libpng                ${LIBPNG_VERSION:-Not detected}"
 fi
-if test x$GDLIB_VERSION != xnot_needed; then
-echo "                                       libgd                 ${GDLIB_VERSION:-Not detected}"
+
+if test ${enable_webserver:-no} = yes; then
+  echo "                                       libpng                ${LIBPNG_VERSION:-Not detected}"
 fi
-echo "                                       zlib                  ${ZLIB_VERSION:-Not detected}"
+
+if test ${enable_cas:-no} = yes; then
+  echo "                                       libgd                 ${GDLIB_VERSION:-Not detected}"
+fi
+
+if test ${enable_monolithic:-yes} = yes -o ${enable_amule_daemon:-no} = yes -o ${enable_amulecmd:-no} = yes -o ${enable_webserver:-no} = yes -o ${enable_amule_gui:-no} = yes ; then
+  echo "                                       zlib                  ${ZLIB_VERSION:-Not detected}"
+fi
+
 if test ${_mule_has_warnings:-no} = yes; then
 echo ""
 echo ""
@@ -21123,29 +21177,36 @@ fi
 if test ${_mule_warning_2:-no} = yes; then
 cat <<_MULEEOT
 
-* Cannot link GeoIP statically, because your linker ($LD) does not support it.
+* File::Copy perl module is required by the mldonkey_importer script.
+  If you want to use this script please install File::Copy from CPAN.
 _MULEEOT
 fi
 if test ${_mule_warning_3:-no} = yes; then
 cat <<_MULEEOT
 
-* GeoIP support has been disabled because the GeoIP libraries were not found
+* Cannot link GeoIP statically, because your linker ($LD) does not support it.
 _MULEEOT
 fi
 if test ${_mule_warning_4:-no} = yes; then
+cat <<_MULEEOT
+
+* GeoIP support has been disabled because the GeoIP libraries were not found
+_MULEEOT
+fi
+if test ${_mule_warning_5:-no} = yes; then
 cat <<_MULEEOT
 
 * GeoIP support has been disabled because the GeoIP header files were not
   found
 _MULEEOT
 fi
-if test ${_mule_warning_5:-no} = yes; then
+if test ${_mule_warning_6:-no} = yes; then
 cat <<_MULEEOT
 
 * UPnP code has been disabled because ${libupnp_error}.
 _MULEEOT
 fi
-if test ${_mule_warning_6:-no} = yes; then
+if test ${_mule_warning_7:-no} = yes; then
 cat <<_MULEEOT
 
 * Cross-compilation detected, so exception handling cannot be tested.
@@ -21153,7 +21214,7 @@ cat <<_MULEEOT
   crashes.
 _MULEEOT
 fi
-if test ${_mule_warning_7:-no} = yes; then
+if test ${_mule_warning_8:-no} = yes; then
 cat <<_MULEEOT
 
 * configure cannot check whether malloc() and realloc() are GNU libc
@@ -21161,14 +21222,14 @@ cat <<_MULEEOT
   configure with the --without-gnu-malloc switch.
 _MULEEOT
 fi
-if test ${_mule_warning_8:-no} = yes; then
+if test ${_mule_warning_9:-no} = yes; then
 cat <<_MULEEOT
 
 * You need to install GNU gettext/gettext-tools to compile aMule with i18n
   support.
 _MULEEOT
 fi
-if test ${_mule_warning_9:-no} = yes; then
+if test ${_mule_warning_10:-no} = yes; then
 cat <<_MULEEOT
 
 * bfd.h not found or unusable, please install binutils development package if
