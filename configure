@@ -311,7 +311,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='GEOIP_CPPFLAGS GEOIP_LDFLAGS GEOIP_LIBS SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot AMTAR am__tar am__untar MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT build build_cpu build_vendor build_os host host_cpu host_vendor host_os RESOLV_LIB MULECPPFLAGS MULECFLAGS MULECXXFLAGS MULELDFLAGS MULERCFLAGS CXX CXXFLAGS LDFLAGS CPPFLAGS ac_ct_CXX EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE CXXCPP CC CFLAGS ac_ct_CC CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE CPP BUILD_CC ac_ct_BUILD_CC EXEEXT BUILD_EXEEXT BUILD_CPPFLAGS BUILD_CFLAGS BUILD_LDFLAGS EGREP LEX LEXLIB LEX_OUTPUT_ROOT RANLIB ac_ct_RANLIB YACC AR ac_ct_AR LD ac_ct_LD ZLIB_CPPFLAGS ZLIB_LDFLAGS ZLIB_LIBS GDLIB_CONFIG_PATH GDLIB_CFLAGS GDLIB_LDFLAGS GDLIB_LIBS CAS_DEFS LIBPNG_CONFIG_PATH LIBPNG_CFLAGS LIBPNG_LDFLAGS LIBPNG_LIBS AMULEWEB_DEFS WX_CONFIG_PATH WX_CPPFLAGS WX_CFLAGS WX_CXXFLAGS WX_CFLAGS_ONLY WX_CXXFLAGS_ONLY WX_LIBS WX_VERSION_FULL WX_RESCOMP WX_VERSION_MAJOR WX_VERSION_MINOR WX_UNICODE WX_DEBUG WX_SHARED WX_PORT WXBASE_LIBS WXBASE_CPPFLAGS RC RCFLAGS ac_ct_RC PKG_CONFIG ac_pt_PKG_CONFIG LIBUPNP_CPPFLAGS LIBUPNP_CFLAGS LIBUPNP_LDFLAGS LIBUPNP_LIBS CRYPTOPP_CPPFLAGS CRYPTOPP_LDFLAGS CRYPTOPP_LIBS ALLOCA LIBOBJS POW_LIB MKINSTALLDIRS MSGFMT GMSGFMT XGETTEXT MSGMERGE GLIBC21 LIBICONV LTLIBICONV INTLBISON USE_NLS BUILD_INCLUDED_LIBINTL USE_INCLUDED_LIBINTL CATOBJEXT INTLOBJS DATADIRNAME INSTOBJEXT GENCAT INTL_LIBTOOL_SUFFIX_PREFIX INTLLIBS LIBINTL LTLIBINTL POSUB AMULE_DAEMON_MANPAGES AMULECMD_MANPAGES WEB_MANPAGES AMULE_GUI_MANPAGES CAS_MANPAGES WXCAS_MANPAGES ED2K_MANPAGES ALC_MANPAGES ALCC_MANPAGES MONOLITHIC_MANPAGES INCINTL BFD_CPPFLAGS BFD_LIBS docdir SVNDATE WEB_TRUE WEB_FALSE ED2K_TRUE ED2K_FALSE CAS_TRUE CAS_FALSE WXCAS_TRUE WXCAS_FALSE ALC_TRUE ALC_FALSE ALCC_TRUE ALCC_FALSE AMULE_GUI_TRUE AMULE_GUI_FALSE AMULE_DAEMON_TRUE AMULE_DAEMON_FALSE COMPILE_CMD_TRUE COMPILE_CMD_FALSE MONOLITHIC_TRUE MONOLITHIC_FALSE XAS_TRUE XAS_FALSE FILEVIEW_TRUE FILEVIEW_FALSE ENABLE_UPNP_TRUE ENABLE_UPNP_FALSE ENABLE_IP2COUNTRY_TRUE ENABLE_IP2COUNTRY_FALSE SYS_WIN32_TRUE SYS_WIN32_FALSE NEED_RC_TRUE NEED_RC_FALSE NEED_CORESERVICES_TRUE NEED_CORESERVICES_FALSE COMPILE_NLS_TRUE COMPILE_NLS_FALSE GENERATE_FLEX_HEADER_TRUE GENERATE_FLEX_HEADER_FALSE INSTALL_SKINS_TRUE INSTALL_SKINS_FALSE READLINE_LIBS LTLIBOBJS'
+ac_subst_vars='GEOIP_CPPFLAGS GEOIP_LDFLAGS GEOIP_LIBS SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot AMTAR am__tar am__untar MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT build build_cpu build_vendor build_os host host_cpu host_vendor host_os RESOLV_LIB MULECPPFLAGS MULECFLAGS MULECXXFLAGS MULELDFLAGS MULERCFLAGS CXX CXXFLAGS LDFLAGS CPPFLAGS ac_ct_CXX EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE CXXCPP CC CFLAGS ac_ct_CC CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE CPP BUILD_CC ac_ct_BUILD_CC EXEEXT BUILD_EXEEXT BUILD_CPPFLAGS BUILD_CFLAGS BUILD_LDFLAGS EGREP LEX LEXLIB LEX_OUTPUT_ROOT RANLIB ac_ct_RANLIB YACC AR ac_ct_AR LD ac_ct_LD MONOLITHIC_TRUE MONOLITHIC_FALSE AMULE_DAEMON_TRUE AMULE_DAEMON_FALSE COMPILE_CMD_TRUE COMPILE_CMD_FALSE WEB_TRUE WEB_FALSE AMULE_GUI_TRUE AMULE_GUI_FALSE CAS_TRUE CAS_FALSE WXCAS_TRUE WXCAS_FALSE ED2K_TRUE ED2K_FALSE ALC_TRUE ALC_FALSE ALCC_TRUE ALCC_FALSE XAS_TRUE XAS_FALSE FILEVIEW_TRUE FILEVIEW_FALSE ZLIB_CPPFLAGS ZLIB_LDFLAGS ZLIB_LIBS GDLIB_CONFIG_PATH GDLIB_CFLAGS GDLIB_LDFLAGS GDLIB_LIBS CAS_DEFS LIBPNG_CONFIG_PATH LIBPNG_CFLAGS LIBPNG_LDFLAGS LIBPNG_LIBS AMULEWEB_DEFS WX_CONFIG_PATH WX_CPPFLAGS WX_CFLAGS WX_CXXFLAGS WX_CFLAGS_ONLY WX_CXXFLAGS_ONLY WX_LIBS WX_VERSION_FULL WX_RESCOMP WX_VERSION_MAJOR WX_VERSION_MINOR WX_UNICODE WX_DEBUG WX_SHARED WX_PORT WXBASE_LIBS WXBASE_CPPFLAGS RC RCFLAGS ac_ct_RC PKG_CONFIG ac_pt_PKG_CONFIG LIBUPNP_CPPFLAGS LIBUPNP_CFLAGS LIBUPNP_LDFLAGS LIBUPNP_LIBS CRYPTOPP_CPPFLAGS CRYPTOPP_LDFLAGS CRYPTOPP_LIBS ALLOCA LIBOBJS POW_LIB MKINSTALLDIRS MSGFMT GMSGFMT XGETTEXT MSGMERGE GLIBC21 LIBICONV LTLIBICONV INTLBISON USE_NLS BUILD_INCLUDED_LIBINTL USE_INCLUDED_LIBINTL CATOBJEXT INTLOBJS DATADIRNAME INSTOBJEXT GENCAT INTL_LIBTOOL_SUFFIX_PREFIX INTLLIBS LIBINTL LTLIBINTL POSUB AMULE_DAEMON_MANPAGES AMULECMD_MANPAGES WEBSERVER_MANPAGES AMULE_GUI_MANPAGES CAS_MANPAGES WXCAS_MANPAGES ED2K_MANPAGES ALC_MANPAGES ALCC_MANPAGES MONOLITHIC_MANPAGES INCINTL BFD_CPPFLAGS BFD_LIBS docdir SVNDATE ENABLE_UPNP_TRUE ENABLE_UPNP_FALSE ENABLE_IP2COUNTRY_TRUE ENABLE_IP2COUNTRY_FALSE SYS_WIN32_TRUE SYS_WIN32_FALSE NEED_RC_TRUE NEED_RC_FALSE NEED_CORESERVICES_TRUE NEED_CORESERVICES_FALSE COMPILE_NLS_TRUE COMPILE_NLS_FALSE GENERATE_FLEX_HEADER_TRUE GENERATE_FLEX_HEADER_FALSE INSTALL_SKINS_TRUE INSTALL_SKINS_FALSE READLINE_LIBS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -899,8 +899,8 @@ Optional Features:
   --disable-rpath         do not hardcode runtime library paths
   --disable-nls           do not use Native Language Support
   --disable-debug         disable additional debugging output
-  --enable-optimize       enable code optimization
   --enable-profile        enable code profiling
+  --enable-optimize       enable code optimization
   --enable-static         produce a statically linked executable
   --enable-ccache         enable ccache support for fast recompilation
 
@@ -5435,114 +5435,201 @@ fi
 # Check whether --enable-monolithic or --disable-monolithic was given.
 if test "${enable_monolithic+set}" = set; then
   enableval="$enable_monolithic"
-  MONOLITHIC=$enableval
-else
-  MONOLITHIC=yes
+
 fi;
+
+
+if test ${enable_monolithic:-yes} = yes; then
+  MONOLITHIC_TRUE=
+  MONOLITHIC_FALSE='#'
+else
+  MONOLITHIC_TRUE='#'
+  MONOLITHIC_FALSE=
+fi
+
 
 # Check whether --enable-amule-daemon or --disable-amule-daemon was given.
 if test "${enable_amule_daemon+set}" = set; then
   enableval="$enable_amule_daemon"
-  AMULE_DAEMON=$enableval
-else
-  AMULE_DAEMON=no
+
 fi;
+
+
+if test ${enable_amule_daemon:-no} = yes; then
+  AMULE_DAEMON_TRUE=
+  AMULE_DAEMON_FALSE='#'
+else
+  AMULE_DAEMON_TRUE='#'
+  AMULE_DAEMON_FALSE=
+fi
+
 
 # Check whether --enable-amulecmd or --disable-amulecmd was given.
 if test "${enable_amulecmd+set}" = set; then
   enableval="$enable_amulecmd"
-  AMULECMD=$enableval
-else
-  AMULECMD=no
+
 fi;
+
+
+if test ${enable_amulecmd:-no} = yes; then
+  COMPILE_CMD_TRUE=
+  COMPILE_CMD_FALSE='#'
+else
+  COMPILE_CMD_TRUE='#'
+  COMPILE_CMD_FALSE=
+fi
+
 
 # Check whether --enable-webserver or --disable-webserver was given.
 if test "${enable_webserver+set}" = set; then
   enableval="$enable_webserver"
-  WEB=$enableval
-else
-  WEB=no
+
 fi;
+
+
+if test ${enable_webserver:-no} = yes; then
+  WEB_TRUE=
+  WEB_FALSE='#'
+else
+  WEB_TRUE='#'
+  WEB_FALSE=
+fi
+
 
 # Check whether --enable-amule-gui or --disable-amule-gui was given.
 if test "${enable_amule_gui+set}" = set; then
   enableval="$enable_amule_gui"
-  AMULE_GUI=$enableval
-else
-  AMULE_GUI=no
+
 fi;
+
+
+if test ${enable_amule_gui:-no} = yes; then
+  AMULE_GUI_TRUE=
+  AMULE_GUI_FALSE='#'
+else
+  AMULE_GUI_TRUE='#'
+  AMULE_GUI_FALSE=
+fi
+
 
 # Check whether --enable-cas or --disable-cas was given.
 if test "${enable_cas+set}" = set; then
   enableval="$enable_cas"
-  CAS=$enableval
-else
-  CAS=no
+
 fi;
+
+
+if test ${enable_cas:-no} = yes; then
+  CAS_TRUE=
+  CAS_FALSE='#'
+else
+  CAS_TRUE='#'
+  CAS_FALSE=
+fi
+
 
 # Check whether --enable-wxcas or --disable-wxcas was given.
 if test "${enable_wxcas+set}" = set; then
   enableval="$enable_wxcas"
-  WXCAS=$enableval
-else
-  WXCAS=no
+
 fi;
+
+
+if test ${enable_wxcas:-no} = yes; then
+  WXCAS_TRUE=
+  WXCAS_FALSE='#'
+else
+  WXCAS_TRUE='#'
+  WXCAS_FALSE=
+fi
+
 
 # Check whether --enable-ed2k or --disable-ed2k was given.
 if test "${enable_ed2k+set}" = set; then
   enableval="$enable_ed2k"
-  ED2K=$enableval
-else
-  ED2K=yes
+
 fi;
+
+
+if test ${enable_ed2k:-yes} = yes; then
+  ED2K_TRUE=
+  ED2K_FALSE='#'
+else
+  ED2K_TRUE='#'
+  ED2K_FALSE=
+fi
+
 
 # Check whether --enable-alc or --disable-alc was given.
 if test "${enable_alc+set}" = set; then
   enableval="$enable_alc"
-  ALC=$enableval
-else
-  ALC=no
+
 fi;
+
+
+if test ${enable_alc:-no} = yes; then
+  ALC_TRUE=
+  ALC_FALSE='#'
+else
+  ALC_TRUE='#'
+  ALC_FALSE=
+fi
+
 
 # Check whether --enable-alcc or --disable-alcc was given.
 if test "${enable_alcc+set}" = set; then
   enableval="$enable_alcc"
-  ALCC=$enableval
-else
-  ALCC=no
+
 fi;
 
-# Check whether --enable-monolithic or --disable-monolithic was given.
-if test "${enable_monolithic+set}" = set; then
-  enableval="$enable_monolithic"
-  MONOLITHIC=$enableval
+
+if test ${enable_alcc:-no} = yes; then
+  ALCC_TRUE=
+  ALCC_FALSE='#'
 else
-  MONOLITHIC=yes
-fi;
+  ALCC_TRUE='#'
+  ALCC_FALSE=
+fi
+
 
 # Check whether --enable-upnp or --disable-upnp was given.
 if test "${enable_upnp+set}" = set; then
   enableval="$enable_upnp"
-  ENABLE_UPNP=$enableval
-else
-  ENABLE_UPNP=yes
+
 fi;
 
 # Check whether --enable-xas or --disable-xas was given.
 if test "${enable_xas+set}" = set; then
   enableval="$enable_xas"
-  XAS=$enableval
-else
-  XAS=no
+
 fi;
+
+
+if test ${enable_xas:-no} = yes; then
+  XAS_TRUE=
+  XAS_FALSE='#'
+else
+  XAS_TRUE='#'
+  XAS_FALSE=
+fi
+
 
 # Check whether --enable-fileview or --disable-fileview was given.
 if test "${enable_fileview+set}" = set; then
   enableval="$enable_fileview"
-  FILEVIEW=$enableval
-else
-  FILEVIEW=no
+
 fi;
+
+
+if test ${enable_fileview:-no} = yes; then
+  FILEVIEW_TRUE=
+  FILEVIEW_FALSE='#'
+else
+  FILEVIEW_TRUE='#'
+  FILEVIEW_FALSE=
+fi
+
+
 
 # Default is yes, because they're most likely compatible.
 # However, this is only used when cross-compiling.
@@ -5792,7 +5879,7 @@ fi
 
 
 
-if test x$CAS = xyes; then
+if test ${enable_cas:-no} = yes; then
 
 	# Check for gd
 
@@ -6371,7 +6458,7 @@ fi
 
 
 
-if test x$WEB = xyes; then
+if test ${enable_webserver:-no} = yes; then
 
 
 # Check whether --with-libpng-prefix or --without-libpng-prefix was given.
@@ -6543,7 +6630,6 @@ else
 fi
 
 
-
 # Check for perl File::Copy
 echo "$as_me:$LINENO: checking for File::Copy" >&5
 echo $ECHO_N "checking for File::Copy... $ECHO_C" >&6
@@ -6557,43 +6643,10 @@ echo "$as_me: error: File::Copy perl module is required" >&2;}
 fi
 
 
-
-# Check if we need the GUI
-echo "$as_me:$LINENO: checking whether we need the GUI" >&5
-echo $ECHO_N "checking whether we need the GUI... $ECHO_C" >&6
-if test x$MONOLITHIC = xyes; then
-  need_gui=yes
-fi
-
-if test x$WXCAS = xyes; then
-  need_gui=yes
-fi
-
-if test x$ALC = xyes; then
-  need_gui=yes
-fi
-
-if test x$AMULE_GUI = xyes; then
-  need_gui=yes
-fi
-
-if test x${need_gui:+set} != xset; then
-  need_gui=no
-fi
-
-echo "$as_me:$LINENO: result: $need_gui" >&5
-echo "${ECHO_T}$need_gui" >&6
-
 # Check if we need to install skins
-if test x$MONOLITHIC = xyes; then
+if test ${enable_monolithic:-yes} = yes -o ${enable_amule_gui:-no} = yes ; then
   INSTALL_SKINS=yes
-fi
-
-if test x$AMULE_GUI = xyes; then
-  INSTALL_SKINS=yes
-fi
-
-if test x${INSTALL_SKINS:+set} != xset; then
+else
   INSTALL_SKINS=no
 fi
 
@@ -6603,12 +6656,11 @@ fi
 	# Check whether --enable-geoip or --disable-geoip was given.
 if test "${enable_geoip+set}" = set; then
   enableval="$enable_geoip"
-  ENABLE_IP2COUNTRY=$enableval
-else
-  ENABLE_IP2COUNTRY=no
+
 fi;
 
-	if test ${ENABLE_IP2COUNTRY:-no} = yes; then
+
+	if test ${enable_geoip:-no} = yes; then
 
 
 # Check whether --with-geoip-headers or --without-geoip-headers was given.
@@ -6994,7 +7046,7 @@ fi;
 
 else
 
-				ENABLE_IP2COUNTRY=disabled
+				enable_geoip=disabled
 				{ echo "$as_me:$LINENO: WARNING:
         GeoIP support has been disabled because the GeoIP libraries were not
         found" >&5
@@ -7010,7 +7062,7 @@ fi
 
 else
 
-			ENABLE_IP2COUNTRY=disabled
+			enable_geoip=disabled
 			{ echo "$as_me:$LINENO: WARNING:
         GeoIP support has been disabled because the GeoIP header files were
         not found" >&5
@@ -7718,7 +7770,8 @@ WXBASE_CPPFLAGS="$WX_CPPFLAGS -DwxUSE_GUI=0"
 
 
 
-if test ${need_gui} = yes -a "${WX_PORT}" = base; then
+if test ${enable_monolithic:-yes} = yes -o ${enable_amule_gui:-no} = yes -o ${enable_wxcas:-no} = yes -o ${enable_alc:-no} = yes ; then
+  if test "${WX_PORT}" = base; then
   { { echo "$as_me:$LINENO: error:
 		The selected components need a wxWidgets library with GUI,
 		but your installation is base-only.  Please install a GUI
@@ -7730,6 +7783,8 @@ echo "$as_me: error:
 		enabled version of wxWidgets and then retry.
 	" >&2;}
    { (exit 1); exit 1; }; }
+
+fi
 
 fi
 
@@ -7823,7 +7878,7 @@ fi
 
 
 # Check for libupnp
-if test "${ENABLE_UPNP:-yes}" = yes; then
+if test ${enable_upnp:-yes} = yes; then
 
 
 
@@ -7995,7 +8050,7 @@ fi
 	if test ${result:-no} = yes; then
   LIBUPNP_CPPFLAGS="$LIBUPNP_CPPFLAGS -DENABLE_UPNP=1"
 else
-  ENABLE_UPNP=disabled
+  enable_upnp=disabled
 		{ echo "$as_me:$LINENO: WARNING:
         UPnP code has been disabled because ${libupnp_error}." >&5
 echo "$as_me: WARNING:
@@ -13678,6 +13733,7 @@ if test "${enable_mmap+set}" = set; then
 
 fi;
 
+
 if test ${enable_mmap:-no} = yes; then
 
 
@@ -17871,13 +17927,13 @@ fi
 echo $ECHO_N "checking for requested languages... $ECHO_C" >&6
 		Generate_Langs=`echo $LINGUAS | $AWK 'OFS="\\\\|" { for (i = 1; i <= NF; ++i) $i = "\\\\." $i; print }'`
 
-	if test "$AMULE_DAEMON" = "yes"; then
+	if test ${enable_amule_daemon:-no} = yes; then
 
 		if test -z "$LINGUAS"; then
   AMULE_DAEMON_MANPAGES=`ls -1 ${srcdir}/docs/man/amuled.* | sed -e 's:.*/::g'`
 else
 
-			AMULE_DAEMON_MANPAGES=`ls -1 ${srcdir}/docs/man/amuled.* | sed -e 's:.*/::g' | grep $Generate_Langs `
+			AMULE_DAEMON_MANPAGES=`ls -1 ${srcdir}/docs/man/amuled.* | sed -e 's:.*/::g' | grep $Generate_Langs`
 			AMULE_DAEMON_MANPAGES="`basename docs/man/amuled.1` $AMULE_DAEMON_MANPAGES"
 
 fi
@@ -17891,13 +17947,13 @@ fi
 
 
 
-	if test "$AMULECMD" = "yes"; then
+	if test ${enable_amulecmd:-no} = yes; then
 
 		if test -z "$LINGUAS"; then
   AMULECMD_MANPAGES=`ls -1 ${srcdir}/docs/man/amulecmd.* | sed -e 's:.*/::g'`
 else
 
-			AMULECMD_MANPAGES=`ls -1 ${srcdir}/docs/man/amulecmd.* | sed -e 's:.*/::g' | grep $Generate_Langs `
+			AMULECMD_MANPAGES=`ls -1 ${srcdir}/docs/man/amulecmd.* | sed -e 's:.*/::g' | grep $Generate_Langs`
 			AMULECMD_MANPAGES="`basename docs/man/amulecmd.1` $AMULECMD_MANPAGES"
 
 fi
@@ -17911,33 +17967,33 @@ fi
 
 
 
-	if test "$WEB" = "yes"; then
+	if test ${enable_webserver:-no} = yes; then
 
 		if test -z "$LINGUAS"; then
-  WEB_MANPAGES=`ls -1 ${srcdir}/docs/man/amuleweb.* | sed -e 's:.*/::g'`
+  WEBSERVER_MANPAGES=`ls -1 ${srcdir}/docs/man/amuleweb.* | sed -e 's:.*/::g'`
 else
 
-			WEB_MANPAGES=`ls -1 ${srcdir}/docs/man/amuleweb.* | sed -e 's:.*/::g' | grep $Generate_Langs `
-			WEB_MANPAGES="`basename docs/man/amuleweb.1` $WEB_MANPAGES"
+			WEBSERVER_MANPAGES=`ls -1 ${srcdir}/docs/man/amuleweb.* | sed -e 's:.*/::g' | grep $Generate_Langs`
+			WEBSERVER_MANPAGES="`basename docs/man/amuleweb.1` $WEBSERVER_MANPAGES"
 
 fi
 
-		WEB_MANPAGES=`echo $WEB_MANPAGES | tr -d '\n'`
+		WEBSERVER_MANPAGES=`echo $WEBSERVER_MANPAGES | tr -d '\n'`
 
 else
-  WEB_MANPAGES=
+  WEBSERVER_MANPAGES=
 fi
 
 
 
 
-	if test "$AMULE_GUI" = "yes"; then
+	if test ${enable_amule_gui:-no} = yes; then
 
 		if test -z "$LINGUAS"; then
   AMULE_GUI_MANPAGES=`ls -1 ${srcdir}/docs/man/amulegui.* | sed -e 's:.*/::g'`
 else
 
-			AMULE_GUI_MANPAGES=`ls -1 ${srcdir}/docs/man/amulegui.* | sed -e 's:.*/::g' | grep $Generate_Langs `
+			AMULE_GUI_MANPAGES=`ls -1 ${srcdir}/docs/man/amulegui.* | sed -e 's:.*/::g' | grep $Generate_Langs`
 			AMULE_GUI_MANPAGES="`basename docs/man/amulegui.1` $AMULE_GUI_MANPAGES"
 
 fi
@@ -17951,13 +18007,13 @@ fi
 
 
 
-	if test "$CAS" = "yes"; then
+	if test ${enable_cas:-no} = yes; then
 
 		if test -z "$LINGUAS"; then
   CAS_MANPAGES=`ls -1 ${srcdir}/src/utils/cas/docs/cas.* | sed -e 's:.*/::g'`
 else
 
-			CAS_MANPAGES=`ls -1 ${srcdir}/src/utils/cas/docs/cas.* | sed -e 's:.*/::g' | grep $Generate_Langs `
+			CAS_MANPAGES=`ls -1 ${srcdir}/src/utils/cas/docs/cas.* | sed -e 's:.*/::g' | grep $Generate_Langs`
 			CAS_MANPAGES="`basename src/utils/cas/docs/cas.1` $CAS_MANPAGES"
 
 fi
@@ -17971,13 +18027,13 @@ fi
 
 
 
-	if test "$WXCAS" = "yes"; then
+	if test ${enable_wxcas:-no} = yes; then
 
 		if test -z "$LINGUAS"; then
   WXCAS_MANPAGES=`ls -1 ${srcdir}/src/utils/wxCas/docs/wxcas.* | sed -e 's:.*/::g'`
 else
 
-			WXCAS_MANPAGES=`ls -1 ${srcdir}/src/utils/wxCas/docs/wxcas.* | sed -e 's:.*/::g' | grep $Generate_Langs `
+			WXCAS_MANPAGES=`ls -1 ${srcdir}/src/utils/wxCas/docs/wxcas.* | sed -e 's:.*/::g' | grep $Generate_Langs`
 			WXCAS_MANPAGES="`basename src/utils/wxCas/docs/wxcas.1` $WXCAS_MANPAGES"
 
 fi
@@ -17991,13 +18047,13 @@ fi
 
 
 
-	if test "$ED2K" = "yes"; then
+	if test ${enable_ed2k:-yes} = yes; then
 
 		if test -z "$LINGUAS"; then
   ED2K_MANPAGES=`ls -1 ${srcdir}/docs/man/ed2k.* | sed -e 's:.*/::g'`
 else
 
-			ED2K_MANPAGES=`ls -1 ${srcdir}/docs/man/ed2k.* | sed -e 's:.*/::g' | grep $Generate_Langs `
+			ED2K_MANPAGES=`ls -1 ${srcdir}/docs/man/ed2k.* | sed -e 's:.*/::g' | grep $Generate_Langs`
 			ED2K_MANPAGES="`basename docs/man/ed2k.1` $ED2K_MANPAGES"
 
 fi
@@ -18011,13 +18067,13 @@ fi
 
 
 
-	if test "$ALC" = "yes"; then
+	if test ${enable_alc:-no} = yes; then
 
 		if test -z "$LINGUAS"; then
   ALC_MANPAGES=`ls -1 ${srcdir}/src/utils/aLinkCreator/docs/alc.* | sed -e 's:.*/::g'`
 else
 
-			ALC_MANPAGES=`ls -1 ${srcdir}/src/utils/aLinkCreator/docs/alc.* | sed -e 's:.*/::g' | grep $Generate_Langs `
+			ALC_MANPAGES=`ls -1 ${srcdir}/src/utils/aLinkCreator/docs/alc.* | sed -e 's:.*/::g' | grep $Generate_Langs`
 			ALC_MANPAGES="`basename src/utils/aLinkCreator/docs/alc.1` $ALC_MANPAGES"
 
 fi
@@ -18031,13 +18087,13 @@ fi
 
 
 
-	if test "$ALCC" = "yes"; then
+	if test ${enable_alcc:-no} = yes; then
 
 		if test -z "$LINGUAS"; then
   ALCC_MANPAGES=`ls -1 ${srcdir}/src/utils/aLinkCreator/docs/alcc.* | sed -e 's:.*/::g'`
 else
 
-			ALCC_MANPAGES=`ls -1 ${srcdir}/src/utils/aLinkCreator/docs/alcc.* | sed -e 's:.*/::g' | grep $Generate_Langs `
+			ALCC_MANPAGES=`ls -1 ${srcdir}/src/utils/aLinkCreator/docs/alcc.* | sed -e 's:.*/::g' | grep $Generate_Langs`
 			ALCC_MANPAGES="`basename src/utils/aLinkCreator/docs/alcc.1` $ALCC_MANPAGES"
 
 fi
@@ -18051,13 +18107,13 @@ fi
 
 
 
-	if test "$MONOLITHIC" = "yes"; then
+	if test ${enable_monolithic:-yes} = yes; then
 
 		if test -z "$LINGUAS"; then
   MONOLITHIC_MANPAGES=`ls -1 ${srcdir}/docs/man/amule.* | sed -e 's:.*/::g'`
 else
 
-			MONOLITHIC_MANPAGES=`ls -1 ${srcdir}/docs/man/amule.* | sed -e 's:.*/::g' | grep $Generate_Langs `
+			MONOLITHIC_MANPAGES=`ls -1 ${srcdir}/docs/man/amule.* | sed -e 's:.*/::g' | grep $Generate_Langs`
 			MONOLITHIC_MANPAGES="`basename docs/man/amule.1` $MONOLITHIC_MANPAGES"
 
 fi
@@ -18298,16 +18354,32 @@ rm -f confcache
 # Other tests
 # aMule options
 
-
 	# Check whether --enable-debug or --disable-debug was given.
 if test "${enable_debug+set}" = set; then
   enableval="$enable_debug"
-  USE_DEBUG=${enableval:-yes}
-else
-  USE_DEBUG=yes
+
 fi;
 
-	if test $USE_DEBUG = yes; then
+	# Check whether --enable-profile or --disable-profile was given.
+if test "${enable_profile+set}" = set; then
+  enableval="$enable_profile"
+
+fi;
+
+	# Check whether --enable-optimize or --disable-optimize was given.
+if test "${enable_optimize+set}" = set; then
+  enableval="$enable_optimize"
+
+fi;
+
+	# Check whether --enable-static or --disable-static was given.
+if test "${enable_static+set}" = set; then
+  enableval="$enable_static"
+
+fi;
+
+
+	if test ${enable_debug:-yes} = yes; then
 
 		MULECPPFLAGS="$MULECPPFLAGS -D__DEBUG__"
 
@@ -18343,33 +18415,7 @@ fi
 fi
 
 
-
-	# Check whether --enable-optimize or --disable-optimize was given.
-if test "${enable_optimize+set}" = set; then
-  enableval="$enable_optimize"
-  USE_OPTIMIZE=${enableval:-no}
-else
-  USE_OPTIMIZE=no
-fi;
-
-	if test $USE_OPTIMIZE = yes; then
-
-	MULECFLAGS="$MULECFLAGS -O2"
-	MULECXXFLAGS="$MULECXXFLAGS -O2"
-
-fi
-
-
-
-	# Check whether --enable-profile or --disable-profile was given.
-if test "${enable_profile+set}" = set; then
-  enableval="$enable_profile"
-  USE_PROFILE=${enableval:-no}
-else
-  USE_PROFILE=no
-fi;
-
-	if test $USE_PROFILE = yes; then
+	if test ${enable_profile:-no} = yes; then
 
 
 	MULECFLAGS="$MULECFLAGS -pg"
@@ -18380,19 +18426,17 @@ fi;
 fi
 
 
+	if test ${enable_optimize:-no} = yes; then
 
-	echo "$as_me:$LINENO: checking if the applications should be statically linked" >&5
-echo $ECHO_N "checking if the applications should be statically linked... $ECHO_C" >&6
-	# Check whether --enable-static or --disable-static was given.
-if test "${enable_static+set}" = set; then
-  enableval="$enable_static"
-  if test ${enableval:-no} = yes; then
+	MULECFLAGS="$MULECFLAGS -O2"
+	MULECXXFLAGS="$MULECXXFLAGS -O2"
+
+fi
+
+	if test ${enable_static:-no} = yes; then
   MULELDFLAGS="$MULELDFLAGS -static"
 fi
 
-fi;
-	echo "$as_me:$LINENO: result: ${enableval:-no}" >&5
-echo "${ECHO_T}${enableval:-no}" >&6
 
 	MULECPPFLAGS="$MULECPPFLAGS -DUSE_WX_EXTENSIONS"
 
@@ -18468,127 +18512,7 @@ echo "${ECHO_T}$with_denoise_level" >&6
 
 
 
-if test x$WEB = xyes; then
-  WEB_TRUE=
-  WEB_FALSE='#'
-else
-  WEB_TRUE='#'
-  WEB_FALSE=
-fi
-
-
-
-if test x$ED2K = xyes; then
-  ED2K_TRUE=
-  ED2K_FALSE='#'
-else
-  ED2K_TRUE='#'
-  ED2K_FALSE=
-fi
-
-
-
-if test x$CAS = xyes; then
-  CAS_TRUE=
-  CAS_FALSE='#'
-else
-  CAS_TRUE='#'
-  CAS_FALSE=
-fi
-
-
-
-if test x$WXCAS = xyes; then
-  WXCAS_TRUE=
-  WXCAS_FALSE='#'
-else
-  WXCAS_TRUE='#'
-  WXCAS_FALSE=
-fi
-
-
-
-if test x$ALC = xyes; then
-  ALC_TRUE=
-  ALC_FALSE='#'
-else
-  ALC_TRUE='#'
-  ALC_FALSE=
-fi
-
-
-
-if test x$ALCC = xyes; then
-  ALCC_TRUE=
-  ALCC_FALSE='#'
-else
-  ALCC_TRUE='#'
-  ALCC_FALSE=
-fi
-
-
-
-if test x$AMULE_GUI = xyes; then
-  AMULE_GUI_TRUE=
-  AMULE_GUI_FALSE='#'
-else
-  AMULE_GUI_TRUE='#'
-  AMULE_GUI_FALSE=
-fi
-
-
-
-if test x$AMULE_DAEMON = xyes; then
-  AMULE_DAEMON_TRUE=
-  AMULE_DAEMON_FALSE='#'
-else
-  AMULE_DAEMON_TRUE='#'
-  AMULE_DAEMON_FALSE=
-fi
-
-
-
-if test x$AMULECMD = xyes; then
-  COMPILE_CMD_TRUE=
-  COMPILE_CMD_FALSE='#'
-else
-  COMPILE_CMD_TRUE='#'
-  COMPILE_CMD_FALSE=
-fi
-
-
-
-if test x$MONOLITHIC = xyes; then
-  MONOLITHIC_TRUE=
-  MONOLITHIC_FALSE='#'
-else
-  MONOLITHIC_TRUE='#'
-  MONOLITHIC_FALSE=
-fi
-
-
-
-if test x$XAS = xyes; then
-  XAS_TRUE=
-  XAS_FALSE='#'
-else
-  XAS_TRUE='#'
-  XAS_FALSE=
-fi
-
-
-
-if test x$FILEVIEW = xyes; then
-  FILEVIEW_TRUE=
-  FILEVIEW_FALSE='#'
-else
-  FILEVIEW_TRUE='#'
-  FILEVIEW_FALSE=
-fi
-
-
-
-if test x$ENABLE_UPNP = xyes; then
+if test ${enable_upnp:-yes} = yes; then
   ENABLE_UPNP_TRUE=
   ENABLE_UPNP_FALSE='#'
 else
@@ -18598,7 +18522,7 @@ fi
 
 
 
-if test x$ENABLE_IP2COUNTRY = xyes; then
+if test ${enable_geoip:-no} = yes; then
   ENABLE_IP2COUNTRY_TRUE=
   ENABLE_IP2COUNTRY_FALSE='#'
 else
@@ -18668,7 +18592,7 @@ fi
 
 
 # Check for readline library
-if test x$AMULECMD = xyes -o x$WEB = xyes; then
+if test ${enable_amulecmd:-no} = yes -o ${enable_webserver:-no} = yes ; then
 
   echo "$as_me:$LINENO: checking for a readline compatible library" >&5
 echo $ECHO_N "checking for a readline compatible library... $ECHO_C" >&6
@@ -19141,6 +19065,7 @@ done
 
 fi
 
+
 # DO NOT MOVE UP... THERE'S A REASON TO BE HERE!!
 
 
@@ -19149,6 +19074,7 @@ if test "${enable_ccache+set}" = set; then
   enableval="$enable_ccache"
 
 fi;
+
 
 
 # Check whether --with-ccache-prefix or --without-ccache-prefix was given.
@@ -19175,20 +19101,16 @@ fi
 
 		if $with_ccache_prefix/ccache -V >/dev/null 2>&1; then
 
-			echo "$as_me:$LINENO: result: yes" >&5
-echo "${ECHO_T}yes" >&6
 			CC="$with_ccache_prefix/ccache $CC"
 			CXX="$with_ccache_prefix/ccache $CXX"
 			BUILD_CC="$with_ccache_prefix/ccache $BUILD_CC"
 
 else
-
-			enable_ccache=no
-			echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6
-
+  enable_ccache=no
 fi
 
+		echo "$as_me:$LINENO: result: ${enable_ccache:-no}" >&5
+echo "${ECHO_T}${enable_ccache:-no}" >&6
 
 fi
 
@@ -19322,52 +19244,10 @@ echo "$as_me: error: conditional \"am__fastdepCC\" was never defined.
 Usually this means the macro was only invoked conditionally." >&2;}
    { (exit 1); exit 1; }; }
 fi
-if test -z "${WEB_TRUE}" && test -z "${WEB_FALSE}"; then
-  { { echo "$as_me:$LINENO: error: conditional \"WEB\" was never defined.
+if test -z "${MONOLITHIC_TRUE}" && test -z "${MONOLITHIC_FALSE}"; then
+  { { echo "$as_me:$LINENO: error: conditional \"MONOLITHIC\" was never defined.
 Usually this means the macro was only invoked conditionally." >&5
-echo "$as_me: error: conditional \"WEB\" was never defined.
-Usually this means the macro was only invoked conditionally." >&2;}
-   { (exit 1); exit 1; }; }
-fi
-if test -z "${ED2K_TRUE}" && test -z "${ED2K_FALSE}"; then
-  { { echo "$as_me:$LINENO: error: conditional \"ED2K\" was never defined.
-Usually this means the macro was only invoked conditionally." >&5
-echo "$as_me: error: conditional \"ED2K\" was never defined.
-Usually this means the macro was only invoked conditionally." >&2;}
-   { (exit 1); exit 1; }; }
-fi
-if test -z "${CAS_TRUE}" && test -z "${CAS_FALSE}"; then
-  { { echo "$as_me:$LINENO: error: conditional \"CAS\" was never defined.
-Usually this means the macro was only invoked conditionally." >&5
-echo "$as_me: error: conditional \"CAS\" was never defined.
-Usually this means the macro was only invoked conditionally." >&2;}
-   { (exit 1); exit 1; }; }
-fi
-if test -z "${WXCAS_TRUE}" && test -z "${WXCAS_FALSE}"; then
-  { { echo "$as_me:$LINENO: error: conditional \"WXCAS\" was never defined.
-Usually this means the macro was only invoked conditionally." >&5
-echo "$as_me: error: conditional \"WXCAS\" was never defined.
-Usually this means the macro was only invoked conditionally." >&2;}
-   { (exit 1); exit 1; }; }
-fi
-if test -z "${ALC_TRUE}" && test -z "${ALC_FALSE}"; then
-  { { echo "$as_me:$LINENO: error: conditional \"ALC\" was never defined.
-Usually this means the macro was only invoked conditionally." >&5
-echo "$as_me: error: conditional \"ALC\" was never defined.
-Usually this means the macro was only invoked conditionally." >&2;}
-   { (exit 1); exit 1; }; }
-fi
-if test -z "${ALCC_TRUE}" && test -z "${ALCC_FALSE}"; then
-  { { echo "$as_me:$LINENO: error: conditional \"ALCC\" was never defined.
-Usually this means the macro was only invoked conditionally." >&5
-echo "$as_me: error: conditional \"ALCC\" was never defined.
-Usually this means the macro was only invoked conditionally." >&2;}
-   { (exit 1); exit 1; }; }
-fi
-if test -z "${AMULE_GUI_TRUE}" && test -z "${AMULE_GUI_FALSE}"; then
-  { { echo "$as_me:$LINENO: error: conditional \"AMULE_GUI\" was never defined.
-Usually this means the macro was only invoked conditionally." >&5
-echo "$as_me: error: conditional \"AMULE_GUI\" was never defined.
+echo "$as_me: error: conditional \"MONOLITHIC\" was never defined.
 Usually this means the macro was only invoked conditionally." >&2;}
    { (exit 1); exit 1; }; }
 fi
@@ -19385,10 +19265,52 @@ echo "$as_me: error: conditional \"COMPILE_CMD\" was never defined.
 Usually this means the macro was only invoked conditionally." >&2;}
    { (exit 1); exit 1; }; }
 fi
-if test -z "${MONOLITHIC_TRUE}" && test -z "${MONOLITHIC_FALSE}"; then
-  { { echo "$as_me:$LINENO: error: conditional \"MONOLITHIC\" was never defined.
+if test -z "${WEB_TRUE}" && test -z "${WEB_FALSE}"; then
+  { { echo "$as_me:$LINENO: error: conditional \"WEB\" was never defined.
 Usually this means the macro was only invoked conditionally." >&5
-echo "$as_me: error: conditional \"MONOLITHIC\" was never defined.
+echo "$as_me: error: conditional \"WEB\" was never defined.
+Usually this means the macro was only invoked conditionally." >&2;}
+   { (exit 1); exit 1; }; }
+fi
+if test -z "${AMULE_GUI_TRUE}" && test -z "${AMULE_GUI_FALSE}"; then
+  { { echo "$as_me:$LINENO: error: conditional \"AMULE_GUI\" was never defined.
+Usually this means the macro was only invoked conditionally." >&5
+echo "$as_me: error: conditional \"AMULE_GUI\" was never defined.
+Usually this means the macro was only invoked conditionally." >&2;}
+   { (exit 1); exit 1; }; }
+fi
+if test -z "${CAS_TRUE}" && test -z "${CAS_FALSE}"; then
+  { { echo "$as_me:$LINENO: error: conditional \"CAS\" was never defined.
+Usually this means the macro was only invoked conditionally." >&5
+echo "$as_me: error: conditional \"CAS\" was never defined.
+Usually this means the macro was only invoked conditionally." >&2;}
+   { (exit 1); exit 1; }; }
+fi
+if test -z "${WXCAS_TRUE}" && test -z "${WXCAS_FALSE}"; then
+  { { echo "$as_me:$LINENO: error: conditional \"WXCAS\" was never defined.
+Usually this means the macro was only invoked conditionally." >&5
+echo "$as_me: error: conditional \"WXCAS\" was never defined.
+Usually this means the macro was only invoked conditionally." >&2;}
+   { (exit 1); exit 1; }; }
+fi
+if test -z "${ED2K_TRUE}" && test -z "${ED2K_FALSE}"; then
+  { { echo "$as_me:$LINENO: error: conditional \"ED2K\" was never defined.
+Usually this means the macro was only invoked conditionally." >&5
+echo "$as_me: error: conditional \"ED2K\" was never defined.
+Usually this means the macro was only invoked conditionally." >&2;}
+   { (exit 1); exit 1; }; }
+fi
+if test -z "${ALC_TRUE}" && test -z "${ALC_FALSE}"; then
+  { { echo "$as_me:$LINENO: error: conditional \"ALC\" was never defined.
+Usually this means the macro was only invoked conditionally." >&5
+echo "$as_me: error: conditional \"ALC\" was never defined.
+Usually this means the macro was only invoked conditionally." >&2;}
+   { (exit 1); exit 1; }; }
+fi
+if test -z "${ALCC_TRUE}" && test -z "${ALCC_FALSE}"; then
+  { { echo "$as_me:$LINENO: error: conditional \"ALCC\" was never defined.
+Usually this means the macro was only invoked conditionally." >&5
+echo "$as_me: error: conditional \"ALCC\" was never defined.
 Usually this means the macro was only invoked conditionally." >&2;}
    { (exit 1); exit 1; }; }
 fi
@@ -20121,6 +20043,30 @@ s,@AR@,$AR,;t t
 s,@ac_ct_AR@,$ac_ct_AR,;t t
 s,@LD@,$LD,;t t
 s,@ac_ct_LD@,$ac_ct_LD,;t t
+s,@MONOLITHIC_TRUE@,$MONOLITHIC_TRUE,;t t
+s,@MONOLITHIC_FALSE@,$MONOLITHIC_FALSE,;t t
+s,@AMULE_DAEMON_TRUE@,$AMULE_DAEMON_TRUE,;t t
+s,@AMULE_DAEMON_FALSE@,$AMULE_DAEMON_FALSE,;t t
+s,@COMPILE_CMD_TRUE@,$COMPILE_CMD_TRUE,;t t
+s,@COMPILE_CMD_FALSE@,$COMPILE_CMD_FALSE,;t t
+s,@WEB_TRUE@,$WEB_TRUE,;t t
+s,@WEB_FALSE@,$WEB_FALSE,;t t
+s,@AMULE_GUI_TRUE@,$AMULE_GUI_TRUE,;t t
+s,@AMULE_GUI_FALSE@,$AMULE_GUI_FALSE,;t t
+s,@CAS_TRUE@,$CAS_TRUE,;t t
+s,@CAS_FALSE@,$CAS_FALSE,;t t
+s,@WXCAS_TRUE@,$WXCAS_TRUE,;t t
+s,@WXCAS_FALSE@,$WXCAS_FALSE,;t t
+s,@ED2K_TRUE@,$ED2K_TRUE,;t t
+s,@ED2K_FALSE@,$ED2K_FALSE,;t t
+s,@ALC_TRUE@,$ALC_TRUE,;t t
+s,@ALC_FALSE@,$ALC_FALSE,;t t
+s,@ALCC_TRUE@,$ALCC_TRUE,;t t
+s,@ALCC_FALSE@,$ALCC_FALSE,;t t
+s,@XAS_TRUE@,$XAS_TRUE,;t t
+s,@XAS_FALSE@,$XAS_FALSE,;t t
+s,@FILEVIEW_TRUE@,$FILEVIEW_TRUE,;t t
+s,@FILEVIEW_FALSE@,$FILEVIEW_FALSE,;t t
 s,@ZLIB_CPPFLAGS@,$ZLIB_CPPFLAGS,;t t
 s,@ZLIB_LDFLAGS@,$ZLIB_LDFLAGS,;t t
 s,@ZLIB_LIBS@,$ZLIB_LIBS,;t t
@@ -20190,7 +20136,7 @@ s,@LTLIBINTL@,$LTLIBINTL,;t t
 s,@POSUB@,$POSUB,;t t
 s,@AMULE_DAEMON_MANPAGES@,$AMULE_DAEMON_MANPAGES,;t t
 s,@AMULECMD_MANPAGES@,$AMULECMD_MANPAGES,;t t
-s,@WEB_MANPAGES@,$WEB_MANPAGES,;t t
+s,@WEBSERVER_MANPAGES@,$WEBSERVER_MANPAGES,;t t
 s,@AMULE_GUI_MANPAGES@,$AMULE_GUI_MANPAGES,;t t
 s,@CAS_MANPAGES@,$CAS_MANPAGES,;t t
 s,@WXCAS_MANPAGES@,$WXCAS_MANPAGES,;t t
@@ -20203,30 +20149,6 @@ s,@BFD_CPPFLAGS@,$BFD_CPPFLAGS,;t t
 s,@BFD_LIBS@,$BFD_LIBS,;t t
 s,@docdir@,$docdir,;t t
 s,@SVNDATE@,$SVNDATE,;t t
-s,@WEB_TRUE@,$WEB_TRUE,;t t
-s,@WEB_FALSE@,$WEB_FALSE,;t t
-s,@ED2K_TRUE@,$ED2K_TRUE,;t t
-s,@ED2K_FALSE@,$ED2K_FALSE,;t t
-s,@CAS_TRUE@,$CAS_TRUE,;t t
-s,@CAS_FALSE@,$CAS_FALSE,;t t
-s,@WXCAS_TRUE@,$WXCAS_TRUE,;t t
-s,@WXCAS_FALSE@,$WXCAS_FALSE,;t t
-s,@ALC_TRUE@,$ALC_TRUE,;t t
-s,@ALC_FALSE@,$ALC_FALSE,;t t
-s,@ALCC_TRUE@,$ALCC_TRUE,;t t
-s,@ALCC_FALSE@,$ALCC_FALSE,;t t
-s,@AMULE_GUI_TRUE@,$AMULE_GUI_TRUE,;t t
-s,@AMULE_GUI_FALSE@,$AMULE_GUI_FALSE,;t t
-s,@AMULE_DAEMON_TRUE@,$AMULE_DAEMON_TRUE,;t t
-s,@AMULE_DAEMON_FALSE@,$AMULE_DAEMON_FALSE,;t t
-s,@COMPILE_CMD_TRUE@,$COMPILE_CMD_TRUE,;t t
-s,@COMPILE_CMD_FALSE@,$COMPILE_CMD_FALSE,;t t
-s,@MONOLITHIC_TRUE@,$MONOLITHIC_TRUE,;t t
-s,@MONOLITHIC_FALSE@,$MONOLITHIC_FALSE,;t t
-s,@XAS_TRUE@,$XAS_TRUE,;t t
-s,@XAS_FALSE@,$XAS_FALSE,;t t
-s,@FILEVIEW_TRUE@,$FILEVIEW_TRUE,;t t
-s,@FILEVIEW_FALSE@,$FILEVIEW_FALSE,;t t
 s,@ENABLE_UPNP_TRUE@,$ENABLE_UPNP_TRUE,;t t
 s,@ENABLE_UPNP_FALSE@,$ENABLE_UPNP_FALSE,;t t
 s,@ENABLE_IP2COUNTRY_TRUE@,$ENABLE_IP2COUNTRY_TRUE,;t t
@@ -21085,34 +21007,34 @@ echo
 echo "  **** aMule Core ****"
 echo "  Prefix where aMule should be installed?                    ${prefix:-none}"
 echo "  Should aMule be compiled with i18n support?                ${USE_NLS:-no}"
-echo "  Should aMule be compiled in debug mode?                    ${USE_DEBUG:-no}"
-echo "  Should aMule be compiled with profiling?                   ${USE_PROFILE:-no}"
-echo "  Should aMule be compiled with optimizations?               ${USE_OPTIMIZE:-no}"
-echo "  Should aMule be compiled with UPnP support?                ${ENABLE_UPNP:-yes}"
-echo "  Should aMule be compiled with IP2country support?          ${ENABLE_IP2COUNTRY:-no}"
-echo "  Should aMule monolithic application be built?              ${MONOLITHIC:-yes}"
-echo "  Should aMule daemon version be built?                      ${AMULE_DAEMON:-no}"
-echo "  Should aMule remote gui be built? (EXPERIMENTAL)           ${AMULE_GUI:-no}"
+echo "  Should aMule be compiled in debug mode?                    ${enable_debug:-yes}"
+echo "  Should aMule be compiled with profiling?                   ${enable_profile:-no}"
+echo "  Should aMule be compiled with optimizations?               ${enable_optimize:-no}"
+echo "  Should aMule be compiled with UPnP support?                ${enable_upnp:-yes}"
+echo "  Should aMule be compiled with IP2country support?          ${enable_geoip:-no}"
+echo "  Should aMule monolithic application be built?              ${enable_monolithic:-yes}"
+echo "  Should aMule daemon version be built?                      ${enable_amule_daemon:-no}"
+echo "  Should aMule remote gui be built? (EXPERIMENTAL)           ${enable_amule_gui:-no}"
 echo "  Crypto++ library/headers style?                            ${CRYPTOPP_STYLE:-not found}"
 
 echo
 echo "  **** aMule TextClient ****"
-echo "  Should aMule Command Line Client be built?                 ${AMULECMD:-no}"
+echo "  Should aMule Command Line Client be built?                 ${enable_amulecmd:-no}"
 echo
 echo "  **** aMule WebServer ****"
-echo "  Should aMule WebServer be built?                           ${WEB:-no}"
+echo "  Should aMule WebServer be built?                           ${enable_webserver:-no}"
 echo
 echo "  **** aMule ED2K Links Handler ****"
-echo "  Should aMule ED2K Links Handler be built?                  ${ED2K:-yes}"
+echo "  Should aMule ED2K Links Handler be built?                  ${enable_ed2k:-yes}"
 echo
 echo "  **** aMuleLinkCreator ****"
-echo "  Should aMuleLinkCreator GUI version (alc) be built?        ${ALC:-no}"
-echo "  Should aMuleLinkCreator for console (alcc) be built?       ${ALCC:-no}"
+echo "  Should aMuleLinkCreator GUI version (alc) be built?        ${enable_alc:-no}"
+echo "  Should aMuleLinkCreator for console (alcc) be built?       ${enable_alcc:-no}"
 echo
 echo "  **** aMule Statistics ****"
-echo "  Should C aMule Statistics (CAS) be built?                  ${CAS:-no}"
-echo "  Should aMule GUI Statistics (wxCas) be built?              ${WXCAS:-no}"
-echo "  Should xas XChat2 plugin be installed?                     ${XAS:-yes}"
+echo "  Should C aMule Statistics (CAS) be built?                  ${enable_cas:-no}"
+echo "  Should aMule GUI Statistics (wxCas) be built?              ${enable_wxcas:-no}"
+echo "  Should xas XChat2 plugin be installed?                     ${enable_xas:-no}"
 
 echo
 echo "  **** General Libraries and Tools ****"
@@ -21135,7 +21057,7 @@ if test -n "$with_libupnp_prefix"; then
   libupnp_place=" (in $with_libupnp_prefix)"
 fi
 
-if test x${ENABLE_UPNP} = xyes; then
+if test ${enable_upnp:-yes} = yes; then
   echo "                                       libupnp               ${LIBUPNP_VERSION:-Not detected}${libupnp_place:-}"
 fi
 
@@ -21159,7 +21081,7 @@ else
   geoip_style=user
 fi
 
-if test ${ENABLE_IP2COUNTRY:-no} = yes; then
+if test ${enable_geoip:-no} = yes; then
   echo "                                       libGeoIP              ${geoip_style}"
 fi
 
