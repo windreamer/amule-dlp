@@ -36,6 +36,7 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(top_srcdir)/automake/dist-hook.am \
 	$(top_srcdir)/automake/manpages.am
 subdir = docs/man
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -313,12 +314,13 @@ EXTRA_DIST = amule.1 amuled.1 amulecmd.1 amulegui.1 amuleweb.1 ed2k.1 \
 	amuleweb.es.1 ed2k.es.1 amule.eu.1 amuled.eu.1 amulecmd.eu.1 \
 	amuleweb.eu.1 ed2k.eu.1 amule.fr.1 amuled.fr.1 amulecmd.fr.1 \
 	amuleweb.fr.1 ed2k.fr.1 amule.hu.1 amuled.hu.1 amulecmd.hu.1 \
-	amuleweb.hu.1 ed2k.hu.1 manpages.pot manpages-de.po
+	amuleweb.hu.1 ed2k.hu.1 po4a.config
+EXTRA__DIST__SUBDIRS = po
 MAINTAINERCLEANFILES = Makefile.in
 all: all-am
 
 .SUFFIXES:
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/automake/manpages.am $(am__configure_deps)
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/automake/dist-hook.am $(top_srcdir)/automake/manpages.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -383,6 +385,9 @@ distdir: $(DISTFILES)
 	    || exit 1; \
 	  fi; \
 	done
+	$(MAKE) $(AM_MAKEFLAGS) \
+	  top_distdir="$(top_distdir)" distdir="$(distdir)" \
+	  dist-hook
 check-am: all-am
 check: check-am
 all-am: Makefile
@@ -462,9 +467,9 @@ uninstall-am: uninstall-info-am
 	@$(NORMAL_INSTALL)
 	$(MAKE) $(AM_MAKEFLAGS) uninstall-hook
 
-.PHONY: all all-am check check-am clean clean-generic distclean \
-	distclean-generic distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am \
+.PHONY: all all-am check check-am clean clean-generic dist-hook \
+	distclean distclean-generic distdir dvi dvi-am html html-am \
+	info info-am install install-am install-data install-data-am \
 	install-data-hook install-exec install-exec-am install-info \
 	install-info-am install-man install-strip installcheck \
 	installcheck-am installdirs maintainer-clean \
@@ -472,6 +477,18 @@ uninstall-am: uninstall-info-am
 	pdf-am ps ps-am uninstall uninstall-am uninstall-hook \
 	uninstall-info-am
 
+dist-hook:
+	test -z "$(EXTRA__DIST__SUBDIRS)" || \
+	for d in $(EXTRA__DIST__SUBDIRS) ; do \
+		mkdir $(distdir)/$$d ; \
+		for f in `find $(srcdir)/$$d -name '.svn' -prune -o -printf "%P\n"` ; do \
+			if test -d $(srcdir)/$$d/$$f ; then \
+				mkdir $(distdir)/$$d/$$f ; \
+			else \
+				cp -p $(srcdir)/$$d/$$f $(distdir)/$$d/$$f ; \
+			fi ; \
+		done ; \
+	done
 install-data-hook:
 	@test -z "`echo $(SELECTED_MANPAGES)`" || \
 	for file in $(SELECTED_MANPAGES); do \
