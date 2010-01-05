@@ -33,6 +33,7 @@
 #include "amule.h"
 #include "Logger.h"
 #include "ScopedPtr.h"
+#include "SearchList.h"		// Needed for UpdateSearchFileByHash
 #include <common/Format.h>
 
 
@@ -55,6 +56,7 @@ CKnownFileList::CKnownFileList()
 	accepted = 0;
 	requested = 0;
 	transferred = 0;
+	m_filename = wxT("known.met");
 	Init();
 }
 
@@ -69,7 +71,7 @@ bool CKnownFileList::Init()
 {
 	CFile file;
 	
-	CPath fullpath = CPath(theApp->ConfigDir + wxT("known.met"));
+	CPath fullpath = CPath(theApp->ConfigDir + m_filename);
 	if (!fullpath.FileExists()) {
 		// This is perfectly normal. The file was probably either
 		// deleted, or this is the first time running aMule.
@@ -77,7 +79,7 @@ bool CKnownFileList::Init()
 	}
 
 	if (!file.Open(fullpath)) {
-		AddLogLineM(true, _("WARNING: known.met cannot be opened."));
+		AddLogLineM(true, CFormat(_("WARNING: %s cannot be opened.")) % m_filename);
 		return false;
 	}
 	
@@ -110,7 +112,7 @@ bool CKnownFileList::Init()
 	} catch (const CInvalidPacket& e) {
 		AddLogLineM(true, wxT("Invalid entry in knownfilelist, file may be corrupt: ") + e.what());
 	} catch (const CSafeIOException& e) {
-		AddLogLineM(true, CFormat(_("IO error while reading known.met file: %s")) % e.what());
+		AddLogLineM(true, CFormat(_("IO error while reading %s file: %s")) % m_filename % e.what());
 	}	
 	
 	return false;
@@ -119,7 +121,7 @@ bool CKnownFileList::Init()
 
 void CKnownFileList::Save()
 {
-	CFile file(theApp->ConfigDir + wxT("known.met"), CFile::write);
+	CFile file(theApp->ConfigDir + m_filename, CFile::write);
 	if (!file.IsOpened()) {
 		return;
 	}
@@ -156,7 +158,7 @@ void CKnownFileList::Save()
 		file.Seek(0);
 		file.WriteUInt8(bContainsAnyLargeFiles ? MET_HEADER_WITH_LARGEFILES : MET_HEADER);
 	} catch (const CIOFailureException& e) {
-		AddLogLineM(true, CFormat(_("Error while saving known.met file: %s")) % e.what());
+		AddLogLineM(true, CFormat(_("Error while saving %s file: %s")) % m_filename % e.what());
 	}
 }
 
@@ -247,7 +249,11 @@ CKnownFile* CKnownFileList::FindKnownFileByID(const CMD4Hash& hash)
 bool CKnownFileList::SafeAddKFile(CKnownFile* toadd)
 {
 	wxMutexLocker sLock(list_mut);
-	return Append(toadd);
+	bool ret = Append(toadd);
+	if (ret) {
+		theApp->searchlist->UpdateSearchFileByHash(toadd->GetFileHash());
+	}
+	return ret;
 }
 
 

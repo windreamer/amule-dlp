@@ -149,14 +149,15 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
 am__amule_SOURCES_DIST = CaptchaDialog.cpp CaptchaGenerator.cpp \
-	RC4Encrypt.cpp amule.cpp BaseClient.cpp ClientList.cpp \
-	ClientCreditsList.cpp ClientTCPSocket.cpp ClientUDPSocket.cpp \
-	CorruptionBlackBox.cpp DownloadClient.cpp DownloadQueue.cpp \
-	ECSpecialCoreTags.cpp EMSocket.cpp EncryptedStreamSocket.cpp \
-	EncryptedDatagramSocket.cpp ExternalConn.cpp Friend.cpp \
-	FriendList.cpp HTTPDownload.cpp IPFilter.cpp KnownFileList.cpp \
-	ListenSocket.cpp MuleUDPSocket.cpp PartFileConvert.cpp \
-	SearchFile.cpp SearchList.cpp ServerConnect.cpp ServerList.cpp \
+	RC4Encrypt.cpp amule.cpp BaseClient.cpp CanceledFileList.cpp \
+	ClientList.cpp ClientCreditsList.cpp ClientTCPSocket.cpp \
+	ClientUDPSocket.cpp CorruptionBlackBox.cpp DownloadClient.cpp \
+	DownloadQueue.cpp ECSpecialCoreTags.cpp EMSocket.cpp \
+	EncryptedStreamSocket.cpp EncryptedDatagramSocket.cpp \
+	ExternalConn.cpp Friend.cpp FriendList.cpp HTTPDownload.cpp \
+	IPFilter.cpp KnownFileList.cpp ListenSocket.cpp \
+	MuleUDPSocket.cpp PartFileConvert.cpp SearchFile.cpp \
+	SearchList.cpp ServerConnect.cpp ServerList.cpp \
 	ServerSocket.cpp ServerUDPSocket.cpp SharedFileList.cpp \
 	TerminationProcessAmuleweb.cpp ThreadTasks.cpp \
 	UploadBandwidthThrottler.cpp UploadClient.cpp UploadQueue.cpp \
@@ -182,8 +183,8 @@ am__amule_SOURCES_DIST = CaptchaDialog.cpp CaptchaGenerator.cpp \
 	NetworkFunctions.cpp
 @ENABLE_UPNP_TRUE@am__objects_1 = amule-UPnPBase.$(OBJEXT)
 am__objects_2 = amule-RC4Encrypt.$(OBJEXT) amule-amule.$(OBJEXT) \
-	amule-BaseClient.$(OBJEXT) amule-ClientList.$(OBJEXT) \
-	amule-ClientCreditsList.$(OBJEXT) \
+	amule-BaseClient.$(OBJEXT) amule-CanceledFileList.$(OBJEXT) \
+	amule-ClientList.$(OBJEXT) amule-ClientCreditsList.$(OBJEXT) \
 	amule-ClientTCPSocket.$(OBJEXT) \
 	amule-ClientUDPSocket.$(OBJEXT) \
 	amule-CorruptionBlackBox.$(OBJEXT) \
@@ -257,10 +258,10 @@ am_amulecmd_OBJECTS = amulecmd-TextClient.$(OBJEXT) \
 @NEED_RC_TRUE@nodist_amulecmd_OBJECTS = amulecmd-version.$(OBJEXT)
 amulecmd_OBJECTS = $(am_amulecmd_OBJECTS) $(nodist_amulecmd_OBJECTS)
 am__amuled_SOURCES_DIST = amuled.cpp Timer.cpp RC4Encrypt.cpp \
-	amule.cpp BaseClient.cpp ClientList.cpp ClientCreditsList.cpp \
-	ClientTCPSocket.cpp ClientUDPSocket.cpp CorruptionBlackBox.cpp \
-	DownloadClient.cpp DownloadQueue.cpp ECSpecialCoreTags.cpp \
-	EMSocket.cpp EncryptedStreamSocket.cpp \
+	amule.cpp BaseClient.cpp CanceledFileList.cpp ClientList.cpp \
+	ClientCreditsList.cpp ClientTCPSocket.cpp ClientUDPSocket.cpp \
+	CorruptionBlackBox.cpp DownloadClient.cpp DownloadQueue.cpp \
+	ECSpecialCoreTags.cpp EMSocket.cpp EncryptedStreamSocket.cpp \
 	EncryptedDatagramSocket.cpp ExternalConn.cpp Friend.cpp \
 	FriendList.cpp HTTPDownload.cpp IPFilter.cpp KnownFileList.cpp \
 	ListenSocket.cpp MuleUDPSocket.cpp PartFileConvert.cpp \
@@ -282,8 +283,8 @@ am__amuled_SOURCES_DIST = amuled.cpp Timer.cpp RC4Encrypt.cpp \
 	NetworkFunctions.cpp
 @ENABLE_UPNP_TRUE@am__objects_8 = amuled-UPnPBase.$(OBJEXT)
 am__objects_9 = amuled-RC4Encrypt.$(OBJEXT) amuled-amule.$(OBJEXT) \
-	amuled-BaseClient.$(OBJEXT) amuled-ClientList.$(OBJEXT) \
-	amuled-ClientCreditsList.$(OBJEXT) \
+	amuled-BaseClient.$(OBJEXT) amuled-CanceledFileList.$(OBJEXT) \
+	amuled-ClientList.$(OBJEXT) amuled-ClientCreditsList.$(OBJEXT) \
 	amuled-ClientTCPSocket.$(OBJEXT) \
 	amuled-ClientUDPSocket.$(OBJEXT) \
 	amuled-CorruptionBlackBox.$(OBJEXT) \
@@ -723,10 +724,11 @@ libmuleappgui_a_SOURCES = \
 	muuli_wdr.cpp 
 
 libmuleappgui_a_CPPFLAGS = $(AM_CPPFLAGS) $(WX_CPPFLAGS) -I$(srcdir)/libs -I$(srcdir)/include $(LIBUPNP_CPPFLAGS) $(GEOIP_CPPFLAGS)
-core_sources = RC4Encrypt.cpp amule.cpp BaseClient.cpp ClientList.cpp \
-	ClientCreditsList.cpp ClientTCPSocket.cpp ClientUDPSocket.cpp \
-	CorruptionBlackBox.cpp DownloadClient.cpp DownloadQueue.cpp \
-	ECSpecialCoreTags.cpp EMSocket.cpp EncryptedStreamSocket.cpp \
+core_sources = RC4Encrypt.cpp amule.cpp BaseClient.cpp \
+	CanceledFileList.cpp ClientList.cpp ClientCreditsList.cpp \
+	ClientTCPSocket.cpp ClientUDPSocket.cpp CorruptionBlackBox.cpp \
+	DownloadClient.cpp DownloadQueue.cpp ECSpecialCoreTags.cpp \
+	EMSocket.cpp EncryptedStreamSocket.cpp \
 	EncryptedDatagramSocket.cpp ExternalConn.cpp Friend.cpp \
 	FriendList.cpp HTTPDownload.cpp IPFilter.cpp KnownFileList.cpp \
 	ListenSocket.cpp MuleUDPSocket.cpp PartFileConvert.cpp \
@@ -857,6 +859,7 @@ noinst_HEADERS = \
 		amuleIPV4Address.h \
 		ArchSpecific.h \
 		BarShader.h \
+		CanceledFileList.h \
 		CaptchaDialog.h \
 		CaptchaGenerator.h \
 		CatDialog.h \
@@ -1087,6 +1090,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-AddFriend.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-BaseClient.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-CanceledFileList.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-CaptchaDialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-CaptchaGenerator.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-CatDialog.Po@am__quote@
@@ -1183,6 +1187,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulecmd-OtherFunctions.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulecmd-TextClient.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-BaseClient.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-CanceledFileList.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-ClientCredits.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-ClientCreditsList.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-ClientList.Po@am__quote@
@@ -1982,6 +1987,20 @@ amule-BaseClient.obj: BaseClient.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='BaseClient.cpp' object='amule-BaseClient.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-BaseClient.obj `if test -f 'BaseClient.cpp'; then $(CYGPATH_W) 'BaseClient.cpp'; else $(CYGPATH_W) '$(srcdir)/BaseClient.cpp'; fi`
+
+amule-CanceledFileList.o: CanceledFileList.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-CanceledFileList.o -MD -MP -MF "$(DEPDIR)/amule-CanceledFileList.Tpo" -c -o amule-CanceledFileList.o `test -f 'CanceledFileList.cpp' || echo '$(srcdir)/'`CanceledFileList.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-CanceledFileList.Tpo" "$(DEPDIR)/amule-CanceledFileList.Po"; else rm -f "$(DEPDIR)/amule-CanceledFileList.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CanceledFileList.cpp' object='amule-CanceledFileList.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-CanceledFileList.o `test -f 'CanceledFileList.cpp' || echo '$(srcdir)/'`CanceledFileList.cpp
+
+amule-CanceledFileList.obj: CanceledFileList.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-CanceledFileList.obj -MD -MP -MF "$(DEPDIR)/amule-CanceledFileList.Tpo" -c -o amule-CanceledFileList.obj `if test -f 'CanceledFileList.cpp'; then $(CYGPATH_W) 'CanceledFileList.cpp'; else $(CYGPATH_W) '$(srcdir)/CanceledFileList.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-CanceledFileList.Tpo" "$(DEPDIR)/amule-CanceledFileList.Po"; else rm -f "$(DEPDIR)/amule-CanceledFileList.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CanceledFileList.cpp' object='amule-CanceledFileList.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-CanceledFileList.obj `if test -f 'CanceledFileList.cpp'; then $(CYGPATH_W) 'CanceledFileList.cpp'; else $(CYGPATH_W) '$(srcdir)/CanceledFileList.cpp'; fi`
 
 amule-ClientList.o: ClientList.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-ClientList.o -MD -MP -MF "$(DEPDIR)/amule-ClientList.Tpo" -c -o amule-ClientList.o `test -f 'ClientList.cpp' || echo '$(srcdir)/'`ClientList.cpp; \
@@ -3340,6 +3359,20 @@ amuled-BaseClient.obj: BaseClient.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='BaseClient.cpp' object='amuled-BaseClient.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-BaseClient.obj `if test -f 'BaseClient.cpp'; then $(CYGPATH_W) 'BaseClient.cpp'; else $(CYGPATH_W) '$(srcdir)/BaseClient.cpp'; fi`
+
+amuled-CanceledFileList.o: CanceledFileList.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-CanceledFileList.o -MD -MP -MF "$(DEPDIR)/amuled-CanceledFileList.Tpo" -c -o amuled-CanceledFileList.o `test -f 'CanceledFileList.cpp' || echo '$(srcdir)/'`CanceledFileList.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-CanceledFileList.Tpo" "$(DEPDIR)/amuled-CanceledFileList.Po"; else rm -f "$(DEPDIR)/amuled-CanceledFileList.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CanceledFileList.cpp' object='amuled-CanceledFileList.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-CanceledFileList.o `test -f 'CanceledFileList.cpp' || echo '$(srcdir)/'`CanceledFileList.cpp
+
+amuled-CanceledFileList.obj: CanceledFileList.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-CanceledFileList.obj -MD -MP -MF "$(DEPDIR)/amuled-CanceledFileList.Tpo" -c -o amuled-CanceledFileList.obj `if test -f 'CanceledFileList.cpp'; then $(CYGPATH_W) 'CanceledFileList.cpp'; else $(CYGPATH_W) '$(srcdir)/CanceledFileList.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-CanceledFileList.Tpo" "$(DEPDIR)/amuled-CanceledFileList.Po"; else rm -f "$(DEPDIR)/amuled-CanceledFileList.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CanceledFileList.cpp' object='amuled-CanceledFileList.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-CanceledFileList.obj `if test -f 'CanceledFileList.cpp'; then $(CYGPATH_W) 'CanceledFileList.cpp'; else $(CYGPATH_W) '$(srcdir)/CanceledFileList.cpp'; fi`
 
 amuled-ClientList.o: ClientList.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-ClientList.o -MD -MP -MF "$(DEPDIR)/amuled-ClientList.Tpo" -c -o amuled-ClientList.o `test -f 'ClientList.cpp' || echo '$(srcdir)/'`ClientList.cpp; \
