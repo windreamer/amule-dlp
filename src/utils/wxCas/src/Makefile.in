@@ -50,15 +50,16 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/GeoIP.m4 \
 	$(top_srcdir)/m4/glibc21.m4 $(top_srcdir)/m4/iconv.m4 \
 	$(top_srcdir)/m4/intdiv0.m4 $(top_srcdir)/m4/inttypes-pri.m4 \
 	$(top_srcdir)/m4/inttypes.m4 $(top_srcdir)/m4/inttypes_h.m4 \
-	$(top_srcdir)/m4/lcmessage.m4 $(top_srcdir)/m4/lib-ld.m4 \
-	$(top_srcdir)/m4/lib-link.m4 $(top_srcdir)/m4/lib-prefix.m4 \
-	$(top_srcdir)/m4/libpng.m4 $(top_srcdir)/m4/libupnp.m4 \
-	$(top_srcdir)/m4/nls.m4 $(top_srcdir)/m4/pkg.m4 \
-	$(top_srcdir)/m4/progtest.m4 $(top_srcdir)/m4/readline.m4 \
-	$(top_srcdir)/m4/stdint_h.m4 $(top_srcdir)/m4/uintmax_t.m4 \
-	$(top_srcdir)/m4/ulonglong.m4 $(top_srcdir)/m4/wxwin.m4 \
-	$(top_srcdir)/m4/zlib.m4 $(top_srcdir)/acinclude.m4 \
-	$(top_srcdir)/configure.in
+	$(top_srcdir)/m4/kde.m4 $(top_srcdir)/m4/lcmessage.m4 \
+	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/lib-link.m4 \
+	$(top_srcdir)/m4/lib-prefix.m4 $(top_srcdir)/m4/libpng.m4 \
+	$(top_srcdir)/m4/libupnp.m4 $(top_srcdir)/m4/nls.m4 \
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/plasmamule.m4 \
+	$(top_srcdir)/m4/progtest.m4 $(top_srcdir)/m4/qt.m4 \
+	$(top_srcdir)/m4/readline.m4 $(top_srcdir)/m4/stdint_h.m4 \
+	$(top_srcdir)/m4/uintmax_t.m4 $(top_srcdir)/m4/ulonglong.m4 \
+	$(top_srcdir)/m4/wxwin.m4 $(top_srcdir)/m4/zlib.m4 \
+	$(top_srcdir)/acinclude.m4 $(top_srcdir)/configure.in
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
@@ -183,6 +184,11 @@ INTLBISON = @INTLBISON@
 INTLLIBS = @INTLLIBS@
 INTLOBJS = @INTLOBJS@
 INTL_LIBTOOL_SUFFIX_PREFIX = @INTL_LIBTOOL_SUFFIX_PREFIX@
+KDE4_CONFIG = @KDE4_CONFIG@
+KDE_HEADER_DIR = @KDE_HEADER_DIR@
+KDE_ICON_PATH = @KDE_ICON_PATH@
+KDE_MODULE_PATH = @KDE_MODULE_PATH@
+KDE_SERVICE_PATH = @KDE_SERVICE_PATH@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LEX = @LEX@
@@ -231,8 +237,15 @@ PACKAGE_TARNAME = @PACKAGE_TARNAME@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PKG_CONFIG = @PKG_CONFIG@
+PLASMAMULE_FALSE = @PLASMAMULE_FALSE@
+PLASMAMULE_TRUE = @PLASMAMULE_TRUE@
 POSUB = @POSUB@
 POW_LIB = @POW_LIB@
+QT_CORE_CXXFLAGS = @QT_CORE_CXXFLAGS@
+QT_CORE_LIBS = @QT_CORE_LIBS@
+QT_GUI_CXXFLAGS = @QT_GUI_CXXFLAGS@
+QT_GUI_LIBS = @QT_GUI_LIBS@
+QT_MOC = @QT_MOC@
 RANLIB = @RANLIB@
 RC = @RC@
 RCFLAGS = @RCFLAGS@

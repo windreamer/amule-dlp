@@ -311,7 +311,7 @@ ac_includes_default="\
 # include <unistd.h>
 #endif"
 
-ac_subst_vars='GEOIP_CPPFLAGS GEOIP_LDFLAGS GEOIP_LIBS SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot AMTAR am__tar am__untar MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT build build_cpu build_vendor build_os host host_cpu host_vendor host_os RESOLV_LIB MULECPPFLAGS MULECFLAGS MULECXXFLAGS MULELDFLAGS MULERCFLAGS CXX CXXFLAGS LDFLAGS CPPFLAGS ac_ct_CXX EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE CXXCPP CC CFLAGS ac_ct_CC CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE CPP BUILD_CC ac_ct_BUILD_CC EXEEXT BUILD_EXEEXT BUILD_CPPFLAGS BUILD_CFLAGS BUILD_LDFLAGS EGREP LEX LEXLIB LEX_OUTPUT_ROOT RANLIB ac_ct_RANLIB YACC AR ac_ct_AR LD ac_ct_LD MONOLITHIC_TRUE MONOLITHIC_FALSE AMULE_DAEMON_TRUE AMULE_DAEMON_FALSE COMPILE_CMD_TRUE COMPILE_CMD_FALSE WEB_TRUE WEB_FALSE AMULE_GUI_TRUE AMULE_GUI_FALSE CAS_TRUE CAS_FALSE WXCAS_TRUE WXCAS_FALSE ED2K_TRUE ED2K_FALSE ALC_TRUE ALC_FALSE ALCC_TRUE ALCC_FALSE XAS_TRUE XAS_FALSE FILEVIEW_TRUE FILEVIEW_FALSE ZLIB_CPPFLAGS ZLIB_LDFLAGS ZLIB_LIBS GDLIB_CONFIG_PATH GDLIB_CFLAGS GDLIB_LDFLAGS GDLIB_LIBS CAS_DEFS LIBPNG_CONFIG_PATH LIBPNG_CFLAGS LIBPNG_LDFLAGS LIBPNG_LIBS AMULEWEB_DEFS WX_CONFIG_PATH WX_CPPFLAGS WX_CFLAGS WX_CXXFLAGS WX_CFLAGS_ONLY WX_CXXFLAGS_ONLY WX_LIBS WX_VERSION_FULL WX_RESCOMP WX_VERSION_MAJOR WX_VERSION_MINOR WX_UNICODE WX_DEBUG WX_SHARED WX_PORT WXBASE_LIBS WXBASE_CPPFLAGS RC RCFLAGS ac_ct_RC PKG_CONFIG ac_pt_PKG_CONFIG LIBUPNP_CPPFLAGS LIBUPNP_CFLAGS LIBUPNP_LDFLAGS LIBUPNP_LIBS CRYPTOPP_CPPFLAGS CRYPTOPP_LDFLAGS CRYPTOPP_LIBS ALLOCA LIBOBJS POW_LIB MKINSTALLDIRS MSGFMT GMSGFMT XGETTEXT MSGMERGE GLIBC21 LIBICONV LTLIBICONV INTLBISON USE_NLS BUILD_INCLUDED_LIBINTL USE_INCLUDED_LIBINTL CATOBJEXT INTLOBJS DATADIRNAME INSTOBJEXT GENCAT INTL_LIBTOOL_SUFFIX_PREFIX INTLLIBS LIBINTL LTLIBINTL POSUB AMULE_DAEMON_MANPAGES AMULECMD_MANPAGES WEBSERVER_MANPAGES AMULE_GUI_MANPAGES CAS_MANPAGES WXCAS_MANPAGES ED2K_MANPAGES ALC_MANPAGES ALCC_MANPAGES MONOLITHIC_MANPAGES INCINTL BFD_CPPFLAGS BFD_LIBS docdir SVNDATE ENABLE_UPNP_TRUE ENABLE_UPNP_FALSE ENABLE_IP2COUNTRY_TRUE ENABLE_IP2COUNTRY_FALSE SYS_WIN32_TRUE SYS_WIN32_FALSE NEED_RC_TRUE NEED_RC_FALSE NEED_CORESERVICES_TRUE NEED_CORESERVICES_FALSE COMPILE_NLS_TRUE COMPILE_NLS_FALSE GENERATE_FLEX_HEADER_TRUE GENERATE_FLEX_HEADER_FALSE INSTALL_SKINS_TRUE INSTALL_SKINS_FALSE READLINE_LIBS LTLIBOBJS'
+ac_subst_vars='GEOIP_CPPFLAGS GEOIP_LDFLAGS GEOIP_LIBS SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot AMTAR am__tar am__untar MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT build build_cpu build_vendor build_os host host_cpu host_vendor host_os RESOLV_LIB MULECPPFLAGS MULECFLAGS MULECXXFLAGS MULELDFLAGS MULERCFLAGS CXX CXXFLAGS LDFLAGS CPPFLAGS ac_ct_CXX EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE CXXCPP CC CFLAGS ac_ct_CC CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE CPP BUILD_CC ac_ct_BUILD_CC EXEEXT BUILD_EXEEXT BUILD_CPPFLAGS BUILD_CFLAGS BUILD_LDFLAGS EGREP LEX LEXLIB LEX_OUTPUT_ROOT RANLIB ac_ct_RANLIB YACC AR ac_ct_AR LD ac_ct_LD MONOLITHIC_TRUE MONOLITHIC_FALSE AMULE_DAEMON_TRUE AMULE_DAEMON_FALSE COMPILE_CMD_TRUE COMPILE_CMD_FALSE WEB_TRUE WEB_FALSE AMULE_GUI_TRUE AMULE_GUI_FALSE CAS_TRUE CAS_FALSE WXCAS_TRUE WXCAS_FALSE ED2K_TRUE ED2K_FALSE ALC_TRUE ALC_FALSE ALCC_TRUE ALCC_FALSE XAS_TRUE XAS_FALSE FILEVIEW_TRUE FILEVIEW_FALSE ZLIB_CPPFLAGS ZLIB_LDFLAGS ZLIB_LIBS GDLIB_CONFIG_PATH GDLIB_CFLAGS GDLIB_LDFLAGS GDLIB_LIBS CAS_DEFS LIBPNG_CONFIG_PATH LIBPNG_CFLAGS LIBPNG_LDFLAGS LIBPNG_LIBS AMULEWEB_DEFS WX_CONFIG_PATH WX_CPPFLAGS WX_CFLAGS WX_CXXFLAGS WX_CFLAGS_ONLY WX_CXXFLAGS_ONLY WX_LIBS WX_VERSION_FULL WX_RESCOMP WX_VERSION_MAJOR WX_VERSION_MINOR WX_UNICODE WX_DEBUG WX_SHARED WX_PORT WXBASE_LIBS WXBASE_CPPFLAGS RC RCFLAGS ac_ct_RC PKG_CONFIG ac_pt_PKG_CONFIG LIBUPNP_CPPFLAGS LIBUPNP_CFLAGS LIBUPNP_LDFLAGS LIBUPNP_LIBS CRYPTOPP_CPPFLAGS CRYPTOPP_LDFLAGS CRYPTOPP_LIBS ALLOCA LIBOBJS POW_LIB MKINSTALLDIRS MSGFMT GMSGFMT XGETTEXT MSGMERGE GLIBC21 LIBICONV LTLIBICONV INTLBISON USE_NLS BUILD_INCLUDED_LIBINTL USE_INCLUDED_LIBINTL CATOBJEXT INTLOBJS DATADIRNAME INSTOBJEXT GENCAT INTL_LIBTOOL_SUFFIX_PREFIX INTLLIBS LIBINTL LTLIBINTL POSUB AMULE_DAEMON_MANPAGES AMULECMD_MANPAGES WEBSERVER_MANPAGES AMULE_GUI_MANPAGES CAS_MANPAGES WXCAS_MANPAGES ED2K_MANPAGES ALC_MANPAGES ALCC_MANPAGES MONOLITHIC_MANPAGES INCINTL BFD_CPPFLAGS BFD_LIBS docdir SVNDATE QT_MOC QT_CORE_CXXFLAGS QT_CORE_LIBS QT_GUI_CXXFLAGS QT_GUI_LIBS KDE4_CONFIG KDE_HEADER_DIR KDE_SERVICE_PATH KDE_MODULE_PATH KDE_ICON_PATH ENABLE_UPNP_TRUE ENABLE_UPNP_FALSE ENABLE_IP2COUNTRY_TRUE ENABLE_IP2COUNTRY_FALSE SYS_WIN32_TRUE SYS_WIN32_FALSE NEED_RC_TRUE NEED_RC_FALSE NEED_CORESERVICES_TRUE NEED_CORESERVICES_FALSE COMPILE_NLS_TRUE COMPILE_NLS_FALSE GENERATE_FLEX_HEADER_TRUE GENERATE_FLEX_HEADER_FALSE INSTALL_SKINS_TRUE INSTALL_SKINS_FALSE PLASMAMULE_TRUE PLASMAMULE_FALSE READLINE_LIBS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -893,7 +893,9 @@ Optional Features:
   --enable-alcc           compile aMuleLinkCreator for console
   --enable-xas            install xas XChat2 plugin
   --enable-fileview       compile aMule file viewer for console (EXPERIMENTAL)
+  --enable-plasmamule     compile aMule plasma applet and engine
   --enable-static         produce a statically linked executable
+  --enable-kde-in-home    install KDE related stuff in your home dir
   --enable-geoip          compile with GeoIP IP2Country library
   --disable-upnp          do not compile UPnP code
   --enable-mmap           enable using mapped memory if supported
@@ -907,6 +909,8 @@ Optional Features:
 Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
+  --with-kde4-config=PATH kde4-config script to use
+  --with-moc=PATH         Search in PATH for Qt's meta object compiler
   --without-gnu-malloc    Don't assume that we use GNU libc compatible
                           malloc/realloc when cross-compiling
   --with-zlib=PREFIX      use zlib in PREFIX
@@ -5624,6 +5628,12 @@ else
 fi
 
 
+# Check whether --enable-plasmamule or --disable-plasmamule was given.
+if test "${enable_plasmamule+set}" = set; then
+  enableval="$enable_plasmamule"
+
+fi;
+
 
 # Run all the tests with static linkage if we want a statically linked binary
 # Check whether --enable-static or --disable-static was given.
@@ -5635,6 +5645,34 @@ fi;
 if test ${enable_static:-no} = yes; then
   LDFLAGS="$LDFLAGS -static"
 fi
+
+
+
+
+# Check whether --with-kde4-config or --without-kde4-config was given.
+if test "${with_kde4_config+set}" = set; then
+  withval="$with_kde4_config"
+  KDE4_CONFIG=$withval
+else
+  KDE4_CONFIG=""
+fi;
+	# Check whether --enable-kde-in-home or --disable-kde-in-home was given.
+if test "${enable_kde_in_home+set}" = set; then
+  enableval="$enable_kde_in_home"
+  KDE_IN_HOME=$enableval
+else
+  KDE_IN_HOME=no
+fi;
+
+
+
+# Check whether --with-moc or --without-moc was given.
+if test "${with_moc+set}" = set; then
+  withval="$with_moc"
+  QT_MOC=$withval
+else
+  QT_MOC=""
+fi;
 
 
 # Default is yes, because they're most likely compatible.
@@ -18561,6 +18599,349 @@ echo "${ECHO_T}$with_denoise_level" >&6
 
 
 
+if test ${enable_plasmamule:-no} = yes; then
+
+
+	if test -z ${QT_MOC}; then
+
+		for ac_prog in moc-qt4 moc
+do
+  # Extract the first word of "$ac_prog", so it can be a program name with args.
+set dummy $ac_prog; ac_word=$2
+echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
+if test "${ac_cv_path_QT_MOC+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  case $QT_MOC in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_QT_MOC="$QT_MOC" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_QT_MOC="$as_dir/$ac_word$ac_exec_ext"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+
+  ;;
+esac
+fi
+QT_MOC=$ac_cv_path_QT_MOC
+
+if test -n "$QT_MOC"; then
+  echo "$as_me:$LINENO: result: $QT_MOC" >&5
+echo "${ECHO_T}$QT_MOC" >&6
+else
+  echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
+fi
+
+  test -n "$QT_MOC" && break
+done
+
+
+else
+
+		echo "$as_me:$LINENO: checking for moc" >&5
+echo $ECHO_N "checking for moc... $ECHO_C" >&6
+		if test -x ${QT_MOC}; then
+
+			echo "$as_me:$LINENO: result: ${QT_MOC}" >&5
+echo "${ECHO_T}${QT_MOC}" >&6
+
+
+else
+
+			echo "$as_me:$LINENO: result: \"not found\"" >&5
+echo "${ECHO_T}\"not found\"" >&6
+			QT_MOC="not found"
+
+fi
+
+
+fi
+
+
+
+	if test "${QT_MOC}" != "not found"; then
+
+		echo "$as_me:$LINENO: checking for moc version >= 4" >&5
+echo $ECHO_N "checking for moc version >= 4... $ECHO_C" >&6
+		QT_MOC_VERSION=`${QT_MOC} -v 2>&1 | sed -e 's/^.* (/(/'`
+		if test `echo ${QT_MOC_VERSION} | sed -e 's/^.* //' -e 's/\..*$//'` = 4; then
+
+			echo "$as_me:$LINENO: result: found ${QT_MOC_VERSION}" >&5
+echo "${ECHO_T}found ${QT_MOC_VERSION}" >&6
+
+else
+
+			echo "$as_me:$LINENO: result: not found ${QT_MOC_VERSION} is too old" >&5
+echo "${ECHO_T}not found ${QT_MOC_VERSION} is too old" >&6
+			QT_MOC="not found"
+
+fi
+
+
+fi
+
+
+	if test "${QT_MOC}" = "not found"; then
+  enable_plasmamule=disabled
+fi
+
+
+	if test ${enable_plasmamule:-no} = yes; then
+
+
+
+	echo "$as_me:$LINENO: checking for qt" >&5
+echo $ECHO_N "checking for qt... $ECHO_C" >&6
+	if test `${PKG_CONFIG} QtCore` --exists && `${PKG_CONFIG} QtGui --exists`; then
+
+		echo "$as_me:$LINENO: result: found" >&5
+echo "${ECHO_T}found" >&6
+		echo "$as_me:$LINENO: checking for qt core cflags" >&5
+echo $ECHO_N "checking for qt core cflags... $ECHO_C" >&6
+		QT_CORE_CXXFLAGS=`${PKG_CONFIG} --cflags QtCore`
+		echo "$as_me:$LINENO: result: $QT_CORE_CFLAGS" >&5
+echo "${ECHO_T}$QT_CORE_CFLAGS" >&6
+		echo "$as_me:$LINENO: checking for qt core libs" >&5
+echo $ECHO_N "checking for qt core libs... $ECHO_C" >&6
+		QT_CORE_LIBS=`${PKG_CONFIG} --libs QtCore`
+		echo "$as_me:$LINENO: result: $QT_CORE_LIBS" >&5
+echo "${ECHO_T}$QT_CORE_LIBS" >&6
+		echo "$as_me:$LINENO: checking for qt gui cflags" >&5
+echo $ECHO_N "checking for qt gui cflags... $ECHO_C" >&6
+		QT_GUI_CXXFLAGS=`${PKG_CONFIG} --cflags QtGui`
+		echo "$as_me:$LINENO: result: $QT_GUI_CFLAGS" >&5
+echo "${ECHO_T}$QT_GUI_CFLAGS" >&6
+		echo "$as_me:$LINENO: checking for qt gui libs" >&5
+echo $ECHO_N "checking for qt gui libs... $ECHO_C" >&6
+		QT_GUI_LIBS=`${PKG_CONFIG} --libs QtGui`
+		echo "$as_me:$LINENO: result: $QT_GUI_LIBS" >&5
+echo "${ECHO_T}$QT_GUI_LIBS" >&6
+
+else
+  echo "$as_me:$LINENO: result: not found" >&5
+echo "${ECHO_T}not found" >&6
+
+fi
+
+
+
+
+
+
+		if test -z "${QT_CORE_CXXFLAGS}"; then
+  enable_plasmamule=disabled
+fi
+
+
+fi
+
+
+	if test ${enable_plasmamule:-no} = yes; then
+
+
+	if test -z ${KDE4_CONFIG}; then
+
+		# Extract the first word of "kde4-config", so it can be a program name with args.
+set dummy kde4-config; ac_word=$2
+echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
+if test "${ac_cv_path_KDE4_CONFIG+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  case $KDE4_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_KDE4_CONFIG="$KDE4_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_KDE4_CONFIG="$as_dir/$ac_word$ac_exec_ext"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+
+  ;;
+esac
+fi
+KDE4_CONFIG=$ac_cv_path_KDE4_CONFIG
+
+if test -n "$KDE4_CONFIG"; then
+  echo "$as_me:$LINENO: result: $KDE4_CONFIG" >&5
+echo "${ECHO_T}$KDE4_CONFIG" >&6
+else
+  echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
+fi
+
+
+else
+
+		echo "$as_me:$LINENO: checking for kde4-config" >&5
+echo $ECHO_N "checking for kde4-config... $ECHO_C" >&6
+		if test ! -x KDE4_CONFIG; then
+
+			KDE4_CONFIG="not found"
+			echo "$as_me:$LINENO: result: not found" >&5
+echo "${ECHO_T}not found" >&6
+
+fi
+
+
+fi
+
+
+	if  test "${KDE4_CONFIG}" != "not found"; then
+
+		KDE_CONF_VER=`${KDE4_CONFIG} --version | grep KDE | sed -e 's/^.*: //' -e 's/ (.*$//'`
+		if test `echo ${KDE_CONF_VER} | sed -e 's/\..*$//'` = 4; then
+
+			echo "$as_me:$LINENO: result: found ${KDE4_CONFIG} with version ${KDE_CONF_VER}" >&5
+echo "${ECHO_T}found ${KDE4_CONFIG} with version ${KDE_CONF_VER}" >&6
+
+else
+
+			echo "$as_me:$LINENO: result: not found" >&5
+echo "${ECHO_T}not found" >&6
+
+fi
+
+
+else
+
+		echo "$as_me:$LINENO: result: not found" >&5
+echo "${ECHO_T}not found" >&6
+
+fi
+
+
+
+		if test "${KDE4_CONFIG}" = "not found"; then
+  enable_plasmamule=disabled
+fi
+
+
+fi
+
+
+	if test ${enable_plasmamule:-no} = yes; then
+
+
+	echo "$as_me:$LINENO: checking for kde4 headers" >&5
+echo $ECHO_N "checking for kde4 headers... $ECHO_C" >&6
+	KDE_HEADER_DIR=`${KDE4_CONFIG} --path include`
+
+	if test -f ${KDE_HEADER_DIR+kdirwatch.h}; then
+
+		if test -f ${KDE_HEADER_DIR+plasma/dataengine.h}; then
+
+			echo "$as_me:$LINENO: result: $KDE_HEADER_DIR" >&5
+echo "${ECHO_T}$KDE_HEADER_DIR" >&6
+
+else
+
+			echo "$as_me:$LINENO: result: not found" >&5
+echo "${ECHO_T}not found" >&6
+
+fi
+
+
+else
+
+		echo "$as_me:$LINENO: result: not found" >&5
+echo "${ECHO_T}not found" >&6
+
+fi
+
+
+
+		if test -z ${KDE_HEADER_DIR}; then
+  enable_plasmamule=disabled
+fi
+
+
+fi
+
+
+	if test ${enable_plasmamule:-no} = yes; then
+
+
+	echo "$as_me:$LINENO: checking for kde4 services Path" >&5
+echo $ECHO_N "checking for kde4 services Path... $ECHO_C" >&6
+	if test ${KDE_IN_HOME} = "yes"; then
+
+		KDE_SERVICE_PATH=`${KDE4_CONFIG} --path services | tr ":" "\n" | grep /home`
+
+else
+
+		KDE_SERVICE_PATH=`${KDE4_CONFIG} --path services | tr ":" "\n" | grep /usr`
+
+fi
+
+	echo "$as_me:$LINENO: result: ${KDE_SERVICE_PATH}" >&5
+echo "${ECHO_T}${KDE_SERVICE_PATH}" >&6
+
+
+
+	echo "$as_me:$LINENO: checking for kde4 plugins Path" >&5
+echo $ECHO_N "checking for kde4 plugins Path... $ECHO_C" >&6
+	if test ${KDE_IN_HOME} = "yes"; then
+
+		KDE_MODULE_PATH=`${KDE4_CONFIG} --path module | tr ":" "\n" | grep /home`
+
+else
+
+		KDE_MODULE_PATH=`${KDE4_CONFIG} --path module | tr ":" "\n" | grep /usr`
+
+fi
+
+	echo "$as_me:$LINENO: result: ${KDE_MODULE_PATH}" >&5
+echo "${ECHO_T}${KDE_MODULE_PATH}" >&6
+
+
+
+	echo "$as_me:$LINENO: checking for kde4 icons Path" >&5
+echo $ECHO_N "checking for kde4 icons Path... $ECHO_C" >&6
+	if test ${KDE_IN_HOME} = "yes"; then
+
+		KDE_ICON_PATH=`${KDE4_CONFIG} --path icon | tr ":" "\n" | grep /home | head -1`
+
+else
+
+		KDE_ICON_PATH=`${KDE4_CONFIG} --path icon | tr ":" "\n" | grep /usr | head -1`
+
+fi
+
+	echo "$as_me:$LINENO: result: ${KDE_ICON_PATH}" >&5
+echo "${ECHO_T}${KDE_ICON_PATH}" >&6
+
+
+
+fi
+
+
+fi
+
+
 
 
 if test ${enable_upnp:-yes} = yes; then
@@ -18639,6 +19020,16 @@ if test x$INSTALL_SKINS = xyes; then
 else
   INSTALL_SKINS_TRUE='#'
   INSTALL_SKINS_FALSE=
+fi
+
+
+
+if test ${enable_plasmamule:-no} = yes; then
+  PLASMAMULE_TRUE=
+  PLASMAMULE_FALSE='#'
+else
+  PLASMAMULE_TRUE='#'
+  PLASMAMULE_FALSE=
 fi
 
 
@@ -19167,7 +19558,7 @@ fi
 
 
 
-                                                                                                                                                                                                                                                                                                                      ac_config_files="$ac_config_files Makefile docs/Makefile docs/man/Makefile intl/Makefile src/Makefile src/pixmaps/Makefile src/pixmaps/flags_xpm/Makefile src/libs/Makefile src/libs/ec/Makefile src/libs/ec/cpp/Makefile src/libs/common/Makefile src/utils/Makefile src/utils/aLinkCreator/Makefile src/utils/aLinkCreator/docs/Makefile src/utils/aLinkCreator/src/Makefile src/utils/cas/Makefile src/utils/cas/docs/Makefile src/utils/fileview/Makefile src/utils/wxCas/Makefile src/utils/wxCas/docs/Makefile src/utils/wxCas/src/Makefile src/utils/xas/Makefile src/utils/xas/autostart-xas src/utils/xas/docs/Makefile src/skins/Makefile src/webserver/Makefile src/webserver/src/Makefile src/webserver/default/Makefile unittests/Makefile unittests/muleunit/Makefile unittests/tests/Makefile"
+                                                                                                                                                                                                                                                                                                                                ac_config_files="$ac_config_files Makefile docs/Makefile docs/man/Makefile intl/Makefile src/Makefile src/pixmaps/Makefile src/pixmaps/flags_xpm/Makefile src/libs/Makefile src/libs/ec/Makefile src/libs/ec/cpp/Makefile src/libs/common/Makefile src/utils/Makefile src/utils/aLinkCreator/Makefile src/utils/aLinkCreator/docs/Makefile src/utils/aLinkCreator/src/Makefile src/utils/cas/Makefile src/utils/cas/docs/Makefile src/utils/fileview/Makefile src/utils/plasmamule/Makefile src/utils/wxCas/Makefile src/utils/wxCas/docs/Makefile src/utils/wxCas/src/Makefile src/utils/xas/Makefile src/utils/xas/autostart-xas src/utils/xas/docs/Makefile src/skins/Makefile src/webserver/Makefile src/webserver/src/Makefile src/webserver/default/Makefile unittests/Makefile unittests/muleunit/Makefile unittests/tests/Makefile"
 
                     ac_config_files="$ac_config_files po/Makefile.in Compilation.flags"
 
@@ -19432,6 +19823,13 @@ if test -z "${INSTALL_SKINS_TRUE}" && test -z "${INSTALL_SKINS_FALSE}"; then
   { { echo "$as_me:$LINENO: error: conditional \"INSTALL_SKINS\" was never defined.
 Usually this means the macro was only invoked conditionally." >&5
 echo "$as_me: error: conditional \"INSTALL_SKINS\" was never defined.
+Usually this means the macro was only invoked conditionally." >&2;}
+   { (exit 1); exit 1; }; }
+fi
+if test -z "${PLASMAMULE_TRUE}" && test -z "${PLASMAMULE_FALSE}"; then
+  { { echo "$as_me:$LINENO: error: conditional \"PLASMAMULE\" was never defined.
+Usually this means the macro was only invoked conditionally." >&5
+echo "$as_me: error: conditional \"PLASMAMULE\" was never defined.
 Usually this means the macro was only invoked conditionally." >&2;}
    { (exit 1); exit 1; }; }
 fi
@@ -19905,6 +20303,7 @@ do
   "src/utils/cas/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/utils/cas/Makefile" ;;
   "src/utils/cas/docs/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/utils/cas/docs/Makefile" ;;
   "src/utils/fileview/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/utils/fileview/Makefile" ;;
+  "src/utils/plasmamule/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/utils/plasmamule/Makefile" ;;
   "src/utils/wxCas/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/utils/wxCas/Makefile" ;;
   "src/utils/wxCas/docs/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/utils/wxCas/docs/Makefile" ;;
   "src/utils/wxCas/src/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/utils/wxCas/src/Makefile" ;;
@@ -20200,6 +20599,16 @@ s,@BFD_CPPFLAGS@,$BFD_CPPFLAGS,;t t
 s,@BFD_LIBS@,$BFD_LIBS,;t t
 s,@docdir@,$docdir,;t t
 s,@SVNDATE@,$SVNDATE,;t t
+s,@QT_MOC@,$QT_MOC,;t t
+s,@QT_CORE_CXXFLAGS@,$QT_CORE_CXXFLAGS,;t t
+s,@QT_CORE_LIBS@,$QT_CORE_LIBS,;t t
+s,@QT_GUI_CXXFLAGS@,$QT_GUI_CXXFLAGS,;t t
+s,@QT_GUI_LIBS@,$QT_GUI_LIBS,;t t
+s,@KDE4_CONFIG@,$KDE4_CONFIG,;t t
+s,@KDE_HEADER_DIR@,$KDE_HEADER_DIR,;t t
+s,@KDE_SERVICE_PATH@,$KDE_SERVICE_PATH,;t t
+s,@KDE_MODULE_PATH@,$KDE_MODULE_PATH,;t t
+s,@KDE_ICON_PATH@,$KDE_ICON_PATH,;t t
 s,@ENABLE_UPNP_TRUE@,$ENABLE_UPNP_TRUE,;t t
 s,@ENABLE_UPNP_FALSE@,$ENABLE_UPNP_FALSE,;t t
 s,@ENABLE_IP2COUNTRY_TRUE@,$ENABLE_IP2COUNTRY_TRUE,;t t
@@ -20216,6 +20625,8 @@ s,@GENERATE_FLEX_HEADER_TRUE@,$GENERATE_FLEX_HEADER_TRUE,;t t
 s,@GENERATE_FLEX_HEADER_FALSE@,$GENERATE_FLEX_HEADER_FALSE,;t t
 s,@INSTALL_SKINS_TRUE@,$INSTALL_SKINS_TRUE,;t t
 s,@INSTALL_SKINS_FALSE@,$INSTALL_SKINS_FALSE,;t t
+s,@PLASMAMULE_TRUE@,$PLASMAMULE_TRUE,;t t
+s,@PLASMAMULE_FALSE@,$PLASMAMULE_FALSE,;t t
 s,@READLINE_LIBS@,$READLINE_LIBS,;t t
 s,@LTLIBOBJS@,$LTLIBOBJS,;t t
 CEOF
@@ -21086,6 +21497,7 @@ echo "  **** aMule Statistics ****"
 echo "  Should C aMule Statistics (CAS) be built?                  ${enable_cas:-no}"
 echo "  Should aMule GUI Statistics (wxCas) be built?              ${enable_wxcas:-no}"
 echo "  Should xas XChat2 plugin be installed?                     ${enable_xas:-no}"
+echo "  Should plasmaMule plasma-applet be build?                  ${enable_plasmamule:-no}"
 
 echo
 echo "  **** General Libraries and Tools ****"
@@ -21159,6 +21571,17 @@ fi
 
 if test ${enable_monolithic:-yes} = yes -o ${enable_amule_daemon:-no} = yes -o ${enable_amulecmd:-no} = yes -o ${enable_webserver:-no} = yes -o ${enable_amule_gui:-no} = yes ; then
   echo "                                       zlib                  ${ZLIB_VERSION:-Not detected}"
+fi
+
+if test ${enable_plasmamule:-no} = yes; then
+  echo "                                       qt-moc                ${QT_MOC} ${QT_MOC_VERSION}"
+echo "                                       qt-core-libs          ${QT_CORE_LIBS}"
+echo "                                       qt-gui-libs           ${QT_GUI_LIBS}"
+echo "                                       kde4-config           ${KDE4_CONFIG} (${KDE_CONF_VER})"
+echo "                                       kde-headers           ${KDE_HEADER_DIR}"
+echo "                                       kde-services-path     ${KDE_SERVICE_PATH}"
+echo "                                       kde-module-path       ${KDE_MODULE_PATH}"
+echo "                                       kde-icon-path         ${KDE_ICON_PATH}"
 fi
 
 if test ${_mule_has_warnings:-no} = yes; then
