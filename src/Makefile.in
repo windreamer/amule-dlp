@@ -50,11 +50,11 @@ bin_PROGRAMS = $(am__EXEEXT_1) $(am__EXEEXT_2) $(am__EXEEXT_3) \
 @MONOLITHIC_TRUE@am__append_8 = libmuleappcore.a libmuleappgui.a libmuleappcommon.a
 @AMULE_DAEMON_TRUE@@MONOLITHIC_FALSE@am__append_9 = libmuleappcore.a libmuleappcommon.a
 @AMULE_DAEMON_FALSE@@AMULE_GUI_TRUE@@MONOLITHIC_FALSE@am__append_10 = libmuleappgui.a libmuleappcommon.a
-@ENABLE_UPNP_TRUE@am__append_11 = \
-@ENABLE_UPNP_TRUE@	UPnPBase.cpp
-
-@ENABLE_IP2COUNTRY_TRUE@am__append_12 = \
+@ENABLE_IP2COUNTRY_TRUE@am__append_11 = \
 @ENABLE_IP2COUNTRY_TRUE@	IP2Country.cpp
+
+@ENABLE_UPNP_TRUE@am__append_12 = \
+@ENABLE_UPNP_TRUE@	UPnPBase.cpp
 
 @SYS_WIN32_TRUE@am__append_13 = -lshlwapi
 @ENABLE_IP2COUNTRY_TRUE@am__append_14 = \
@@ -126,6 +126,14 @@ am_libmuleappcore_a_OBJECTS = libmuleappcore_a-AsyncDNS.$(OBJEXT) \
 libmuleappcore_a_OBJECTS = $(am_libmuleappcore_a_OBJECTS)
 libmuleappgui_a_AR = $(AR) $(ARFLAGS)
 libmuleappgui_a_LIBADD =
+am__libmuleappgui_a_SOURCES_DIST = BarShader.cpp ChatWnd.cpp \
+	ColorFrameCtrl.cpp CommentDialog.cpp CommentDialogLst.cpp \
+	EditServerListDlg.cpp extern/wxWidgets/listctrl.cpp \
+	FileDetailListCtrl.cpp MuleGifCtrl.cpp MuleListCtrl.cpp \
+	MuleNotebook.cpp MuleTextCtrl.cpp MuleCollection.cpp \
+	muuli_wdr.cpp IP2Country.cpp
+@ENABLE_IP2COUNTRY_TRUE@am__objects_1 =  \
+@ENABLE_IP2COUNTRY_TRUE@	libmuleappgui_a-IP2Country.$(OBJEXT)
 am_libmuleappgui_a_OBJECTS = libmuleappgui_a-BarShader.$(OBJEXT) \
 	libmuleappgui_a-ChatWnd.$(OBJEXT) \
 	libmuleappgui_a-ColorFrameCtrl.$(OBJEXT) \
@@ -139,7 +147,7 @@ am_libmuleappgui_a_OBJECTS = libmuleappgui_a-BarShader.$(OBJEXT) \
 	libmuleappgui_a-MuleNotebook.$(OBJEXT) \
 	libmuleappgui_a-MuleTextCtrl.$(OBJEXT) \
 	libmuleappgui_a-MuleCollection.$(OBJEXT) \
-	libmuleappgui_a-muuli_wdr.$(OBJEXT)
+	libmuleappgui_a-muuli_wdr.$(OBJEXT) $(am__objects_1)
 libmuleappgui_a_OBJECTS = $(am_libmuleappgui_a_OBJECTS)
 @MONOLITHIC_TRUE@am__EXEEXT_1 = amule$(EXEEXT)
 @COMPILE_CMD_TRUE@am__EXEEXT_2 = amulecmd$(EXEEXT)
@@ -175,15 +183,15 @@ am__amule_SOURCES_DIST = CaptchaDialog.cpp CaptchaGenerator.cpp \
 	ServerWnd.cpp SharedFilesWnd.cpp StatisticsDlg.cpp \
 	SearchListCtrl.cpp DownloadListCtrl.cpp ClientListCtrl.cpp \
 	FriendListCtrl.cpp ServerListCtrl.cpp SharedFilesCtrl.cpp \
-	MuleTrayIcon.cpp MuleColour.cpp TransferWnd.cpp IP2Country.cpp \
+	MuleTrayIcon.cpp MuleColour.cpp TransferWnd.cpp \
 	amuleAppCommon.cpp ClientCredits.cpp ECSpecialMuleTags.cpp \
 	KnownFile.cpp GapList.cpp GetTickCount.cpp GuiEvents.cpp \
 	Logger.cpp PartFile.cpp Preferences.cpp Proxy.cpp Server.cpp \
 	Statistics.cpp StatTree.cpp SHAHashSet.cpp \
 	TerminationProcess.cpp UserEvents.cpp OtherFunctions.cpp \
 	NetworkFunctions.cpp
-@ENABLE_UPNP_TRUE@am__objects_1 = amule-UPnPBase.$(OBJEXT)
-am__objects_2 = amule-RC4Encrypt.$(OBJEXT) amule-amule.$(OBJEXT) \
+@ENABLE_UPNP_TRUE@am__objects_2 = amule-UPnPBase.$(OBJEXT)
+am__objects_3 = amule-RC4Encrypt.$(OBJEXT) amule-amule.$(OBJEXT) \
 	amule-BaseClient.$(OBJEXT) amule-CanceledFileList.$(OBJEXT) \
 	amule-ClientList.$(OBJEXT) amule-ClientCreditsList.$(OBJEXT) \
 	amule-ClientTCPSocket.$(OBJEXT) \
@@ -210,8 +218,7 @@ am__objects_2 = amule-RC4Encrypt.$(OBJEXT) amule-amule.$(OBJEXT) \
 	amule-UDPFirewallTester.$(OBJEXT) \
 	amule-KademliaUDPListener.$(OBJEXT) \
 	amule-PacketTracking.$(OBJEXT) amule-Contact.$(OBJEXT) \
-	amule-RoutingZone.$(OBJEXT) $(am__objects_1)
-@ENABLE_IP2COUNTRY_TRUE@am__objects_3 = amule-IP2Country.$(OBJEXT)
+	amule-RoutingZone.$(OBJEXT) $(am__objects_2)
 am__objects_4 = amule-amule-gui.$(OBJEXT) amule-amuleDlg.$(OBJEXT) \
 	amule-AddFriend.$(OBJEXT) amule-CatDialog.$(OBJEXT) \
 	amule-ChatSelector.$(OBJEXT) \
@@ -226,7 +233,7 @@ am__objects_4 = amule-amule-gui.$(OBJEXT) amule-amuleDlg.$(OBJEXT) \
 	amule-ClientListCtrl.$(OBJEXT) amule-FriendListCtrl.$(OBJEXT) \
 	amule-ServerListCtrl.$(OBJEXT) amule-SharedFilesCtrl.$(OBJEXT) \
 	amule-MuleTrayIcon.$(OBJEXT) amule-MuleColour.$(OBJEXT) \
-	amule-TransferWnd.$(OBJEXT) $(am__objects_3)
+	amule-TransferWnd.$(OBJEXT)
 am__objects_5 = amule-OtherFunctions.$(OBJEXT) \
 	amule-NetworkFunctions.$(OBJEXT)
 am__objects_6 = amule-amuleAppCommon.$(OBJEXT) \
@@ -240,7 +247,7 @@ am__objects_6 = amule-amuleAppCommon.$(OBJEXT) \
 	amule-SHAHashSet.$(OBJEXT) amule-TerminationProcess.$(OBJEXT) \
 	amule-UserEvents.$(OBJEXT) $(am__objects_5)
 am_amule_OBJECTS = amule-CaptchaDialog.$(OBJEXT) \
-	amule-CaptchaGenerator.$(OBJEXT) $(am__objects_2) \
+	amule-CaptchaGenerator.$(OBJEXT) $(am__objects_3) \
 	$(am__objects_4) $(am__objects_6)
 amule_OBJECTS = $(am_amule_OBJECTS)
 am__DEPENDENCIES_1 =
@@ -337,16 +344,14 @@ am__amulegui_SOURCES_DIST = amule-remote-gui.cpp amule-gui.cpp \
 	ServerWnd.cpp SharedFilesWnd.cpp StatisticsDlg.cpp \
 	SearchListCtrl.cpp DownloadListCtrl.cpp ClientListCtrl.cpp \
 	FriendListCtrl.cpp ServerListCtrl.cpp SharedFilesCtrl.cpp \
-	MuleTrayIcon.cpp MuleColour.cpp TransferWnd.cpp IP2Country.cpp \
+	MuleTrayIcon.cpp MuleColour.cpp TransferWnd.cpp \
 	amuleAppCommon.cpp ClientCredits.cpp ECSpecialMuleTags.cpp \
 	KnownFile.cpp GapList.cpp GetTickCount.cpp GuiEvents.cpp \
 	Logger.cpp PartFile.cpp Preferences.cpp Proxy.cpp Server.cpp \
 	Statistics.cpp StatTree.cpp SHAHashSet.cpp \
 	TerminationProcess.cpp UserEvents.cpp OtherFunctions.cpp \
 	NetworkFunctions.cpp HTTPDownload.cpp
-@ENABLE_IP2COUNTRY_TRUE@am__objects_12 =  \
-@ENABLE_IP2COUNTRY_TRUE@	amulegui-IP2Country.$(OBJEXT)
-am__objects_13 = amulegui-amule-gui.$(OBJEXT) \
+am__objects_12 = amulegui-amule-gui.$(OBJEXT) \
 	amulegui-amuleDlg.$(OBJEXT) amulegui-AddFriend.$(OBJEXT) \
 	amulegui-CatDialog.$(OBJEXT) amulegui-ChatSelector.$(OBJEXT) \
 	amulegui-ClientDetailDialog.$(OBJEXT) \
@@ -365,10 +370,10 @@ am__objects_13 = amulegui-amule-gui.$(OBJEXT) \
 	amulegui-ServerListCtrl.$(OBJEXT) \
 	amulegui-SharedFilesCtrl.$(OBJEXT) \
 	amulegui-MuleTrayIcon.$(OBJEXT) amulegui-MuleColour.$(OBJEXT) \
-	amulegui-TransferWnd.$(OBJEXT) $(am__objects_12)
-am__objects_14 = amulegui-OtherFunctions.$(OBJEXT) \
+	amulegui-TransferWnd.$(OBJEXT)
+am__objects_13 = amulegui-OtherFunctions.$(OBJEXT) \
 	amulegui-NetworkFunctions.$(OBJEXT)
-am__objects_15 = amulegui-amuleAppCommon.$(OBJEXT) \
+am__objects_14 = amulegui-amuleAppCommon.$(OBJEXT) \
 	amulegui-ClientCredits.$(OBJEXT) \
 	amulegui-ECSpecialMuleTags.$(OBJEXT) \
 	amulegui-KnownFile.$(OBJEXT) amulegui-GapList.$(OBJEXT) \
@@ -378,11 +383,11 @@ am__objects_15 = amulegui-amuleAppCommon.$(OBJEXT) \
 	amulegui-Server.$(OBJEXT) amulegui-Statistics.$(OBJEXT) \
 	amulegui-StatTree.$(OBJEXT) amulegui-SHAHashSet.$(OBJEXT) \
 	amulegui-TerminationProcess.$(OBJEXT) \
-	amulegui-UserEvents.$(OBJEXT) $(am__objects_14)
-@ENABLE_IP2COUNTRY_TRUE@am__objects_16 =  \
+	amulegui-UserEvents.$(OBJEXT) $(am__objects_13)
+@ENABLE_IP2COUNTRY_TRUE@am__objects_15 =  \
 @ENABLE_IP2COUNTRY_TRUE@	amulegui-HTTPDownload.$(OBJEXT)
 am_amulegui_OBJECTS = amulegui-amule-remote-gui.$(OBJEXT) \
-	$(am__objects_13) $(am__objects_15) $(am__objects_16)
+	$(am__objects_12) $(am__objects_14) $(am__objects_15)
 amulegui_OBJECTS = $(am_amulegui_OBJECTS)
 @NEED_RC_TRUE@am__DEPENDENCIES_6 = amuleguirc.$(OBJEXT)
 am_ed2k_OBJECTS = ed2k-ED2KLinkParser.$(OBJEXT) \
@@ -404,10 +409,10 @@ SOURCES = $(libmuleappcommon_a_SOURCES) $(libmuleappcore_a_SOURCES) \
 	$(amuled_SOURCES) $(nodist_amuled_SOURCES) $(amulegui_SOURCES) \
 	$(ed2k_SOURCES) $(nodist_ed2k_SOURCES)
 DIST_SOURCES = $(libmuleappcommon_a_SOURCES) \
-	$(libmuleappcore_a_SOURCES) $(libmuleappgui_a_SOURCES) \
-	$(am__amule_SOURCES_DIST) $(amulecmd_SOURCES) \
-	$(am__amuled_SOURCES_DIST) $(am__amulegui_SOURCES_DIST) \
-	$(ed2k_SOURCES)
+	$(libmuleappcore_a_SOURCES) \
+	$(am__libmuleappgui_a_SOURCES_DIST) $(am__amule_SOURCES_DIST) \
+	$(amulecmd_SOURCES) $(am__amuled_SOURCES_DIST) \
+	$(am__amulegui_SOURCES_DIST) $(ed2k_SOURCES)
 RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
 	html-recursive info-recursive install-data-recursive \
 	install-exec-recursive install-info-recursive \
@@ -720,22 +725,12 @@ libmuleappcore_a_SOURCES = \
 libmuleappcore_a_CPPFLAGS = $(AM_CPPFLAGS) $(WXBASE_CPPFLAGS) -I$(srcdir)/libs -I$(srcdir)/include $(CRYPTOPP_CPPFLAGS) $(LIBUPNP_CPPFLAGS)
 
 # Common to gui/monolithic
-libmuleappgui_a_SOURCES = \
-	BarShader.cpp \
-	ChatWnd.cpp \
-	ColorFrameCtrl.cpp \
-	CommentDialog.cpp \
-	CommentDialogLst.cpp \
-	EditServerListDlg.cpp \
-	extern/wxWidgets/listctrl.cpp \
-	FileDetailListCtrl.cpp \
-	MuleGifCtrl.cpp \
-	MuleListCtrl.cpp \
-	MuleNotebook.cpp \
-	MuleTextCtrl.cpp \
-	MuleCollection.cpp \
-	muuli_wdr.cpp 
-
+libmuleappgui_a_SOURCES = BarShader.cpp ChatWnd.cpp ColorFrameCtrl.cpp \
+	CommentDialog.cpp CommentDialogLst.cpp EditServerListDlg.cpp \
+	extern/wxWidgets/listctrl.cpp FileDetailListCtrl.cpp \
+	MuleGifCtrl.cpp MuleListCtrl.cpp MuleNotebook.cpp \
+	MuleTextCtrl.cpp MuleCollection.cpp muuli_wdr.cpp \
+	$(am__append_11)
 libmuleappgui_a_CPPFLAGS = $(AM_CPPFLAGS) $(WX_CPPFLAGS) -I$(srcdir)/libs -I$(srcdir)/include $(LIBUPNP_CPPFLAGS) $(GEOIP_CPPFLAGS)
 core_sources = RC4Encrypt.cpp amule.cpp BaseClient.cpp \
 	CanceledFileList.cpp ClientList.cpp ClientCreditsList.cpp \
@@ -754,16 +749,34 @@ core_sources = RC4Encrypt.cpp amule.cpp BaseClient.cpp \
 	kademlia/kademlia/UDPFirewallTester.cpp \
 	kademlia/net/KademliaUDPListener.cpp \
 	kademlia/net/PacketTracking.cpp kademlia/routing/Contact.cpp \
-	kademlia/routing/RoutingZone.cpp $(am__append_11)
-gui_sources = amule-gui.cpp amuleDlg.cpp AddFriend.cpp CatDialog.cpp \
-	ChatSelector.cpp ClientDetailDialog.cpp DirectoryTreeCtrl.cpp \
-	FileDetailDialog.cpp KadDlg.cpp OScopeCtrl.cpp \
-	PartFileConvertDlg.cpp PrefsUnifiedDlg.cpp SearchDlg.cpp \
-	ServerWnd.cpp SharedFilesWnd.cpp StatisticsDlg.cpp \
-	SearchListCtrl.cpp DownloadListCtrl.cpp ClientListCtrl.cpp \
-	FriendListCtrl.cpp ServerListCtrl.cpp SharedFilesCtrl.cpp \
-	MuleTrayIcon.cpp MuleColour.cpp TransferWnd.cpp \
-	$(am__append_12)
+	kademlia/routing/RoutingZone.cpp $(am__append_12)
+gui_sources = \
+	amule-gui.cpp \
+	amuleDlg.cpp \
+	AddFriend.cpp \
+	CatDialog.cpp \
+	ChatSelector.cpp \
+	ClientDetailDialog.cpp \
+	DirectoryTreeCtrl.cpp \
+	FileDetailDialog.cpp \
+	KadDlg.cpp \
+	OScopeCtrl.cpp \
+	PartFileConvertDlg.cpp \
+	PrefsUnifiedDlg.cpp \
+	SearchDlg.cpp \
+	ServerWnd.cpp \
+	SharedFilesWnd.cpp \
+	StatisticsDlg.cpp \
+	SearchListCtrl.cpp \
+	DownloadListCtrl.cpp \
+	ClientListCtrl.cpp \
+	FriendListCtrl.cpp \
+	ServerListCtrl.cpp \
+	SharedFilesCtrl.cpp \
+	MuleTrayIcon.cpp \
+	MuleColour.cpp \
+	TransferWnd.cpp 
+
 remote_common_sources = \
 	OtherFunctions.cpp \
 	NetworkFunctions.cpp 
@@ -1135,7 +1148,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-GetTickCount.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-GuiEvents.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-HTTPDownload.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-IP2Country.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-IPFilter.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-Indexed.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-KadDlg.Po@am__quote@
@@ -1281,7 +1293,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-GetTickCount.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-GuiEvents.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-HTTPDownload.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-IP2Country.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-KadDlg.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-KnownFile.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-Logger.Po@am__quote@
@@ -1349,6 +1360,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-CommentDialogLst.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-EditServerListDlg.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-FileDetailListCtrl.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-IP2Country.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-MuleCollection.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-MuleGifCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-MuleListCtrl.Po@am__quote@
@@ -1930,6 +1942,20 @@ libmuleappgui_a-muuli_wdr.obj: muuli_wdr.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='muuli_wdr.cpp' object='libmuleappgui_a-muuli_wdr.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappgui_a-muuli_wdr.obj `if test -f 'muuli_wdr.cpp'; then $(CYGPATH_W) 'muuli_wdr.cpp'; else $(CYGPATH_W) '$(srcdir)/muuli_wdr.cpp'; fi`
+
+libmuleappgui_a-IP2Country.o: IP2Country.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappgui_a-IP2Country.o -MD -MP -MF "$(DEPDIR)/libmuleappgui_a-IP2Country.Tpo" -c -o libmuleappgui_a-IP2Country.o `test -f 'IP2Country.cpp' || echo '$(srcdir)/'`IP2Country.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleappgui_a-IP2Country.Tpo" "$(DEPDIR)/libmuleappgui_a-IP2Country.Po"; else rm -f "$(DEPDIR)/libmuleappgui_a-IP2Country.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IP2Country.cpp' object='libmuleappgui_a-IP2Country.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappgui_a-IP2Country.o `test -f 'IP2Country.cpp' || echo '$(srcdir)/'`IP2Country.cpp
+
+libmuleappgui_a-IP2Country.obj: IP2Country.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappgui_a-IP2Country.obj -MD -MP -MF "$(DEPDIR)/libmuleappgui_a-IP2Country.Tpo" -c -o libmuleappgui_a-IP2Country.obj `if test -f 'IP2Country.cpp'; then $(CYGPATH_W) 'IP2Country.cpp'; else $(CYGPATH_W) '$(srcdir)/IP2Country.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleappgui_a-IP2Country.Tpo" "$(DEPDIR)/libmuleappgui_a-IP2Country.Po"; else rm -f "$(DEPDIR)/libmuleappgui_a-IP2Country.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IP2Country.cpp' object='libmuleappgui_a-IP2Country.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappgui_a-IP2Country.obj `if test -f 'IP2Country.cpp'; then $(CYGPATH_W) 'IP2Country.cpp'; else $(CYGPATH_W) '$(srcdir)/IP2Country.cpp'; fi`
 
 amule-CaptchaDialog.o: CaptchaDialog.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-CaptchaDialog.o -MD -MP -MF "$(DEPDIR)/amule-CaptchaDialog.Tpo" -c -o amule-CaptchaDialog.o `test -f 'CaptchaDialog.cpp' || echo '$(srcdir)/'`CaptchaDialog.cpp; \
@@ -2952,20 +2978,6 @@ amule-TransferWnd.obj: TransferWnd.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TransferWnd.cpp' object='amule-TransferWnd.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-TransferWnd.obj `if test -f 'TransferWnd.cpp'; then $(CYGPATH_W) 'TransferWnd.cpp'; else $(CYGPATH_W) '$(srcdir)/TransferWnd.cpp'; fi`
-
-amule-IP2Country.o: IP2Country.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-IP2Country.o -MD -MP -MF "$(DEPDIR)/amule-IP2Country.Tpo" -c -o amule-IP2Country.o `test -f 'IP2Country.cpp' || echo '$(srcdir)/'`IP2Country.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-IP2Country.Tpo" "$(DEPDIR)/amule-IP2Country.Po"; else rm -f "$(DEPDIR)/amule-IP2Country.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IP2Country.cpp' object='amule-IP2Country.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-IP2Country.o `test -f 'IP2Country.cpp' || echo '$(srcdir)/'`IP2Country.cpp
-
-amule-IP2Country.obj: IP2Country.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-IP2Country.obj -MD -MP -MF "$(DEPDIR)/amule-IP2Country.Tpo" -c -o amule-IP2Country.obj `if test -f 'IP2Country.cpp'; then $(CYGPATH_W) 'IP2Country.cpp'; else $(CYGPATH_W) '$(srcdir)/IP2Country.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-IP2Country.Tpo" "$(DEPDIR)/amule-IP2Country.Po"; else rm -f "$(DEPDIR)/amule-IP2Country.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IP2Country.cpp' object='amule-IP2Country.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-IP2Country.obj `if test -f 'IP2Country.cpp'; then $(CYGPATH_W) 'IP2Country.cpp'; else $(CYGPATH_W) '$(srcdir)/IP2Country.cpp'; fi`
 
 amule-amuleAppCommon.o: amuleAppCommon.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-amuleAppCommon.o -MD -MP -MF "$(DEPDIR)/amule-amuleAppCommon.Tpo" -c -o amule-amuleAppCommon.o `test -f 'amuleAppCommon.cpp' || echo '$(srcdir)/'`amuleAppCommon.cpp; \
@@ -4604,20 +4616,6 @@ amulegui-TransferWnd.obj: TransferWnd.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TransferWnd.cpp' object='amulegui-TransferWnd.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-TransferWnd.obj `if test -f 'TransferWnd.cpp'; then $(CYGPATH_W) 'TransferWnd.cpp'; else $(CYGPATH_W) '$(srcdir)/TransferWnd.cpp'; fi`
-
-amulegui-IP2Country.o: IP2Country.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-IP2Country.o -MD -MP -MF "$(DEPDIR)/amulegui-IP2Country.Tpo" -c -o amulegui-IP2Country.o `test -f 'IP2Country.cpp' || echo '$(srcdir)/'`IP2Country.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amulegui-IP2Country.Tpo" "$(DEPDIR)/amulegui-IP2Country.Po"; else rm -f "$(DEPDIR)/amulegui-IP2Country.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IP2Country.cpp' object='amulegui-IP2Country.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-IP2Country.o `test -f 'IP2Country.cpp' || echo '$(srcdir)/'`IP2Country.cpp
-
-amulegui-IP2Country.obj: IP2Country.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-IP2Country.obj -MD -MP -MF "$(DEPDIR)/amulegui-IP2Country.Tpo" -c -o amulegui-IP2Country.obj `if test -f 'IP2Country.cpp'; then $(CYGPATH_W) 'IP2Country.cpp'; else $(CYGPATH_W) '$(srcdir)/IP2Country.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amulegui-IP2Country.Tpo" "$(DEPDIR)/amulegui-IP2Country.Po"; else rm -f "$(DEPDIR)/amulegui-IP2Country.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IP2Country.cpp' object='amulegui-IP2Country.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-IP2Country.obj `if test -f 'IP2Country.cpp'; then $(CYGPATH_W) 'IP2Country.cpp'; else $(CYGPATH_W) '$(srcdir)/IP2Country.cpp'; fi`
 
 amulegui-amuleAppCommon.o: amuleAppCommon.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-amuleAppCommon.o -MD -MP -MF "$(DEPDIR)/amulegui-amuleAppCommon.Tpo" -c -o amulegui-amuleAppCommon.o `test -f 'amuleAppCommon.cpp' || echo '$(srcdir)/'`amuleAppCommon.cpp; \
