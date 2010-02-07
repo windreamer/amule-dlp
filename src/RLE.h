@@ -43,31 +43,31 @@ public:
 	RLE_Data &operator=(const RLE_Data &);
 	
 	~RLE_Data();
-	
-	const uint8 *Encode(const uint8 *data, int &outlen);
-	const uint8 *Encode(const uint8 *data, int inlen, int &outlen)
-	{
-		Realloc(inlen);
-		return Encode(data, outlen);
-	}
+
+	const uint8 *Encode(const uint8 *data, int inlen, int &outlen);
+
 	const uint8 *Encode(const ArrayOfUInts16 &data, int &outlen);
+	const uint8 *Encode(const ArrayOfUInts64 &data, int &outlen);
 	
-	const uint8 *Decode(const uint8 *data, int len);	
+	const uint8 *Decode(const uint8 *data, int len);
+	void Decode(const uint8 *data, int len, ArrayOfUInts64 &outdata);
 	
 	void ResetEncoder()
 	{
-		memset(m_buff, 0, m_len);
+		if (m_len) {
+			memset(m_buff, 0, m_len);
+		}
 	}
-
-	// change size of internal buffers
-	void Realloc(int size);
 	
 	// decoder will need access to data
-	const uint8 *Buffer() { return m_buff; }
-	int Size() { return m_len; }
+	const uint8 *Buffer() const	{ return m_buff; }
+	int Size() const	{ return m_len; }
 
 private:
 	void setup(int len, bool use_diff, uint8 * content = 0);
+
+	// change size of internal buffers
+	void Realloc(int size);
 	
 	// Encode: source data (original or diff in diff mode)
 	// Decode: store last data (differential only)
@@ -100,11 +100,11 @@ public:
 	
 	//
 	// decoder side - can be used everywhere
-	void Decode(unsigned char *gapdata, int gaplen, unsigned char *partdata, int partlen);
+	void DecodeParts(uint8 *partdata, int partlen) { m_part_status.Decode(partdata, partlen); }
+	void DecodeGaps(const class CECTag * tag, ArrayOfUInts64 &outdata);
 	
-	PartFileEncoderData() { }
-	PartFileEncoderData(int part_count, int gap_count) :
-		m_part_status(part_count, true), m_gap_status(gap_count*sizeof(uint64), true)
+	PartFileEncoderData() :
+		m_part_status(0, true), m_gap_status(0, true)
 	{
 	}
 		

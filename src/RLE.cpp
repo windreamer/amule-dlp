@@ -25,7 +25,7 @@
 #include "RLE.h"
 #include "ArchSpecific.h"
 #include "ScopedPtr.h"
-
+#include <ec/cpp/ECTag.h>		// Needed for CECTag
 
 /*
  * RLE encoder implementation. This is RLE implementation for very specific
@@ -79,9 +79,18 @@ void RLE_Data::Realloc(int size)
 	if ( size == m_len ) {
 		return;
 	}
-
+	if (size == 0) {
+		delete [] m_buff;
+		delete [] m_enc_buff;
+		m_buff = 0;
+		m_enc_buff = 0;
+		m_len = 0;
+		return;
+	}
 	uint8 *buff = new uint8[size];
-	if ( size > m_len ) {
+	if (m_len == 0) {
+		memset(buff, 0, size);
+	} else if ( size > m_len ) {
 		memset(buff + m_len, 0, size - m_len);
 		memcpy(buff, m_buff, m_len);
 	} else {
@@ -99,49 +108,62 @@ void RLE_Data::Realloc(int size)
 
 const uint8 *RLE_Data::Decode(const uint8 *buff, int len)
 {
-	//
-	// Open RLE
-	//
+	uint8 * decBuf = m_len ? new uint8[m_len] : 0;
 
-	int i = 0, j = 0;
-	while ( j != m_len ) {
-
-		if ( i < (len -1) ) {
-			if (buff[i+1] == buff[i]) {
-				// this is sequence
-				memset(m_enc_buff + j, buff[i], buff[i + 2]);
-				j += buff[i + 2];
+	// If data exceeds the buffer, switch to counting only.
+	// Then resize and make a second pass.
+	for (bool overrun = true; overrun;) {
+		overrun = false;
+		int j = 0;
+		for (int i = 0; i < len;) {
+			if (i < len - 2 && buff[i+1] == buff[i]) {
+				// This is a sequence.
+				uint8 seqLen = buff[i + 2];
+				if (j + seqLen <= m_len) {
+					memset(decBuf + j, buff[i], seqLen);
+				}
+				j += seqLen;
 				i += 3;
 			} else {
-				// this is single byte
-				m_enc_buff[j++] = buff[i++];
+				// This is a single byte.
+				if (j < m_len) {
+					decBuf[j] = buff[i];
+				}
+				j++;
+				i++;
 			}
-		} else {
-			// only 1 byte left in encoded data - it can't be sequence
-			m_enc_buff[j++] = buff[i++];
-			// if there's no more data, but buffer end is not reached,
-			// it must be error in some point
-			if ( j != m_len ) {
-				printf("RLE_Data: decoding error. %d bytes decoded to %d instead of %d\n", len, j, m_len);
-			}
-			break;
 		}
-	}	
+		if (j != m_len) {
+			overrun = j > m_len;	// overrun, make a second pass
+			Realloc(j);				// size has changed, adjust
+			if (overrun) {
+				delete[] decBuf;
+				decBuf = new uint8[m_len];
+			}
+		}
+	}
 	//
 	// Recreate data from diff
 	//
 	if ( m_use_diff ) {
 		for (int k = 0; k < m_len; k++) {
-			m_buff[k] ^= m_enc_buff[k];
+			m_buff[k] ^= decBuf[k];
 		}
-		return m_buff;
 	} else {
-		return m_enc_buff;
+		memcpy(m_buff, decBuf, m_len);
 	}
+	delete[] decBuf;
+	return m_buff;
 }
 
-const uint8 * RLE_Data::Encode(const uint8 *data, int &outlen)
+const uint8 * RLE_Data::Encode(const uint8 *data, int inlen, int &outlen)
 {
+	Realloc(inlen);		// adjust size if necessary
+
+	if (m_len == 0) {
+		outlen = 0;
+		return NULL;
+	}
 	//
 	// calculate difference from prev
 	//
@@ -190,28 +212,63 @@ const uint8 * RLE_Data::Encode(const ArrayOfUInts16 &data, int &outlen)
 {
 	// To encode, first copy the UInts16 to a uint8 array
 	// and limit them to 0xff.
-	// The encoded size is always m_len.
+	// The encoded size is the size of data.
 	int size = (int) data.size();
-	CScopedPtr<uint8> buf(new uint8[m_len]);
+	if (size == 0) {
+		return Encode(0, 0, outlen);
+	}
+	CScopedPtr<uint8> buf(new uint8[size]);
 	uint8 * bufPtr = buf.get();
 
-	for (int i = 0; i < m_len; i++) {
-		uint16 ui = (i < size) ? data[i] : 0;
+	for (int i = 0; i < size; i++) {
+		uint16 ui = data[i];
 		bufPtr[i] = (ui > 0xff) ? 0xff : (uint8) ui;
 	}
-	return Encode(bufPtr, outlen);
+	return Encode(bufPtr, size, outlen);
 }
 
-void PartFileEncoderData::Decode(uint8 *gapdata, int gaplen, uint8 *partdata, int partlen)
+const uint8 * RLE_Data::Encode(const ArrayOfUInts64 &data, int &outlen)
 {
-	m_part_status.Decode(partdata, partlen);
+	// uint64 is copied to a uint8 buffer
+	// first all low bytes, then all second low bytes and so on
+	// so inital RLE will benefit from high bytes being equal (zero)
+	// 0x000003045A6A7A8A, 0x000003045B6B7B8B
+	// 8A8B7A7B6A6B5A5B0404030300000000
+	int size = (int) data.size();
+	if (size == 0) {
+		return Encode(0, 0, outlen);
+	}
+	CScopedPtr<uint8> buf(new uint8[size * 8]);
+	uint8 * bufPtr = buf.get();
+	for (int i = 0; i < size; i++) {
+		uint64 u = data[i];
+		for (int j = 0; j < 8; j++) {
+			bufPtr[i + j * size] = u & 0xff;
+			u >>= 8;
+		}
+	}
+	return Encode(bufPtr, size * 8, outlen);
+}
 
-	// in a first dword - real size
-	uint32 gapsize = ENDIAN_NTOHL( RawPeekUInt32( gapdata ) );
-	gapdata += sizeof(uint32);
-	m_gap_status.Realloc(gapsize*2*sizeof(uint64));
+void RLE_Data::Decode(const uint8 *data, int len, ArrayOfUInts64 &outdata)
+{
+	const uint8 * decoded = Decode(data, len);
+	wxASSERT(m_len % 8 == 0);
+	int size = m_len / 8;
+	outdata.resize(size);
+	for (int i = 0; i < size; i++) {
+		uint64 u = 0;
+		for (int j = 8; j--;) {
+			u <<= 8;
+			u |= decoded[i + j * size];
+		}
+		outdata[i] = u;
+	}
+}
 
-	m_gap_status.Decode(gapdata, gaplen - sizeof(uint32));
+void PartFileEncoderData::DecodeGaps(const CECTag * tag, ArrayOfUInts64 &outdata)
+{
+	m_gap_status.Decode((uint8 *)tag->GetTagData(), tag->GetTagDataLen(), outdata);
 }
 
 
