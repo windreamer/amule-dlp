@@ -331,7 +331,7 @@ ECGeneratedFilesSources = \
 	abstracts/ECCodes.abstract
 
 EXTRA_DIST = file_generator.pl
-EXTRA__DIST__SUBDIRS = abstracts java		# c# cannot be included because of the # in the name
+EXTRA__DIST__SUBDIRS = abstracts java
 DISTCLEANFILES = $(BUILT_SOURCES)
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
