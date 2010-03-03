@@ -129,14 +129,10 @@ const CECPacket *CECServerSocket::OnPacketReceived(const CECPacket *packet)
 	}
 
 	if (m_conn_state != CONN_ESTABLISHED) {
+		// This is called twice:
+		// 1) send salt
+		// 2) verify password
 		reply = Authenticate(packet);
-		if (reply->GetOpCode() == EC_OP_AUTH_FAIL) {
-			// Access denied!
-			AddLogLineM(false, _("Unauthorized access attempt. Connection closed."));
-			m_conn_state = CONN_FAILED;
-		} else if (HaveNotificationSupport()) {
-			theApp->ECServerHandler->m_ec_notifier->Add_EC_Client(this);
-		}
 	} else {
 		reply = ProcessRequest2(
 			packet, m_part_encoder, m_shared_encoder, m_obj_tagmap);
@@ -277,8 +273,7 @@ const CECPacket *CECServerSocket::Authenticate(const CECPacket *request)
 	CECPacket *response;
 	
 	if (request == NULL) {
-		response = new CECPacket(EC_OP_AUTH_FAIL);
-		return response;
+		return new CECPacket(EC_OP_AUTH_FAIL);
 	}
 
 	// Password must be specified if we are to allow remote connections
@@ -330,9 +325,10 @@ const CECPacket *CECServerSocket::Authenticate(const CECPacket *request)
 		CMD4Hash passh;
 
 		if (!passh.Decode(thePrefs::ECPassword())) {
-			AddLogLineM(false, wxT("EC Auth failed, invalid hash specificed as EC password: ") + thePrefs::ECPassword());
+			wxString err = wxTRANSLATE("Authentication failed: invalid hash specified as EC password.");
+			AddLogLineM(false, wxString(wxGetTranslation(err)) + wxT(" ") + thePrefs::ECPassword());
 			response = new CECPacket(EC_OP_AUTH_FAIL);
-			response->AddTag(CECTag(EC_TAG_STRING, wxT("Authentication failed, invalid hash specified as EC password.")));				
+			response->AddTag(CECTag(EC_TAG_STRING, err));				
 		} else {
 			wxString saltHash = MD5Sum(CFormat(wxT("%lX")) % m_passwd_salt).GetHash();
 			wxString saltStr = CFormat(wxT("%lX")) % m_passwd_salt;
@@ -343,14 +339,16 @@ const CECPacket *CECServerSocket::Authenticate(const CECPacket *request)
 				response = new CECPacket(EC_OP_AUTH_OK);
 				response->AddTag(CECTag(EC_TAG_SERVER_VERSION, wxT(VERSION)));
 			} else {
+				wxString err;
 				if (passwd) {
-					AddLogLineM(false, wxT("EC Auth failed: (") + passwd->GetMD4Data().Encode() + wxT(" != ") + passh.Encode() + wxT(")."));
+					err = wxTRANSLATE("Authentication failed: wrong password.");
 				} else {
-					AddLogLineM(false, wxT("EC Auth failed. Password tag missing."));					
+					err = wxTRANSLATE("Authentication failed: missing password.");
 				}
 
 				response = new CECPacket(EC_OP_AUTH_FAIL);
-				response->AddTag(CECTag(EC_TAG_STRING, wxTRANSLATE("Authentication failed.")));
+				response->AddTag(CECTag(EC_TAG_STRING, err));
+				AddLogLineM(false, wxGetTranslation(err));
 			}
 		}
 	} else {
@@ -361,8 +359,18 @@ const CECPacket *CECServerSocket::Authenticate(const CECPacket *request)
 	if (response->GetOpCode() == EC_OP_AUTH_OK) {
 		m_conn_state = CONN_ESTABLISHED;
 		AddLogLineM(false, _("Access granted."));
-	} else if (response->GetTagByIndex(0)->IsString()) {
-		AddLogLineM(false, wxGetTranslation(response->GetTagByIndex(0)->GetStringData()));
+		// Establish notification handler if client supports it
+		if (HaveNotificationSupport()) {
+			theApp->ECServerHandler->m_ec_notifier->Add_EC_Client(this);
+		}
+	} else if (response->GetOpCode() == EC_OP_AUTH_FAIL) {
+		// Log message sent to client
+		if (response->GetTagByIndex(0)->IsString()) {
+			AddLogLineM(false, CFormat(_("Sent error message \"%s\" to client.")) % wxGetTranslation(response->GetTagByIndex(0)->GetStringData()));
+		}
+		// Access denied!
+		AddLogLineM(false, _("Unauthorized access attempt. Connection closed."));
+		m_conn_state = CONN_FAILED;
 	}
 
 	return response;
@@ -1777,6 +1785,12 @@ CECPacket *ECClientMsgSource::GetNextPacket()
 //
 ECNotifier::ECNotifier()
 {
+}
+
+ECNotifier::~ECNotifier()
+{
+	while (m_msg_source.begin() != m_msg_source.end())
+		Remove_EC_Client(m_msg_source.begin()->first);
 }
 
 CECPacket *ECNotifier::GetNextPacket(ECUpdateMsgSource *msg_source_array[])
