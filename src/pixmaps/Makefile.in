@@ -35,7 +35,6 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@ENABLE_IP2COUNTRY_TRUE@am__append_1 = $(OPT_IP2COUNTRY)
 subdir = src/pixmaps
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -71,7 +70,7 @@ RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
 	uninstall-recursive
 ETAGS = etags
 CTAGS = ctags
-DIST_SUBDIRS = flags_xpm
+DIST_SUBDIRS = $(SUBDIRS)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALCC_FALSE = @ALCC_FALSE@
@@ -137,10 +136,6 @@ ED2K_FALSE = @ED2K_FALSE@
 ED2K_MANPAGES = @ED2K_MANPAGES@
 ED2K_TRUE = @ED2K_TRUE@
 EGREP = @EGREP@
-ENABLE_IP2COUNTRY_FALSE = @ENABLE_IP2COUNTRY_FALSE@
-ENABLE_IP2COUNTRY_TRUE = @ENABLE_IP2COUNTRY_TRUE@
-ENABLE_UPNP_FALSE = @ENABLE_UPNP_FALSE@
-ENABLE_UPNP_TRUE = @ENABLE_UPNP_TRUE@
 EXEEXT = @EXEEXT@
 FILEVIEW_FALSE = @FILEVIEW_FALSE@
 FILEVIEW_TRUE = @FILEVIEW_TRUE@
@@ -321,8 +316,7 @@ sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
-SUBDIRS = $(am__append_1)
-@ENABLE_IP2COUNTRY_TRUE@OPT_IP2COUNTRY = flags_xpm
+SUBDIRS = flags_xpm
 EXTRA_DIST = chat.ico.xpm \
 	mule_TrayIcon.ico.xpm \
 	mule_Tr_grey.ico.xpm \

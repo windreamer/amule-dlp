@@ -50,20 +50,11 @@ bin_PROGRAMS = $(am__EXEEXT_1) $(am__EXEEXT_2) $(am__EXEEXT_3) \
 @MONOLITHIC_TRUE@am__append_8 = libmuleappcore.a libmuleappgui.a libmuleappcommon.a
 @AMULE_DAEMON_TRUE@@MONOLITHIC_FALSE@am__append_9 = libmuleappcore.a libmuleappcommon.a
 @AMULE_DAEMON_FALSE@@AMULE_GUI_TRUE@@MONOLITHIC_FALSE@am__append_10 = libmuleappgui.a libmuleappcommon.a
-@ENABLE_IP2COUNTRY_TRUE@am__append_11 = \
-@ENABLE_IP2COUNTRY_TRUE@	IP2Country.cpp
-
-@ENABLE_UPNP_TRUE@am__append_12 = \
-@ENABLE_UPNP_TRUE@	UPnPBase.cpp
-
-@SYS_WIN32_TRUE@am__append_13 = -lshlwapi
-@ENABLE_IP2COUNTRY_TRUE@am__append_14 = \
-@ENABLE_IP2COUNTRY_TRUE@	HTTPDownload.cpp
-
-@NEED_RC_TRUE@am__append_15 = amulerc.$(OBJEXT)
-@NEED_RC_TRUE@am__append_16 = amulerc.$(OBJEXT)
-@NEED_RC_TRUE@am__append_17 = amuleguirc.$(OBJEXT)
-@NEED_RC_TRUE@am__append_18 = amuleguirc.$(OBJEXT)
+@SYS_WIN32_TRUE@am__append_11 = -lshlwapi
+@NEED_RC_TRUE@am__append_12 = amulerc.$(OBJEXT)
+@NEED_RC_TRUE@am__append_13 = amulerc.$(OBJEXT)
+@NEED_RC_TRUE@am__append_14 = amuleguirc.$(OBJEXT)
+@NEED_RC_TRUE@am__append_15 = amuleguirc.$(OBJEXT)
 DIST_COMMON = $(noinst_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/automake/dist-hook.am
 subdir = src
@@ -122,6 +113,7 @@ am_libmuleappcore_a_OBJECTS = libmuleappcore_a-AsyncDNS.$(OBJEXT) \
 	libmuleappcore_a-RC4Encrypt.$(OBJEXT) \
 	libmuleappcore_a-StateMachine.$(OBJEXT) \
 	libmuleappcore_a-ThreadScheduler.$(OBJEXT) \
+	libmuleappcore_a-UPnPBase.$(OBJEXT) \
 	libmuleappcore_a-Entry.$(OBJEXT) \
 	libmuleappcore_a-SearchManager.$(OBJEXT) \
 	libmuleappcore_a-Contact.$(OBJEXT) \
@@ -130,14 +122,6 @@ am_libmuleappcore_a_OBJECTS = libmuleappcore_a-AsyncDNS.$(OBJEXT) \
 libmuleappcore_a_OBJECTS = $(am_libmuleappcore_a_OBJECTS)
 libmuleappgui_a_AR = $(AR) $(ARFLAGS)
 libmuleappgui_a_LIBADD =
-am__libmuleappgui_a_SOURCES_DIST = BarShader.cpp ChatWnd.cpp \
-	ColorFrameCtrl.cpp CommentDialog.cpp CommentDialogLst.cpp \
-	EditServerListDlg.cpp extern/wxWidgets/listctrl.cpp \
-	FileDetailListCtrl.cpp MuleGifCtrl.cpp MuleListCtrl.cpp \
-	MuleNotebook.cpp MuleTextCtrl.cpp MuleCollection.cpp \
-	muuli_wdr.cpp IP2Country.cpp
-@ENABLE_IP2COUNTRY_TRUE@am__objects_1 =  \
-@ENABLE_IP2COUNTRY_TRUE@	libmuleappgui_a-IP2Country.$(OBJEXT)
 am_libmuleappgui_a_OBJECTS = libmuleappgui_a-BarShader.$(OBJEXT) \
 	libmuleappgui_a-ChatWnd.$(OBJEXT) \
 	libmuleappgui_a-ColorFrameCtrl.$(OBJEXT) \
@@ -146,12 +130,13 @@ am_libmuleappgui_a_OBJECTS = libmuleappgui_a-BarShader.$(OBJEXT) \
 	libmuleappgui_a-EditServerListDlg.$(OBJEXT) \
 	libmuleappgui_a-listctrl.$(OBJEXT) \
 	libmuleappgui_a-FileDetailListCtrl.$(OBJEXT) \
+	libmuleappgui_a-IP2Country.$(OBJEXT) \
 	libmuleappgui_a-MuleGifCtrl.$(OBJEXT) \
 	libmuleappgui_a-MuleListCtrl.$(OBJEXT) \
 	libmuleappgui_a-MuleNotebook.$(OBJEXT) \
 	libmuleappgui_a-MuleTextCtrl.$(OBJEXT) \
 	libmuleappgui_a-MuleCollection.$(OBJEXT) \
-	libmuleappgui_a-muuli_wdr.$(OBJEXT) $(am__objects_1)
+	libmuleappgui_a-muuli_wdr.$(OBJEXT)
 libmuleappgui_a_OBJECTS = $(am_libmuleappgui_a_OBJECTS)
 @MONOLITHIC_TRUE@am__EXEEXT_1 = amule$(EXEEXT)
 @COMPILE_CMD_TRUE@am__EXEEXT_2 = amulecmd$(EXEEXT)
@@ -161,40 +146,7 @@ libmuleappgui_a_OBJECTS = $(am_libmuleappgui_a_OBJECTS)
 am__installdirs = "$(DESTDIR)$(bindir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
-am__amule_SOURCES_DIST = CaptchaDialog.cpp CaptchaGenerator.cpp \
-	amule.cpp BaseClient.cpp CanceledFileList.cpp ClientList.cpp \
-	ClientCreditsList.cpp ClientTCPSocket.cpp ClientUDPSocket.cpp \
-	CorruptionBlackBox.cpp DownloadClient.cpp DownloadQueue.cpp \
-	ECSpecialCoreTags.cpp EMSocket.cpp EncryptedStreamSocket.cpp \
-	EncryptedDatagramSocket.cpp ExternalConn.cpp FriendList.cpp \
-	HTTPDownload.cpp IPFilter.cpp KnownFileList.cpp \
-	ListenSocket.cpp MuleUDPSocket.cpp PartFileConvert.cpp \
-	SearchFile.cpp SearchList.cpp ServerConnect.cpp ServerList.cpp \
-	ServerSocket.cpp ServerUDPSocket.cpp SharedFileList.cpp \
-	TerminationProcessAmuleweb.cpp ThreadTasks.cpp \
-	UploadBandwidthThrottler.cpp UploadClient.cpp UploadQueue.cpp \
-	kademlia/kademlia/Indexed.cpp kademlia/kademlia/Kademlia.cpp \
-	kademlia/kademlia/Prefs.cpp kademlia/kademlia/Search.cpp \
-	kademlia/kademlia/UDPFirewallTester.cpp \
-	kademlia/net/KademliaUDPListener.cpp \
-	kademlia/net/PacketTracking.cpp \
-	kademlia/routing/RoutingZone.cpp UPnPBase.cpp amule-gui.cpp \
-	amuleDlg.cpp AddFriend.cpp CatDialog.cpp ChatSelector.cpp \
-	ClientDetailDialog.cpp DirectoryTreeCtrl.cpp \
-	FileDetailDialog.cpp KadDlg.cpp OScopeCtrl.cpp \
-	PartFileConvertDlg.cpp PrefsUnifiedDlg.cpp SearchDlg.cpp \
-	ServerWnd.cpp SharedFilesWnd.cpp StatisticsDlg.cpp \
-	SearchListCtrl.cpp DownloadListCtrl.cpp ClientListCtrl.cpp \
-	FriendListCtrl.cpp ServerListCtrl.cpp SharedFilesCtrl.cpp \
-	MuleTrayIcon.cpp MuleColour.cpp TransferWnd.cpp \
-	amuleAppCommon.cpp ClientCredits.cpp ECSpecialMuleTags.cpp \
-	KnownFile.cpp GetTickCount.cpp GuiEvents.cpp Logger.cpp \
-	PartFile.cpp Preferences.cpp Proxy.cpp Server.cpp \
-	Statistics.cpp StatTree.cpp SHAHashSet.cpp \
-	TerminationProcess.cpp UserEvents.cpp OtherFunctions.cpp \
-	NetworkFunctions.cpp
-@ENABLE_UPNP_TRUE@am__objects_2 = amule-UPnPBase.$(OBJEXT)
-am__objects_3 = amule-amule.$(OBJEXT) amule-BaseClient.$(OBJEXT) \
+am__objects_1 = amule-amule.$(OBJEXT) amule-BaseClient.$(OBJEXT) \
 	amule-CanceledFileList.$(OBJEXT) amule-ClientList.$(OBJEXT) \
 	amule-ClientCreditsList.$(OBJEXT) \
 	amule-ClientTCPSocket.$(OBJEXT) \
@@ -220,9 +172,8 @@ am__objects_3 = amule-amule.$(OBJEXT) amule-BaseClient.$(OBJEXT) \
 	amule-Prefs.$(OBJEXT) amule-Search.$(OBJEXT) \
 	amule-UDPFirewallTester.$(OBJEXT) \
 	amule-KademliaUDPListener.$(OBJEXT) \
-	amule-PacketTracking.$(OBJEXT) amule-RoutingZone.$(OBJEXT) \
-	$(am__objects_2)
-am__objects_4 = amule-amule-gui.$(OBJEXT) amule-amuleDlg.$(OBJEXT) \
+	amule-PacketTracking.$(OBJEXT) amule-RoutingZone.$(OBJEXT)
+am__objects_2 = amule-amule-gui.$(OBJEXT) amule-amuleDlg.$(OBJEXT) \
 	amule-AddFriend.$(OBJEXT) amule-CatDialog.$(OBJEXT) \
 	amule-ChatSelector.$(OBJEXT) \
 	amule-ClientDetailDialog.$(OBJEXT) \
@@ -237,9 +188,9 @@ am__objects_4 = amule-amule-gui.$(OBJEXT) amule-amuleDlg.$(OBJEXT) \
 	amule-ServerListCtrl.$(OBJEXT) amule-SharedFilesCtrl.$(OBJEXT) \
 	amule-MuleTrayIcon.$(OBJEXT) amule-MuleColour.$(OBJEXT) \
 	amule-TransferWnd.$(OBJEXT)
-am__objects_5 = amule-OtherFunctions.$(OBJEXT) \
+am__objects_3 = amule-OtherFunctions.$(OBJEXT) \
 	amule-NetworkFunctions.$(OBJEXT)
-am__objects_6 = amule-amuleAppCommon.$(OBJEXT) \
+am__objects_4 = amule-amuleAppCommon.$(OBJEXT) \
 	amule-ClientCredits.$(OBJEXT) \
 	amule-ECSpecialMuleTags.$(OBJEXT) amule-KnownFile.$(OBJEXT) \
 	amule-GetTickCount.$(OBJEXT) amule-GuiEvents.$(OBJEXT) \
@@ -248,10 +199,10 @@ am__objects_6 = amule-amuleAppCommon.$(OBJEXT) \
 	amule-Server.$(OBJEXT) amule-Statistics.$(OBJEXT) \
 	amule-StatTree.$(OBJEXT) amule-SHAHashSet.$(OBJEXT) \
 	amule-TerminationProcess.$(OBJEXT) amule-UserEvents.$(OBJEXT) \
-	$(am__objects_5)
+	$(am__objects_3)
 am_amule_OBJECTS = amule-CaptchaDialog.$(OBJEXT) \
-	amule-CaptchaGenerator.$(OBJEXT) $(am__objects_3) \
-	$(am__objects_4) $(am__objects_6)
+	amule-CaptchaGenerator.$(OBJEXT) $(am__objects_1) \
+	$(am__objects_2) $(am__objects_4)
 amule_OBJECTS = $(am_amule_OBJECTS)
 am__DEPENDENCIES_1 =
 am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
@@ -261,39 +212,14 @@ am__DEPENDENCIES_3 = $(am__DEPENDENCIES_2) $(am__DEPENDENCIES_1) \
 am__DEPENDENCIES_4 = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1)
 @NEED_RC_TRUE@am__DEPENDENCIES_5 = amulerc.$(OBJEXT)
-am__objects_7 = amulecmd-OtherFunctions.$(OBJEXT) \
+am__objects_5 = amulecmd-OtherFunctions.$(OBJEXT) \
 	amulecmd-NetworkFunctions.$(OBJEXT)
 am_amulecmd_OBJECTS = amulecmd-TextClient.$(OBJEXT) \
 	amulecmd-ExternalConnector.$(OBJEXT) \
-	amulecmd-LoggerConsole.$(OBJEXT) $(am__objects_7)
+	amulecmd-LoggerConsole.$(OBJEXT) $(am__objects_5)
 @NEED_RC_TRUE@nodist_amulecmd_OBJECTS = amulecmd-version.$(OBJEXT)
 amulecmd_OBJECTS = $(am_amulecmd_OBJECTS) $(nodist_amulecmd_OBJECTS)
-am__amuled_SOURCES_DIST = amuled.cpp Timer.cpp amule.cpp \
-	BaseClient.cpp CanceledFileList.cpp ClientList.cpp \
-	ClientCreditsList.cpp ClientTCPSocket.cpp ClientUDPSocket.cpp \
-	CorruptionBlackBox.cpp DownloadClient.cpp DownloadQueue.cpp \
-	ECSpecialCoreTags.cpp EMSocket.cpp EncryptedStreamSocket.cpp \
-	EncryptedDatagramSocket.cpp ExternalConn.cpp FriendList.cpp \
-	HTTPDownload.cpp IPFilter.cpp KnownFileList.cpp \
-	ListenSocket.cpp MuleUDPSocket.cpp PartFileConvert.cpp \
-	SearchFile.cpp SearchList.cpp ServerConnect.cpp ServerList.cpp \
-	ServerSocket.cpp ServerUDPSocket.cpp SharedFileList.cpp \
-	TerminationProcessAmuleweb.cpp ThreadTasks.cpp \
-	UploadBandwidthThrottler.cpp UploadClient.cpp UploadQueue.cpp \
-	kademlia/kademlia/Indexed.cpp kademlia/kademlia/Kademlia.cpp \
-	kademlia/kademlia/Prefs.cpp kademlia/kademlia/Search.cpp \
-	kademlia/kademlia/UDPFirewallTester.cpp \
-	kademlia/net/KademliaUDPListener.cpp \
-	kademlia/net/PacketTracking.cpp \
-	kademlia/routing/RoutingZone.cpp UPnPBase.cpp \
-	amuleAppCommon.cpp ClientCredits.cpp ECSpecialMuleTags.cpp \
-	KnownFile.cpp GetTickCount.cpp GuiEvents.cpp Logger.cpp \
-	PartFile.cpp Preferences.cpp Proxy.cpp Server.cpp \
-	Statistics.cpp StatTree.cpp SHAHashSet.cpp \
-	TerminationProcess.cpp UserEvents.cpp OtherFunctions.cpp \
-	NetworkFunctions.cpp
-@ENABLE_UPNP_TRUE@am__objects_8 = amuled-UPnPBase.$(OBJEXT)
-am__objects_9 = amuled-amule.$(OBJEXT) amuled-BaseClient.$(OBJEXT) \
+am__objects_6 = amuled-amule.$(OBJEXT) amuled-BaseClient.$(OBJEXT) \
 	amuled-CanceledFileList.$(OBJEXT) amuled-ClientList.$(OBJEXT) \
 	amuled-ClientCreditsList.$(OBJEXT) \
 	amuled-ClientTCPSocket.$(OBJEXT) \
@@ -320,11 +246,10 @@ am__objects_9 = amuled-amule.$(OBJEXT) amuled-BaseClient.$(OBJEXT) \
 	amuled-Prefs.$(OBJEXT) amuled-Search.$(OBJEXT) \
 	amuled-UDPFirewallTester.$(OBJEXT) \
 	amuled-KademliaUDPListener.$(OBJEXT) \
-	amuled-PacketTracking.$(OBJEXT) amuled-RoutingZone.$(OBJEXT) \
-	$(am__objects_8)
-am__objects_10 = amuled-OtherFunctions.$(OBJEXT) \
+	amuled-PacketTracking.$(OBJEXT) amuled-RoutingZone.$(OBJEXT)
+am__objects_7 = amuled-OtherFunctions.$(OBJEXT) \
 	amuled-NetworkFunctions.$(OBJEXT)
-am__objects_11 = amuled-amuleAppCommon.$(OBJEXT) \
+am__objects_8 = amuled-amuleAppCommon.$(OBJEXT) \
 	amuled-ClientCredits.$(OBJEXT) \
 	amuled-ECSpecialMuleTags.$(OBJEXT) amuled-KnownFile.$(OBJEXT) \
 	amuled-GetTickCount.$(OBJEXT) amuled-GuiEvents.$(OBJEXT) \
@@ -333,27 +258,12 @@ am__objects_11 = amuled-amuleAppCommon.$(OBJEXT) \
 	amuled-Server.$(OBJEXT) amuled-Statistics.$(OBJEXT) \
 	amuled-StatTree.$(OBJEXT) amuled-SHAHashSet.$(OBJEXT) \
 	amuled-TerminationProcess.$(OBJEXT) \
-	amuled-UserEvents.$(OBJEXT) $(am__objects_10)
+	amuled-UserEvents.$(OBJEXT) $(am__objects_7)
 am_amuled_OBJECTS = amuled-amuled.$(OBJEXT) amuled-Timer.$(OBJEXT) \
-	$(am__objects_9) $(am__objects_11)
+	$(am__objects_6) $(am__objects_8)
 @NEED_RC_TRUE@nodist_amuled_OBJECTS = amuled-version.$(OBJEXT)
 amuled_OBJECTS = $(am_amuled_OBJECTS) $(nodist_amuled_OBJECTS)
-am__amulegui_SOURCES_DIST = amule-remote-gui.cpp amule-gui.cpp \
-	amuleDlg.cpp AddFriend.cpp CatDialog.cpp ChatSelector.cpp \
-	ClientDetailDialog.cpp DirectoryTreeCtrl.cpp \
-	FileDetailDialog.cpp KadDlg.cpp OScopeCtrl.cpp \
-	PartFileConvertDlg.cpp PrefsUnifiedDlg.cpp SearchDlg.cpp \
-	ServerWnd.cpp SharedFilesWnd.cpp StatisticsDlg.cpp \
-	SearchListCtrl.cpp DownloadListCtrl.cpp ClientListCtrl.cpp \
-	FriendListCtrl.cpp ServerListCtrl.cpp SharedFilesCtrl.cpp \
-	MuleTrayIcon.cpp MuleColour.cpp TransferWnd.cpp \
-	amuleAppCommon.cpp ClientCredits.cpp ECSpecialMuleTags.cpp \
-	KnownFile.cpp GetTickCount.cpp GuiEvents.cpp Logger.cpp \
-	PartFile.cpp Preferences.cpp Proxy.cpp Server.cpp \
-	Statistics.cpp StatTree.cpp SHAHashSet.cpp \
-	TerminationProcess.cpp UserEvents.cpp OtherFunctions.cpp \
-	NetworkFunctions.cpp HTTPDownload.cpp
-am__objects_12 = amulegui-amule-gui.$(OBJEXT) \
+am__objects_9 = amulegui-amule-gui.$(OBJEXT) \
 	amulegui-amuleDlg.$(OBJEXT) amulegui-AddFriend.$(OBJEXT) \
 	amulegui-CatDialog.$(OBJEXT) amulegui-ChatSelector.$(OBJEXT) \
 	amulegui-ClientDetailDialog.$(OBJEXT) \
@@ -373,9 +283,9 @@ am__objects_12 = amulegui-amule-gui.$(OBJEXT) \
 	amulegui-SharedFilesCtrl.$(OBJEXT) \
 	amulegui-MuleTrayIcon.$(OBJEXT) amulegui-MuleColour.$(OBJEXT) \
 	amulegui-TransferWnd.$(OBJEXT)
-am__objects_13 = amulegui-OtherFunctions.$(OBJEXT) \
+am__objects_10 = amulegui-OtherFunctions.$(OBJEXT) \
 	amulegui-NetworkFunctions.$(OBJEXT)
-am__objects_14 = amulegui-amuleAppCommon.$(OBJEXT) \
+am__objects_11 = amulegui-amuleAppCommon.$(OBJEXT) \
 	amulegui-ClientCredits.$(OBJEXT) \
 	amulegui-ECSpecialMuleTags.$(OBJEXT) \
 	amulegui-KnownFile.$(OBJEXT) amulegui-GetTickCount.$(OBJEXT) \
@@ -385,11 +295,10 @@ am__objects_14 = amulegui-amuleAppCommon.$(OBJEXT) \
 	amulegui-Statistics.$(OBJEXT) amulegui-StatTree.$(OBJEXT) \
 	amulegui-SHAHashSet.$(OBJEXT) \
 	amulegui-TerminationProcess.$(OBJEXT) \
-	amulegui-UserEvents.$(OBJEXT) $(am__objects_13)
-@ENABLE_IP2COUNTRY_TRUE@am__objects_15 =  \
-@ENABLE_IP2COUNTRY_TRUE@	amulegui-HTTPDownload.$(OBJEXT)
+	amulegui-UserEvents.$(OBJEXT) $(am__objects_10)
 am_amulegui_OBJECTS = amulegui-amule-remote-gui.$(OBJEXT) \
-	$(am__objects_12) $(am__objects_14) $(am__objects_15)
+	amulegui-HTTPDownload.$(OBJEXT) $(am__objects_9) \
+	$(am__objects_11)
 amulegui_OBJECTS = $(am_amulegui_OBJECTS)
 @NEED_RC_TRUE@am__DEPENDENCIES_6 = amuleguirc.$(OBJEXT)
 am_ed2k_OBJECTS = ed2k-ED2KLinkParser.$(OBJEXT) \
@@ -411,10 +320,9 @@ SOURCES = $(libmuleappcommon_a_SOURCES) $(libmuleappcore_a_SOURCES) \
 	$(amuled_SOURCES) $(nodist_amuled_SOURCES) $(amulegui_SOURCES) \
 	$(ed2k_SOURCES) $(nodist_ed2k_SOURCES)
 DIST_SOURCES = $(libmuleappcommon_a_SOURCES) \
-	$(libmuleappcore_a_SOURCES) \
-	$(am__libmuleappgui_a_SOURCES_DIST) $(am__amule_SOURCES_DIST) \
-	$(amulecmd_SOURCES) $(am__amuled_SOURCES_DIST) \
-	$(am__amulegui_SOURCES_DIST) $(ed2k_SOURCES)
+	$(libmuleappcore_a_SOURCES) $(libmuleappgui_a_SOURCES) \
+	$(amule_SOURCES) $(amulecmd_SOURCES) $(amuled_SOURCES) \
+	$(amulegui_SOURCES) $(ed2k_SOURCES)
 RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
 	html-recursive info-recursive install-data-recursive \
 	install-exec-recursive install-info-recursive \
@@ -490,10 +398,6 @@ ED2K_FALSE = @ED2K_FALSE@
 ED2K_MANPAGES = @ED2K_MANPAGES@
 ED2K_TRUE = @ED2K_TRUE@
 EGREP = @EGREP@
-ENABLE_IP2COUNTRY_FALSE = @ENABLE_IP2COUNTRY_FALSE@
-ENABLE_IP2COUNTRY_TRUE = @ENABLE_IP2COUNTRY_TRUE@
-ENABLE_UPNP_FALSE = @ENABLE_UPNP_FALSE@
-ENABLE_UPNP_TRUE = @ENABLE_UPNP_TRUE@
 EXEEXT = @EXEEXT@
 FILEVIEW_FALSE = @FILEVIEW_FALSE@
 FILEVIEW_TRUE = @FILEVIEW_TRUE@
@@ -722,6 +626,7 @@ libmuleappcore_a_SOURCES = \
 	RC4Encrypt.cpp \
 	StateMachine.cpp \
 	ThreadScheduler.cpp \
+	UPnPBase.cpp \
 	kademlia/kademlia/Entry.cpp \
 	kademlia/kademlia/SearchManager.cpp \
 	kademlia/routing/Contact.cpp \
@@ -731,31 +636,68 @@ libmuleappcore_a_SOURCES = \
 libmuleappcore_a_CPPFLAGS = $(AM_CPPFLAGS) $(WXBASE_CPPFLAGS) -I$(srcdir)/libs -I$(srcdir)/include $(CRYPTOPP_CPPFLAGS) $(LIBUPNP_CPPFLAGS)
 
 # Common to gui/monolithic
-libmuleappgui_a_SOURCES = BarShader.cpp ChatWnd.cpp ColorFrameCtrl.cpp \
-	CommentDialog.cpp CommentDialogLst.cpp EditServerListDlg.cpp \
-	extern/wxWidgets/listctrl.cpp FileDetailListCtrl.cpp \
-	MuleGifCtrl.cpp MuleListCtrl.cpp MuleNotebook.cpp \
-	MuleTextCtrl.cpp MuleCollection.cpp muuli_wdr.cpp \
-	$(am__append_11)
+libmuleappgui_a_SOURCES = \
+	BarShader.cpp \
+	ChatWnd.cpp \
+	ColorFrameCtrl.cpp \
+	CommentDialog.cpp \
+	CommentDialogLst.cpp \
+	EditServerListDlg.cpp \
+	extern/wxWidgets/listctrl.cpp \
+	FileDetailListCtrl.cpp \
+	IP2Country.cpp \
+	MuleGifCtrl.cpp \
+	MuleListCtrl.cpp \
+	MuleNotebook.cpp \
+	MuleTextCtrl.cpp \
+	MuleCollection.cpp \
+	muuli_wdr.cpp 
+
 libmuleappgui_a_CPPFLAGS = $(AM_CPPFLAGS) $(WX_CPPFLAGS) -I$(srcdir)/libs -I$(srcdir)/include $(LIBUPNP_CPPFLAGS) $(GEOIP_CPPFLAGS)
-core_sources = amule.cpp BaseClient.cpp CanceledFileList.cpp \
-	ClientList.cpp ClientCreditsList.cpp ClientTCPSocket.cpp \
-	ClientUDPSocket.cpp CorruptionBlackBox.cpp DownloadClient.cpp \
-	DownloadQueue.cpp ECSpecialCoreTags.cpp EMSocket.cpp \
-	EncryptedStreamSocket.cpp EncryptedDatagramSocket.cpp \
-	ExternalConn.cpp FriendList.cpp HTTPDownload.cpp IPFilter.cpp \
-	KnownFileList.cpp ListenSocket.cpp MuleUDPSocket.cpp \
-	PartFileConvert.cpp SearchFile.cpp SearchList.cpp \
-	ServerConnect.cpp ServerList.cpp ServerSocket.cpp \
-	ServerUDPSocket.cpp SharedFileList.cpp \
-	TerminationProcessAmuleweb.cpp ThreadTasks.cpp \
-	UploadBandwidthThrottler.cpp UploadClient.cpp UploadQueue.cpp \
-	kademlia/kademlia/Indexed.cpp kademlia/kademlia/Kademlia.cpp \
-	kademlia/kademlia/Prefs.cpp kademlia/kademlia/Search.cpp \
+core_sources = \
+	amule.cpp \
+	BaseClient.cpp \
+	CanceledFileList.cpp \
+	ClientList.cpp \
+	ClientCreditsList.cpp \
+	ClientTCPSocket.cpp \
+	ClientUDPSocket.cpp \
+	CorruptionBlackBox.cpp \
+	DownloadClient.cpp \
+	DownloadQueue.cpp \
+	ECSpecialCoreTags.cpp \
+	EMSocket.cpp \
+	EncryptedStreamSocket.cpp \
+	EncryptedDatagramSocket.cpp \
+	ExternalConn.cpp \
+	FriendList.cpp \
+	HTTPDownload.cpp \
+	IPFilter.cpp \
+	KnownFileList.cpp \
+	ListenSocket.cpp \
+	MuleUDPSocket.cpp \
+	PartFileConvert.cpp \
+	SearchFile.cpp \
+	SearchList.cpp \
+	ServerConnect.cpp \
+	ServerList.cpp \
+	ServerSocket.cpp \
+	ServerUDPSocket.cpp \
+	SharedFileList.cpp \
+	TerminationProcessAmuleweb.cpp \
+	ThreadTasks.cpp \
+	UploadBandwidthThrottler.cpp \
+	UploadClient.cpp \
+	UploadQueue.cpp \
+	kademlia/kademlia/Indexed.cpp \
+	kademlia/kademlia/Kademlia.cpp \
+	kademlia/kademlia/Prefs.cpp \
+	kademlia/kademlia/Search.cpp \
 	kademlia/kademlia/UDPFirewallTester.cpp \
 	kademlia/net/KademliaUDPListener.cpp \
 	kademlia/net/PacketTracking.cpp \
-	kademlia/routing/RoutingZone.cpp $(am__append_12)
+	kademlia/routing/RoutingZone.cpp
+
 gui_sources = \
 	amule-gui.cpp \
 	amuleDlg.cpp \
@@ -809,7 +751,7 @@ common_sources = \
 
 # Libs
 core_libs = -L. -lmuleappcore $(LIBUPNP_LDFLAGS) $(LIBUPNP_LIBS) \
-	$(am__append_13)
+	$(am__append_11)
 gui_libs = -L. -lmuleappgui $(WX_LIBS) $(GEOIP_LDFLAGS) $(GEOIP_LIBS)
 remote_common_libs = -Llibs/common -Llibs/ec/cpp -lmulecommon -lec $(BFD_LIBS) $(ZLIB_LDFLAGS) $(ZLIB_LIBS) $(RESOLV_LIB)
 common_libs = -L. -lmuleappcommon $(remote_common_libs) $(CRYPTOPP_LDFLAGS) $(CRYPTOPP_LIBS)
@@ -826,8 +768,13 @@ gui_flags = $(WX_CPPFLAGS) $(GEOIP_CPPFLAGS)
 common_flags = -I$(srcdir)/libs -Ilibs -I$(srcdir)/include $(CRYPTOPP_CPPFLAGS)
 
 # --------- Apps ---------
-amulegui_SOURCES = amule-remote-gui.cpp $(gui_sources) $(ec_sources) \
-	$(common_sources) $(am__append_14)
+amulegui_SOURCES = \
+	amule-remote-gui.cpp \
+	HTTPDownload.cpp \
+	$(gui_sources) \
+	$(ec_sources) \
+	$(common_sources)
+
 amule_SOURCES = \
 	CaptchaDialog.cpp \
 	CaptchaGenerator.cpp \
@@ -844,15 +791,15 @@ amuled_SOURCES = \
 	$(common_sources)
 
 amule_DEPENDENCIES = $(common_deps) $(core_deps) $(gui_deps) \
-	$(am__append_16)
+	$(am__append_13)
 amule_CPPFLAGS = $(AM_CPPFLAGS) $(core_flags) $(gui_flags) $(common_flags)
 amule_CXXFLAGS = $(AM_CXXFLAGS) $(WX_CFLAGS_ONLY) $(WX_CPPFLAGS_ONLY)
-amule_LDADD = $(common_libs) $(core_libs) $(gui_libs) $(am__append_15)
-amulegui_DEPENDENCIES = $(common_deps) $(gui_deps) $(am__append_18)
+amule_LDADD = $(common_libs) $(core_libs) $(gui_libs) $(am__append_12)
+amulegui_DEPENDENCIES = $(common_deps) $(gui_deps) $(am__append_15)
 amulegui_CPPFLAGS = $(AM_CPPFLAGS) $(gui_flags) $(common_flags) -DCLIENT_GUI
 amulegui_CXXFLAGS = $(AM_CXXFLAGS) $(WX_CFLAGS_ONLY) $(WX_CXXFLAGS_ONLY)
 amulegui_LDADD = $(gui_libs) $(common_libs) $(WXBASE_LIBS) \
-	$(am__append_17)
+	$(am__append_14)
 amuled_DEPENDENCIES = $(core_deps) $(common_deps)
 amuled_CPPFLAGS = $(AM_CPPFLAGS) $(WXBASE_CPPFLAGS) $(core_flags) $(common_flags) -DAMULE_DAEMON 
 amuled_CXXFLAGS = $(AM_CXXFLAGS) $(WX_CFLAGS_ONLY) $(WX_CXXFLAGS_ONLY)
@@ -1198,7 +1145,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ThreadTasks.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-TransferWnd.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-UDPFirewallTester.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-UPnPBase.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-UploadBandwidthThrottler.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-UploadClient.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-UploadQueue.Po@am__quote@
@@ -1267,7 +1213,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-ThreadTasks.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-Timer.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-UDPFirewallTester.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-UPnPBase.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-UploadBandwidthThrottler.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-UploadClient.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-UploadQueue.Po@am__quote@
@@ -1353,6 +1298,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-StateMachine.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-ThreadScheduler.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-UInt128.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-UPnPBase.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-BarShader.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-ChatWnd.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-ColorFrameCtrl.Po@am__quote@
@@ -1733,6 +1679,20 @@ libmuleappcore_a-ThreadScheduler.obj: ThreadScheduler.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcore_a-ThreadScheduler.obj `if test -f 'ThreadScheduler.cpp'; then $(CYGPATH_W) 'ThreadScheduler.cpp'; else $(CYGPATH_W) '$(srcdir)/ThreadScheduler.cpp'; fi`
 
+libmuleappcore_a-UPnPBase.o: UPnPBase.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcore_a-UPnPBase.o -MD -MP -MF "$(DEPDIR)/libmuleappcore_a-UPnPBase.Tpo" -c -o libmuleappcore_a-UPnPBase.o `test -f 'UPnPBase.cpp' || echo '$(srcdir)/'`UPnPBase.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleappcore_a-UPnPBase.Tpo" "$(DEPDIR)/libmuleappcore_a-UPnPBase.Po"; else rm -f "$(DEPDIR)/libmuleappcore_a-UPnPBase.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='UPnPBase.cpp' object='libmuleappcore_a-UPnPBase.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcore_a-UPnPBase.o `test -f 'UPnPBase.cpp' || echo '$(srcdir)/'`UPnPBase.cpp
+
+libmuleappcore_a-UPnPBase.obj: UPnPBase.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcore_a-UPnPBase.obj -MD -MP -MF "$(DEPDIR)/libmuleappcore_a-UPnPBase.Tpo" -c -o libmuleappcore_a-UPnPBase.obj `if test -f 'UPnPBase.cpp'; then $(CYGPATH_W) 'UPnPBase.cpp'; else $(CYGPATH_W) '$(srcdir)/UPnPBase.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleappcore_a-UPnPBase.Tpo" "$(DEPDIR)/libmuleappcore_a-UPnPBase.Po"; else rm -f "$(DEPDIR)/libmuleappcore_a-UPnPBase.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='UPnPBase.cpp' object='libmuleappcore_a-UPnPBase.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcore_a-UPnPBase.obj `if test -f 'UPnPBase.cpp'; then $(CYGPATH_W) 'UPnPBase.cpp'; else $(CYGPATH_W) '$(srcdir)/UPnPBase.cpp'; fi`
+
 libmuleappcore_a-Entry.o: kademlia/kademlia/Entry.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcore_a-Entry.o -MD -MP -MF "$(DEPDIR)/libmuleappcore_a-Entry.Tpo" -c -o libmuleappcore_a-Entry.o `test -f 'kademlia/kademlia/Entry.cpp' || echo '$(srcdir)/'`kademlia/kademlia/Entry.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleappcore_a-Entry.Tpo" "$(DEPDIR)/libmuleappcore_a-Entry.Po"; else rm -f "$(DEPDIR)/libmuleappcore_a-Entry.Tpo"; exit 1; fi
@@ -1915,6 +1875,20 @@ libmuleappgui_a-FileDetailListCtrl.obj: FileDetailListCtrl.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappgui_a-FileDetailListCtrl.obj `if test -f 'FileDetailListCtrl.cpp'; then $(CYGPATH_W) 'FileDetailListCtrl.cpp'; else $(CYGPATH_W) '$(srcdir)/FileDetailListCtrl.cpp'; fi`
 
+libmuleappgui_a-IP2Country.o: IP2Country.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappgui_a-IP2Country.o -MD -MP -MF "$(DEPDIR)/libmuleappgui_a-IP2Country.Tpo" -c -o libmuleappgui_a-IP2Country.o `test -f 'IP2Country.cpp' || echo '$(srcdir)/'`IP2Country.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleappgui_a-IP2Country.Tpo" "$(DEPDIR)/libmuleappgui_a-IP2Country.Po"; else rm -f "$(DEPDIR)/libmuleappgui_a-IP2Country.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IP2Country.cpp' object='libmuleappgui_a-IP2Country.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappgui_a-IP2Country.o `test -f 'IP2Country.cpp' || echo '$(srcdir)/'`IP2Country.cpp
+
+libmuleappgui_a-IP2Country.obj: IP2Country.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappgui_a-IP2Country.obj -MD -MP -MF "$(DEPDIR)/libmuleappgui_a-IP2Country.Tpo" -c -o libmuleappgui_a-IP2Country.obj `if test -f 'IP2Country.cpp'; then $(CYGPATH_W) 'IP2Country.cpp'; else $(CYGPATH_W) '$(srcdir)/IP2Country.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleappgui_a-IP2Country.Tpo" "$(DEPDIR)/libmuleappgui_a-IP2Country.Po"; else rm -f "$(DEPDIR)/libmuleappgui_a-IP2Country.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IP2Country.cpp' object='libmuleappgui_a-IP2Country.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappgui_a-IP2Country.obj `if test -f 'IP2Country.cpp'; then $(CYGPATH_W) 'IP2Country.cpp'; else $(CYGPATH_W) '$(srcdir)/IP2Country.cpp'; fi`
+
 libmuleappgui_a-MuleGifCtrl.o: MuleGifCtrl.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappgui_a-MuleGifCtrl.o -MD -MP -MF "$(DEPDIR)/libmuleappgui_a-MuleGifCtrl.Tpo" -c -o libmuleappgui_a-MuleGifCtrl.o `test -f 'MuleGifCtrl.cpp' || echo '$(srcdir)/'`MuleGifCtrl.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleappgui_a-MuleGifCtrl.Tpo" "$(DEPDIR)/libmuleappgui_a-MuleGifCtrl.Po"; else rm -f "$(DEPDIR)/libmuleappgui_a-MuleGifCtrl.Tpo"; exit 1; fi
@@ -1998,20 +1972,6 @@ libmuleappgui_a-muuli_wdr.obj: muuli_wdr.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='muuli_wdr.cpp' object='libmuleappgui_a-muuli_wdr.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappgui_a-muuli_wdr.obj `if test -f 'muuli_wdr.cpp'; then $(CYGPATH_W) 'muuli_wdr.cpp'; else $(CYGPATH_W) '$(srcdir)/muuli_wdr.cpp'; fi`
-
-libmuleappgui_a-IP2Country.o: IP2Country.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappgui_a-IP2Country.o -MD -MP -MF "$(DEPDIR)/libmuleappgui_a-IP2Country.Tpo" -c -o libmuleappgui_a-IP2Country.o `test -f 'IP2Country.cpp' || echo '$(srcdir)/'`IP2Country.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleappgui_a-IP2Country.Tpo" "$(DEPDIR)/libmuleappgui_a-IP2Country.Po"; else rm -f "$(DEPDIR)/libmuleappgui_a-IP2Country.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IP2Country.cpp' object='libmuleappgui_a-IP2Country.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappgui_a-IP2Country.o `test -f 'IP2Country.cpp' || echo '$(srcdir)/'`IP2Country.cpp
-
-libmuleappgui_a-IP2Country.obj: IP2Country.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappgui_a-IP2Country.obj -MD -MP -MF "$(DEPDIR)/libmuleappgui_a-IP2Country.Tpo" -c -o libmuleappgui_a-IP2Country.obj `if test -f 'IP2Country.cpp'; then $(CYGPATH_W) 'IP2Country.cpp'; else $(CYGPATH_W) '$(srcdir)/IP2Country.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleappgui_a-IP2Country.Tpo" "$(DEPDIR)/libmuleappgui_a-IP2Country.Po"; else rm -f "$(DEPDIR)/libmuleappgui_a-IP2Country.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IP2Country.cpp' object='libmuleappgui_a-IP2Country.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappgui_a-IP2Country.obj `if test -f 'IP2Country.cpp'; then $(CYGPATH_W) 'IP2Country.cpp'; else $(CYGPATH_W) '$(srcdir)/IP2Country.cpp'; fi`
 
 amule-CaptchaDialog.o: CaptchaDialog.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-CaptchaDialog.o -MD -MP -MF "$(DEPDIR)/amule-CaptchaDialog.Tpo" -c -o amule-CaptchaDialog.o `test -f 'CaptchaDialog.cpp' || echo '$(srcdir)/'`CaptchaDialog.cpp; \
@@ -2628,20 +2588,6 @@ amule-RoutingZone.obj: kademlia/routing/RoutingZone.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/routing/RoutingZone.cpp' object='amule-RoutingZone.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-RoutingZone.obj `if test -f 'kademlia/routing/RoutingZone.cpp'; then $(CYGPATH_W) 'kademlia/routing/RoutingZone.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/routing/RoutingZone.cpp'; fi`
-
-amule-UPnPBase.o: UPnPBase.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-UPnPBase.o -MD -MP -MF "$(DEPDIR)/amule-UPnPBase.Tpo" -c -o amule-UPnPBase.o `test -f 'UPnPBase.cpp' || echo '$(srcdir)/'`UPnPBase.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-UPnPBase.Tpo" "$(DEPDIR)/amule-UPnPBase.Po"; else rm -f "$(DEPDIR)/amule-UPnPBase.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='UPnPBase.cpp' object='amule-UPnPBase.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-UPnPBase.o `test -f 'UPnPBase.cpp' || echo '$(srcdir)/'`UPnPBase.cpp
-
-amule-UPnPBase.obj: UPnPBase.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-UPnPBase.obj -MD -MP -MF "$(DEPDIR)/amule-UPnPBase.Tpo" -c -o amule-UPnPBase.obj `if test -f 'UPnPBase.cpp'; then $(CYGPATH_W) 'UPnPBase.cpp'; else $(CYGPATH_W) '$(srcdir)/UPnPBase.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-UPnPBase.Tpo" "$(DEPDIR)/amule-UPnPBase.Po"; else rm -f "$(DEPDIR)/amule-UPnPBase.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='UPnPBase.cpp' object='amule-UPnPBase.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-UPnPBase.obj `if test -f 'UPnPBase.cpp'; then $(CYGPATH_W) 'UPnPBase.cpp'; else $(CYGPATH_W) '$(srcdir)/UPnPBase.cpp'; fi`
 
 amule-amule-gui.o: amule-gui.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-amule-gui.o -MD -MP -MF "$(DEPDIR)/amule-amule-gui.Tpo" -c -o amule-amule-gui.o `test -f 'amule-gui.cpp' || echo '$(srcdir)/'`amule-gui.cpp; \
@@ -3931,20 +3877,6 @@ amuled-RoutingZone.obj: kademlia/routing/RoutingZone.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-RoutingZone.obj `if test -f 'kademlia/routing/RoutingZone.cpp'; then $(CYGPATH_W) 'kademlia/routing/RoutingZone.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/routing/RoutingZone.cpp'; fi`
 
-amuled-UPnPBase.o: UPnPBase.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-UPnPBase.o -MD -MP -MF "$(DEPDIR)/amuled-UPnPBase.Tpo" -c -o amuled-UPnPBase.o `test -f 'UPnPBase.cpp' || echo '$(srcdir)/'`UPnPBase.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-UPnPBase.Tpo" "$(DEPDIR)/amuled-UPnPBase.Po"; else rm -f "$(DEPDIR)/amuled-UPnPBase.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='UPnPBase.cpp' object='amuled-UPnPBase.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-UPnPBase.o `test -f 'UPnPBase.cpp' || echo '$(srcdir)/'`UPnPBase.cpp
-
-amuled-UPnPBase.obj: UPnPBase.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-UPnPBase.obj -MD -MP -MF "$(DEPDIR)/amuled-UPnPBase.Tpo" -c -o amuled-UPnPBase.obj `if test -f 'UPnPBase.cpp'; then $(CYGPATH_W) 'UPnPBase.cpp'; else $(CYGPATH_W) '$(srcdir)/UPnPBase.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-UPnPBase.Tpo" "$(DEPDIR)/amuled-UPnPBase.Po"; else rm -f "$(DEPDIR)/amuled-UPnPBase.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='UPnPBase.cpp' object='amuled-UPnPBase.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-UPnPBase.obj `if test -f 'UPnPBase.cpp'; then $(CYGPATH_W) 'UPnPBase.cpp'; else $(CYGPATH_W) '$(srcdir)/UPnPBase.cpp'; fi`
-
 amuled-amuleAppCommon.o: amuleAppCommon.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-amuleAppCommon.o -MD -MP -MF "$(DEPDIR)/amuled-amuleAppCommon.Tpo" -c -o amuled-amuleAppCommon.o `test -f 'amuleAppCommon.cpp' || echo '$(srcdir)/'`amuleAppCommon.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-amuleAppCommon.Tpo" "$(DEPDIR)/amuled-amuleAppCommon.Po"; else rm -f "$(DEPDIR)/amuled-amuleAppCommon.Tpo"; exit 1; fi
@@ -4210,6 +4142,20 @@ amulegui-amule-remote-gui.obj: amule-remote-gui.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='amule-remote-gui.cpp' object='amulegui-amule-remote-gui.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-amule-remote-gui.obj `if test -f 'amule-remote-gui.cpp'; then $(CYGPATH_W) 'amule-remote-gui.cpp'; else $(CYGPATH_W) '$(srcdir)/amule-remote-gui.cpp'; fi`
+
+amulegui-HTTPDownload.o: HTTPDownload.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-HTTPDownload.o -MD -MP -MF "$(DEPDIR)/amulegui-HTTPDownload.Tpo" -c -o amulegui-HTTPDownload.o `test -f 'HTTPDownload.cpp' || echo '$(srcdir)/'`HTTPDownload.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amulegui-HTTPDownload.Tpo" "$(DEPDIR)/amulegui-HTTPDownload.Po"; else rm -f "$(DEPDIR)/amulegui-HTTPDownload.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='HTTPDownload.cpp' object='amulegui-HTTPDownload.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-HTTPDownload.o `test -f 'HTTPDownload.cpp' || echo '$(srcdir)/'`HTTPDownload.cpp
+
+amulegui-HTTPDownload.obj: HTTPDownload.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-HTTPDownload.obj -MD -MP -MF "$(DEPDIR)/amulegui-HTTPDownload.Tpo" -c -o amulegui-HTTPDownload.obj `if test -f 'HTTPDownload.cpp'; then $(CYGPATH_W) 'HTTPDownload.cpp'; else $(CYGPATH_W) '$(srcdir)/HTTPDownload.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amulegui-HTTPDownload.Tpo" "$(DEPDIR)/amulegui-HTTPDownload.Po"; else rm -f "$(DEPDIR)/amulegui-HTTPDownload.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='HTTPDownload.cpp' object='amulegui-HTTPDownload.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-HTTPDownload.obj `if test -f 'HTTPDownload.cpp'; then $(CYGPATH_W) 'HTTPDownload.cpp'; else $(CYGPATH_W) '$(srcdir)/HTTPDownload.cpp'; fi`
 
 amulegui-amule-gui.o: amule-gui.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-amule-gui.o -MD -MP -MF "$(DEPDIR)/amulegui-amule-gui.Tpo" -c -o amulegui-amule-gui.o `test -f 'amule-gui.cpp' || echo '$(srcdir)/'`amule-gui.cpp; \
@@ -4812,20 +4758,6 @@ amulegui-NetworkFunctions.obj: NetworkFunctions.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='NetworkFunctions.cpp' object='amulegui-NetworkFunctions.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-NetworkFunctions.obj `if test -f 'NetworkFunctions.cpp'; then $(CYGPATH_W) 'NetworkFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/NetworkFunctions.cpp'; fi`
-
-amulegui-HTTPDownload.o: HTTPDownload.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-HTTPDownload.o -MD -MP -MF "$(DEPDIR)/amulegui-HTTPDownload.Tpo" -c -o amulegui-HTTPDownload.o `test -f 'HTTPDownload.cpp' || echo '$(srcdir)/'`HTTPDownload.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amulegui-HTTPDownload.Tpo" "$(DEPDIR)/amulegui-HTTPDownload.Po"; else rm -f "$(DEPDIR)/amulegui-HTTPDownload.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='HTTPDownload.cpp' object='amulegui-HTTPDownload.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-HTTPDownload.o `test -f 'HTTPDownload.cpp' || echo '$(srcdir)/'`HTTPDownload.cpp
-
-amulegui-HTTPDownload.obj: HTTPDownload.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-HTTPDownload.obj -MD -MP -MF "$(DEPDIR)/amulegui-HTTPDownload.Tpo" -c -o amulegui-HTTPDownload.obj `if test -f 'HTTPDownload.cpp'; then $(CYGPATH_W) 'HTTPDownload.cpp'; else $(CYGPATH_W) '$(srcdir)/HTTPDownload.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amulegui-HTTPDownload.Tpo" "$(DEPDIR)/amulegui-HTTPDownload.Po"; else rm -f "$(DEPDIR)/amulegui-HTTPDownload.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='HTTPDownload.cpp' object='amulegui-HTTPDownload.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-HTTPDownload.obj `if test -f 'HTTPDownload.cpp'; then $(CYGPATH_W) 'HTTPDownload.cpp'; else $(CYGPATH_W) '$(srcdir)/HTTPDownload.cpp'; fi`
 
 ed2k-ED2KLinkParser.o: ED2KLinkParser.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ed2k_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ed2k-ED2KLinkParser.o -MD -MP -MF "$(DEPDIR)/ed2k-ED2KLinkParser.Tpo" -c -o ed2k-ED2KLinkParser.o `test -f 'ED2KLinkParser.cpp' || echo '$(srcdir)/'`ED2KLinkParser.cpp; \
