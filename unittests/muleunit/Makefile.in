@@ -68,7 +68,8 @@ libmuleunit_a_LIBADD =
 am_libmuleunit_a_OBJECTS = libmuleunit_a-test.$(OBJEXT) \
 	libmuleunit_a-main.$(OBJEXT) libmuleunit_a-testcase.$(OBJEXT) \
 	libmuleunit_a-testregistry.$(OBJEXT) \
-	libmuleunit_a-MuleDebug.$(OBJEXT)
+	libmuleunit_a-MuleDebug.$(OBJEXT) \
+	libmuleunit_a-StringFunctions.$(OBJEXT)
 libmuleunit_a_OBJECTS = $(am_libmuleunit_a_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
@@ -340,7 +341,8 @@ libmuleunit_a_SOURCES = \
 	testcase.h \
 	testregistry.cpp \
 	testregistry.h \
-	$(top_srcdir)/src/libs/common/MuleDebug.cpp
+	$(top_srcdir)/src/libs/common/MuleDebug.cpp \
+	$(top_srcdir)/src/libs/common/StringFunctions.cpp
 
 libmuleunit_a_CPPFLAGS = $(MULECPPFLAGS) $(WXBASE_CPPFLAGS) -I$(top_srcdir)/src/libs -DMULEUNIT 
 libmuleunit_a_CXXFLAGS = $(MULECXXFLAGS) $(WX_CFLAGS_ONLY) $(WX_CXXFLAGS_ONLY)
@@ -394,6 +396,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleunit_a-MuleDebug.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleunit_a-StringFunctions.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleunit_a-main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleunit_a-test.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleunit_a-testcase.Po@am__quote@
@@ -482,6 +485,20 @@ libmuleunit_a-MuleDebug.obj: $(top_srcdir)/src/libs/common/MuleDebug.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/libs/common/MuleDebug.cpp' object='libmuleunit_a-MuleDebug.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -c -o libmuleunit_a-MuleDebug.obj `if test -f '$(top_srcdir)/src/libs/common/MuleDebug.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/libs/common/MuleDebug.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/libs/common/MuleDebug.cpp'; fi`
+
+libmuleunit_a-StringFunctions.o: $(top_srcdir)/src/libs/common/StringFunctions.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleunit_a-StringFunctions.o -MD -MP -MF "$(DEPDIR)/libmuleunit_a-StringFunctions.Tpo" -c -o libmuleunit_a-StringFunctions.o `test -f '$(top_srcdir)/src/libs/common/StringFunctions.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/libs/common/StringFunctions.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleunit_a-StringFunctions.Tpo" "$(DEPDIR)/libmuleunit_a-StringFunctions.Po"; else rm -f "$(DEPDIR)/libmuleunit_a-StringFunctions.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/libs/common/StringFunctions.cpp' object='libmuleunit_a-StringFunctions.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -c -o libmuleunit_a-StringFunctions.o `test -f '$(top_srcdir)/src/libs/common/StringFunctions.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/libs/common/StringFunctions.cpp
+
+libmuleunit_a-StringFunctions.obj: $(top_srcdir)/src/libs/common/StringFunctions.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleunit_a-StringFunctions.obj -MD -MP -MF "$(DEPDIR)/libmuleunit_a-StringFunctions.Tpo" -c -o libmuleunit_a-StringFunctions.obj `if test -f '$(top_srcdir)/src/libs/common/StringFunctions.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/libs/common/StringFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/libs/common/StringFunctions.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleunit_a-StringFunctions.Tpo" "$(DEPDIR)/libmuleunit_a-StringFunctions.Po"; else rm -f "$(DEPDIR)/libmuleunit_a-StringFunctions.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/libs/common/StringFunctions.cpp' object='libmuleunit_a-StringFunctions.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -c -o libmuleunit_a-StringFunctions.obj `if test -f '$(top_srcdir)/src/libs/common/StringFunctions.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/libs/common/StringFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/libs/common/StringFunctions.cpp'; fi`
 uninstall-info-am:
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
