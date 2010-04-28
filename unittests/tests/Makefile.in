@@ -64,11 +64,17 @@ CONFIG_CLEAN_FILES =
 am__EXEEXT_1 = CUInt128Test$(EXEEXT) RangeMapTest$(EXEEXT) \
 	FormatTest$(EXEEXT) StringFunctionsTest$(EXEEXT) \
 	NetworkFunctionsTest$(EXEEXT) FileDataIOTest$(EXEEXT) \
-	PathTest$(EXEEXT) TextFileTest$(EXEEXT)
+	PathTest$(EXEEXT) TextFileTest$(EXEEXT) CTagTest$(EXEEXT)
+am_CTagTest_OBJECTS = CTagTest.$(OBJEXT) SafeFile.$(OBJEXT) \
+	MemFile.$(OBJEXT) Tag.$(OBJEXT) Format.$(OBJEXT)
+CTagTest_OBJECTS = $(am_CTagTest_OBJECTS)
+CTagTest_LDADD = $(LDADD)
+am__DEPENDENCIES_1 =
+CTagTest_DEPENDENCIES = $(am__DEPENDENCIES_1) \
+	../muleunit/libmuleunit.a
 am_CUInt128Test_OBJECTS = CUInt128Test.$(OBJEXT) UInt128.$(OBJEXT)
 CUInt128Test_OBJECTS = $(am_CUInt128Test_OBJECTS)
 CUInt128Test_LDADD = $(LDADD)
-am__DEPENDENCIES_1 =
 CUInt128Test_DEPENDENCIES = $(am__DEPENDENCIES_1) \
 	../muleunit/libmuleunit.a
 am_FileDataIOTest_OBJECTS = FileDataIOTest.$(OBJEXT) \
@@ -124,14 +130,16 @@ CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 CXXLD = $(CXX)
 CXXLINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
 	-o $@
-SOURCES = $(CUInt128Test_SOURCES) $(FileDataIOTest_SOURCES) \
-	$(FormatTest_SOURCES) $(NetworkFunctionsTest_SOURCES) \
-	$(PathTest_SOURCES) $(RangeMapTest_SOURCES) \
-	$(StringFunctionsTest_SOURCES) $(TextFileTest_SOURCES)
-DIST_SOURCES = $(CUInt128Test_SOURCES) $(FileDataIOTest_SOURCES) \
-	$(FormatTest_SOURCES) $(NetworkFunctionsTest_SOURCES) \
-	$(PathTest_SOURCES) $(RangeMapTest_SOURCES) \
-	$(StringFunctionsTest_SOURCES) $(TextFileTest_SOURCES)
+SOURCES = $(CTagTest_SOURCES) $(CUInt128Test_SOURCES) \
+	$(FileDataIOTest_SOURCES) $(FormatTest_SOURCES) \
+	$(NetworkFunctionsTest_SOURCES) $(PathTest_SOURCES) \
+	$(RangeMapTest_SOURCES) $(StringFunctionsTest_SOURCES) \
+	$(TextFileTest_SOURCES)
+DIST_SOURCES = $(CTagTest_SOURCES) $(CUInt128Test_SOURCES) \
+	$(FileDataIOTest_SOURCES) $(FormatTest_SOURCES) \
+	$(NetworkFunctionsTest_SOURCES) $(PathTest_SOURCES) \
+	$(RangeMapTest_SOURCES) $(StringFunctionsTest_SOURCES) \
+	$(TextFileTest_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -392,7 +400,7 @@ AM_CXXFLAGS = $(MULECXXFLAGS) $(WX_CFLAGS_ONLY) $(WX_CXXFLAGS_ONLY)
 AM_LDFLAGS = $(MULELDFLAGS)
 LDADD = $(WXBASE_LIBS) ../muleunit/libmuleunit.a
 MAINTAINERCLEANFILES = Makefile.in
-TESTS = CUInt128Test RangeMapTest FormatTest StringFunctionsTest NetworkFunctionsTest FileDataIOTest PathTest TextFileTest
+TESTS = CUInt128Test RangeMapTest FormatTest StringFunctionsTest NetworkFunctionsTest FileDataIOTest PathTest TextFileTest CTagTest
 
 # Tests for the CUInt128 class
 CUInt128Test_SOURCES = CUInt128Test.cpp $(top_srcdir)/src/kademlia/utils/UInt128.cpp
@@ -422,6 +430,9 @@ PathTest_SOURCES = PathTest.cpp $(top_srcdir)/src/libs/common/Path.cpp $(top_src
 # Tests for the CTextFile class
 TextFileTest_SOURCES = TextFileTest.cpp $(top_srcdir)/src/libs/common/Path.cpp $(top_srcdir)/src/libs/common/StringFunctions.cpp $(top_srcdir)/src/libs/common/TextFile.cpp
 TextFileTest_CPPFLAGS = $(AM_CPPFLAGS) -DSRCDIR="$(srcdir)" 
+
+# Tests for the CTag class
+CTagTest_SOURCES = CTagTest.cpp  $(top_srcdir)/src/SafeFile.cpp  $(top_srcdir)/src/MemFile.cpp $(top_srcdir)/src/Tag.cpp $(top_srcdir)/src/libs/common/Format.cpp
 all: all-am
 
 .SUFFIXES:
@@ -458,6 +469,9 @@ $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 
 clean-checkPROGRAMS:
 	-test -z "$(check_PROGRAMS)" || rm -f $(check_PROGRAMS)
+CTagTest$(EXEEXT): $(CTagTest_OBJECTS) $(CTagTest_DEPENDENCIES) 
+	@rm -f CTagTest$(EXEEXT)
+	$(CXXLINK) $(CTagTest_LDFLAGS) $(CTagTest_OBJECTS) $(CTagTest_LDADD) $(LIBS)
 CUInt128Test$(EXEEXT): $(CUInt128Test_OBJECTS) $(CUInt128Test_DEPENDENCIES) 
 	@rm -f CUInt128Test$(EXEEXT)
 	$(CXXLINK) $(CUInt128Test_LDFLAGS) $(CUInt128Test_OBJECTS) $(CUInt128Test_LDADD) $(LIBS)
@@ -490,6 +504,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/CFile.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/CTagTest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/CUInt128Test.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/FileDataIOTest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Format.Po@am__quote@
@@ -524,20 +539,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
-UInt128.o: $(top_srcdir)/src/kademlia/utils/UInt128.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT UInt128.o -MD -MP -MF "$(DEPDIR)/UInt128.Tpo" -c -o UInt128.o `test -f '$(top_srcdir)/src/kademlia/utils/UInt128.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/kademlia/utils/UInt128.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/UInt128.Tpo" "$(DEPDIR)/UInt128.Po"; else rm -f "$(DEPDIR)/UInt128.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/kademlia/utils/UInt128.cpp' object='UInt128.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o UInt128.o `test -f '$(top_srcdir)/src/kademlia/utils/UInt128.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/kademlia/utils/UInt128.cpp
-
-UInt128.obj: $(top_srcdir)/src/kademlia/utils/UInt128.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT UInt128.obj -MD -MP -MF "$(DEPDIR)/UInt128.Tpo" -c -o UInt128.obj `if test -f '$(top_srcdir)/src/kademlia/utils/UInt128.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/kademlia/utils/UInt128.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/kademlia/utils/UInt128.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/UInt128.Tpo" "$(DEPDIR)/UInt128.Po"; else rm -f "$(DEPDIR)/UInt128.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/kademlia/utils/UInt128.cpp' object='UInt128.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o UInt128.obj `if test -f '$(top_srcdir)/src/kademlia/utils/UInt128.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/kademlia/utils/UInt128.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/kademlia/utils/UInt128.cpp'; fi`
-
 SafeFile.o: $(top_srcdir)/src/SafeFile.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT SafeFile.o -MD -MP -MF "$(DEPDIR)/SafeFile.Tpo" -c -o SafeFile.o `test -f '$(top_srcdir)/src/SafeFile.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/SafeFile.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/SafeFile.Tpo" "$(DEPDIR)/SafeFile.Po"; else rm -f "$(DEPDIR)/SafeFile.Tpo"; exit 1; fi
@@ -551,20 +552,6 @@ SafeFile.obj: $(top_srcdir)/src/SafeFile.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/SafeFile.cpp' object='SafeFile.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o SafeFile.obj `if test -f '$(top_srcdir)/src/SafeFile.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/SafeFile.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/SafeFile.cpp'; fi`
-
-CFile.o: $(top_srcdir)/src/CFile.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT CFile.o -MD -MP -MF "$(DEPDIR)/CFile.Tpo" -c -o CFile.o `test -f '$(top_srcdir)/src/CFile.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/CFile.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/CFile.Tpo" "$(DEPDIR)/CFile.Po"; else rm -f "$(DEPDIR)/CFile.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/CFile.cpp' object='CFile.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o CFile.o `test -f '$(top_srcdir)/src/CFile.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/CFile.cpp
-
-CFile.obj: $(top_srcdir)/src/CFile.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT CFile.obj -MD -MP -MF "$(DEPDIR)/CFile.Tpo" -c -o CFile.obj `if test -f '$(top_srcdir)/src/CFile.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/CFile.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/CFile.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/CFile.Tpo" "$(DEPDIR)/CFile.Po"; else rm -f "$(DEPDIR)/CFile.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/CFile.cpp' object='CFile.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o CFile.obj `if test -f '$(top_srcdir)/src/CFile.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/CFile.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/CFile.cpp'; fi`
 
 MemFile.o: $(top_srcdir)/src/MemFile.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT MemFile.o -MD -MP -MF "$(DEPDIR)/MemFile.Tpo" -c -o MemFile.o `test -f '$(top_srcdir)/src/MemFile.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/MemFile.cpp; \
@@ -580,20 +567,6 @@ MemFile.obj: $(top_srcdir)/src/MemFile.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o MemFile.obj `if test -f '$(top_srcdir)/src/MemFile.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/MemFile.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/MemFile.cpp'; fi`
 
-StringFunctions.o: $(top_srcdir)/src/libs/common/StringFunctions.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT StringFunctions.o -MD -MP -MF "$(DEPDIR)/StringFunctions.Tpo" -c -o StringFunctions.o `test -f '$(top_srcdir)/src/libs/common/StringFunctions.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/libs/common/StringFunctions.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/StringFunctions.Tpo" "$(DEPDIR)/StringFunctions.Po"; else rm -f "$(DEPDIR)/StringFunctions.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/libs/common/StringFunctions.cpp' object='StringFunctions.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o StringFunctions.o `test -f '$(top_srcdir)/src/libs/common/StringFunctions.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/libs/common/StringFunctions.cpp
-
-StringFunctions.obj: $(top_srcdir)/src/libs/common/StringFunctions.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT StringFunctions.obj -MD -MP -MF "$(DEPDIR)/StringFunctions.Tpo" -c -o StringFunctions.obj `if test -f '$(top_srcdir)/src/libs/common/StringFunctions.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/libs/common/StringFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/libs/common/StringFunctions.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/StringFunctions.Tpo" "$(DEPDIR)/StringFunctions.Po"; else rm -f "$(DEPDIR)/StringFunctions.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/libs/common/StringFunctions.cpp' object='StringFunctions.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o StringFunctions.obj `if test -f '$(top_srcdir)/src/libs/common/StringFunctions.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/libs/common/StringFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/libs/common/StringFunctions.cpp'; fi`
-
 Tag.o: $(top_srcdir)/src/Tag.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Tag.o -MD -MP -MF "$(DEPDIR)/Tag.Tpo" -c -o Tag.o `test -f '$(top_srcdir)/src/Tag.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/Tag.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/Tag.Tpo" "$(DEPDIR)/Tag.Po"; else rm -f "$(DEPDIR)/Tag.Tpo"; exit 1; fi
@@ -608,20 +581,6 @@ Tag.obj: $(top_srcdir)/src/Tag.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Tag.obj `if test -f '$(top_srcdir)/src/Tag.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/Tag.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/Tag.cpp'; fi`
 
-Path.o: $(top_srcdir)/src/libs/common/Path.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Path.o -MD -MP -MF "$(DEPDIR)/Path.Tpo" -c -o Path.o `test -f '$(top_srcdir)/src/libs/common/Path.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/libs/common/Path.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/Path.Tpo" "$(DEPDIR)/Path.Po"; else rm -f "$(DEPDIR)/Path.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/libs/common/Path.cpp' object='Path.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Path.o `test -f '$(top_srcdir)/src/libs/common/Path.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/libs/common/Path.cpp
-
-Path.obj: $(top_srcdir)/src/libs/common/Path.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Path.obj -MD -MP -MF "$(DEPDIR)/Path.Tpo" -c -o Path.obj `if test -f '$(top_srcdir)/src/libs/common/Path.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/libs/common/Path.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/libs/common/Path.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/Path.Tpo" "$(DEPDIR)/Path.Po"; else rm -f "$(DEPDIR)/Path.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/libs/common/Path.cpp' object='Path.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Path.obj `if test -f '$(top_srcdir)/src/libs/common/Path.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/libs/common/Path.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/libs/common/Path.cpp'; fi`
-
 Format.o: $(top_srcdir)/src/libs/common/Format.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Format.o -MD -MP -MF "$(DEPDIR)/Format.Tpo" -c -o Format.o `test -f '$(top_srcdir)/src/libs/common/Format.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/libs/common/Format.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/Format.Tpo" "$(DEPDIR)/Format.Po"; else rm -f "$(DEPDIR)/Format.Tpo"; exit 1; fi
@@ -635,6 +594,62 @@ Format.obj: $(top_srcdir)/src/libs/common/Format.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/libs/common/Format.cpp' object='Format.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Format.obj `if test -f '$(top_srcdir)/src/libs/common/Format.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/libs/common/Format.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/libs/common/Format.cpp'; fi`
+
+UInt128.o: $(top_srcdir)/src/kademlia/utils/UInt128.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT UInt128.o -MD -MP -MF "$(DEPDIR)/UInt128.Tpo" -c -o UInt128.o `test -f '$(top_srcdir)/src/kademlia/utils/UInt128.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/kademlia/utils/UInt128.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/UInt128.Tpo" "$(DEPDIR)/UInt128.Po"; else rm -f "$(DEPDIR)/UInt128.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/kademlia/utils/UInt128.cpp' object='UInt128.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o UInt128.o `test -f '$(top_srcdir)/src/kademlia/utils/UInt128.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/kademlia/utils/UInt128.cpp
+
+UInt128.obj: $(top_srcdir)/src/kademlia/utils/UInt128.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT UInt128.obj -MD -MP -MF "$(DEPDIR)/UInt128.Tpo" -c -o UInt128.obj `if test -f '$(top_srcdir)/src/kademlia/utils/UInt128.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/kademlia/utils/UInt128.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/kademlia/utils/UInt128.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/UInt128.Tpo" "$(DEPDIR)/UInt128.Po"; else rm -f "$(DEPDIR)/UInt128.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/kademlia/utils/UInt128.cpp' object='UInt128.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o UInt128.obj `if test -f '$(top_srcdir)/src/kademlia/utils/UInt128.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/kademlia/utils/UInt128.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/kademlia/utils/UInt128.cpp'; fi`
+
+CFile.o: $(top_srcdir)/src/CFile.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT CFile.o -MD -MP -MF "$(DEPDIR)/CFile.Tpo" -c -o CFile.o `test -f '$(top_srcdir)/src/CFile.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/CFile.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/CFile.Tpo" "$(DEPDIR)/CFile.Po"; else rm -f "$(DEPDIR)/CFile.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/CFile.cpp' object='CFile.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o CFile.o `test -f '$(top_srcdir)/src/CFile.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/CFile.cpp
+
+CFile.obj: $(top_srcdir)/src/CFile.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT CFile.obj -MD -MP -MF "$(DEPDIR)/CFile.Tpo" -c -o CFile.obj `if test -f '$(top_srcdir)/src/CFile.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/CFile.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/CFile.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/CFile.Tpo" "$(DEPDIR)/CFile.Po"; else rm -f "$(DEPDIR)/CFile.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/CFile.cpp' object='CFile.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o CFile.obj `if test -f '$(top_srcdir)/src/CFile.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/CFile.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/CFile.cpp'; fi`
+
+StringFunctions.o: $(top_srcdir)/src/libs/common/StringFunctions.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT StringFunctions.o -MD -MP -MF "$(DEPDIR)/StringFunctions.Tpo" -c -o StringFunctions.o `test -f '$(top_srcdir)/src/libs/common/StringFunctions.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/libs/common/StringFunctions.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/StringFunctions.Tpo" "$(DEPDIR)/StringFunctions.Po"; else rm -f "$(DEPDIR)/StringFunctions.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/libs/common/StringFunctions.cpp' object='StringFunctions.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o StringFunctions.o `test -f '$(top_srcdir)/src/libs/common/StringFunctions.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/libs/common/StringFunctions.cpp
+
+StringFunctions.obj: $(top_srcdir)/src/libs/common/StringFunctions.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT StringFunctions.obj -MD -MP -MF "$(DEPDIR)/StringFunctions.Tpo" -c -o StringFunctions.obj `if test -f '$(top_srcdir)/src/libs/common/StringFunctions.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/libs/common/StringFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/libs/common/StringFunctions.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/StringFunctions.Tpo" "$(DEPDIR)/StringFunctions.Po"; else rm -f "$(DEPDIR)/StringFunctions.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/libs/common/StringFunctions.cpp' object='StringFunctions.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o StringFunctions.obj `if test -f '$(top_srcdir)/src/libs/common/StringFunctions.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/libs/common/StringFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/libs/common/StringFunctions.cpp'; fi`
+
+Path.o: $(top_srcdir)/src/libs/common/Path.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Path.o -MD -MP -MF "$(DEPDIR)/Path.Tpo" -c -o Path.o `test -f '$(top_srcdir)/src/libs/common/Path.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/libs/common/Path.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/Path.Tpo" "$(DEPDIR)/Path.Po"; else rm -f "$(DEPDIR)/Path.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/libs/common/Path.cpp' object='Path.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Path.o `test -f '$(top_srcdir)/src/libs/common/Path.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/libs/common/Path.cpp
+
+Path.obj: $(top_srcdir)/src/libs/common/Path.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT Path.obj -MD -MP -MF "$(DEPDIR)/Path.Tpo" -c -o Path.obj `if test -f '$(top_srcdir)/src/libs/common/Path.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/libs/common/Path.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/libs/common/Path.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/Path.Tpo" "$(DEPDIR)/Path.Po"; else rm -f "$(DEPDIR)/Path.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/libs/common/Path.cpp' object='Path.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o Path.obj `if test -f '$(top_srcdir)/src/libs/common/Path.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/libs/common/Path.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/libs/common/Path.cpp'; fi`
 
 NetworkFunctionsTest-NetworkFunctionsTest.o: NetworkFunctionsTest.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(NetworkFunctionsTest_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT NetworkFunctionsTest-NetworkFunctionsTest.o -MD -MP -MF "$(DEPDIR)/NetworkFunctionsTest-NetworkFunctionsTest.Tpo" -c -o NetworkFunctionsTest-NetworkFunctionsTest.o `test -f 'NetworkFunctionsTest.cpp' || echo '$(srcdir)/'`NetworkFunctionsTest.cpp; \
