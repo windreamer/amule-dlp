@@ -972,7 +972,7 @@ MAINTAINERCLEANFILES = Makefile.in
 @NEED_RC_TRUE@nodist_amulecmd_SOURCES = amulecmd-version.rc
 @NEED_RC_TRUE@nodist_ed2k_SOURCES = ed2k-version.rc
 @NEED_RC_TRUE@CLEANFILES = *-version.rc
-EXTRA__DIST__SUBDIRS = include kademlia remote-gui.net
+EXTRA__DIST__SUBDIRS = include kademlia
 all: all-recursive
 
 .SUFFIXES:
