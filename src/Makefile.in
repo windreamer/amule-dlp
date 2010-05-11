@@ -91,7 +91,6 @@ am_libmuleappcommon_a_OBJECTS = libmuleappcommon_a-CFile.$(OBJEXT) \
 	libmuleappcommon_a-GapList.$(OBJEXT) \
 	libmuleappcommon_a-MagnetURI.$(OBJEXT) \
 	libmuleappcommon_a-MemFile.$(OBJEXT) \
-	libmuleappcommon_a-NetworkFunctions.$(OBJEXT) \
 	libmuleappcommon_a-Packet.$(OBJEXT) \
 	libmuleappcommon_a-RLE.$(OBJEXT) \
 	libmuleappcommon_a-SafeFile.$(OBJEXT) \
@@ -176,6 +175,7 @@ am__objects_1 = amule-amule.$(OBJEXT) amule-BaseClient.$(OBJEXT) \
 am__objects_2 = amule-amule-gui.$(OBJEXT) amule-amuleDlg.$(OBJEXT) \
 	amule-AddFriend.$(OBJEXT) amule-CatDialog.$(OBJEXT) \
 	amule-ChatSelector.$(OBJEXT) \
+	amule-GenericClientListCtrl.$(OBJEXT) \
 	amule-ClientDetailDialog.$(OBJEXT) \
 	amule-DirectoryTreeCtrl.$(OBJEXT) \
 	amule-FileDetailDialog.$(OBJEXT) amule-KadDlg.$(OBJEXT) \
@@ -184,10 +184,11 @@ am__objects_2 = amule-amule-gui.$(OBJEXT) amule-amuleDlg.$(OBJEXT) \
 	amule-ServerWnd.$(OBJEXT) amule-SharedFilesWnd.$(OBJEXT) \
 	amule-StatisticsDlg.$(OBJEXT) amule-SearchListCtrl.$(OBJEXT) \
 	amule-DownloadListCtrl.$(OBJEXT) \
-	amule-ClientListCtrl.$(OBJEXT) amule-FriendListCtrl.$(OBJEXT) \
-	amule-ServerListCtrl.$(OBJEXT) amule-SharedFilesCtrl.$(OBJEXT) \
-	amule-MuleTrayIcon.$(OBJEXT) amule-MuleColour.$(OBJEXT) \
-	amule-TransferWnd.$(OBJEXT)
+	amule-SourceListCtrl.$(OBJEXT) \
+	amule-SharedFilePeersListCtrl.$(OBJEXT) \
+	amule-FriendListCtrl.$(OBJEXT) amule-ServerListCtrl.$(OBJEXT) \
+	amule-SharedFilesCtrl.$(OBJEXT) amule-MuleTrayIcon.$(OBJEXT) \
+	amule-MuleColour.$(OBJEXT) amule-TransferWnd.$(OBJEXT)
 am__objects_3 = amule-OtherFunctions.$(OBJEXT) \
 	amule-NetworkFunctions.$(OBJEXT)
 am__objects_4 = amule-amuleAppCommon.$(OBJEXT) \
@@ -266,6 +267,7 @@ amuled_OBJECTS = $(am_amuled_OBJECTS) $(nodist_amuled_OBJECTS)
 am__objects_9 = amulegui-amule-gui.$(OBJEXT) \
 	amulegui-amuleDlg.$(OBJEXT) amulegui-AddFriend.$(OBJEXT) \
 	amulegui-CatDialog.$(OBJEXT) amulegui-ChatSelector.$(OBJEXT) \
+	amulegui-GenericClientListCtrl.$(OBJEXT) \
 	amulegui-ClientDetailDialog.$(OBJEXT) \
 	amulegui-DirectoryTreeCtrl.$(OBJEXT) \
 	amulegui-FileDetailDialog.$(OBJEXT) amulegui-KadDlg.$(OBJEXT) \
@@ -277,7 +279,8 @@ am__objects_9 = amulegui-amule-gui.$(OBJEXT) \
 	amulegui-StatisticsDlg.$(OBJEXT) \
 	amulegui-SearchListCtrl.$(OBJEXT) \
 	amulegui-DownloadListCtrl.$(OBJEXT) \
-	amulegui-ClientListCtrl.$(OBJEXT) \
+	amulegui-SourceListCtrl.$(OBJEXT) \
+	amulegui-SharedFilePeersListCtrl.$(OBJEXT) \
 	amulegui-FriendListCtrl.$(OBJEXT) \
 	amulegui-ServerListCtrl.$(OBJEXT) \
 	amulegui-SharedFilesCtrl.$(OBJEXT) \
@@ -602,7 +605,6 @@ libmuleappcommon_a_SOURCES = \
 	GapList.cpp \
 	MagnetURI.cpp \
 	MemFile.cpp \
-	NetworkFunctions.cpp \
 	Packet.cpp \
 	RLE.cpp \
 	SafeFile.cpp \
@@ -704,6 +706,7 @@ gui_sources = \
 	AddFriend.cpp \
 	CatDialog.cpp \
 	ChatSelector.cpp \
+	GenericClientListCtrl.cpp \
 	ClientDetailDialog.cpp \
 	DirectoryTreeCtrl.cpp \
 	FileDetailDialog.cpp \
@@ -717,7 +720,8 @@ gui_sources = \
 	StatisticsDlg.cpp \
 	SearchListCtrl.cpp \
 	DownloadListCtrl.cpp \
-	ClientListCtrl.cpp \
+	SourceListCtrl.cpp \
+	SharedFilePeersListCtrl.cpp \
 	FriendListCtrl.cpp \
 	ServerListCtrl.cpp \
 	SharedFilesCtrl.cpp \
@@ -847,7 +851,7 @@ noinst_HEADERS = \
 		ClientCredits.h \
 		ClientCreditsList.h \
 		ClientDetailDialog.h \
-		ClientListCtrl.h \
+		SharedFilePeersListCtrl.h \
 		ClientList.h \
 		ClientTCPSocket.h \
 		ClientUDPSocket.h \
@@ -879,6 +883,7 @@ noinst_HEADERS = \
 		FriendList.h \
 		GapList.h \
 		GetTickCount.h \
+		GenericClientListCtrl.h \
 		GuiEvents.h \
 		HTTPDownload.h \
 		inetdownload.h \
@@ -942,6 +947,7 @@ noinst_HEADERS = \
 		SharedFileList.h \
 		SharedFilesCtrl.h \
 		SharedFilesWnd.h \
+		SourceListCtrl.h \
 		StateMachine.h \
 		StatisticsDlg.h \
 		Statistics.h \
@@ -1077,7 +1083,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ClientCreditsList.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ClientDetailDialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ClientList.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ClientListCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ClientTCPSocket.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ClientUDPSocket.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-CorruptionBlackBox.Po@am__quote@
@@ -1094,6 +1099,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-FileDetailDialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-FriendList.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-FriendListCtrl.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-GenericClientListCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-GetTickCount.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-GuiEvents.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-HTTPDownload.Po@am__quote@
@@ -1135,8 +1141,10 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ServerUDPSocket.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ServerWnd.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-SharedFileList.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-SharedFilePeersListCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-SharedFilesCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-SharedFilesWnd.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-SourceListCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-StatTree.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-Statistics.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-StatisticsDlg.Po@am__quote@
@@ -1225,12 +1233,12 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-ChatSelector.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-ClientCredits.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-ClientDetailDialog.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-ClientListCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-DirectoryTreeCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-DownloadListCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-ECSpecialMuleTags.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-FileDetailDialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-FriendListCtrl.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-GenericClientListCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-GetTickCount.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-GuiEvents.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-HTTPDownload.Po@am__quote@
@@ -1253,8 +1261,10 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-Server.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-ServerListCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-ServerWnd.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-SharedFilePeersListCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-SharedFilesCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-SharedFilesWnd.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-SourceListCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-StatTree.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-Statistics.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-StatisticsDlg.Po@am__quote@
@@ -1274,7 +1284,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-GapList.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-MagnetURI.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-MemFile.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-NetworkFunctions.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-Packet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-RLE.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-SHA.Po@am__quote@
@@ -1412,20 +1421,6 @@ libmuleappcommon_a-MemFile.obj: MemFile.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='MemFile.cpp' object='libmuleappcommon_a-MemFile.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcommon_a-MemFile.obj `if test -f 'MemFile.cpp'; then $(CYGPATH_W) 'MemFile.cpp'; else $(CYGPATH_W) '$(srcdir)/MemFile.cpp'; fi`
-
-libmuleappcommon_a-NetworkFunctions.o: NetworkFunctions.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcommon_a-NetworkFunctions.o -MD -MP -MF "$(DEPDIR)/libmuleappcommon_a-NetworkFunctions.Tpo" -c -o libmuleappcommon_a-NetworkFunctions.o `test -f 'NetworkFunctions.cpp' || echo '$(srcdir)/'`NetworkFunctions.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleappcommon_a-NetworkFunctions.Tpo" "$(DEPDIR)/libmuleappcommon_a-NetworkFunctions.Po"; else rm -f "$(DEPDIR)/libmuleappcommon_a-NetworkFunctions.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='NetworkFunctions.cpp' object='libmuleappcommon_a-NetworkFunctions.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcommon_a-NetworkFunctions.o `test -f 'NetworkFunctions.cpp' || echo '$(srcdir)/'`NetworkFunctions.cpp
-
-libmuleappcommon_a-NetworkFunctions.obj: NetworkFunctions.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcommon_a-NetworkFunctions.obj -MD -MP -MF "$(DEPDIR)/libmuleappcommon_a-NetworkFunctions.Tpo" -c -o libmuleappcommon_a-NetworkFunctions.obj `if test -f 'NetworkFunctions.cpp'; then $(CYGPATH_W) 'NetworkFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/NetworkFunctions.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/libmuleappcommon_a-NetworkFunctions.Tpo" "$(DEPDIR)/libmuleappcommon_a-NetworkFunctions.Po"; else rm -f "$(DEPDIR)/libmuleappcommon_a-NetworkFunctions.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='NetworkFunctions.cpp' object='libmuleappcommon_a-NetworkFunctions.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcommon_a-NetworkFunctions.obj `if test -f 'NetworkFunctions.cpp'; then $(CYGPATH_W) 'NetworkFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/NetworkFunctions.cpp'; fi`
 
 libmuleappcommon_a-Packet.o: Packet.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcommon_a-Packet.o -MD -MP -MF "$(DEPDIR)/libmuleappcommon_a-Packet.Tpo" -c -o libmuleappcommon_a-Packet.o `test -f 'Packet.cpp' || echo '$(srcdir)/'`Packet.cpp; \
@@ -2659,6 +2654,20 @@ amule-ChatSelector.obj: ChatSelector.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-ChatSelector.obj `if test -f 'ChatSelector.cpp'; then $(CYGPATH_W) 'ChatSelector.cpp'; else $(CYGPATH_W) '$(srcdir)/ChatSelector.cpp'; fi`
 
+amule-GenericClientListCtrl.o: GenericClientListCtrl.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-GenericClientListCtrl.o -MD -MP -MF "$(DEPDIR)/amule-GenericClientListCtrl.Tpo" -c -o amule-GenericClientListCtrl.o `test -f 'GenericClientListCtrl.cpp' || echo '$(srcdir)/'`GenericClientListCtrl.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-GenericClientListCtrl.Tpo" "$(DEPDIR)/amule-GenericClientListCtrl.Po"; else rm -f "$(DEPDIR)/amule-GenericClientListCtrl.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='GenericClientListCtrl.cpp' object='amule-GenericClientListCtrl.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-GenericClientListCtrl.o `test -f 'GenericClientListCtrl.cpp' || echo '$(srcdir)/'`GenericClientListCtrl.cpp
+
+amule-GenericClientListCtrl.obj: GenericClientListCtrl.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-GenericClientListCtrl.obj -MD -MP -MF "$(DEPDIR)/amule-GenericClientListCtrl.Tpo" -c -o amule-GenericClientListCtrl.obj `if test -f 'GenericClientListCtrl.cpp'; then $(CYGPATH_W) 'GenericClientListCtrl.cpp'; else $(CYGPATH_W) '$(srcdir)/GenericClientListCtrl.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-GenericClientListCtrl.Tpo" "$(DEPDIR)/amule-GenericClientListCtrl.Po"; else rm -f "$(DEPDIR)/amule-GenericClientListCtrl.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='GenericClientListCtrl.cpp' object='amule-GenericClientListCtrl.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-GenericClientListCtrl.obj `if test -f 'GenericClientListCtrl.cpp'; then $(CYGPATH_W) 'GenericClientListCtrl.cpp'; else $(CYGPATH_W) '$(srcdir)/GenericClientListCtrl.cpp'; fi`
+
 amule-ClientDetailDialog.o: ClientDetailDialog.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-ClientDetailDialog.o -MD -MP -MF "$(DEPDIR)/amule-ClientDetailDialog.Tpo" -c -o amule-ClientDetailDialog.o `test -f 'ClientDetailDialog.cpp' || echo '$(srcdir)/'`ClientDetailDialog.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-ClientDetailDialog.Tpo" "$(DEPDIR)/amule-ClientDetailDialog.Po"; else rm -f "$(DEPDIR)/amule-ClientDetailDialog.Tpo"; exit 1; fi
@@ -2841,19 +2850,33 @@ amule-DownloadListCtrl.obj: DownloadListCtrl.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-DownloadListCtrl.obj `if test -f 'DownloadListCtrl.cpp'; then $(CYGPATH_W) 'DownloadListCtrl.cpp'; else $(CYGPATH_W) '$(srcdir)/DownloadListCtrl.cpp'; fi`
 
-amule-ClientListCtrl.o: ClientListCtrl.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-ClientListCtrl.o -MD -MP -MF "$(DEPDIR)/amule-ClientListCtrl.Tpo" -c -o amule-ClientListCtrl.o `test -f 'ClientListCtrl.cpp' || echo '$(srcdir)/'`ClientListCtrl.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-ClientListCtrl.Tpo" "$(DEPDIR)/amule-ClientListCtrl.Po"; else rm -f "$(DEPDIR)/amule-ClientListCtrl.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ClientListCtrl.cpp' object='amule-ClientListCtrl.o' libtool=no @AMDEPBACKSLASH@
+amule-SourceListCtrl.o: SourceListCtrl.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-SourceListCtrl.o -MD -MP -MF "$(DEPDIR)/amule-SourceListCtrl.Tpo" -c -o amule-SourceListCtrl.o `test -f 'SourceListCtrl.cpp' || echo '$(srcdir)/'`SourceListCtrl.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-SourceListCtrl.Tpo" "$(DEPDIR)/amule-SourceListCtrl.Po"; else rm -f "$(DEPDIR)/amule-SourceListCtrl.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='SourceListCtrl.cpp' object='amule-SourceListCtrl.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-ClientListCtrl.o `test -f 'ClientListCtrl.cpp' || echo '$(srcdir)/'`ClientListCtrl.cpp
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-SourceListCtrl.o `test -f 'SourceListCtrl.cpp' || echo '$(srcdir)/'`SourceListCtrl.cpp
 
-amule-ClientListCtrl.obj: ClientListCtrl.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-ClientListCtrl.obj -MD -MP -MF "$(DEPDIR)/amule-ClientListCtrl.Tpo" -c -o amule-ClientListCtrl.obj `if test -f 'ClientListCtrl.cpp'; then $(CYGPATH_W) 'ClientListCtrl.cpp'; else $(CYGPATH_W) '$(srcdir)/ClientListCtrl.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-ClientListCtrl.Tpo" "$(DEPDIR)/amule-ClientListCtrl.Po"; else rm -f "$(DEPDIR)/amule-ClientListCtrl.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ClientListCtrl.cpp' object='amule-ClientListCtrl.obj' libtool=no @AMDEPBACKSLASH@
+amule-SourceListCtrl.obj: SourceListCtrl.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-SourceListCtrl.obj -MD -MP -MF "$(DEPDIR)/amule-SourceListCtrl.Tpo" -c -o amule-SourceListCtrl.obj `if test -f 'SourceListCtrl.cpp'; then $(CYGPATH_W) 'SourceListCtrl.cpp'; else $(CYGPATH_W) '$(srcdir)/SourceListCtrl.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-SourceListCtrl.Tpo" "$(DEPDIR)/amule-SourceListCtrl.Po"; else rm -f "$(DEPDIR)/amule-SourceListCtrl.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='SourceListCtrl.cpp' object='amule-SourceListCtrl.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-ClientListCtrl.obj `if test -f 'ClientListCtrl.cpp'; then $(CYGPATH_W) 'ClientListCtrl.cpp'; else $(CYGPATH_W) '$(srcdir)/ClientListCtrl.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-SourceListCtrl.obj `if test -f 'SourceListCtrl.cpp'; then $(CYGPATH_W) 'SourceListCtrl.cpp'; else $(CYGPATH_W) '$(srcdir)/SourceListCtrl.cpp'; fi`
+
+amule-SharedFilePeersListCtrl.o: SharedFilePeersListCtrl.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-SharedFilePeersListCtrl.o -MD -MP -MF "$(DEPDIR)/amule-SharedFilePeersListCtrl.Tpo" -c -o amule-SharedFilePeersListCtrl.o `test -f 'SharedFilePeersListCtrl.cpp' || echo '$(srcdir)/'`SharedFilePeersListCtrl.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-SharedFilePeersListCtrl.Tpo" "$(DEPDIR)/amule-SharedFilePeersListCtrl.Po"; else rm -f "$(DEPDIR)/amule-SharedFilePeersListCtrl.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='SharedFilePeersListCtrl.cpp' object='amule-SharedFilePeersListCtrl.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-SharedFilePeersListCtrl.o `test -f 'SharedFilePeersListCtrl.cpp' || echo '$(srcdir)/'`SharedFilePeersListCtrl.cpp
+
+amule-SharedFilePeersListCtrl.obj: SharedFilePeersListCtrl.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-SharedFilePeersListCtrl.obj -MD -MP -MF "$(DEPDIR)/amule-SharedFilePeersListCtrl.Tpo" -c -o amule-SharedFilePeersListCtrl.obj `if test -f 'SharedFilePeersListCtrl.cpp'; then $(CYGPATH_W) 'SharedFilePeersListCtrl.cpp'; else $(CYGPATH_W) '$(srcdir)/SharedFilePeersListCtrl.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-SharedFilePeersListCtrl.Tpo" "$(DEPDIR)/amule-SharedFilePeersListCtrl.Po"; else rm -f "$(DEPDIR)/amule-SharedFilePeersListCtrl.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='SharedFilePeersListCtrl.cpp' object='amule-SharedFilePeersListCtrl.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-SharedFilePeersListCtrl.obj `if test -f 'SharedFilePeersListCtrl.cpp'; then $(CYGPATH_W) 'SharedFilePeersListCtrl.cpp'; else $(CYGPATH_W) '$(srcdir)/SharedFilePeersListCtrl.cpp'; fi`
 
 amule-FriendListCtrl.o: FriendListCtrl.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-FriendListCtrl.o -MD -MP -MF "$(DEPDIR)/amule-FriendListCtrl.Tpo" -c -o amule-FriendListCtrl.o `test -f 'FriendListCtrl.cpp' || echo '$(srcdir)/'`FriendListCtrl.cpp; \
@@ -4227,6 +4250,20 @@ amulegui-ChatSelector.obj: ChatSelector.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-ChatSelector.obj `if test -f 'ChatSelector.cpp'; then $(CYGPATH_W) 'ChatSelector.cpp'; else $(CYGPATH_W) '$(srcdir)/ChatSelector.cpp'; fi`
 
+amulegui-GenericClientListCtrl.o: GenericClientListCtrl.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-GenericClientListCtrl.o -MD -MP -MF "$(DEPDIR)/amulegui-GenericClientListCtrl.Tpo" -c -o amulegui-GenericClientListCtrl.o `test -f 'GenericClientListCtrl.cpp' || echo '$(srcdir)/'`GenericClientListCtrl.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amulegui-GenericClientListCtrl.Tpo" "$(DEPDIR)/amulegui-GenericClientListCtrl.Po"; else rm -f "$(DEPDIR)/amulegui-GenericClientListCtrl.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='GenericClientListCtrl.cpp' object='amulegui-GenericClientListCtrl.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-GenericClientListCtrl.o `test -f 'GenericClientListCtrl.cpp' || echo '$(srcdir)/'`GenericClientListCtrl.cpp
+
+amulegui-GenericClientListCtrl.obj: GenericClientListCtrl.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-GenericClientListCtrl.obj -MD -MP -MF "$(DEPDIR)/amulegui-GenericClientListCtrl.Tpo" -c -o amulegui-GenericClientListCtrl.obj `if test -f 'GenericClientListCtrl.cpp'; then $(CYGPATH_W) 'GenericClientListCtrl.cpp'; else $(CYGPATH_W) '$(srcdir)/GenericClientListCtrl.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amulegui-GenericClientListCtrl.Tpo" "$(DEPDIR)/amulegui-GenericClientListCtrl.Po"; else rm -f "$(DEPDIR)/amulegui-GenericClientListCtrl.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='GenericClientListCtrl.cpp' object='amulegui-GenericClientListCtrl.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-GenericClientListCtrl.obj `if test -f 'GenericClientListCtrl.cpp'; then $(CYGPATH_W) 'GenericClientListCtrl.cpp'; else $(CYGPATH_W) '$(srcdir)/GenericClientListCtrl.cpp'; fi`
+
 amulegui-ClientDetailDialog.o: ClientDetailDialog.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-ClientDetailDialog.o -MD -MP -MF "$(DEPDIR)/amulegui-ClientDetailDialog.Tpo" -c -o amulegui-ClientDetailDialog.o `test -f 'ClientDetailDialog.cpp' || echo '$(srcdir)/'`ClientDetailDialog.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amulegui-ClientDetailDialog.Tpo" "$(DEPDIR)/amulegui-ClientDetailDialog.Po"; else rm -f "$(DEPDIR)/amulegui-ClientDetailDialog.Tpo"; exit 1; fi
@@ -4409,19 +4446,33 @@ amulegui-DownloadListCtrl.obj: DownloadListCtrl.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-DownloadListCtrl.obj `if test -f 'DownloadListCtrl.cpp'; then $(CYGPATH_W) 'DownloadListCtrl.cpp'; else $(CYGPATH_W) '$(srcdir)/DownloadListCtrl.cpp'; fi`
 
-amulegui-ClientListCtrl.o: ClientListCtrl.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-ClientListCtrl.o -MD -MP -MF "$(DEPDIR)/amulegui-ClientListCtrl.Tpo" -c -o amulegui-ClientListCtrl.o `test -f 'ClientListCtrl.cpp' || echo '$(srcdir)/'`ClientListCtrl.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amulegui-ClientListCtrl.Tpo" "$(DEPDIR)/amulegui-ClientListCtrl.Po"; else rm -f "$(DEPDIR)/amulegui-ClientListCtrl.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ClientListCtrl.cpp' object='amulegui-ClientListCtrl.o' libtool=no @AMDEPBACKSLASH@
+amulegui-SourceListCtrl.o: SourceListCtrl.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-SourceListCtrl.o -MD -MP -MF "$(DEPDIR)/amulegui-SourceListCtrl.Tpo" -c -o amulegui-SourceListCtrl.o `test -f 'SourceListCtrl.cpp' || echo '$(srcdir)/'`SourceListCtrl.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amulegui-SourceListCtrl.Tpo" "$(DEPDIR)/amulegui-SourceListCtrl.Po"; else rm -f "$(DEPDIR)/amulegui-SourceListCtrl.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='SourceListCtrl.cpp' object='amulegui-SourceListCtrl.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-ClientListCtrl.o `test -f 'ClientListCtrl.cpp' || echo '$(srcdir)/'`ClientListCtrl.cpp
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-SourceListCtrl.o `test -f 'SourceListCtrl.cpp' || echo '$(srcdir)/'`SourceListCtrl.cpp
 
-amulegui-ClientListCtrl.obj: ClientListCtrl.cpp
-@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-ClientListCtrl.obj -MD -MP -MF "$(DEPDIR)/amulegui-ClientListCtrl.Tpo" -c -o amulegui-ClientListCtrl.obj `if test -f 'ClientListCtrl.cpp'; then $(CYGPATH_W) 'ClientListCtrl.cpp'; else $(CYGPATH_W) '$(srcdir)/ClientListCtrl.cpp'; fi`; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amulegui-ClientListCtrl.Tpo" "$(DEPDIR)/amulegui-ClientListCtrl.Po"; else rm -f "$(DEPDIR)/amulegui-ClientListCtrl.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ClientListCtrl.cpp' object='amulegui-ClientListCtrl.obj' libtool=no @AMDEPBACKSLASH@
+amulegui-SourceListCtrl.obj: SourceListCtrl.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-SourceListCtrl.obj -MD -MP -MF "$(DEPDIR)/amulegui-SourceListCtrl.Tpo" -c -o amulegui-SourceListCtrl.obj `if test -f 'SourceListCtrl.cpp'; then $(CYGPATH_W) 'SourceListCtrl.cpp'; else $(CYGPATH_W) '$(srcdir)/SourceListCtrl.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amulegui-SourceListCtrl.Tpo" "$(DEPDIR)/amulegui-SourceListCtrl.Po"; else rm -f "$(DEPDIR)/amulegui-SourceListCtrl.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='SourceListCtrl.cpp' object='amulegui-SourceListCtrl.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-ClientListCtrl.obj `if test -f 'ClientListCtrl.cpp'; then $(CYGPATH_W) 'ClientListCtrl.cpp'; else $(CYGPATH_W) '$(srcdir)/ClientListCtrl.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-SourceListCtrl.obj `if test -f 'SourceListCtrl.cpp'; then $(CYGPATH_W) 'SourceListCtrl.cpp'; else $(CYGPATH_W) '$(srcdir)/SourceListCtrl.cpp'; fi`
+
+amulegui-SharedFilePeersListCtrl.o: SharedFilePeersListCtrl.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-SharedFilePeersListCtrl.o -MD -MP -MF "$(DEPDIR)/amulegui-SharedFilePeersListCtrl.Tpo" -c -o amulegui-SharedFilePeersListCtrl.o `test -f 'SharedFilePeersListCtrl.cpp' || echo '$(srcdir)/'`SharedFilePeersListCtrl.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amulegui-SharedFilePeersListCtrl.Tpo" "$(DEPDIR)/amulegui-SharedFilePeersListCtrl.Po"; else rm -f "$(DEPDIR)/amulegui-SharedFilePeersListCtrl.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='SharedFilePeersListCtrl.cpp' object='amulegui-SharedFilePeersListCtrl.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-SharedFilePeersListCtrl.o `test -f 'SharedFilePeersListCtrl.cpp' || echo '$(srcdir)/'`SharedFilePeersListCtrl.cpp
+
+amulegui-SharedFilePeersListCtrl.obj: SharedFilePeersListCtrl.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-SharedFilePeersListCtrl.obj -MD -MP -MF "$(DEPDIR)/amulegui-SharedFilePeersListCtrl.Tpo" -c -o amulegui-SharedFilePeersListCtrl.obj `if test -f 'SharedFilePeersListCtrl.cpp'; then $(CYGPATH_W) 'SharedFilePeersListCtrl.cpp'; else $(CYGPATH_W) '$(srcdir)/SharedFilePeersListCtrl.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amulegui-SharedFilePeersListCtrl.Tpo" "$(DEPDIR)/amulegui-SharedFilePeersListCtrl.Po"; else rm -f "$(DEPDIR)/amulegui-SharedFilePeersListCtrl.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='SharedFilePeersListCtrl.cpp' object='amulegui-SharedFilePeersListCtrl.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-SharedFilePeersListCtrl.obj `if test -f 'SharedFilePeersListCtrl.cpp'; then $(CYGPATH_W) 'SharedFilePeersListCtrl.cpp'; else $(CYGPATH_W) '$(srcdir)/SharedFilePeersListCtrl.cpp'; fi`
 
 amulegui-FriendListCtrl.o: FriendListCtrl.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-FriendListCtrl.o -MD -MP -MF "$(DEPDIR)/amulegui-FriendListCtrl.Tpo" -c -o amulegui-FriendListCtrl.o `test -f 'FriendListCtrl.cpp' || echo '$(srcdir)/'`FriendListCtrl.cpp; \
