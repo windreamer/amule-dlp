@@ -331,7 +331,7 @@ function formCommandSubmit(command)
 		}
 
 		//
-		// perform command b20efore processing content
+		// perform command before processing content
 
 		if ( ($HTTP_GET_VARS["command"] != "") && ($_SESSION["guest_login"] == 0) ) {
 			foreach ( $HTTP_GET_VARS as $name => $val) {
