@@ -345,17 +345,14 @@ private:
 	 */
 	bool ProcessAntiP2PLine(const wxString& sLine)
 	{
-		// remove spaces from the left and right.
-		const wxString line = sLine.Strip(wxString::leading);
-
 		// Extract description (first) and IP-range (second) form the line
-		int pos = line.Find(wxT(':'), true);
+		int pos = sLine.Find(wxT(':'), true);
 		if (pos == -1) {
 			return false;
 		}
 
-		wxString Description = line.Left(pos).Strip(wxString::trailing);
-		wxString IPRange     = line.Right(line.Len() - pos - 1);
+		wxString Description = sLine.Left(pos).Strip(wxString::trailing);
+		wxString IPRange     = sLine.Right(sLine.Len() - pos - 1);
 
 		// Convert string IP's to host order IP numbers
 		uint32 IPStart = 0;
@@ -417,10 +414,10 @@ private:
 					return 0;
 				}
 				
-				wxString line = readFile.GetNextLine();
+				bool result = true;
+				wxString line = readFile.GetNextLine(txtReadDefault /*Ignores comments, empty and whitespaces*/, wxConvLibc, &result);
 				
-				// Comments and empty lines are ignored as soon as possible
-				if (!line.IsEmpty() && !line.StartsWith(wxT("#"))) {
+				if (result) {
 					bool processed_ok = false;
 					
 					if (func) {
@@ -436,12 +433,8 @@ private:
 					if (processed_ok) {
 						filtercount++;					
 					} else {
-						// It may be a padded comment or line with just spaces.
-						line = line.Strip(wxString::both);
-						if (!line.IsEmpty() && !line.StartsWith(wxT("#"))) {
-							discardedCount++;
-							AddDebugLogLineM(false, logIPFilter, wxT("Invalid line found while reading ipfilter file: ") + line);
-						}
+						discardedCount++;
+						AddDebugLogLineM(false, logIPFilter, wxT("Invalid line found while reading ipfilter file: ") + line);
 					}
 				}
 			}
