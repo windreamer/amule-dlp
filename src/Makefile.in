@@ -157,12 +157,12 @@ am__objects_1 = amule-amule.$(OBJEXT) amule-BaseClient.$(OBJEXT) \
 	amule-EncryptedDatagramSocket.$(OBJEXT) \
 	amule-ExternalConn.$(OBJEXT) amule-FriendList.$(OBJEXT) \
 	amule-HTTPDownload.$(OBJEXT) amule-IPFilter.$(OBJEXT) \
-	amule-KnownFileList.$(OBJEXT) amule-ListenSocket.$(OBJEXT) \
-	amule-MuleUDPSocket.$(OBJEXT) amule-PartFileConvert.$(OBJEXT) \
-	amule-SearchFile.$(OBJEXT) amule-SearchList.$(OBJEXT) \
-	amule-ServerConnect.$(OBJEXT) amule-ServerList.$(OBJEXT) \
-	amule-ServerSocket.$(OBJEXT) amule-ServerUDPSocket.$(OBJEXT) \
-	amule-SharedFileList.$(OBJEXT) \
+	amule-IPFilterScanner.$(OBJEXT) amule-KnownFileList.$(OBJEXT) \
+	amule-ListenSocket.$(OBJEXT) amule-MuleUDPSocket.$(OBJEXT) \
+	amule-PartFileConvert.$(OBJEXT) amule-SearchFile.$(OBJEXT) \
+	amule-SearchList.$(OBJEXT) amule-ServerConnect.$(OBJEXT) \
+	amule-ServerList.$(OBJEXT) amule-ServerSocket.$(OBJEXT) \
+	amule-ServerUDPSocket.$(OBJEXT) amule-SharedFileList.$(OBJEXT) \
 	amule-TerminationProcessAmuleweb.$(OBJEXT) \
 	amule-ThreadTasks.$(OBJEXT) \
 	amule-UploadBandwidthThrottler.$(OBJEXT) \
@@ -232,6 +232,7 @@ am__objects_6 = amuled-amule.$(OBJEXT) amuled-BaseClient.$(OBJEXT) \
 	amuled-EncryptedDatagramSocket.$(OBJEXT) \
 	amuled-ExternalConn.$(OBJEXT) amuled-FriendList.$(OBJEXT) \
 	amuled-HTTPDownload.$(OBJEXT) amuled-IPFilter.$(OBJEXT) \
+	amuled-IPFilterScanner.$(OBJEXT) \
 	amuled-KnownFileList.$(OBJEXT) amuled-ListenSocket.$(OBJEXT) \
 	amuled-MuleUDPSocket.$(OBJEXT) \
 	amuled-PartFileConvert.$(OBJEXT) amuled-SearchFile.$(OBJEXT) \
@@ -591,6 +592,7 @@ EXTRA_DIST = \
 	Parser.y \
 	Scanner.h.in \
 	Scanner.l \
+	IPFilterScanner.l \
 	muuli.wdr 
 
 
@@ -675,6 +677,7 @@ core_sources = \
 	FriendList.cpp \
 	HTTPDownload.cpp \
 	IPFilter.cpp \
+	IPFilterScanner.cpp \
 	KnownFileList.cpp \
 	ListenSocket.cpp \
 	MuleUDPSocket.cpp \
@@ -890,6 +893,7 @@ noinst_HEADERS = \
 		InternalEvents.h \
 		IP2Country.h \
 		IPFilter.h \
+		IPFilterScanner.h \
 		KadDlg.h \
 		KnownFile.h \
 		KnownFileList.h \
@@ -1104,6 +1108,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-GuiEvents.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-HTTPDownload.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-IPFilter.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-IPFilterScanner.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-Indexed.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-KadDlg.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-Kademlia.Po@am__quote@
@@ -1187,6 +1192,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-GuiEvents.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-HTTPDownload.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-IPFilter.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-IPFilterScanner.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-Indexed.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-Kademlia.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-KademliaUDPListener.Po@am__quote@
@@ -2247,6 +2253,20 @@ amule-IPFilter.obj: IPFilter.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IPFilter.cpp' object='amule-IPFilter.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-IPFilter.obj `if test -f 'IPFilter.cpp'; then $(CYGPATH_W) 'IPFilter.cpp'; else $(CYGPATH_W) '$(srcdir)/IPFilter.cpp'; fi`
+
+amule-IPFilterScanner.o: IPFilterScanner.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-IPFilterScanner.o -MD -MP -MF "$(DEPDIR)/amule-IPFilterScanner.Tpo" -c -o amule-IPFilterScanner.o `test -f 'IPFilterScanner.cpp' || echo '$(srcdir)/'`IPFilterScanner.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-IPFilterScanner.Tpo" "$(DEPDIR)/amule-IPFilterScanner.Po"; else rm -f "$(DEPDIR)/amule-IPFilterScanner.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IPFilterScanner.cpp' object='amule-IPFilterScanner.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-IPFilterScanner.o `test -f 'IPFilterScanner.cpp' || echo '$(srcdir)/'`IPFilterScanner.cpp
+
+amule-IPFilterScanner.obj: IPFilterScanner.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-IPFilterScanner.obj -MD -MP -MF "$(DEPDIR)/amule-IPFilterScanner.Tpo" -c -o amule-IPFilterScanner.obj `if test -f 'IPFilterScanner.cpp'; then $(CYGPATH_W) 'IPFilterScanner.cpp'; else $(CYGPATH_W) '$(srcdir)/IPFilterScanner.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amule-IPFilterScanner.Tpo" "$(DEPDIR)/amule-IPFilterScanner.Po"; else rm -f "$(DEPDIR)/amule-IPFilterScanner.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IPFilterScanner.cpp' object='amule-IPFilterScanner.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-IPFilterScanner.obj `if test -f 'IPFilterScanner.cpp'; then $(CYGPATH_W) 'IPFilterScanner.cpp'; else $(CYGPATH_W) '$(srcdir)/IPFilterScanner.cpp'; fi`
 
 amule-KnownFileList.o: KnownFileList.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-KnownFileList.o -MD -MP -MF "$(DEPDIR)/amule-KnownFileList.Tpo" -c -o amule-KnownFileList.o `test -f 'KnownFileList.cpp' || echo '$(srcdir)/'`KnownFileList.cpp; \
@@ -3563,6 +3583,20 @@ amuled-IPFilter.obj: IPFilter.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IPFilter.cpp' object='amuled-IPFilter.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-IPFilter.obj `if test -f 'IPFilter.cpp'; then $(CYGPATH_W) 'IPFilter.cpp'; else $(CYGPATH_W) '$(srcdir)/IPFilter.cpp'; fi`
+
+amuled-IPFilterScanner.o: IPFilterScanner.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-IPFilterScanner.o -MD -MP -MF "$(DEPDIR)/amuled-IPFilterScanner.Tpo" -c -o amuled-IPFilterScanner.o `test -f 'IPFilterScanner.cpp' || echo '$(srcdir)/'`IPFilterScanner.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-IPFilterScanner.Tpo" "$(DEPDIR)/amuled-IPFilterScanner.Po"; else rm -f "$(DEPDIR)/amuled-IPFilterScanner.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IPFilterScanner.cpp' object='amuled-IPFilterScanner.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-IPFilterScanner.o `test -f 'IPFilterScanner.cpp' || echo '$(srcdir)/'`IPFilterScanner.cpp
+
+amuled-IPFilterScanner.obj: IPFilterScanner.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-IPFilterScanner.obj -MD -MP -MF "$(DEPDIR)/amuled-IPFilterScanner.Tpo" -c -o amuled-IPFilterScanner.obj `if test -f 'IPFilterScanner.cpp'; then $(CYGPATH_W) 'IPFilterScanner.cpp'; else $(CYGPATH_W) '$(srcdir)/IPFilterScanner.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/amuled-IPFilterScanner.Tpo" "$(DEPDIR)/amuled-IPFilterScanner.Po"; else rm -f "$(DEPDIR)/amuled-IPFilterScanner.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IPFilterScanner.cpp' object='amuled-IPFilterScanner.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-IPFilterScanner.obj `if test -f 'IPFilterScanner.cpp'; then $(CYGPATH_W) 'IPFilterScanner.cpp'; else $(CYGPATH_W) '$(srcdir)/IPFilterScanner.cpp'; fi`
 
 amuled-KnownFileList.o: KnownFileList.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-KnownFileList.o -MD -MP -MF "$(DEPDIR)/amuled-KnownFileList.Tpo" -c -o amuled-KnownFileList.o `test -f 'KnownFileList.cpp' || echo '$(srcdir)/'`KnownFileList.cpp; \
@@ -5140,6 +5174,9 @@ $(srcdir)/Parser.cpp: Parser.y
 @GENERATE_FLEX_HEADER_FALSE@$(srcdir)/Scanner.cpp: Scanner.l Parser.cpp
 @GENERATE_FLEX_HEADER_FALSE@		$(LEX) -o $@ $(srcdir)/Scanner.l; \
 @GENERATE_FLEX_HEADER_FALSE@		echo "// Empty file generated by a flex version unable to create headers" > $(srcdir)/Scanner.h
+
+$(srcdir)/IPFilterScanner.cpp: IPFilterScanner.l IPFilterParser.cpp
+		$(LEX) -Pyyip -o $@ $(srcdir)/IPFilterScanner.l;
 
 @NEED_RC_TRUE@.rc.$(OBJEXT):
 @NEED_RC_TRUE@	$(RC) $(MULERCFLAGS) -I$(top_srcdir) $(RCFLAGS) -O COFF -i "$<" -o "$@"
