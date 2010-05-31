@@ -225,8 +225,12 @@ CamuleApp::~CamuleApp()
 	// wxWidgets log-events are saved in it as well.
 	theLogger.CloseLogfile();
 
-	free(strFullMuleVersion);
-	free(strOSDescription);
+	if (strFullMuleVersion) {
+		free(strFullMuleVersion);
+	}
+	if (strOSDescription) {
+		free(strOSDescription);
+	}
 }
 
 int CamuleApp::OnExit()
