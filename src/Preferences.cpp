@@ -868,7 +868,7 @@ public:
 
 		wxString folder;
 		int flags = wxDIR_DIRS;
-		wxString filespec = wxEmptyString;
+		wxString filespec;
 		wxString defaultSelection = _("- default -");
 //#warning there has to be a better way...
 		if ( GetKey() == wxT("/SkinGUIOptions/Skin") ) {
