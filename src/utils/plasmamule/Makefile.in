@@ -41,8 +41,10 @@ host_triplet = @host@
 @PLASMAMULE_TRUE@modules_PROGRAMS =  \
 @PLASMAMULE_TRUE@	plasma-engine-plasmamule.so$(EXEEXT) \
 @PLASMAMULE_TRUE@	plasma-applet-plasmamule.so$(EXEEXT)
+@PLASMAMULE_TRUE@bin_PROGRAMS = plasmamule-engine-feeder$(EXEEXT)
 subdir = src/utils/plasmamule
-DIST_COMMON = $(am__dist_icon_DATA_DIST) $(am__dist_service_DATA_DIST) \
+DIST_COMMON = $(am__dist_apps_DATA_DIST) $(am__dist_icon_DATA_DIST) \
+	$(am__dist_mime_DATA_DIST) $(am__dist_service_DATA_DIST) \
 	$(noinst_HEADERS) $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/GeoIP.m4 \
@@ -67,22 +69,32 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
-am__installdirs = "$(DESTDIR)$(modulesdir)" "$(DESTDIR)$(icondir)" \
-	"$(DESTDIR)$(servicedir)"
+am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(modulesdir)" \
+	"$(DESTDIR)$(appsdir)" "$(DESTDIR)$(icondir)" \
+	"$(DESTDIR)$(mimedir)" "$(DESTDIR)$(servicedir)"
+binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 modulesPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
-PROGRAMS = $(modules_PROGRAMS)
-am_plasma_applet_plasmamule_so_OBJECTS = plasma_applet_plasmamule_so-plasma-applet-plasmamule.$(OBJEXT)
+PROGRAMS = $(bin_PROGRAMS) $(modules_PROGRAMS)
+am_plasma_applet_plasmamule_so_OBJECTS = plasma_applet_plasmamule_so-plasma-applet-plasmamule.$(OBJEXT) \
+	plasma_applet_plasmamule_so-plasmamule-dbus.$(OBJEXT)
 nodist_plasma_applet_plasmamule_so_OBJECTS =
 plasma_applet_plasmamule_so_OBJECTS =  \
 	$(am_plasma_applet_plasmamule_so_OBJECTS) \
 	$(nodist_plasma_applet_plasmamule_so_OBJECTS)
 plasma_applet_plasmamule_so_LDADD = $(LDADD)
-am_plasma_engine_plasmamule_so_OBJECTS = plasma_engine_plasmamule_so-plasma-engine-plasmamule.$(OBJEXT)
+am_plasma_engine_plasmamule_so_OBJECTS = plasma_engine_plasmamule_so-plasma-engine-plasmamule.$(OBJEXT) \
+	plasma_engine_plasmamule_so-qt-emc.$(OBJEXT)
 nodist_plasma_engine_plasmamule_so_OBJECTS =
 plasma_engine_plasmamule_so_OBJECTS =  \
 	$(am_plasma_engine_plasmamule_so_OBJECTS) \
 	$(nodist_plasma_engine_plasmamule_so_OBJECTS)
 plasma_engine_plasmamule_so_LDADD = $(LDADD)
+am_plasmamule_engine_feeder_OBJECTS =  \
+	plasmamule_engine_feeder-plasmamule-engine-feeder.$(OBJEXT) \
+	plasmamule_engine_feeder-plasmamule-dbus.$(OBJEXT)
+plasmamule_engine_feeder_OBJECTS =  \
+	$(am_plasmamule_engine_feeder_OBJECTS)
+plasmamule_engine_feeder_LDADD = $(LDADD)
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -94,21 +106,28 @@ CXXLINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
 SOURCES = $(plasma_applet_plasmamule_so_SOURCES) \
 	$(nodist_plasma_applet_plasmamule_so_SOURCES) \
 	$(plasma_engine_plasmamule_so_SOURCES) \
-	$(nodist_plasma_engine_plasmamule_so_SOURCES)
+	$(nodist_plasma_engine_plasmamule_so_SOURCES) \
+	$(plasmamule_engine_feeder_SOURCES)
 DIST_SOURCES = $(plasma_applet_plasmamule_so_SOURCES) \
-	$(plasma_engine_plasmamule_so_SOURCES)
-am__dist_icon_DATA_DIST = amule_applet.svg
+	$(plasma_engine_plasmamule_so_SOURCES) \
+	$(plasmamule_engine_feeder_SOURCES)
+am__dist_apps_DATA_DIST = plasmamule-engine-feeder.desktop
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
     $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
+dist_appsDATA_INSTALL = $(INSTALL_DATA)
+am__dist_icon_DATA_DIST = application-x-emulecollection.svg
 dist_iconDATA_INSTALL = $(INSTALL_DATA)
+am__dist_mime_DATA_DIST = amule.xml
+dist_mimeDATA_INSTALL = $(INSTALL_DATA)
 am__dist_service_DATA_DIST = plasma-engine-plasmamule.desktop \
-	plasma-applet-plasmamule.desktop
+	plasma-applet-plasmamule.desktop ed2k.protocol magnet.protocol
 dist_serviceDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(dist_icon_DATA) $(dist_service_DATA)
+DATA = $(dist_apps_DATA) $(dist_icon_DATA) $(dist_mime_DATA) \
+	$(dist_service_DATA)
 HEADERS = $(noinst_HEADERS)
 ETAGS = etags
 CTAGS = ctags
@@ -205,8 +224,10 @@ INTLLIBS = @INTLLIBS@
 INTLOBJS = @INTLOBJS@
 INTL_LIBTOOL_SUFFIX_PREFIX = @INTL_LIBTOOL_SUFFIX_PREFIX@
 KDE4_CONFIG = @KDE4_CONFIG@
+KDE_APPLNK_PATH = @KDE_APPLNK_PATH@
 KDE_HEADER_DIR = @KDE_HEADER_DIR@
 KDE_ICON_PATH = @KDE_ICON_PATH@
+KDE_MIME_PATH = @KDE_MIME_PATH@
 KDE_MODULE_PATH = @KDE_MODULE_PATH@
 KDE_SERVICE_PATH = @KDE_SERVICE_PATH@
 LD = @LD@
@@ -358,21 +379,26 @@ sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 @PLASMAMULE_TRUE@modulesdir = ${KDE_MODULE_PATH}
-@PLASMAMULE_TRUE@EXTRA_DIST = plasma-engine-plasmamule.dektop plasma-applet-plasmamule.desktop amule_applet.svg
+@PLASMAMULE_TRUE@EXTRA_DIST = plasma-engine-plasmamule.dektop plasma-applet-plasmamule.desktop application-x-emulecollection.svg ed2k.protocol magnet.protocol plasmamule-engine-feeder.desktop
 @PLASMAMULE_TRUE@BUILT_SOURCES = plasma-engine-plasmamule.moc plasma-applet-plasmamule.moc
 @PLASMAMULE_TRUE@servicedir = ${KDE_SERVICE_PATH}
-@PLASMAMULE_TRUE@dist_service_DATA = plasma-engine-plasmamule.desktop plasma-applet-plasmamule.desktop
+@PLASMAMULE_TRUE@dist_service_DATA = plasma-engine-plasmamule.desktop plasma-applet-plasmamule.desktop ed2k.protocol magnet.protocol
 @PLASMAMULE_TRUE@icondir = ${KDE_ICON_PATH}
-@PLASMAMULE_TRUE@dist_icon_DATA = amule_applet.svg
-plasma_engine_plasmamule_so_SOURCES = plasma-engine-plasmamule.cpp
-plasma_applet_plasmamule_so_SOURCES = plasma-applet-plasmamule.cpp
+@PLASMAMULE_TRUE@dist_icon_DATA = application-x-emulecollection.svg
+@PLASMAMULE_TRUE@mimedir = ${KDE_MIME_PATH}
+@PLASMAMULE_TRUE@dist_mime_DATA = amule.xml
+@PLASMAMULE_TRUE@appsdir = ${KDE_APPLNK_PATH}
+@PLASMAMULE_TRUE@dist_apps_DATA = plasmamule-engine-feeder.desktop
+plasma_engine_plasmamule_so_SOURCES = plasma-engine-plasmamule.cpp qt-emc.cpp
+plasma_applet_plasmamule_so_SOURCES = plasma-applet-plasmamule.cpp plasmamule-dbus.cpp
+plasmamule_engine_feeder_SOURCES = plasmamule-engine-feeder.cpp plasmamule-dbus.cpp
 nodist_plasma_engine_plasmamule_so_SOURCES = plasma-engine-plasmamule.moc
 nodist_plasma_applet_plasmamule_so_SOURCES = plasma-applet-plasmamule.moc
 plasma_engine_plasmamule_so_CXXFLAGS = -shared -I${KDE_HEADER_DIR} ${QT_CORE_CXXFLAGS} -DPIC -fPIC
 plasma_applet_plasmamule_so_CXXFLAGS = -shared -D__IMG_PATH__=\"${KDE_ICON_PATH}\" -I${KDE_HEADER_DIR} ${QT_GUI_CXXFLAGS} -DPIC -fPIC
-plasma_engine_plasmamule_so_LD_FLAGS = ${QT_CORE_LIBS}
-plasma_applet_plasmamule_so_LD_FLAGS = ${QT_GUI_LIBS}
-noinst_HEADERS = plasma-engine-plasmamule.h plasma-applet-plasmamule.h
+plasmamule_engine_feeder_CXXFLAGS = -I${KDE_HEADER_DIR} ${QT_GUI_CXXFLAGS}
+plasmamule_engine_feeder_LDFLAGS = ${QT_GUI_LIBS} -lkdecore -lplasma
+noinst_HEADERS = plasma-engine-plasmamule.h plasma-applet-plasmamule.h plasmamule-dbus.h qt-emc.h
 CLEANFILES = *.moc
 MAINTAINERCLEANFILES = Makefile.in
 all: $(BUILT_SOURCES)
@@ -409,6 +435,29 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+install-binPROGRAMS: $(bin_PROGRAMS)
+	@$(NORMAL_INSTALL)
+	test -z "$(bindir)" || $(mkdir_p) "$(DESTDIR)$(bindir)"
+	@list='$(bin_PROGRAMS)'; for p in $$list; do \
+	  p1=`echo $$p|sed 's/$(EXEEXT)$$//'`; \
+	  if test -f $$p \
+	  ; then \
+	    f=`echo "$$p1" | sed 's,^.*/,,;$(transform);s/$$/$(EXEEXT)/'`; \
+	   echo " $(INSTALL_PROGRAM_ENV) $(binPROGRAMS_INSTALL) '$$p' '$(DESTDIR)$(bindir)/$$f'"; \
+	   $(INSTALL_PROGRAM_ENV) $(binPROGRAMS_INSTALL) "$$p" "$(DESTDIR)$(bindir)/$$f" || exit 1; \
+	  else :; fi; \
+	done
+
+uninstall-binPROGRAMS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(bin_PROGRAMS)'; for p in $$list; do \
+	  f=`echo "$$p" | sed 's,^.*/,,;s/$(EXEEXT)$$//;$(transform);s/$$/$(EXEEXT)/'`; \
+	  echo " rm -f '$(DESTDIR)$(bindir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(bindir)/$$f"; \
+	done
+
+clean-binPROGRAMS:
+	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
 install-modulesPROGRAMS: $(modules_PROGRAMS)
 	@$(NORMAL_INSTALL)
 	test -z "$(modulesdir)" || $(mkdir_p) "$(DESTDIR)$(modulesdir)"
@@ -438,6 +487,9 @@ plasma-applet-plasmamule.so$(EXEEXT): $(plasma_applet_plasmamule_so_OBJECTS) $(p
 plasma-engine-plasmamule.so$(EXEEXT): $(plasma_engine_plasmamule_so_OBJECTS) $(plasma_engine_plasmamule_so_DEPENDENCIES) 
 	@rm -f plasma-engine-plasmamule.so$(EXEEXT)
 	$(CXXLINK) $(plasma_engine_plasmamule_so_LDFLAGS) $(plasma_engine_plasmamule_so_OBJECTS) $(plasma_engine_plasmamule_so_LDADD) $(LIBS)
+plasmamule-engine-feeder$(EXEEXT): $(plasmamule_engine_feeder_OBJECTS) $(plasmamule_engine_feeder_DEPENDENCIES) 
+	@rm -f plasmamule-engine-feeder$(EXEEXT)
+	$(CXXLINK) $(plasmamule_engine_feeder_LDFLAGS) $(plasmamule_engine_feeder_OBJECTS) $(plasmamule_engine_feeder_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -446,7 +498,11 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/plasma_applet_plasmamule_so-plasma-applet-plasmamule.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/plasma_applet_plasmamule_so-plasmamule-dbus.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/plasma_engine_plasmamule_so-plasma-engine-plasmamule.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/plasma_engine_plasmamule_so-qt-emc.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/plasmamule_engine_feeder-plasmamule-dbus.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/plasmamule_engine_feeder-plasmamule-engine-feeder.Po@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	if $(CXXCOMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ $<; \
@@ -476,6 +532,20 @@ plasma_applet_plasmamule_so-plasma-applet-plasmamule.obj: plasma-applet-plasmamu
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_applet_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -c -o plasma_applet_plasmamule_so-plasma-applet-plasmamule.obj `if test -f 'plasma-applet-plasmamule.cpp'; then $(CYGPATH_W) 'plasma-applet-plasmamule.cpp'; else $(CYGPATH_W) '$(srcdir)/plasma-applet-plasmamule.cpp'; fi`
 
+plasma_applet_plasmamule_so-plasmamule-dbus.o: plasmamule-dbus.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_applet_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -MT plasma_applet_plasmamule_so-plasmamule-dbus.o -MD -MP -MF "$(DEPDIR)/plasma_applet_plasmamule_so-plasmamule-dbus.Tpo" -c -o plasma_applet_plasmamule_so-plasmamule-dbus.o `test -f 'plasmamule-dbus.cpp' || echo '$(srcdir)/'`plasmamule-dbus.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/plasma_applet_plasmamule_so-plasmamule-dbus.Tpo" "$(DEPDIR)/plasma_applet_plasmamule_so-plasmamule-dbus.Po"; else rm -f "$(DEPDIR)/plasma_applet_plasmamule_so-plasmamule-dbus.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='plasmamule-dbus.cpp' object='plasma_applet_plasmamule_so-plasmamule-dbus.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_applet_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -c -o plasma_applet_plasmamule_so-plasmamule-dbus.o `test -f 'plasmamule-dbus.cpp' || echo '$(srcdir)/'`plasmamule-dbus.cpp
+
+plasma_applet_plasmamule_so-plasmamule-dbus.obj: plasmamule-dbus.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_applet_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -MT plasma_applet_plasmamule_so-plasmamule-dbus.obj -MD -MP -MF "$(DEPDIR)/plasma_applet_plasmamule_so-plasmamule-dbus.Tpo" -c -o plasma_applet_plasmamule_so-plasmamule-dbus.obj `if test -f 'plasmamule-dbus.cpp'; then $(CYGPATH_W) 'plasmamule-dbus.cpp'; else $(CYGPATH_W) '$(srcdir)/plasmamule-dbus.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/plasma_applet_plasmamule_so-plasmamule-dbus.Tpo" "$(DEPDIR)/plasma_applet_plasmamule_so-plasmamule-dbus.Po"; else rm -f "$(DEPDIR)/plasma_applet_plasmamule_so-plasmamule-dbus.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='plasmamule-dbus.cpp' object='plasma_applet_plasmamule_so-plasmamule-dbus.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_applet_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -c -o plasma_applet_plasmamule_so-plasmamule-dbus.obj `if test -f 'plasmamule-dbus.cpp'; then $(CYGPATH_W) 'plasmamule-dbus.cpp'; else $(CYGPATH_W) '$(srcdir)/plasmamule-dbus.cpp'; fi`
+
 plasma_engine_plasmamule_so-plasma-engine-plasmamule.o: plasma-engine-plasmamule.cpp
 @am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_engine_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -MT plasma_engine_plasmamule_so-plasma-engine-plasmamule.o -MD -MP -MF "$(DEPDIR)/plasma_engine_plasmamule_so-plasma-engine-plasmamule.Tpo" -c -o plasma_engine_plasmamule_so-plasma-engine-plasmamule.o `test -f 'plasma-engine-plasmamule.cpp' || echo '$(srcdir)/'`plasma-engine-plasmamule.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/plasma_engine_plasmamule_so-plasma-engine-plasmamule.Tpo" "$(DEPDIR)/plasma_engine_plasmamule_so-plasma-engine-plasmamule.Po"; else rm -f "$(DEPDIR)/plasma_engine_plasmamule_so-plasma-engine-plasmamule.Tpo"; exit 1; fi
@@ -489,7 +559,66 @@ plasma_engine_plasmamule_so-plasma-engine-plasmamule.obj: plasma-engine-plasmamu
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='plasma-engine-plasmamule.cpp' object='plasma_engine_plasmamule_so-plasma-engine-plasmamule.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_engine_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -c -o plasma_engine_plasmamule_so-plasma-engine-plasmamule.obj `if test -f 'plasma-engine-plasmamule.cpp'; then $(CYGPATH_W) 'plasma-engine-plasmamule.cpp'; else $(CYGPATH_W) '$(srcdir)/plasma-engine-plasmamule.cpp'; fi`
+
+plasma_engine_plasmamule_so-qt-emc.o: qt-emc.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_engine_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -MT plasma_engine_plasmamule_so-qt-emc.o -MD -MP -MF "$(DEPDIR)/plasma_engine_plasmamule_so-qt-emc.Tpo" -c -o plasma_engine_plasmamule_so-qt-emc.o `test -f 'qt-emc.cpp' || echo '$(srcdir)/'`qt-emc.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/plasma_engine_plasmamule_so-qt-emc.Tpo" "$(DEPDIR)/plasma_engine_plasmamule_so-qt-emc.Po"; else rm -f "$(DEPDIR)/plasma_engine_plasmamule_so-qt-emc.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='qt-emc.cpp' object='plasma_engine_plasmamule_so-qt-emc.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_engine_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -c -o plasma_engine_plasmamule_so-qt-emc.o `test -f 'qt-emc.cpp' || echo '$(srcdir)/'`qt-emc.cpp
+
+plasma_engine_plasmamule_so-qt-emc.obj: qt-emc.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_engine_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -MT plasma_engine_plasmamule_so-qt-emc.obj -MD -MP -MF "$(DEPDIR)/plasma_engine_plasmamule_so-qt-emc.Tpo" -c -o plasma_engine_plasmamule_so-qt-emc.obj `if test -f 'qt-emc.cpp'; then $(CYGPATH_W) 'qt-emc.cpp'; else $(CYGPATH_W) '$(srcdir)/qt-emc.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/plasma_engine_plasmamule_so-qt-emc.Tpo" "$(DEPDIR)/plasma_engine_plasmamule_so-qt-emc.Po"; else rm -f "$(DEPDIR)/plasma_engine_plasmamule_so-qt-emc.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='qt-emc.cpp' object='plasma_engine_plasmamule_so-qt-emc.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_engine_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -c -o plasma_engine_plasmamule_so-qt-emc.obj `if test -f 'qt-emc.cpp'; then $(CYGPATH_W) 'qt-emc.cpp'; else $(CYGPATH_W) '$(srcdir)/qt-emc.cpp'; fi`
+
+plasmamule_engine_feeder-plasmamule-engine-feeder.o: plasmamule-engine-feeder.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasmamule_engine_feeder_CXXFLAGS) $(CXXFLAGS) -MT plasmamule_engine_feeder-plasmamule-engine-feeder.o -MD -MP -MF "$(DEPDIR)/plasmamule_engine_feeder-plasmamule-engine-feeder.Tpo" -c -o plasmamule_engine_feeder-plasmamule-engine-feeder.o `test -f 'plasmamule-engine-feeder.cpp' || echo '$(srcdir)/'`plasmamule-engine-feeder.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/plasmamule_engine_feeder-plasmamule-engine-feeder.Tpo" "$(DEPDIR)/plasmamule_engine_feeder-plasmamule-engine-feeder.Po"; else rm -f "$(DEPDIR)/plasmamule_engine_feeder-plasmamule-engine-feeder.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='plasmamule-engine-feeder.cpp' object='plasmamule_engine_feeder-plasmamule-engine-feeder.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasmamule_engine_feeder_CXXFLAGS) $(CXXFLAGS) -c -o plasmamule_engine_feeder-plasmamule-engine-feeder.o `test -f 'plasmamule-engine-feeder.cpp' || echo '$(srcdir)/'`plasmamule-engine-feeder.cpp
+
+plasmamule_engine_feeder-plasmamule-engine-feeder.obj: plasmamule-engine-feeder.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasmamule_engine_feeder_CXXFLAGS) $(CXXFLAGS) -MT plasmamule_engine_feeder-plasmamule-engine-feeder.obj -MD -MP -MF "$(DEPDIR)/plasmamule_engine_feeder-plasmamule-engine-feeder.Tpo" -c -o plasmamule_engine_feeder-plasmamule-engine-feeder.obj `if test -f 'plasmamule-engine-feeder.cpp'; then $(CYGPATH_W) 'plasmamule-engine-feeder.cpp'; else $(CYGPATH_W) '$(srcdir)/plasmamule-engine-feeder.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/plasmamule_engine_feeder-plasmamule-engine-feeder.Tpo" "$(DEPDIR)/plasmamule_engine_feeder-plasmamule-engine-feeder.Po"; else rm -f "$(DEPDIR)/plasmamule_engine_feeder-plasmamule-engine-feeder.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='plasmamule-engine-feeder.cpp' object='plasmamule_engine_feeder-plasmamule-engine-feeder.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasmamule_engine_feeder_CXXFLAGS) $(CXXFLAGS) -c -o plasmamule_engine_feeder-plasmamule-engine-feeder.obj `if test -f 'plasmamule-engine-feeder.cpp'; then $(CYGPATH_W) 'plasmamule-engine-feeder.cpp'; else $(CYGPATH_W) '$(srcdir)/plasmamule-engine-feeder.cpp'; fi`
+
+plasmamule_engine_feeder-plasmamule-dbus.o: plasmamule-dbus.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasmamule_engine_feeder_CXXFLAGS) $(CXXFLAGS) -MT plasmamule_engine_feeder-plasmamule-dbus.o -MD -MP -MF "$(DEPDIR)/plasmamule_engine_feeder-plasmamule-dbus.Tpo" -c -o plasmamule_engine_feeder-plasmamule-dbus.o `test -f 'plasmamule-dbus.cpp' || echo '$(srcdir)/'`plasmamule-dbus.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/plasmamule_engine_feeder-plasmamule-dbus.Tpo" "$(DEPDIR)/plasmamule_engine_feeder-plasmamule-dbus.Po"; else rm -f "$(DEPDIR)/plasmamule_engine_feeder-plasmamule-dbus.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='plasmamule-dbus.cpp' object='plasmamule_engine_feeder-plasmamule-dbus.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasmamule_engine_feeder_CXXFLAGS) $(CXXFLAGS) -c -o plasmamule_engine_feeder-plasmamule-dbus.o `test -f 'plasmamule-dbus.cpp' || echo '$(srcdir)/'`plasmamule-dbus.cpp
+
+plasmamule_engine_feeder-plasmamule-dbus.obj: plasmamule-dbus.cpp
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasmamule_engine_feeder_CXXFLAGS) $(CXXFLAGS) -MT plasmamule_engine_feeder-plasmamule-dbus.obj -MD -MP -MF "$(DEPDIR)/plasmamule_engine_feeder-plasmamule-dbus.Tpo" -c -o plasmamule_engine_feeder-plasmamule-dbus.obj `if test -f 'plasmamule-dbus.cpp'; then $(CYGPATH_W) 'plasmamule-dbus.cpp'; else $(CYGPATH_W) '$(srcdir)/plasmamule-dbus.cpp'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/plasmamule_engine_feeder-plasmamule-dbus.Tpo" "$(DEPDIR)/plasmamule_engine_feeder-plasmamule-dbus.Po"; else rm -f "$(DEPDIR)/plasmamule_engine_feeder-plasmamule-dbus.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='plasmamule-dbus.cpp' object='plasmamule_engine_feeder-plasmamule-dbus.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasmamule_engine_feeder_CXXFLAGS) $(CXXFLAGS) -c -o plasmamule_engine_feeder-plasmamule-dbus.obj `if test -f 'plasmamule-dbus.cpp'; then $(CYGPATH_W) 'plasmamule-dbus.cpp'; else $(CYGPATH_W) '$(srcdir)/plasmamule-dbus.cpp'; fi`
 uninstall-info-am:
+install-dist_appsDATA: $(dist_apps_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(appsdir)" || $(mkdir_p) "$(DESTDIR)$(appsdir)"
+	@list='$(dist_apps_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(dist_appsDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(appsdir)/$$f'"; \
+	  $(dist_appsDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(appsdir)/$$f"; \
+	done
+
+uninstall-dist_appsDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(dist_apps_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(appsdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(appsdir)/$$f"; \
+	done
 install-dist_iconDATA: $(dist_icon_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(icondir)" || $(mkdir_p) "$(DESTDIR)$(icondir)"
@@ -506,6 +635,23 @@ uninstall-dist_iconDATA:
 	  f=$(am__strip_dir) \
 	  echo " rm -f '$(DESTDIR)$(icondir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(icondir)/$$f"; \
+	done
+install-dist_mimeDATA: $(dist_mime_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(mimedir)" || $(mkdir_p) "$(DESTDIR)$(mimedir)"
+	@list='$(dist_mime_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(dist_mimeDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(mimedir)/$$f'"; \
+	  $(dist_mimeDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(mimedir)/$$f"; \
+	done
+
+uninstall-dist_mimeDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(dist_mime_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(mimedir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(mimedir)/$$f"; \
 	done
 install-dist_serviceDATA: $(dist_service_DATA)
 	@$(NORMAL_INSTALL)
@@ -605,7 +751,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(PROGRAMS) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(modulesdir)" "$(DESTDIR)$(icondir)" "$(DESTDIR)$(servicedir)"; do \
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(modulesdir)" "$(DESTDIR)$(appsdir)" "$(DESTDIR)$(icondir)" "$(DESTDIR)$(mimedir)" "$(DESTDIR)$(servicedir)"; do \
 	  test -z "$$dir" || $(mkdir_p) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -638,7 +784,8 @@ maintainer-clean-generic:
 	-test -z "$(MAINTAINERCLEANFILES)" || rm -f $(MAINTAINERCLEANFILES)
 clean: clean-am
 
-clean-am: clean-generic clean-modulesPROGRAMS mostlyclean-am
+clean-am: clean-binPROGRAMS clean-generic clean-modulesPROGRAMS \
+	mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -656,10 +803,11 @@ info: info-am
 
 info-am:
 
-install-data-am: install-dist_iconDATA install-dist_serviceDATA \
+install-data-am: install-dist_appsDATA install-dist_iconDATA \
+	install-dist_mimeDATA install-dist_serviceDATA \
 	install-modulesPROGRAMS
 
-install-exec-am:
+install-exec-am: install-binPROGRAMS
 
 install-info: install-info-am
 
@@ -684,25 +832,28 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-dist_iconDATA uninstall-dist_serviceDATA \
-	uninstall-info-am uninstall-modulesPROGRAMS
-
-.PHONY: CTAGS GTAGS all all-am check check-am clean clean-generic \
-	clean-modulesPROGRAMS ctags distclean distclean-compile \
-	distclean-generic distclean-tags distdir dvi dvi-am html \
-	html-am info info-am install install-am install-data \
-	install-data-am install-dist_iconDATA install-dist_serviceDATA \
-	install-exec install-exec-am install-info install-info-am \
-	install-man install-modulesPROGRAMS install-strip installcheck \
-	installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-dist_iconDATA \
+uninstall-am: uninstall-binPROGRAMS uninstall-dist_appsDATA \
+	uninstall-dist_iconDATA uninstall-dist_mimeDATA \
 	uninstall-dist_serviceDATA uninstall-info-am \
 	uninstall-modulesPROGRAMS
 
+.PHONY: CTAGS GTAGS all all-am check check-am clean clean-binPROGRAMS \
+	clean-generic clean-modulesPROGRAMS ctags distclean \
+	distclean-compile distclean-generic distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-binPROGRAMS install-data install-data-am \
+	install-dist_appsDATA install-dist_iconDATA \
+	install-dist_mimeDATA install-dist_serviceDATA install-exec \
+	install-exec-am install-info install-info-am install-man \
+	install-modulesPROGRAMS install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic pdf pdf-am ps ps-am tags uninstall \
+	uninstall-am uninstall-binPROGRAMS uninstall-dist_appsDATA \
+	uninstall-dist_iconDATA uninstall-dist_mimeDATA \
+	uninstall-dist_serviceDATA uninstall-info-am \
+	uninstall-modulesPROGRAMS
 
-% : %.moc
 
 %.moc : %.h
 	${QT_MOC} -o $@ $<
