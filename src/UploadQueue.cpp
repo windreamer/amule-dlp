@@ -320,11 +320,6 @@ void CUploadQueue::AddClientToQueue(CUpDownClient* client)
 		return;
 	}
 
-	//Dynamic Leecher Protect - Bill Lee
-	#ifdef __DEBUG__
-	AddLogLineM(false, client->GetClientFullInfo());
-	#endif
-
 	client->AddAskedCount();
 	client->SetLastUpRequest();
 

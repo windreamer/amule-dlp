@@ -1,3 +1,4 @@
+//
 // This file is part of the aMule Project.
 //
 // Copyright (c) 2003-2008 aMule Team ( admin@amule.org / http://www.amule.org )
@@ -21,9 +22,6 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301, USA
 //
-
-//Dynamic Leech Protect - Bill Lee
-#include "antiLeech.cpp"
 
 #include <wx/wx.h>
 #include <wx/mstream.h>
@@ -84,7 +82,9 @@
 #include "kademlia/kademlia/UDPFirewallTester.h"
 #include "kademlia/routing/RoutingZone.h"
 
+
 //#define __PACKET_DEBUG__
+
 
 // some client testing variables
 static wxString crash_name = wxT("[Invalid User Name]");
@@ -280,7 +280,7 @@ void CUpDownClient::Init()
 	m_dwDirectCallbackTimeout = 0;
 
 	m_hasbeenobfuscatinglately = false;
-	dlp_nonofficalopcodes = false; //Dynamic Leecher Protect
+
 	m_cCaptchasSent = 0;
 	m_cMessagesReceived = 0;
 	m_cMessagesSent = 0;
@@ -446,14 +446,6 @@ bool CUpDownClient::ProcessHelloTypePacket(const CMemFile& data)
 	m_bUnicodeSupport = false;
 	uint32 dwEmuleTags = 0;
 
-	//Dynamic Leecher Protect - Bill Lee
-	bool wronghello = false; //Xman Anti-Leecher
-	uint32 hellotagorder = 1; //Xman Anti-Leecher
-	//zz_fly :: Fake Shareaza Detection
-	bool bWasUDPPortSent = false;
-	bool bIsFakeShareaza = false;
-	//zz_fly :: Fake Shareaza Detection end
-
 	CMD4Hash hash = data.ReadHash();
 	SetUserHash( hash );
 	SetUserIDHybrid( data.ReadUInt32() );
@@ -464,20 +456,10 @@ bool CUpDownClient::ProcessHelloTypePacket(const CMemFile& data)
 		switch(temptag.GetNameID()){
 			case CT_NAME:
 				m_Username = temptag.GetStr();
-				//Xman Anti-Leecher
-				if(hellotagorder!=1)
-					wronghello=true;
-				hellotagorder++;
-				//Xman end
 				break;
 				
 			case CT_VERSION:
 				m_nClientVersion = temptag.GetInt();
-				//Xman Anti-Leecher
-				if(hellotagorder!=2)
-					wronghello=true;
-				hellotagorder++;
-				//Xman end
 				break;
 				
 			case ET_MOD_VERSION:
@@ -504,8 +486,6 @@ bool CUpDownClient::ProcessHelloTypePacket(const CMemFile& data)
 				#ifdef __PACKET_DEBUG__
 				AddLogLineNS(CFormat(wxT("Hello type packet processing with eMule ports UDP=%i KAD=%i")) % m_nUDPPort % m_nKadPort);
 				#endif
-				//Dynamic Leecher Protect - Bill Lee
-				bWasUDPPortSent = true; //zz_fly :: Fake Shareaza Detection
 				break;
 				
 			case CT_EMULE_BUDDYIP:
@@ -565,23 +545,6 @@ bool CUpDownClient::ProcessHelloTypePacket(const CMemFile& data)
 				AddLogLineNS(wxT("That's all."));
 				#endif
 				SecIdentSupRec +=  1;
-				//Dynamic Leecher Proctect - Bill Lee
-				bIsFakeShareaza = !bWasUDPPortSent;
-				/*if(!IsBanned()){
-					//zz_fly :: Fake Shareaza Detection
-					if(!bWasUDPPortSent && (thePrefs::GetDLPCheckMask() & PF_HELLOTAG)){
-						const char* ret = "Fake Shareaza";
-						char info[1024] = {0};
-						char tmp[1024] = {0};
-						
-						strncpy(tmp, GetClientFullInfo().mb_str(wxConvUTF8), 1000);
-						snprintf(info, 1000, "[%s] %s", ret, tmp);
-						Ban();
-						wxString winfo(info, wxConvUTF8);
-						theApp->AddDLPMessageLine(winfo);
-					}
-				}*/
-					
 				break;
 			}
 
@@ -647,23 +610,6 @@ bool CUpDownClient::ProcessHelloTypePacket(const CMemFile& data)
 				m_fSharedDirectories = 1;
 				dwEmuleTags |= 4;
 				break;				
-			//Bill Lee start
-			//Dynamic Leecher Protection
-			default:	//if tag isn't those above, it may be used by leecher.
-				if(!IsBanned()){
-					if(thePrefs::GetDLPCheckMask() & PF_HELLOTAG) {
-						const wxChar* dlp_result = CantiLeech().DLPCheckHelloTag(temptag.GetNameID());
-						if(dlp_result != NULL) {
-							wxString ret;
-							ret.Printf(wxT("[HelloTag %s(%.2x)] %s"), dlp_result, temptag.GetNameID(), GetClientFullInfo().c_str());
-							Ban();
-							theApp->AddDLPMessageLine(ret);
-						}
-					}
-				}
-				dlp_nonofficalopcodes = true; //to detect Ghost Mod
-					break;
-			//Bill Lee end
 		}
 	}
 
@@ -747,34 +693,6 @@ bool CUpDownClient::ProcessHelloTypePacket(const CMemFile& data)
 	if( GetKadPort() ) {
 		Kademlia::CKademlia::Bootstrap(wxUINT32_SWAP_ALWAYS(GetIP()), GetKadPort(), GetKadVersion() > 1);
 	}
-
-	//Dynamic Leecher Protection - Added by Bill Lee
-	if(!IsBanned() && bIsFakeShareaza && m_clientSoft == SO_EMULE && (thePrefs::GetDLPCheckMask() & PF_HELLOTAG) ){
-		const char* ret = "Fake Shareaza";
-		char info[1024] = {0};
-		char tmp[1024] = {0};
-		
-		strncpy(tmp, GetClientFullInfo().mb_str(wxConvUTF8), 1000);
-		snprintf(info, 1000, "[%s] %s", ret, tmp);
-		Ban();
-		wxString winfo(info, wxConvUTF8);
-		theApp->AddDLPMessageLine(winfo);
-	}
-	if(!IsBanned()){
-		if(wronghello && (thePrefs::GetDLPCheckMask() & PF_HELLOTAG) ){
-			const char* ret = "[Wrong Hello Order: German Leecher]";
-			char info[1024] = {0};
-			char tmp[1024] = {0};
-			
-			strncpy(tmp, GetClientFullInfo().mb_str(wxConvUTF8), 1000);
-			snprintf(info, 1000, "%s %s", ret, tmp);
-			Ban();
-			wxString winfo(info, wxConvUTF8);
-			theApp->AddDLPMessageLine(winfo);
-		}
-	DLPCheck();
-	}
-	//Bill Lee end
 
 	return bIsMule;
 }
@@ -1031,22 +949,6 @@ bool CUpDownClient::ProcessMuleInfoPacket(const byte* pachPacket, uint32 nSize)
 							% GetClientFullInfo()
 					);
 
-					//Bill Lee start
-					//Dynamic Leecher Protection
-					if(!IsBanned()){
-						if(thePrefs::GetDLPCheckMask() & PF_INFOTAG) {
-							const wxChar* dlp_result = CantiLeech().DLPCheckInfoTag(temptag.GetNameID());
-							if(dlp_result != NULL) {
-								wxString ret;
-								ret.Printf(wxT("[InfoTag %s(%.2x)] %s"), dlp_result, temptag.GetNameID(), GetClientFullInfo().c_str());
-								Ban();
-								theApp->AddDLPMessageLine(ret);
-							}
-						}
-					}
-					dlp_nonofficalopcodes = true;
-					//Bill Lee end
-
 					break;
 			}
 		}				
@@ -1084,8 +986,6 @@ bool CUpDownClient::ProcessMuleInfoPacket(const byte* pachPacket, uint32 nSize)
 		m_byInfopacketsReceived |= IP_EMULEPROTPACK;		
 	}
 
-	if(!IsBanned()) DLPCheck(); //Dynamic Leecher Protection - Added by Bill Lee
-	
 	return (protocol_version == 0xFF); // This was a OS_Info?
 }
 
@@ -2978,91 +2878,3 @@ void CUpDownClient::SetConnectOptions(uint8_t options, bool encryption, bool cal
 	SetDirectUDPCallbackSupport((options & 0x08) != 0 && callback);
 }
 // File_checked_for_headers
-
-bool CUpDownClient::DLPCheck(){
-	const wxChar* tmp = NULL;
-	wxString ret;
-	
-	unsigned int prefs = thePrefs::GetDLPCheckMask();
-
-	CantiLeech DLP;
-
-	CString modver(GetClientModString());
-	CString clientver(GetClientVerString());
-	CString uname(GetUserName());
-	CString uhash(wxString(GetUserHash().EncodeSTL().c_str(), wxConvUTF8));
-	
-	//CheckGhostMod
-	if(prefs & PF_GHOSTMOD) {
-		if(dlp_nonofficalopcodes && (modver.IsEmpty())) {
-			ret = wxT("Ghost Mod");
-			tmp = ret.c_str(); //char pointer
-		}
-	}
-
-	// Check bad modstring
-	if ((prefs & PF_MODSTRING) && (tmp == NULL)) {
-		if((tmp = DLP.DLPCheckModstring_Soft(modver.c_str(), clientver.c_str())) == NULL)
-			tmp = DLP.DLPCheckModstring_Hard(modver.c_str(), clientver.c_str());
-	}
-	/*
-	if ((prefs & PF_USERHASH) && (tmp == NULL)) {
-		// not finished
-	}
-	*/
-	// Check bad username
-	if ((prefs & PF_USERNAME) && (tmp == NULL)) {
-		if ((tmp = DLP.DLPCheckNameAndHashAndMod(uname, uhash, modver)) == NULL){
-			if( (tmp = DLP.DLPCheckUsername_Hard(uname.c_str())) == NULL )
-				tmp = DLP.DLPCheckUsername_Soft(uname.c_str());
-		}
-	}
-	
-	//easyMule2 and miniMule is listed in antiLeech 
-	/*
-	// Check easyMule2
-	if ((prefs & PF_EASYMULE) && (tmp == NULL)) {
-		if ((tmp = DLPCheckEasyMule(modver)) != NULL) {
-			snprintf(ret, 500, "[easyMule2]"); //Modified by Bill Lee
-		}
-	}
-	*/
-
-	// Check VeryCD eMule
-	if ((prefs & PF_VERYCDEMULE) && (tmp == NULL)) {
-		if(modver.Find(wxT("VeryCD")) != wxNOT_FOUND){
-			ret = wxT("VeryCD Mod");
-			tmp = ret.c_str();
-		}
-	}
-	
-	/*
-	// Check VeryCD miniMule. Bill Lee start
-	if ((prefs & PF_MINIMULE) && (tmp == NULL)) {
-		if ((tmp = DLPCheckminiMule(modver)) != NULL) {
-			snprintf(ret, 500, "[miniMule]");
-		}
-	}
-	// Bill Lee end
-	*/
-	if (tmp != NULL) {
-		ret = tmp;
-		wxString wxInfo;
-		wxInfo.Printf(wxT("[%s] %s"), ret.c_str(), GetClientFullInfo().c_str());
-		Ban();
-		theApp->AddDLPMessageLine(wxInfo);
-		/*
-		char info[1024] = {0};
-		char clientinfo[1024] = {0};
-		strncpy(clientinfo, GetClientFullInfo().mb_str(wxConvUTF8), 1000);
-		snprintf(info, 1000, "[%s] %s", wxString(tmp).mb_str(wxConvUTF8), clientinfo);
-		Ban();
-		wxString winfo(info, wxConvUTF8);
-		theApp->AddDLPMessageLine(winfo);
-		*/
-		return true;
-	}
-
-	return false;
-
-}

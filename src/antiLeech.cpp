@@ -1204,7 +1204,7 @@ LPCTSTR __declspec(dllexport) DLPCheckNameAndHashAndMod(CString username, CStrin
 	static const CString testModString[] = {_T("Xtreme"), _T("ScarAngel"), _T("Mephisto"), _T("MorphXT"), _T("EastShare"), _T("StulleMule"), /*_T("Magic Angel"),*/ _T("DreaMule"), _T("X-Mod"), _T("RaJiL")};
 	static const float testMinVer[] = {4.4f, 2.5f, 1.5f, 10.0f, 13.0f, 6.0f, /*3.0f,*/ 3.0f, 0.0f, 2.2f};
 	for(int i=0; i<NUMBERSOFSTRING; i++){
-		bool tag1 = (username.Find(CString(_T('«')) + testModString[i]) != -1);
+		bool tag1 = (username.Find(_T('«') + testModString[i]) != -1);
 		if(modversion.Find(testModString[i]) != -1) {
 			float version = (float)_tstof(modversion.Right(4));
 			if(!tag1 && ((testMinVer[i] == 0.0f) || (version == 9.7f) || (version >= testMinVer[i])))

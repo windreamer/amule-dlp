@@ -311,7 +311,7 @@ m_clientSkinNames(CLIENT_SKIN_SIZE)
 	wxNotebook* logs_notebook = CastChild( ID_SRVLOG_NOTEBOOK, wxNotebook);
 	wxNotebook* networks_notebook = CastChild( ID_NETNOTEBOOK, wxNotebook);
 	
-	wxASSERT(logs_notebook->GetPageCount() == 5);
+	wxASSERT(logs_notebook->GetPageCount() == 4);
 	wxASSERT(networks_notebook->GetPageCount() == 2);
 	
 	for (uint32 i = 0; i < logs_notebook->GetPageCount(); ++i) {
@@ -656,18 +656,6 @@ void CamuleDlg::AddServerMessageLine(wxString& message)
 	}
 }
 
-void CamuleDlg::AddDLPMessageLine(wxString& msg)
-{
-	wxTextCtrl* cv = CastByID( ID_DLPINFO, m_serverwnd, wxTextCtrl );
-	if(cv) {
-		if (msg.Length() > 500) {
-			cv->AppendText(msg.Left(500) + wxT("\n"));
-		} else {
-			cv->AppendText(msg + wxT("\n"));
-		}
-		cv->ShowPosition(cv->GetLastPosition()-1);
-	}
-}
 
 void CamuleDlg::ShowConnectionState(bool skinChanged)
 {
@@ -1457,8 +1445,6 @@ void CamuleDlg::DoNetworkRearrange()
 	if (thePrefs::GetNetworkKademlia()) {
 		logs_notebook->AddPage(m_logpages[3].page, m_logpages[3].name);
 	}
-	
-	logs_notebook->AddPage(m_logpages[4].page, m_logpages[4].name);
 	
 	m_networkpages[1].page->Show(thePrefs::GetNetworkKademlia());		
 
