@@ -637,6 +637,8 @@ public:
 	void		SetConnectionReason(const wxString& reason) { connection_reason = reason; }
 #endif
 
+	bool		DLPCheck(); //Dynamic Leecher Protection - Added by Bill Lee
+
 	// Encryption / Obfuscation / ConnectOptions
 	bool		SupportsCryptLayer() const			{ return m_fSupportsCryptLayer; }
 	bool		RequestsCryptLayer() const			{ return SupportsCryptLayer() && m_fRequestsCryptLayer; }
@@ -911,6 +913,9 @@ private:
 #ifdef __DEBUG__
 	wxString	connection_reason;
 #endif
+    
+	bool dlp_nonofficalopcodes; //Dynamic Leecher Protect - Bill Lee
+
 };
 
 

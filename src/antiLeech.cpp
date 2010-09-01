@@ -22,11 +22,9 @@
 #include "antiLeech.h"
 #define __declspec(var)	CantiLeech::
 
-/*
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
-*/
 
 //>>> eWombat [SNAFU_V3]
 LPCTSTR apszSnafuTag[]=
@@ -215,7 +213,6 @@ LPCTSTR __declspec(dllexport) DLPCheckUsername(LPCTSTR username)
 		StrStrI(username,_T("Ketamine")) ||
 		StrStrI(username,_T("HARDMULE")) ||
 		StrStrI(username,_T("emuleech")) ||
-
 		//Xman 15.08.05
 		StrStrI(username, _T("SchlumpMule"))|| //"
 		StrStrI(username, _T("SaftyŽs"))||
@@ -479,13 +476,6 @@ LPCTSTR __declspec(dllexport) DLPCheckModstring_Hard(LPCTSTR modversion, LPCTSTR
 		_tcsstr(modversion, _T("XunL")) || _tcsstr(modversion, _T("Xthunder")) ||
 		_tcsstr(modversion, _T("xl build")) ||
 		//end
-		((_tcsstr(modversion, _T("MorphXT v9.6")) || _tcsstr(modversion, _T("Xtreme 7")) || _tcsstr(modversion, _T("ZZUL Plus 1"))) && _tcsstr(clientversion, _T("0.48a"))) || //should not 0.48a
-		_tcsstr(modversion, _T("NetF WARP 9")) || //should be NetF WARP 0.3a.9
-		_tcsstr(modversion, _T("VeryCD 080730")) || //Fake VeryCD
-		_tcsstr(modversion, _T("VeryCD 080509")) || //Fake VeryCD
-		_tcsstr(modversion, _T("VeryCD 080606")) || //Fake VeryCD
-		_tcsstr(modversion, _T("VeryCD 080624")) || //Fake VeryCD
-		_tcsstr(modversion, _T("VeryCD 080630")) || //Fake VeryCD
 		_tcsstr(modversion, _T("FreeCD")) || //BitComet, changed to hardban
 		_tcsstr(modversion, _T("PlayMule")) || //PlayMule
 		( !CString(modversion).IsEmpty() && CString(modversion).Trim().IsEmpty() ) || //pruma, korean leecher, modversion is a space
@@ -496,7 +486,12 @@ LPCTSTR __declspec(dllexport) DLPCheckModstring_Hard(LPCTSTR modversion, LPCTSTR
 		StrStrI(modversion,_T("Peizheng")) || //gpl-breaker
 		_tcsstr(modversion,_T("amule")) || //fake version, amule never write a modstring here
 		_tcsstr(modversion,_T("Amule")) ||
-		_tcsstr(modversion,_T("miniMule")) || //it must be a leecher // Stulle: i can't find nothing about this! //enable by Bill Lee
+		//2010/5/29
+		_tcsstr(modversion,_T("miniMule")) || //a compatible client, but without share file option.
+		StrStrI(modversion,_T("EYE888")) || //compatible client in china, but no src
+		StrStrI(modversion,_T("WebeSo")) || //compatible client in china, but no src //Chengr28
+		StrStrI(modversion,_T(" 091113")) || //compatible client in china, but no src //tetris
+		StrStrI(modversion,_T("Unbuyi")) || //a client announced that it is based on a its framework, but in fact it just copy VeryCD's code //Chengr28
 //zz_fly End
 		_tcsstr(modversion, _T("Neo-R")) ||
 		_tcsstr(modversion, _T("Neo-RS")) ||
@@ -516,7 +511,7 @@ LPCTSTR __declspec(dllexport) DLPCheckModstring_Hard(LPCTSTR modversion, LPCTSTR
 		StrStrI(modversion, _T("T-L-N BO0ST")) || //by briandgwx
 		StrStrI(modversion, _T("T L N B O O S T")) ||	//by taz-me
 		StrStrI(modversion, _T("iberica")) ||  //by briandgwx
-//from Riso64bit
+//from **Riso64Bit**
 		_tcsstr(modversion, _T("Thor ")) ||
 		_tcsstr(modversion, _T("DeSfAlko")) ||
 		_tcsstr(modversion, _T("The Killer Bean")) ||
@@ -562,6 +557,7 @@ LPCTSTR __declspec(dllexport) DLPCheckModstring_Hard(LPCTSTR modversion, LPCTSTR
 		_tcsstr(modversion, _T("eMulix")) ||
 		_tcsstr(modversion, _T("BigBang")) ||
 		_tcsstr(modversion, _T("PR0 ")) || //0(zero)
+		_tcsstr(modversion, _T("PRO ")) || //o
 		_tcsstr(modversion, _T("LoCMuLe")) ||
 		_tcsstr(modversion, _T("Flux ")) ||
 		//_tcsstr(modversion, _T("Aurora")) ||
@@ -605,7 +601,7 @@ LPCTSTR __declspec(dllexport) DLPCheckModstring_Hard(LPCTSTR modversion, LPCTSTR
 		_tcsstr(modversion, _T("0.49b")) ||
 		_tcsstr(modversion, _T("0.49c")) ||
 		_tcsstr(modversion, _T("Metha")) ||
-		_tcsstr(modversion, _T("XTreme")) ||
+		//_tcsstr(modversion, _T("XTreme")) || move to fake area
 		//newlines 2009/11/8
 		_tcsstr(modversion, _T("UMatiX-45a")) ||
 		StrStrI(modversion, _T("maultierpower")) || // maultier-power.com sponsorize applejuice
@@ -614,6 +610,11 @@ LPCTSTR __declspec(dllexport) DLPCheckModstring_Hard(LPCTSTR modversion, LPCTSTR
 		StrStrI(modversion, _T("UBR-Mod")) ||
 		//2009/11/29
 		StrStrI(modversion, _T("UltraFast")) || //thl
+		//2010/4/4
+		_tcsstr(modversion, _T("Devils Mod")) ||
+		StrStrI(modversion, _T("-XDP-")) ||
+		//2010/6/6
+		_tcsstr(modversion, _T("Sharinghooligan")) ||
 //end
 //from XRAY antileecher start
 		StrStrI(modversion, L"SPEED EMULE") || //MyTh	
@@ -630,7 +631,7 @@ LPCTSTR __declspec(dllexport) DLPCheckModstring_Hard(LPCTSTR modversion, LPCTSTR
 		StrStrI(modversion, L"TYRANUS") || //MyTh
 		StrStrI(modversion, _T("[OO.de-L33CH4")) ||	//Stulle
 		( StrStrI(modversion, _T("sivka v12e8")) && StrStrI(clientversion, L"0.42e") ) || //m_nClientVersion != MAKE_CLIENT_VERSION(0, 42, 4)	// added - Stulle
-		StrStrI(modversion, L"RapCom Mod") || //added dlarge 
+		StrStrI(modversion, L"RapCom") || //added dlarge 
 		StrStrI(modversion, L"SBI leecher") || //added dlarge 
 		StrStrI(modversion, L"TS Next Lite") || //added dlarge  
 //from XRAY antileecher end
@@ -642,15 +643,31 @@ LPCTSTR __declspec(dllexport) DLPCheckModstring_Hard(LPCTSTR modversion, LPCTSTR
 		(StrStrI(modversion, _T("Xtreme")) && StrStrI(modversion, _T("]")))  //bad Xtreme mod
 		)
 		return _T("Bad MODSTRING");
-	if(StrStr(modversion, _T("xtreme"))) //case sensitive!
+	if(_tcsstr(modversion, _T("xtreme")) || _tcsstr(modversion, _T("XTreme"))) //case sensitive!
 		return _T("Fake Xtreme");
+
+//zz_fly :: fake modstring area
+//move some entries from above
+	if(((_tcsstr(modversion, _T("MorphXT v9.6")) || _tcsstr(modversion, _T("Xtreme 7")) || _tcsstr(modversion, _T("ZZUL Plus 1"))) && _tcsstr(clientversion, _T("0.48a"))) || //should not 0.48a
+		_tcsstr(modversion, _T("NetF WARP 9")) || //should be NetF WARP 0.3a.9
+		_tcsstr(modversion, _T("VeryCD 080126")) || //Fake VeryCD
+		_tcsstr(modversion, _T("VeryCD 080730")) || //Fake VeryCD
+		_tcsstr(modversion, _T("VeryCD 080509")) || //Fake VeryCD
+		_tcsstr(modversion, _T("VeryCD 080606")) || //Fake VeryCD
+		_tcsstr(modversion, _T("VeryCD 080624")) || //Fake VeryCD
+		_tcsstr(modversion, _T("VeryCD 080630")) || //Fake VeryCD
+		((_tcsstr(modversion, _T("easyMule 10"))) && _tcsstr(clientversion, _T("0.48a")))  //easymule 10#### are not based on .48a
+		)
+		return _T("Fake MODSTRING");
+//zz_fly :: end
 
 	//WiZaRd Bad Modstring Scheme
 	CString strMod = CString(modversion);
 	if( strMod.IsEmpty() ||
 		(strMod.Find(_T("CHN "))==0 && strMod.GetLength() > 8) ||
 		(strMod.Find(_T("Apollo"))==0) ||  //Apollo is a Portugal Mod
-		(strMod.Find(_T("sivka"))==0) 
+		(strMod.Find(_T("sivka"))==0) ||
+		(strMod.Find(_T("aMule CVS"))==0)
 	  )
 	{
 		;//do nothing
@@ -739,8 +756,8 @@ LPCTSTR __declspec(dllexport) DLPCheckModstring_Soft(LPCTSTR modversion, LPCTSTR
 		||StrStrI(modversion, _T("BLACKMULE")) //no completely source, but it seems it do not have leecher functions.
 		||_tcsstr(clientversion, _T("eMule v1.")) //ban all version number >= 1.0
 		||_tcsstr(clientversion, _T("eMule v2."))
-		||_tcsstr(clientversion, _T("eMule v3."))
-		||_tcsstr(clientversion, _T("Shareaza v6.")) //Shareaza's current version is 2.4 
+		//||_tcsstr(clientversion, _T("eMule v3."))
+		||_tcsstr(clientversion, _T("Shareaza v6.")) //Shareaza's current version is 2.5.2 
 		||_tcsstr(clientversion, _T("Shareaza v5."))
 		||_tcsstr(clientversion, _T("Shareaza v4."))
 		||_tcsstr(clientversion, _T("Shareaza v3."))
@@ -854,7 +871,13 @@ LPCTSTR __declspec(dllexport) DLPCheckUsername_Hard(LPCTSTR username)
 		_tcsstr(username,_T("http://www.net-xfer.com")) || //netxfer
 		_tcsstr(username,_T("emuIe-project.net")) || //phishing site
 		_tcsstr(username,_T("QQDownload")) || //tencent
-		_tcsstr(username,_T("[Devils][?>")) || //2009/12/25
+//		_tcsstr(username,_T("[Devils][")) || //2009/12/25 // removed due to claim to stop using badmods
+		//2010/5/29
+		_tcsstr(username,_T("btbbt.com")) || //community username from FzH
+		_tcsstr(username,_T("Greendown.Cn")) || //community username
+		_tcsstr(username,_T("MTVP2P")) || //community username from Chengr28
+		_tcsstr(username,_T("qobfxb")) || //community username
+		_tcsstr(username,_T("[CHN][VeryCD]QQ"))|| //QQDownload
 //zz_fly End
 		StrStrI(username, _T("lionetwork"))||
 		StrStrI(username, _T("[lionheart"))||
@@ -866,7 +889,7 @@ LPCTSTR __declspec(dllexport) DLPCheckUsername_Hard(LPCTSTR username)
 		StrStrI(username, _T("Li()Network")) ||
 		StrStrI(username, _T("L!0Network")) ||
 		StrStrI(username, _T("Li@Network")) ||	 
-//from Riso64bit
+//from **Riso64Bit**
 		_tcsstr(username, _T("FincanMod")) || //fincan
 		_tcsstr(username, _T("Finc@nMod")) ||
 		StrStrI(username, _T("titanmule")) ||
@@ -925,7 +948,7 @@ LPCTSTR __declspec(dllexport) DLPCheckUsername_Hard(LPCTSTR username)
 		StrStrI(username, _T("eDonkey2008")) ||
 		StrStrI(username, _T("Torenkey")) ||
 		//StrStrI(username, _T("sdjtuning")) ||
-		StrStrI(username, _T("RAPCOM User")) ||
+		StrStrI(username, _T("RAPCOM")) ||
 		_tcsstr(username, _T("ZZULtimativ-R")) ||
 		_tcsstr(username, _T("ZZ-R ")) ||
 		StrStrI(username, _T("OFF +")) ||
@@ -937,7 +960,16 @@ LPCTSTR __declspec(dllexport) DLPCheckUsername_Hard(LPCTSTR username)
 		_tcsstr(username, _T("ExtrEMule")) ||
 		_tcsstr(username, _T("Titandonkey")) ||
 		_tcsstr(username, _T("xtmhtl [ePlus]"))|| //same name, same userhash
-		_tcsstr(username, _T("eMule Accelerator")) ||	
+		_tcsstr(username, _T("eMule Accelerator")) ||
+		//2010/4/4
+		StrStrI(username, _T("eMule Pro Ultra")) ||
+		StrStrI(username, _T("[CHN][VeryCD][username]")) || //[CHN][VeryCD][username] eMule v0.48a [xl build58]
+		//2010/5/29
+		StrStrI(username, _T("Fireb@ll")) ||
+		//2010/6/6
+		StrStrI(username, _T("monster-mod.com")) ||
+		StrStrI(username, _T("Reptil-Crew-3")) || //Reptil mod
+		StrStrI(username, _T("!Lou-Nissart!")) || //no src only BIN (kick from upload)
 
 		//all sites below are phishing sites
 		StrStrI(username, _T("www.extremule.com")) ||
@@ -1001,7 +1033,6 @@ LPCTSTR __declspec(dllexport) DLPCheckUsername_Hard(LPCTSTR username)
 		StrStrI(username, _T("devhancer.com")) ||
 		StrStrI(username, _T("emulefileswap.com")) ||
 		StrStrI(username, _T("p2psharing.biz")) ||
-		StrStrI(username, _T("emuleultra.com")) ||
 		StrStrI(username, _T("fastsearchbooster.biz")) ||
 		StrStrI(username, _T("emule-features.6x.to")) ||
 		StrStrI(username, _T("emule-pro.blogspot.com")) ||
@@ -1021,6 +1052,31 @@ LPCTSTR __declspec(dllexport) DLPCheckUsername_Hard(LPCTSTR username)
 		StrStrI(username, _T("MonkeyP2P")) ||
 		//new lines 2010/01/17
 		StrStrI(username, _T("http://alpha-gaming.net")) ||
+		//new lines 2010/4/4
+		StrStrI(username, _T("piolet.com")) ||
+		StrStrI(username, _T("hermesp2p.com")) ||
+		StrStrI(username, _T("shareghost.com")) ||
+		StrStrI(username, _T("zultrax.com")) ||
+		StrStrI(username, _T("getfasterp2p.com")) ||
+		StrStrI(username, _T("pro-sharing.com")) ||
+		StrStrI(username, _T("truxshare.com")) ||
+		StrStrI(username, _T("meteorshare.com")) ||
+		StrStrI(username, _T("manolito.com")) ||
+		StrStrI(username, _T("blubster.com")) ||
+		StrStrI(username, _T("fastsearchbooster.biz")) ||
+		StrStrI(username, _T("e-mule-")) || // detect any mirror simil to "e-mule-it.com"
+		StrStrI(username, _T("download-gratis-emule.com")) ||
+		StrStrI(username, _T("emule-italy.it")) ||
+		StrStrI(username, _T("e-mule.be")) ||
+		StrStrI(username, _T("official-emule")) ||
+		StrStrI(username, _T("emule-gratis.it")) ||
+		StrStrI(username, _T("devhancer")) ||
+		//2010/5/29
+		StrStrI(username, _T("dbgo.com")) ||
+		StrStrI(username, _T("net2search.com")) ||
+		//2010/6/6
+		StrStrI(username, _T("p2phood.com")) ||
+		StrStrI(username, _T("intelpeers.com")) ||
 //End
 		StrStrI(username,_T("[LSD.19"))	//Xman 21.06.2005 definitive not a good mod, with protocol bugs
 		)
@@ -1107,10 +1163,11 @@ LPCTSTR __declspec(dllexport) DLPCheckNameAndHashAndMod(CString username, CStrin
 	static const TCHAR refuserhash10[]= _T("65C3B2E8940E582630A7F58AF9F26F9E"); //from TaiWan
 	static const TCHAR refuserhash11[]= _T("9BA09B83DC0EE78BE20280C387936F00"); //from SS1900
 	static const TCHAR refuserhash12[]= _T("C92859E4860EA0F15F7837750C886FB6"); //from SS1900
+	static const TCHAR refuserhash13[]= _T("CB42F563EE0EA7907395420CAC146FF5"); //From "qobfxb" multi user [DargonD] 
 	if(_tcsicmp(userhash,refuserhash0)==0 || _tcsicmp(userhash,refuserhash1)==0 || _tcsicmp(userhash,refuserhash2)==0 
 		|| _tcsicmp(userhash,refuserhash6)==0 || _tcsicmp(userhash,refuserhash7)==0 || _tcsicmp(userhash,refuserhash8)==0
 		|| _tcsicmp(userhash,refuserhash9)==0 || _tcsicmp(userhash,refuserhash10)==0
-		|| _tcsicmp(userhash,refuserhash11)==0 || _tcsicmp(userhash,refuserhash12)==0)
+		|| _tcsicmp(userhash,refuserhash11)==0 || _tcsicmp(userhash,refuserhash12)==0 || _tcsicmp(userhash,refuserhash13)==0)
 		return _T("Community Userhash");
 
 	//corrupt userhash check
@@ -1243,7 +1300,8 @@ LPCTSTR __declspec(dllexport) DLPCheckMessageSpam(LPCTSTR messagetext)
 		_tcsstr(messagetext, _T("eMule PRO Ultra")) || //8/2007 //include ultra 1 2 3
 		_tcsstr(messagetext, _T("HyperMule")) || //8/2007
 		_tcsstr(messagetext, _T("FXeMule")) ||
-		_tcsstr(messagetext, _T("angelmule.com")) //**Riso64Bit**
+		_tcsstr(messagetext, _T("angelmule.com")) || //**Riso64Bit**
+		_tcsstr(messagetext, _T("RocketMule")) //**Riso64Bit**
 		)
 		return (_T("Spam-Message"));
 

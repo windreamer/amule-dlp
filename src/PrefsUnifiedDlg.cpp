@@ -179,7 +179,8 @@ PrefsPage pages[] =
 	{ wxTRANSLATE("Remote Controls"),	PreferencesRemoteControlsTab,	11 },
 	{ wxTRANSLATE("Online Signature"),	PreferencesOnlineSigTab,	21 },
 	{ wxTRANSLATE("Advanced"),			PreferencesaMuleTweaksTab,	12 },
-	{ wxTRANSLATE("Events"),			PreferencesEventsTab,		5 }
+	{ wxTRANSLATE("Events"),			PreferencesEventsTab,		5 },
+	{ wxTRANSLATE("DLP"),				PreferencesDLPTab,			5}
 #ifdef __DEBUG__
 	,{ wxTRANSLATE("Debugging"),		PreferencesDebug,			25 }
 #endif

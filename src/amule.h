@@ -391,6 +391,7 @@ public:
 	wxString GetLog(bool reset = false);
 	wxString GetServerLog(bool reset = false);
 	void AddServerMessageLine(wxString &msg);
+	void AddDLPMessageLine(wxString &msg);
 	DECLARE_EVENT_TABLE()
 };
 
@@ -537,6 +538,8 @@ public:
 	bool CopyTextToClipboard(wxString strText);
 	
 	virtual int ShowAlert(wxString msg, wxString title, int flags);
+	
+	void AddDLPMessageLine(wxString &msg);
 	
 	DECLARE_EVENT_TABLE()
 };

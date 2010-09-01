@@ -538,6 +538,9 @@ public:
 	static void		SetClientCryptLayerRequested(bool v)	{s_bCryptLayerRequested = v; }
 	static void		SetClientCryptLayerRequired(bool v)		{s_IsClientCryptLayerRequired = v;}
 
+	// Dynamic Leecher Protection
+	static unsigned int GetDLPCheckMask()		{return s_DLPCheckMask;}
+    
 	// GeoIP
 	static bool				IsGeoIPEnabled()		{return s_GeoIPEnabled;}
 	static void				SetGeoIPEnabled(bool v)	{s_GeoIPEnabled = v;}
@@ -567,6 +570,9 @@ protected:
 private:
 	void LoadPreferences();
 	void SavePreferences();
+	
+	// Dynamic Leecher Protection
+	void CalcDLPCheckMask();
 
 protected:
 ////////////// USER
@@ -769,6 +775,15 @@ protected:
 	static bool s_bCryptLayerRequested;	
 	static uint32	s_dwKadUDPKey;
 	static uint8 s_byCryptTCPPaddingLength;
+
+	// Dynamic Leecher Protection
+	static bool s_DLPCheckModString;
+	static bool s_DLPCheckUsername;
+	static bool s_DLPCheckUserHash;
+	static bool s_DLPCheckHelloTag;
+	static bool s_DLPCheckInfoTag;
+	static bool s_DLPCheckVeryCDMod;
+	static bool s_DLPCheckGhostMod; //Added by Bill Lee
 
 	// GeoIP
 	static bool s_GeoIPEnabled;

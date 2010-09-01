@@ -321,6 +321,19 @@ wxString CamuleGuiApp::GetLog(bool reset)
 	return CamuleApp::GetLog(reset);
 }
 
+void CamuleGuiApp::AddDLPMessageLine(wxString &msg)
+{
+	wxString message;
+	time_t rawtime;
+	struct tm *timeinfo;
+	char tbuf[101];
+	time(&rawtime);
+	timeinfo = localtime(&rawtime);
+	strftime(tbuf, 100, "%Y-%m-%d %X: ", timeinfo);
+	
+	message = wxString(tbuf, wxConvUTF8) + msg;
+	amuledlg->AddDLPMessageLine(message);
+}
 
 wxString CamuleGuiApp::GetServerLog(bool reset)
 {

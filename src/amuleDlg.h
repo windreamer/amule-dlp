@@ -115,6 +115,7 @@ public:
 
 	void AddLogLine(const wxString& line);
 	void AddServerMessageLine(wxString& message);
+	void AddDLPMessageLine(wxString& msg);
 	void ResetLog(int id);
 	
 	void ShowUserCount(const wxString& info = wxEmptyString);
@@ -234,7 +235,7 @@ private:
 	wxZipEntry *entry;
 	ZipCatalog cat;
 
-	PageType m_logpages[4];
+	PageType m_logpages[5];
 	PageType m_networkpages[2];
 
 	bool LoadGUIPrefs(bool override_pos, bool override_size); 

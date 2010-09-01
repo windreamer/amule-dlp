@@ -17,9 +17,10 @@ class CString: public wxString{
 		CString(const wxString& str): wxString(str){}
 		CString(const CString& str): wxString(str){}
 		//---------------------
-		friend CString operator+(const CString& str1, const CString& str2){
+		//bad overload function
+		/*friend CString operator+(const CString& str1, const CString& str2){
 			return str1 + str2;
-		}
+		}*/
 		CString& operator=(const wxChar* str){
 			wxString::operator=(str);
 			return *this;

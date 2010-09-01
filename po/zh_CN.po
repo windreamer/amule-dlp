@@ -3806,6 +3806,8 @@ msgstr "aMule 日志"
 #: src/muuli_wdr.cpp:2603
 msgid "Server Info"
 msgstr "服务器信息"
+msgid "DLP Info"
+msgstr "动态反吸血信息"
 
 #: src/muuli_wdr.cpp:2607
 msgid "ED2K Info"
@@ -7505,6 +7507,36 @@ msgstr "正在处理请求 [已重定向]："
 #~ "\n"
 #~ "此外，浏览器设定已经被重设为系统默认值。如有必要，请重新配置浏览器选项。\n"
 
+msgid "Dynamic Leecher Protection Options"
+msgstr "动态反吸血保护选项"
+
+msgid "Check bad modstring"
+msgstr "根据 Mod 名字检测吸血驴"
+
+msgid "Check bad username"
+msgstr "根据用户名字检测吸血驴"
+
+msgid "Check bad userhash"
+msgstr "检测错误的用户哈希值"
+
+msgid "Check bad hello tag"
+msgstr "根据握手标签(HelloTag)检测吸血驴"
+
+msgid "Check bad info tag"
+msgstr "根据 InfoTag 检测吸血驴"
+
+msgid "Check ghost mod"
+msgstr "检测幽灵客户端(Ghost Mod)"
+
+#~ msgid "Ban VeryCD easyMule2"
+#~ msgstr "屏蔽 VeryCD easyMule2"
+
+msgid "Ban eMule VeryCD mod(Please consider carefully whether to use)"
+msgstr "屏蔽 VeryCD eMule（请慎重考虑是否使用）"
+
+#~ msgid "Ban VeryCD miniMule"
+#~ msgstr "屏蔽 VeryCD miniMule"
+
 #~ msgid "Fetching status..."
 #~ msgstr "正在获取状态..."
 
@@ -7863,7 +7895,7 @@ msgstr "正在处理请求 [已重定向]："
 #~ msgid "Please wait... "
 #~ msgstr "请等待 ..."
 
-#~ msgid "Could not determine the command for running the browser."
+#~ msgid "Could not the command for running the browser."
 #~ msgstr "无法确定运行浏览器的命令"
 
 #~ msgid "EC Connection Failed. Empty reply."
