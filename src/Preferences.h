@@ -784,6 +784,7 @@ protected:
 	static bool s_DLPCheckInfoTag;
 	static bool s_DLPCheckVeryCDMod;
 	static bool s_DLPCheckGhostMod; //Added by Bill Lee
+	static unsigned int s_DLPCheckMask;
 
 	// GeoIP
 	static bool s_GeoIPEnabled;
