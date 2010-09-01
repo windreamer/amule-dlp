@@ -45,12 +45,13 @@
 #define	KADEMLIAMAXENTRIES		60000		//Total keyword entries.
 #define	KADEMLIAMAXSOURCEPERFILE	1000		//Max number of sources per file in index.
 #define	KADEMLIAMAXNOTESPERFILE		150		//Max number of notes per entry in index.
-#define KADEMLIAFIREWALLCHECKS		4		//Firewallcheck Request at a time
+#define	KADEMLIAFIREWALLCHECKS		4		//Firewallcheck Request at a time
 // MOD Note: end
 
 // Kad parameters
 #define	KADEMLIA_FIND_VALUE		0x02
 #define	KADEMLIA_STORE			0x04
 #define	KADEMLIA_FIND_NODE		0x0B
+#define	KADEMLIA_FIND_VALUE_MORE	KADEMLIA_FIND_NODE
 
 #endif // KADCONSTANTS_H

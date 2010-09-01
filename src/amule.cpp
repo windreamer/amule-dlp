@@ -526,7 +526,7 @@ bool CamuleApp::OnInit()
 		// We use the thread base because I don't want a dialog to pop up.
 		CHTTPDownloadThread* version_check = 
 			new CHTTPDownloadThread(wxT("http://amule.sourceforge.net/lastversion"),
-				theApp->ConfigDir + wxT("last_version_check"), theApp->ConfigDir + wxT("last_version"), HTTP_VersionCheck, false);
+				theApp->ConfigDir + wxT("last_version_check"), theApp->ConfigDir + wxT("last_version"), HTTP_VersionCheck, false, true);
 		version_check->Create();
 		version_check->Run();
 	}
@@ -1347,7 +1347,7 @@ void CamuleApp::OnFinishedAllocation(CAllocFinishedEvent& evt)
 	wxCHECK_RET(file, wxT("Allocation finished event sent for unspecified file"));
 	wxASSERT_MSG(downloadqueue->IsPartFile(file), wxT("CAllocFinishedEvent for unknown partfile"));
 
-	file->SetPartFileStatus(PS_EMPTY);
+	file->SetStatus(PS_EMPTY);
 
 	if (evt.Succeeded()) {
 		if (evt.IsPaused()) {
@@ -1836,7 +1836,7 @@ void CamuleApp::ListenSocketHandler(wxSocketEvent& event)
 }
 
 
-void CamuleApp::ShowConnectionState()
+void CamuleApp::ShowConnectionState(bool forceUpdate)
 {
 	static uint8 old_state = (1<<7); // This flag doesn't exist
 	
@@ -1857,8 +1857,6 @@ void CamuleApp::ShowConnectionState()
 			state |= CONNECTED_KAD_NOT;
 		}
 	}
-	
-	Notify_ShowConnState(state);
 	
 	if (old_state != state) {
 		// Get the changed value 
@@ -1911,7 +1909,7 @@ void CamuleApp::ShowConnectionState()
 	}
 	
 	ShowUserCount();
-	Notify_ShowConnState(state);
+	Notify_ShowConnState(forceUpdate);
 }
 
 
@@ -1991,7 +1989,7 @@ void CamuleApp::BootstrapKad(uint32 ip, uint16 port)
 		theApp->ShowConnectionState();
 	}
 	
-	Kademlia::CKademlia::Bootstrap(ip, port, true);
+	Kademlia::CKademlia::Bootstrap(ip, port);
 }
 
 
@@ -1999,7 +1997,7 @@ void CamuleApp::UpdateNotesDat(const wxString& url)
 {
 	wxString strTempFilename(theApp->ConfigDir + wxT("nodes.dat.download"));
 		
-	CHTTPDownloadThread *downloader = new CHTTPDownloadThread(url, strTempFilename, theApp->ConfigDir + wxT("nodes.dat"), HTTP_NodesDat);
+	CHTTPDownloadThread *downloader = new CHTTPDownloadThread(url, strTempFilename, theApp->ConfigDir + wxT("nodes.dat"), HTTP_NodesDat, true, false);
 	downloader->Create();
 	downloader->Run();
 }
