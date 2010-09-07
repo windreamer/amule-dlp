@@ -335,7 +335,7 @@ sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
-AM_CPPFLAGS = $(MULECPPFLAGS) $(BFD_CPPFLAGS) $(WX_CPPFLAGS)
+AM_CPPFLAGS = $(MULECPPFLAGS) $(BFD_CPPFLAGS) $(WXBASE_CPPFLAGS)
 AM_CXXFLAGS = $(MULECXXFLAGS) $(WX_CFLAGS_ONLY) $(WX_CXXFLAGS_ONLY)
 
 # Sources
