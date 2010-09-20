@@ -775,16 +775,14 @@ void CGenericClientListCtrl::DrawClientItem(
 			break;
 		case ColumnUserSpeedDown:
 			if (item->GetType() != A4AF_SOURCE && client->GetKBpsDown() > 0.001) {
-				buffer = wxString::Format(wxT("%.1f "),
-						client->GetKBpsDown()) + _("kB/s");
+				buffer = CFormat(_("%.1f kB/s")) % client->GetKBpsDown();
 				dc->DrawText(buffer, rect.GetX(), rect.GetY());
 			}
 			break;
 		case ColumnUserSpeedUp:
 			// Datarate is in bytes.
 			if (item->GetType() != A4AF_SOURCE && client->GetUploadDatarate() > 1024) {
-				buffer = wxString::Format(wxT("%.1f "),
-						client->GetUploadDatarate() / 1024.0f) + _("kB/s");
+				buffer = CFormat(_("%.1f kB/s")) % (client->GetUploadDatarate() / 1024.0);
 				dc->DrawText(buffer, rect.GetX(), rect.GetY());
 			}
 			break;
@@ -886,7 +884,7 @@ void CGenericClientListCtrl::DrawClientItem(
 						if ( qrDiff > 0 ) {
 							dc->SetTextForeground(*wxRED);
 						}
-						buffer = wxString::Format(_("QR: %u (%i)"), client->GetRemoteQueueRank(), qrDiff);
+						buffer = CFormat(_("QR: %u (%i)")) % client->GetRemoteQueueRank() % qrDiff;
 					} else {
 						buffer = _("QR: ???");
 					}
@@ -905,7 +903,7 @@ void CGenericClientListCtrl::DrawClientItem(
 					if (nRank == 0) {
 						buffer = _("Waiting for upload slot");
 					} else {
-						buffer = wxString::Format(_("QR: %u"), nRank);
+						buffer = CFormat(_("QR: %u")) % nRank;
 					}
 				} else if (client->GetUploadState() == US_UPLOADING) {
 					buffer = _("Uploading");
@@ -1160,9 +1158,7 @@ void CGenericClientListCtrl::ShowSourcesCount( int diff )
 	wxStaticText* label = CastByID( ID_CLIENTCOUNT, GetParent(), wxStaticText );
 
 	if (label) {	
-		wxString str = wxString::Format(wxT("%i"), m_clientcount );
-
-		label->SetLabel( str );
+		label->SetLabel(CFormat(wxT("%i")) % m_clientcount);
 		label->GetParent()->Layout();
 	}
 }
