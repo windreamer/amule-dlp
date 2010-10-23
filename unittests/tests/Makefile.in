@@ -72,7 +72,8 @@ CTagTest_LDADD = $(LDADD)
 am__DEPENDENCIES_1 =
 CTagTest_DEPENDENCIES = $(am__DEPENDENCIES_1) \
 	../muleunit/libmuleunit.a
-am_CUInt128Test_OBJECTS = CUInt128Test.$(OBJEXT) UInt128.$(OBJEXT)
+am_CUInt128Test_OBJECTS = CUInt128Test.$(OBJEXT) UInt128.$(OBJEXT) \
+	Format.$(OBJEXT)
 CUInt128Test_OBJECTS = $(am_CUInt128Test_OBJECTS)
 CUInt128Test_LDADD = $(LDADD)
 CUInt128Test_DEPENDENCIES = $(am__DEPENDENCIES_1) \
@@ -409,7 +410,7 @@ MAINTAINERCLEANFILES = Makefile.in
 TESTS = CUInt128Test RangeMapTest FormatTest StringFunctionsTest NetworkFunctionsTest FileDataIOTest PathTest TextFileTest CTagTest
 
 # Tests for the CUInt128 class
-CUInt128Test_SOURCES = CUInt128Test.cpp $(top_srcdir)/src/kademlia/utils/UInt128.cpp
+CUInt128Test_SOURCES = CUInt128Test.cpp $(top_srcdir)/src/kademlia/utils/UInt128.cpp $(top_srcdir)/src/libs/common/Format.cpp
 
 # Tests for the CRangeMap class
 RangeMapTest_SOURCES = RangeMapTest.cpp
