@@ -617,6 +617,10 @@ NEED_RC_FALSE
 NEED_RC_TRUE
 SYS_WIN32_FALSE
 SYS_WIN32_TRUE
+DEBUGFLAG
+USER_INSTALL_HOOK
+UPDATE_MIME_DATABASE
+KBUILDSYCOCA
 KDE_MIME_PATH
 KDE_ICON_PATH
 KDE_MODULE_PATH
@@ -14275,6 +14279,12 @@ fi
   test -n "$QT_MOC" && break
 done
 
+		if test -z ${QT_MOC}; then :
+
+			echo moc not found
+			exit 1
+
+fi
 
 else
 
@@ -14291,6 +14301,7 @@ else
 			{ $as_echo "$as_me:${as_lineno-$LINENO}: result: \"not found\"" >&5
 $as_echo "\"not found\"" >&6; }
 			QT_MOC="not found"
+			exit 1
 
 fi
 
@@ -14312,6 +14323,7 @@ else
 			{ $as_echo "$as_me:${as_lineno-$LINENO}: result: not found ${QT_MOC_VERSION} is too old" >&5
 $as_echo "not found ${QT_MOC_VERSION} is too old" >&6; }
 			QT_MOC="not found"
+			exit 1
 
 fi
 
@@ -14355,6 +14367,7 @@ $as_echo "$QT_GUI_LIBS" >&6; }
 else
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: not found" >&5
 $as_echo "not found" >&6; }
+		exit 1
 
 fi
 
@@ -14423,6 +14436,7 @@ $as_echo_n "checking for kde4-config... " >&6; }
 			KDE4_CONFIG="not found"
 			{ $as_echo "$as_me:${as_lineno-$LINENO}: result: not found" >&5
 $as_echo "not found" >&6; }
+			exit 1
 
 fi
 
@@ -14438,8 +14452,9 @@ $as_echo "found ${KDE4_CONFIG} with version ${KDE_CONF_VER}" >&6; }
 
 else
 
-			{ $as_echo "$as_me:${as_lineno-$LINENO}: result: not found" >&5
-$as_echo "not found" >&6; }
+			{ $as_echo "$as_me:${as_lineno-$LINENO}: result: at least version 4 required" >&5
+$as_echo "at least version 4 required" >&6; }
+			exit 1
 
 fi
 
@@ -14447,6 +14462,7 @@ else
 
 		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: not found" >&5
 $as_echo "not found" >&6; }
+		exit 1
 
 fi
 
@@ -14473,15 +14489,17 @@ $as_echo "${KDE_HEADER_DIR}" >&6; }
 
 else
 
-			{ $as_echo "$as_me:${as_lineno-$LINENO}: result: not found" >&5
-$as_echo "not found" >&6; }
+			{ $as_echo "$as_me:${as_lineno-$LINENO}: result: dataengine.h not found" >&5
+$as_echo "dataengine.h not found" >&6; }
+			exit 1
 
 fi
 
 else
 
-		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: not found2" >&5
-$as_echo "not found2" >&6; }
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: kdirwatch.h not found" >&5
+$as_echo "kdirwatch.h not found" >&6; }
+		exit 1
 
 fi
 
@@ -14638,6 +14656,131 @@ $as_echo "${KDE_MIME_PATH}" >&6; }
 else
   enable_plasmamule=disabled
 fi
+
+fi
+
+	if test ${enable_plasmamule:-no} = yes; then :
+
+		if test -z ${DEB_HOST_ARCH}; then :
+
+
+	for ac_prog in kbuildsycoca4 kbuildsycoca
+do
+  # Extract the first word of "$ac_prog", so it can be a program name with args.
+set dummy $ac_prog; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if test "${ac_cv_path_KBUILDSYCOCA+set}" = set; then :
+  $as_echo_n "(cached) " >&6
+else
+  case $KBUILDSYCOCA in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_KBUILDSYCOCA="$KBUILDSYCOCA" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_path_KBUILDSYCOCA="$as_dir/$ac_word$ac_exec_ext"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+KBUILDSYCOCA=$ac_cv_path_KBUILDSYCOCA
+if test -n "$KBUILDSYCOCA"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $KBUILDSYCOCA" >&5
+$as_echo "$KBUILDSYCOCA" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+  test -n "$KBUILDSYCOCA" && break
+done
+
+
+	if test -z ${KBUILDSYCOCA}; then :
+
+		echo "No tool for KDE Systemcache Management found"
+		exit 1
+
+fi
+
+
+
+	# Extract the first word of "update-mime-database", so it can be a program name with args.
+set dummy update-mime-database; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if test "${ac_cv_path_UPDATE_MIME_DATABASE+set}" = set; then :
+  $as_echo_n "(cached) " >&6
+else
+  case $UPDATE_MIME_DATABASE in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_UPDATE_MIME_DATABASE="$UPDATE_MIME_DATABASE" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_path_UPDATE_MIME_DATABASE="$as_dir/$ac_word$ac_exec_ext"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+UPDATE_MIME_DATABASE=$ac_cv_path_UPDATE_MIME_DATABASE
+if test -n "$UPDATE_MIME_DATABASE"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $UPDATE_MIME_DATABASE" >&5
+$as_echo "$UPDATE_MIME_DATABASE" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+
+	if test -z ${UPDATE_MIME_DATABASE}; then :
+
+		echo "No tool for MIME Datanase Management found"
+		exit 1
+
+fi
+
+
+
+	USER_INSTALL_HOOK="USER_INSTALL"
+
+
+
+fi
+
+fi
+
+	if test ${enable_debug:-yes} = yes; then :
+
+		DEBUGFLAG="-D__DEBUG__"
+
 
 fi
 
@@ -16645,18 +16788,18 @@ fi
 else
   wxinfo="$wxinfo,static"
 fi
-	echo "                                       wxWidgets             ${WX_VERSION_FULL} ($wxinfo)"
+	echo "                             wxWidgets             ${WX_VERSION_FULL} ($wxinfo)"
 
 fi
 if test ${enable_monolithic:-yes} = yes -o ${enable_amule_daemon:-no} = yes -o ${enable_amule_gui:-no} = yes -o ${enable_fileview:-no} = yes ; then :
-  echo "                                       crypto++              ${CRYPTOPP_VERSION_STRING} (${CRYPTOPP_STYLE}, in ${CRYPTOPP_PREFIX})"
+  echo "                             crypto++              ${CRYPTOPP_VERSION_STRING} (${CRYPTOPP_STYLE}, in ${CRYPTOPP_PREFIX})"
 fi
 if test ${enable_upnp:-yes} = yes; then :
 
 	if test -n "$with_libupnp_prefix"; then :
   libupnp_place=" (in $with_libupnp_prefix)"
 fi
-	echo "                                       libupnp               ${LIBUPNP_VERSION:-Not detected}${libupnp_place:-}"
+	echo "                             libupnp               ${LIBUPNP_VERSION:-Not detected}${libupnp_place:-}"
 
 fi
 if test ${enable_nls:-yes} = yes; then
@@ -16669,7 +16812,7 @@ else
   libintl_found="system"
 fi
 fi
-echo "                                       libintl               $libintl_found"
+echo "                             libintl               $libintl_found"
 fi
 if test ${enable_geoip:-no} = yes; then :
   if test -z "${with_geoip_headers:-}${with_geoip_lib:-}"; then :
@@ -16678,31 +16821,30 @@ else
   geoip_style=user
 fi
 	if test ${enable_monolithic:-yes} = yes -o ${enable_amule_gui:-no} = yes ; then :
-  echo "                                       libGeoIP              ${geoip_style}"
+  echo "                             libGeoIP              ${geoip_style}"
 fi
 fi
 if test ${enable_webserver:-no} = yes; then :
-  echo "                                       libpng                ${LIBPNG_VERSION:-Not detected}"
+  echo "                             libpng                ${LIBPNG_VERSION:-Not detected}"
 fi
 if test ${enable_cas:-no} = yes; then :
-  echo "                                       libgd                 ${GDLIB_VERSION:-Not detected}"
+  echo "                             libgd                 ${GDLIB_VERSION:-Not detected}"
 fi
 if test ${enable_monolithic:-yes} = yes -o ${enable_amule_daemon:-no} = yes -o ${enable_amulecmd:-no} = yes -o ${enable_webserver:-no} = yes -o ${enable_amule_gui:-no} = yes ; then :
-  echo "                                       zlib                  ${ZLIB_VERSION:-Not detected}"
+  echo "                             zlib                  ${ZLIB_VERSION:-Not detected}"
 fi
 if test ${enable_plasmamule:-no} = yes; then :
-  echo "                                       qt-moc                ${QT_MOC} ${QT_MOC_VERSION}"
-echo "                                       qt-core-libs          ${QT_CORE_LIBS}"
-echo "                                       qt-gui-libs           ${QT_GUI_LIBS}"
-echo "                                       kde4-config           ${KDE4_CONFIG} (${KDE_CONF_VER})"
-echo "                                       kde-headers           ${KDE_HEADER_DIR}"
-echo "                                       kde-services-path     ${KDE_SERVICE_PATH}"
-echo "                                       kde-module-path       ${KDE_MODULE_PATH}"
-echo "                                       kde-icon-path         ${KDE_ICON_PATH}"
-echo "                                       kde-mime-path         ${KDE_MIME_PATH}"
-echo "                                       kde-applinks-path     ${KDE_APPLNK_PATH}"
-echo "  **** You have to run kbuildsycoca after installing to let plasma know the changes ****"
-echo "  **** You have to run \"update-mime-database ${KDE_MIME_PATH}\" to register the mimetype ****"
+  echo "                             qt-moc                ${QT_MOC} ${QT_MOC_VERSION}"
+echo "                             qt-core-libs          ${QT_CORE_LIBS}"
+echo "                             qt-gui-libs           ${QT_GUI_LIBS}"
+echo "                             kde4-config           ${KDE4_CONFIG} (${KDE_CONF_VER})"
+echo "                             kde-headers           ${KDE_HEADER_DIR}"
+echo "                             kde-services-path     ${KDE_SERVICE_PATH}"
+echo "                             kde-module-path       ${KDE_MODULE_PATH}"
+echo "                             kde-icon-path         ${KDE_ICON_PATH}"
+echo "                             kde-mime-path         ${KDE_MIME_PATH}"
+echo "                             kde-applinks-path     ${KDE_APPLNK_PATH}"
+
 fi
 if test ${_mule_has_warnings:-no} = yes; then
 echo ""
