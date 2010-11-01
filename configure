@@ -1560,7 +1560,7 @@ Optional Features:
   --enable-amule-daemon   compile aMule daemon version
   --enable-amulecmd       compile aMule command line client
   --enable-webserver      compile aMule WebServer
-  --enable-amule-gui      compile aMule remote GUI (EXPERIMENTAL)
+  --enable-amule-gui      compile aMule remote GUI
   --enable-cas            compile C aMule Statistics
   --enable-wxcas          compile aMule GUI Statistics
   --disable-ed2k          don't compile aMule ed2k links handler
@@ -16750,7 +16750,7 @@ echo "  Should aMule be compiled with UPnP support?                ${enable_upnp
 echo "  Should aMule be compiled with IP2country support?          ${enable_geoip:-no}"
 echo "  Should aMule monolithic application be built?              ${enable_monolithic:-yes}"
 echo "  Should aMule daemon version be built?                      ${enable_amule_daemon:-no}"
-echo "  Should aMule remote gui be built? (EXPERIMENTAL)           ${enable_amule_gui:-no}"
+echo "  Should aMule remote gui be built?                          ${enable_amule_gui:-no}"
 echo "  Crypto++ library/headers style?                            ${CRYPTOPP_STYLE:-not found}"
 
 echo
