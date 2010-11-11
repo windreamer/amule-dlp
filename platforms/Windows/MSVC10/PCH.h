@@ -51,6 +51,8 @@
 #include <common/EventIDs.h>
 #include <common/FileFunctions.h>
 #include <common/Format.h>
+#include <common/Macros.h>
+#include <common/MacrosProgramSpecific.h>
 #include <common/MD5Sum.h>
 #include <common/MuleDebug.h>
 #include <common/Path.h>
