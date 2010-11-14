@@ -86,7 +86,6 @@ ARFLAGS = cru
 libmuleappcommon_a_AR = $(AR) $(ARFLAGS)
 libmuleappcommon_a_LIBADD =
 am_libmuleappcommon_a_OBJECTS = libmuleappcommon_a-CFile.$(OBJEXT) \
-	libmuleappcommon_a-DataToText.$(OBJEXT) \
 	libmuleappcommon_a-ED2KLink.$(OBJEXT) \
 	libmuleappcommon_a-GapList.$(OBJEXT) \
 	libmuleappcommon_a-MagnetURI.$(OBJEXT) \
@@ -115,17 +114,13 @@ am_libmuleappcore_a_OBJECTS = libmuleappcore_a-AsyncDNS.$(OBJEXT) \
 	libmuleappcore_a-UPnPBase.$(OBJEXT) \
 	libmuleappcore_a-Entry.$(OBJEXT) \
 	libmuleappcore_a-SearchManager.$(OBJEXT) \
-	libmuleappcore_a-Contact.$(OBJEXT) \
 	libmuleappcore_a-RoutingBin.$(OBJEXT) \
 	libmuleappcore_a-UInt128.$(OBJEXT)
 libmuleappcore_a_OBJECTS = $(am_libmuleappcore_a_OBJECTS)
 libmuleappgui_a_AR = $(AR) $(ARFLAGS)
 libmuleappgui_a_LIBADD =
 am_libmuleappgui_a_OBJECTS = libmuleappgui_a-BarShader.$(OBJEXT) \
-	libmuleappgui_a-ChatWnd.$(OBJEXT) \
 	libmuleappgui_a-ColorFrameCtrl.$(OBJEXT) \
-	libmuleappgui_a-CommentDialog.$(OBJEXT) \
-	libmuleappgui_a-CommentDialogLst.$(OBJEXT) \
 	libmuleappgui_a-EditServerListDlg.$(OBJEXT) \
 	libmuleappgui_a-listctrl.$(OBJEXT) \
 	libmuleappgui_a-FileDetailListCtrl.$(OBJEXT) \
@@ -170,10 +165,12 @@ am__objects_1 = amule-amule.$(OBJEXT) amule-BaseClient.$(OBJEXT) \
 	amule-Prefs.$(OBJEXT) amule-Search.$(OBJEXT) \
 	amule-UDPFirewallTester.$(OBJEXT) \
 	amule-KademliaUDPListener.$(OBJEXT) \
-	amule-PacketTracking.$(OBJEXT) amule-RoutingZone.$(OBJEXT)
+	amule-PacketTracking.$(OBJEXT) amule-Contact.$(OBJEXT) \
+	amule-RoutingZone.$(OBJEXT)
 am__objects_2 = amule-amule-gui.$(OBJEXT) amule-amuleDlg.$(OBJEXT) \
 	amule-AddFriend.$(OBJEXT) amule-CatDialog.$(OBJEXT) \
-	amule-ChatSelector.$(OBJEXT) \
+	amule-ChatSelector.$(OBJEXT) amule-ChatWnd.$(OBJEXT) \
+	amule-CommentDialog.$(OBJEXT) amule-CommentDialogLst.$(OBJEXT) \
 	amule-GenericClientListCtrl.$(OBJEXT) \
 	amule-ClientDetailDialog.$(OBJEXT) \
 	amule-DirectoryTreeCtrl.$(OBJEXT) \
@@ -191,7 +188,7 @@ am__objects_2 = amule-amule-gui.$(OBJEXT) amule-amuleDlg.$(OBJEXT) \
 am__objects_3 = amule-OtherFunctions.$(OBJEXT) \
 	amule-NetworkFunctions.$(OBJEXT)
 am__objects_4 = amule-amuleAppCommon.$(OBJEXT) \
-	amule-ClientCredits.$(OBJEXT) \
+	amule-ClientCredits.$(OBJEXT) amule-DataToText.$(OBJEXT) \
 	amule-ECSpecialMuleTags.$(OBJEXT) amule-KnownFile.$(OBJEXT) \
 	amule-GetTickCount.$(OBJEXT) amule-GuiEvents.$(OBJEXT) \
 	amule-Logger.$(OBJEXT) amule-PartFile.$(OBJEXT) \
@@ -250,11 +247,12 @@ am__objects_6 = amuled-amule.$(OBJEXT) amuled-BaseClient.$(OBJEXT) \
 	amuled-Prefs.$(OBJEXT) amuled-Search.$(OBJEXT) \
 	amuled-UDPFirewallTester.$(OBJEXT) \
 	amuled-KademliaUDPListener.$(OBJEXT) \
-	amuled-PacketTracking.$(OBJEXT) amuled-RoutingZone.$(OBJEXT)
+	amuled-PacketTracking.$(OBJEXT) amuled-Contact.$(OBJEXT) \
+	amuled-RoutingZone.$(OBJEXT)
 am__objects_7 = amuled-OtherFunctions.$(OBJEXT) \
 	amuled-NetworkFunctions.$(OBJEXT)
 am__objects_8 = amuled-amuleAppCommon.$(OBJEXT) \
-	amuled-ClientCredits.$(OBJEXT) \
+	amuled-ClientCredits.$(OBJEXT) amuled-DataToText.$(OBJEXT) \
 	amuled-ECSpecialMuleTags.$(OBJEXT) amuled-KnownFile.$(OBJEXT) \
 	amuled-GetTickCount.$(OBJEXT) amuled-GuiEvents.$(OBJEXT) \
 	amuled-Logger.$(OBJEXT) amuled-PartFile.$(OBJEXT) \
@@ -272,6 +270,8 @@ amuled_LINK = $(CXXLD) $(amuled_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 am__objects_9 = amulegui-amule-gui.$(OBJEXT) \
 	amulegui-amuleDlg.$(OBJEXT) amulegui-AddFriend.$(OBJEXT) \
 	amulegui-CatDialog.$(OBJEXT) amulegui-ChatSelector.$(OBJEXT) \
+	amulegui-ChatWnd.$(OBJEXT) amulegui-CommentDialog.$(OBJEXT) \
+	amulegui-CommentDialogLst.$(OBJEXT) \
 	amulegui-GenericClientListCtrl.$(OBJEXT) \
 	amulegui-ClientDetailDialog.$(OBJEXT) \
 	amulegui-DirectoryTreeCtrl.$(OBJEXT) \
@@ -294,7 +294,7 @@ am__objects_9 = amulegui-amule-gui.$(OBJEXT) \
 am__objects_10 = amulegui-OtherFunctions.$(OBJEXT) \
 	amulegui-NetworkFunctions.$(OBJEXT)
 am__objects_11 = amulegui-amuleAppCommon.$(OBJEXT) \
-	amulegui-ClientCredits.$(OBJEXT) \
+	amulegui-ClientCredits.$(OBJEXT) amulegui-DataToText.$(OBJEXT) \
 	amulegui-ECSpecialMuleTags.$(OBJEXT) \
 	amulegui-KnownFile.$(OBJEXT) amulegui-GetTickCount.$(OBJEXT) \
 	amulegui-GuiEvents.$(OBJEXT) amulegui-Logger.$(OBJEXT) \
@@ -615,7 +615,6 @@ noinst_LIBRARIES = $(am__append_8) $(am__append_9) $(am__append_10)
 # Common to core/gui/monolithic
 libmuleappcommon_a_SOURCES = \
 	CFile.cpp \
-	DataToText.cpp \
 	ED2KLink.cpp \
 	GapList.cpp \
 	MagnetURI.cpp \
@@ -646,7 +645,6 @@ libmuleappcore_a_SOURCES = \
 	UPnPBase.cpp \
 	kademlia/kademlia/Entry.cpp \
 	kademlia/kademlia/SearchManager.cpp \
-	kademlia/routing/Contact.cpp \
 	kademlia/routing/RoutingBin.cpp \
 	kademlia/utils/UInt128.cpp
 
@@ -655,10 +653,7 @@ libmuleappcore_a_CPPFLAGS = $(AM_CPPFLAGS) $(WXBASE_CPPFLAGS) -I$(srcdir)/libs -
 # Common to gui/monolithic
 libmuleappgui_a_SOURCES = \
 	BarShader.cpp \
-	ChatWnd.cpp \
 	ColorFrameCtrl.cpp \
-	CommentDialog.cpp \
-	CommentDialogLst.cpp \
 	EditServerListDlg.cpp \
 	extern/wxWidgets/listctrl.cpp \
 	FileDetailListCtrl.cpp \
@@ -714,6 +709,7 @@ core_sources = \
 	kademlia/kademlia/UDPFirewallTester.cpp \
 	kademlia/net/KademliaUDPListener.cpp \
 	kademlia/net/PacketTracking.cpp \
+	kademlia/routing/Contact.cpp \
 	kademlia/routing/RoutingZone.cpp
 
 gui_sources = \
@@ -722,6 +718,9 @@ gui_sources = \
 	AddFriend.cpp \
 	CatDialog.cpp \
 	ChatSelector.cpp \
+	ChatWnd.cpp \
+	CommentDialog.cpp \
+	CommentDialogLst.cpp \
 	GenericClientListCtrl.cpp \
 	ClientDetailDialog.cpp \
 	DirectoryTreeCtrl.cpp \
@@ -752,6 +751,7 @@ remote_common_sources = \
 common_sources = \
 	amuleAppCommon.cpp \
 	ClientCredits.cpp \
+	DataToText.cpp \
 	ECSpecialMuleTags.cpp \
 	KnownFile.cpp \
 	GetTickCount.cpp \
@@ -1112,13 +1112,18 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-CaptchaGenerator.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-CatDialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ChatSelector.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ChatWnd.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ClientCredits.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ClientCreditsList.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ClientDetailDialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ClientList.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ClientTCPSocket.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ClientUDPSocket.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-CommentDialog.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-CommentDialogLst.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-Contact.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-CorruptionBlackBox.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-DataToText.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-DirectoryTreeCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-DownloadClient.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-DownloadListCtrl.Po@am__quote@
@@ -1207,7 +1212,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-ClientList.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-ClientTCPSocket.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-ClientUDPSocket.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-Contact.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-CorruptionBlackBox.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-DataToText.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-DownloadClient.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-DownloadQueue.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-ECSpecialCoreTags.Po@am__quote@
@@ -1266,8 +1273,12 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-AddFriend.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-CatDialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-ChatSelector.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-ChatWnd.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-ClientCredits.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-ClientDetailDialog.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-CommentDialog.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-CommentDialogLst.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-DataToText.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-DirectoryTreeCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-DownloadListCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-ECSpecialMuleTags.Po@am__quote@
@@ -1314,7 +1325,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ed2k-MagnetURI.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ed2k-MuleCollection.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-CFile.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-DataToText.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-ED2KLink.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-GapList.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-MagnetURI.Po@am__quote@
@@ -1326,7 +1336,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-Tag.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-Timer.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-AsyncDNS.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-Contact.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-DeadSourceList.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-Entry.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-FileArea.Po@am__quote@
@@ -1344,10 +1353,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-UInt128.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-UPnPBase.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-BarShader.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-ChatWnd.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-ColorFrameCtrl.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-CommentDialog.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-CommentDialogLst.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-EditServerListDlg.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-FileDetailListCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-IP2Country.Po@am__quote@
@@ -1386,20 +1392,6 @@ libmuleappcommon_a-CFile.obj: CFile.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CFile.cpp' object='libmuleappcommon_a-CFile.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcommon_a-CFile.obj `if test -f 'CFile.cpp'; then $(CYGPATH_W) 'CFile.cpp'; else $(CYGPATH_W) '$(srcdir)/CFile.cpp'; fi`
-
-libmuleappcommon_a-DataToText.o: DataToText.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcommon_a-DataToText.o -MD -MP -MF $(DEPDIR)/libmuleappcommon_a-DataToText.Tpo -c -o libmuleappcommon_a-DataToText.o `test -f 'DataToText.cpp' || echo '$(srcdir)/'`DataToText.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleappcommon_a-DataToText.Tpo $(DEPDIR)/libmuleappcommon_a-DataToText.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='DataToText.cpp' object='libmuleappcommon_a-DataToText.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcommon_a-DataToText.o `test -f 'DataToText.cpp' || echo '$(srcdir)/'`DataToText.cpp
-
-libmuleappcommon_a-DataToText.obj: DataToText.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcommon_a-DataToText.obj -MD -MP -MF $(DEPDIR)/libmuleappcommon_a-DataToText.Tpo -c -o libmuleappcommon_a-DataToText.obj `if test -f 'DataToText.cpp'; then $(CYGPATH_W) 'DataToText.cpp'; else $(CYGPATH_W) '$(srcdir)/DataToText.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleappcommon_a-DataToText.Tpo $(DEPDIR)/libmuleappcommon_a-DataToText.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='DataToText.cpp' object='libmuleappcommon_a-DataToText.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcommon_a-DataToText.obj `if test -f 'DataToText.cpp'; then $(CYGPATH_W) 'DataToText.cpp'; else $(CYGPATH_W) '$(srcdir)/DataToText.cpp'; fi`
 
 libmuleappcommon_a-ED2KLink.o: ED2KLink.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcommon_a-ED2KLink.o -MD -MP -MF $(DEPDIR)/libmuleappcommon_a-ED2KLink.Tpo -c -o libmuleappcommon_a-ED2KLink.o `test -f 'ED2KLink.cpp' || echo '$(srcdir)/'`ED2KLink.cpp
@@ -1751,20 +1743,6 @@ libmuleappcore_a-SearchManager.obj: kademlia/kademlia/SearchManager.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcore_a-SearchManager.obj `if test -f 'kademlia/kademlia/SearchManager.cpp'; then $(CYGPATH_W) 'kademlia/kademlia/SearchManager.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/kademlia/SearchManager.cpp'; fi`
 
-libmuleappcore_a-Contact.o: kademlia/routing/Contact.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcore_a-Contact.o -MD -MP -MF $(DEPDIR)/libmuleappcore_a-Contact.Tpo -c -o libmuleappcore_a-Contact.o `test -f 'kademlia/routing/Contact.cpp' || echo '$(srcdir)/'`kademlia/routing/Contact.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleappcore_a-Contact.Tpo $(DEPDIR)/libmuleappcore_a-Contact.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/routing/Contact.cpp' object='libmuleappcore_a-Contact.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcore_a-Contact.o `test -f 'kademlia/routing/Contact.cpp' || echo '$(srcdir)/'`kademlia/routing/Contact.cpp
-
-libmuleappcore_a-Contact.obj: kademlia/routing/Contact.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcore_a-Contact.obj -MD -MP -MF $(DEPDIR)/libmuleappcore_a-Contact.Tpo -c -o libmuleappcore_a-Contact.obj `if test -f 'kademlia/routing/Contact.cpp'; then $(CYGPATH_W) 'kademlia/routing/Contact.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/routing/Contact.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleappcore_a-Contact.Tpo $(DEPDIR)/libmuleappcore_a-Contact.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/routing/Contact.cpp' object='libmuleappcore_a-Contact.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcore_a-Contact.obj `if test -f 'kademlia/routing/Contact.cpp'; then $(CYGPATH_W) 'kademlia/routing/Contact.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/routing/Contact.cpp'; fi`
-
 libmuleappcore_a-RoutingBin.o: kademlia/routing/RoutingBin.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcore_a-RoutingBin.o -MD -MP -MF $(DEPDIR)/libmuleappcore_a-RoutingBin.Tpo -c -o libmuleappcore_a-RoutingBin.o `test -f 'kademlia/routing/RoutingBin.cpp' || echo '$(srcdir)/'`kademlia/routing/RoutingBin.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleappcore_a-RoutingBin.Tpo $(DEPDIR)/libmuleappcore_a-RoutingBin.Po
@@ -1807,20 +1785,6 @@ libmuleappgui_a-BarShader.obj: BarShader.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappgui_a-BarShader.obj `if test -f 'BarShader.cpp'; then $(CYGPATH_W) 'BarShader.cpp'; else $(CYGPATH_W) '$(srcdir)/BarShader.cpp'; fi`
 
-libmuleappgui_a-ChatWnd.o: ChatWnd.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappgui_a-ChatWnd.o -MD -MP -MF $(DEPDIR)/libmuleappgui_a-ChatWnd.Tpo -c -o libmuleappgui_a-ChatWnd.o `test -f 'ChatWnd.cpp' || echo '$(srcdir)/'`ChatWnd.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleappgui_a-ChatWnd.Tpo $(DEPDIR)/libmuleappgui_a-ChatWnd.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ChatWnd.cpp' object='libmuleappgui_a-ChatWnd.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappgui_a-ChatWnd.o `test -f 'ChatWnd.cpp' || echo '$(srcdir)/'`ChatWnd.cpp
-
-libmuleappgui_a-ChatWnd.obj: ChatWnd.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappgui_a-ChatWnd.obj -MD -MP -MF $(DEPDIR)/libmuleappgui_a-ChatWnd.Tpo -c -o libmuleappgui_a-ChatWnd.obj `if test -f 'ChatWnd.cpp'; then $(CYGPATH_W) 'ChatWnd.cpp'; else $(CYGPATH_W) '$(srcdir)/ChatWnd.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleappgui_a-ChatWnd.Tpo $(DEPDIR)/libmuleappgui_a-ChatWnd.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ChatWnd.cpp' object='libmuleappgui_a-ChatWnd.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappgui_a-ChatWnd.obj `if test -f 'ChatWnd.cpp'; then $(CYGPATH_W) 'ChatWnd.cpp'; else $(CYGPATH_W) '$(srcdir)/ChatWnd.cpp'; fi`
-
 libmuleappgui_a-ColorFrameCtrl.o: ColorFrameCtrl.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappgui_a-ColorFrameCtrl.o -MD -MP -MF $(DEPDIR)/libmuleappgui_a-ColorFrameCtrl.Tpo -c -o libmuleappgui_a-ColorFrameCtrl.o `test -f 'ColorFrameCtrl.cpp' || echo '$(srcdir)/'`ColorFrameCtrl.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleappgui_a-ColorFrameCtrl.Tpo $(DEPDIR)/libmuleappgui_a-ColorFrameCtrl.Po
@@ -1834,34 +1798,6 @@ libmuleappgui_a-ColorFrameCtrl.obj: ColorFrameCtrl.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ColorFrameCtrl.cpp' object='libmuleappgui_a-ColorFrameCtrl.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappgui_a-ColorFrameCtrl.obj `if test -f 'ColorFrameCtrl.cpp'; then $(CYGPATH_W) 'ColorFrameCtrl.cpp'; else $(CYGPATH_W) '$(srcdir)/ColorFrameCtrl.cpp'; fi`
-
-libmuleappgui_a-CommentDialog.o: CommentDialog.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappgui_a-CommentDialog.o -MD -MP -MF $(DEPDIR)/libmuleappgui_a-CommentDialog.Tpo -c -o libmuleappgui_a-CommentDialog.o `test -f 'CommentDialog.cpp' || echo '$(srcdir)/'`CommentDialog.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleappgui_a-CommentDialog.Tpo $(DEPDIR)/libmuleappgui_a-CommentDialog.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CommentDialog.cpp' object='libmuleappgui_a-CommentDialog.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappgui_a-CommentDialog.o `test -f 'CommentDialog.cpp' || echo '$(srcdir)/'`CommentDialog.cpp
-
-libmuleappgui_a-CommentDialog.obj: CommentDialog.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappgui_a-CommentDialog.obj -MD -MP -MF $(DEPDIR)/libmuleappgui_a-CommentDialog.Tpo -c -o libmuleappgui_a-CommentDialog.obj `if test -f 'CommentDialog.cpp'; then $(CYGPATH_W) 'CommentDialog.cpp'; else $(CYGPATH_W) '$(srcdir)/CommentDialog.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleappgui_a-CommentDialog.Tpo $(DEPDIR)/libmuleappgui_a-CommentDialog.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CommentDialog.cpp' object='libmuleappgui_a-CommentDialog.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappgui_a-CommentDialog.obj `if test -f 'CommentDialog.cpp'; then $(CYGPATH_W) 'CommentDialog.cpp'; else $(CYGPATH_W) '$(srcdir)/CommentDialog.cpp'; fi`
-
-libmuleappgui_a-CommentDialogLst.o: CommentDialogLst.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappgui_a-CommentDialogLst.o -MD -MP -MF $(DEPDIR)/libmuleappgui_a-CommentDialogLst.Tpo -c -o libmuleappgui_a-CommentDialogLst.o `test -f 'CommentDialogLst.cpp' || echo '$(srcdir)/'`CommentDialogLst.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleappgui_a-CommentDialogLst.Tpo $(DEPDIR)/libmuleappgui_a-CommentDialogLst.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CommentDialogLst.cpp' object='libmuleappgui_a-CommentDialogLst.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappgui_a-CommentDialogLst.o `test -f 'CommentDialogLst.cpp' || echo '$(srcdir)/'`CommentDialogLst.cpp
-
-libmuleappgui_a-CommentDialogLst.obj: CommentDialogLst.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappgui_a-CommentDialogLst.obj -MD -MP -MF $(DEPDIR)/libmuleappgui_a-CommentDialogLst.Tpo -c -o libmuleappgui_a-CommentDialogLst.obj `if test -f 'CommentDialogLst.cpp'; then $(CYGPATH_W) 'CommentDialogLst.cpp'; else $(CYGPATH_W) '$(srcdir)/CommentDialogLst.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleappgui_a-CommentDialogLst.Tpo $(DEPDIR)/libmuleappgui_a-CommentDialogLst.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CommentDialogLst.cpp' object='libmuleappgui_a-CommentDialogLst.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappgui_a-CommentDialogLst.obj `if test -f 'CommentDialogLst.cpp'; then $(CYGPATH_W) 'CommentDialogLst.cpp'; else $(CYGPATH_W) '$(srcdir)/CommentDialogLst.cpp'; fi`
 
 libmuleappgui_a-EditServerListDlg.o: EditServerListDlg.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappgui_a-EditServerListDlg.o -MD -MP -MF $(DEPDIR)/libmuleappgui_a-EditServerListDlg.Tpo -c -o libmuleappgui_a-EditServerListDlg.o `test -f 'EditServerListDlg.cpp' || echo '$(srcdir)/'`EditServerListDlg.cpp
@@ -2619,6 +2555,20 @@ amule-PacketTracking.obj: kademlia/net/PacketTracking.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-PacketTracking.obj `if test -f 'kademlia/net/PacketTracking.cpp'; then $(CYGPATH_W) 'kademlia/net/PacketTracking.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/net/PacketTracking.cpp'; fi`
 
+amule-Contact.o: kademlia/routing/Contact.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-Contact.o -MD -MP -MF $(DEPDIR)/amule-Contact.Tpo -c -o amule-Contact.o `test -f 'kademlia/routing/Contact.cpp' || echo '$(srcdir)/'`kademlia/routing/Contact.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-Contact.Tpo $(DEPDIR)/amule-Contact.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/routing/Contact.cpp' object='amule-Contact.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-Contact.o `test -f 'kademlia/routing/Contact.cpp' || echo '$(srcdir)/'`kademlia/routing/Contact.cpp
+
+amule-Contact.obj: kademlia/routing/Contact.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-Contact.obj -MD -MP -MF $(DEPDIR)/amule-Contact.Tpo -c -o amule-Contact.obj `if test -f 'kademlia/routing/Contact.cpp'; then $(CYGPATH_W) 'kademlia/routing/Contact.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/routing/Contact.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-Contact.Tpo $(DEPDIR)/amule-Contact.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/routing/Contact.cpp' object='amule-Contact.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-Contact.obj `if test -f 'kademlia/routing/Contact.cpp'; then $(CYGPATH_W) 'kademlia/routing/Contact.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/routing/Contact.cpp'; fi`
+
 amule-RoutingZone.o: kademlia/routing/RoutingZone.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-RoutingZone.o -MD -MP -MF $(DEPDIR)/amule-RoutingZone.Tpo -c -o amule-RoutingZone.o `test -f 'kademlia/routing/RoutingZone.cpp' || echo '$(srcdir)/'`kademlia/routing/RoutingZone.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-RoutingZone.Tpo $(DEPDIR)/amule-RoutingZone.Po
@@ -2702,6 +2652,48 @@ amule-ChatSelector.obj: ChatSelector.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ChatSelector.cpp' object='amule-ChatSelector.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-ChatSelector.obj `if test -f 'ChatSelector.cpp'; then $(CYGPATH_W) 'ChatSelector.cpp'; else $(CYGPATH_W) '$(srcdir)/ChatSelector.cpp'; fi`
+
+amule-ChatWnd.o: ChatWnd.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-ChatWnd.o -MD -MP -MF $(DEPDIR)/amule-ChatWnd.Tpo -c -o amule-ChatWnd.o `test -f 'ChatWnd.cpp' || echo '$(srcdir)/'`ChatWnd.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-ChatWnd.Tpo $(DEPDIR)/amule-ChatWnd.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ChatWnd.cpp' object='amule-ChatWnd.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-ChatWnd.o `test -f 'ChatWnd.cpp' || echo '$(srcdir)/'`ChatWnd.cpp
+
+amule-ChatWnd.obj: ChatWnd.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-ChatWnd.obj -MD -MP -MF $(DEPDIR)/amule-ChatWnd.Tpo -c -o amule-ChatWnd.obj `if test -f 'ChatWnd.cpp'; then $(CYGPATH_W) 'ChatWnd.cpp'; else $(CYGPATH_W) '$(srcdir)/ChatWnd.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-ChatWnd.Tpo $(DEPDIR)/amule-ChatWnd.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ChatWnd.cpp' object='amule-ChatWnd.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-ChatWnd.obj `if test -f 'ChatWnd.cpp'; then $(CYGPATH_W) 'ChatWnd.cpp'; else $(CYGPATH_W) '$(srcdir)/ChatWnd.cpp'; fi`
+
+amule-CommentDialog.o: CommentDialog.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-CommentDialog.o -MD -MP -MF $(DEPDIR)/amule-CommentDialog.Tpo -c -o amule-CommentDialog.o `test -f 'CommentDialog.cpp' || echo '$(srcdir)/'`CommentDialog.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-CommentDialog.Tpo $(DEPDIR)/amule-CommentDialog.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CommentDialog.cpp' object='amule-CommentDialog.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-CommentDialog.o `test -f 'CommentDialog.cpp' || echo '$(srcdir)/'`CommentDialog.cpp
+
+amule-CommentDialog.obj: CommentDialog.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-CommentDialog.obj -MD -MP -MF $(DEPDIR)/amule-CommentDialog.Tpo -c -o amule-CommentDialog.obj `if test -f 'CommentDialog.cpp'; then $(CYGPATH_W) 'CommentDialog.cpp'; else $(CYGPATH_W) '$(srcdir)/CommentDialog.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-CommentDialog.Tpo $(DEPDIR)/amule-CommentDialog.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CommentDialog.cpp' object='amule-CommentDialog.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-CommentDialog.obj `if test -f 'CommentDialog.cpp'; then $(CYGPATH_W) 'CommentDialog.cpp'; else $(CYGPATH_W) '$(srcdir)/CommentDialog.cpp'; fi`
+
+amule-CommentDialogLst.o: CommentDialogLst.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-CommentDialogLst.o -MD -MP -MF $(DEPDIR)/amule-CommentDialogLst.Tpo -c -o amule-CommentDialogLst.o `test -f 'CommentDialogLst.cpp' || echo '$(srcdir)/'`CommentDialogLst.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-CommentDialogLst.Tpo $(DEPDIR)/amule-CommentDialogLst.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CommentDialogLst.cpp' object='amule-CommentDialogLst.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-CommentDialogLst.o `test -f 'CommentDialogLst.cpp' || echo '$(srcdir)/'`CommentDialogLst.cpp
+
+amule-CommentDialogLst.obj: CommentDialogLst.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-CommentDialogLst.obj -MD -MP -MF $(DEPDIR)/amule-CommentDialogLst.Tpo -c -o amule-CommentDialogLst.obj `if test -f 'CommentDialogLst.cpp'; then $(CYGPATH_W) 'CommentDialogLst.cpp'; else $(CYGPATH_W) '$(srcdir)/CommentDialogLst.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-CommentDialogLst.Tpo $(DEPDIR)/amule-CommentDialogLst.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CommentDialogLst.cpp' object='amule-CommentDialogLst.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-CommentDialogLst.obj `if test -f 'CommentDialogLst.cpp'; then $(CYGPATH_W) 'CommentDialogLst.cpp'; else $(CYGPATH_W) '$(srcdir)/CommentDialogLst.cpp'; fi`
 
 amule-GenericClientListCtrl.o: GenericClientListCtrl.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-GenericClientListCtrl.o -MD -MP -MF $(DEPDIR)/amule-GenericClientListCtrl.Tpo -c -o amule-GenericClientListCtrl.o `test -f 'GenericClientListCtrl.cpp' || echo '$(srcdir)/'`GenericClientListCtrl.cpp
@@ -3038,6 +3030,20 @@ amule-ClientCredits.obj: ClientCredits.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ClientCredits.cpp' object='amule-ClientCredits.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-ClientCredits.obj `if test -f 'ClientCredits.cpp'; then $(CYGPATH_W) 'ClientCredits.cpp'; else $(CYGPATH_W) '$(srcdir)/ClientCredits.cpp'; fi`
+
+amule-DataToText.o: DataToText.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-DataToText.o -MD -MP -MF $(DEPDIR)/amule-DataToText.Tpo -c -o amule-DataToText.o `test -f 'DataToText.cpp' || echo '$(srcdir)/'`DataToText.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-DataToText.Tpo $(DEPDIR)/amule-DataToText.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='DataToText.cpp' object='amule-DataToText.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-DataToText.o `test -f 'DataToText.cpp' || echo '$(srcdir)/'`DataToText.cpp
+
+amule-DataToText.obj: DataToText.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-DataToText.obj -MD -MP -MF $(DEPDIR)/amule-DataToText.Tpo -c -o amule-DataToText.obj `if test -f 'DataToText.cpp'; then $(CYGPATH_W) 'DataToText.cpp'; else $(CYGPATH_W) '$(srcdir)/DataToText.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-DataToText.Tpo $(DEPDIR)/amule-DataToText.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='DataToText.cpp' object='amule-DataToText.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-DataToText.obj `if test -f 'DataToText.cpp'; then $(CYGPATH_W) 'DataToText.cpp'; else $(CYGPATH_W) '$(srcdir)/DataToText.cpp'; fi`
 
 amule-ECSpecialMuleTags.o: ECSpecialMuleTags.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-ECSpecialMuleTags.o -MD -MP -MF $(DEPDIR)/amule-ECSpecialMuleTags.Tpo -c -o amule-ECSpecialMuleTags.o `test -f 'ECSpecialMuleTags.cpp' || echo '$(srcdir)/'`ECSpecialMuleTags.cpp
@@ -3949,6 +3955,20 @@ amuled-PacketTracking.obj: kademlia/net/PacketTracking.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-PacketTracking.obj `if test -f 'kademlia/net/PacketTracking.cpp'; then $(CYGPATH_W) 'kademlia/net/PacketTracking.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/net/PacketTracking.cpp'; fi`
 
+amuled-Contact.o: kademlia/routing/Contact.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-Contact.o -MD -MP -MF $(DEPDIR)/amuled-Contact.Tpo -c -o amuled-Contact.o `test -f 'kademlia/routing/Contact.cpp' || echo '$(srcdir)/'`kademlia/routing/Contact.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuled-Contact.Tpo $(DEPDIR)/amuled-Contact.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/routing/Contact.cpp' object='amuled-Contact.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-Contact.o `test -f 'kademlia/routing/Contact.cpp' || echo '$(srcdir)/'`kademlia/routing/Contact.cpp
+
+amuled-Contact.obj: kademlia/routing/Contact.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-Contact.obj -MD -MP -MF $(DEPDIR)/amuled-Contact.Tpo -c -o amuled-Contact.obj `if test -f 'kademlia/routing/Contact.cpp'; then $(CYGPATH_W) 'kademlia/routing/Contact.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/routing/Contact.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuled-Contact.Tpo $(DEPDIR)/amuled-Contact.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='kademlia/routing/Contact.cpp' object='amuled-Contact.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-Contact.obj `if test -f 'kademlia/routing/Contact.cpp'; then $(CYGPATH_W) 'kademlia/routing/Contact.cpp'; else $(CYGPATH_W) '$(srcdir)/kademlia/routing/Contact.cpp'; fi`
+
 amuled-RoutingZone.o: kademlia/routing/RoutingZone.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-RoutingZone.o -MD -MP -MF $(DEPDIR)/amuled-RoutingZone.Tpo -c -o amuled-RoutingZone.o `test -f 'kademlia/routing/RoutingZone.cpp' || echo '$(srcdir)/'`kademlia/routing/RoutingZone.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuled-RoutingZone.Tpo $(DEPDIR)/amuled-RoutingZone.Po
@@ -3990,6 +4010,20 @@ amuled-ClientCredits.obj: ClientCredits.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ClientCredits.cpp' object='amuled-ClientCredits.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-ClientCredits.obj `if test -f 'ClientCredits.cpp'; then $(CYGPATH_W) 'ClientCredits.cpp'; else $(CYGPATH_W) '$(srcdir)/ClientCredits.cpp'; fi`
+
+amuled-DataToText.o: DataToText.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-DataToText.o -MD -MP -MF $(DEPDIR)/amuled-DataToText.Tpo -c -o amuled-DataToText.o `test -f 'DataToText.cpp' || echo '$(srcdir)/'`DataToText.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuled-DataToText.Tpo $(DEPDIR)/amuled-DataToText.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='DataToText.cpp' object='amuled-DataToText.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-DataToText.o `test -f 'DataToText.cpp' || echo '$(srcdir)/'`DataToText.cpp
+
+amuled-DataToText.obj: DataToText.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-DataToText.obj -MD -MP -MF $(DEPDIR)/amuled-DataToText.Tpo -c -o amuled-DataToText.obj `if test -f 'DataToText.cpp'; then $(CYGPATH_W) 'DataToText.cpp'; else $(CYGPATH_W) '$(srcdir)/DataToText.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuled-DataToText.Tpo $(DEPDIR)/amuled-DataToText.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='DataToText.cpp' object='amuled-DataToText.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-DataToText.obj `if test -f 'DataToText.cpp'; then $(CYGPATH_W) 'DataToText.cpp'; else $(CYGPATH_W) '$(srcdir)/DataToText.cpp'; fi`
 
 amuled-ECSpecialMuleTags.o: ECSpecialMuleTags.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-ECSpecialMuleTags.o -MD -MP -MF $(DEPDIR)/amuled-ECSpecialMuleTags.Tpo -c -o amuled-ECSpecialMuleTags.o `test -f 'ECSpecialMuleTags.cpp' || echo '$(srcdir)/'`ECSpecialMuleTags.cpp
@@ -4312,6 +4346,48 @@ amulegui-ChatSelector.obj: ChatSelector.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ChatSelector.cpp' object='amulegui-ChatSelector.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-ChatSelector.obj `if test -f 'ChatSelector.cpp'; then $(CYGPATH_W) 'ChatSelector.cpp'; else $(CYGPATH_W) '$(srcdir)/ChatSelector.cpp'; fi`
+
+amulegui-ChatWnd.o: ChatWnd.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-ChatWnd.o -MD -MP -MF $(DEPDIR)/amulegui-ChatWnd.Tpo -c -o amulegui-ChatWnd.o `test -f 'ChatWnd.cpp' || echo '$(srcdir)/'`ChatWnd.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amulegui-ChatWnd.Tpo $(DEPDIR)/amulegui-ChatWnd.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ChatWnd.cpp' object='amulegui-ChatWnd.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-ChatWnd.o `test -f 'ChatWnd.cpp' || echo '$(srcdir)/'`ChatWnd.cpp
+
+amulegui-ChatWnd.obj: ChatWnd.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-ChatWnd.obj -MD -MP -MF $(DEPDIR)/amulegui-ChatWnd.Tpo -c -o amulegui-ChatWnd.obj `if test -f 'ChatWnd.cpp'; then $(CYGPATH_W) 'ChatWnd.cpp'; else $(CYGPATH_W) '$(srcdir)/ChatWnd.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amulegui-ChatWnd.Tpo $(DEPDIR)/amulegui-ChatWnd.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ChatWnd.cpp' object='amulegui-ChatWnd.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-ChatWnd.obj `if test -f 'ChatWnd.cpp'; then $(CYGPATH_W) 'ChatWnd.cpp'; else $(CYGPATH_W) '$(srcdir)/ChatWnd.cpp'; fi`
+
+amulegui-CommentDialog.o: CommentDialog.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-CommentDialog.o -MD -MP -MF $(DEPDIR)/amulegui-CommentDialog.Tpo -c -o amulegui-CommentDialog.o `test -f 'CommentDialog.cpp' || echo '$(srcdir)/'`CommentDialog.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amulegui-CommentDialog.Tpo $(DEPDIR)/amulegui-CommentDialog.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CommentDialog.cpp' object='amulegui-CommentDialog.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-CommentDialog.o `test -f 'CommentDialog.cpp' || echo '$(srcdir)/'`CommentDialog.cpp
+
+amulegui-CommentDialog.obj: CommentDialog.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-CommentDialog.obj -MD -MP -MF $(DEPDIR)/amulegui-CommentDialog.Tpo -c -o amulegui-CommentDialog.obj `if test -f 'CommentDialog.cpp'; then $(CYGPATH_W) 'CommentDialog.cpp'; else $(CYGPATH_W) '$(srcdir)/CommentDialog.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amulegui-CommentDialog.Tpo $(DEPDIR)/amulegui-CommentDialog.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CommentDialog.cpp' object='amulegui-CommentDialog.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-CommentDialog.obj `if test -f 'CommentDialog.cpp'; then $(CYGPATH_W) 'CommentDialog.cpp'; else $(CYGPATH_W) '$(srcdir)/CommentDialog.cpp'; fi`
+
+amulegui-CommentDialogLst.o: CommentDialogLst.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-CommentDialogLst.o -MD -MP -MF $(DEPDIR)/amulegui-CommentDialogLst.Tpo -c -o amulegui-CommentDialogLst.o `test -f 'CommentDialogLst.cpp' || echo '$(srcdir)/'`CommentDialogLst.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amulegui-CommentDialogLst.Tpo $(DEPDIR)/amulegui-CommentDialogLst.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CommentDialogLst.cpp' object='amulegui-CommentDialogLst.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-CommentDialogLst.o `test -f 'CommentDialogLst.cpp' || echo '$(srcdir)/'`CommentDialogLst.cpp
+
+amulegui-CommentDialogLst.obj: CommentDialogLst.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-CommentDialogLst.obj -MD -MP -MF $(DEPDIR)/amulegui-CommentDialogLst.Tpo -c -o amulegui-CommentDialogLst.obj `if test -f 'CommentDialogLst.cpp'; then $(CYGPATH_W) 'CommentDialogLst.cpp'; else $(CYGPATH_W) '$(srcdir)/CommentDialogLst.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amulegui-CommentDialogLst.Tpo $(DEPDIR)/amulegui-CommentDialogLst.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CommentDialogLst.cpp' object='amulegui-CommentDialogLst.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-CommentDialogLst.obj `if test -f 'CommentDialogLst.cpp'; then $(CYGPATH_W) 'CommentDialogLst.cpp'; else $(CYGPATH_W) '$(srcdir)/CommentDialogLst.cpp'; fi`
 
 amulegui-GenericClientListCtrl.o: GenericClientListCtrl.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-GenericClientListCtrl.o -MD -MP -MF $(DEPDIR)/amulegui-GenericClientListCtrl.Tpo -c -o amulegui-GenericClientListCtrl.o `test -f 'GenericClientListCtrl.cpp' || echo '$(srcdir)/'`GenericClientListCtrl.cpp
@@ -4648,6 +4724,20 @@ amulegui-ClientCredits.obj: ClientCredits.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ClientCredits.cpp' object='amulegui-ClientCredits.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-ClientCredits.obj `if test -f 'ClientCredits.cpp'; then $(CYGPATH_W) 'ClientCredits.cpp'; else $(CYGPATH_W) '$(srcdir)/ClientCredits.cpp'; fi`
+
+amulegui-DataToText.o: DataToText.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-DataToText.o -MD -MP -MF $(DEPDIR)/amulegui-DataToText.Tpo -c -o amulegui-DataToText.o `test -f 'DataToText.cpp' || echo '$(srcdir)/'`DataToText.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amulegui-DataToText.Tpo $(DEPDIR)/amulegui-DataToText.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='DataToText.cpp' object='amulegui-DataToText.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-DataToText.o `test -f 'DataToText.cpp' || echo '$(srcdir)/'`DataToText.cpp
+
+amulegui-DataToText.obj: DataToText.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-DataToText.obj -MD -MP -MF $(DEPDIR)/amulegui-DataToText.Tpo -c -o amulegui-DataToText.obj `if test -f 'DataToText.cpp'; then $(CYGPATH_W) 'DataToText.cpp'; else $(CYGPATH_W) '$(srcdir)/DataToText.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amulegui-DataToText.Tpo $(DEPDIR)/amulegui-DataToText.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='DataToText.cpp' object='amulegui-DataToText.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-DataToText.obj `if test -f 'DataToText.cpp'; then $(CYGPATH_W) 'DataToText.cpp'; else $(CYGPATH_W) '$(srcdir)/DataToText.cpp'; fi`
 
 amulegui-ECSpecialMuleTags.o: ECSpecialMuleTags.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-ECSpecialMuleTags.o -MD -MP -MF $(DEPDIR)/amulegui-ECSpecialMuleTags.Tpo -c -o amulegui-ECSpecialMuleTags.o `test -f 'ECSpecialMuleTags.cpp' || echo '$(srcdir)/'`ECSpecialMuleTags.cpp
