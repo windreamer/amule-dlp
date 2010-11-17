@@ -86,15 +86,19 @@ ARFLAGS = cru
 libmuleappcommon_a_AR = $(AR) $(ARFLAGS)
 libmuleappcommon_a_LIBADD =
 am_libmuleappcommon_a_OBJECTS = libmuleappcommon_a-CFile.$(OBJEXT) \
+	libmuleappcommon_a-ClientCredits.$(OBJEXT) \
 	libmuleappcommon_a-ED2KLink.$(OBJEXT) \
 	libmuleappcommon_a-GapList.$(OBJEXT) \
 	libmuleappcommon_a-MagnetURI.$(OBJEXT) \
 	libmuleappcommon_a-MemFile.$(OBJEXT) \
+	libmuleappcommon_a-NetworkFunctions.$(OBJEXT) \
+	libmuleappcommon_a-OtherFunctions.$(OBJEXT) \
 	libmuleappcommon_a-Packet.$(OBJEXT) \
 	libmuleappcommon_a-RLE.$(OBJEXT) \
 	libmuleappcommon_a-SafeFile.$(OBJEXT) \
 	libmuleappcommon_a-SHA.$(OBJEXT) \
 	libmuleappcommon_a-Tag.$(OBJEXT) \
+	libmuleappcommon_a-TerminationProcess.$(OBJEXT) \
 	libmuleappcommon_a-Timer.$(OBJEXT)
 libmuleappcommon_a_OBJECTS = $(am_libmuleappcommon_a_OBJECTS)
 libmuleappcore_a_AR = $(AR) $(ARFLAGS)
@@ -104,12 +108,14 @@ am_libmuleappcore_a_OBJECTS = libmuleappcore_a-AsyncDNS.$(OBJEXT) \
 	libmuleappcore_a-FileArea.$(OBJEXT) \
 	libmuleappcore_a-FileAutoClose.$(OBJEXT) \
 	libmuleappcore_a-Friend.$(OBJEXT) \
+	libmuleappcore_a-IPFilterScanner.$(OBJEXT) \
 	libmuleappcore_a-Scanner.$(OBJEXT) \
 	libmuleappcore_a-Parser.$(OBJEXT) \
 	libmuleappcore_a-PlatformSpecific.$(OBJEXT) \
 	libmuleappcore_a-RandomFunctions.$(OBJEXT) \
 	libmuleappcore_a-RC4Encrypt.$(OBJEXT) \
 	libmuleappcore_a-StateMachine.$(OBJEXT) \
+	libmuleappcore_a-TerminationProcessAmuleweb.$(OBJEXT) \
 	libmuleappcore_a-ThreadScheduler.$(OBJEXT) \
 	libmuleappcore_a-UPnPBase.$(OBJEXT) \
 	libmuleappcore_a-Entry.$(OBJEXT) \
@@ -125,6 +131,7 @@ am_libmuleappgui_a_OBJECTS = libmuleappgui_a-BarShader.$(OBJEXT) \
 	libmuleappgui_a-listctrl.$(OBJEXT) \
 	libmuleappgui_a-FileDetailListCtrl.$(OBJEXT) \
 	libmuleappgui_a-IP2Country.$(OBJEXT) \
+	libmuleappgui_a-MuleColour.$(OBJEXT) \
 	libmuleappgui_a-MuleGifCtrl.$(OBJEXT) \
 	libmuleappgui_a-MuleListCtrl.$(OBJEXT) \
 	libmuleappgui_a-MuleNotebook.$(OBJEXT) \
@@ -150,14 +157,12 @@ am__objects_1 = amule-amule.$(OBJEXT) amule-BaseClient.$(OBJEXT) \
 	amule-EncryptedStreamSocket.$(OBJEXT) \
 	amule-EncryptedDatagramSocket.$(OBJEXT) \
 	amule-ExternalConn.$(OBJEXT) amule-FriendList.$(OBJEXT) \
-	amule-HTTPDownload.$(OBJEXT) amule-IPFilter.$(OBJEXT) \
-	amule-IPFilterScanner.$(OBJEXT) amule-KnownFileList.$(OBJEXT) \
+	amule-IPFilter.$(OBJEXT) amule-KnownFileList.$(OBJEXT) \
 	amule-ListenSocket.$(OBJEXT) amule-MuleUDPSocket.$(OBJEXT) \
 	amule-PartFileConvert.$(OBJEXT) amule-SearchFile.$(OBJEXT) \
 	amule-SearchList.$(OBJEXT) amule-ServerConnect.$(OBJEXT) \
 	amule-ServerList.$(OBJEXT) amule-ServerSocket.$(OBJEXT) \
 	amule-ServerUDPSocket.$(OBJEXT) amule-SharedFileList.$(OBJEXT) \
-	amule-TerminationProcessAmuleweb.$(OBJEXT) \
 	amule-ThreadTasks.$(OBJEXT) \
 	amule-UploadBandwidthThrottler.$(OBJEXT) \
 	amule-UploadClient.$(OBJEXT) amule-UploadQueue.$(OBJEXT) \
@@ -184,22 +189,19 @@ am__objects_2 = amule-amule-gui.$(OBJEXT) amule-amuleDlg.$(OBJEXT) \
 	amule-SharedFilePeersListCtrl.$(OBJEXT) \
 	amule-FriendListCtrl.$(OBJEXT) amule-ServerListCtrl.$(OBJEXT) \
 	amule-SharedFilesCtrl.$(OBJEXT) amule-MuleTrayIcon.$(OBJEXT) \
-	amule-MuleColour.$(OBJEXT) amule-TransferWnd.$(OBJEXT)
-am__objects_3 = amule-OtherFunctions.$(OBJEXT) \
-	amule-NetworkFunctions.$(OBJEXT)
-am__objects_4 = amule-amuleAppCommon.$(OBJEXT) \
-	amule-ClientCredits.$(OBJEXT) amule-DataToText.$(OBJEXT) \
-	amule-ECSpecialMuleTags.$(OBJEXT) amule-KnownFile.$(OBJEXT) \
-	amule-GetTickCount.$(OBJEXT) amule-GuiEvents.$(OBJEXT) \
+	amule-TransferWnd.$(OBJEXT)
+am__objects_3 = amule-amuleAppCommon.$(OBJEXT) \
+	amule-DataToText.$(OBJEXT) amule-ECSpecialMuleTags.$(OBJEXT) \
+	amule-KnownFile.$(OBJEXT) amule-GetTickCount.$(OBJEXT) \
+	amule-GuiEvents.$(OBJEXT) amule-HTTPDownload.$(OBJEXT) \
 	amule-Logger.$(OBJEXT) amule-PartFile.$(OBJEXT) \
 	amule-Preferences.$(OBJEXT) amule-Proxy.$(OBJEXT) \
 	amule-Server.$(OBJEXT) amule-Statistics.$(OBJEXT) \
 	amule-StatTree.$(OBJEXT) amule-SHAHashSet.$(OBJEXT) \
-	amule-TerminationProcess.$(OBJEXT) amule-UserEvents.$(OBJEXT) \
-	$(am__objects_3)
+	amule-UserEvents.$(OBJEXT)
 am_amule_OBJECTS = amule-CaptchaDialog.$(OBJEXT) \
 	amule-CaptchaGenerator.$(OBJEXT) $(am__objects_1) \
-	$(am__objects_2) $(am__objects_4)
+	$(am__objects_2) $(am__objects_3)
 amule_OBJECTS = $(am_amule_OBJECTS)
 am__DEPENDENCIES_1 =
 am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
@@ -210,16 +212,16 @@ am__DEPENDENCIES_4 = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1)
 amule_LINK = $(CXXLD) $(amule_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-am__objects_5 = amulecmd-OtherFunctions.$(OBJEXT) \
-	amulecmd-NetworkFunctions.$(OBJEXT)
 am_amulecmd_OBJECTS = amulecmd-TextClient.$(OBJEXT) \
 	amulecmd-ExternalConnector.$(OBJEXT) \
-	amulecmd-LoggerConsole.$(OBJEXT) $(am__objects_5)
+	amulecmd-LoggerConsole.$(OBJEXT) \
+	amulecmd-OtherFunctions.$(OBJEXT) \
+	amulecmd-NetworkFunctions.$(OBJEXT)
 @NEED_RC_TRUE@nodist_amulecmd_OBJECTS = amulecmd-version.$(OBJEXT)
 amulecmd_OBJECTS = $(am_amulecmd_OBJECTS) $(nodist_amulecmd_OBJECTS)
 amulecmd_LINK = $(CXXLD) $(amulecmd_CXXFLAGS) $(CXXFLAGS) \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
-am__objects_6 = amuled-amule.$(OBJEXT) amuled-BaseClient.$(OBJEXT) \
+am__objects_4 = amuled-amule.$(OBJEXT) amuled-BaseClient.$(OBJEXT) \
 	amuled-CanceledFileList.$(OBJEXT) amuled-ClientList.$(OBJEXT) \
 	amuled-ClientCreditsList.$(OBJEXT) \
 	amuled-ClientTCPSocket.$(OBJEXT) \
@@ -230,17 +232,13 @@ am__objects_6 = amuled-amule.$(OBJEXT) amuled-BaseClient.$(OBJEXT) \
 	amuled-EncryptedStreamSocket.$(OBJEXT) \
 	amuled-EncryptedDatagramSocket.$(OBJEXT) \
 	amuled-ExternalConn.$(OBJEXT) amuled-FriendList.$(OBJEXT) \
-	amuled-HTTPDownload.$(OBJEXT) amuled-IPFilter.$(OBJEXT) \
-	amuled-IPFilterScanner.$(OBJEXT) \
-	amuled-KnownFileList.$(OBJEXT) amuled-ListenSocket.$(OBJEXT) \
-	amuled-MuleUDPSocket.$(OBJEXT) \
+	amuled-IPFilter.$(OBJEXT) amuled-KnownFileList.$(OBJEXT) \
+	amuled-ListenSocket.$(OBJEXT) amuled-MuleUDPSocket.$(OBJEXT) \
 	amuled-PartFileConvert.$(OBJEXT) amuled-SearchFile.$(OBJEXT) \
 	amuled-SearchList.$(OBJEXT) amuled-ServerConnect.$(OBJEXT) \
 	amuled-ServerList.$(OBJEXT) amuled-ServerSocket.$(OBJEXT) \
 	amuled-ServerUDPSocket.$(OBJEXT) \
-	amuled-SharedFileList.$(OBJEXT) \
-	amuled-TerminationProcessAmuleweb.$(OBJEXT) \
-	amuled-ThreadTasks.$(OBJEXT) \
+	amuled-SharedFileList.$(OBJEXT) amuled-ThreadTasks.$(OBJEXT) \
 	amuled-UploadBandwidthThrottler.$(OBJEXT) \
 	amuled-UploadClient.$(OBJEXT) amuled-UploadQueue.$(OBJEXT) \
 	amuled-Indexed.$(OBJEXT) amuled-Kademlia.$(OBJEXT) \
@@ -249,25 +247,22 @@ am__objects_6 = amuled-amule.$(OBJEXT) amuled-BaseClient.$(OBJEXT) \
 	amuled-KademliaUDPListener.$(OBJEXT) \
 	amuled-PacketTracking.$(OBJEXT) amuled-Contact.$(OBJEXT) \
 	amuled-RoutingZone.$(OBJEXT)
-am__objects_7 = amuled-OtherFunctions.$(OBJEXT) \
-	amuled-NetworkFunctions.$(OBJEXT)
-am__objects_8 = amuled-amuleAppCommon.$(OBJEXT) \
-	amuled-ClientCredits.$(OBJEXT) amuled-DataToText.$(OBJEXT) \
-	amuled-ECSpecialMuleTags.$(OBJEXT) amuled-KnownFile.$(OBJEXT) \
-	amuled-GetTickCount.$(OBJEXT) amuled-GuiEvents.$(OBJEXT) \
+am__objects_5 = amuled-amuleAppCommon.$(OBJEXT) \
+	amuled-DataToText.$(OBJEXT) amuled-ECSpecialMuleTags.$(OBJEXT) \
+	amuled-KnownFile.$(OBJEXT) amuled-GetTickCount.$(OBJEXT) \
+	amuled-GuiEvents.$(OBJEXT) amuled-HTTPDownload.$(OBJEXT) \
 	amuled-Logger.$(OBJEXT) amuled-PartFile.$(OBJEXT) \
 	amuled-Preferences.$(OBJEXT) amuled-Proxy.$(OBJEXT) \
 	amuled-Server.$(OBJEXT) amuled-Statistics.$(OBJEXT) \
 	amuled-StatTree.$(OBJEXT) amuled-SHAHashSet.$(OBJEXT) \
-	amuled-TerminationProcess.$(OBJEXT) \
-	amuled-UserEvents.$(OBJEXT) $(am__objects_7)
-am_amuled_OBJECTS = amuled-amuled.$(OBJEXT) amuled-Timer.$(OBJEXT) \
-	$(am__objects_6) $(am__objects_8)
+	amuled-UserEvents.$(OBJEXT)
+am_amuled_OBJECTS = amuled-amuled.$(OBJEXT) $(am__objects_4) \
+	$(am__objects_5)
 @NEED_RC_TRUE@nodist_amuled_OBJECTS = amuled-version.$(OBJEXT)
 amuled_OBJECTS = $(am_amuled_OBJECTS) $(nodist_amuled_OBJECTS)
 amuled_LINK = $(CXXLD) $(amuled_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-am__objects_9 = amulegui-amule-gui.$(OBJEXT) \
+am__objects_6 = amulegui-amule-gui.$(OBJEXT) \
 	amulegui-amuleDlg.$(OBJEXT) amulegui-AddFriend.$(OBJEXT) \
 	amulegui-CatDialog.$(OBJEXT) amulegui-ChatSelector.$(OBJEXT) \
 	amulegui-ChatWnd.$(OBJEXT) amulegui-CommentDialog.$(OBJEXT) \
@@ -289,24 +284,19 @@ am__objects_9 = amulegui-amule-gui.$(OBJEXT) \
 	amulegui-FriendListCtrl.$(OBJEXT) \
 	amulegui-ServerListCtrl.$(OBJEXT) \
 	amulegui-SharedFilesCtrl.$(OBJEXT) \
-	amulegui-MuleTrayIcon.$(OBJEXT) amulegui-MuleColour.$(OBJEXT) \
-	amulegui-TransferWnd.$(OBJEXT)
-am__objects_10 = amulegui-OtherFunctions.$(OBJEXT) \
-	amulegui-NetworkFunctions.$(OBJEXT)
-am__objects_11 = amulegui-amuleAppCommon.$(OBJEXT) \
-	amulegui-ClientCredits.$(OBJEXT) amulegui-DataToText.$(OBJEXT) \
+	amulegui-MuleTrayIcon.$(OBJEXT) amulegui-TransferWnd.$(OBJEXT)
+am__objects_7 = amulegui-amuleAppCommon.$(OBJEXT) \
+	amulegui-DataToText.$(OBJEXT) \
 	amulegui-ECSpecialMuleTags.$(OBJEXT) \
 	amulegui-KnownFile.$(OBJEXT) amulegui-GetTickCount.$(OBJEXT) \
-	amulegui-GuiEvents.$(OBJEXT) amulegui-Logger.$(OBJEXT) \
-	amulegui-PartFile.$(OBJEXT) amulegui-Preferences.$(OBJEXT) \
-	amulegui-Proxy.$(OBJEXT) amulegui-Server.$(OBJEXT) \
-	amulegui-Statistics.$(OBJEXT) amulegui-StatTree.$(OBJEXT) \
-	amulegui-SHAHashSet.$(OBJEXT) \
-	amulegui-TerminationProcess.$(OBJEXT) \
-	amulegui-UserEvents.$(OBJEXT) $(am__objects_10)
+	amulegui-GuiEvents.$(OBJEXT) amulegui-HTTPDownload.$(OBJEXT) \
+	amulegui-Logger.$(OBJEXT) amulegui-PartFile.$(OBJEXT) \
+	amulegui-Preferences.$(OBJEXT) amulegui-Proxy.$(OBJEXT) \
+	amulegui-Server.$(OBJEXT) amulegui-Statistics.$(OBJEXT) \
+	amulegui-StatTree.$(OBJEXT) amulegui-SHAHashSet.$(OBJEXT) \
+	amulegui-UserEvents.$(OBJEXT)
 am_amulegui_OBJECTS = amulegui-amule-remote-gui.$(OBJEXT) \
-	amulegui-HTTPDownload.$(OBJEXT) $(am__objects_9) \
-	$(am__objects_11)
+	$(am__objects_6) $(am__objects_7)
 amulegui_OBJECTS = $(am_amulegui_OBJECTS)
 amulegui_LINK = $(CXXLD) $(amulegui_CXXFLAGS) $(CXXFLAGS) \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
@@ -615,15 +605,19 @@ noinst_LIBRARIES = $(am__append_8) $(am__append_9) $(am__append_10)
 # Common to core/gui/monolithic
 libmuleappcommon_a_SOURCES = \
 	CFile.cpp \
+	ClientCredits.cpp \
 	ED2KLink.cpp \
 	GapList.cpp \
 	MagnetURI.cpp \
 	MemFile.cpp \
+	NetworkFunctions.cpp \
+	OtherFunctions.cpp \
 	Packet.cpp \
 	RLE.cpp \
 	SafeFile.cpp \
 	SHA.cpp \
 	Tag.cpp \
+	TerminationProcess.cpp \
 	Timer.cpp
 
 libmuleappcommon_a_CPPFLAGS = $(AM_CPPFLAGS) $(WXBASE_CPPFLAGS) -I$(srcdir)/libs -I$(srcdir)/include $(CRYPTOPP_CPPFLAGS) $(LIBUPNP_CPPFLAGS)
@@ -635,12 +629,14 @@ libmuleappcore_a_SOURCES = \
 	FileArea.cpp \
 	FileAutoClose.cpp \
 	Friend.cpp \
+	IPFilterScanner.cpp \
 	Scanner.cpp \
 	Parser.cpp \
 	PlatformSpecific.cpp \
 	RandomFunctions.cpp \
 	RC4Encrypt.cpp \
 	StateMachine.cpp \
+	TerminationProcessAmuleweb.cpp \
 	ThreadScheduler.cpp \
 	UPnPBase.cpp \
 	kademlia/kademlia/Entry.cpp \
@@ -658,6 +654,7 @@ libmuleappgui_a_SOURCES = \
 	extern/wxWidgets/listctrl.cpp \
 	FileDetailListCtrl.cpp \
 	IP2Country.cpp \
+	MuleColour.cpp \
 	MuleGifCtrl.cpp \
 	MuleListCtrl.cpp \
 	MuleNotebook.cpp \
@@ -683,9 +680,7 @@ core_sources = \
 	EncryptedDatagramSocket.cpp \
 	ExternalConn.cpp \
 	FriendList.cpp \
-	HTTPDownload.cpp \
 	IPFilter.cpp \
-	IPFilterScanner.cpp \
 	KnownFileList.cpp \
 	ListenSocket.cpp \
 	MuleUDPSocket.cpp \
@@ -697,7 +692,6 @@ core_sources = \
 	ServerSocket.cpp \
 	ServerUDPSocket.cpp \
 	SharedFileList.cpp \
-	TerminationProcessAmuleweb.cpp \
 	ThreadTasks.cpp \
 	UploadBandwidthThrottler.cpp \
 	UploadClient.cpp \
@@ -741,21 +735,16 @@ gui_sources = \
 	ServerListCtrl.cpp \
 	SharedFilesCtrl.cpp \
 	MuleTrayIcon.cpp \
-	MuleColour.cpp \
 	TransferWnd.cpp 
-
-remote_common_sources = \
-	OtherFunctions.cpp \
-	NetworkFunctions.cpp 
 
 common_sources = \
 	amuleAppCommon.cpp \
-	ClientCredits.cpp \
 	DataToText.cpp \
 	ECSpecialMuleTags.cpp \
 	KnownFile.cpp \
 	GetTickCount.cpp \
 	GuiEvents.cpp \
+	HTTPDownload.cpp \
 	Logger.cpp \
 	PartFile.cpp \
 	Preferences.cpp \
@@ -764,9 +753,7 @@ common_sources = \
 	Statistics.cpp \
 	StatTree.cpp \
 	SHAHashSet.cpp \
-	TerminationProcess.cpp \
-	UserEvents.cpp \
-	$(remote_common_sources)
+	UserEvents.cpp
 
 
 # Libs
@@ -790,7 +777,6 @@ common_flags = -I$(srcdir)/libs -Ilibs -I$(srcdir)/include $(CRYPTOPP_CPPFLAGS)
 # --------- Apps ---------
 amulegui_SOURCES = \
 	amule-remote-gui.cpp \
-	HTTPDownload.cpp \
 	$(gui_sources) \
 	$(ec_sources) \
 	$(common_sources)
@@ -805,7 +791,6 @@ amule_SOURCES = \
 
 amuled_SOURCES = \
 	amuled.cpp \
-	Timer.cpp \
 	$(core_sources) \
 	$(ec_sources) \
 	$(common_sources)
@@ -839,7 +824,8 @@ amulecmd_SOURCES = \
 	TextClient.cpp \
 	ExternalConnector.cpp \
 	LoggerConsole.cpp \
-	$(remote_common_sources)
+	OtherFunctions.cpp \
+	NetworkFunctions.cpp 
 
 amulecmd_DEPENDENCIES = $(remote_common_deps)
 amulecmd_CPPFLAGS = $(AM_CPPFLAGS) $(WXBASE_CPPFLAGS) $(common_flags)
@@ -1113,7 +1099,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-CatDialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ChatSelector.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ChatWnd.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ClientCredits.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ClientCreditsList.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ClientDetailDialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ClientList.Po@am__quote@
@@ -1142,7 +1127,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-GuiEvents.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-HTTPDownload.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-IPFilter.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-IPFilterScanner.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-Indexed.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-KadDlg.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-Kademlia.Po@am__quote@
@@ -1151,12 +1135,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-KnownFileList.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ListenSocket.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-Logger.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-MuleColour.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-MuleTrayIcon.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-MuleUDPSocket.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-NetworkFunctions.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-OScopeCtrl.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-OtherFunctions.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-PacketTracking.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-PartFile.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-PartFileConvert.Po@am__quote@
@@ -1187,8 +1168,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-StatTree.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-Statistics.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-StatisticsDlg.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-TerminationProcess.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-TerminationProcessAmuleweb.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-ThreadTasks.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-TransferWnd.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amule-UDPFirewallTester.Po@am__quote@
@@ -1207,7 +1186,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulecmd-TextClient.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-BaseClient.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-CanceledFileList.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-ClientCredits.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-ClientCreditsList.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-ClientList.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-ClientTCPSocket.Po@am__quote@
@@ -1228,7 +1206,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-GuiEvents.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-HTTPDownload.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-IPFilter.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-IPFilterScanner.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-Indexed.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-Kademlia.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-KademliaUDPListener.Po@am__quote@
@@ -1237,8 +1214,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-ListenSocket.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-Logger.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-MuleUDPSocket.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-NetworkFunctions.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-OtherFunctions.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-PacketTracking.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-PartFile.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-PartFileConvert.Po@am__quote@
@@ -1258,10 +1233,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-SharedFileList.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-StatTree.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-Statistics.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-TerminationProcess.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-TerminationProcessAmuleweb.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-ThreadTasks.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-Timer.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-UDPFirewallTester.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-UploadBandwidthThrottler.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-UploadClient.Po@am__quote@
@@ -1274,7 +1246,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-CatDialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-ChatSelector.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-ChatWnd.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-ClientCredits.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-ClientDetailDialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-CommentDialog.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-CommentDialogLst.Po@am__quote@
@@ -1291,11 +1262,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-KadDlg.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-KnownFile.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-Logger.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-MuleColour.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-MuleTrayIcon.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-NetworkFunctions.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-OScopeCtrl.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-OtherFunctions.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-PartFile.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-PartFileConvertDlg.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-Preferences.Po@am__quote@
@@ -1314,7 +1282,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-StatTree.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-Statistics.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-StatisticsDlg.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-TerminationProcess.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-TransferWnd.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-UserEvents.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-amule-gui.Po@am__quote@
@@ -1325,15 +1292,19 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ed2k-MagnetURI.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ed2k-MuleCollection.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-CFile.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-ClientCredits.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-ED2KLink.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-GapList.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-MagnetURI.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-MemFile.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-NetworkFunctions.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-OtherFunctions.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-Packet.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-RLE.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-SHA.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-SafeFile.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-Tag.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-TerminationProcess.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcommon_a-Timer.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-AsyncDNS.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-DeadSourceList.Po@am__quote@
@@ -1341,6 +1312,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-FileArea.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-FileAutoClose.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-Friend.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-IPFilterScanner.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-Parser.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-PlatformSpecific.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-RC4Encrypt.Po@am__quote@
@@ -1349,6 +1321,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-Scanner.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-SearchManager.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-StateMachine.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-TerminationProcessAmuleweb.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-ThreadScheduler.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-UInt128.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappcore_a-UPnPBase.Po@am__quote@
@@ -1358,6 +1331,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-FileDetailListCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-IP2Country.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-MuleCollection.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-MuleColour.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-MuleGifCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-MuleListCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleappgui_a-MuleNotebook.Po@am__quote@
@@ -1392,6 +1366,20 @@ libmuleappcommon_a-CFile.obj: CFile.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='CFile.cpp' object='libmuleappcommon_a-CFile.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcommon_a-CFile.obj `if test -f 'CFile.cpp'; then $(CYGPATH_W) 'CFile.cpp'; else $(CYGPATH_W) '$(srcdir)/CFile.cpp'; fi`
+
+libmuleappcommon_a-ClientCredits.o: ClientCredits.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcommon_a-ClientCredits.o -MD -MP -MF $(DEPDIR)/libmuleappcommon_a-ClientCredits.Tpo -c -o libmuleappcommon_a-ClientCredits.o `test -f 'ClientCredits.cpp' || echo '$(srcdir)/'`ClientCredits.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleappcommon_a-ClientCredits.Tpo $(DEPDIR)/libmuleappcommon_a-ClientCredits.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ClientCredits.cpp' object='libmuleappcommon_a-ClientCredits.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcommon_a-ClientCredits.o `test -f 'ClientCredits.cpp' || echo '$(srcdir)/'`ClientCredits.cpp
+
+libmuleappcommon_a-ClientCredits.obj: ClientCredits.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcommon_a-ClientCredits.obj -MD -MP -MF $(DEPDIR)/libmuleappcommon_a-ClientCredits.Tpo -c -o libmuleappcommon_a-ClientCredits.obj `if test -f 'ClientCredits.cpp'; then $(CYGPATH_W) 'ClientCredits.cpp'; else $(CYGPATH_W) '$(srcdir)/ClientCredits.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleappcommon_a-ClientCredits.Tpo $(DEPDIR)/libmuleappcommon_a-ClientCredits.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ClientCredits.cpp' object='libmuleappcommon_a-ClientCredits.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcommon_a-ClientCredits.obj `if test -f 'ClientCredits.cpp'; then $(CYGPATH_W) 'ClientCredits.cpp'; else $(CYGPATH_W) '$(srcdir)/ClientCredits.cpp'; fi`
 
 libmuleappcommon_a-ED2KLink.o: ED2KLink.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcommon_a-ED2KLink.o -MD -MP -MF $(DEPDIR)/libmuleappcommon_a-ED2KLink.Tpo -c -o libmuleappcommon_a-ED2KLink.o `test -f 'ED2KLink.cpp' || echo '$(srcdir)/'`ED2KLink.cpp
@@ -1448,6 +1436,34 @@ libmuleappcommon_a-MemFile.obj: MemFile.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='MemFile.cpp' object='libmuleappcommon_a-MemFile.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcommon_a-MemFile.obj `if test -f 'MemFile.cpp'; then $(CYGPATH_W) 'MemFile.cpp'; else $(CYGPATH_W) '$(srcdir)/MemFile.cpp'; fi`
+
+libmuleappcommon_a-NetworkFunctions.o: NetworkFunctions.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcommon_a-NetworkFunctions.o -MD -MP -MF $(DEPDIR)/libmuleappcommon_a-NetworkFunctions.Tpo -c -o libmuleappcommon_a-NetworkFunctions.o `test -f 'NetworkFunctions.cpp' || echo '$(srcdir)/'`NetworkFunctions.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleappcommon_a-NetworkFunctions.Tpo $(DEPDIR)/libmuleappcommon_a-NetworkFunctions.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='NetworkFunctions.cpp' object='libmuleappcommon_a-NetworkFunctions.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcommon_a-NetworkFunctions.o `test -f 'NetworkFunctions.cpp' || echo '$(srcdir)/'`NetworkFunctions.cpp
+
+libmuleappcommon_a-NetworkFunctions.obj: NetworkFunctions.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcommon_a-NetworkFunctions.obj -MD -MP -MF $(DEPDIR)/libmuleappcommon_a-NetworkFunctions.Tpo -c -o libmuleappcommon_a-NetworkFunctions.obj `if test -f 'NetworkFunctions.cpp'; then $(CYGPATH_W) 'NetworkFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/NetworkFunctions.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleappcommon_a-NetworkFunctions.Tpo $(DEPDIR)/libmuleappcommon_a-NetworkFunctions.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='NetworkFunctions.cpp' object='libmuleappcommon_a-NetworkFunctions.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcommon_a-NetworkFunctions.obj `if test -f 'NetworkFunctions.cpp'; then $(CYGPATH_W) 'NetworkFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/NetworkFunctions.cpp'; fi`
+
+libmuleappcommon_a-OtherFunctions.o: OtherFunctions.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcommon_a-OtherFunctions.o -MD -MP -MF $(DEPDIR)/libmuleappcommon_a-OtherFunctions.Tpo -c -o libmuleappcommon_a-OtherFunctions.o `test -f 'OtherFunctions.cpp' || echo '$(srcdir)/'`OtherFunctions.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleappcommon_a-OtherFunctions.Tpo $(DEPDIR)/libmuleappcommon_a-OtherFunctions.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='OtherFunctions.cpp' object='libmuleappcommon_a-OtherFunctions.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcommon_a-OtherFunctions.o `test -f 'OtherFunctions.cpp' || echo '$(srcdir)/'`OtherFunctions.cpp
+
+libmuleappcommon_a-OtherFunctions.obj: OtherFunctions.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcommon_a-OtherFunctions.obj -MD -MP -MF $(DEPDIR)/libmuleappcommon_a-OtherFunctions.Tpo -c -o libmuleappcommon_a-OtherFunctions.obj `if test -f 'OtherFunctions.cpp'; then $(CYGPATH_W) 'OtherFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/OtherFunctions.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleappcommon_a-OtherFunctions.Tpo $(DEPDIR)/libmuleappcommon_a-OtherFunctions.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='OtherFunctions.cpp' object='libmuleappcommon_a-OtherFunctions.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcommon_a-OtherFunctions.obj `if test -f 'OtherFunctions.cpp'; then $(CYGPATH_W) 'OtherFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/OtherFunctions.cpp'; fi`
 
 libmuleappcommon_a-Packet.o: Packet.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcommon_a-Packet.o -MD -MP -MF $(DEPDIR)/libmuleappcommon_a-Packet.Tpo -c -o libmuleappcommon_a-Packet.o `test -f 'Packet.cpp' || echo '$(srcdir)/'`Packet.cpp
@@ -1518,6 +1534,20 @@ libmuleappcommon_a-Tag.obj: Tag.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Tag.cpp' object='libmuleappcommon_a-Tag.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcommon_a-Tag.obj `if test -f 'Tag.cpp'; then $(CYGPATH_W) 'Tag.cpp'; else $(CYGPATH_W) '$(srcdir)/Tag.cpp'; fi`
+
+libmuleappcommon_a-TerminationProcess.o: TerminationProcess.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcommon_a-TerminationProcess.o -MD -MP -MF $(DEPDIR)/libmuleappcommon_a-TerminationProcess.Tpo -c -o libmuleappcommon_a-TerminationProcess.o `test -f 'TerminationProcess.cpp' || echo '$(srcdir)/'`TerminationProcess.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleappcommon_a-TerminationProcess.Tpo $(DEPDIR)/libmuleappcommon_a-TerminationProcess.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TerminationProcess.cpp' object='libmuleappcommon_a-TerminationProcess.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcommon_a-TerminationProcess.o `test -f 'TerminationProcess.cpp' || echo '$(srcdir)/'`TerminationProcess.cpp
+
+libmuleappcommon_a-TerminationProcess.obj: TerminationProcess.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcommon_a-TerminationProcess.obj -MD -MP -MF $(DEPDIR)/libmuleappcommon_a-TerminationProcess.Tpo -c -o libmuleappcommon_a-TerminationProcess.obj `if test -f 'TerminationProcess.cpp'; then $(CYGPATH_W) 'TerminationProcess.cpp'; else $(CYGPATH_W) '$(srcdir)/TerminationProcess.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleappcommon_a-TerminationProcess.Tpo $(DEPDIR)/libmuleappcommon_a-TerminationProcess.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TerminationProcess.cpp' object='libmuleappcommon_a-TerminationProcess.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcommon_a-TerminationProcess.obj `if test -f 'TerminationProcess.cpp'; then $(CYGPATH_W) 'TerminationProcess.cpp'; else $(CYGPATH_W) '$(srcdir)/TerminationProcess.cpp'; fi`
 
 libmuleappcommon_a-Timer.o: Timer.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcommon_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcommon_a-Timer.o -MD -MP -MF $(DEPDIR)/libmuleappcommon_a-Timer.Tpo -c -o libmuleappcommon_a-Timer.o `test -f 'Timer.cpp' || echo '$(srcdir)/'`Timer.cpp
@@ -1603,6 +1633,20 @@ libmuleappcore_a-Friend.obj: Friend.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcore_a-Friend.obj `if test -f 'Friend.cpp'; then $(CYGPATH_W) 'Friend.cpp'; else $(CYGPATH_W) '$(srcdir)/Friend.cpp'; fi`
 
+libmuleappcore_a-IPFilterScanner.o: IPFilterScanner.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcore_a-IPFilterScanner.o -MD -MP -MF $(DEPDIR)/libmuleappcore_a-IPFilterScanner.Tpo -c -o libmuleappcore_a-IPFilterScanner.o `test -f 'IPFilterScanner.cpp' || echo '$(srcdir)/'`IPFilterScanner.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleappcore_a-IPFilterScanner.Tpo $(DEPDIR)/libmuleappcore_a-IPFilterScanner.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IPFilterScanner.cpp' object='libmuleappcore_a-IPFilterScanner.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcore_a-IPFilterScanner.o `test -f 'IPFilterScanner.cpp' || echo '$(srcdir)/'`IPFilterScanner.cpp
+
+libmuleappcore_a-IPFilterScanner.obj: IPFilterScanner.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcore_a-IPFilterScanner.obj -MD -MP -MF $(DEPDIR)/libmuleappcore_a-IPFilterScanner.Tpo -c -o libmuleappcore_a-IPFilterScanner.obj `if test -f 'IPFilterScanner.cpp'; then $(CYGPATH_W) 'IPFilterScanner.cpp'; else $(CYGPATH_W) '$(srcdir)/IPFilterScanner.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleappcore_a-IPFilterScanner.Tpo $(DEPDIR)/libmuleappcore_a-IPFilterScanner.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IPFilterScanner.cpp' object='libmuleappcore_a-IPFilterScanner.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcore_a-IPFilterScanner.obj `if test -f 'IPFilterScanner.cpp'; then $(CYGPATH_W) 'IPFilterScanner.cpp'; else $(CYGPATH_W) '$(srcdir)/IPFilterScanner.cpp'; fi`
+
 libmuleappcore_a-Scanner.o: Scanner.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcore_a-Scanner.o -MD -MP -MF $(DEPDIR)/libmuleappcore_a-Scanner.Tpo -c -o libmuleappcore_a-Scanner.o `test -f 'Scanner.cpp' || echo '$(srcdir)/'`Scanner.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleappcore_a-Scanner.Tpo $(DEPDIR)/libmuleappcore_a-Scanner.Po
@@ -1686,6 +1730,20 @@ libmuleappcore_a-StateMachine.obj: StateMachine.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='StateMachine.cpp' object='libmuleappcore_a-StateMachine.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcore_a-StateMachine.obj `if test -f 'StateMachine.cpp'; then $(CYGPATH_W) 'StateMachine.cpp'; else $(CYGPATH_W) '$(srcdir)/StateMachine.cpp'; fi`
+
+libmuleappcore_a-TerminationProcessAmuleweb.o: TerminationProcessAmuleweb.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcore_a-TerminationProcessAmuleweb.o -MD -MP -MF $(DEPDIR)/libmuleappcore_a-TerminationProcessAmuleweb.Tpo -c -o libmuleappcore_a-TerminationProcessAmuleweb.o `test -f 'TerminationProcessAmuleweb.cpp' || echo '$(srcdir)/'`TerminationProcessAmuleweb.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleappcore_a-TerminationProcessAmuleweb.Tpo $(DEPDIR)/libmuleappcore_a-TerminationProcessAmuleweb.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TerminationProcessAmuleweb.cpp' object='libmuleappcore_a-TerminationProcessAmuleweb.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcore_a-TerminationProcessAmuleweb.o `test -f 'TerminationProcessAmuleweb.cpp' || echo '$(srcdir)/'`TerminationProcessAmuleweb.cpp
+
+libmuleappcore_a-TerminationProcessAmuleweb.obj: TerminationProcessAmuleweb.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcore_a-TerminationProcessAmuleweb.obj -MD -MP -MF $(DEPDIR)/libmuleappcore_a-TerminationProcessAmuleweb.Tpo -c -o libmuleappcore_a-TerminationProcessAmuleweb.obj `if test -f 'TerminationProcessAmuleweb.cpp'; then $(CYGPATH_W) 'TerminationProcessAmuleweb.cpp'; else $(CYGPATH_W) '$(srcdir)/TerminationProcessAmuleweb.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleappcore_a-TerminationProcessAmuleweb.Tpo $(DEPDIR)/libmuleappcore_a-TerminationProcessAmuleweb.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TerminationProcessAmuleweb.cpp' object='libmuleappcore_a-TerminationProcessAmuleweb.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappcore_a-TerminationProcessAmuleweb.obj `if test -f 'TerminationProcessAmuleweb.cpp'; then $(CYGPATH_W) 'TerminationProcessAmuleweb.cpp'; else $(CYGPATH_W) '$(srcdir)/TerminationProcessAmuleweb.cpp'; fi`
 
 libmuleappcore_a-ThreadScheduler.o: ThreadScheduler.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappcore_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappcore_a-ThreadScheduler.o -MD -MP -MF $(DEPDIR)/libmuleappcore_a-ThreadScheduler.Tpo -c -o libmuleappcore_a-ThreadScheduler.o `test -f 'ThreadScheduler.cpp' || echo '$(srcdir)/'`ThreadScheduler.cpp
@@ -1854,6 +1912,20 @@ libmuleappgui_a-IP2Country.obj: IP2Country.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IP2Country.cpp' object='libmuleappgui_a-IP2Country.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappgui_a-IP2Country.obj `if test -f 'IP2Country.cpp'; then $(CYGPATH_W) 'IP2Country.cpp'; else $(CYGPATH_W) '$(srcdir)/IP2Country.cpp'; fi`
+
+libmuleappgui_a-MuleColour.o: MuleColour.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappgui_a-MuleColour.o -MD -MP -MF $(DEPDIR)/libmuleappgui_a-MuleColour.Tpo -c -o libmuleappgui_a-MuleColour.o `test -f 'MuleColour.cpp' || echo '$(srcdir)/'`MuleColour.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleappgui_a-MuleColour.Tpo $(DEPDIR)/libmuleappgui_a-MuleColour.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='MuleColour.cpp' object='libmuleappgui_a-MuleColour.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappgui_a-MuleColour.o `test -f 'MuleColour.cpp' || echo '$(srcdir)/'`MuleColour.cpp
+
+libmuleappgui_a-MuleColour.obj: MuleColour.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappgui_a-MuleColour.obj -MD -MP -MF $(DEPDIR)/libmuleappgui_a-MuleColour.Tpo -c -o libmuleappgui_a-MuleColour.obj `if test -f 'MuleColour.cpp'; then $(CYGPATH_W) 'MuleColour.cpp'; else $(CYGPATH_W) '$(srcdir)/MuleColour.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleappgui_a-MuleColour.Tpo $(DEPDIR)/libmuleappgui_a-MuleColour.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='MuleColour.cpp' object='libmuleappgui_a-MuleColour.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmuleappgui_a-MuleColour.obj `if test -f 'MuleColour.cpp'; then $(CYGPATH_W) 'MuleColour.cpp'; else $(CYGPATH_W) '$(srcdir)/MuleColour.cpp'; fi`
 
 libmuleappgui_a-MuleGifCtrl.o: MuleGifCtrl.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleappgui_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmuleappgui_a-MuleGifCtrl.o -MD -MP -MF $(DEPDIR)/libmuleappgui_a-MuleGifCtrl.Tpo -c -o libmuleappgui_a-MuleGifCtrl.o `test -f 'MuleGifCtrl.cpp' || echo '$(srcdir)/'`MuleGifCtrl.cpp
@@ -2191,20 +2263,6 @@ amule-FriendList.obj: FriendList.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-FriendList.obj `if test -f 'FriendList.cpp'; then $(CYGPATH_W) 'FriendList.cpp'; else $(CYGPATH_W) '$(srcdir)/FriendList.cpp'; fi`
 
-amule-HTTPDownload.o: HTTPDownload.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-HTTPDownload.o -MD -MP -MF $(DEPDIR)/amule-HTTPDownload.Tpo -c -o amule-HTTPDownload.o `test -f 'HTTPDownload.cpp' || echo '$(srcdir)/'`HTTPDownload.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-HTTPDownload.Tpo $(DEPDIR)/amule-HTTPDownload.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='HTTPDownload.cpp' object='amule-HTTPDownload.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-HTTPDownload.o `test -f 'HTTPDownload.cpp' || echo '$(srcdir)/'`HTTPDownload.cpp
-
-amule-HTTPDownload.obj: HTTPDownload.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-HTTPDownload.obj -MD -MP -MF $(DEPDIR)/amule-HTTPDownload.Tpo -c -o amule-HTTPDownload.obj `if test -f 'HTTPDownload.cpp'; then $(CYGPATH_W) 'HTTPDownload.cpp'; else $(CYGPATH_W) '$(srcdir)/HTTPDownload.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-HTTPDownload.Tpo $(DEPDIR)/amule-HTTPDownload.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='HTTPDownload.cpp' object='amule-HTTPDownload.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-HTTPDownload.obj `if test -f 'HTTPDownload.cpp'; then $(CYGPATH_W) 'HTTPDownload.cpp'; else $(CYGPATH_W) '$(srcdir)/HTTPDownload.cpp'; fi`
-
 amule-IPFilter.o: IPFilter.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-IPFilter.o -MD -MP -MF $(DEPDIR)/amule-IPFilter.Tpo -c -o amule-IPFilter.o `test -f 'IPFilter.cpp' || echo '$(srcdir)/'`IPFilter.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-IPFilter.Tpo $(DEPDIR)/amule-IPFilter.Po
@@ -2218,20 +2276,6 @@ amule-IPFilter.obj: IPFilter.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IPFilter.cpp' object='amule-IPFilter.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-IPFilter.obj `if test -f 'IPFilter.cpp'; then $(CYGPATH_W) 'IPFilter.cpp'; else $(CYGPATH_W) '$(srcdir)/IPFilter.cpp'; fi`
-
-amule-IPFilterScanner.o: IPFilterScanner.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-IPFilterScanner.o -MD -MP -MF $(DEPDIR)/amule-IPFilterScanner.Tpo -c -o amule-IPFilterScanner.o `test -f 'IPFilterScanner.cpp' || echo '$(srcdir)/'`IPFilterScanner.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-IPFilterScanner.Tpo $(DEPDIR)/amule-IPFilterScanner.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IPFilterScanner.cpp' object='amule-IPFilterScanner.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-IPFilterScanner.o `test -f 'IPFilterScanner.cpp' || echo '$(srcdir)/'`IPFilterScanner.cpp
-
-amule-IPFilterScanner.obj: IPFilterScanner.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-IPFilterScanner.obj -MD -MP -MF $(DEPDIR)/amule-IPFilterScanner.Tpo -c -o amule-IPFilterScanner.obj `if test -f 'IPFilterScanner.cpp'; then $(CYGPATH_W) 'IPFilterScanner.cpp'; else $(CYGPATH_W) '$(srcdir)/IPFilterScanner.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-IPFilterScanner.Tpo $(DEPDIR)/amule-IPFilterScanner.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IPFilterScanner.cpp' object='amule-IPFilterScanner.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-IPFilterScanner.obj `if test -f 'IPFilterScanner.cpp'; then $(CYGPATH_W) 'IPFilterScanner.cpp'; else $(CYGPATH_W) '$(srcdir)/IPFilterScanner.cpp'; fi`
 
 amule-KnownFileList.o: KnownFileList.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-KnownFileList.o -MD -MP -MF $(DEPDIR)/amule-KnownFileList.Tpo -c -o amule-KnownFileList.o `test -f 'KnownFileList.cpp' || echo '$(srcdir)/'`KnownFileList.cpp
@@ -2386,20 +2430,6 @@ amule-SharedFileList.obj: SharedFileList.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='SharedFileList.cpp' object='amule-SharedFileList.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-SharedFileList.obj `if test -f 'SharedFileList.cpp'; then $(CYGPATH_W) 'SharedFileList.cpp'; else $(CYGPATH_W) '$(srcdir)/SharedFileList.cpp'; fi`
-
-amule-TerminationProcessAmuleweb.o: TerminationProcessAmuleweb.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-TerminationProcessAmuleweb.o -MD -MP -MF $(DEPDIR)/amule-TerminationProcessAmuleweb.Tpo -c -o amule-TerminationProcessAmuleweb.o `test -f 'TerminationProcessAmuleweb.cpp' || echo '$(srcdir)/'`TerminationProcessAmuleweb.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-TerminationProcessAmuleweb.Tpo $(DEPDIR)/amule-TerminationProcessAmuleweb.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TerminationProcessAmuleweb.cpp' object='amule-TerminationProcessAmuleweb.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-TerminationProcessAmuleweb.o `test -f 'TerminationProcessAmuleweb.cpp' || echo '$(srcdir)/'`TerminationProcessAmuleweb.cpp
-
-amule-TerminationProcessAmuleweb.obj: TerminationProcessAmuleweb.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-TerminationProcessAmuleweb.obj -MD -MP -MF $(DEPDIR)/amule-TerminationProcessAmuleweb.Tpo -c -o amule-TerminationProcessAmuleweb.obj `if test -f 'TerminationProcessAmuleweb.cpp'; then $(CYGPATH_W) 'TerminationProcessAmuleweb.cpp'; else $(CYGPATH_W) '$(srcdir)/TerminationProcessAmuleweb.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-TerminationProcessAmuleweb.Tpo $(DEPDIR)/amule-TerminationProcessAmuleweb.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TerminationProcessAmuleweb.cpp' object='amule-TerminationProcessAmuleweb.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-TerminationProcessAmuleweb.obj `if test -f 'TerminationProcessAmuleweb.cpp'; then $(CYGPATH_W) 'TerminationProcessAmuleweb.cpp'; else $(CYGPATH_W) '$(srcdir)/TerminationProcessAmuleweb.cpp'; fi`
 
 amule-ThreadTasks.o: ThreadTasks.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-ThreadTasks.o -MD -MP -MF $(DEPDIR)/amule-ThreadTasks.Tpo -c -o amule-ThreadTasks.o `test -f 'ThreadTasks.cpp' || echo '$(srcdir)/'`ThreadTasks.cpp
@@ -2975,20 +3005,6 @@ amule-MuleTrayIcon.obj: MuleTrayIcon.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-MuleTrayIcon.obj `if test -f 'MuleTrayIcon.cpp'; then $(CYGPATH_W) 'MuleTrayIcon.cpp'; else $(CYGPATH_W) '$(srcdir)/MuleTrayIcon.cpp'; fi`
 
-amule-MuleColour.o: MuleColour.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-MuleColour.o -MD -MP -MF $(DEPDIR)/amule-MuleColour.Tpo -c -o amule-MuleColour.o `test -f 'MuleColour.cpp' || echo '$(srcdir)/'`MuleColour.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-MuleColour.Tpo $(DEPDIR)/amule-MuleColour.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='MuleColour.cpp' object='amule-MuleColour.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-MuleColour.o `test -f 'MuleColour.cpp' || echo '$(srcdir)/'`MuleColour.cpp
-
-amule-MuleColour.obj: MuleColour.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-MuleColour.obj -MD -MP -MF $(DEPDIR)/amule-MuleColour.Tpo -c -o amule-MuleColour.obj `if test -f 'MuleColour.cpp'; then $(CYGPATH_W) 'MuleColour.cpp'; else $(CYGPATH_W) '$(srcdir)/MuleColour.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-MuleColour.Tpo $(DEPDIR)/amule-MuleColour.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='MuleColour.cpp' object='amule-MuleColour.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-MuleColour.obj `if test -f 'MuleColour.cpp'; then $(CYGPATH_W) 'MuleColour.cpp'; else $(CYGPATH_W) '$(srcdir)/MuleColour.cpp'; fi`
-
 amule-TransferWnd.o: TransferWnd.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-TransferWnd.o -MD -MP -MF $(DEPDIR)/amule-TransferWnd.Tpo -c -o amule-TransferWnd.o `test -f 'TransferWnd.cpp' || echo '$(srcdir)/'`TransferWnd.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-TransferWnd.Tpo $(DEPDIR)/amule-TransferWnd.Po
@@ -3016,20 +3032,6 @@ amule-amuleAppCommon.obj: amuleAppCommon.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='amuleAppCommon.cpp' object='amule-amuleAppCommon.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-amuleAppCommon.obj `if test -f 'amuleAppCommon.cpp'; then $(CYGPATH_W) 'amuleAppCommon.cpp'; else $(CYGPATH_W) '$(srcdir)/amuleAppCommon.cpp'; fi`
-
-amule-ClientCredits.o: ClientCredits.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-ClientCredits.o -MD -MP -MF $(DEPDIR)/amule-ClientCredits.Tpo -c -o amule-ClientCredits.o `test -f 'ClientCredits.cpp' || echo '$(srcdir)/'`ClientCredits.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-ClientCredits.Tpo $(DEPDIR)/amule-ClientCredits.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ClientCredits.cpp' object='amule-ClientCredits.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-ClientCredits.o `test -f 'ClientCredits.cpp' || echo '$(srcdir)/'`ClientCredits.cpp
-
-amule-ClientCredits.obj: ClientCredits.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-ClientCredits.obj -MD -MP -MF $(DEPDIR)/amule-ClientCredits.Tpo -c -o amule-ClientCredits.obj `if test -f 'ClientCredits.cpp'; then $(CYGPATH_W) 'ClientCredits.cpp'; else $(CYGPATH_W) '$(srcdir)/ClientCredits.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-ClientCredits.Tpo $(DEPDIR)/amule-ClientCredits.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ClientCredits.cpp' object='amule-ClientCredits.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-ClientCredits.obj `if test -f 'ClientCredits.cpp'; then $(CYGPATH_W) 'ClientCredits.cpp'; else $(CYGPATH_W) '$(srcdir)/ClientCredits.cpp'; fi`
 
 amule-DataToText.o: DataToText.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-DataToText.o -MD -MP -MF $(DEPDIR)/amule-DataToText.Tpo -c -o amule-DataToText.o `test -f 'DataToText.cpp' || echo '$(srcdir)/'`DataToText.cpp
@@ -3100,6 +3102,20 @@ amule-GuiEvents.obj: GuiEvents.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='GuiEvents.cpp' object='amule-GuiEvents.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-GuiEvents.obj `if test -f 'GuiEvents.cpp'; then $(CYGPATH_W) 'GuiEvents.cpp'; else $(CYGPATH_W) '$(srcdir)/GuiEvents.cpp'; fi`
+
+amule-HTTPDownload.o: HTTPDownload.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-HTTPDownload.o -MD -MP -MF $(DEPDIR)/amule-HTTPDownload.Tpo -c -o amule-HTTPDownload.o `test -f 'HTTPDownload.cpp' || echo '$(srcdir)/'`HTTPDownload.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-HTTPDownload.Tpo $(DEPDIR)/amule-HTTPDownload.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='HTTPDownload.cpp' object='amule-HTTPDownload.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-HTTPDownload.o `test -f 'HTTPDownload.cpp' || echo '$(srcdir)/'`HTTPDownload.cpp
+
+amule-HTTPDownload.obj: HTTPDownload.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-HTTPDownload.obj -MD -MP -MF $(DEPDIR)/amule-HTTPDownload.Tpo -c -o amule-HTTPDownload.obj `if test -f 'HTTPDownload.cpp'; then $(CYGPATH_W) 'HTTPDownload.cpp'; else $(CYGPATH_W) '$(srcdir)/HTTPDownload.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-HTTPDownload.Tpo $(DEPDIR)/amule-HTTPDownload.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='HTTPDownload.cpp' object='amule-HTTPDownload.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-HTTPDownload.obj `if test -f 'HTTPDownload.cpp'; then $(CYGPATH_W) 'HTTPDownload.cpp'; else $(CYGPATH_W) '$(srcdir)/HTTPDownload.cpp'; fi`
 
 amule-Logger.o: Logger.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-Logger.o -MD -MP -MF $(DEPDIR)/amule-Logger.Tpo -c -o amule-Logger.o `test -f 'Logger.cpp' || echo '$(srcdir)/'`Logger.cpp
@@ -3213,20 +3229,6 @@ amule-SHAHashSet.obj: SHAHashSet.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-SHAHashSet.obj `if test -f 'SHAHashSet.cpp'; then $(CYGPATH_W) 'SHAHashSet.cpp'; else $(CYGPATH_W) '$(srcdir)/SHAHashSet.cpp'; fi`
 
-amule-TerminationProcess.o: TerminationProcess.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-TerminationProcess.o -MD -MP -MF $(DEPDIR)/amule-TerminationProcess.Tpo -c -o amule-TerminationProcess.o `test -f 'TerminationProcess.cpp' || echo '$(srcdir)/'`TerminationProcess.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-TerminationProcess.Tpo $(DEPDIR)/amule-TerminationProcess.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TerminationProcess.cpp' object='amule-TerminationProcess.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-TerminationProcess.o `test -f 'TerminationProcess.cpp' || echo '$(srcdir)/'`TerminationProcess.cpp
-
-amule-TerminationProcess.obj: TerminationProcess.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-TerminationProcess.obj -MD -MP -MF $(DEPDIR)/amule-TerminationProcess.Tpo -c -o amule-TerminationProcess.obj `if test -f 'TerminationProcess.cpp'; then $(CYGPATH_W) 'TerminationProcess.cpp'; else $(CYGPATH_W) '$(srcdir)/TerminationProcess.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-TerminationProcess.Tpo $(DEPDIR)/amule-TerminationProcess.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TerminationProcess.cpp' object='amule-TerminationProcess.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-TerminationProcess.obj `if test -f 'TerminationProcess.cpp'; then $(CYGPATH_W) 'TerminationProcess.cpp'; else $(CYGPATH_W) '$(srcdir)/TerminationProcess.cpp'; fi`
-
 amule-UserEvents.o: UserEvents.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-UserEvents.o -MD -MP -MF $(DEPDIR)/amule-UserEvents.Tpo -c -o amule-UserEvents.o `test -f 'UserEvents.cpp' || echo '$(srcdir)/'`UserEvents.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-UserEvents.Tpo $(DEPDIR)/amule-UserEvents.Po
@@ -3240,34 +3242,6 @@ amule-UserEvents.obj: UserEvents.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='UserEvents.cpp' object='amule-UserEvents.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-UserEvents.obj `if test -f 'UserEvents.cpp'; then $(CYGPATH_W) 'UserEvents.cpp'; else $(CYGPATH_W) '$(srcdir)/UserEvents.cpp'; fi`
-
-amule-OtherFunctions.o: OtherFunctions.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-OtherFunctions.o -MD -MP -MF $(DEPDIR)/amule-OtherFunctions.Tpo -c -o amule-OtherFunctions.o `test -f 'OtherFunctions.cpp' || echo '$(srcdir)/'`OtherFunctions.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-OtherFunctions.Tpo $(DEPDIR)/amule-OtherFunctions.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='OtherFunctions.cpp' object='amule-OtherFunctions.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-OtherFunctions.o `test -f 'OtherFunctions.cpp' || echo '$(srcdir)/'`OtherFunctions.cpp
-
-amule-OtherFunctions.obj: OtherFunctions.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-OtherFunctions.obj -MD -MP -MF $(DEPDIR)/amule-OtherFunctions.Tpo -c -o amule-OtherFunctions.obj `if test -f 'OtherFunctions.cpp'; then $(CYGPATH_W) 'OtherFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/OtherFunctions.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-OtherFunctions.Tpo $(DEPDIR)/amule-OtherFunctions.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='OtherFunctions.cpp' object='amule-OtherFunctions.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-OtherFunctions.obj `if test -f 'OtherFunctions.cpp'; then $(CYGPATH_W) 'OtherFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/OtherFunctions.cpp'; fi`
-
-amule-NetworkFunctions.o: NetworkFunctions.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-NetworkFunctions.o -MD -MP -MF $(DEPDIR)/amule-NetworkFunctions.Tpo -c -o amule-NetworkFunctions.o `test -f 'NetworkFunctions.cpp' || echo '$(srcdir)/'`NetworkFunctions.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-NetworkFunctions.Tpo $(DEPDIR)/amule-NetworkFunctions.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='NetworkFunctions.cpp' object='amule-NetworkFunctions.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-NetworkFunctions.o `test -f 'NetworkFunctions.cpp' || echo '$(srcdir)/'`NetworkFunctions.cpp
-
-amule-NetworkFunctions.obj: NetworkFunctions.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-NetworkFunctions.obj -MD -MP -MF $(DEPDIR)/amule-NetworkFunctions.Tpo -c -o amule-NetworkFunctions.obj `if test -f 'NetworkFunctions.cpp'; then $(CYGPATH_W) 'NetworkFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/NetworkFunctions.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amule-NetworkFunctions.Tpo $(DEPDIR)/amule-NetworkFunctions.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='NetworkFunctions.cpp' object='amule-NetworkFunctions.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-NetworkFunctions.obj `if test -f 'NetworkFunctions.cpp'; then $(CYGPATH_W) 'NetworkFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/NetworkFunctions.cpp'; fi`
 
 amulecmd-TextClient.o: TextClient.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulecmd_CPPFLAGS) $(CPPFLAGS) $(amulecmd_CXXFLAGS) $(CXXFLAGS) -MT amulecmd-TextClient.o -MD -MP -MF $(DEPDIR)/amulecmd-TextClient.Tpo -c -o amulecmd-TextClient.o `test -f 'TextClient.cpp' || echo '$(srcdir)/'`TextClient.cpp
@@ -3352,20 +3326,6 @@ amuled-amuled.obj: amuled.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='amuled.cpp' object='amuled-amuled.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-amuled.obj `if test -f 'amuled.cpp'; then $(CYGPATH_W) 'amuled.cpp'; else $(CYGPATH_W) '$(srcdir)/amuled.cpp'; fi`
-
-amuled-Timer.o: Timer.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-Timer.o -MD -MP -MF $(DEPDIR)/amuled-Timer.Tpo -c -o amuled-Timer.o `test -f 'Timer.cpp' || echo '$(srcdir)/'`Timer.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuled-Timer.Tpo $(DEPDIR)/amuled-Timer.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Timer.cpp' object='amuled-Timer.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-Timer.o `test -f 'Timer.cpp' || echo '$(srcdir)/'`Timer.cpp
-
-amuled-Timer.obj: Timer.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-Timer.obj -MD -MP -MF $(DEPDIR)/amuled-Timer.Tpo -c -o amuled-Timer.obj `if test -f 'Timer.cpp'; then $(CYGPATH_W) 'Timer.cpp'; else $(CYGPATH_W) '$(srcdir)/Timer.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuled-Timer.Tpo $(DEPDIR)/amuled-Timer.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='Timer.cpp' object='amuled-Timer.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-Timer.obj `if test -f 'Timer.cpp'; then $(CYGPATH_W) 'Timer.cpp'; else $(CYGPATH_W) '$(srcdir)/Timer.cpp'; fi`
 
 amuled-amule.o: amule.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-amule.o -MD -MP -MF $(DEPDIR)/amuled-amule.Tpo -c -o amuled-amule.o `test -f 'amule.cpp' || echo '$(srcdir)/'`amule.cpp
@@ -3591,20 +3551,6 @@ amuled-FriendList.obj: FriendList.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-FriendList.obj `if test -f 'FriendList.cpp'; then $(CYGPATH_W) 'FriendList.cpp'; else $(CYGPATH_W) '$(srcdir)/FriendList.cpp'; fi`
 
-amuled-HTTPDownload.o: HTTPDownload.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-HTTPDownload.o -MD -MP -MF $(DEPDIR)/amuled-HTTPDownload.Tpo -c -o amuled-HTTPDownload.o `test -f 'HTTPDownload.cpp' || echo '$(srcdir)/'`HTTPDownload.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuled-HTTPDownload.Tpo $(DEPDIR)/amuled-HTTPDownload.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='HTTPDownload.cpp' object='amuled-HTTPDownload.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-HTTPDownload.o `test -f 'HTTPDownload.cpp' || echo '$(srcdir)/'`HTTPDownload.cpp
-
-amuled-HTTPDownload.obj: HTTPDownload.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-HTTPDownload.obj -MD -MP -MF $(DEPDIR)/amuled-HTTPDownload.Tpo -c -o amuled-HTTPDownload.obj `if test -f 'HTTPDownload.cpp'; then $(CYGPATH_W) 'HTTPDownload.cpp'; else $(CYGPATH_W) '$(srcdir)/HTTPDownload.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuled-HTTPDownload.Tpo $(DEPDIR)/amuled-HTTPDownload.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='HTTPDownload.cpp' object='amuled-HTTPDownload.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-HTTPDownload.obj `if test -f 'HTTPDownload.cpp'; then $(CYGPATH_W) 'HTTPDownload.cpp'; else $(CYGPATH_W) '$(srcdir)/HTTPDownload.cpp'; fi`
-
 amuled-IPFilter.o: IPFilter.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-IPFilter.o -MD -MP -MF $(DEPDIR)/amuled-IPFilter.Tpo -c -o amuled-IPFilter.o `test -f 'IPFilter.cpp' || echo '$(srcdir)/'`IPFilter.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuled-IPFilter.Tpo $(DEPDIR)/amuled-IPFilter.Po
@@ -3618,20 +3564,6 @@ amuled-IPFilter.obj: IPFilter.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IPFilter.cpp' object='amuled-IPFilter.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-IPFilter.obj `if test -f 'IPFilter.cpp'; then $(CYGPATH_W) 'IPFilter.cpp'; else $(CYGPATH_W) '$(srcdir)/IPFilter.cpp'; fi`
-
-amuled-IPFilterScanner.o: IPFilterScanner.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-IPFilterScanner.o -MD -MP -MF $(DEPDIR)/amuled-IPFilterScanner.Tpo -c -o amuled-IPFilterScanner.o `test -f 'IPFilterScanner.cpp' || echo '$(srcdir)/'`IPFilterScanner.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuled-IPFilterScanner.Tpo $(DEPDIR)/amuled-IPFilterScanner.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IPFilterScanner.cpp' object='amuled-IPFilterScanner.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-IPFilterScanner.o `test -f 'IPFilterScanner.cpp' || echo '$(srcdir)/'`IPFilterScanner.cpp
-
-amuled-IPFilterScanner.obj: IPFilterScanner.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-IPFilterScanner.obj -MD -MP -MF $(DEPDIR)/amuled-IPFilterScanner.Tpo -c -o amuled-IPFilterScanner.obj `if test -f 'IPFilterScanner.cpp'; then $(CYGPATH_W) 'IPFilterScanner.cpp'; else $(CYGPATH_W) '$(srcdir)/IPFilterScanner.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuled-IPFilterScanner.Tpo $(DEPDIR)/amuled-IPFilterScanner.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='IPFilterScanner.cpp' object='amuled-IPFilterScanner.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-IPFilterScanner.obj `if test -f 'IPFilterScanner.cpp'; then $(CYGPATH_W) 'IPFilterScanner.cpp'; else $(CYGPATH_W) '$(srcdir)/IPFilterScanner.cpp'; fi`
 
 amuled-KnownFileList.o: KnownFileList.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-KnownFileList.o -MD -MP -MF $(DEPDIR)/amuled-KnownFileList.Tpo -c -o amuled-KnownFileList.o `test -f 'KnownFileList.cpp' || echo '$(srcdir)/'`KnownFileList.cpp
@@ -3786,20 +3718,6 @@ amuled-SharedFileList.obj: SharedFileList.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='SharedFileList.cpp' object='amuled-SharedFileList.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-SharedFileList.obj `if test -f 'SharedFileList.cpp'; then $(CYGPATH_W) 'SharedFileList.cpp'; else $(CYGPATH_W) '$(srcdir)/SharedFileList.cpp'; fi`
-
-amuled-TerminationProcessAmuleweb.o: TerminationProcessAmuleweb.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-TerminationProcessAmuleweb.o -MD -MP -MF $(DEPDIR)/amuled-TerminationProcessAmuleweb.Tpo -c -o amuled-TerminationProcessAmuleweb.o `test -f 'TerminationProcessAmuleweb.cpp' || echo '$(srcdir)/'`TerminationProcessAmuleweb.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuled-TerminationProcessAmuleweb.Tpo $(DEPDIR)/amuled-TerminationProcessAmuleweb.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TerminationProcessAmuleweb.cpp' object='amuled-TerminationProcessAmuleweb.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-TerminationProcessAmuleweb.o `test -f 'TerminationProcessAmuleweb.cpp' || echo '$(srcdir)/'`TerminationProcessAmuleweb.cpp
-
-amuled-TerminationProcessAmuleweb.obj: TerminationProcessAmuleweb.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-TerminationProcessAmuleweb.obj -MD -MP -MF $(DEPDIR)/amuled-TerminationProcessAmuleweb.Tpo -c -o amuled-TerminationProcessAmuleweb.obj `if test -f 'TerminationProcessAmuleweb.cpp'; then $(CYGPATH_W) 'TerminationProcessAmuleweb.cpp'; else $(CYGPATH_W) '$(srcdir)/TerminationProcessAmuleweb.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuled-TerminationProcessAmuleweb.Tpo $(DEPDIR)/amuled-TerminationProcessAmuleweb.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TerminationProcessAmuleweb.cpp' object='amuled-TerminationProcessAmuleweb.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-TerminationProcessAmuleweb.obj `if test -f 'TerminationProcessAmuleweb.cpp'; then $(CYGPATH_W) 'TerminationProcessAmuleweb.cpp'; else $(CYGPATH_W) '$(srcdir)/TerminationProcessAmuleweb.cpp'; fi`
 
 amuled-ThreadTasks.o: ThreadTasks.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-ThreadTasks.o -MD -MP -MF $(DEPDIR)/amuled-ThreadTasks.Tpo -c -o amuled-ThreadTasks.o `test -f 'ThreadTasks.cpp' || echo '$(srcdir)/'`ThreadTasks.cpp
@@ -3997,20 +3915,6 @@ amuled-amuleAppCommon.obj: amuleAppCommon.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-amuleAppCommon.obj `if test -f 'amuleAppCommon.cpp'; then $(CYGPATH_W) 'amuleAppCommon.cpp'; else $(CYGPATH_W) '$(srcdir)/amuleAppCommon.cpp'; fi`
 
-amuled-ClientCredits.o: ClientCredits.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-ClientCredits.o -MD -MP -MF $(DEPDIR)/amuled-ClientCredits.Tpo -c -o amuled-ClientCredits.o `test -f 'ClientCredits.cpp' || echo '$(srcdir)/'`ClientCredits.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuled-ClientCredits.Tpo $(DEPDIR)/amuled-ClientCredits.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ClientCredits.cpp' object='amuled-ClientCredits.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-ClientCredits.o `test -f 'ClientCredits.cpp' || echo '$(srcdir)/'`ClientCredits.cpp
-
-amuled-ClientCredits.obj: ClientCredits.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-ClientCredits.obj -MD -MP -MF $(DEPDIR)/amuled-ClientCredits.Tpo -c -o amuled-ClientCredits.obj `if test -f 'ClientCredits.cpp'; then $(CYGPATH_W) 'ClientCredits.cpp'; else $(CYGPATH_W) '$(srcdir)/ClientCredits.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuled-ClientCredits.Tpo $(DEPDIR)/amuled-ClientCredits.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ClientCredits.cpp' object='amuled-ClientCredits.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-ClientCredits.obj `if test -f 'ClientCredits.cpp'; then $(CYGPATH_W) 'ClientCredits.cpp'; else $(CYGPATH_W) '$(srcdir)/ClientCredits.cpp'; fi`
-
 amuled-DataToText.o: DataToText.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-DataToText.o -MD -MP -MF $(DEPDIR)/amuled-DataToText.Tpo -c -o amuled-DataToText.o `test -f 'DataToText.cpp' || echo '$(srcdir)/'`DataToText.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuled-DataToText.Tpo $(DEPDIR)/amuled-DataToText.Po
@@ -4080,6 +3984,20 @@ amuled-GuiEvents.obj: GuiEvents.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='GuiEvents.cpp' object='amuled-GuiEvents.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-GuiEvents.obj `if test -f 'GuiEvents.cpp'; then $(CYGPATH_W) 'GuiEvents.cpp'; else $(CYGPATH_W) '$(srcdir)/GuiEvents.cpp'; fi`
+
+amuled-HTTPDownload.o: HTTPDownload.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-HTTPDownload.o -MD -MP -MF $(DEPDIR)/amuled-HTTPDownload.Tpo -c -o amuled-HTTPDownload.o `test -f 'HTTPDownload.cpp' || echo '$(srcdir)/'`HTTPDownload.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuled-HTTPDownload.Tpo $(DEPDIR)/amuled-HTTPDownload.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='HTTPDownload.cpp' object='amuled-HTTPDownload.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-HTTPDownload.o `test -f 'HTTPDownload.cpp' || echo '$(srcdir)/'`HTTPDownload.cpp
+
+amuled-HTTPDownload.obj: HTTPDownload.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-HTTPDownload.obj -MD -MP -MF $(DEPDIR)/amuled-HTTPDownload.Tpo -c -o amuled-HTTPDownload.obj `if test -f 'HTTPDownload.cpp'; then $(CYGPATH_W) 'HTTPDownload.cpp'; else $(CYGPATH_W) '$(srcdir)/HTTPDownload.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuled-HTTPDownload.Tpo $(DEPDIR)/amuled-HTTPDownload.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='HTTPDownload.cpp' object='amuled-HTTPDownload.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-HTTPDownload.obj `if test -f 'HTTPDownload.cpp'; then $(CYGPATH_W) 'HTTPDownload.cpp'; else $(CYGPATH_W) '$(srcdir)/HTTPDownload.cpp'; fi`
 
 amuled-Logger.o: Logger.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-Logger.o -MD -MP -MF $(DEPDIR)/amuled-Logger.Tpo -c -o amuled-Logger.o `test -f 'Logger.cpp' || echo '$(srcdir)/'`Logger.cpp
@@ -4193,20 +4111,6 @@ amuled-SHAHashSet.obj: SHAHashSet.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-SHAHashSet.obj `if test -f 'SHAHashSet.cpp'; then $(CYGPATH_W) 'SHAHashSet.cpp'; else $(CYGPATH_W) '$(srcdir)/SHAHashSet.cpp'; fi`
 
-amuled-TerminationProcess.o: TerminationProcess.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-TerminationProcess.o -MD -MP -MF $(DEPDIR)/amuled-TerminationProcess.Tpo -c -o amuled-TerminationProcess.o `test -f 'TerminationProcess.cpp' || echo '$(srcdir)/'`TerminationProcess.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuled-TerminationProcess.Tpo $(DEPDIR)/amuled-TerminationProcess.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TerminationProcess.cpp' object='amuled-TerminationProcess.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-TerminationProcess.o `test -f 'TerminationProcess.cpp' || echo '$(srcdir)/'`TerminationProcess.cpp
-
-amuled-TerminationProcess.obj: TerminationProcess.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-TerminationProcess.obj -MD -MP -MF $(DEPDIR)/amuled-TerminationProcess.Tpo -c -o amuled-TerminationProcess.obj `if test -f 'TerminationProcess.cpp'; then $(CYGPATH_W) 'TerminationProcess.cpp'; else $(CYGPATH_W) '$(srcdir)/TerminationProcess.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuled-TerminationProcess.Tpo $(DEPDIR)/amuled-TerminationProcess.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TerminationProcess.cpp' object='amuled-TerminationProcess.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-TerminationProcess.obj `if test -f 'TerminationProcess.cpp'; then $(CYGPATH_W) 'TerminationProcess.cpp'; else $(CYGPATH_W) '$(srcdir)/TerminationProcess.cpp'; fi`
-
 amuled-UserEvents.o: UserEvents.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-UserEvents.o -MD -MP -MF $(DEPDIR)/amuled-UserEvents.Tpo -c -o amuled-UserEvents.o `test -f 'UserEvents.cpp' || echo '$(srcdir)/'`UserEvents.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuled-UserEvents.Tpo $(DEPDIR)/amuled-UserEvents.Po
@@ -4221,34 +4125,6 @@ amuled-UserEvents.obj: UserEvents.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-UserEvents.obj `if test -f 'UserEvents.cpp'; then $(CYGPATH_W) 'UserEvents.cpp'; else $(CYGPATH_W) '$(srcdir)/UserEvents.cpp'; fi`
 
-amuled-OtherFunctions.o: OtherFunctions.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-OtherFunctions.o -MD -MP -MF $(DEPDIR)/amuled-OtherFunctions.Tpo -c -o amuled-OtherFunctions.o `test -f 'OtherFunctions.cpp' || echo '$(srcdir)/'`OtherFunctions.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuled-OtherFunctions.Tpo $(DEPDIR)/amuled-OtherFunctions.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='OtherFunctions.cpp' object='amuled-OtherFunctions.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-OtherFunctions.o `test -f 'OtherFunctions.cpp' || echo '$(srcdir)/'`OtherFunctions.cpp
-
-amuled-OtherFunctions.obj: OtherFunctions.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-OtherFunctions.obj -MD -MP -MF $(DEPDIR)/amuled-OtherFunctions.Tpo -c -o amuled-OtherFunctions.obj `if test -f 'OtherFunctions.cpp'; then $(CYGPATH_W) 'OtherFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/OtherFunctions.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuled-OtherFunctions.Tpo $(DEPDIR)/amuled-OtherFunctions.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='OtherFunctions.cpp' object='amuled-OtherFunctions.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-OtherFunctions.obj `if test -f 'OtherFunctions.cpp'; then $(CYGPATH_W) 'OtherFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/OtherFunctions.cpp'; fi`
-
-amuled-NetworkFunctions.o: NetworkFunctions.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-NetworkFunctions.o -MD -MP -MF $(DEPDIR)/amuled-NetworkFunctions.Tpo -c -o amuled-NetworkFunctions.o `test -f 'NetworkFunctions.cpp' || echo '$(srcdir)/'`NetworkFunctions.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuled-NetworkFunctions.Tpo $(DEPDIR)/amuled-NetworkFunctions.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='NetworkFunctions.cpp' object='amuled-NetworkFunctions.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-NetworkFunctions.o `test -f 'NetworkFunctions.cpp' || echo '$(srcdir)/'`NetworkFunctions.cpp
-
-amuled-NetworkFunctions.obj: NetworkFunctions.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-NetworkFunctions.obj -MD -MP -MF $(DEPDIR)/amuled-NetworkFunctions.Tpo -c -o amuled-NetworkFunctions.obj `if test -f 'NetworkFunctions.cpp'; then $(CYGPATH_W) 'NetworkFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/NetworkFunctions.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuled-NetworkFunctions.Tpo $(DEPDIR)/amuled-NetworkFunctions.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='NetworkFunctions.cpp' object='amuled-NetworkFunctions.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-NetworkFunctions.obj `if test -f 'NetworkFunctions.cpp'; then $(CYGPATH_W) 'NetworkFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/NetworkFunctions.cpp'; fi`
-
 amulegui-amule-remote-gui.o: amule-remote-gui.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-amule-remote-gui.o -MD -MP -MF $(DEPDIR)/amulegui-amule-remote-gui.Tpo -c -o amulegui-amule-remote-gui.o `test -f 'amule-remote-gui.cpp' || echo '$(srcdir)/'`amule-remote-gui.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amulegui-amule-remote-gui.Tpo $(DEPDIR)/amulegui-amule-remote-gui.Po
@@ -4262,20 +4138,6 @@ amulegui-amule-remote-gui.obj: amule-remote-gui.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='amule-remote-gui.cpp' object='amulegui-amule-remote-gui.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-amule-remote-gui.obj `if test -f 'amule-remote-gui.cpp'; then $(CYGPATH_W) 'amule-remote-gui.cpp'; else $(CYGPATH_W) '$(srcdir)/amule-remote-gui.cpp'; fi`
-
-amulegui-HTTPDownload.o: HTTPDownload.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-HTTPDownload.o -MD -MP -MF $(DEPDIR)/amulegui-HTTPDownload.Tpo -c -o amulegui-HTTPDownload.o `test -f 'HTTPDownload.cpp' || echo '$(srcdir)/'`HTTPDownload.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amulegui-HTTPDownload.Tpo $(DEPDIR)/amulegui-HTTPDownload.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='HTTPDownload.cpp' object='amulegui-HTTPDownload.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-HTTPDownload.o `test -f 'HTTPDownload.cpp' || echo '$(srcdir)/'`HTTPDownload.cpp
-
-amulegui-HTTPDownload.obj: HTTPDownload.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-HTTPDownload.obj -MD -MP -MF $(DEPDIR)/amulegui-HTTPDownload.Tpo -c -o amulegui-HTTPDownload.obj `if test -f 'HTTPDownload.cpp'; then $(CYGPATH_W) 'HTTPDownload.cpp'; else $(CYGPATH_W) '$(srcdir)/HTTPDownload.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amulegui-HTTPDownload.Tpo $(DEPDIR)/amulegui-HTTPDownload.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='HTTPDownload.cpp' object='amulegui-HTTPDownload.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-HTTPDownload.obj `if test -f 'HTTPDownload.cpp'; then $(CYGPATH_W) 'HTTPDownload.cpp'; else $(CYGPATH_W) '$(srcdir)/HTTPDownload.cpp'; fi`
 
 amulegui-amule-gui.o: amule-gui.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-amule-gui.o -MD -MP -MF $(DEPDIR)/amulegui-amule-gui.Tpo -c -o amulegui-amule-gui.o `test -f 'amule-gui.cpp' || echo '$(srcdir)/'`amule-gui.cpp
@@ -4669,20 +4531,6 @@ amulegui-MuleTrayIcon.obj: MuleTrayIcon.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-MuleTrayIcon.obj `if test -f 'MuleTrayIcon.cpp'; then $(CYGPATH_W) 'MuleTrayIcon.cpp'; else $(CYGPATH_W) '$(srcdir)/MuleTrayIcon.cpp'; fi`
 
-amulegui-MuleColour.o: MuleColour.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-MuleColour.o -MD -MP -MF $(DEPDIR)/amulegui-MuleColour.Tpo -c -o amulegui-MuleColour.o `test -f 'MuleColour.cpp' || echo '$(srcdir)/'`MuleColour.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amulegui-MuleColour.Tpo $(DEPDIR)/amulegui-MuleColour.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='MuleColour.cpp' object='amulegui-MuleColour.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-MuleColour.o `test -f 'MuleColour.cpp' || echo '$(srcdir)/'`MuleColour.cpp
-
-amulegui-MuleColour.obj: MuleColour.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-MuleColour.obj -MD -MP -MF $(DEPDIR)/amulegui-MuleColour.Tpo -c -o amulegui-MuleColour.obj `if test -f 'MuleColour.cpp'; then $(CYGPATH_W) 'MuleColour.cpp'; else $(CYGPATH_W) '$(srcdir)/MuleColour.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amulegui-MuleColour.Tpo $(DEPDIR)/amulegui-MuleColour.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='MuleColour.cpp' object='amulegui-MuleColour.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-MuleColour.obj `if test -f 'MuleColour.cpp'; then $(CYGPATH_W) 'MuleColour.cpp'; else $(CYGPATH_W) '$(srcdir)/MuleColour.cpp'; fi`
-
 amulegui-TransferWnd.o: TransferWnd.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-TransferWnd.o -MD -MP -MF $(DEPDIR)/amulegui-TransferWnd.Tpo -c -o amulegui-TransferWnd.o `test -f 'TransferWnd.cpp' || echo '$(srcdir)/'`TransferWnd.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amulegui-TransferWnd.Tpo $(DEPDIR)/amulegui-TransferWnd.Po
@@ -4710,20 +4558,6 @@ amulegui-amuleAppCommon.obj: amuleAppCommon.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='amuleAppCommon.cpp' object='amulegui-amuleAppCommon.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-amuleAppCommon.obj `if test -f 'amuleAppCommon.cpp'; then $(CYGPATH_W) 'amuleAppCommon.cpp'; else $(CYGPATH_W) '$(srcdir)/amuleAppCommon.cpp'; fi`
-
-amulegui-ClientCredits.o: ClientCredits.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-ClientCredits.o -MD -MP -MF $(DEPDIR)/amulegui-ClientCredits.Tpo -c -o amulegui-ClientCredits.o `test -f 'ClientCredits.cpp' || echo '$(srcdir)/'`ClientCredits.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amulegui-ClientCredits.Tpo $(DEPDIR)/amulegui-ClientCredits.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ClientCredits.cpp' object='amulegui-ClientCredits.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-ClientCredits.o `test -f 'ClientCredits.cpp' || echo '$(srcdir)/'`ClientCredits.cpp
-
-amulegui-ClientCredits.obj: ClientCredits.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-ClientCredits.obj -MD -MP -MF $(DEPDIR)/amulegui-ClientCredits.Tpo -c -o amulegui-ClientCredits.obj `if test -f 'ClientCredits.cpp'; then $(CYGPATH_W) 'ClientCredits.cpp'; else $(CYGPATH_W) '$(srcdir)/ClientCredits.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amulegui-ClientCredits.Tpo $(DEPDIR)/amulegui-ClientCredits.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='ClientCredits.cpp' object='amulegui-ClientCredits.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-ClientCredits.obj `if test -f 'ClientCredits.cpp'; then $(CYGPATH_W) 'ClientCredits.cpp'; else $(CYGPATH_W) '$(srcdir)/ClientCredits.cpp'; fi`
 
 amulegui-DataToText.o: DataToText.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-DataToText.o -MD -MP -MF $(DEPDIR)/amulegui-DataToText.Tpo -c -o amulegui-DataToText.o `test -f 'DataToText.cpp' || echo '$(srcdir)/'`DataToText.cpp
@@ -4794,6 +4628,20 @@ amulegui-GuiEvents.obj: GuiEvents.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='GuiEvents.cpp' object='amulegui-GuiEvents.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-GuiEvents.obj `if test -f 'GuiEvents.cpp'; then $(CYGPATH_W) 'GuiEvents.cpp'; else $(CYGPATH_W) '$(srcdir)/GuiEvents.cpp'; fi`
+
+amulegui-HTTPDownload.o: HTTPDownload.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-HTTPDownload.o -MD -MP -MF $(DEPDIR)/amulegui-HTTPDownload.Tpo -c -o amulegui-HTTPDownload.o `test -f 'HTTPDownload.cpp' || echo '$(srcdir)/'`HTTPDownload.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amulegui-HTTPDownload.Tpo $(DEPDIR)/amulegui-HTTPDownload.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='HTTPDownload.cpp' object='amulegui-HTTPDownload.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-HTTPDownload.o `test -f 'HTTPDownload.cpp' || echo '$(srcdir)/'`HTTPDownload.cpp
+
+amulegui-HTTPDownload.obj: HTTPDownload.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-HTTPDownload.obj -MD -MP -MF $(DEPDIR)/amulegui-HTTPDownload.Tpo -c -o amulegui-HTTPDownload.obj `if test -f 'HTTPDownload.cpp'; then $(CYGPATH_W) 'HTTPDownload.cpp'; else $(CYGPATH_W) '$(srcdir)/HTTPDownload.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amulegui-HTTPDownload.Tpo $(DEPDIR)/amulegui-HTTPDownload.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='HTTPDownload.cpp' object='amulegui-HTTPDownload.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-HTTPDownload.obj `if test -f 'HTTPDownload.cpp'; then $(CYGPATH_W) 'HTTPDownload.cpp'; else $(CYGPATH_W) '$(srcdir)/HTTPDownload.cpp'; fi`
 
 amulegui-Logger.o: Logger.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-Logger.o -MD -MP -MF $(DEPDIR)/amulegui-Logger.Tpo -c -o amulegui-Logger.o `test -f 'Logger.cpp' || echo '$(srcdir)/'`Logger.cpp
@@ -4907,20 +4755,6 @@ amulegui-SHAHashSet.obj: SHAHashSet.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-SHAHashSet.obj `if test -f 'SHAHashSet.cpp'; then $(CYGPATH_W) 'SHAHashSet.cpp'; else $(CYGPATH_W) '$(srcdir)/SHAHashSet.cpp'; fi`
 
-amulegui-TerminationProcess.o: TerminationProcess.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-TerminationProcess.o -MD -MP -MF $(DEPDIR)/amulegui-TerminationProcess.Tpo -c -o amulegui-TerminationProcess.o `test -f 'TerminationProcess.cpp' || echo '$(srcdir)/'`TerminationProcess.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amulegui-TerminationProcess.Tpo $(DEPDIR)/amulegui-TerminationProcess.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TerminationProcess.cpp' object='amulegui-TerminationProcess.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-TerminationProcess.o `test -f 'TerminationProcess.cpp' || echo '$(srcdir)/'`TerminationProcess.cpp
-
-amulegui-TerminationProcess.obj: TerminationProcess.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-TerminationProcess.obj -MD -MP -MF $(DEPDIR)/amulegui-TerminationProcess.Tpo -c -o amulegui-TerminationProcess.obj `if test -f 'TerminationProcess.cpp'; then $(CYGPATH_W) 'TerminationProcess.cpp'; else $(CYGPATH_W) '$(srcdir)/TerminationProcess.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amulegui-TerminationProcess.Tpo $(DEPDIR)/amulegui-TerminationProcess.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='TerminationProcess.cpp' object='amulegui-TerminationProcess.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-TerminationProcess.obj `if test -f 'TerminationProcess.cpp'; then $(CYGPATH_W) 'TerminationProcess.cpp'; else $(CYGPATH_W) '$(srcdir)/TerminationProcess.cpp'; fi`
-
 amulegui-UserEvents.o: UserEvents.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-UserEvents.o -MD -MP -MF $(DEPDIR)/amulegui-UserEvents.Tpo -c -o amulegui-UserEvents.o `test -f 'UserEvents.cpp' || echo '$(srcdir)/'`UserEvents.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amulegui-UserEvents.Tpo $(DEPDIR)/amulegui-UserEvents.Po
@@ -4934,34 +4768,6 @@ amulegui-UserEvents.obj: UserEvents.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='UserEvents.cpp' object='amulegui-UserEvents.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-UserEvents.obj `if test -f 'UserEvents.cpp'; then $(CYGPATH_W) 'UserEvents.cpp'; else $(CYGPATH_W) '$(srcdir)/UserEvents.cpp'; fi`
-
-amulegui-OtherFunctions.o: OtherFunctions.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-OtherFunctions.o -MD -MP -MF $(DEPDIR)/amulegui-OtherFunctions.Tpo -c -o amulegui-OtherFunctions.o `test -f 'OtherFunctions.cpp' || echo '$(srcdir)/'`OtherFunctions.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amulegui-OtherFunctions.Tpo $(DEPDIR)/amulegui-OtherFunctions.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='OtherFunctions.cpp' object='amulegui-OtherFunctions.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-OtherFunctions.o `test -f 'OtherFunctions.cpp' || echo '$(srcdir)/'`OtherFunctions.cpp
-
-amulegui-OtherFunctions.obj: OtherFunctions.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-OtherFunctions.obj -MD -MP -MF $(DEPDIR)/amulegui-OtherFunctions.Tpo -c -o amulegui-OtherFunctions.obj `if test -f 'OtherFunctions.cpp'; then $(CYGPATH_W) 'OtherFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/OtherFunctions.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amulegui-OtherFunctions.Tpo $(DEPDIR)/amulegui-OtherFunctions.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='OtherFunctions.cpp' object='amulegui-OtherFunctions.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-OtherFunctions.obj `if test -f 'OtherFunctions.cpp'; then $(CYGPATH_W) 'OtherFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/OtherFunctions.cpp'; fi`
-
-amulegui-NetworkFunctions.o: NetworkFunctions.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-NetworkFunctions.o -MD -MP -MF $(DEPDIR)/amulegui-NetworkFunctions.Tpo -c -o amulegui-NetworkFunctions.o `test -f 'NetworkFunctions.cpp' || echo '$(srcdir)/'`NetworkFunctions.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amulegui-NetworkFunctions.Tpo $(DEPDIR)/amulegui-NetworkFunctions.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='NetworkFunctions.cpp' object='amulegui-NetworkFunctions.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-NetworkFunctions.o `test -f 'NetworkFunctions.cpp' || echo '$(srcdir)/'`NetworkFunctions.cpp
-
-amulegui-NetworkFunctions.obj: NetworkFunctions.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-NetworkFunctions.obj -MD -MP -MF $(DEPDIR)/amulegui-NetworkFunctions.Tpo -c -o amulegui-NetworkFunctions.obj `if test -f 'NetworkFunctions.cpp'; then $(CYGPATH_W) 'NetworkFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/NetworkFunctions.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amulegui-NetworkFunctions.Tpo $(DEPDIR)/amulegui-NetworkFunctions.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='NetworkFunctions.cpp' object='amulegui-NetworkFunctions.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-NetworkFunctions.obj `if test -f 'NetworkFunctions.cpp'; then $(CYGPATH_W) 'NetworkFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/NetworkFunctions.cpp'; fi`
 
 ed2k-ED2KLinkParser.o: ED2KLinkParser.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(ed2k_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT ed2k-ED2KLinkParser.o -MD -MP -MF $(DEPDIR)/ed2k-ED2KLinkParser.Tpo -c -o ed2k-ED2KLinkParser.o `test -f 'ED2KLinkParser.cpp' || echo '$(srcdir)/'`ED2KLinkParser.cpp
