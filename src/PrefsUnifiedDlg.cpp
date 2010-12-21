@@ -402,6 +402,7 @@ bool PrefsUnifiedDlg::TransferToWindow()
 	OnTCPClientPortChange(e);
 	
 	// Proxy tab initialization
+	FindWindow(ID_PROXY_TYPE)->SetToolTip(_("The type of proxy you are connecting to"));
 	if (!CastChild(ID_PROXY_ENABLE_PROXY, wxCheckBox)->IsChecked()) {
 		FindWindow(ID_PROXY_TYPE)->Enable(false);
 		FindWindow(ID_PROXY_NAME)->Enable(false);
@@ -1068,7 +1069,7 @@ void PrefsUnifiedDlg::OnScrollBarChange( wxScrollEvent& event )
 
 	case IDC_SLIDER2:
 		id = IDC_SLIDERINFO2;
-		label = CFormat(wxPLURAL("Update delay : %d second", "Update delay : %d seconds", event.GetPosition())) % event.GetPosition();
+		label = CFormat(wxPLURAL("Update delay: %d second", "Update delay: %d seconds", event.GetPosition())) % event.GetPosition();
 		break;
 
 	case IDC_FILEBUFFERSIZE:
@@ -1157,7 +1158,7 @@ void PrefsUnifiedDlg::OnLanguageChoice(wxCommandEvent &evt)
 
 void PrefsUnifiedDlg::CreateEventPanels(const int idx, const wxString& vars, wxWindow* parent)
 {
-	wxStaticBox *item8 = new wxStaticBox( parent, -1, CFormat(_("Execute command on `%s' event")) % wxGetTranslation(CUserEvents::GetDisplayName(static_cast<enum CUserEvents::EventType>(idx))) );
+	wxStaticBox *item8 = new wxStaticBox( parent, -1, CFormat(_("Execute command on '%s' event")) % wxGetTranslation(CUserEvents::GetDisplayName(static_cast<enum CUserEvents::EventType>(idx))) );
 	wxStaticBoxSizer *item7 = new wxStaticBoxSizer( item8, wxVERTICAL );
 
 	wxCheckBox *item9 = new wxCheckBox( parent, USEREVENTS_FIRST_ID + idx * USEREVENTS_IDS_PER_EVENT + 1, _("Enable command execution on core"), wxDefaultPosition, wxDefaultSize, 0 );
