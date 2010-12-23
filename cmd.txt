@@ -1,0 +1,1 @@
+  $ ./configure --prefix=/usr --disable-debug --enable-optimize --with-denoise-level=3 --enable-upnp --enable-geoip --enable-nls --enable-amule-daemon --enable-amulecmd --enable-webserver --enable-mmap --enable-amule-gui
