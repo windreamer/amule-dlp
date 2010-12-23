@@ -1186,8 +1186,9 @@ upnpDiscovery:
 		UpnpDiscovery *d_event = (UpnpDiscovery *)Event;
 		IXML_Document *doc = NULL;
 		int ret;
-		if (d_event->ErrCode != UPNP_E_SUCCESS) {
-			msg << upnpCP->m_upnpLib.GetUPnPErrorMessage(d_event->ErrCode) << ".";
+        int errcode = UpnpDiscovery_get_ErrCode(d_event);
+		if ( errcode != UPNP_E_SUCCESS) {
+			msg << upnpCP->m_upnpLib.GetUPnPErrorMessage(errcode) << ".";
 			AddDebugLogLineC(logUPnP, msg);
 		}
 		// Get the XML tree device description in doc
@@ -1201,7 +1202,7 @@ upnpDiscovery:
 			AddDebugLogLineC(logUPnP, msg);
 		} else {
 			msg2 << "Retrieving device description from " <<
-				d_event->Location << ".";
+				UpnpDiscovery_get_Location_cstr(d_event) << ".";
 			AddDebugLogLineN(logUPnP, msg2);
 		}
 		if (doc) {
