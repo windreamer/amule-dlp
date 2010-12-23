@@ -449,10 +449,14 @@ int CamulecmdApp::ProcessCommand(int CmdId)
 			break;
 
 		case CMD_ID_ADDLINK:
-			if (args.compare(0, 7, wxT("ed2k://")) == 0) {
+			if (args.StartsWith(wxT("ed2k://"))) {
 				//aMule doesn't like AICH links without |/| in front of h=
 				if (args.Find(wxT("|h=")) > -1 && args.Find(wxT("|/|h=")) == -1) {
 					args.Replace(wxT("|h="),wxT("|/|h="));
+				}
+				// repair links where | is replaced with %7C (Firefox)
+				if (args.StartsWith(wxT("ed2k://%7C"))) {
+					args.Replace(wxT("%7C"),wxT("|"));
 				}
 			}
 			request = new CECPacket(EC_OP_ADD_LINK);
@@ -568,6 +572,11 @@ int CamulecmdApp::ProcessCommand(int CmdId)
 		std::list<CECPacket *>::iterator it = request_list.begin();
 		while ( it != request_list.end() ) {
 			CECPacket *curr = *it++;
+			if (curr->GetOpCode() == EC_OP_SHUTDOWN) {
+				SendPacket(curr);
+				delete curr;
+				return CMD_ID_QUIT;
+			}
 			const CECPacket *reply = SendRecvMsg_v2(curr);
 			delete curr;
 			if ( reply ) {
@@ -578,10 +587,7 @@ int CamulecmdApp::ProcessCommand(int CmdId)
 		request_list.resize(0);
 	}
 
-	if (CmdId == CMD_ID_SHUTDOWN)
-		return CMD_ID_QUIT;
-	else
-		return CMD_OK;
+	return CMD_OK;
 }
 
  /*
@@ -658,14 +664,14 @@ void CamulecmdApp::Process_Answer_v2(const CECPacket *response)
 					if (m_last_cmd_id == CMD_ID_GET_IPFILTER ||
 					    m_last_cmd_id == CMD_ID_GET_IPFILTER_STATE ||
 					    m_last_cmd_id == CMD_ID_GET_IPFILTER_STATE_CLIENTS) {
-						s << wxString::Format(_("IP filtering for clients is %s.\n"),
-								      (tab->GetTagByName(EC_TAG_IPFILTER_CLIENTS) == NULL) ? _("OFF") : _("ON"));
+						s += CFormat(_("IP filtering for clients is %s.\n"))
+								% ((tab->GetTagByName(EC_TAG_IPFILTER_CLIENTS) == NULL) ? _("OFF") : _("ON"));
 					}
 					if (m_last_cmd_id == CMD_ID_GET_IPFILTER ||
 					    m_last_cmd_id == CMD_ID_GET_IPFILTER_STATE ||
 					    m_last_cmd_id == CMD_ID_GET_IPFILTER_STATE_SERVERS) {
-						s << wxString::Format(_("IP filtering for servers is %s.\n"),
-								      (tab->GetTagByName(EC_TAG_IPFILTER_SERVERS) == NULL) ? _("OFF") : _("ON"));
+						s += CFormat(_("IP filtering for servers is %s.\n"))
+								% ((tab->GetTagByName(EC_TAG_IPFILTER_SERVERS) == NULL) ? _("OFF") : _("ON"));
 					}
 					if (m_last_cmd_id == CMD_ID_GET_IPFILTER ||
 					    m_last_cmd_id == CMD_ID_GET_IPFILTER_LEVEL) {
@@ -746,22 +752,22 @@ void CamulecmdApp::Process_Answer_v2(const CECPacket *response)
 					donesize = tag->SizeDone();
 					s <<	tag->FileHashString() << wxT(" ") <<
 						tag->FileName() <<
-						wxString::Format(wxT("\n\t [%.1f%%] %4i/%4i "),
-							((float)donesize) / ((float)filesize)*100.0,
-							(int)tag->SourceCount() - (int)tag->SourceNotCurrCount(),
-							(int)tag->SourceCount()) <<
-							((int)tag->SourceCountA4AF() ? wxString::Format(wxT("+%2.2i "),(int)tag->SourceCountA4AF()) : wxString(wxT("    "))) <<
-							((int)tag->SourceXferCount() ? wxString::Format(wxT("(%2.2i) - "),(int)tag->SourceXferCount()) : wxString(wxT("     - "))) <<
+						(CFormat(wxT("\n\t [%.1f%%] %4i/%4i "))
+							% ((float)donesize / ((float)filesize)*100.0)
+							% ((int)tag->SourceCount() - (int)tag->SourceNotCurrCount())
+							% (int)tag->SourceCount()) <<
+						((int)tag->SourceCountA4AF() ? wxString(CFormat(wxT("+%2.2i ")) % (int)tag->SourceCountA4AF()) : wxString(wxT("    "))) <<
+						((int)tag->SourceXferCount() ? wxString(CFormat(wxT("(%2.2i) - ")) % (int)tag->SourceXferCount()) : wxString(wxT("     - "))) <<
 						tag->GetFileStatusString();
-						s << wxT(" - ") << tag->PartMetName();
-                                                if (tag->DownPrio() < 10) {
-                                                        s << wxT(" - ") << PriorityToStr((int)tag->DownPrio(), 0);
-                                                } else {
-                                                        s << wxT(" - ") << PriorityToStr((tag->DownPrio() - 10), 1);
-                                                }
-						if ( tag->SourceXferCount() > 0) {
-							s << wxT(" - ") + CastItoSpeed(tag->Speed());
-						}
+					s << wxT(" - ") << tag->PartMetName();
+                    if (tag->DownPrio() < 10) {
+                            s << wxT(" - ") << PriorityToStr((int)tag->DownPrio(), 0);
+                    } else {
+                            s << wxT(" - ") << PriorityToStr((tag->DownPrio() - 10), 1);
+                    }
+					if ( tag->SourceXferCount() > 0) {
+						s << wxT(" - ") + CastItoSpeed(tag->Speed());
+					}
 					s << wxT("\n");
 			}
 			break;
@@ -807,7 +813,7 @@ void CamulecmdApp::Process_Answer_v2(const CECPacket *response)
 		{
 			int i = 0;
 			m_Results_map.clear();
-			s << CFormat(_("Number of search results: %i\n")) % response->GetTagCount();
+			s += CFormat(_("Number of search results: %i\n")) % response->GetTagCount();
 			for (CECPacket::const_iterator it = response->begin(); it != response->end(); it++) {
 				CEC_SearchFile_Tag *tag = (CEC_SearchFile_Tag *) & *it;
 				//printf("Tag FileName: %s \n",(const char*)unicode2char(tag->FileName()));
@@ -817,13 +823,18 @@ void CamulecmdApp::Process_Answer_v2(const CECPacket *response)
 			break;
 		}
 		case EC_OP_SEARCH_PROGRESS:
-			s << _("TODO - show progress of a search");
-			// gives compilation error!!
-			// const CECTag *tab = response->GetTagByNameSafe(EC_TAG_SEARCH_STATUS);
-			//s << wxString::Format(_("Search progress: %u %% \n"),(const char*)unicode2char(tab->GetStringData()));
+		{
+			const CECTag *tab = response->GetTagByNameSafe(EC_TAG_SEARCH_STATUS);
+			uint32 progress = tab->GetInt();
+			if (progress <= 100) {
+				s += CFormat(_("Search progress: %u %% \n")) % progress;
+			} else {
+				s += _("Search progress not available");
+			}
 			break;
+		}
 		default:
-			s << wxString::Format(_("Received an unknown reply from the server, OpCode = %#x."), response->GetOpCode());
+			s += CFormat(_("Received an unknown reply from the server, OpCode = %#x.")) % response->GetOpCode();
 	}
 	Process_Answer(s);
 }

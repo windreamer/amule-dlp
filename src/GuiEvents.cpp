@@ -9,6 +9,8 @@
 #include "ExternalConn.h"
 #include "SearchFile.h"
 #include "SearchList.h"
+#include "IPFilter.h"
+#include "Friend.h"
 
 #ifndef AMULE_DAEMON
 #	include "ChatWnd.h"
@@ -28,8 +30,10 @@
 
 #ifndef CLIENT_GUI
 #	include "PartFileConvert.h"
+#	include "UploadQueue.h"
 #endif
 
+#include <common/MacrosProgramSpecific.h>
 
 DEFINE_LOCAL_EVENT_TYPE(MULE_EVT_NOTIFY)
 
@@ -52,7 +56,15 @@ namespace MuleNotify
 			wxPostEvent(wxTheApp, evt);
 		}
 	}
-	
+
+
+	void HandleNotificationAlways(const CMuleNotiferBase& ntf)
+	{
+		CMuleGUIEvent evt(ntf.Clone());
+		wxPostEvent(wxTheApp, evt);
+	}
+
+
 	void Search_Add_Download(CSearchFile* file, uint8 category)
 	{
 		theApp->downloadqueue->AddSearchToDownload(file, category);
@@ -222,7 +234,35 @@ namespace MuleNotify
 #endif
 	}
 	
+	void ServerRefresh(CServer* NOT_ON_DAEMON(server))
+	{
+#ifndef AMULE_DAEMON
+		if (theApp->amuledlg->m_serverwnd && theApp->amuledlg->m_serverwnd->serverlistctrl) {
+			theApp->amuledlg->m_serverwnd->serverlistctrl->RefreshServer(server);
+		}
+#endif
+	}
 	
+	void ChatUpdateFriend(CFriend * NOT_ON_DAEMON(toupdate))
+	{
+#ifndef AMULE_DAEMON
+		if (theApp->amuledlg->m_chatwnd) {
+			theApp->amuledlg->m_chatwnd->UpdateFriend(toupdate);
+		}
+#endif
+	}
+	
+	void ChatRemoveFriend(CFriend * toremove)
+	{
+#ifndef AMULE_DAEMON
+		if (theApp->amuledlg->m_chatwnd) {
+			theApp->amuledlg->m_chatwnd->RemoveFriend(toremove);
+		}
+#endif
+		delete toremove;
+	}
+	
+
 #ifdef CLIENT_GUI
 	
 	void PartFile_Swap_A4AF(CPartFile* file)
@@ -285,6 +325,11 @@ namespace MuleNotify
 		theApp->sharedfiles->SetFilePrio(file, PR_AUTO);
 	}
 
+	void KnownFile_Comment_Set(CKnownFile* file, wxString comment, int8 rating)
+	{
+		theApp->sharedfiles->SetFileCommentRating(file, comment, rating);
+	}
+	
 	void Download_Set_Cat_Prio(uint8, uint8)
 	{
 	}
@@ -293,6 +338,10 @@ namespace MuleNotify
 	{
 	}
 	
+	void Upload_Resort_Queue()
+	{
+	}
+
 #else
 
 	void SharedFilesShowFile(CKnownFile* NOT_ON_DAEMON(file))
@@ -415,15 +464,6 @@ namespace MuleNotify
 #endif
 	}
 	
-	void ServerRefresh(CServer* NOT_ON_DAEMON(server))
-	{
-#ifndef AMULE_DAEMON
-		if (theApp->amuledlg->m_serverwnd && theApp->amuledlg->m_serverwnd->serverlistctrl) {
-			theApp->amuledlg->m_serverwnd->serverlistctrl->RefreshServer(server);
-		}
-#endif
-	}
-	
 	void ServerFreeze()
 	{
 #ifndef AMULE_DAEMON
@@ -509,15 +549,6 @@ namespace MuleNotify
 	}
 
 	
-	void ChatRefreshFriend(CFriend * NOT_ON_DAEMON(Friend), bool NOT_ON_DAEMON(connected))
-	{
-#ifndef AMULE_DAEMON
-		if (theApp->amuledlg->m_chatwnd) {
-			theApp->amuledlg->m_chatwnd->RefreshFriend(Friend, connected);
-		}
-#endif
-	}
-	
 	void ChatConnResult(bool NOT_ON_DAEMON(success), uint64 NOT_ON_DAEMON(id), wxString NOT_ON_DAEMON(message))
 	{
 #ifndef AMULE_DAEMON
@@ -601,7 +632,7 @@ namespace MuleNotify
 			theApp->downloadqueue->ResetCatParts(cat);
 			theApp->glob_prefs->RemoveCat(cat);
 			if ( theApp->glob_prefs->GetCatCount() == 1 ) {
-				thePrefs::SetAllcatType(0);
+				thePrefs::SetAllcatFilter( acfAll );
 			}
 			theApp->glob_prefs->SaveCats();
 		}
@@ -691,9 +722,10 @@ namespace MuleNotify
 		file->UpdateAutoUpPriority();
 	}
 	
-	void KnownFile_Comment_Set(CKnownFile* file, wxString comment)
+	void KnownFile_Comment_Set(CKnownFile* file, wxString comment, int8 rating)
 	{
-		file->SetFileComment(comment);
+		file->SetFileCommentRating(comment, rating);
+		SharedFilesUpdateItem(file);
 	}
 	
 
@@ -706,6 +738,22 @@ namespace MuleNotify
 	{
 		theApp->downloadqueue->SetCatStatus(cat, newstatus);
 	}
+
+	void Upload_Resort_Queue()
+	{
+		theApp->uploadqueue->ResortQueue();
+	}
+
+	void IPFilter_Reload()
+	{
+		theApp->ipfilter->Reload();
+	}
+
+	void IPFilter_Update(wxString url)
+	{
+		theApp->ipfilter->Update(url);
+	}
+
 
 #endif	// #ifdef CLIENT_GUI
 }

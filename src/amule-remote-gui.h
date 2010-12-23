@@ -432,15 +432,15 @@ public:
 	CServer* GetServerByAddress(const wxString& address, uint16 port) const;
 	CServer* GetServerByIPTCP(uint32 nIP, uint16 nPort) const;
 
-	void ReloadControl();
-
 	//
 	// Actions
 	//
 	void RemoveServer(CServer* server);
 	void UpdateServerMetFromURL(wxString url);
-	void SaveServerMet();
-	void FilterServers();
+	void SetStaticServer(CServer* server, bool isStatic);
+	void SetServerPrio(CServer* server, uint32 prio);
+	void SaveServerMet() {}	// not needed here
+	void FilterServers() {}	// not needed here
 	
 	//
 	// template
@@ -457,7 +457,7 @@ public:
 
 	const CClientPtrList& GetList() const { return m_items; };
 
-	void FilterQueues();
+	void FilterQueues() {}	// not needed here
 	//
 	// template
 	//
@@ -491,6 +491,7 @@ public:
 	void UnsetCompletedFilesExist();
 	void ResetCatParts(int cat);
 	void AddSearchToDownload(CSearchFile* toadd, uint8 category);
+	void ClearCompleted(const ListOfUInts32 & ecids);
 };
 
 class CSharedFilesRem  : public std::map<uint32, CKnownFile*> {
@@ -508,6 +509,7 @@ public:
 	void AddFilesFromDirectory(const CPath&);
 	void Reload(bool sendtoserver = true, bool firstload = false);
 	bool RenameFile(CKnownFile* file, const CPath& newName);
+	void SetFileCommentRating(CKnownFile* file, const wxString& newComment, int8 newRating);
 };
 
 class CKnownFilesRem : public CRemoteContainer<CKnownFile, uint32, CEC_SharedFile_Tag> {
@@ -568,8 +570,7 @@ public:
 	wxString StartNewSearch(uint32* nSearchID, SearchType search_type,
 		const CSearchList::CSearchParams& params);
 		
-	void StopGlobalSearch();
-	void StopKadSearch();
+	void StopSearch(bool globalOnly = false);
 	
 	//
 	// template
@@ -581,10 +582,39 @@ public:
 	bool Phase1Done(const CECPacket *);
 };
 
+class CFriendListRem : public CRemoteContainer<CFriend, uint32, CEC_Friend_Tag> {
+	virtual void HandlePacket(const CECPacket *);
+public:
+	CFriendListRem(CRemoteConnect *);
+
+	void		AddFriend(CUpDownClient* toadd);
+	void		AddFriend(const CMD4Hash& userhash, uint32 lastUsedIP, uint32 lastUsedPort, const wxString& name);
+	void		RemoveFriend(CFriend* toremove);
+	void		RequestSharedFileList(CFriend* Friend);
+	void		RequestSharedFileList(CUpDownClient* client);
+	void		SetFriendSlot(CFriend* Friend, bool new_state);
+
+	//
+	// template
+	//
+	CFriend *CreateItem(CEC_Friend_Tag *);
+	void DeleteItem(CFriend *);
+	uint32 GetItemID(CFriend *);
+	void ProcessItemUpdate(CEC_Friend_Tag *, CFriend *);
+};
+
 class CStatsUpdaterRem : public CECPacketHandlerBase {
 	virtual void HandlePacket(const CECPacket *);
 public:
 	CStatsUpdaterRem() {}
+};
+
+class CStatTreeRem : public CECPacketHandlerBase {
+	virtual void HandlePacket(const CECPacket *);
+	CRemoteConnect *m_conn;
+public:
+	CStatTreeRem(CRemoteConnect * conn) { m_conn = conn; }
+	void DoRequery();
 };
 
 class CListenSocketRem {
@@ -638,7 +668,9 @@ public:
 	CUpDownClientListRem *clientlist;
 	CIPFilterRem *ipfilter;
 	CSearchListRem *searchlist;
+	CFriendListRem *friendlist;
 	CListenSocketRem *listensocket;
+	CStatTreeRem * stattree;
 
 	CStatistics *m_statistics;
 
@@ -670,6 +702,7 @@ public:
 
 	// Check Kad state (UDP)
 	bool IsFirewalledKadUDP() const		{ return theStats::IsFirewalledKadUDP(); }
+	bool IsKadRunningInLanMode() const	{ return theStats::IsKadRunningInLanMode(); }
 	// Kad stats
 	uint32 GetKadUsers() const			{ return theStats::GetKadUsers(); }
 	uint32 GetKadFiles() const			{ return theStats::GetKadFiles(); }
@@ -704,6 +737,8 @@ public:
 	uint32 m_clientID;
 
 	wxLocale	m_locale;
+	// This KnownFile collects all currently uploading clients for display in the upload list control
+	CKnownFile * m_allUploadingKnownFile;
 
 	DECLARE_EVENT_TABLE()
 };

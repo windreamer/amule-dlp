@@ -27,6 +27,8 @@
 AC_INIT([aMule],[SVN],[admin@amule.org])
 AM_INIT_AUTOMAKE
 
+AC_PREREQ(2.59)
+
 AC_CONFIG_SRCDIR([src/amule.cpp])
 AC_CONFIG_HEADERS([config.h])
 AM_MAINTAINER_MODE
@@ -67,7 +69,7 @@ MULE_ARG_ENABLE([monolithic],	[yes],	[disable building of the monolithic aMule a
 MULE_ARG_ENABLE([amule-daemon],	[no],	[compile aMule daemon version], [AMULE_DAEMON])
 MULE_ARG_ENABLE([amulecmd],	[no],	[compile aMule command line client], [COMPILE_CMD])
 MULE_ARG_ENABLE([webserver],	[no],	[compile aMule WebServer], [WEB])
-MULE_ARG_ENABLE([amule-gui],	[no],	[compile aMule remote GUI (EXPERIMENTAL)], [AMULE_GUI])
+MULE_ARG_ENABLE([amule-gui],	[no],	[compile aMule remote GUI], [AMULE_GUI])
 MULE_ARG_ENABLE([cas],		[no],	[compile C aMule Statistics], [CAS])
 MULE_ARG_ENABLE([wxcas],	[no],	[compile aMule GUI Statistics], [WXCAS])
 MULE_ARG_ENABLE([ed2k],		[yes],	[don't compile aMule ed2k links handler], [ED2K])
@@ -439,7 +441,7 @@ echo "  Should aMule be compiled with UPnP support?                MULE_STATUSOF
 echo "  Should aMule be compiled with IP2country support?          MULE_STATUSOF([geoip])"
 echo "  Should aMule monolithic application be built?              MULE_STATUSOF([monolithic])"
 echo "  Should aMule daemon version be built?                      MULE_STATUSOF([amule-daemon])"
-echo "  Should aMule remote gui be built? (EXPERIMENTAL)           MULE_STATUSOF([amule-gui])"
+echo "  Should aMule remote gui be built?                          MULE_STATUSOF([amule-gui])"
 echo "  Crypto++ library/headers style?                            ${CRYPTOPP_STYLE:-not found}"
 
 echo
@@ -470,13 +472,13 @@ MULE_IF_ENABLED_ANY([monolithic, amule-daemon, amule-gui, amulecmd, webserver, a
 	wxinfo="$WX_PORT"
 	AS_IF([test $WX_DEBUG -eq 1], [wxinfo="$wxinfo,debug"])
 	AS_IF([test $WX_SHARED -eq 1], [wxinfo="$wxinfo,shared"], [wxinfo="$wxinfo,static"])
-	echo "                                       wxWidgets             ${WX_VERSION_FULL} ($wxinfo)"
+	echo "                             wxWidgets             ${WX_VERSION_FULL} ($wxinfo)"
 ])
 MULE_IF_ENABLED_ANY([monolithic, amule-daemon, amule-gui, fileview],
-	[echo "                                       crypto++              ${CRYPTOPP_VERSION_STRING} (${CRYPTOPP_STYLE}, in ${CRYPTOPP_PREFIX})"])
+	[echo "                             crypto++              ${CRYPTOPP_VERSION_STRING} (${CRYPTOPP_STYLE}, in ${CRYPTOPP_PREFIX})"])
 MULE_IF_ENABLED([upnp], [
 	AS_IF([test -n "$with_libupnp_prefix"], [libupnp_place=" (in $with_libupnp_prefix)"])
-	echo "                                       libupnp               ${LIBUPNP_VERSION:-Not detected}${libupnp_place:-}"
+	echo "                             libupnp               ${LIBUPNP_VERSION:-Not detected}${libupnp_place:-}"
 ])
 if test ${enable_nls:-yes} = yes; then
 AS_IF([test x$USE_NLS = xno],
@@ -484,28 +486,27 @@ AS_IF([test x$USE_NLS = xno],
 	[AS_IF([test x$USE_INCLUDED_LIBINTL = xyes], 
 		[libintl_found="included"], 
 		[libintl_found="system"])])
-echo "                                       libintl               $libintl_found"
+echo "                             libintl               $libintl_found"
 fi
 MULE_IF_ENABLED([geoip],
 	[AS_IF([test -z "${with_geoip_headers:-}${with_geoip_lib:-}"], [geoip_style=system], [geoip_style=user])
 	MULE_IF_ENABLED_ANY([monolithic, amule-gui], 
-		[echo "                                       libGeoIP              ${geoip_style}"])])
+		[echo "                             libGeoIP              ${geoip_style}"])])
 MULE_IF_ENABLED([webserver],
-	[echo "                                       libpng                ${LIBPNG_VERSION:-Not detected}"])
+	[echo "                             libpng                ${LIBPNG_VERSION:-Not detected}"])
 MULE_IF_ENABLED([cas],
-	[echo "                                       libgd                 ${GDLIB_VERSION:-Not detected}"])
+	[echo "                             libgd                 ${GDLIB_VERSION:-Not detected}"])
 MULE_IF_ENABLED_ANY([monolithic, amule-daemon, amulecmd, webserver, amule-gui],
-	[echo "                                       zlib                  ${ZLIB_VERSION:-Not detected}"])
+	[echo "                             zlib                  ${ZLIB_VERSION:-Not detected}"])
 MULE_IF_ENABLED([plasmamule],
-[echo "                                       qt-moc                ${QT_MOC} ${QT_MOC_VERSION}"
-echo "                                       qt-core-libs          ${QT_CORE_LIBS}"
-echo "                                       qt-gui-libs           ${QT_GUI_LIBS}"
-echo "                                       kde4-config           ${KDE4_CONFIG} (${KDE_CONF_VER})"
-echo "                                       kde-headers           ${KDE_HEADER_DIR}"
-echo "                                       kde-services-path     ${KDE_SERVICE_PATH}"
-echo "                                       kde-module-path       ${KDE_MODULE_PATH}"
-echo "                                       kde-icon-path         ${KDE_ICON_PATH}"
-echo "                                       kde-mime-path         ${KDE_MIME_PATH}"
-echo "                                       kde-applinks-path     ${KDE_APPLNK_PATH}"
-echo "  **** You have to run kbuildsycoca after installing to let plasma know the changes ****"
-echo "  **** You have to run \"update-mime-database ${KDE_MIME_PATH}\" to register the mimetype ****"])
+[echo "                             qt-moc                ${QT_MOC} ${QT_MOC_VERSION}"
+echo "                             qt-core-libs          ${QT_CORE_LIBS}"
+echo "                             qt-gui-libs           ${QT_GUI_LIBS}"
+echo "                             kde4-config           ${KDE4_CONFIG} (${KDE_CONF_VER})"
+echo "                             kde-headers           ${KDE_HEADER_DIR}"
+echo "                             kde-services-path     ${KDE_SERVICE_PATH}"
+echo "                             kde-module-path       ${KDE_MODULE_PATH}"
+echo "                             kde-icon-path         ${KDE_ICON_PATH}"
+echo "                             kde-mime-path         ${KDE_MIME_PATH}"
+echo "                             kde-applinks-path     ${KDE_APPLNK_PATH}"
+])

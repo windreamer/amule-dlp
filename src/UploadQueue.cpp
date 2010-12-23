@@ -63,90 +63,130 @@
 CUploadQueue::CUploadQueue()
 {
 	m_nLastStartUpload = 0;
+	m_lastSort = 0;
 	lastupslotHighID = true;
 	m_allowKicking = true;
+	m_allUploadingKnownFile = new CKnownFile;
+}
+
+
+CUpDownClient* CUploadQueue::SortGetBestClient(bool sortonly)
+{
+	CUpDownClient* newclient = NULL;
+	// Track if we purged any clients from the queue, as to only send one notify in total
+	bool purged = false;
+	uint32 tick = GetTickCount();
+	m_lastSort = tick;
+	CClientPtrList::iterator it = m_waitinglist.begin();
+	for (; it != m_waitinglist.end(); ) {
+		CClientPtrList::iterator it2 = it++;
+		CUpDownClient* cur_client = *it2;
+
+		// clear dead clients
+		if (tick - cur_client->GetLastUpRequest() > MAX_PURGEQUEUETIME 
+			|| !theApp->sharedfiles->GetFileByID(cur_client->GetUploadFileID())) {
+			purged = true;
+			cur_client->ClearWaitStartTime();
+			RemoveFromWaitingQueue(it2);
+			if (!cur_client->GetSocket()) {
+				if (cur_client->Disconnected(wxT("AddUpNextClient - purged"))) {
+					cur_client->Safe_Delete();
+					cur_client = NULL;
+				}
+			}
+			continue;
+		} 
+
+		if (cur_client->IsBanned() || IsSuspended(cur_client->GetUploadFileID())) { // Banned client or suspended upload ?
+			cur_client->ClearScore();
+			continue;
+		}
+		// finished clearing
+
+		// Calculate score of current client
+		uint32 cur_score = cur_client->CalculateScore();
+		// Check if it's better than that of a previous one, and move it up then.
+		CClientPtrList::iterator it1 = it2;
+		while (it1 != m_waitinglist.begin()) {
+			it1--;
+			if (cur_score > (*it1)->GetScore()) {
+				// swap them
+				*it2 = *it1;
+				*it1 = cur_client;
+				it2--;
+			} else {
+				// no need to check further since list is already sorted
+				break;
+			}
+		}
+	}
+
+	// Second Pass:
+	// - calculate queue rank
+	// - find best high id client
+	// - mark all better low id clients as enabled for upload
+	uint16 rank = 1;
+	for (it = m_waitinglist.begin(); it != m_waitinglist.end(); ) {
+		CClientPtrList::iterator it2 = it++;
+		CUpDownClient* cur_client = *it2;
+		cur_client->SetUploadQueueWaitingPosition(rank++);
+		if (newclient) {
+			// There's a better high id client
+			cur_client->m_bAddNextConnect = false;
+		} else {
+			if (cur_client->HasLowID() && !cur_client->IsConnected()) {
+				// No better high id client, so start upload to this one once it connects
+				cur_client->m_bAddNextConnect = true;
+			} else {
+				// We found a high id client (or a currently connected low id client)
+				newclient = cur_client;
+				cur_client->m_bAddNextConnect = false;
+				if (!sortonly) {
+					RemoveFromWaitingQueue(it2);
+					rank--;
+					lastupslotHighID = true; // VQB LowID alternate
+				}
+			}
+		}
+	}
+
+	// Update the count on GUI if any clients were purged
+	if (purged || (newclient && !sortonly)) {
+		Notify_ShowQueueCount(m_waitinglist.size());
+	}
+
+#ifdef __DEBUG__
+	AddDebugLogLineN(logLocalClient, CFormat(wxT("Current UL queue (%d):")) % (rank - 1));
+	for (it = m_waitinglist.begin(); it != m_waitinglist.end(); it++) {
+		CUpDownClient* c = *it;
+		AddDebugLogLineN(logLocalClient, CFormat(wxT("%4d %7d  %s %5d  %s"))
+			% c->GetUploadQueueWaitingPosition()
+			% c->GetScore()
+			% (c->HasLowID() ? (c->IsConnected() ? wxT("LoCon") : wxT("LowId")) : wxT("High "))
+			% c->ECID()
+			% c->GetUserName()
+			);
+	}
+#endif	// __DEBUG__
+
+	return newclient;
 }
 
 
 void CUploadQueue::AddUpNextClient(CUpDownClient* directadd)
 {
-	CClientPtrList::iterator toadd = m_waitinglist.end();
-	CClientPtrList::iterator toaddlow = m_waitinglist.end();
-	
-	uint32_t bestscore = 0;
-	uint32_t bestlowscore = 0;
-
-	CUpDownClient* newclient;
+	CUpDownClient* newclient = NULL;
 	// select next client or use given client
 	if (!directadd) {
-		// Track if we purged any clients from the queue, as to only send one notify in total
-		bool purged = false;
-		
-		CClientPtrList::iterator it = m_waitinglist.begin();
-		for (; it != m_waitinglist.end(); ) {
-			CClientPtrList::iterator tmp_it = it++;
-			CUpDownClient* cur_client = *tmp_it;
-
-			// clear dead clients
-			if ( (::GetTickCount() - cur_client->GetLastUpRequest() > MAX_PURGEQUEUETIME) || !theApp->sharedfiles->GetFileByID(cur_client->GetUploadFileID()) ) {
-				purged = true;
-				cur_client->ClearWaitStartTime();
-				RemoveFromWaitingQueue(tmp_it);
-				if (!cur_client->GetSocket()) {
-					if(cur_client->Disconnected(wxT("AddUpNextClient - purged"))) {
-						cur_client->Safe_Delete();
-						cur_client = NULL;
-					}
-				}
-				continue;
-			} 
-
-			suspendlist::iterator it2 = std::find( suspended_uploads_list.begin(),
-			                                      suspended_uploads_list.end(),
-			                                      cur_client->GetUploadFileID() );
-			if (cur_client->IsBanned() || it2 != suspended_uploads_list.end() ) { // Banned client or suspended upload ?
-			        continue;
-			}
-			// finished clearing
-			
-			uint32_t cur_score = cur_client->GetScore(true);
-			if (cur_score > bestscore) {
-				bestscore = cur_score;
-				toadd = tmp_it;
-			} else {
-				cur_score = cur_client->GetScore();
-				if ((cur_score > bestlowscore) && !cur_client->m_bAddNextConnect){
-					bestlowscore = cur_score;
-					toaddlow = tmp_it;
-				}
-			}
-		}
-
-		// Update the count on GUI if any clients were purged
-		if (purged) {
-			Notify_ShowQueueCount(m_waitinglist.size());
-		}
-
-		if (bestlowscore > bestscore){
-			newclient = *toaddlow;
-			newclient->m_bAddNextConnect = true;
-		}
-
-		if (toadd == m_waitinglist.end()) {
+		newclient = SortGetBestClient(false);
+		if (!newclient) {
 			return;
 		}
-		
-		newclient = *toadd;
-		lastupslotHighID = true; // VQB LowID alternate
-		RemoveFromWaitingQueue(toadd);
-		Notify_ShowQueueCount(m_waitinglist.size());
 	} else {
-		//prevent another potential access of a suspended upload
+		// Check if requested file is suspended or not shared (maybe deleted recently)
 
-		suspendlist::iterator it = std::find( suspended_uploads_list.begin(),
-		                                      suspended_uploads_list.end(),
-		                                      directadd->GetUploadFileID() );
-		if ( it != suspended_uploads_list.end() ) {
+		if (IsSuspended(directadd->GetUploadFileID())
+			|| !theApp->sharedfiles->GetFileByID(directadd->GetUploadFileID())) {
 			return;
 		} else {
 			newclient = directadd;
@@ -165,7 +205,7 @@ void CUploadQueue::AddUpNextClient(CUpDownClient* directadd)
 	} else {
 		CPacket* packet = new CPacket(OP_ACCEPTUPLOADREQ, 0, OP_EDONKEYPROT);
 		theStats::AddUpOverheadFileRequest(packet->GetPacketSize());
-		AddDebugLogLineM( false, logLocalClient, wxT("Local Client: OP_ACCEPTUPLOADREQ to ") + newclient->GetFullIP() );
+		AddDebugLogLineN( logLocalClient, wxT("Local Client: OP_ACCEPTUPLOADREQ to ") + newclient->GetFullIP() );
 		newclient->SendPacket(packet,true);
 		newclient->SetUploadState(US_UPLOADING);
 	}
@@ -174,6 +214,7 @@ void CUploadQueue::AddUpNextClient(CUpDownClient* directadd)
 
 	theApp->uploadBandwidthThrottler->AddToStandardList(m_uploadinglist.size(), newclient->GetSocket());
 	m_uploadinglist.push_back(newclient);
+	m_allUploadingKnownFile->AddUploadingClient(newclient);
 	theStats::AddUploadingClient();
 
 	// Statistic
@@ -181,6 +222,8 @@ void CUploadQueue::AddUpNextClient(CUpDownClient* directadd)
 	if (reqfile) {
 		reqfile->statistic.AddAccepted();
 	}
+
+	Notify_SharedCtrlRefreshClient(newclient, AVAILABLE_SOURCE);
 }
 
 void CUploadQueue::Process()
@@ -230,6 +273,11 @@ void CUploadQueue::Process()
 	if (sentBytes) {
 		theStats::AddSentBytes(sentBytes);
 	}
+
+	// Periodically resort queue if it doesn't happen anyway
+	if ((sint32) (tick - m_lastSort) > MIN2MS(2)) {
+		SortGetBestClient(true);
+	}
 }
 
 
@@ -262,6 +310,7 @@ CUploadQueue::~CUploadQueue()
 {
 	wxASSERT(m_waitinglist.empty());
 	wxASSERT(m_uploadinglist.empty());
+	delete m_allUploadingKnownFile;
 }
 
 
@@ -418,17 +467,17 @@ void CUploadQueue::AddClientToQueue(CUpDownClient* client)
 		reqfile->statistic.AddRequest();
 	}
 
-	// TODO find better ways to cap the list
-	if (m_waitinglist.size() >= (thePrefs::GetQueueSize())) {
-		return;
-	}
-
 	if (client->IsDownloading()) {
 		// he's already downloading and wants probably only another file
 		CPacket* packet = new CPacket(OP_ACCEPTUPLOADREQ, 0, OP_EDONKEYPROT);
 		theStats::AddUpOverheadFileRequest(packet->GetPacketSize());
-		AddDebugLogLineM( false, logLocalClient, wxT("Local Client: OP_ACCEPTUPLOADREQ to ") + client->GetFullIP() );
+		AddDebugLogLineN( logLocalClient, wxT("Local Client: OP_ACCEPTUPLOADREQ to ") + client->GetFullIP() );
 		client->SendPacket(packet,true);
+		return;
+	}
+
+	// TODO find better ways to cap the list
+	if (m_waitinglist.size() >= (thePrefs::GetQueueSize())) {
 		return;
 	}
 
@@ -439,13 +488,15 @@ void CUploadQueue::AddClientToQueue(CUpDownClient* client)
 		AddUpNextClient(client);
 		m_nLastStartUpload = tick;
 	} else {
+		// add to waiting queue
 		m_waitinglist.push_back(client);
+		// and sort it to update queue ranks
+		SortGetBestClient(true);
 		theStats::AddWaitingClient();
 		client->ClearAskedCount();
 		client->SetUploadState(US_ONUPLOADQUEUE);
 		client->SendRankingInfo();
 		//Notify_QlistAddClient(client);
-		Notify_ShowQueueCount(m_waitinglist.size());
 	}
 }
 
@@ -460,6 +511,7 @@ bool CUploadQueue::RemoveFromUploadQueue(CUpDownClient* client)
 	
 	if (it != m_uploadinglist.end()) {
 		m_uploadinglist.erase(it);
+		m_allUploadingKnownFile->RemoveUploadingClient(client);
 		theStats::RemoveUploadingClient();
 		if( client->GetTransferredUp() ) {
 			theStats::AddSuccessfulUpload();
@@ -517,86 +569,84 @@ bool CUploadQueue::CheckForTimeOver(CUpDownClient* client)
 }
 
 
-uint16 CUploadQueue::GetWaitingPosition(const CUpDownClient *client) const
-{
-	if ( !IsOnUploadQueue(client) ) {
-		return 0;
-	}
-
-	uint16 rank = 1;
-	const uint32 myscore = client->GetScore();
-	CClientPtrList::const_iterator it = m_waitinglist.begin();
-	for (; it != m_waitinglist.end(); ++it) {
-		if ((*it)->GetScore() > myscore) {
-			rank++;
-		}
-	}
-	
-	return rank;
-}
-
-
 /*
  * This function removes a file indicated by filehash from suspended_uploads_list.
  */
 void CUploadQueue::ResumeUpload( const CMD4Hash& filehash )
 {
-	//Find the position of the filehash in the list and remove it.
-	suspendlist::iterator it = std::find( suspended_uploads_list.begin(), 
-			                              suspended_uploads_list.end(),
-			                              filehash );
-	if ( it != suspended_uploads_list.end() )
-		suspended_uploads_list.erase( it );
-	
-	AddLogLineM( false, CFormat( _("Resuming uploads of file: %s" ) )
+	suspendedUploadsSet.erase(filehash);
+	AddLogLineN(CFormat( _("Resuming uploads of file: %s" ) )
 				% filehash.Encode() );
 }
 
 /*
- * This function adds a file indicated by filehash to suspended_uploads_list
+ * This function stops upload of a file indicated by filehash.
+ *
+ * a) teminate == false:
+ *    File is suspended while a download completes. Then it is resumed after completion,
+ *    so it makes sense to keep the client. Such files are kept in suspendedUploadsSet.
+ * b) teminate == true:
+ *    File is deleted. Then the client is not added to the waiting list.
+ *    Waiting clients are swept out with next run of AddUpNextClient,
+ *    because their file is not shared anymore.
  */
-uint16 CUploadQueue::SuspendUpload( const CMD4Hash& filehash )
+uint16 CUploadQueue::SuspendUpload(const CMD4Hash& filehash, bool terminate)
 {
-	AddLogLineM( false, CFormat( _("Suspending upload of file: %s" ) )
+	AddLogLineN(CFormat( _("Suspending upload of file: %s" ) )
 				% filehash.Encode() );
 	uint16 removed = 0;
 
 	//Append the filehash to the list.
-	suspended_uploads_list.push_back(filehash);
-	wxString base16hash = filehash.Encode();
+	if (!terminate) {
+		suspendedUploadsSet.insert(filehash);
+	}
 
 	CClientPtrList::iterator it = m_uploadinglist.begin();
 	while (it != m_uploadinglist.end()) {
 		CUpDownClient *potential = *it++;
 		//check if the client is uploading the file we need to suspend
-		if(potential->GetUploadFileID() == filehash) {
-			//remove the unlucky client from the upload queue and add to the waiting queue
+		if (potential->GetUploadFileID() == filehash) {
+			// remove the unlucky client from the upload queue
 			RemoveFromUploadQueue(potential);
-
-			m_waitinglist.push_back(potential);
-			theStats::AddWaitingClient();
-			potential->SetUploadState(US_ONUPLOADQUEUE);
-			potential->SendRankingInfo();
-			Notify_SharedCtrlRefreshClient(potential, AVAILABLE_SOURCE);
-			Notify_ShowQueueCount(m_waitinglist.size());
+			// if suspend isn't permanent add it to the waiting queue
+			if (terminate) {
+				potential->SetUploadState(US_NONE);
+			} else {
+				m_waitinglist.push_back(potential);
+				theStats::AddWaitingClient();
+				potential->SetUploadState(US_ONUPLOADQUEUE);
+				potential->SendRankingInfo();
+				Notify_SharedCtrlRefreshClient(potential, AVAILABLE_SOURCE);
+			}
 			removed++;
 		}
+	}
+	if (removed) {
+		Notify_ShowQueueCount(m_waitinglist.size());
 	}
 	return removed;
 }
 
 bool CUploadQueue::RemoveFromWaitingQueue(CUpDownClient* client)
 {
-	CClientPtrList::iterator it = std::find(m_waitinglist.begin(),
-			m_waitinglist.end(), client);
-	
-	if (it != m_waitinglist.end()) {
-		RemoveFromWaitingQueue(it);
-		Notify_ShowQueueCount(m_waitinglist.size());
-		return true;
-	} else {
-		return false;
+	CClientPtrList::iterator it = m_waitinglist.begin();
+
+	uint16 rank = 1;
+	while (it != m_waitinglist.end()) {
+		CClientPtrList::iterator it1 = it++;
+		if (*it1 == client) {
+			RemoveFromWaitingQueue(it1);
+			Notify_ShowQueueCount(m_waitinglist.size());
+			// update ranks of remaining queue
+			while (it != m_waitinglist.end()) {
+				(*it)->SetUploadQueueWaitingPosition(rank++);
+				it++;
+			}
+			return true;
+		}
+		rank++;
 	}
+	return false;
 }
 
 
@@ -610,6 +660,8 @@ void CUploadQueue::RemoveFromWaitingQueue(CClientPtrList::iterator pos)
 	}
 	//Notify_QlistRemoveClient(todelete);
 	todelete->SetUploadState(US_NONE);
+	todelete->ClearScore();
+	todelete->SetUploadQueueWaitingPosition(0);
 }
 
 // File_checked_for_headers

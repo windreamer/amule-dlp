@@ -25,6 +25,7 @@
 //
 
 #include "PacketTracking.h"
+#include "../kademlia/Kademlia.h"
 #include "../../amule.h"
 #include "../../Logger.h"
 #include "../../OtherFunctions.h"
@@ -202,18 +203,22 @@ bool CPacketTracking::InTrackListIsAllowedPacket(uint32_t ip, uint8_t opcode, bo
 			// remember only for easier cleanup
 			trackEntry->m_lastExpire = std::max(trackEntry->m_lastExpire, it->m_firstAdded + SEC2MS(secondsPerPacket) * it->m_count);
 
+			if (CKademlia::IsRunningInLANMode() && ::IsLanIP(wxUINT32_SWAP_ALWAYS(ip))) {
+				return true;	// no flood detection in LAN mode
+			}
+
 			// now the actual check if this request is allowed
 			if (it->m_count > allowedPacketsPerMinute * 5) {
 				// this is so far above the limit that it has to be an intentional flood / misuse in any case
 				// so we take the next higher punishment and ban the IP
-				AddDebugLogLineN(logKadPacketTracking, wxString::Format(wxT("Massive request flood detected for opcode 0x%X (0x%X) from IP "), opcode, dbgOrgOpcode) + KadIPToString(ip) + wxT(" - Banning IP"));
+				AddDebugLogLineN(logKadPacketTracking, CFormat(wxT("Massive request flood detected for opcode 0x%X (0x%X) from IP %s - Banning IP")) % opcode % dbgOrgOpcode % KadIPToString(ip));
 				theApp->clientlist->AddBannedClient(wxUINT32_SWAP_ALWAYS(ip));
 				return false; // drop packet
 			} else if (it->m_count > allowedPacketsPerMinute) {
 				// over the limit, drop the packet but do nothing else
 				if (!it->m_dbgLogged) {
 					it->m_dbgLogged = true;
-					AddDebugLogLineN(logKadPacketTracking, wxString::Format(wxT("Request flood detected for opcode 0x%X (0x%X) from IP "), opcode, dbgOrgOpcode) + KadIPToString(ip) + wxT(" - Dropping packets with this opcode"));
+					AddDebugLogLineN(logKadPacketTracking, CFormat(wxT("Request flood detected for opcode 0x%X (0x%X) from IP %s - Dropping packets with this opcode")) % opcode % dbgOrgOpcode % KadIPToString(ip));
 				}
 				return false; // drop packet
 			} else {
@@ -247,7 +252,7 @@ void CPacketTracking::InTrackListCleanup()
 			m_mapTrackPacketsIn.erase(it2);
 		}
 	}
-	AddDebugLogLineN(logKadPacketTracking, wxString::Format(wxT("Cleaned up Kad Incoming Requests Tracklist, entries before: %u, after %u"), dbgOldSize, m_mapTrackPacketsIn.size()));
+	AddDebugLogLineN(logKadPacketTracking, CFormat(wxT("Cleaned up Kad Incoming Requests Tracklist, entries before: %u, after %u")) % dbgOldSize % m_mapTrackPacketsIn.size());
 }
 
 void CPacketTracking::AddLegacyChallenge(const CUInt128& contactID, const CUInt128& challengeID, uint32_t ip, uint8_t opcode)

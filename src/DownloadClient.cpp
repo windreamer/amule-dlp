@@ -171,7 +171,7 @@ void CUpDownClient::SendStartupLoadReq()
 	dataStartupLoadReq.WriteHash(m_reqfile->GetFileHash());
 	CPacket* packet = new CPacket(dataStartupLoadReq, OP_EDONKEYPROT, OP_STARTUPLOADREQ);
 	theStats::AddUpOverheadFileRequest(packet->GetPacketSize());
-	AddDebugLogLineM( false, logLocalClient, wxT("Local Client: OP_STARTUPLOADREQ to ") + GetFullIP());	
+	AddDebugLogLineN(logLocalClient, wxT("Local Client: OP_STARTUPLOADREQ to ") + GetFullIP());
 	SendPacket(packet, true, true);
 }
 
@@ -221,16 +221,16 @@ void CUpDownClient::SendFileRequest()
 	dataFileReq.WriteHash(m_reqfile->GetFileHash());
 
 	if (SupportMultiPacket()) {
-		wxString sent_opcodes;
+		DEBUG_ONLY( wxString sent_opcodes; )
 		
 		if (SupportExtMultiPacket()) {
 			dataFileReq.WriteUInt64(m_reqfile->GetFileSize());
 		}
 		
-		AddDebugLogLineM(false, logClient, wxT("Sending file request to client"));
+		AddDebugLogLineN(logClient, wxT("Sending file request to client"));
 		
 		dataFileReq.WriteUInt8(OP_REQUESTFILENAME);
-		sent_opcodes += wxT("|RFNM|");
+		DEBUG_ONLY( sent_opcodes += wxT("|RFNM|"); )
 		// Extended information
 		if (GetExtendedRequestsVersion() > 0) {
 			m_reqfile->WritePartStatus(&dataFileReq);
@@ -239,7 +239,7 @@ void CUpDownClient::SendFileRequest()
 			m_reqfile->WriteCompleteSourcesCount(&dataFileReq);
 		}
 		if (m_reqfile->GetPartCount() > 1) {
-			sent_opcodes += wxT("|RFID|");
+			DEBUG_ONLY( sent_opcodes += wxT("|RFID|"); )
 			dataFileReq.WriteUInt8(OP_SETREQFILEID);
 		}
 		if (IsEmuleClient()) {
@@ -248,25 +248,26 @@ void CUpDownClient::SendFileRequest()
 		}
 		if (IsSourceRequestAllowed()) {
 			if (SupportsSourceExchange2()){
-				sent_opcodes += wxT("|RSRC2|");
+				DEBUG_ONLY( sent_opcodes += wxT("|RSRC2|"); )
 				dataFileReq.WriteUInt8(OP_REQUESTSOURCES2);
 				dataFileReq.WriteUInt8(SOURCEEXCHANGE2_VERSION);
 				const uint16 nOptions = 0; // 16 ... Reserved
 				dataFileReq.WriteUInt16(nOptions);
-			} else{
-				sent_opcodes += wxT("|RSRC|");
+			} else {
+				DEBUG_ONLY( sent_opcodes += wxT("|RSRC|"); )
 				dataFileReq.WriteUInt8(OP_REQUESTSOURCES);
 			}
 			m_reqfile->SetLastAnsweredTimeTimeout();
 			SetLastAskedForSources();
 		}
 		if (IsSupportingAICH()) {
-			sent_opcodes += wxT("|AFHR|");
+			DEBUG_ONLY( sent_opcodes += wxT("|AFHR|"); )
 			dataFileReq.WriteUInt8(OP_AICHFILEHASHREQ);
 		}		
 		CPacket* packet = new CPacket(dataFileReq, OP_EMULEPROT, (SupportExtMultiPacket() ? OP_MULTIPACKET_EXT : OP_MULTIPACKET));
 		theStats::AddUpOverheadFileRequest(packet->GetPacketSize());
-		AddDebugLogLineM( false, logLocalClient, wxString::Format(wxT("Local Client: %s "), (SupportExtMultiPacket() ? wxT("OP_MULTIPACKET_EXT (") : wxT("OP_MULTIPACKET (") )) + sent_opcodes + wxT(") to ") + GetFullIP());
+		AddDebugLogLineN(logLocalClient, CFormat(wxT("Local Client: %s (%s) to %s"))
+			% (SupportExtMultiPacket() ? wxT("OP_MULTIPACKET_EXT") : wxT("OP_MULTIPACKET")) % sent_opcodes % GetFullIP());
 		SendPacket(packet, true);
 	} else {
 		//This is extended information
@@ -278,7 +279,7 @@ void CUpDownClient::SendFileRequest()
 		}
 		CPacket* packet = new CPacket(dataFileReq, OP_EDONKEYPROT, OP_REQUESTFILENAME);
 		theStats::AddUpOverheadFileRequest(packet->GetPacketSize());
-		AddDebugLogLineM( false, logLocalClient, wxT("Local Client: OP_REQUESTFILENAME to ") + GetFullIP() );
+		AddDebugLogLineN( logLocalClient, wxT("Local Client: OP_REQUESTFILENAME to ") + GetFullIP() );
 		SendPacket(packet, true);
 	
 		// 26-Jul-2003: removed requesting the file status for files <= PARTSIZE for better compatibility with ed2k protocol (eDonkeyHybrid).
@@ -291,7 +292,7 @@ void CUpDownClient::SendFileRequest()
 			dataSetReqFileID.WriteHash(m_reqfile->GetFileHash());
 			packet = new CPacket(dataSetReqFileID, OP_EDONKEYPROT, OP_SETREQFILEID);
 			theStats::AddUpOverheadFileRequest(packet->GetPacketSize());
-			AddDebugLogLineM( false, logLocalClient, wxT("Local Client: OP_SETREQFILEID to ") + GetFullIP());
+			AddDebugLogLineN(logLocalClient, wxT("Local Client: OP_SETREQFILEID to ") + GetFullIP());
 			SendPacket(packet, true);
 		}
 	
@@ -316,7 +317,7 @@ void CUpDownClient::SendFileRequest()
 			packet = new CPacket(packetdata, OP_EMULEPROT, SupportsSourceExchange2() ? OP_REQUESTSOURCES2 : OP_REQUESTSOURCES);
 			
 			theStats::AddUpOverheadSourceExchange(packet->GetPacketSize());
-			AddDebugLogLineM( false, logLocalClient, wxT("Local Client: OP_REQUESTSOURCES to ") + GetFullIP() );
+			AddDebugLogLineN( logLocalClient, wxT("Local Client: OP_REQUESTSOURCES to ") + GetFullIP() );
 			SendPacket(packet,true,true);
 			SetLastAskedForSources();
 		}
@@ -326,7 +327,7 @@ void CUpDownClient::SendFileRequest()
 			packet = new CPacket(OP_AICHFILEHASHREQ,16,OP_EMULEPROT);
 			packet->Copy16ToDataBuffer((const char *)m_reqfile->GetFileHash().GetHash());
 			theStats::AddUpOverheadOther(packet->GetPacketSize());
-			AddDebugLogLineM( false, logLocalClient, wxT("Local Client: OP_AICHFILEHASHREQ to ") + GetFullIP());
+			AddDebugLogLineN(logLocalClient, wxT("Local Client: OP_AICHFILEHASHREQ to ") + GetFullIP());
 			SendPacket(packet,true,true);
 		}
 	}
@@ -367,7 +368,7 @@ void CUpDownClient::ProcessFileInfo(const CMemFile* data, const CPartFile* file)
 				CPacket* packet = new CPacket(OP_HASHSETREQUEST,16, OP_EDONKEYPROT);
 				packet->Copy16ToDataBuffer((const char *)m_reqfile->GetFileHash().GetHash());
 				theStats::AddUpOverheadFileRequest(packet->GetPacketSize());
-				AddDebugLogLineM( false, logLocalClient, wxT("Local Client: OP_HASHSETREQUEST to ") + GetFullIP());
+				AddDebugLogLineN(logLocalClient, wxT("Local Client: OP_HASHSETREQUEST to ") + GetFullIP());
 				SendPacket(packet,true,true);
 				SetDownloadState(DS_REQHASHSET);
 				m_fHashsetRequesting = 1;
@@ -471,7 +472,7 @@ void CUpDownClient::ProcessFileStatus(bool bUdpPacket, const CMemFile* data, con
 				CPacket* packet = new CPacket(OP_HASHSETREQUEST,16, OP_EDONKEYPROT);
 				packet->Copy16ToDataBuffer((const char *)m_reqfile->GetFileHash().GetHash());
 				theStats::AddUpOverheadFileRequest(packet->GetPacketSize());
-				AddDebugLogLineM( false, logLocalClient, wxT("Local Client: OP_HASHSETREQUEST to ") + GetFullIP());
+				AddDebugLogLineN(logLocalClient, wxT("Local Client: OP_HASHSETREQUEST to ") + GetFullIP());
 				SendPacket(packet, true, true);
 				SetDownloadState(DS_REQHASHSET);
 				m_fHashsetRequesting = 1;
@@ -671,7 +672,7 @@ void CUpDownClient::SendBlockRequests()
 		
 		if (slower_client != this) {
 			// Re-request freed blocks.
-			AddDebugLogLineM( false, logLocalClient, wxT("Local Client: OP_CANCELTRANSFER (faster source eager to transfer) to ") + slower_client->GetFullIP() );
+			AddDebugLogLineN( logLocalClient, wxT("Local Client: OP_CANCELTRANSFER (faster source eager to transfer) to ") + slower_client->GetFullIP() );
 			wxASSERT(m_DownloadBlocks_list.empty());
 			wxASSERT(m_PendingBlocks_list.empty());
 			uint16 count = m_MaxBlockRequests;
@@ -693,7 +694,7 @@ void CUpDownClient::SendBlockRequests()
 			}
 		} else {
 			// Drop this one.
-			AddDebugLogLineM( false, logLocalClient, wxT("Local Client: OP_CANCELTRANSFER (no free blocks) to ") + GetFullIP() );			
+			AddDebugLogLineN( logLocalClient, wxT("Local Client: OP_CANCELTRANSFER (no free blocks) to ") + GetFullIP() );
 			//#warning Kry - Would be nice to swap A4AF here.		
 			return;
 		}
@@ -731,7 +732,7 @@ void CUpDownClient::SendBlockRequests()
 			}
 			
 			packet = new CPacket(data, OP_ED2KV2HEADER, OP_REQUESTPARTS);
-			AddDebugLogLineM( false, logLocalClient, CFormat(wxT("Local Client ED2Kv2: OP_REQUESTPARTS(%i) to %s"))
+			AddDebugLogLineN( logLocalClient, CFormat(wxT("Local Client ED2Kv2: OP_REQUESTPARTS(%i) to %s"))
 				% (m_PendingBlocks_list.size()<m_MaxBlockRequests ? m_PendingBlocks_list.size() : m_MaxBlockRequests) % GetFullIP() );
 
 			break;
@@ -756,7 +757,7 @@ void CUpDownClient::SendBlockRequests()
 							if (!GetSentCancelTransfer()){
 								CPacket* cancel_packet = new CPacket(OP_CANCELTRANSFER, 0, OP_EDONKEYPROT);
 								theStats::AddUpOverheadFileRequest(cancel_packet->GetPacketSize());
-								AddDebugLogLineM( false, logLocalClient, wxT("Local Client: OP_CANCELTRANSFER to ") + GetFullIP() );
+								AddDebugLogLineN( logLocalClient, wxT("Local Client: OP_CANCELTRANSFER to ") + GetFullIP() );
 								SendPacket(cancel_packet,true,true);
 								SetSentCancelTransfer(1);
 							}					
@@ -809,7 +810,7 @@ void CUpDownClient::SendBlockRequests()
 				}
 			}	
 			packet = new CPacket(data, (bHasLongBlocks ? OP_EMULEPROT : OP_EDONKEYPROT), (bHasLongBlocks ? (uint8)OP_REQUESTPARTS_I64 : (uint8)OP_REQUESTPARTS));
-			AddDebugLogLineM( false, logLocalClient, wxString::Format(wxT("Local Client: %s to "),(bHasLongBlocks ? wxT("OP_REQUESTPARTS_I64") : wxT("OP_REQUESTPARTS"))) + GetFullIP() );
+			AddDebugLogLineN(logLocalClient, CFormat(wxT("Local Client: %s to %s")) % (bHasLongBlocks ? wxT("OP_REQUESTPARTS_I64") : wxT("OP_REQUESTPARTS")) % GetFullIP());
 			break;
 		}
 		default:
@@ -919,7 +920,7 @@ void CUpDownClient::ProcessBlockPacket(const byte* packet, uint32 size, bool pac
 				}
 				
 				if (cur_block->fZStreamError){
-					AddDebugLogLineM( false, logZLib, 
+					AddDebugLogLineN(logZLib,
 						CFormat(wxT("Ignoring %u bytes of block %u-%u because of erroneous zstream state for file: %s"))
 							% (size - header_size) % nStartPos % nEndPos % m_reqfile->GetFileName());
 					m_reqfile->RemoveBlockFromList(cur_block->block->StartOffset, cur_block->block->EndOffset);
@@ -937,7 +938,7 @@ void CUpDownClient::ProcessBlockPacket(const byte* packet, uint32 size, bool pac
 				if (!packed) {
 					// security sanitize check
 					if (nEndPos > cur_block->block->EndOffset) {
-						AddDebugLogLineM(false, logRemoteClient, CFormat(wxT("Received Blockpacket exceeds requested boundaries (requested end: %u, Part: %u, received end: %u, Part: %u), file: %s remote IP: %s")) % cur_block->block->EndOffset % (uint32)(cur_block->block->EndOffset / PARTSIZE) % nEndPos % (uint32)(nEndPos / PARTSIZE) % m_reqfile->GetFileName() % Uint32toStringIP(GetIP()));
+						AddDebugLogLineN(logRemoteClient, CFormat(wxT("Received Blockpacket exceeds requested boundaries (requested end: %u, Part: %u, received end: %u, Part: %u), file: %s remote IP: %s")) % cur_block->block->EndOffset % (uint32)(cur_block->block->EndOffset / PARTSIZE) % nEndPos % (uint32)(nEndPos / PARTSIZE) % m_reqfile->GetFileName() % Uint32toStringIP(GetIP()));
 						m_reqfile->RemoveBlockFromList(cur_block->block->StartOffset, cur_block->block->EndOffset);
 						return;
 					}
@@ -971,7 +972,7 @@ void CUpDownClient::ProcessBlockPacket(const byte* packet, uint32 size, bool pac
 							nEndPos = cur_block->block->StartOffset + cur_block->totalUnzipped - 1;
 	
 							if (nStartPos > cur_block->block->EndOffset || nEndPos > cur_block->block->EndOffset) {
-								AddDebugLogLineM( false, logZLib, 
+								AddDebugLogLineN(logZLib,
 									CFormat(wxT("Corrupted compressed packet for '%s' received (error 666)")) % m_reqfile->GetFileName());
 								m_reqfile->RemoveBlockFromList(cur_block->block->StartOffset, cur_block->block->EndOffset);
 							} else {
@@ -990,7 +991,7 @@ void CUpDownClient::ProcessBlockPacket(const byte* packet, uint32 size, bool pac
 							strZipError = wxT(" - ") + wxString::FromAscii(cur_block->zStream->msg);
 						} 
 						
-						AddDebugLogLineM( false, logZLib,
+						AddDebugLogLineN(logZLib,
 							CFormat(wxT("Corrupted compressed packet for '%s' received (error %i): %s"))
 								% m_reqfile->GetFileName() % result % strZipError);
 						
@@ -1053,7 +1054,7 @@ void CUpDownClient::ProcessBlockPacket(const byte* packet, uint32 size, bool pac
 		if (packed) error += CFormat(wxT("packed (LU: %i) largeblocks ")) % lenUnzipped;
 		error += CFormat(wxT("data packet: RS: %i HS: %i SP: %i EP: %i BS: %i -> "))
 					% size % header_size % nStartPos % nEndPos % nBlockSize;
-		AddDebugLogLineM(true, logRemoteClient, error + e.what());
+		AddDebugLogLineC(logRemoteClient, error + e.what());
 		return;
 	}
 }
@@ -1148,12 +1149,12 @@ int CUpDownClient::unzip(Pending_Block_Struct *block, byte *zipped, uint32 lenZi
 		wxString strZipError;
 		
 		if ( zS->msg ) {
-			strZipError = wxString::Format(wxT(" %d '"), err) + wxString::FromAscii(zS->msg) + wxT("'");
+			strZipError = CFormat(wxT(" %d '%s'")) % err % wxString::FromAscii(zS->msg);
 		} else if (err != Z_OK) {
-			strZipError = wxString::Format(wxT(" %d"), err);
+			strZipError = CFormat(wxT(" %d")) % err;
 		}
 		
-		AddDebugLogLineM(false, logZLib,
+		AddDebugLogLineN(logZLib,
 			CFormat(wxT("Unexpected zip error %s in file '%s'"))
 				% strZipError % (m_reqfile ? m_reqfile->GetFileName() : CPath(wxT("?"))));
 	}
@@ -1187,7 +1188,7 @@ float CUpDownClient::CalculateKBpsDown()
 		} else {
 			kBpsDown = (kBpsDown * (tAverage - dt) + kBpsDownCur * dt) / tAverage;
 		}
-		//AddDebugLogLineM( false, logLocalClient, CFormat(wxT("CalculateKBpsDown %p kbps %.1f kbpsCur %.1f dt %.3f rcv %d ")) 
+		//AddDebugLogLineN(logLocalClient, CFormat(wxT("CalculateKBpsDown %p kbps %.1f kbpsCur %.1f dt %.3f rcv %d ")) 
 		//			% this % kBpsDown  % kBpsDownCur % dt % bytesReceivedCycle);
 		bytesReceivedCycle = 0;
 		msReceivedPrev = msCur;	
@@ -1202,7 +1203,7 @@ float CUpDownClient::CalculateKBpsDown()
 		if (!GetSentCancelTransfer()){
 			CPacket* packet = new CPacket(OP_CANCELTRANSFER, 0, OP_EDONKEYPROT);
 			theStats::AddUpOverheadFileRequest(packet->GetPacketSize());
-			AddDebugLogLineM( false, logLocalClient, wxT("Local Client: OP_CANCELTRANSFER to ") + GetFullIP() );
+			AddDebugLogLineN( logLocalClient, wxT("Local Client: OP_CANCELTRANSFER to ") + GetFullIP() );
 			SendPacket(packet,true,true);
 			SetSentCancelTransfer(1);
 		}
@@ -1254,7 +1255,7 @@ void CUpDownClient::UDPReaskFNF()
 			}
 		}
 	} else {
-		AddDebugLogLineM( false, logRemoteClient, wxT("UDP ANSWER FNF : ") + GetUserName() + wxT(" - did not remove client because of current download state") );
+		AddDebugLogLineN( logRemoteClient, wxT("UDP ANSWER FNF : ") + GetUserName() + wxT(" - did not remove client because of current download state") );
 	}
 }
 
@@ -1303,7 +1304,7 @@ void CUpDownClient::UDPReaskForDownload()
 		}
 		
 		CPacket* response = new CPacket(data, OP_EMULEPROT, OP_REASKFILEPING);
-		AddDebugLogLineM( false, logClientUDP, wxT("Client UDP socket: send OP_REASKFILEPING") );
+		AddDebugLogLineN( logClientUDP, wxT("Client UDP socket: send OP_REASKFILEPING") );
 		theStats::AddUpOverheadFileRequest(response->GetPacketSize());
 		theApp->clientudp->SendPacket(response,GetConnectIP(),GetUDPPort(), ShouldReceiveCryptUDPPackets(), GetUserHash().GetHash(), false, 0);
 	} else  if (HasLowID() && GetBuddyIP() && GetBuddyPort() && HasValidBuddyID()) {
@@ -1328,7 +1329,7 @@ void CUpDownClient::UDPReaskForDownload()
 		}
 		
 		CPacket* response = new CPacket(data, OP_EMULEPROT, OP_REASKCALLBACKUDP);
-		AddDebugLogLineM( false, logClientUDP, wxT("Client UDP socket: send OP_REASKCALLBACKUDP") );
+		AddDebugLogLineN( logClientUDP, wxT("Client UDP socket: send OP_REASKCALLBACKUDP") );
 		theStats::AddUpOverheadFileRequest(response->GetPacketSize());
 		theApp->clientudp->SendPacket(response, GetBuddyIP(), GetBuddyPort(), false, NULL, true, 0 );
 	}
@@ -1355,7 +1356,7 @@ uint16 CUpDownClient::GetNextRequestedPart() const
 void CUpDownClient::UpdateDisplayedInfo(bool force)
 {
 	uint32 curTick = ::GetTickCount();
-	if(force || curTick-m_lastRefreshedDLDisplay > MINWAIT_BEFORE_DLDISPLAY_WINDOWUPDATE) {
+	if (force || curTick-m_lastRefreshedDLDisplay > MINWAIT_BEFORE_DLDISPLAY_WINDOWUPDATE) {
 		// Check if we actually need to notify of changes
 		bool update = m_reqfile && m_reqfile->ShowSources();
 		
@@ -1372,11 +1373,12 @@ void CUpDownClient::UpdateDisplayedInfo(bool force)
 	
 		// And finnaly trigger an event if there's any reason
 		if ( update ) {
-			SourceItemType type = A4AF_SOURCE;
+			SourceItemType type;
 			switch (GetDownloadState()) {
 				case DS_DOWNLOADING:
 				case DS_ONQUEUE:
 					// We will send A4AF, which will be checked.
+					type = A4AF_SOURCE;
 					break;
 				default:
 					type = UNAVAILABLE_SOURCE;
@@ -1384,6 +1386,10 @@ void CUpDownClient::UpdateDisplayedInfo(bool force)
 			}
 			
 			Notify_SourceCtrlUpdateSource(this, type );
+		}
+
+		// Shared files view
+		if (m_uploadingfile && m_uploadingfile->ShowPeers()) {
 			Notify_SharedCtrlRefreshClient(this, AVAILABLE_SOURCE);
 		}
 				
@@ -1604,7 +1610,7 @@ void CUpDownClient::SendAICHRequest(CPartFile* pForFile, uint16 nPart){
 	pForFile->GetAICHHashset()->GetMasterHash().Write(&data);
 	CPacket* packet = new CPacket(data, OP_EMULEPROT, OP_AICHREQUEST);
 	theStats::AddUpOverheadOther(packet->GetPacketSize());	
-	AddDebugLogLineM( false, logLocalClient, wxT("Local Client: OP_AICHREQUEST to") + GetFullIP());
+	AddDebugLogLineN(logLocalClient, wxT("Local Client: OP_AICHREQUEST to") + GetFullIP());
 	SafeSendPacket(packet);
 }
 
@@ -1632,18 +1638,18 @@ void CUpDownClient::ProcessAICHAnswer(const byte* packet, uint32 size)
 		{
 			if(pPartFile->GetAICHHashset()->ReadRecoveryData(request.m_nPart*PARTSIZE, &data)){
 				// finally all checks passed, everythings seem to be fine
-				AddDebugLogLineM( false, logAICHTransfer, wxT("AICH Packet Answer: Succeeded to read and validate received recoverydata"));
+				AddDebugLogLineN(logAICHTransfer, wxT("AICH Packet Answer: Succeeded to read and validate received recoverydata"));
 				CAICHHashSet::RemoveClientAICHRequest(this);
 				pPartFile->AICHRecoveryDataAvailable(request.m_nPart);
 				return;
 			} else {
-				AddDebugLogLineM( false, logAICHTransfer, wxT("AICH Packet Answer: Succeeded to read and validate received recoverydata"));
+				AddDebugLogLineN(logAICHTransfer, wxT("AICH Packet Answer: Succeeded to read and validate received recoverydata"));
 			}
 		} else {
-			AddDebugLogLineM( false, logAICHTransfer, wxT("AICH Packet Answer: Masterhash differs from packethash or hashset has no trusted Masterhash") );
+			AddDebugLogLineN( logAICHTransfer, wxT("AICH Packet Answer: Masterhash differs from packethash or hashset has no trusted Masterhash") );
 		}
 	} else {
-		AddDebugLogLineM( false, logAICHTransfer, wxT("AICH Packet Answer: requested values differ from values in packet") );
+		AddDebugLogLineN( logAICHTransfer, wxT("AICH Packet Answer: requested values differ from values in packet") );
 	}
 
 	CAICHHashSet::ClientAICHRequestFailed(this);
@@ -1672,33 +1678,33 @@ void CUpDownClient::ProcessAICHRequest(const byte* packet, uint32 size)
 			fileResponse.WriteUInt16(nPart);
 			pKnownFile->GetAICHHashset()->GetMasterHash().Write(&fileResponse);
 			if (pKnownFile->GetAICHHashset()->CreatePartRecoveryData(nPart*PARTSIZE, &fileResponse)){
-				AddDebugLogLineM(false, logAICHTransfer,
+				AddDebugLogLineN(logAICHTransfer,
 					CFormat(wxT("AICH Packet Request: Sucessfully created and send recoverydata for '%s' to %s"))
 						% pKnownFile->GetFileName() % GetClientFullInfo());
 				
 				CPacket* packAnswer = new CPacket(fileResponse, OP_EMULEPROT, OP_AICHANSWER);			
 				theStats::AddUpOverheadOther(packAnswer->GetPacketSize());
-				AddDebugLogLineM( false, logLocalClient, wxT("Local Client: OP_AICHANSWER to") + GetFullIP());
+				AddDebugLogLineN(logLocalClient, wxT("Local Client: OP_AICHANSWER to") + GetFullIP());
 				SafeSendPacket(packAnswer);
 				return;
 			} else {
-				AddDebugLogLineM(false, logAICHTransfer,
+				AddDebugLogLineN(logAICHTransfer,
 					CFormat(wxT("AICH Packet Request: Failed to create recoverydata for '%s' to %s"))
 						% pKnownFile->GetFileName() % GetClientFullInfo());
 			}
 		} else {
-			AddDebugLogLineM(false, logAICHTransfer,
+			AddDebugLogLineN(logAICHTransfer,
 				CFormat(wxT("AICH Packet Request: Failed to create recoverydata - Hashset not ready or requested Hash differs from Masterhash for '%s' to %s"))
 					% pKnownFile->GetFileName() % GetClientFullInfo());
 		}
 	} else {
-		AddDebugLogLineM( false, logAICHTransfer, wxT("AICH Packet Request: Failed to find requested shared file - ") + GetClientFullInfo() );
+		AddDebugLogLineN( logAICHTransfer, wxT("AICH Packet Request: Failed to find requested shared file - ") + GetClientFullInfo() );
 	}
 		
 	CPacket* packAnswer = new CPacket(OP_AICHANSWER, 16, OP_EMULEPROT);
 	packAnswer->Copy16ToDataBuffer(hash.GetHash());
 	theStats::AddUpOverheadOther(packAnswer->GetPacketSize());
-	AddDebugLogLineM( false, logLocalClient, wxT("Local Client: OP_AICHANSWER to") + GetFullIP());
+	AddDebugLogLineN(logLocalClient, wxT("Local Client: OP_AICHANSWER to") + GetFullIP());
 	SafeSendPacket(packAnswer);
 }
 
@@ -1715,7 +1721,7 @@ void CUpDownClient::ProcessAICHFileHash(CMemFile* data, const CPartFile* file){
 		SetReqFileAICHHash(new CAICHHash(ahMasterHash));
 		pPartFile->GetAICHHashset()->UntrustedHashReceived(ahMasterHash, GetConnectIP());
 	} else {
-		AddDebugLogLineM( false, logAICHTransfer, wxT("ProcessAICHFileHash(): PartFile not found or Partfile differs from requested file, ") + GetClientFullInfo() );
+		AddDebugLogLineN( logAICHTransfer, wxT("ProcessAICHFileHash(): PartFile not found or Partfile differs from requested file, ") + GetClientFullInfo() );
 	}
 }
 // File_checked_for_headers

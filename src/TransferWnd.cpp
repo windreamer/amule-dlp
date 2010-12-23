@@ -92,7 +92,7 @@ CTransferWnd::CTransferWnd( wxWindow* pParent )
 	nb->SetPopupHandler( this );
 	
 	// Set default category
-	theApp->glob_prefs->GetCategory(0)->title = GetCatTitle(thePrefs::GetAllcatType());
+	theApp->glob_prefs->GetCategory(0)->title = GetCatTitle(thePrefs::GetAllcatFilter());
 	theApp->glob_prefs->GetCategory(0)->path = thePrefs::GetIncomingDir();
 	
 	// Show default + userdefined categories
@@ -159,8 +159,11 @@ void CTransferWnd::UpdateCategory( int index, bool titleChanged )
 		for (CDownQueueRem::const_iterator it = theApp->downloadqueue->begin(); it != theApp->downloadqueue->end(); ++it) {
 			CPartFile *cur_file = it->second;
 #else
-		for ( unsigned int i = 0; i < theApp->downloadqueue->GetFileCount(); ++i ) {
-			CPartFile *cur_file = theApp->downloadqueue->GetFileByIndex(i);
+		std::vector<CPartFile*> fileList;
+		theApp->downloadqueue->CopyFileList(fileList, true);
+		int size = fileList.size();
+		for (int i = 0; i < size; ++i ) {
+			CPartFile *cur_file = fileList[i];
 #endif
 			if ( cur_file && cur_file->CheckShowItemInGivenCat(index) ) {
 				files++;
@@ -171,7 +174,7 @@ void CTransferWnd::UpdateCategory( int index, bool titleChanged )
 			}
 		}
 		
-		label += wxString::Format(wxT(" (%u/%u)"), download, files );
+		label += CFormat(wxT(" (%u/%u)")) % download % files;
 	}
 	
 	m_dlTab->SetPageText( index, label );
@@ -247,7 +250,7 @@ void CTransferWnd::RemoveCategory(int index)
 		theApp->glob_prefs->RemoveCat(index);
 		RemoveCategoryPage(index);
 		if ( theApp->glob_prefs->GetCatCount() == 1 ) {
-			thePrefs::SetAllcatType(0);
+			thePrefs::SetAllcatFilter( acfAll );
 		}
 		theApp->glob_prefs->SaveCats();
 		theApp->amuledlg->m_searchwnd->UpdateCatChoice();
@@ -287,8 +290,8 @@ void CTransferWnd::OnEditCategory( wxCommandEvent& WXUNUSED(event) )
 
 void CTransferWnd::OnSetDefaultCat( wxCommandEvent& event )
 {
-	thePrefs::SetAllcatType( event.GetId() - MP_CAT_SET0 );
-	theApp->glob_prefs->GetCategory(0)->title = GetCatTitle( thePrefs::GetAllcatType() );
+	thePrefs::SetAllcatFilter( static_cast<AllCategoryFilter>(event.GetId() - MP_CAT_SET0) );
+	theApp->glob_prefs->GetCategory(0)->title = GetCatTitle( thePrefs::GetAllcatFilter() );
 	
 	UpdateCategory( 0 );
 	
@@ -303,7 +306,7 @@ void CTransferWnd::OnSetDefaultCat( wxCommandEvent& event )
 void CTransferWnd::ShowQueueCount(uint32 /*number*/)
 {
 #if 0
-	wxString str = wxString::Format( wxT("%u (%u %s)"), number, theStats::GetBannedCount(), _("Banned") );
+	wxString str = CFormat(wxT("%u (%u %s)")) % number % theStats::GetBannedCount() % _("Banned");
 	wxStaticText* label = CastChild( ID_CLIENTCOUNT, wxStaticText );
 	
 	label->SetLabel( str );
@@ -314,8 +317,12 @@ void CTransferWnd::ShowQueueCount(uint32 /*number*/)
 
 void CTransferWnd::OnCategoryChanged(wxNotebookEvent& evt)
 {
-  downloadlistctrl->ChangeCategory(evt.GetSelection());
-  downloadlistctrl->SortList();
+	// First remove currently showing sources (switching cat will deselect all)
+	CKnownFileVector filesVector;
+	clientlistctrl->ShowSources(filesVector);
+	// Then change cat
+	downloadlistctrl->ChangeCategory(evt.GetSelection());
+	downloadlistctrl->SortList();
 }
 
 
@@ -408,8 +415,8 @@ void CTransferWnd::Prepare()
 	
 	if ( m_splitter ) {
 		// Some sanity checking
-		if ( m_splitter < 90 ) {
-			m_splitter = 90;
+		if ( m_splitter < s_splitterMin ) {
+			m_splitter = s_splitterMin;
 		} else if ( m_splitter > height - header_height * 2 ) {
 			m_splitter = height - header_height * 2;
 		}
@@ -461,8 +468,8 @@ void CTransferWnd::OnToggleClientList(wxCommandEvent& WXUNUSED(evt))
 
 void CTransferWnd::OnSashPositionChanging(wxSplitterEvent& evt)
 {
-	if ( evt.GetSashPosition() < 90 ) {
-		evt.SetSashPosition( 90 );
+	if ( evt.GetSashPosition() < s_splitterMin ) {
+		evt.SetSashPosition( s_splitterMin );
 	} else {
 		wxSplitterWindow* splitter = wxStaticCast( evt.GetEventObject(), wxSplitterWindow);
 		wxCHECK_RET(splitter, wxT("ERROR: NULL splitter in CTransferWnd::OnSashPositionChanging"));

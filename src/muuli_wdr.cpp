@@ -1863,39 +1863,42 @@ wxSizer *PreferencesFilesTab( wxWindow *parent, bool call_fit, bool set_sizer )
     wxCheckBox *item11 = new wxCheckBox( parent, IDC_STARTNEXTFILE_SAME, _("From the same category"), wxDefaultPosition, wxDefaultSize, 0 );
     item5->Add( item11, 0, wxALIGN_CENTER_VERTICAL|wxLEFT, 20 );
 
-    wxCheckBox *item12 = new wxCheckBox( parent, IDC_ALLOCFULLFILE, _("Preallocate disk space for new files"), wxDefaultPosition, wxDefaultSize, 0 );
-    item12->SetToolTip( _("For new files preallocates disk space for the whole file, thus reduces fragmentation") );
-    item5->Add( item12, 0, wxALIGN_CENTER_VERTICAL|wxTOP, 0 );
+    wxCheckBox *item12 = new wxCheckBox( parent, IDC_STARTNEXTFILE_ALPHA, _("In alphabetic order"), wxDefaultPosition, wxDefaultSize, 0 );
+    item5->Add( item12, 0, wxALIGN_CENTER_VERTICAL|wxLEFT, 20 );
 
-    wxFlexGridSizer *item13 = new wxFlexGridSizer( 3, 0, 0 );
-    item13->AddGrowableCol( 0 );
+    wxCheckBox *item13 = new wxCheckBox( parent, IDC_ALLOCFULLFILE, _("Preallocate disk space for new files"), wxDefaultPosition, wxDefaultSize, 0 );
+    item13->SetToolTip( _("For new files preallocates disk space for the whole file, thus reduces fragmentation") );
+    item5->Add( item13, 0, wxALIGN_CENTER_VERTICAL|wxTOP, 0 );
 
-    wxCheckBox *item14 = new wxCheckBox( parent, IDC_CHECKDISKSPACE, _("Stop downloads when free disk space reaches "), wxDefaultPosition, wxDefaultSize, 0 );
-    item14->SetToolTip( _("Select this if you want aMule to check your disk space") );
-    item13->Add( item14, 0, wxALIGN_CENTER_VERTICAL, 0 );
+    wxFlexGridSizer *item14 = new wxFlexGridSizer( 3, 0, 0 );
+    item14->AddGrowableCol( 0 );
 
-    wxSpinCtrl *item15 = new wxSpinCtrl( parent, IDC_MINDISKSPACE, wxT("1"), wxDefaultPosition, wxSize(100,-1), 0, 1, 1000000, 1 );
-    item15->SetToolTip( _("Enter here the min disk space desired.") );
-    item13->Add( item15, 0, wxALIGN_CENTER_VERTICAL, 0 );
+    wxCheckBox *item15 = new wxCheckBox( parent, IDC_CHECKDISKSPACE, _("Stop downloads when free disk space reaches "), wxDefaultPosition, wxDefaultSize, 0 );
+    item15->SetToolTip( _("Select this if you want aMule to check your disk space") );
+    item14->Add( item15, 0, wxALIGN_CENTER_VERTICAL, 0 );
 
-    wxStaticText *item16 = new wxStaticText( parent, -1, _("MB"), wxDefaultPosition, wxDefaultSize, 0 );
-    item13->Add( item16, 0, wxALIGN_CENTER|wxLEFT, 5 );
+    wxSpinCtrl *item16 = new wxSpinCtrl( parent, IDC_MINDISKSPACE, wxT("1"), wxDefaultPosition, wxSize(100,-1), 0, 1, 1000000, 1 );
+    item16->SetToolTip( _("Enter here the min disk space desired.") );
+    item14->Add( item16, 0, wxALIGN_CENTER_VERTICAL, 0 );
 
-    item5->Add( item13, 0, wxGROW|wxALIGN_CENTER_VERTICAL, 0 );
+    wxStaticText *item17 = new wxStaticText( parent, -1, _("MB"), wxDefaultPosition, wxDefaultSize, 0 );
+    item14->Add( item17, 0, wxALIGN_CENTER|wxLEFT, 5 );
 
-    wxCheckBox *item17 = new wxCheckBox( parent, IDC_SRCSEEDS, _("Save 10 sources on rare files (< 20 sources)"), wxDefaultPosition, wxDefaultSize, 0 );
-    item17->SetValue( TRUE );
-    item5->Add( item17, 0, wxGROW|wxALIGN_CENTER_VERTICAL|wxALL, 0 );
+    item5->Add( item14, 0, wxGROW|wxALIGN_CENTER_VERTICAL, 0 );
+
+    wxCheckBox *item18 = new wxCheckBox( parent, IDC_SRCSEEDS, _("Save 10 sources on rare files (< 20 sources)"), wxDefaultPosition, wxDefaultSize, 0 );
+    item18->SetValue( TRUE );
+    item5->Add( item18, 0, wxGROW|wxALIGN_CENTER_VERTICAL|wxALL, 0 );
 
     item0->Add( item5, 0, wxGROW|wxALIGN_CENTER_VERTICAL|wxALL, 0 );
 
-    wxStaticBox *item19 = new wxStaticBox( parent, -1, _("Uploads") );
-    wxStaticBoxSizer *item18 = new wxStaticBoxSizer( item19, wxVERTICAL );
+    wxStaticBox *item20 = new wxStaticBox( parent, -1, _("Uploads") );
+    wxStaticBoxSizer *item19 = new wxStaticBoxSizer( item20, wxVERTICAL );
 
-    wxCheckBox *item20 = new wxCheckBox( parent, IDC_UAP, _("Add new shared files with auto priority"), wxDefaultPosition, wxDefaultSize, 0 );
-    item18->Add( item20, 0, wxALIGN_CENTER_VERTICAL|wxRIGHT, 0 );
+    wxCheckBox *item21 = new wxCheckBox( parent, IDC_UAP, _("Add new shared files with auto priority"), wxDefaultPosition, wxDefaultSize, 0 );
+    item19->Add( item21, 0, wxALIGN_CENTER_VERTICAL|wxRIGHT, 0 );
 
-    item0->Add( item18, 0, wxGROW|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM, 0 );
+    item0->Add( item19, 0, wxGROW|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM, 0 );
 
     if (set_sizer)
     {
@@ -2118,6 +2121,9 @@ wxSizer *PreferencesaMuleTweaksTab( wxWindow *parent, bool call_fit, bool set_si
     wxSlider *item13 = new wxSlider( parent, IDC_SERVERKEEPALIVE, 0, 0, 30, wxDefaultPosition, wxSize(100,-1), wxSL_HORIZONTAL );
     item4->Add( item13, 0, wxGROW|wxALIGN_CENTER_VERTICAL, 5 );
 
+    wxCheckBox *item14 = new wxCheckBox( parent, IDC_PREVENT_SLEEP, _("Disable computer's timed standby mode"), wxDefaultPosition, wxDefaultSize, 0 );
+    item4->Add( item14, 0, wxALIGN_CENTER_VERTICAL|wxTOP|wxBOTTOM, 5 );
+
     item0->Add( item4, 0, wxGROW|wxALL, 5 );
 
     if (set_sizer)
@@ -2173,37 +2179,40 @@ wxSizer *PreferencesGuiTweaksTab( wxWindow *parent, bool call_fit, bool set_size
     wxCheckBox *item10 = new wxCheckBox( parent, IDC_VERTTOOLBAR, _("Vertical toolbar orientation"), wxDefaultPosition, wxDefaultSize, 0 );
     item0->Add( item10, 0, wxGROW|wxALIGN_CENTER_VERTICAL, 5 );
 
-    wxStaticBox *item12 = new wxStaticBox( parent, -1, _("Download Queue Files") );
-    wxStaticBoxSizer *item11 = new wxStaticBoxSizer( item12, wxVERTICAL );
+    wxCheckBox *item11 = new wxCheckBox( parent, IDC_SHOW_COUNTRY_FLAGS, _("Show country flags for clients"), wxDefaultPosition, wxDefaultSize, 0 );
+    item0->Add( item11, 0, wxGROW|wxALIGN_CENTER_VERTICAL, 5 );
 
-    wxCheckBox *item13 = new wxCheckBox( parent, IDC_PERCENT, _("Show progress percentage"), wxDefaultPosition, wxDefaultSize, 0 );
-    item13->SetValue( TRUE );
-    item11->Add( item13, 0, wxGROW|wxALIGN_CENTER_VERTICAL, 0 );
+    wxStaticBox *item13 = new wxStaticBox( parent, -1, _("Download Queue Files") );
+    wxStaticBoxSizer *item12 = new wxStaticBoxSizer( item13, wxVERTICAL );
 
-    wxFlexGridSizer *item14 = new wxFlexGridSizer( 4, 0, 0 );
-    item14->AddGrowableCol( 0 );
+    wxCheckBox *item14 = new wxCheckBox( parent, IDC_PERCENT, _("Show progress percentage"), wxDefaultPosition, wxDefaultSize, 0 );
+    item14->SetValue( TRUE );
+    item12->Add( item14, 0, wxGROW|wxALIGN_CENTER_VERTICAL, 0 );
 
-    wxCheckBox *item15 = new wxCheckBox( parent, IDC_PROGBAR, _("Show progress bar"), wxDefaultPosition, wxDefaultSize, 0 );
-    item15->SetValue( TRUE );
-    item14->Add( item15, 0, wxGROW|wxALIGN_CENTER_VERTICAL, 0 );
+    wxFlexGridSizer *item15 = new wxFlexGridSizer( 4, 0, 0 );
+    item15->AddGrowableCol( 0 );
 
-    wxStaticText *item16 = new wxStaticText( parent, -1, _("Flat"), wxDefaultPosition, wxDefaultSize, 0 );
-    item14->Add( item16, 0, wxALIGN_CENTER_VERTICAL|wxLEFT, 5 );
+    wxCheckBox *item16 = new wxCheckBox( parent, IDC_PROGBAR, _("Show progress bar"), wxDefaultPosition, wxDefaultSize, 0 );
+    item16->SetValue( TRUE );
+    item15->Add( item16, 0, wxGROW|wxALIGN_CENTER_VERTICAL, 0 );
 
-    wxSlider *item17 = new wxSlider( parent, IDC_3DDEPTH, 5, 0, 5, wxDefaultPosition, wxSize(200,-1), wxSL_HORIZONTAL );
-    item14->Add( item17, 0, wxGROW|wxALIGN_CENTER_VERTICAL, 5 );
+    wxStaticText *item17 = new wxStaticText( parent, -1, _("Flat"), wxDefaultPosition, wxDefaultSize, 0 );
+    item15->Add( item17, 0, wxALIGN_CENTER_VERTICAL|wxLEFT, 5 );
 
-    wxStaticText *item18 = new wxStaticText( parent, -1, _("Round"), wxDefaultPosition, wxDefaultSize, 0 );
-    item14->Add( item18, 0, wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL|wxRIGHT, 5 );
+    wxSlider *item18 = new wxSlider( parent, IDC_3DDEPTH, 5, 0, 5, wxDefaultPosition, wxSize(200,-1), wxSL_HORIZONTAL );
+    item15->Add( item18, 0, wxGROW|wxALIGN_CENTER_VERTICAL, 5 );
 
-    item11->Add( item14, 1, wxGROW|wxALIGN_CENTER_VERTICAL, 5 );
+    wxStaticText *item19 = new wxStaticText( parent, -1, _("Round"), wxDefaultPosition, wxDefaultSize, 0 );
+    item15->Add( item19, 0, wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL|wxRIGHT, 5 );
 
-    wxCheckBox *item19 = new wxCheckBox( parent, IDC_AUTOSORT, _("Auto-sort files (high CPU)"), wxDefaultPosition, wxDefaultSize, 0 );
-    item19->SetValue( TRUE );
-    item19->SetToolTip( _("aMule will sort the columns in your download list automatically") );
-    item11->Add( item19, 0, wxGROW|wxALIGN_CENTER_VERTICAL, 0 );
+    item12->Add( item15, 1, wxGROW|wxALIGN_CENTER_VERTICAL, 5 );
 
-    item0->Add( item11, 0, wxGROW|wxALIGN_CENTER_VERTICAL|wxALL, 0 );
+    wxCheckBox *item20 = new wxCheckBox( parent, IDC_AUTOSORT, _("Auto-sort files (high CPU)"), wxDefaultPosition, wxDefaultSize, 0 );
+    item20->SetValue( TRUE );
+    item20->SetToolTip( _("aMule will sort the columns in your download list automatically") );
+    item12->Add( item20, 0, wxGROW|wxALIGN_CENTER_VERTICAL, 0 );
+
+    item0->Add( item12, 0, wxGROW|wxALIGN_CENTER_VERTICAL|wxALL, 0 );
 
     if (set_sizer)
     {
@@ -2545,7 +2554,7 @@ wxSizer *aMuleLog( wxWindow *parent, bool call_fit, bool set_sizer )
 
     wxBoxSizer *item1 = new wxBoxSizer( wxHORIZONTAL );
 
-    CMuleTextCtrl *item2 = new CMuleTextCtrl( parent, ID_LOGVIEW, wxT(""), wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE|wxTE_READONLY|wxVSCROLL );
+    CMuleTextCtrl *item2 = new CMuleTextCtrl( parent, ID_LOGVIEW, wxT(""), wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE|wxTE_READONLY|wxVSCROLL|wxTE_RICH2 );
     item1->Add( item2, 1, wxGROW|wxALIGN_CENTER_HORIZONTAL, 5 );
 
     wxButton *item3 = new wxButton( parent, ID_BTN_RESET, _("Reset"), wxDefaultPosition, wxDefaultSize, 0 );
@@ -3452,7 +3461,7 @@ wxSizer *sharedfilesBottomDlg( wxWindow *parent, bool call_fit, bool set_sizer )
 
     item2->Add( item10, 0, wxALIGN_CENTER|wxALL, 5 );
 
-    wxStaticText *item13 = new wxStaticText( parent, -1, _("percent of total files"), wxDefaultPosition, wxDefaultSize, 0 );
+    wxStaticText *item13 = new wxStaticText( parent, -1, _("Percent of total files"), wxDefaultPosition, wxDefaultSize, 0 );
     item2->Add( item13, 0, wxALIGN_CENTER|wxLEFT|wxRIGHT, 5 );
 
     wxGauge *item14 = new wxGauge( parent, -1, 100, wxDefaultPosition, wxSize(200,18), 0 );
@@ -3490,34 +3499,35 @@ wxSizer *sharedfilesTopDlg( wxWindow *parent, bool call_fit, bool set_sizer )
 {
     wxBoxSizer *item0 = new wxBoxSizer( wxVERTICAL );
 
-    wxFlexGridSizer *item1 = new wxFlexGridSizer( 5, 0, 0 );
-    item1->AddGrowableCol( 0 );
+    wxFlexGridSizer *item1 = new wxFlexGridSizer( 4, 0, 0 );
     item1->AddGrowableCol( 1 );
-    item1->AddGrowableCol( 2 );
 
     wxStaticText *item2 = new wxStaticText( parent, -1, _("Shared files"), wxDefaultPosition, wxDefaultSize, 0 );
     item2->SetName( wxT("sharedFilesLabel") );
     item1->Add( item2, 0, wxALIGN_CENTER_VERTICAL|wxLEFT, 5 );
 
-    wxButton *item3 = new wxButton( parent, ID_BTN_SHARED_ALL, _("All shared files"), wxDefaultPosition, wxDefaultSize, 0 );
+    wxString strs3[] = 
+    {
+        _("All files"), 
+        _("Selected files"), 
+        _("Active uploads only")
+    };
+    wxRadioBox *item3 = new wxRadioBox( parent, ID_SHOW_CLIENTS_MODE, _("Show Clients for"), wxDefaultPosition, wxDefaultSize, 3, strs3, 1, wxNO_BORDER|wxRA_SPECIFY_ROWS );
     item1->Add( item3, 0, wxALIGN_CENTER|wxALL, 5 );
 
-    wxButton *item4 = new wxButton( parent, ID_BTN_SHARED_ONLY_UL, _("Only files currently uploading"), wxDefaultPosition, wxDefaultSize, 0 );
-    item1->Add( item4, 0, wxALIGN_CENTER|wxALL, 5 );
+    wxStaticText *item4 = new wxStaticText( parent, -1, _("Reload:"), wxDefaultPosition, wxDefaultSize, 0 );
+    item4->SetName( wxT("sharedFilesLabel") );
+    item1->Add( item4, 0, wxALIGN_CENTER_VERTICAL|wxLEFT, 5 );
 
-    wxStaticText *item5 = new wxStaticText( parent, -1, _("Reload:"), wxDefaultPosition, wxDefaultSize, 0 );
-    item5->SetName( wxT("sharedFilesLabel") );
-    item1->Add( item5, 0, wxALIGN_CENTER_VERTICAL|wxLEFT, 5 );
-
-    wxBitmapButton *item6 = new wxBitmapButton( parent, ID_BTNRELSHARED, amuleDlgImages( 18 ), wxDefaultPosition, wxSize(32,32) );
-    item6->SetToolTip( _("Reload your shared files") );
-    item1->Add( item6, 0, wxALIGN_CENTER_VERTICAL, 0 );
+    wxBitmapButton *item5 = new wxBitmapButton( parent, ID_BTNRELSHARED, amuleDlgImages( 18 ), wxDefaultPosition, wxSize(32,32) );
+    item5->SetToolTip( _("Reload your shared files") );
+    item1->Add( item5, 0, wxALIGN_CENTER_VERTICAL, 0 );
 
     item0->Add( item1, 0, wxGROW|wxALIGN_CENTER_VERTICAL, 0 );
 
-    CSharedFilesCtrl *item7 = new CSharedFilesCtrl( parent, ID_SHFILELIST, wxDefaultPosition, wxDefaultSize, wxLC_REPORT|wxSUNKEN_BORDER );
-    item7->SetName( wxT("sharedFilesCt") );
-    item0->Add( item7, 1, wxGROW|wxALIGN_CENTER_VERTICAL, 5 );
+    CSharedFilesCtrl *item6 = new CSharedFilesCtrl( parent, ID_SHFILELIST, wxDefaultPosition, wxDefaultSize, wxLC_REPORT|wxSUNKEN_BORDER );
+    item6->SetName( wxT("sharedFilesCt") );
+    item0->Add( item6, 1, wxGROW|wxALIGN_CENTER_VERTICAL, 5 );
 
     if (set_sizer)
     {

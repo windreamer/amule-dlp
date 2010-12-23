@@ -236,6 +236,9 @@
     <ClCompile Include="..\..\..\..\src\SourceListCtrl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\src\Friend.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\PCH.h">
@@ -551,6 +554,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\src\BitVector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\src\include\common\MacrosProgramSpecific.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

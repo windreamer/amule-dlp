@@ -39,10 +39,29 @@ class CPreferences;
 class wxConfigBase;
 class wxWindow;
 
-enum EViewSharedFilesAccess{
+enum EViewSharedFilesAccess {
 	vsfaEverybody = 0,
 	vsfaFriends = 1,
 	vsfaNobody = 2
+};
+
+enum AllCategoryFilter {
+	acfAll = 0,
+	acfAllOthers,
+	acfIncomplete,
+	acfCompleted,
+	acfWaiting,
+	acfDownloading,
+	acfErroneous,
+	acfPaused,
+	acfStopped,
+	acfVideo,
+	acfAudio,
+	acfArchive,
+	acfCDImages,
+	acfPictures,
+	acfText,
+	acfActive
 };
 
 /**
@@ -282,8 +301,10 @@ public:
 	static void		SetPreviewPrio(bool in)		{ s_bpreviewprio = in; }
 	static bool		StartNextFile()			{ return s_bstartnextfile; }
 	static bool		StartNextFileSame()		{ return s_bstartnextfilesame; }
+	static bool		StartNextFileAlpha()		{ return s_bstartnextfilealpha; }
 	static void		SetStartNextFile(bool val)	{ s_bstartnextfile = val; }
 	static void		SetStartNextFileSame(bool val)	{ s_bstartnextfilesame = val; }
+	static void		SetStartNextFileAlpha(bool val)	{ s_bstartnextfilealpha = val; }
 	static bool		ShowOverhead()			{ return s_bshowoverhead; }
 	static void		SetNewAutoUp(bool m_bInUAP) 	{ s_bUAP = m_bInUAP; }
 	static bool		GetNewAutoUp() 			{ return s_bUAP; }
@@ -353,8 +374,9 @@ public:
 	bool			UpdateCategory(uint8 cat, const wxString& name, const CPath& path,
 						const wxString& comment, uint32 color, uint8 prio);
 
-	static uint32		GetAllcatType() 		{ return s_allcatType; }
-	static void		SetAllcatType(uint32 in)	{ s_allcatType = in; }
+	static AllCategoryFilter	GetAllcatFilter() 		{ return s_allcatFilter; }
+	static void		SetAllcatFilter(AllCategoryFilter in)	{ s_allcatFilter = in; }
+	
 	static bool		ShowAllNotCats() 		{ return s_showAllNotCats; }
 
 	// WebServer
@@ -550,6 +572,9 @@ public:
 	static wxString	GetLastHTTPDownloadURL(uint8 t);
 	static void		SetLastHTTPDownloadURL(uint8 t, const wxString& val);
 
+	// Sleep
+	static bool		GetPreventSleepWhileDownloading() { return s_preventSleepWhileDownloading; }
+	static void		SetPreventSleepWhileDownloading(bool status) { s_preventSleepWhileDownloading = status; }
 protected:
 	static	int32 GetRecommendedMaxConnections();
 
@@ -658,6 +683,7 @@ protected:
 	static bool	s_bmanualhighprio;
 	static bool	s_bstartnextfile;
 	static bool	s_bstartnextfilesame;	
+	static bool	s_bstartnextfilealpha;
 	static bool	s_bshowoverhead;
 	static bool	s_bDAP;
 	static bool	s_bUAP;
@@ -690,7 +716,7 @@ protected:
 	static wxString s_WebTemplate;
 
 	static bool	s_showCatTabInfos;
-	static uint32	s_allcatType;
+	static AllCategoryFilter s_allcatFilter;
 	
 	// Madcat - Sources Dropping Tweaks
 	static uint8	s_NoNeededSources; // 0: Keep, 1: Drop, 2:Swap
@@ -789,6 +815,9 @@ protected:
 	// GeoIP
 	static bool s_GeoIPEnabled;
 	static wxString s_GeoIPUpdateUrl;
+
+	// Sleep vetoing
+	static bool s_preventSleepWhileDownloading;
 };
 
 

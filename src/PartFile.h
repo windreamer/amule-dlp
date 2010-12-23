@@ -105,8 +105,12 @@ public:
 	bool	CreateFromFile(wxString WXUNUSED(directory), wxString WXUNUSED(filename), void* WXUNUSED(pvProgressParam)) {return false;}// not supported in this class
 	virtual bool LoadFromFile(const CFileDataIO* WXUNUSED(file)) { return false; }
 	bool	WriteToFile(CFileDataIO* WXUNUSED(file))	{ return false; }
-	bool	IsPartFile() const		{ return !(status == PS_COMPLETE); }
-	bool	IsCPartFile() const		{ return true; }
+
+	// virtual functions for CKnownFile and CPartFile:
+	bool	IsPartFile() const		{ return status != PS_COMPLETE; }	// true if not completed
+	bool	IsCompleted() const		{ return status == PS_COMPLETE; }	// true if completed
+	bool	IsCPartFile() const		{ return true; }					// true if it's a CPartFile
+
 	uint32	Process(uint32 reducedownload, uint8 m_icounter);
 	uint8	LoadPartFile(const CPath& in_directory, const CPath& filename, bool from_backup = false, bool getsizeonly = false);
 	bool	SavePartFile(bool Initial = false);
@@ -116,7 +120,7 @@ public:
 	bool    CheckShowItemInGivenCat(int inCategory);
 
 	bool	IsComplete(uint64 start, uint64 end)	{ return m_gaplist.IsComplete(start, end); }
-	bool	IsComplete(uint16 part)					{ return m_gaplist.IsComplete(part); }
+	bool	IsComplete(uint16 part)			{ return m_gaplist.IsComplete(part); }
 	
 	void	UpdateCompletedInfos();
 
@@ -198,6 +202,7 @@ public:
 	
 	uint8	GetCategory() const { return m_category; }
 	void	SetCategory(uint8 cat);
+	void	RemoveCategory(uint8 cat);
 
 	volatile bool m_bPreviewing;
 	void	SetDownPriority(uint8 newDownPriority, bool bSave = true, bool bRefresh = true);
@@ -250,6 +255,7 @@ public:
 
 	const SourceSet& GetSourceList()	const { return m_SrcList; }
 	const SourceSet& GetA4AFList()		const { return m_A4AFsrclist; }
+	void	ClearA4AFList()				{ m_A4AFsrclist.clear(); }
 
 	const CReqBlockPtrList	GetRequestedBlockList() const { return m_requestedblocks_list; }
 
@@ -370,6 +376,9 @@ private:
 	uint8   m_iDownPriorityEC;
 	bool	m_isShared;
 	SourcenameItemMap m_SourcenameItemMap;
+
+	ListOfUInts32	m_A4AFClientIDs;
+	ListOfUInts32 & GetA4AFClientIDs()			{ return m_A4AFClientIDs; }
 public:
 	bool	IsShared() const					{ return m_isShared; }
 	SourcenameItemMap &GetSourcenameItemMap()	{ return m_SourcenameItemMap; }

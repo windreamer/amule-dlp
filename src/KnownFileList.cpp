@@ -81,39 +81,38 @@ bool CKnownFileList::Init()
 	}
 
 	if (!file.Open(fullpath)) {
-		AddLogLineM(true, CFormat(_("WARNING: %s cannot be opened.")) % m_filename);
+		AddLogLineC(CFormat(_("WARNING: %s cannot be opened.")) % m_filename);
 		return false;
 	}
 	
 	try {
 		uint8 version = file.ReadUInt8();
 		if ((version != MET_HEADER) && (version != MET_HEADER_WITH_LARGEFILES)) {
-			AddLogLineM(true, _("WARNING: Known file list corrupted, contains invalid header."));
+			AddLogLineC(_("WARNING: Known file list corrupted, contains invalid header."));
 			return false;
 		}
 		
 		wxMutexLocker sLock(list_mut);
 		uint32 RecordsNumber = file.ReadUInt32();
-		AddDebugLogLineM(false, logKnownFiles,
-			wxString::Format(wxT("Reading %i known files from file format 0x%2.2x."),
-			RecordsNumber, version));
+		AddDebugLogLineN(logKnownFiles, CFormat(wxT("Reading %i known files from file format 0x%2.2x."))
+			% RecordsNumber % version);
 		for (uint32 i = 0; i < RecordsNumber; i++) {
 			CScopedPtr<CKnownFile> record(new CKnownFile());
 			if (record->LoadFromFile(&file)) {
-				AddDebugLogLineM(false, logKnownFiles,
+				AddDebugLogLineN(logKnownFiles,
 					CFormat(wxT("Known file read: %s")) % record->GetFileName());
 				Append(record.release());
 			} else {
 				AddLogLineC(_("Failed to load entry in known file list, file may be corrupt"));
 			}
 		}
-		AddDebugLogLineM(false, logKnownFiles, wxT("Finished reading known files"));
+		AddDebugLogLineN(logKnownFiles, wxT("Finished reading known files"));
 	
 		return true;
 	} catch (const CInvalidPacket& e) {
 		AddLogLineC(_("Invalid entry in known file list, file may be corrupt: ") + e.what());
 	} catch (const CSafeIOException& e) {
-		AddLogLineM(true, CFormat(_("IO error while reading %s file: %s")) % m_filename % e.what());
+		AddLogLineC(CFormat(_("IO error while reading %s file: %s")) % m_filename % e.what());
 	}	
 	
 	return false;
@@ -159,7 +158,7 @@ void CKnownFileList::Save()
 		file.Seek(0);
 		file.WriteUInt8(bContainsAnyLargeFiles ? MET_HEADER_WITH_LARGEFILES : MET_HEADER);
 	} catch (const CIOFailureException& e) {
-		AddLogLineM(true, CFormat(_("Error while saving %s file: %s")) % m_filename % e.what());
+		AddLogLineC(CFormat(_("Error while saving %s file: %s")) % m_filename % e.what());
 	}
 }
 
@@ -314,7 +313,7 @@ bool CKnownFileList::Append(CKnownFile *Record)
 			}
 		}
 	} else {
-		AddDebugLogLineM(false, logGeneral,
+		AddDebugLogLineN(logGeneral,
 			CFormat(wxT("%s is 0-size, not added")) %
 			Record->GetFileName());
 		

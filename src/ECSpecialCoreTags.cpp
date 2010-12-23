@@ -39,10 +39,12 @@
 #include "UploadQueue.h"	// Needed for CUploadQueue
 #include "SharedFileList.h"
 #include "SearchList.h"
+#include "Friend.h"
 
 #include "kademlia/kademlia/Kademlia.h"
 
 
+// used for webserver, amulecmd
 CEC_Server_Tag::CEC_Server_Tag(const CServer *server, EC_DETAIL_LEVEL detail_level) :
 	CECTag(EC_TAG_SERVER, EC_IPv4_t(server->GetIP(), server->GetPort()))
 {
@@ -99,7 +101,26 @@ CEC_Server_Tag::CEC_Server_Tag(const CServer *server, EC_DETAIL_LEVEL detail_lev
 	}
 }
 
-CEC_ConnState_Tag::CEC_ConnState_Tag(EC_DETAIL_LEVEL detail_level) : CECTag(EC_TAG_CONNSTATE,
+// used for amulegui (EC_DETAIL_INC_UPDATE)
+CEC_Server_Tag::CEC_Server_Tag(const CServer *server, CValueMap *valuemap) :
+	CECTag(EC_TAG_SERVER, server->ECID())
+{
+	AddTag(EC_TAG_SERVER_NAME, server->GetListName(), valuemap);
+	AddTag(EC_TAG_SERVER_DESC, server->GetDescription(), valuemap);
+	AddTag(EC_TAG_SERVER_VERSION, server->GetVersion(), valuemap);
+	AddTag(EC_TAG_SERVER_IP, server->GetIP(), valuemap);
+	AddTag(EC_TAG_SERVER_PORT, server->GetPort(), valuemap);
+	AddTag(EC_TAG_SERVER_PING, server->GetPing(), valuemap);
+	AddTag(EC_TAG_SERVER_PRIO, server->GetPreferences(), valuemap);
+	AddTag(EC_TAG_SERVER_FAILED, server->GetFailedCount(), valuemap);
+	AddTag(EC_TAG_SERVER_STATIC, server->IsStaticMember(), valuemap);
+	AddTag(EC_TAG_SERVER_USERS, server->GetUsers(), valuemap);
+	AddTag(EC_TAG_SERVER_USERS_MAX, server->GetMaxUsers(), valuemap);
+	AddTag(EC_TAG_SERVER_FILES, server->GetFiles(), valuemap);
+}
+
+
+CEC_ConnState_Tag::CEC_ConnState_Tag(EC_DETAIL_LEVEL) : CECTag(EC_TAG_CONNSTATE,
 	(uint8)(
 			(theApp->IsConnectedED2K() ? 0x01 : 0x00)
 			|
@@ -114,7 +135,8 @@ CEC_ConnState_Tag::CEC_ConnState_Tag(EC_DETAIL_LEVEL detail_level) : CECTag(EC_T
 {
 	if (theApp->IsConnectedED2K()) {
 		if ( theApp->serverconnect->GetCurrentServer() ) {
-			AddTag(CEC_Server_Tag(theApp->serverconnect->GetCurrentServer(), detail_level));
+			// Send no full server tag, just the ECID of the connected server
+			AddTag(CECTag(EC_TAG_SERVER, theApp->serverconnect->GetCurrentServer()->ECID()));
 		}
 		AddTag(CECTag(EC_TAG_ED2K_ID, theApp->GetED2KID()));
 	}
@@ -174,6 +196,14 @@ CEC_SharedFile_Tag(file, detail_level, valuemap, EC_TAG_PARTFILE)
 	}
 
 	AddTag(EC_TAG_PARTFILE_PARTMETID, file->GetPartMetNumber(), valuemap);
+
+	// A4AF sources
+	CECEmptyTag a4afTag(EC_TAG_PARTFILE_A4AF_SOURCES);
+	const CKnownFile::SourceSet& a4afSources = file->GetA4AFList();
+	for (CKnownFile::SourceSet::const_iterator it = a4afSources.begin(); it != a4afSources.end(); it++) {
+		a4afTag.AddTag(CECTag(EC_TAG_ECID, (*it)->ECID()));
+	}
+	AddTag(a4afTag, valuemap);
 }
 
 CEC_SharedFile_Tag::CEC_SharedFile_Tag(const CKnownFile *file, EC_DETAIL_LEVEL detail_level, 
@@ -214,6 +244,9 @@ CEC_SharedFile_Tag::CEC_SharedFile_Tag(const CKnownFile *file, EC_DETAIL_LEVEL d
 
 	AddTag(EC_TAG_PARTFILE_ED2K_LINK,
 			theApp->CreateED2kLink(file, (theApp->IsConnectedED2K() && !theApp->serverconnect->IsLowID())), valuemap);
+
+	AddTag(EC_TAG_KNOWNFILE_COMMENT, file->GetFileComment());
+	AddTag(EC_TAG_KNOWNFILE_RATING, file->GetFileRating());
 }
 
 CEC_UpDownClient_Tag::CEC_UpDownClient_Tag(const CUpDownClient* client, EC_DETAIL_LEVEL detail_level, CValueMap *valuemap) :
@@ -252,12 +285,13 @@ CEC_UpDownClient_Tag::CEC_UpDownClient_Tag(const CUpDownClient* client, EC_DETAI
 	//AddTag(CECTag(EC_TAG_CLIENT_XFER_TIME, client->GetUpStartTimeDelay()), valuemap);
 	//AddTag(CECTag(EC_TAG_CLIENT_QUEUE_TIME, (uint64)(::GetTickCount() - client->GetWaitStartTime())), valuemap);
 	//AddTag(CECTag(EC_TAG_CLIENT_LAST_TIME, (uint64)(::GetTickCount() - client->GetLastUpRequest())), valuemap);
-	AddTag(CECTag(EC_TAG_CLIENT_WAITING_POSITION, theApp->uploadqueue->GetWaitingPosition(client)), valuemap);
+	AddTag(CECTag(EC_TAG_CLIENT_WAITING_POSITION, client->GetUploadQueueWaitingPosition()), valuemap);
 	AddTag(CECTag(EC_TAG_CLIENT_REMOTE_QUEUE_RANK, client->IsRemoteQueueFull() ? (uint16)0xffff : client->GetRemoteQueueRank()), valuemap);
 	AddTag(CECTag(EC_TAG_CLIENT_OLD_REMOTE_QUEUE_RANK, client->GetOldRemoteQueueRank()), valuemap);
 	AddTag(CECTag(EC_TAG_CLIENT_ASKED_COUNT, client->GetAskedCount()), valuemap);
 	AddTag(CECTag(EC_TAG_CLIENT_OBFUSCATION_STATUS, client->GetObfuscationStatus()), valuemap);
 	AddTag(CECTag(EC_TAG_CLIENT_KAD_PORT, client->GetKadPort()), valuemap);
+	AddTag(CECTag(EC_TAG_CLIENT_FRIEND_SLOT, client->GetFriendSlot()), valuemap);
 	
 	if (detail_level == EC_DETAIL_UPDATE) {
 		return;
@@ -271,6 +305,7 @@ CEC_UpDownClient_Tag::CEC_UpDownClient_Tag(const CUpDownClient* client, EC_DETAI
 	}
 	const CPartFile* pfile = client->GetRequestFile();
 	AddTag(CECTag(EC_TAG_CLIENT_REQUEST_FILE, pfile ? pfile->ECID() : 0), valuemap);
+	AddTag(CECTag(EC_TAG_CLIENT_REMOTE_FILENAME, client->GetClientFilename()), valuemap);
 
 	if (detail_level != EC_DETAIL_INC_UPDATE) {
 		return;
@@ -307,4 +342,17 @@ CEC_SearchFile_Tag::CEC_SearchFile_Tag(CSearchFile *file, EC_DETAIL_LEVEL detail
 	AddTag(CECTag(EC_TAG_PARTFILE_SIZE_FULL, file->GetFileSize()), valuemap);
 	AddTag(EC_TAG_PARTFILE_HASH, file->GetFileHash(), valuemap);
 }
+
+//
+// Friend
+//
+CEC_Friend_Tag::CEC_Friend_Tag(const CFriend* Friend, CValueMap* valuemap) : CECTag(EC_TAG_FRIEND, Friend->ECID())
+{
+	AddTag(EC_TAG_FRIEND_NAME,	Friend->GetName(), valuemap);
+	AddTag(EC_TAG_FRIEND_HASH,	Friend->GetUserHash(), valuemap);
+	AddTag(EC_TAG_FRIEND_IP,	Friend->GetIP(), valuemap);
+	AddTag(EC_TAG_FRIEND_PORT,	Friend->GetPort(), valuemap);
+	AddTag(EC_TAG_FRIEND_CLIENT, Friend->GetLinkedClient() ? Friend->GetLinkedClient()->ECID() : 0, valuemap);
+}
+
 // File_checked_for_headers

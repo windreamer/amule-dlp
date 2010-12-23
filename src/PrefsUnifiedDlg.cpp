@@ -49,7 +49,9 @@
 #include "KadDlg.h"				// Needed for CKadDlg
 #include "OScopeCtrl.h"			// Needed for OScopeCtrl
 #include "ServerList.h"
+#include "Statistics.h"
 #include "UserEvents.h"
+#include "PlatformSpecific.h"
 
 BEGIN_EVENT_TABLE(PrefsUnifiedDlg,wxDialog)
 	// Events
@@ -241,6 +243,11 @@ wxDialog(parent, -1, _("Preferences"),
 				CastChild(IDC_BROWSERTABS, wxCheckBox)->Enable(false);
 			#endif /* __WXMSW__ */
 			CastChild(IDC_PREVIEW_NOTE, wxStaticText)->SetLabel(_("The following variables will be substituted:\n    %PARTFILE - full path to the file\n    %PARTNAME - file name only"));
+		} else if (pages[i].m_function == PreferencesGuiTweaksTab) {
+			#ifndef ENABLE_IP2COUNTRY
+				CastChild(IDC_SHOW_COUNTRY_FLAGS, wxCheckBox)->Enable(false);
+				thePrefs::SetGeoIPEnabled(false);
+			#endif
 		} else if (pages[i].m_function == PreferencesEventsTab) {
 
 #define USEREVENTS_REPLACE_VAR(VAR, DESC, CODE)	+ wxString(wxT("\n  %") VAR wxT(" - ")) + wxGetTranslation(DESC)
@@ -270,6 +277,10 @@ wxDialog(parent, -1, _("Preferences"),
 			wxStaticText *txt = CastChild(IDC_AMULE_TWEAKS_WARNING, wxStaticText);
 			// Do not wrap this line, Windows _() can't handle wrapped strings
 			txt->SetLabel(_("Do not change these setting unless you know\nwhat you are doing, otherwise you can easily\nmake things worse for yourself.\n\naMule will run fine without adjusting any of\nthese settings."));
+			#if defined CLIENT_GUI || !PLATFORMSPECIFIC_CAN_PREVENT_SLEEP_MODE
+				CastChild(IDC_PREVENT_SLEEP, wxCheckBox)->Enable(false);
+				thePrefs::SetPreventSleepWhileDownloading(false);
+			#endif
 		}
 #ifdef __DEBUG__
 		else if (pages[i].m_function == PreferencesDebug) {
@@ -335,10 +346,6 @@ wxDialog(parent, -1, _("Preferences"),
 	// It must not be resized to something smaller than what it currently is
 	wxSize size = GetClientSize();
 	SetSizeHints(size.GetWidth(), size.GetHeight());
-	
-	#ifdef __WXMSW__
-		FindWindow(IDC_VERTTOOLBAR)->Enable(false);
-	#endif
 
 	// Position the dialog.
 	Center();
@@ -415,6 +422,7 @@ bool PrefsUnifiedDlg::TransferToWindow()
 	FindWindow( IDC_UDPPORT )->Enable( thePrefs::s_UDPEnable );
 	FindWindow( IDC_SERVERRETRIES )->Enable( thePrefs::DeadServer() );
 	FindWindow( IDC_STARTNEXTFILE_SAME )->Enable(thePrefs::StartNextFile());
+	FindWindow( IDC_STARTNEXTFILE_ALPHA )->Enable(thePrefs::StartNextFile());
 
 #ifdef __WXMAC__
 	FindWindow(IDC_ENABLETRAYICON)->Enable(false);
@@ -563,6 +571,19 @@ void PrefsUnifiedDlg::OnOk(wxCommandEvent& WXUNUSED(event))
 		restart_needed_msg += _("- UDP port changed.\n");
 	}
 
+	if (CfgChanged(IDC_EXT_CONN_TCP_PORT)) {
+		restart_needed = true;
+		restart_needed_msg += _("- External connect port changed.\n");
+	}
+	if (CfgChanged(IDC_EXT_CONN_ACCEPT)) {
+		restart_needed = true;
+		restart_needed_msg += _("- External connect acceptance changed.\n");
+	}
+	if (CfgChanged(IDC_EXT_CONN_IP)) {
+		restart_needed = true;
+		restart_needed_msg += _("- External connect interface changed.\n");
+	}
+
 	// Force port checking
 	thePrefs::SetPort(thePrefs::GetPort());
 	
@@ -678,6 +699,10 @@ void PrefsUnifiedDlg::OnOk(wxCommandEvent& WXUNUSED(event))
 	
 	if (CfgChanged(IDC_NETWORKKAD) || CfgChanged(IDC_NETWORKED2K)) {
 		theApp->amuledlg->DoNetworkRearrange();
+	}
+	
+	if (CfgChanged(IDC_SHOW_COUNTRY_FLAGS)) {
+		theApp->amuledlg->EnableIP2Country();
 	}
 	
 	if (restart_needed) {
@@ -812,6 +837,7 @@ void PrefsUnifiedDlg::OnCheckBoxChange(wxCommandEvent& event)
 
 		case IDC_STARTNEXTFILE:
 			FindWindow(IDC_STARTNEXTFILE_SAME)->Enable(value);
+			FindWindow(IDC_STARTNEXTFILE_ALPHA)->Enable(value);
 			break;
 
 		case IDC_ENABLETRAYICON:
@@ -831,6 +857,7 @@ void PrefsUnifiedDlg::OnCheckBoxChange(wxCommandEvent& event)
 			theApp->amuledlg->Create_Toolbar(value);
 			// Update the first tool (conn button)
 			theApp->amuledlg->ShowConnectionState();
+			theApp->amuledlg->Layout();
 			break;
 
 		case IDC_ENFORCE_PO_INCOMING:
@@ -1023,47 +1050,47 @@ void PrefsUnifiedDlg::OnScrollBarChange( wxScrollEvent& event )
 	switch ( event.GetId() ) {
 	case IDC_SLIDER:
 		id = IDC_SLIDERINFO;
-		label = wxString::Format( wxPLURAL("Update delay: %d second", "Update delay: %d seconds", event.GetPosition()), event.GetPosition() );
+		label = CFormat(wxPLURAL("Update delay: %d second", "Update delay: %d seconds", event.GetPosition())) % event.GetPosition();
 		theApp->amuledlg->m_statisticswnd->SetUpdatePeriod(event.GetPosition());
 		theApp->amuledlg->m_kademliawnd->SetUpdatePeriod(event.GetPosition());
 		break;
 
 	case IDC_SLIDER3:
 		id = IDC_SLIDERINFO3;
-		label = wxString::Format( wxPLURAL("Time for average graph: %d minute", "Time for average graph: %d minutes", event.GetPosition()), event.GetPosition() );
+		label = CFormat(wxPLURAL("Time for average graph: %d minute", "Time for average graph: %d minutes", event.GetPosition())) % event.GetPosition();
 		theApp->m_statistics->SetAverageMinutes(event.GetPosition());
 		break;
 
 	case IDC_SLIDER4:
 		id = IDC_SLIDERINFO4;
-		label = wxString::Format( _("Connections Graph Scale: %d"), event.GetPosition() );
-		theApp->amuledlg->m_statisticswnd->GetConnScope()->SetRanges(0,event.GetPosition());
+		label = CFormat(_("Connections Graph Scale: %d")) % event.GetPosition();
+		theApp->amuledlg->m_statisticswnd->GetConnScope()->SetRanges(0, event.GetPosition());
 		break;
 
 	case IDC_SLIDER2:
 		id = IDC_SLIDERINFO2;
-		label = wxString::Format( wxPLURAL("Update delay : %d second", "Update delay : %d seconds", event.GetPosition()), event.GetPosition() );
+		label = CFormat(wxPLURAL("Update delay : %d second", "Update delay : %d seconds", event.GetPosition())) % event.GetPosition();
 		break;
 
 	case IDC_FILEBUFFERSIZE:
 		id = IDC_FILEBUFFERSIZE_STATIC;
 		// Yes, it seems odd to add the singular form here, but other languages might need to know the number to select the appropriate translation
-		label = wxString::Format( wxPLURAL("File Buffer Size: %d byte", "File Buffer Size: %d bytes", event.GetPosition() * 15000), event.GetPosition() * 15000 );
+		label = CFormat(wxPLURAL("File Buffer Size: %d byte", "File Buffer Size: %d bytes", event.GetPosition() * 15000)) % (event.GetPosition() * 15000);
 		break;
 
 	case IDC_QUEUESIZE:
 		id = IDC_QUEUESIZE_STATIC;
 		// Yes, it seems odd to add the singular form here, but other languages might need to know the number to select the appropriate translation
-		label = wxString::Format( wxPLURAL("Upload Queue Size: %d client", "Upload Queue Size: %d clients", event.GetPosition() * 100), event.GetPosition() * 100 );
+		label = CFormat(wxPLURAL("Upload Queue Size: %d client", "Upload Queue Size: %d clients", event.GetPosition() * 100)) % (event.GetPosition() * 100);
 		break;
 
 	case IDC_SERVERKEEPALIVE:
 		id = IDC_SERVERKEEPALIVE_LABEL;
 
 		if ( event.GetPosition() ) {
-			label = wxString::Format( wxPLURAL("Server connection refresh interval: %d minute", "Server connection refresh interval: %d minutes", event.GetPosition()), event.GetPosition() );
+			label = CFormat(wxPLURAL("Server connection refresh interval: %d minute", "Server connection refresh interval: %d minutes", event.GetPosition())) % event.GetPosition();
 		} else {
-			label = wxString::Format( _("Server connection refresh interval: Disabled") );
+			label = _("Server connection refresh interval: Disabled");
 		}
 		break;
 

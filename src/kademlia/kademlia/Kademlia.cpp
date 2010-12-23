@@ -69,7 +69,9 @@ time_t		CKademlia::m_nextFindBuddy;
 time_t		CKademlia::m_bootstrap;
 time_t		CKademlia::m_consolidate;
 time_t		CKademlia::m_externPortLookup;
+time_t		CKademlia::m_lanModeCheck = 0;
 bool		CKademlia::m_running = false;
+bool		CKademlia::m_lanMode = false;
 ContactList	CKademlia::s_bootstrapList;
 std::list<uint32_t>	CKademlia::m_statsEstUsersProbes;
 
@@ -219,7 +221,13 @@ void CKademlia::Process()
 	for (EventMap::const_iterator it = m_events.begin(); it != m_events.end(); ++it) {
 		CRoutingZone *zone = it->first;
 		if (updateUserFile) {
-			tempUsers = zone->EstimateCount();
+			// The EstimateCount function is not made for really small networks, if we are in LAN mode, it is actually
+			// better to assume that all users of the network are in our routing table and use the real count function
+			if (IsRunningInLANMode()) {
+				tempUsers = zone->GetNumContacts();
+			} else {
+				tempUsers = zone->EstimateCount();
+			}
 			if (maxUsers < tempUsers) {
 				maxUsers = tempUsers;
 			}
@@ -257,7 +265,7 @@ void CKademlia::Process()
 	if (m_consolidate <= now) {
 		uint32_t mergedCount = instance->m_routingZone->Consolidate();
 		if (mergedCount) {
-			AddDebugLogLineN(logKadRouting, wxString::Format(wxT("Kad merged %u zones"), mergedCount));
+			AddDebugLogLineN(logKadRouting, CFormat(wxT("Kad merged %u zones")) % mergedCount);
 		}
 		m_consolidate = MIN2S(45) + now;
 	}
@@ -275,7 +283,8 @@ void CKademlia::Process()
 		CContact *contact = s_bootstrapList.front();
 		s_bootstrapList.pop_front();
 		m_bootstrap = now;
-		AddDebugLogLineN(logKadMain, wxT("Trying to bootstrap Kad from ") + KadIPToString(contact->GetIPAddress()) + wxT(", Distance: ") + contact->GetDistance().ToHexString() + wxString::Format(wxT(" Version: %u, %u contacts left"), contact->GetVersion(), s_bootstrapList.size()));
+		AddDebugLogLineN(logKadMain, CFormat(wxT("Trying to bootstrap Kad from %s, Distance: %s Version: %u, %u contacts left"))
+			% KadIPToString(contact->GetIPAddress()) % contact->GetDistance().ToHexString() % contact->GetVersion() % s_bootstrapList.size());
 		instance->m_udpListener->Bootstrap(contact->GetIPAddress(), contact->GetUDPPort(), contact->GetVersion(), &contact->GetClientID());
 		delete contact;
 	}
@@ -292,7 +301,8 @@ void CKademlia::ProcessPacket(const uint8_t *data, uint32_t lenData, uint32_t ip
 			instance->m_udpListener->ProcessPacket(data, lenData, ip, port, validReceiverKey, senderKey);
 		}
 	} catch (const wxString& DEBUG_ONLY(error)) {
-		AddDebugLogLineN(logKadMain, wxString::Format(wxT("Exception on Kad ProcessPacket while processing packet (length = %u) from "), lenData) + KadIPPortToString(ip, port) + wxT(':'));
+		AddDebugLogLineN(logKadMain, CFormat(wxT("Exception on Kad ProcessPacket while processing packet (length = %u) from %s:"))
+			% lenData % KadIPPortToString(ip, port));
 		AddDebugLogLineN(logKadMain, error);
 		throw;
 	} catch (...) {
@@ -303,7 +313,7 @@ void CKademlia::ProcessPacket(const uint8_t *data, uint32_t lenData, uint32_t ip
 
 void CKademlia::RecheckFirewalled()
 {
-	if (instance && instance->m_prefs) {
+	if (instance && instance->m_prefs && !IsRunningInLANMode()) {
 		// Something is forcing a new firewall check
 		// Stop any new buddy requests, and tell the client
 		// to recheck it's IP which in turns rechecks firewall.
@@ -446,6 +456,40 @@ uint32_t CKademlia::CalculateKadUsersNew()
 	return (uint32_t)((float)median * firewalledModifyTotal);
 }
 
+bool CKademlia::IsRunningInLANMode()
+{
+	if (thePrefs::FilterLanIPs() || !IsRunning()) {
+		return false;
+	}
+
+	time_t now = time(NULL);
+	if (m_lanModeCheck + 10 <= now) {
+		m_lanModeCheck = now;
+		uint32_t count = GetRoutingZone()->GetNumContacts();
+		// Limit to 256 nodes, if we have more we don't want to use the LAN mode which is assuming we use a small home LAN
+		// (otherwise we might need to do firewallcheck, external port requests etc after all)
+		if (count == 0 || count > 256) {
+			m_lanMode = false;
+		} else {
+			if (GetRoutingZone()->HasOnlyLANNodes()) {
+				if (!m_lanMode) {
+					m_lanMode = true;
+					theApp->ShowConnectionState();
+					AddDebugLogLineN(logKadMain, wxT("Activating LAN mode"));
+				}
+			} else {
+				if (m_lanMode) {
+					m_lanMode = false;
+					theApp->ShowConnectionState();
+					AddDebugLogLineN(logKadMain, wxT("Deactivating LAN mode"));
+				}
+			}
+		}
+	}
+	return m_lanMode;
+}
+
+
 // Global function.
 
 #include "../../CryptoPP_Inc.h"
@@ -469,4 +513,3 @@ void KadGetKeywordHash(const wxString& rstrKeyword, Kademlia::CUInt128* pKadID)
 	
 	pKadID->SetValueBE(Output);
 }
-// File_checked_for_headers

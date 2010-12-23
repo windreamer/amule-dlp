@@ -177,6 +177,15 @@ public:
 	CUpDownClient* FindClientByIP( uint32 clientip );
 
 
+	/**
+	 * Finds a client with the specified ECID.
+	 *
+	 * @param clientip The IP of the client to find.
+	 *
+	 */
+	CUpDownClient* FindClientByECID(uint32 ecid) const;
+
+
 	//! The list-type used to store clients IPs and other information
 	typedef std::map<uint32, uint32> ClientMap;
 	

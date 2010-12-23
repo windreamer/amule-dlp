@@ -51,34 +51,34 @@ bool CCanceledFileList::Init()
 	}
 
 	if (!file.Open(fullpath)) {
-		AddLogLineM(true, CFormat(_("WARNING: %s cannot be opened.")) % m_filename);
+		AddLogLineC(CFormat(_("WARNING: %s cannot be opened.")) % m_filename);
 		return false;
 	}
 	
 	try {
 		uint8 version = file.ReadUInt8();
 		if (version != CANCELEDFILE_VERSION) {
-			AddLogLineM(true, _("WARNING: Canceled file list corrupted, contains invalid header."));
+			AddLogLineC(_("WARNING: Canceled file list corrupted, contains invalid header."));
 			return false;
 		}
 		
 		uint32 RecordsNumber = file.ReadUInt32();
-		AddDebugLogLineM(false, logKnownFiles,
+		AddDebugLogLineN(logKnownFiles,
 			CFormat(wxT("Reading %i canceled files from file format 0x%02x."))
 			% RecordsNumber % version);
 		for (uint32 i = 0; i < RecordsNumber; i++) {
 			CMD4Hash hash;
 			file.Read(hash.GetHash(), 16);
-			AddDebugLogLineM(false, logKnownFiles, CFormat(wxT("Canceled file read: %s")) % hash.Encode());
+			AddDebugLogLineN(logKnownFiles, CFormat(wxT("Canceled file read: %s")) % hash.Encode());
 			if (!hash.IsEmpty()) {
 				m_canceledFileList.insert(hash);
 			}
 		}
-		AddDebugLogLineM(false, logKnownFiles, wxT("Finished reading canceled files"));
+		AddDebugLogLineN(logKnownFiles, wxT("Finished reading canceled files"));
 	
 		return true;
 	} catch (const CSafeIOException& e) {
-		AddLogLineM(true, CFormat(_("IO error while reading %s file: %s")) % m_filename % e.what());
+		AddLogLineC(CFormat(_("IO error while reading %s file: %s")) % m_filename % e.what());
 	}	
 	
 	return false;
@@ -101,7 +101,7 @@ void CCanceledFileList::Save()
 			file.Write(it->GetHash(), 16);
 		}
 	} catch (const CIOFailureException& e) {
-		AddLogLineM(true, CFormat(_("Error while saving %s file: %s")) % m_filename % e.what());
+		AddLogLineC(CFormat(_("Error while saving %s file: %s")) % m_filename % e.what());
 	}
 }
 

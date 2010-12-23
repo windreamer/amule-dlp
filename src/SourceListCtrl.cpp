@@ -22,6 +22,7 @@
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301, USA
 //
 #include "SourceListCtrl.h"
+#include "KnownFile.h"
 
 static CGenericClientListCtrlColumn s_sources_column_info[] = { 
 	{ ColumnUserName,		wxTRANSLATE("User Name"),	260 },
@@ -30,10 +31,10 @@ static CGenericClientListCtrlColumn s_sources_column_info[] = {
 	{ ColumnUserUploaded,		wxTRANSLATE("Uploaded"),	65 },
 	{ ColumnUserProgress,		wxTRANSLATE("Available Parts"),	170 },
 	{ ColumnUserVersion,		wxTRANSLATE("Version"),		50 },
-	{ ColumnUserQueueRankRemote,	wxTRANSLATE("Queue Rank"),	55 },
-	{ ColumnUserStatus,		wxTRANSLATE("Status"),		70 },
+	{ ColumnUserQueueRankRemote,	wxTRANSLATE("Download Status"),	55 },
 	{ ColumnUserOrigin,		wxTRANSLATE("Origin"),		110 },
-	{ ColumnUserFileNameDownload,	wxTRANSLATE("Local File Name"),	200 }
+	{ ColumnUserFileNameDownload,	wxTRANSLATE("Local File Name"),	200 },
+	{ ColumnUserFileNameDownloadRemote, wxTRANSLATE("Remote File Name"), 200 }
 };
 
 BEGIN_EVENT_TABLE(CSourceListCtrl, CGenericClientListCtrl)
@@ -61,6 +62,11 @@ CSourceListCtrl::~CSourceListCtrl()
 int CSourceListCtrl::SourceSortProc(wxUIntPtr param1, wxUIntPtr param2, long sortData)
 {
 	return CGenericClientListCtrl::SortProc(param1, param2, s_sources_column_info[sortData & CMuleListCtrl::COLUMN_MASK].cid | (sortData & CMuleListCtrl::SORT_DES));
+}
+
+void CSourceListCtrl::SetShowSources(CKnownFile * f, bool b) const
+{
+	f->SetShowSources(b);
 }
 
 // File_checked_for_headers

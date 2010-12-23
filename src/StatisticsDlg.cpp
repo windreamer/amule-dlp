@@ -32,6 +32,7 @@
 #include "Preferences.h"	// Needed for thePrefs
 #include "muuli_wdr.h"		// Needed for statsDlg()
 #include "StatisticsDlg.h"	// Interface declarations
+#include "Statistics.h"
 
 
 class CTreeItemData : public wxTreeItemData
@@ -144,7 +145,7 @@ void CStatisticsDlg::ApplyStatsColor(int index)
 		case 8:  case 9:  case 10:
 				(*ppscope)->SetPlotColor(cr, iTrend);
 				if ((ctrl = CastChild(iRes, CColorFrameCtrl)) == NULL) {
-					throw wxString::Format(wxT("CStatisticsDlg::ApplyStatsColor: control missing (%d)\n"),iRes);
+					throw wxString(CFormat(wxT("CStatisticsDlg::ApplyStatsColor: control missing (%d)\n")) % iRes);
 				}
 				ctrl->SetBackgroundBrushColour(cr);
 				ctrl->SetFrameBrushColour(*wxBLACK);
@@ -185,7 +186,7 @@ void CStatisticsDlg::UpdateStatGraphs(const uint32 peakconnections, const GraphU
 		nScalePrev = nScale;
 		wxStaticText* label = CastChild( ID_ACTIVEC, wxStaticText );
 		
-		label->SetLabel(wxString::Format(_("Active connections (1:%u)"), nScale));
+		label->SetLabel(CFormat(_("Active connections (1:%u)")) % nScale);
 		label->GetParent()->Layout();
 		
 		pscopeConn->SetRange(0.0, (float)nScale*pscopeConn->GetUpperLimit(), 1);
@@ -308,6 +309,14 @@ void CStatisticsDlg::ShowStatistics(bool init)
 	}
 #endif
 }
+
+
+#ifdef CLIENT_GUI
+void CStatisticsDlg::RebuildStatTreeRemote(const CECTag * tag)
+{
+	m_stats->RebuildStatTreeRemote(tag);
+}
+#endif
 
 
 void CStatisticsDlg::FillTree(CStatTreeItemBase* statssubtree, wxTreeItemId& StatsGUITree, const NodeIdSet& expandednodes)

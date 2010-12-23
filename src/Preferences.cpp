@@ -69,7 +69,7 @@
 // Needed for IP filtering prefs
 #include "ClientList.h"
 #include "ServerList.h"
-#include "IPFilter.h"
+#include "GuiEvents.h"
 
 #define DEFAULT_TCP_PORT 4662
 #define DEFAULT_UDP_PORT 4672
@@ -149,6 +149,7 @@ bool		CPreferences::s_bVerbose;
 bool		CPreferences::s_bmanualhighprio;
 bool		CPreferences::s_bstartnextfile;
 bool		CPreferences::s_bstartnextfilesame;
+bool		CPreferences::s_bstartnextfilealpha;
 bool		CPreferences::s_bshowoverhead;
 bool		CPreferences::s_bDAP;
 bool		CPreferences::s_bUAP;
@@ -172,7 +173,7 @@ uint32		CPreferences::s_nWebPageRefresh;
 bool		CPreferences::s_bWebLowEnabled;
 wxString	CPreferences::s_WebTemplate;
 bool		CPreferences::s_showCatTabInfos;
-uint32		CPreferences::s_allcatType;
+AllCategoryFilter CPreferences::s_allcatFilter;
 uint8		CPreferences::s_NoNeededSources;
 bool		CPreferences::s_DropFullQueueSources;
 bool		CPreferences::s_DropHighQueueRankingSources;
@@ -238,6 +239,7 @@ bool CPreferences::s_DLPCheckVeryCDMod;
 //bool CPreferences::s_DLPCheckminiMule; //Added by Bill Lee
 bool CPreferences::s_DLPCheckGhostMod;
 unsigned int CPreferences::s_DLPCheckMask;
+bool		CPreferences::s_preventSleepWhileDownloading;
 
 /**
  * Template Cfg class for connecting with widgets.
@@ -735,6 +737,10 @@ public:
 
 	virtual bool TransferFromWindow()
 	{
+		if (!m_languagesReady) {
+			return true;	// nothing changed, no problem
+		}
+
 		if ( Cfg_PureInt::TransferFromWindow() ) { 
 			// find wx ID of selected language
 			int i = 0;
@@ -977,7 +983,7 @@ CPreferences::CPreferences()
 				preffile.ReadUInt8(); // Version. Value is not used.
 				s_userhash = preffile.ReadHash();
 			} catch (const CSafeIOException& e) {
-				AddDebugLogLineM(true, logGeneral,
+				AddDebugLogLineC(logGeneral,
 					wxT("Error while reading userhash: ") + e.what());
 			}
 		}
@@ -1147,6 +1153,7 @@ void CPreferences::BuildItemList( const wxString& appdir )
 	NewCfgItem(IDC_MANUALSERVERHIGHPRIO,	(new Cfg_Bool( wxT("/eMule/ManualHighPrio"), s_bmanualhighprio, false )));
 	NewCfgItem(IDC_STARTNEXTFILE,	(new Cfg_Bool( wxT("/eMule/StartNextFile"), s_bstartnextfile, false )));
 	NewCfgItem(IDC_STARTNEXTFILE_SAME,	(new Cfg_Bool( wxT("/eMule/StartNextFileSameCat"), s_bstartnextfilesame, false )));
+	NewCfgItem(IDC_STARTNEXTFILE_ALPHA,	(new Cfg_Bool( wxT("/eMule/StartNextFileAlpha"), s_bstartnextfilealpha, false )));
 	NewCfgItem(IDC_SRCSEEDS,	(new Cfg_Bool( wxT("/ExternalConnect/UseSrcSeeds"), s_UseSrcSeeds, false )));
 	NewCfgItem(IDC_FILEBUFFERSIZE,	(MkCfg_Int( wxT("/eMule/FileBufferSizePref"), s_iFileBufferSize, 16 )));
 	NewCfgItem(IDC_DAP,		(new Cfg_Bool( wxT("/eMule/DAPPref"), s_bDAP, true )));
@@ -1200,6 +1207,7 @@ void CPreferences::BuildItemList( const wxString& appdir )
 	NewCfgItem(IDC_PERCENT,		(new Cfg_Bool( wxT("/ExternalConnect/ShowPercent"), s_Percent, true )));
 	NewCfgItem(IDC_SKIN,		(new Cfg_Skin(  wxT("/SkinGUIOptions/Skin"), s_Skin, wxEmptyString )));
 	NewCfgItem(IDC_VERTTOOLBAR,	(new Cfg_Bool( wxT("/eMule/VerticalToolbar"), s_ToolbarOrientation, false )));
+	NewCfgItem(IDC_SHOW_COUNTRY_FLAGS,	(new Cfg_Bool( wxT("/eMule/GeoIPEnabled"), s_GeoIPEnabled, true )));
 	
 	/**
 	 * External Apps
@@ -1277,6 +1285,11 @@ void CPreferences::BuildItemList( const wxString& appdir )
 #endif
 
 	/**
+	 * Power management
+	 **/
+	NewCfgItem( IDC_PREVENT_SLEEP, ( new Cfg_Bool( wxT("/PowerManagement/PreventSleepWhileDownloading"), s_preventSleepWhileDownloading, false )));
+
+	/**
 	 * The following doesn't have an associated widget or section
 	 **/
 	s_MiscList.push_back( new Cfg_Str(  wxT("/eMule/Language"),			s_languageID ) );
@@ -1286,7 +1299,7 @@ void CPreferences::BuildItemList( const wxString& appdir )
 	s_MiscList.push_back( new Cfg_Str(  wxT("/eMule/YourHostname"),			s_yourHostname, wxEmptyString ) );
 	s_MiscList.push_back( new Cfg_Str(  wxT("/eMule/DateTimeFormat"),		s_datetimeformat, wxT("%A, %x, %X") ) );
 
-	s_MiscList.push_back(    MkCfg_Int( wxT("/eMule/AllcatType"),			s_allcatType, 0 ) );
+	s_MiscList.push_back(    MkCfg_Int( wxT("/eMule/AllcatType"),			s_allcatFilter, 0 ) );
 	s_MiscList.push_back( new Cfg_Bool( wxT("/eMule/ShowAllNotCats"),		s_showAllNotCats, false ) );
 
 	s_MiscList.push_back( MkCfg_Int( wxT("/eMule/SmartIdState"), s_smartidstate, 0 ) );
@@ -1297,7 +1310,6 @@ void CPreferences::BuildItemList( const wxString& appdir )
 	s_MiscList.push_back( new Cfg_Str(  wxT("/eMule/Ed2kServersUrl"),		s_Ed2kURL, wxT("http://gruk.org/server.met.gz") ) );
 	s_MiscList.push_back( MkCfg_Int( wxT("/eMule/ShowRatesOnTitle"),		s_showRatesOnTitle, 0 ));
 
-	s_MiscList.push_back( new Cfg_Bool( wxT("/eMule/GeoIPEnabled"), 		s_GeoIPEnabled, true ) );
 	s_MiscList.push_back( new Cfg_Str(  wxT("/eMule/GeoLiteCountryUpdateUrl"),		s_GeoIPUpdateUrl, wxT("http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz") ) );
 	wxConfigBase::Get()->DeleteEntry(wxT("/eMule/GeoIPUpdateUrl")); // get rid of the old one for a while
 
@@ -1306,7 +1318,7 @@ void CPreferences::BuildItemList( const wxString& appdir )
 #ifndef AMULE_DAEMON
 	// Colors have been moved from global prefs to CStatisticsDlg
 	for ( int i = 0; i < cntStatColors; i++ ) {  
-		wxString str = wxString::Format(wxT("/eMule/StatColor%i"),i);
+		wxString str = CFormat(wxT("/eMule/StatColor%i")) % i;
 		s_MiscList.push_back( new Cfg_Colour( str, CStatisticsDlg::acrStat[i] ) );
 	}
 #endif
@@ -1509,7 +1521,7 @@ void CPreferences::Save()
 			preffile.WriteUInt8(PREFFILE_VERSION);
 			preffile.WriteHash(s_userhash);
 		} catch (const CIOFailureException& e) {
-			AddDebugLogLineM(true, logGeneral, wxT("IO failure while saving user-hash: ") + e.what());
+			AddDebugLogLineC(logGeneral, wxT("IO failure while saving user-hash: ") + e.what());
 		}
 	}
 
@@ -1589,7 +1601,7 @@ void CPreferences::SaveCats()
 		wxConfigBase* cfg = wxConfigBase::Get();
 
 		// Save the main cat.
-		cfg->Write( wxT("/eMule/AllcatType"), (int)s_allcatType);
+		cfg->Write( wxT("/eMule/AllcatType"), (int)s_allcatFilter);
 		
 		// The first category is the default one and should not be counted
 
@@ -1602,7 +1614,7 @@ void CPreferences::SaveCats()
 			cfg->Write( wxT("Title"),	m_CatList[i]->title );
 			cfg->Write( wxT("Incoming"),	CPath::ToUniv(m_CatList[i]->path) );
 			cfg->Write( wxT("Comment"),	m_CatList[i]->comment );
-			cfg->Write( wxT("Color"),	wxString::Format(wxT("%u"), m_CatList[i]->color) );
+			cfg->Write( wxT("Color"),	wxString(CFormat(wxT("%u")) % m_CatList[i]->color));
 			cfg->Write( wxT("Priority"),	(int)m_CatList[i]->prio );
 		}
 		// remove deleted cats from config
@@ -1633,7 +1645,7 @@ void CPreferences::LoadCats()
 	long max = cfg->Read( wxT("/General/Count"), 0l );
 
 	for ( int i = 1; i <= max ; i++ ) {
-		cfg->SetPath( wxString::Format(wxT("/Cat#%i"), i) );
+		cfg->SetPath(CFormat(wxT("/Cat#%i")) % i);
 
 		Category_Struct* newcat = new Category_Struct;
 
@@ -1807,8 +1819,10 @@ void CPreferences::SetIPFilterLevel(uint8 level)
 	if (level != s_filterlevel) {
 		// Set the new access-level
 		s_filterlevel = level;
+#ifndef CLIENT_GUI
 		// and reload the filter
-		theApp->ipfilter->Reload();
+		NotifyAlways_IPFilter_Reload();
+#endif
 	}
 }
 
@@ -1817,8 +1831,8 @@ void CPreferences::SetPort(uint16 val)
 	// Warning: Check for +3, because server UDP is TCP+3
 	
 	if (val +3 > 65535) {
-		AddLogLineM(true, _("TCP port can't be higher than 65532 due to server UDP socket being TCP+3"));
-		AddLogLineM(false, wxString::Format(_("Default port will be used (%d)"),DEFAULT_TCP_PORT));
+		AddLogLineC(_("TCP port can't be higher than 65532 due to server UDP socket being TCP+3"));
+		AddLogLineN(CFormat(_("Default port will be used (%d)")) % DEFAULT_TCP_PORT);
 		s_port = DEFAULT_TCP_PORT;
 	} else {
 		s_port = val;

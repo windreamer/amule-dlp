@@ -43,7 +43,6 @@
 #include "Server.h"		// Needed for CServer and SRV_PR_*
 #include "Logger.h"
 #include <common/Format.h>	// Needed for CFormat
-#include <common/TextFile.h>	// Needed for CTextFile
 
 
 #define CMuleColour(x) (wxSystemSettings::GetColour(x))
@@ -145,14 +144,14 @@ void CServerListCtrl::RemoveAllServers(int state)
 	while ( pos != -1 ) {
 		CServer* server = (CServer*)GetItemData(pos);
 		
-		if (reinterpret_cast<wxUIntPtr>(server) == m_connected && connected) {
+		if (server == m_connected && connected) {
 			wxMessageBox(_("You are connected to a server you are trying to delete. Please disconnect first. The server was NOT deleted."), _("Info"), wxOK, this);
 			++pos;
 		} else if (server->IsStaticMember()) {
 			const wxString name = (!server->GetListName() ? wxString(_("(Unknown name)")) : server->GetListName());
 			
 			if (wxMessageBox(CFormat(_("Are you sure you want to delete the static server %s")) % name, _("Cancel"), wxICON_QUESTION | wxYES_NO, this) == wxYES) {
-				SetStaticServer(server, false);
+				theApp->serverlist->SetStaticServer(server, false);
 				DeleteItem( pos );
 				theApp->serverlist->RemoveServer( server );
 			} else {
@@ -193,7 +192,7 @@ void CServerListCtrl::RefreshServer( CServer* server )
 	wxString serverName;
 #ifdef ENABLE_IP2COUNTRY
 	// Get the country name
-	if (theApp->amuledlg->m_IP2Country->IsEnabled()) {
+	if (theApp->amuledlg->m_IP2Country->IsEnabled() && thePrefs::IsGeoIPEnabled()) {
 		const CountryData& countrydata = theApp->amuledlg->m_IP2Country->GetCountryData(server->GetFullIP());
 		serverName << countrydata.Name;
 		serverName << wxT(" - ");
@@ -204,11 +203,10 @@ void CServerListCtrl::RefreshServer( CServer* server )
 	SetItem(itemnr, COLUMN_SERVER_ADDR, server->GetAddress());
 	if (server->GetAuxPortsList().IsEmpty()) {
 		SetItem( itemnr, COLUMN_SERVER_PORT,
-			wxString::Format(wxT("%u"), server->GetPort()));
+			CFormat(wxT("%u")) % server->GetPort());
 	} else {
 		SetItem( itemnr, COLUMN_SERVER_PORT,
-			wxString::Format(wxT("%u ("),
-				server->GetPort()) + server->GetAuxPortsList() + wxT(")") );
+			CFormat(wxT("%u (%s)")) % server->GetPort() % server->GetAuxPortsList());
 	}
 	SetItem( itemnr, COLUMN_SERVER_DESC, server->GetDescription() );
 	
@@ -221,14 +219,14 @@ void CServerListCtrl::RefreshServer( CServer* server )
 
 	if ( server->GetUsers() ) {
 		SetItem( itemnr, COLUMN_SERVER_USERS,
-			wxString::Format( wxT("%u"), server->GetUsers() ) );
+			CFormat(wxT("%u")) % server->GetUsers());
 	} else {
 		SetItem( itemnr, COLUMN_SERVER_USERS, wxEmptyString );
 	}
 
 	if ( server->GetFiles() ) {
 		SetItem( itemnr, COLUMN_SERVER_FILES,
-			wxString::Format( wxT("%u"), server->GetFiles() ) );
+			CFormat(wxT("%u")) % server->GetFiles());
 	} else {
 		SetItem( itemnr, COLUMN_SERVER_FILES, wxEmptyString );
 	}
@@ -240,11 +238,11 @@ void CServerListCtrl::RefreshServer( CServer* server )
 		default:		SetItem(itemnr, COLUMN_SERVER_PRIO, wxT("---"));	// this should never happen
 	}
 
-	SetItem( itemnr, COLUMN_SERVER_FAILS, wxString::Format( wxT("%u"),server->GetFailedCount() ) );
+	SetItem( itemnr, COLUMN_SERVER_FAILS, CFormat(wxT("%u")) % server->GetFailedCount());
 	SetItem( itemnr, COLUMN_SERVER_STATIC, ( server->IsStaticMember() ? _("Yes") : _("No") ) );
 	SetItem( itemnr, COLUMN_SERVER_VERSION, server->GetVersion() );
 
-	#ifdef __DEBUG__
+	#if defined(__DEBUG__) && !defined(CLIENT_GUI)
 	wxString flags;
 	/* TCP */
 	if (server->GetTCPFlags() & SRV_TCPFLG_COMPRESSION) {
@@ -314,7 +312,7 @@ void CServerListCtrl::HighlightServer( const CServer* server, bool highlight )
 	// Unset the old highlighted server if we are going to set a new one
 	if ( m_connected && highlight ) {
 		// A recursive call to do the real work. 
-		HighlightServer( (CServer*)m_connected, false );
+		HighlightServer( m_connected, false );
 
 		m_connected = 0;
 	}
@@ -330,7 +328,7 @@ void CServerListCtrl::HighlightServer( const CServer* server, bool highlight )
 			if ( highlight ) {
 				font.SetWeight( wxBOLD );
 
-				m_connected = reinterpret_cast<wxUIntPtr>(server);
+				m_connected = server;
 			}
 
 			item.SetFont( font );
@@ -340,40 +338,13 @@ void CServerListCtrl::HighlightServer( const CServer* server, bool highlight )
 	}
 }
 
-//#warning Kry TODO: Dude, this gotta be moved to core
-bool CServerListCtrl::SetStaticServer( CServer* server, bool isStatic )
-{
-	server->SetIsStaticMember( isStatic );
-	RefreshServer( server );
-
-	wxString filename = theApp->ConfigDir + wxT("staticservers.dat");
-
-	CTextFile file;
-	if (!file.Open(filename, CTextFile::write)) {
-		AddLogLineM( false, CFormat( _("Failed to open '%s'") ) % filename );
-		return false;
-	}
-
-	for (int i = 0; i < GetItemCount(); ++i) {
-		server = reinterpret_cast<CServer*>(GetItemData(i));
-
-		if (server->IsStaticMember()) {
-			file.WriteLine(CFormat(wxT("%s:%u,%u,%s"))
-				% server->GetAddress() % server->GetPort()
-				% server->GetPreferences() % server->GetListName());
-		}
-	}
-
-	return true;
-}
-
 
 void CServerListCtrl::ShowServerCount()
 {
 	wxStaticText* label = CastByName( wxT("serverListLabel"), GetParent(), wxStaticText );
 
 	if ( label ) {
-		label->SetLabel( wxString::Format( _("Servers (%i)"), GetItemCount() ) );
+		label->SetLabel(CFormat(_("Servers (%i)")) % GetItemCount());
 		label->GetParent()->Layout();
 	}
 }
@@ -410,8 +381,9 @@ void CServerListCtrl::OnItemRightClicked(wxListEvent& event)
 		CServer* server = (CServer*)GetItemData( index );
 
 		// The current server is selected, so we might display the reconnect option
-		if ( reinterpret_cast<wxUIntPtr>(server) == m_connected ) 
+		if (server == m_connected) {
 			enable_reconnect = true;
+		}
 
 		// We want to know which options should be enabled, either one or both
 		enable_static_on	|= !server->IsStaticMember();
@@ -474,7 +446,7 @@ void CServerListCtrl::OnItemRightClicked(wxListEvent& event)
 
 void CServerListCtrl::OnPriorityChange( wxCommandEvent& event )
 {
-	int priority = 0;
+	uint32 priority = 0;
 
 	switch ( event.GetId() ) {
 		case MP_PRIOLOW:		priority = SRV_PR_LOW;		break;
@@ -490,9 +462,7 @@ void CServerListCtrl::OnPriorityChange( wxCommandEvent& event )
 	
 	for ( unsigned int i = 0; i < items.size(); ++i ) {
 		CServer* server = (CServer*)items[ i ];
-		
-		server->SetPreference( priority );
-		RefreshServer( server );	
+		theApp->serverlist->SetServerPrio(server, priority);
 	}
 }
 
@@ -508,14 +478,7 @@ void CServerListCtrl::OnStaticChange( wxCommandEvent& event )
 
 		// Only update items that have the wrong setting
 		if ( server->IsStaticMember() != isStatic ) {
-			if ( !SetStaticServer( server, isStatic ) ) {
-				wxFAIL;
-
-				return;
-			}
-				
-			server->SetIsStaticMember( isStatic );
-			RefreshServer( server );
+			theApp->serverlist->SetStaticServer(server, isStatic);
 		}
 	}
 }
@@ -544,7 +507,7 @@ void CServerListCtrl::OnGetED2kURL( wxCommandEvent& WXUNUSED(event) )
 	while ( pos != -1 ) {
 		CServer* server = (CServer*)GetItemData(pos);
 		
-		URL += wxT("ed2k://|server|") + server->GetFullIP() + wxString::Format(wxT("|%d|"), server->GetPort()) + wxT("/\n");		
+		URL += CFormat(wxT("ed2k://|server|%s|%d|/\n"))	% server->GetFullIP() % server->GetPort();
 		
 		pos = GetNextItem( pos, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED );
 	}

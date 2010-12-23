@@ -300,6 +300,7 @@ CAbstractFile(static_cast<const CAbstractFile &>(searchFile))
 void CKnownFile::Init() 
 {
 	m_showSources = false;
+	m_showPeers = false;
 	m_nCompleteSourcesTime = time(NULL);
 	m_nCompleteSourcesCount = 0;
 	m_nCompleteSourcesCountLo = 0;
@@ -916,7 +917,7 @@ CPacket* CKnownFile::CreateSrcInfoPacket(const CUpDownClient* forClient, uint8 b
 		if (GetFileName().IsOk()) {
 			file2 = GetFileName().GetPrintable();
 		}
-		AddDebugLogLineM(false, logKnownFiles, wxT("File missmatch on source packet (K) Sending: ") + file1 + wxT("  From: ") + file2);
+		AddDebugLogLineN(logKnownFiles, wxT("File mismatch on source packet (K) Sending: ") + file1 + wxT("  From: ") + file2);
 		return NULL;
 	}
 
@@ -925,7 +926,7 @@ CPacket* CKnownFile::CreateSrcInfoPacket(const CUpDownClient* forClient, uint8 b
 	//wxASSERT(rcvstatus.size() == GetPartCount()); // Obviously!
 	if (rcvstatus.size() != GetPartCount()) {
 		// Yuck. Same file but different part count? Seriously fucked up.
-		AddDebugLogLineM(false, logKnownFiles, CFormat(wxT("Impossible situation: different partcounts for the same known file: %i (client) and %i (file)")) % rcvstatus.size() % GetPartCount());
+		AddDebugLogLineN(logKnownFiles, CFormat(wxT("Impossible situation: different partcounts for the same known file: %i (client) and %i (file)")) % rcvstatus.size() % GetPartCount());
 		return NULL;
 	}
 
@@ -942,13 +943,13 @@ CPacket* CKnownFile::CreateSrcInfoPacket(const CUpDownClient* forClient, uint8 b
 
 		// we don't support any special SX2 options yet, reserved for later use
 		if (nRequestedOptions != 0) {
-			AddDebugLogLineM(false, logKnownFiles, CFormat(wxT("Client requested unknown options for SourceExchange2: %u")) % nRequestedOptions);
+			AddDebugLogLineN(logKnownFiles, CFormat(wxT("Client requested unknown options for SourceExchange2: %u")) % nRequestedOptions);
 		}
 	} else {
 		byUsedVersion = forClient->GetSourceExchange1Version();
 		bIsSX2Packet = false;
 		if (forClient->SupportsSourceExchange2()) {
-			AddDebugLogLineM(false, logKnownFiles, wxT("Client which announced to support SX2 sent SX1 packet instead"));
+			AddDebugLogLineN(logKnownFiles, wxT("Client which announced to support SX2 sent SX1 packet instead"));
 		}
 	}
 	
@@ -1096,41 +1097,29 @@ void CKnownFile::UpdateAutoUpPriority()
 	}
 }
 
-void CKnownFile::SetFileComment(const wxString& strNewComment)
+void CKnownFile::SetFileCommentRating(const wxString& strNewComment, int8 iNewRating)
 { 
-	if (m_strComment != strNewComment) {
+	if (m_strComment != strNewComment || m_iRating != iNewRating) {
 		SetLastPublishTimeKadNotes(0);
 		wxString strCfgPath = wxT("/") + m_abyFileHash.Encode() + wxT("/");
 
 		wxConfigBase* cfg = wxConfigBase::Get();
-		cfg->Write( strCfgPath + wxT("Comment"), strNewComment);
+		if (strNewComment.IsEmpty() && iNewRating == 0) {
+			cfg->DeleteGroup(strCfgPath);
+		} else {
+			cfg->Write( strCfgPath + wxT("Comment"), strNewComment);
+			cfg->Write( strCfgPath + wxT("Rate"), (int)iNewRating);
+		}
      
 		m_strComment = strNewComment;
-  
+ 		m_iRating = iNewRating; 
+ 
 		SourceSet::iterator it = m_ClientUploadList.begin();
 		for ( ; it != m_ClientUploadList.end(); it++ ) {
 			(*it)->SetCommentDirty();
 		}
 	}
 }
-
-
-// For File rate 
-void CKnownFile::SetFileRating(int8 iNewRating)
-{ 
-	if (m_iRating != iNewRating) {
-		SetLastPublishTimeKadNotes(0);	
-		wxString strCfgPath = wxT("/") + m_abyFileHash.Encode() + wxT("/");
-		wxConfigBase* cfg = wxConfigBase::Get();
-		cfg->Write( strCfgPath + wxT("Rate"), (int)iNewRating);
-		m_iRating = iNewRating; 
-
-		SourceSet::iterator it = m_ClientUploadList.begin();
-		for ( ; it != m_ClientUploadList.end(); it++ ) {
-			(*it)->SetCommentDirty();
-		}
-	}
-} 
 
 
 void CKnownFile::SetUpPriority(uint8 iNewUpPriority, bool m_bsave){
@@ -1357,7 +1346,7 @@ void CKnownFile::SetFileName(const CPath& filename)
 #endif // CLIENT_GUI
 
 //For File Comment // 
-void CKnownFile::LoadComment()
+void CKnownFile::LoadComment() const
 {
 	#ifndef CLIENT_GUI
 	wxString strCfgPath = wxT("/") + m_abyFileHash.Encode() + wxT("/");
@@ -1366,14 +1355,9 @@ void CKnownFile::LoadComment()
 	
 	m_strComment = cfg->Read( strCfgPath + wxT("Comment"), wxEmptyString);
 	m_iRating = cfg->Read( strCfgPath + wxT("Rate"), 0l);
-	m_bCommentLoaded = true;	
-	
-	#else
-	m_strComment.Clear();
-	m_bCommentLoaded = true;
-	m_iRating =0;
 	#endif
-	
+
+	m_bCommentLoaded = true;
 }
 
 
@@ -1406,7 +1390,7 @@ wxString CKnownFile::GetFeedback() const
 {
 	return	  wxString(_("File name")) + wxT(": ") + GetFileName().GetPrintable() + wxT("\n")
 		+ _("File size") + wxT(": ") + CastItoXBytes(GetFileSize()) + wxT("\n")
-		+ _("Share ratio") + wxString::Format(wxT(": %.2f%%\n"), (((double)statistic.GetAllTimeTransferred() / (double)GetFileSize()) * 100.0))
+		+ _("Share ratio") + CFormat(wxT(": %.2f%%\n")) % (((double)statistic.GetAllTimeTransferred() / (double)GetFileSize()) * 100.0)
 		+ _("Uploaded") + wxT(": ") + CastItoXBytes(statistic.GetTransferred()) + wxT(" (") + CastItoXBytes(statistic.GetAllTimeTransferred()) + wxT(")\n")
 		+ _("Requested") + CFormat(wxT(": %u (%u)\n")) % statistic.GetRequests() % statistic.GetAllTimeRequests()
 		+ _("Accepted") + CFormat(wxT(": %u (%u)\n")) % statistic.GetAccepts() % statistic.GetAllTimeAccepts()

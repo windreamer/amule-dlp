@@ -74,12 +74,12 @@ bool PlatformSpecific::CreateSparseFile(const CPath& name, uint64_t size)
 		FILE_ATTRIBUTE_ARCHIVE, 
 		NULL);
 	if (hd == INVALID_HANDLE_VALUE) {
-		AddDebugLogLineM(true, logPartFile, CFormat(wxT("converting %s to sparse failed (OPEN): %s ")) % name % SystemError());
+		AddDebugLogLineC(logPartFile, CFormat(wxT("converting %s to sparse failed (OPEN): %s ")) % name % SystemError());
 		return false;
 	}
 
 	if (!DeviceIoControl(hd, FSCTL_SET_SPARSE, NULL, 0, NULL, 0, &dwReturnedBytes, NULL)) {
-		AddDebugLogLineM(true, logPartFile, CFormat(wxT("converting %s to sparse failed (SET_SPARSE): %s ")) % name % SystemError());
+		AddDebugLogLineC(logPartFile, CFormat(wxT("converting %s to sparse failed (SET_SPARSE): %s ")) % name % SystemError());
 	} else {
 		// FILE_ZERO_DATA_INFORMATION is not defined here
 		struct {
@@ -93,9 +93,9 @@ bool PlatformSpecific::CreateSparseFile(const CPath& name, uint64_t size)
 		
 		// zero the data
 		if (!DeviceIoControl(hd, FSCTL_SET_ZERO_DATA, (LPVOID) &fzdi, sizeof(fzdi), NULL, 0, &dwReturnedBytes, NULL)) {
-			AddDebugLogLineM(true, logPartFile, CFormat(wxT("converting %s to sparse failed (ZERO): %s")) % name % SystemError());
+			AddDebugLogLineC(logPartFile, CFormat(wxT("converting %s to sparse failed (ZERO): %s")) % name % SystemError());
 		} else if (!SetFilePointerEx(hd, largo, NULL, FILE_BEGIN) || !SetEndOfFile(hd)) {
-			AddDebugLogLineM(true, logPartFile, CFormat(wxT("converting %s to sparse failed (SEEK): %s")) % name % SystemError());
+			AddDebugLogLineC(logPartFile, CFormat(wxT("converting %s to sparse failed (SEEK): %s")) % name % SystemError());
 		}
 	}
 	CloseHandle(hd);
@@ -309,4 +309,78 @@ PlatformSpecific::EFSType PlatformSpecific::GetFilesystemType(const CPath& path)
 	}
 
 	return s_fscache[path.GetRaw()] = doGetFilesystemType(path);
+}
+// Power event vetoing
+
+static bool m_preventingSleepMode = false;
+
+#ifdef __WXMSW__
+
+#else
+	#ifdef __WXMAC__
+		// 10.5 only
+		#if __MAC_OS_X_VERSION_MAX_ALLOWED >= 1050
+			#include <IOPMLib.h>
+			static IOPMAssertionID assertionID;
+		#else
+			#warning Power event vetoing not implemented.
+		#endif
+	#else
+		#warning Power event vetoing not implemented.
+	#endif
+#endif
+
+void PlatformSpecific::PreventSleepMode()
+{
+	if (!m_preventingSleepMode) {
+		#ifdef __WXMSW__
+			SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED);
+			m_preventingSleepMode = true;
+		#else
+			#ifdef __WXMAC__
+				// 10.5 only
+				#if __MAC_OS_X_VERSION_MAX_ALLOWED >= 1050
+					IOReturn success = IOPMAssertionCreate(kIOPMAssertionTypeNoDisplaySleep, 
+														kIOPMAssertionLevelOn, &assertionID); 
+					if (success == kIOReturnSuccess) {
+						// Correctly vetoed, flag so we don't do it again.
+						m_preventingSleepMode = true;
+					} else {
+						// ??
+					}
+				#else
+					// Not implemented	
+				#endif
+			#else
+				// Not implemented
+			#endif
+		#endif
+	}
+}
+
+void PlatformSpecific::AllowSleepMode()
+{
+	if (m_preventingSleepMode) {
+		#ifdef __WXMSW__
+			SetThreadExecutionState(ES_CONTINUOUS); // Clear the system request flag.
+			m_preventingSleepMode = false;
+		#else
+			#ifdef __WXMAC__
+				// 10.5 only
+				#if __MAC_OS_X_VERSION_MAX_ALLOWED >= 1050
+					IOReturn success = IOPMAssertionRelease(assertionID); 
+					if (success == kIOReturnSuccess) {
+						// Correctly restored, flag so we don't do it again.
+						m_preventingSleepMode = false;
+					} else {
+						// ??
+					}
+				#else
+					// Not implemented
+				#endif
+			#else
+				// Not implemented
+			#endif
+		#endif
+	}
 }

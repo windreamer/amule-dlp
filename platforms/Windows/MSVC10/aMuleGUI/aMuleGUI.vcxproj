@@ -211,6 +211,7 @@
     <ClCompile Include="..\..\..\..\src\EditServerListDlg.cpp" />
     <ClCompile Include="..\..\..\..\src\FileDetailDialog.cpp" />
     <ClCompile Include="..\..\..\..\src\FileDetailListCtrl.cpp" />
+    <ClCompile Include="..\..\..\..\src\Friend.cpp" />
     <ClCompile Include="..\..\..\..\src\FriendListCtrl.cpp" />
     <ClCompile Include="..\..\..\..\src\GapList.cpp" />
     <ClCompile Include="..\..\..\..\src\GenericClientListCtrl.cpp" />
@@ -294,6 +295,7 @@
     <ClInclude Include="..\..\..\..\src\DownloadListCtrl.h" />
     <ClInclude Include="..\..\..\..\src\DownloadQueue.h" />
     <ClInclude Include="..\..\..\..\src\GenericClientListCtrl.h" />
+    <ClInclude Include="..\..\..\..\src\include\common\MacrosProgramSpecific.h" />
     <ClInclude Include="..\..\..\..\src\libs\ec\cpp\ECID.h" />
     <ClInclude Include="..\..\..\..\src\ED2KLink.h" />
     <ClInclude Include="..\..\..\..\src\EditServerListDlg.h" />

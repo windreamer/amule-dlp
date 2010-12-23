@@ -41,6 +41,7 @@
 	#include <cmath>		// Needed for std::floor
 	#include "updownclient.h"	// Needed for CUpDownClient
 #else
+	#include "GetTickCount.h"	// Needed for GetTickCount64()
 	#include "Preferences.h"
 	#include <ec/cpp/RemoteConnect.h>		// Needed for CRemoteConnect
 #endif
@@ -119,7 +120,7 @@ void CStatTreeItemRateCounter::AddECValues(CECTag* tag) const
 #ifndef AMULE_DAEMON
 wxString CStatTreeItemPeakConnections::GetDisplayString() const
 {
-	return wxString::Format(wxGetTranslation(m_label), theStats::GetPeakConnections());
+	return CFormat(wxGetTranslation(m_label)) % theStats::GetPeakConnections();
 }
 #endif
 
@@ -970,6 +971,7 @@ void CStatistics::UpdateStats(const CECPacket* stats)
 	s_statData[sdBuddyStatus] = stats->GetTagByNameSafe(EC_TAG_STATS_BUDDY_STATUS)->GetInt();
 	s_statData[sdBuddyIP] = stats->GetTagByNameSafe(EC_TAG_STATS_BUDDY_IP)->GetInt();
 	s_statData[sdBuddyPort] = stats->GetTagByNameSafe(EC_TAG_STATS_BUDDY_PORT)->GetInt();
+	s_statData[sdKadInLanMode] = stats->GetTagByNameSafe(EC_TAG_STATS_KAD_IN_LAN_MODE)->GetInt();
 
 	const CECTag * LoggerTag = stats->GetTagByName(EC_TAG_STATS_LOGGER_MESSAGE);
 	if (LoggerTag) {
@@ -982,19 +984,25 @@ void CStatistics::UpdateStats(const CECPacket* stats)
 
 void CStatistics::UpdateStatsTree()
 {
-	CECPacket request(EC_OP_GET_STATSTREE);
-	if (thePrefs::GetMaxClientVersions() != 0) {
-		request.AddTag(CECTag(EC_TAG_STATTREE_CAPPING, (uint8)thePrefs::GetMaxClientVersions()));
-	}
-	const CECPacket* reply = m_conn.SendRecvPacket(&request);
-	if (reply) {
-		const CECTag* treeRoot = reply->GetTagByName(EC_TAG_STATTREE_NODE);
-		if (treeRoot) {
-			delete s_statTree;
-			s_statTree = new CStatTreeItemBase(treeRoot);
-		}
-	}
-	delete reply;
+}
+
+
+void CStatistics::RebuildStatTreeRemote(const CECTag * tag)
+{
+	delete s_statTree;
+	s_statTree = new CStatTreeItemBase(tag);
+}
+
+
+uint64 CStatistics::GetUptimeMillis()
+{
+	return GetTickCount64() - s_start_time;
+}
+
+
+uint64 CStatistics::GetUptimeSeconds()
+{
+	return (GetTickCount64() - s_start_time) / 1000;
 }
 
 #endif /* !CLIENT_GUI */

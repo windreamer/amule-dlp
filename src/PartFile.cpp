@@ -181,7 +181,7 @@ CPartFile::CPartFile(CSearchFile* searchresult)
 						break;
 					}
 
-					AddDebugLogLineM( false, logPartFile,
+					AddDebugLogLineN( logPartFile,
 						wxT("CPartFile::CPartFile(CSearchFile*): added tag ") +
 						pTag.GetFullInfo() );
 					m_taglist.push_back(pTag);
@@ -205,7 +205,7 @@ CPartFile::CPartFile(CSearchFile* searchresult)
 						break;
 					}
 
-					AddDebugLogLineM( false, logPartFile,
+					AddDebugLogLineN( logPartFile,
 						wxT("CPartFile::CPartFile(CSearchFile*): added tag ") +
 						pTag.GetFullInfo() );
 					m_taglist.push_back(pTag);
@@ -216,7 +216,7 @@ CPartFile::CPartFile(CSearchFile* searchresult)
 		}
 
 		if (!bTagAdded) {
-			AddDebugLogLineM( false, logPartFile,
+			AddDebugLogLineN( logPartFile,
 				wxT("CPartFile::CPartFile(CSearchFile*): ignored tag ") +
 				pTag.GetFullInfo() );
 		}
@@ -238,7 +238,7 @@ CPartFile::CPartFile(const CED2KFileLink* fileLink)
 
 	if (fileLink->m_hashset) {
 		if (!LoadHashsetFromFile(fileLink->m_hashset, true)) {
-			AddDebugLogLineM(true, logPartFile, wxT("eD2K link contained invalid hashset: ") + fileLink->GetLink());
+			AddDebugLogLineC(logPartFile, wxT("eD2K link contained invalid hashset: ") + fileLink->GetLink());
 		}
 	}
 }
@@ -267,7 +267,7 @@ void CPartFile::CreatePartFile()
 	int i = 0; 
 	do { 
 		++i; 
-		m_partmetfilename = CPath(wxString::Format(wxT("%03i.part.met"), i));
+		m_partmetfilename = CPath(CFormat(wxT("%03i.part.met")) % i);
 		m_fullname = thePrefs::GetTempDir().JoinPaths(m_partmetfilename);
 	} while (m_fullname.FileExists());
 
@@ -287,7 +287,7 @@ void CPartFile::CreatePartFile()
 		fileCreated = PlatformSpecific::CreateSparseFile(m_PartPath, GetFileSize());
 	}
 	if (!fileCreated) {
-		AddLogLineM(false,_("ERROR: Failed to create partfile)"));
+		AddLogLineN(_("ERROR: Failed to create partfile)"));
 		SetStatus(PS_ERROR);
 	}
 
@@ -325,20 +325,20 @@ uint8 CPartFile::LoadPartFile(const CPath& in_directory, const CPath& filename, 
 	CPath curMetFilename = m_fullname;
 	if (from_backup) {
 		curMetFilename = curMetFilename.AppendExt(PARTMET_BAK_EXT);
-		AddLogLineM(false, CFormat( _("Trying to load backup of met-file from %s") )
+		AddLogLineN(CFormat( _("Trying to load backup of met-file from %s") )
 			% curMetFilename );
 	}
 	
 	try {
 		CFile metFile(curMetFilename, CFile::read);
 		if (!metFile.IsOpened()) {
-			AddLogLineM(false, CFormat( _("ERROR: Failed to open part.met file: %s ==> %s") )
+			AddLogLineN(CFormat( _("ERROR: Failed to open part.met file: %s ==> %s") )
 				% curMetFilename
 				% GetFileName() );
 
 			return false;
 		} else if (metFile.GetLength() == 0) {
-			AddLogLineM(false, CFormat( _("ERROR: part.met file is 0 size: %s ==> %s") )
+			AddLogLineN(CFormat( _("ERROR: part.met file is 0 size: %s ==> %s") )
 				% m_partmetfilename
 				% GetFileName() );
 			
@@ -349,7 +349,7 @@ uint8 CPartFile::LoadPartFile(const CPath& in_directory, const CPath& filename, 
 		if (version != PARTFILE_VERSION && version != PARTFILE_SPLITTEDVERSION && version != PARTFILE_VERSION_LARGEFILE){
 			metFile.Close();
 			//if (version == 83) return ImportShareazaTempFile(...)
-			AddLogLineM(false, CFormat( _("ERROR: Invalid part.met file version: %s ==> %s") )
+			AddLogLineN(CFormat( _("ERROR: Invalid part.met file version: %s ==> %s") )
 				% m_partmetfilename 
 				% GetFileName() );
 			return false;
@@ -588,21 +588,21 @@ uint8 CPartFile::LoadPartFile(const CPath& in_directory, const CPath& filename, 
 			}
 		}			
 	} catch (const CInvalidPacket& e) {
-		AddLogLineM(true, CFormat(wxT("Error: %s (%s) is corrupt (bad tags: %s), unable to load file.")) 
+		AddLogLineC(CFormat(wxT("Error: %s (%s) is corrupt (bad tags: %s), unable to load file.")) 
 			% m_partmetfilename
 			% GetFileName()
 			% e.what());
 		return false;		
 	} catch (const CIOFailureException& e) {
-		AddDebugLogLineM(true, logPartFile, CFormat( wxT("IO failure while loading '%s': %s") )
+		AddDebugLogLineC(logPartFile, CFormat( wxT("IO failure while loading '%s': %s") )
 			% m_partmetfilename
 			% e.what() );
 		return false;
 	} catch (const CEOFException& WXUNUSED(e)) {
-		AddLogLineM(true, CFormat( _("ERROR: %s (%s) is corrupt (wrong tagcount), unable to load file.") )
+		AddLogLineC(CFormat( _("ERROR: %s (%s) is corrupt (wrong tagcount), unable to load file.") )
 			% m_partmetfilename
 			% GetFileName() );
-		AddLogLineM(true, _("Trying to recover file info..."));
+		AddLogLineC(_("Trying to recover file info..."));
 		
 		// Safe file is that who have 
 		// - FileSize
@@ -616,15 +616,14 @@ uint8 CPartFile::LoadPartFile(const CPath& in_directory, const CPath& filename, 
 			// -Filename
 			if (!GetFileName().IsOk()) {
 				// Not critical, let's put a random filename.
-				AddLogLineM(true, _(
+				AddLogLineC(_(
 					"Recovering no-named file - will try to recover it as RecoveredFile.dat"));
 				SetFileName(CPath(wxT("RecoveredFile.dat")));
 			}
 		
-			AddLogLineM(true,
-				_("Recovered all available file info :D - Trying to use it..."));
+			AddLogLineC(_("Recovered all available file info :D - Trying to use it..."));
 		} else {
-			AddLogLineM(true, _("Unable to recover file info :("));
+			AddLogLineC(_("Unable to recover file info :("));
 			return false;			
 		}		
 	}
@@ -659,7 +658,7 @@ uint8 CPartFile::LoadPartFile(const CPath& in_directory, const CPath& filename, 
 
 	// open permanent handle
 	if ( !m_hpartfile.Open(m_PartPath, CFile::read_write)) {
-		AddLogLineM(false, CFormat( _("Failed to open %s (%s)") )
+		AddLogLineN(CFormat( _("Failed to open %s (%s)") )
 			% m_fullname
 			% GetFileName() );
 		return false;
@@ -673,12 +672,12 @@ uint8 CPartFile::LoadPartFile(const CPath& in_directory, const CPath& filename, 
 			AddGap(m_hpartfile.GetLength(), GetFileSize()-1);
 		// Goes both ways - Partfile should never be too large
 		if (m_hpartfile.GetLength() > GetFileSize()) {
-			AddDebugLogLineM( true, logPartFile, CFormat( wxT("Partfile \"%s\" is too large! Truncating %llu bytes.") ) % GetFileName() % (m_hpartfile.GetLength() - GetFileSize()));
+			AddDebugLogLineC(logPartFile, CFormat( wxT("Partfile \"%s\" is too large! Truncating %llu bytes.") ) % GetFileName() % (m_hpartfile.GetLength() - GetFileSize()));
 			m_hpartfile.SetLength(GetFileSize());
 		}
 		// SLUGFILLER: SafeHash
 	} catch (const CIOFailureException& e) {
-		AddDebugLogLineM( true, logPartFile, CFormat( wxT("Error while accessing partfile \"%s\": %s") ) % GetFileName() % e.what());
+		AddDebugLogLineC(logPartFile, CFormat( wxT("Error while accessing partfile \"%s\": %s") ) % GetFileName() % e.what());
 		SetStatus(PS_ERROR);
 	}
 
@@ -709,7 +708,7 @@ uint8 CPartFile::LoadPartFile(const CPath& in_directory, const CPath& filename, 
 			// It's pointless to rehash an empty file, since the case
 			// where a user has zero'd a file is handled above ...
 			if (m_hpartfile.GetLength()) {
-				AddLogLineM(false, CFormat( _("WARNING: %s might be corrupted (%i)") )
+				AddLogLineN(CFormat( _("WARNING: %s might be corrupted (%i)") )
 					% m_PartPath
 					% (m_lastDateChanged - file_date) );
 				// rehash
@@ -846,7 +845,7 @@ bool CPartFile::SavePartFile(bool Initial)
 				if (!strCorruptedParts.IsEmpty()) {
 					strCorruptedParts += wxT(",");
 				}
-				strCorruptedParts += wxString::Format(wxT("%u"), (unsigned)uCorruptedPart);
+				strCorruptedParts += CFormat(wxT("%u")) % uCorruptedPart;
 			}
 			wxASSERT( !strCorruptedParts.IsEmpty() );
 			
@@ -878,12 +877,12 @@ bool CPartFile::SavePartFile(bool Initial)
 		// gaps
 		unsigned i_pos = 0;
 		for (CGapList::const_iterator it = m_gaplist.begin(); it != m_gaplist.end(); ++it) {
-			wxString tagName = wxString::Format(wxT(" %u"), i_pos);
+			wxString tagName = CFormat(wxT(" %u")) % i_pos;
 			
 			// gap start = first missing byte but gap ends = first non-missing byte
 			// in edonkey but I think its easier to user the real limits
 			tagName[0] = FT_GAPSTART;
-			CTagIntSized(tagName, it.start()		, IsLargeFile() ? 64 : 32).WriteTagToFile( &file );
+			CTagIntSized(tagName, it.start(),	IsLargeFile() ? 64 : 32).WriteTagToFile( &file );
 			
 			tagName[0] = FT_GAPEND;
 			CTagIntSized(tagName, it.end() + 1, IsLargeFile() ? 64 : 32).WriteTagToFile( &file );
@@ -990,7 +989,7 @@ void CPartFile::SaveSourceSeeds()
 	CFile file;
 	file.Create(seedsPath, true);
 	if (!file.IsOpened()) {
-		AddLogLineM(false, CFormat( _("Failed to save part.met.seeds file for %s") )
+		AddLogLineN(CFormat( _("Failed to save part.met.seeds file for %s") )
 			% m_fullname);
 		return;
 	}	
@@ -1016,12 +1015,12 @@ void CPartFile::SaveSourceSeeds()
 		/* v2: Added to keep track of too old seeds */
 		file.WriteUInt32(wxDateTime::Now().GetTicks());
 		
-		AddLogLineM(false, CFormat( wxPLURAL("Saved %i source seed for partfile: %s (%s)", "Saved %i source seeds for partfile: %s (%s)", n_sources) )
+		AddLogLineN(CFormat( wxPLURAL("Saved %i source seed for partfile: %s (%s)", "Saved %i source seeds for partfile: %s (%s)", n_sources) )
 			% n_sources
 			% m_fullname
 			% GetFileName());
 	} catch (const CIOFailureException& e) {
-		AddDebugLogLineM(true, logPartFile, CFormat( wxT("Error saving partfile's seeds file (%s - %s): %s") )
+		AddDebugLogLineC( logPartFile, CFormat( wxT("Error saving partfile's seeds file (%s - %s): %s") )
 				% m_partmetfilename
 				% GetFileName()
 				% e.what() );
@@ -1045,7 +1044,7 @@ void CPartFile::LoadSourceSeeds()
 	
 	CFile file(seedsPath, CFile::read);
 	if (!file.IsOpened()) {
-		AddLogLineM(false, CFormat( _("Partfile %s (%s) has no seeds file") )
+		AddLogLineN(CFormat( _("Partfile %s (%s) has no seeds file") )
 			% m_partmetfilename
 			% GetFileName() );
 		return;
@@ -1054,7 +1053,7 @@ void CPartFile::LoadSourceSeeds()
 		
 	try {
 		if (file.GetLength() <= 1) {
-			AddLogLineM(false, CFormat( _("Partfile %s (%s) has a void seeds file") )
+			AddLogLineN(CFormat( _("Partfile %s (%s) has a void seeds file") )
 				% m_partmetfilename
 				% GetFileName() );
 			return;
@@ -1110,7 +1109,7 @@ void CPartFile::LoadSourceSeeds()
 		}
 	
 	} catch (const CSafeIOException& e) {
-		AddLogLineM(false, CFormat( _("Error reading partfile's seeds file (%s - %s): %s") )
+		AddLogLineN(CFormat( _("Error reading partfile's seeds file (%s - %s): %s") )
 				% m_partmetfilename
 				% GetFileName()
 				% e.what() );		
@@ -1126,8 +1125,7 @@ void CPartFile::PartFileHashFinished(CKnownFile* result)
 	if (GetED2KPartHashCount() == 0){
 		if (IsComplete(0, GetFileSize()-1)){
 			if (result->GetFileHash() != GetFileHash()){
-				AddLogLineM(false,
-					CFormat(wxPLURAL(
+				AddLogLineN(CFormat(wxPLURAL(
 						"Found corrupted part (%d) in %d part file %s - FileResultHash |%s| FileHash |%s|",
 						"Found corrupted part (%d) in %d parts file %s - FileResultHash |%s| FileHash |%s|",
 						0)
@@ -1156,8 +1154,7 @@ void CPartFile::PartFileHashFinished(CKnownFile* result)
 					if ( i < result->GetHashCount() )
 						wronghash = result->GetPartHash(i);
 			
-					AddLogLineM(false,
-						CFormat(wxPLURAL(
+					AddLogLineN(CFormat(wxPLURAL(
 							"Found corrupted part (%d) in %d part file %s - FileResultHash |%s| FileHash |%s|",
 							"Found corrupted part (%d) in %d parts file %s - FileResultHash |%s| FileHash |%s|",
 							GetED2KPartHashCount())
@@ -1173,7 +1170,7 @@ void CPartFile::PartFileHashFinished(CKnownFile* result)
 				}
 			} else {
 				if (!IsComplete(i)){
-					AddLogLineM(false, CFormat( _("Found completed part (%i) in %s") )
+					AddLogLineN(CFormat( _("Found completed part (%i) in %s") )
 						% ( i + 1 )
 						% GetFileName() );
 
@@ -1193,7 +1190,7 @@ void CPartFile::PartFileHashFinished(CKnownFile* result)
 		m_pAICHHashSet->SetOwner(this); 
 	}
 	else if (status == PS_COMPLETING) {
-		AddDebugLogLineM(false, logPartFile,
+		AddDebugLogLineN(logPartFile,
 			CFormat(wxT("Failed to store new AICH Hashset for completed file: %s"))
 				% GetFileName());
 	}
@@ -1206,7 +1203,7 @@ void CPartFile::PartFileHashFinished(CKnownFile* result)
 			return;
 		}
 		else {
-			AddLogLineM(false, CFormat( _("Finished rehashing %s") ) % GetFileName());
+			AddLogLineN(CFormat( _("Finished rehashing %s") ) % GetFileName());
 		}
 	}
 	else{
@@ -1526,9 +1523,9 @@ uint32 CPartFile::Process(uint32 reducedownload/*in percent*/,uint8 m_icounter)
 			
 				Kademlia::CUInt128 kadFileID(GetFileHash().GetHash());
 				Kademlia::CSearch* pSearch = Kademlia::CSearchManager::PrepareLookup(Kademlia::CSearch::FILE, true, kadFileID);
-				AddDebugLogLineM(false, logKadSearch, CFormat(wxT("Preparing a Kad Search for '%s'")) % GetFileName());
+				AddDebugLogLineN(logKadSearch, CFormat(wxT("Preparing a Kad Search for '%s'")) % GetFileName());
 				if (pSearch) {
-					AddDebugLogLineM(false, logKadSearch, CFormat(wxT("Kad lookup started for '%s'")) % GetFileName());
+					AddDebugLogLineN(logKadSearch, CFormat(wxT("Kad lookup started for '%s'")) % GetFileName());
 					if(m_TotalSearchesKad < 7) {
 						m_TotalSearchesKad++;
 					}
@@ -1640,7 +1637,7 @@ void CPartFile::AddSources(CMemFile& sources,uint32 serverip, uint16 serverport,
 	
 	if (m_stopped) {
 		// since we may received multiple search source UDP results we have to "consume" all data of that packet
-		AddDebugLogLineM(false, logPartFile, wxT("Trying to add sources for a stopped file"));
+		AddDebugLogLineN(logPartFile, wxT("Trying to add sources for a stopped file"));
 		sources.Seek(count*(4+2), wxFromCurrent);
 		return;
 	}
@@ -1658,9 +1655,9 @@ void CPartFile::AddSources(CMemFile& sources,uint32 serverip, uint16 serverport,
 
 			if ((thePrefs::IsClientCryptLayerRequested() && (byCryptOptions & 0x01/*supported*/) > 0 && (byCryptOptions & 0x80) == 0)
 				|| (thePrefs::IsClientCryptLayerSupported() && (byCryptOptions & 0x02/*requested*/) > 0 && (byCryptOptions & 0x80) == 0)) {
-				AddDebugLogLineM(false, logPartFile, wxString::Format(wxT("Server didn't provide UserHash for source %u, even if it was expected to (or local obfuscationsettings changed during serverconnect"), userid));
+				AddDebugLogLineN(logPartFile, CFormat(wxT("Server didn't provide UserHash for source %u, even if it was expected to (or local obfuscationsettings changed during serverconnect")) % userid);
 			} else if (!thePrefs::IsClientCryptLayerRequested() && (byCryptOptions & 0x02/*requested*/) == 0 && (byCryptOptions & 0x80) != 0) {
-				AddDebugLogLineM(false, logPartFile, wxString::Format(wxT("Server provided UserHash for source %u, even if it wasn't expected to (or local obfuscationsettings changed during serverconnect"), userid));
+				AddDebugLogLineN(logPartFile, CFormat(wxT("Server provided UserHash for source %u, even if it wasn't expected to (or local obfuscationsettings changed during serverconnect")) % userid);
 			}
 		}
 			
@@ -1693,7 +1690,7 @@ void CPartFile::AddSources(CMemFile& sources,uint32 serverip, uint16 serverport,
 
 			theApp->downloadqueue->CheckAndAddSource(this,newsource);
 		} else {
-			AddDebugLogLineM(false, logPartFile, wxT("Consuming a packet because of max sources reached"));
+			AddDebugLogLineN(logPartFile, wxT("Consuming a packet because of max sources reached"));
 			// Since we may receive multiple search source UDP results we have to "consume" all data of that packet
 			// This '+1' is added because 'i' counts from 0.
 			sources.Seek((count-(i+1))*(4+2), wxFromCurrent);
@@ -2097,7 +2094,7 @@ void CPartFile::CompleteFile(bool bIsHashingDone)
 
 	theApp->downloadqueue->RemoveLocalServerRequest(this);
 
-	AddDebugLogLineM( false, logPartFile, wxString( wxT("CPartFile::CompleteFile: Hash ") ) + ( bIsHashingDone ? wxT("done") : wxT("not done") ) );
+	AddDebugLogLineN( logPartFile, wxString( wxT("CPartFile::CompleteFile: Hash ") ) + ( bIsHashingDone ? wxT("done") : wxT("not done") ) );
 			  
 	if (!bIsHashingDone) {
 		SetStatus(PS_COMPLETING);
@@ -2131,7 +2128,7 @@ void CPartFile::CompleteFileEnded(bool errorOccured, const CPath& newname)
 	if (errorOccured) {
 		m_paused = true;
 		SetStatus(PS_ERROR);
-		AddLogLineM(true, CFormat( _("Unexpected error while completing %s. File paused") )% GetFileName() );
+		AddLogLineC(CFormat( _("Unexpected error while completing %s. File paused") )% GetFileName() );
 	} else {
 		m_fullname = newname;
 
@@ -2155,7 +2152,7 @@ void CPartFile::CompleteFileEnded(bool errorOccured, const CPath& newname)
 
 		// remove the file from the suspended uploads list
 		theApp->uploadqueue->ResumeUpload(GetFileHash());		
-		theApp->downloadqueue->RemoveFile(this);
+		theApp->downloadqueue->RemoveFile(this, true);
 		theApp->sharedfiles->SafeAddKFile(this);
 		UpdateDisplayedInfo(true);
 
@@ -2168,7 +2165,7 @@ void CPartFile::CompleteFileEnded(bool errorOccured, const CPath& newname)
 		// clear the blackbox to free up memory
 		m_CorruptionBlackBox->Free();
 
-		AddLogLineM(true, CFormat( _("Finished downloading: %s") ) % GetFileName() );
+		AddLogLineC(CFormat( _("Finished downloading: %s") ) % GetFileName() );
 	}
 	
 	theApp->downloadqueue->StartNextFile(this);	
@@ -2178,7 +2175,7 @@ void CPartFile::CompleteFileEnded(bool errorOccured, const CPath& newname)
 void CPartFile::PerformFileComplete()
 {
 	// add this file to the suspended uploads list
-	theApp->uploadqueue->SuspendUpload(GetFileHash());
+	theApp->uploadqueue->SuspendUpload(GetFileHash(), false);
 	FlushBuffer();
 
 	// close permanent handle
@@ -2225,60 +2222,60 @@ void  CPartFile::RemoveAllSources(bool bTryToSwap)
 
 void CPartFile::Delete()
 {
-	AddLogLineM(false, CFormat(_("Deleting file: %s")) % GetFileName());
+	AddLogLineN(CFormat(_("Deleting file: %s")) % GetFileName());
 	// Barry - Need to tell any connected clients to stop sending the file
 	StopFile(true);
-	AddDebugLogLineM(false, logPartFile, wxT("\tStopped"));
+	AddDebugLogLineN(logPartFile, wxT("\tStopped"));
 	
-	uint16 removed = theApp->uploadqueue->SuspendUpload(GetFileHash());
-	AddDebugLogLineM(false, logPartFile, CFormat(wxT("\tSuspended upload to %d clients")) % removed);
+	uint16 removed = theApp->uploadqueue->SuspendUpload(GetFileHash(), true);
+	AddDebugLogLineN(logPartFile, CFormat(wxT("\tSuspended upload to %d clients")) % removed);
 	theApp->sharedfiles->RemoveFile(this);
-	AddDebugLogLineM(false, logPartFile, wxT("\tRemoved from shared"));
+	AddDebugLogLineN(logPartFile, wxT("\tRemoved from shared"));
 	theApp->downloadqueue->RemoveFile(this);
-	AddDebugLogLineM(false, logPartFile, wxT("\tRemoved from download queue"));
+	AddDebugLogLineN(logPartFile, wxT("\tRemoved from download queue"));
 	Notify_DownloadCtrlRemoveFile(this);
-	AddDebugLogLineM(false, logPartFile, wxT("\tRemoved from transferwnd"));
+	AddDebugLogLineN(logPartFile, wxT("\tRemoved from transferwnd"));
 	if (theApp->canceledfiles->Add(GetFileHash())) {
 		theApp->canceledfiles->Save();
 	}
-	AddDebugLogLineM(false, logPartFile, wxT("\tAdded to canceled file list"));
+	AddDebugLogLineN(logPartFile, wxT("\tAdded to canceled file list"));
 	theApp->searchlist->UpdateSearchFileByHash(GetFileHash()); 	// Update file in the search dialog if it's still open
 
 	if (m_hpartfile.IsOpened()) {
 		m_hpartfile.Close();
 	}
 
-	AddDebugLogLineM(false, logPartFile, wxT("\tClosed"));
+	AddDebugLogLineN(logPartFile, wxT("\tClosed"));
 	
 	if (!CPath::RemoveFile(m_fullname)) {
-		AddDebugLogLineM(true, logPartFile, CFormat(wxT("\tFailed to delete '%s'")) % m_fullname);
+		AddDebugLogLineC(logPartFile, CFormat(wxT("\tFailed to delete '%s'")) % m_fullname);
 	} else {
-		AddDebugLogLineM(false, logPartFile, wxT("\tRemoved .part.met"));
+		AddDebugLogLineN(logPartFile, wxT("\tRemoved .part.met"));
 	}
 
 	if (!CPath::RemoveFile(m_PartPath)) {
-		AddDebugLogLineM(true, logPartFile, CFormat(wxT("Failed to delete '%s'")) % m_PartPath);
+		AddDebugLogLineC(logPartFile, CFormat(wxT("Failed to delete '%s'")) % m_PartPath);
 	} else {
-		AddDebugLogLineM(false, logPartFile, wxT("\tRemoved .part"));
+		AddDebugLogLineN(logPartFile, wxT("\tRemoved .part"));
 	}
 	
 	CPath BAKName = m_fullname.AppendExt(PARTMET_BAK_EXT);
 	if (!CPath::RemoveFile(BAKName)) {
-		AddDebugLogLineM(true, logPartFile, CFormat(wxT("Failed to delete '%s'")) % BAKName);
+		AddDebugLogLineC(logPartFile, CFormat(wxT("Failed to delete '%s'")) % BAKName);
 	} else {
-		AddDebugLogLineM(false, logPartFile, wxT("\tRemoved .BAK"));
+		AddDebugLogLineN(logPartFile, wxT("\tRemoved .BAK"));
 	}
 	
 	CPath SEEDSName = m_fullname.AppendExt(wxT(".seeds"));
 	if (SEEDSName.FileExists()) {
 		if (CPath::RemoveFile(SEEDSName)) {
-			AddDebugLogLineM(false, logPartFile, wxT("\tRemoved .seeds"));
+			AddDebugLogLineN(logPartFile, wxT("\tRemoved .seeds"));
 		} else {
-			AddDebugLogLineM(true, logPartFile, CFormat(wxT("Failed to delete '%s'")) % SEEDSName);
+			AddDebugLogLineC(logPartFile, CFormat(wxT("Failed to delete '%s'")) % SEEDSName);
 		}
 	}
 
-	AddDebugLogLineM(false, logPartFile, wxT("Done"));
+	AddDebugLogLineN(logPartFile, wxT("Done"));
 	
 	delete this;
 }
@@ -2287,13 +2284,12 @@ void CPartFile::Delete()
 bool CPartFile::HashSinglePart(uint16 partnumber)
 {
 	if ((GetHashCount() <= partnumber) && (GetPartCount() > 1)) {
-		AddLogLineM(true,
-			CFormat( _("WARNING: Unable to hash downloaded part - hashset incomplete for '%s'") )
+		AddLogLineC(CFormat( _("WARNING: Unable to hash downloaded part - hashset incomplete for '%s'") )
 				% GetFileName() );
 		m_hashsetneeded = true;
 		return true;
 	} else if ((GetHashCount() <= partnumber) && GetPartCount() != 1) {
-		AddLogLineM(true, CFormat( _("ERROR: Unable to hash downloaded part - hashset incomplete (%s). This should never happen")) % GetFileName() );
+		AddLogLineC(CFormat( _("ERROR: Unable to hash downloaded part - hashset incomplete (%s). This should never happen")) % GetFileName() );
 		m_hashsetneeded = true;
 		return true;		
 	} else {
@@ -2303,20 +2299,20 @@ bool CPartFile::HashSinglePart(uint16 partnumber)
 		try {
 			CreateHashFromFile(m_hpartfile, offset, length, &hashresult, NULL);
 		} catch (const CIOFailureException& e) {
-			AddLogLineM(true, CFormat( wxT("EOF while hashing downloaded part %u with length %u (max %u) of partfile '%s' with length %u: %s"))
+			AddLogLineC(CFormat( wxT("EOF while hashing downloaded part %u with length %u (max %u) of partfile '%s' with length %u: %s"))
 				% partnumber % length % (offset+length) % GetFileName() % GetFileSize() % e.what());
 			SetStatus(PS_ERROR);
 			return false;
 		} catch (const CEOFException& e) {
-			AddLogLineM(true, CFormat( wxT("EOF while hashing downloaded part %u with length %u (max %u) of partfile '%s' with length %u: %s"))
+			AddLogLineC(CFormat( wxT("EOF while hashing downloaded part %u with length %u (max %u) of partfile '%s' with length %u: %s"))
 				% partnumber % length % (offset+length) % GetFileName() % GetFileSize() % e.what());
 			return false;
 		}
 
 		if (GetPartCount() > 1) {
 			if (hashresult != GetPartHash(partnumber)) {
-				AddDebugLogLineM(false, logPartFile, CFormat( wxT("%s: Expected hash of part %d: %s")) % GetFileName() % partnumber % GetPartHash(partnumber).Encode() );
-				AddDebugLogLineM(false, logPartFile, CFormat( wxT("%s: Actual   hash of part %d: %s")) % GetFileName() % partnumber % hashresult.Encode() );
+				AddDebugLogLineN(logPartFile, CFormat( wxT("%s: Expected hash of part %d: %s")) % GetFileName() % partnumber % GetPartHash(partnumber).Encode() );
+				AddDebugLogLineN(logPartFile, CFormat( wxT("%s: Actual   hash of part %d: %s")) % GetFileName() % partnumber % hashresult.Encode() );
 				return false;
 			} else {
 				return true;
@@ -2418,7 +2414,7 @@ void CPartFile::PauseFile(bool bInsufficient)
 		if (cur_src->GetDownloadState() == DS_DOWNLOADING) {
 			if (!cur_src->GetSentCancelTransfer()) {				
 				theStats::AddUpOverheadOther( packet.GetPacketSize() );
-				AddDebugLogLineM( false, logLocalClient, wxT("Local Client: OP_CANCELTRANSFER to ") + cur_src->GetFullIP() );
+				AddDebugLogLineN( logLocalClient, wxT("Local Client: OP_CANCELTRANSFER to ") + cur_src->GetFullIP() );
 				cur_src->SendPacket( &packet, false, true );
 				cur_src->SetSentCancelTransfer( true );
 			}
@@ -2531,7 +2527,7 @@ CPacket *CPartFile::CreateSrcInfoPacket(const CUpDownClient* forClient, uint8 by
 		if (GetFileName().IsOk()) {
 			file2 = GetFileName().GetPrintable();
 		}
-		AddDebugLogLineM(false, logPartFile, wxT("File mismatch on source packet (P) Sending: ") + file1 + wxT("  From: ") + file2);
+		AddDebugLogLineN(logPartFile, wxT("File mismatch on source packet (P) Sending: ") + file1 + wxT("  From: ") + file2);
 		return NULL;
 	}
 
@@ -2546,7 +2542,7 @@ CPacket *CPartFile::CreateSrcInfoPacket(const CUpDownClient* forClient, uint8 by
 		// Yuck. Same file but different part count? Seriously fucked up.
 		// This happens rather often with reqstatus.size() == 0. Don't log then.
 		if (reqstatus.size()) {
-			AddDebugLogLineM(false, logKnownFiles, CFormat(wxT("Impossible situation: different partcounts: %i (client) and %i (file) for %s")) % reqstatus.size() % GetPartCount() % GetFileName());
+			AddDebugLogLineN(logKnownFiles, CFormat(wxT("Impossible situation: different partcounts: %i (client) and %i (file) for %s")) % reqstatus.size() % GetPartCount() % GetFileName());
 		}
 		return NULL;
 	}	
@@ -2564,13 +2560,13 @@ CPacket *CPartFile::CreateSrcInfoPacket(const CUpDownClient* forClient, uint8 by
 
 		// we don't support any special SX2 options yet, reserved for later use
 		if (nRequestedOptions != 0) {
-			AddDebugLogLineM(false, logKnownFiles, CFormat(wxT("Client requested unknown options for SourceExchange2: %u")) % nRequestedOptions);
+			AddDebugLogLineN(logKnownFiles, CFormat(wxT("Client requested unknown options for SourceExchange2: %u")) % nRequestedOptions);
 		}
 	} else {
 		byUsedVersion = forClient->GetSourceExchange1Version();
 		bIsSX2Packet = false;
 		if (forClient->SupportsSourceExchange2()) {
-			AddDebugLogLineM(false, logKnownFiles, wxT("Client which announced to support SX2 sent SX1 packet instead"));
+			AddDebugLogLineN(logKnownFiles, wxT("Client which announced to support SX2 sent SX1 packet instead"));
 		}
 	}
 	
@@ -2711,7 +2707,7 @@ void CPartFile::AddClientSources(CMemFile* sources, unsigned nSourceFrom, uint8 
 			// If v5 inserts additional data (like v2), the above code will correctly filter those packets.
 			// If v5 appends additional data after <count>(<Sources>)[count], we are in trouble with the 
 			// above code. Though a client which does not understand v5+ should never receive such a packet.
-			AddDebugLogLineM(false, logClient, CFormat(wxT("Received invalid source exchange packet (v%u) of data size %u for %s")) % uClientSXVersion % uDataSize % GetFileName());
+			AddDebugLogLineN(logClient, CFormat(wxT("Received invalid source exchange packet (v%u) of data size %u for %s")) % uClientSXVersion % uDataSize % GetFileName());
 			return;
 		}
 	} else {
@@ -2719,7 +2715,7 @@ void CPartFile::AddClientSources(CMemFile* sources, unsigned nSourceFrom, uint8 
 		// We only check if the version is known by us and do a quick sanitize check on known version
 		// other then SX1, the packet will be ignored if any error appears, sicne it can't be a "misunderstanding" anymore
 		if (uClientSXVersion > SOURCEEXCHANGE2_VERSION || uClientSXVersion == 0 ){
-			AddDebugLogLineM(false, logPartFile, CFormat(wxT("Invalid source exchange type version: %i")) % uClientSXVersion);
+			AddDebugLogLineN(logPartFile, CFormat(wxT("Invalid source exchange type version: %i")) % uClientSXVersion);
 			return;
 		}
 		
@@ -2744,7 +2740,7 @@ void CPartFile::AddClientSources(CMemFile* sources, unsigned nSourceFrom, uint8 
 
 		if (bError){
 			wxFAIL;
-			AddDebugLogLineM(false, logPartFile, wxT("Invalid source exchange data size."));
+			AddDebugLogLineN(logPartFile, wxT("Invalid source exchange data size."));
 			return;
 		}
 		uPacketSXVersion = uClientSXVersion;		
@@ -2779,11 +2775,11 @@ void CPartFile::AddClientSources(CMemFile* sources, unsigned nSourceFrom, uint8 
 		if (!IsLowID(dwID)) {
 			if (!IsGoodIP(dwIDED2K, thePrefs::FilterLanIPs())) {
 				// check for 0-IP, localhost and optionally for LAN addresses
-				AddDebugLogLineM(false, logIPFilter, CFormat(wxT("Ignored source (IP=%s) received via %s - bad IP")) % Uint32toStringIP(dwIDED2K) % OriginToText(nSourceFrom));
+				AddDebugLogLineN(logIPFilter, CFormat(wxT("Ignored source (IP=%s) received via %s - bad IP")) % Uint32toStringIP(dwIDED2K) % OriginToText(nSourceFrom));
 				continue;
 			}
 			if (theApp->ipfilter->IsFiltered(dwIDED2K)) {
-				AddDebugLogLineM(false, logIPFilter, CFormat(wxT("Ignored source (IP=%s) received via %s - IPFilter")) % Uint32toStringIP(dwIDED2K) % OriginToText(nSourceFrom));
+				AddDebugLogLineN(logIPFilter, CFormat(wxT("Ignored source (IP=%s) received via %s - IPFilter")) % Uint32toStringIP(dwIDED2K) % OriginToText(nSourceFrom));
 				continue;
 			}
 			if (theApp->clientlist->IsBannedClient(dwIDED2K)){
@@ -2793,7 +2789,7 @@ void CPartFile::AddClientSources(CMemFile* sources, unsigned nSourceFrom, uint8 
 
 		// additionally check for LowID and own IP
 		if (!CanAddSource(dwID, nPort, dwServerIP, nServerPort, NULL, false)) {
-			AddDebugLogLineM(false, logIPFilter, CFormat(wxT("Ignored source (IP=%s) received via source exchange")) % Uint32toStringIP(dwIDED2K));
+			AddDebugLogLineN(logIPFilter, CFormat(wxT("Ignored source (IP=%s) received via source exchange")) % Uint32toStringIP(dwIDED2K));
 			continue;
 		}
 		
@@ -2821,10 +2817,10 @@ void CPartFile::UpdateAutoDownPriority()
 	if (!IsAutoDownPriority()) {
 		return;
 	}
-	if (GetSourceCount() <= RARE_FILE) {
+	if (GetSourceCount() <= theApp->downloadqueue->GetRareFileThreshold()) {
 		if ( GetDownPriority() != PR_HIGH )
 			SetDownPriority(PR_HIGH, false, false);
-	} else if (GetSourceCount() < 100) {
+	} else if (GetSourceCount() < theApp->downloadqueue->GetCommonFileThreshold()) {
 		if ( GetDownPriority() != PR_NORMAL )
 			SetDownPriority(PR_NORMAL, false, false);
 	} else {
@@ -2879,7 +2875,7 @@ uint32 CPartFile::WriteToBuffer(uint32 transize, byte* data, uint64 start, uint6
 
 	// Occasionally packets are duplicated, no point writing it twice
 	if (IsComplete(start, end)) {
-		AddDebugLogLineM(false, logPartFile,	
+		AddDebugLogLineN(logPartFile,
 			CFormat(wxT("File '%s' has already been written from %u to %u"))
 				% GetFileName() % start % end);
 		return 0;
@@ -2889,18 +2885,15 @@ uint32 CPartFile::WriteToBuffer(uint32 transize, byte* data, uint64 start, uint6
 	const uint64 nStartChunk = start / PARTSIZE;
 	const uint64 nEndChunk = end / PARTSIZE;
 	if (IsComplete(nStartChunk)) {
-		AddDebugLogLineM(false, logPartFile, CFormat(wxT("Received data touches already hashed chunk - ignored (start): %u-%u; File=%s")) % start % end % GetFileName());
+		AddDebugLogLineN(logPartFile, CFormat(wxT("Received data touches already hashed chunk - ignored (start): %u-%u; File=%s")) % start % end % GetFileName());
 		return 0;
 	} else if (nStartChunk != nEndChunk) {
 		if (IsComplete(nEndChunk)) {
-			AddDebugLogLineM(false, logPartFile, CFormat(wxT("Received data touches already hashed chunk - ignored (end): %u-%u; File=%s")) % start % end % GetFileName());
+			AddDebugLogLineN(logPartFile, CFormat(wxT("Received data touches already hashed chunk - ignored (end): %u-%u; File=%s")) % start % end % GetFileName());
 			return 0;
+		} else {
+			AddDebugLogLineN(logPartFile, CFormat(wxT("Received data crosses chunk boundaries: %u-%u; File=%s")) % start % end % GetFileName());
 		}
-#ifdef __DEBUG__
-		else {
-			AddDebugLogLineM(false, logPartFile, CFormat(wxT("Received data crosses chunk boundaries: %u-%u; File=%s")) % start % end % GetFileName());
-		}
-#endif
 	}
 
 	// log transferinformation in our "blackbox"
@@ -2971,7 +2964,7 @@ void CPartFile::FlushBuffer(bool fromAICHRecoveryDataAvailable)
 	// Ensure file is big enough to write data to (the last item will be the furthest from the start)
 	if (!CheckFreeDiskSpace(m_nTotalBufferData)) {
 		// Not enough free space to write the last item, bail
-		AddLogLineM(true, CFormat( _("WARNING: Not enough free disk-space! Pausing file: %s") ) % GetFileName());
+		AddLogLineC(CFormat( _("WARNING: Not enough free disk-space! Pausing file: %s") ) % GetFileName());
 	
 		PauseFile( true );
 		return;
@@ -3000,7 +2993,7 @@ void CPartFile::FlushBuffer(bool fromAICHRecoveryDataAvailable)
 			// Decrease buffer size
 			m_nTotalBufferData -= lenData;
 		} catch (const CIOFailureException& e) {
-			AddDebugLogLineM(true, logPartFile, wxT("Error while saving part-file: ") + e.what());
+			AddDebugLogLineC(logPartFile, wxT("Error while saving part-file: ") + e.what());
 			SetStatus(PS_ERROR);
 			// No need to bang your head against it again and again if it has already failed.
 			DeleteContents(m_BufferedData_list);
@@ -3020,7 +3013,7 @@ void CPartFile::FlushBuffer(bool fromAICHRecoveryDataAvailable)
 			m_hpartfile.SetLength(GetFileSize());
 		}
 	} catch (const CIOFailureException& e) {
-		AddDebugLogLineM(true, logPartFile,
+		AddDebugLogLineC(logPartFile,
 			CFormat(wxT("Error while truncating part-file (%s): %s"))
 				% m_PartPath % e.what());
 		SetStatus(PS_ERROR);
@@ -3040,7 +3033,7 @@ void CPartFile::FlushBuffer(bool fromAICHRecoveryDataAvailable)
 		if (IsComplete(partNumber)) {
 			// Is part corrupt
 			if (!HashSinglePart(partNumber)) {
-				AddLogLineM(true, CFormat(
+				AddLogLineC(CFormat(
 					_("Downloaded part %i is corrupt in file: %s") ) % partNumber % GetFileName() );
 				AddGap(partNumber);
 				// add part to corrupted list, if not already there
@@ -3056,7 +3049,7 @@ void CPartFile::FlushBuffer(bool fromAICHRecoveryDataAvailable)
 				m_iLostDueToCorruption += (partRange + 1);
 			} else {
 				if (!m_hashsetneeded) {
-					AddDebugLogLineM(false, logPartFile, CFormat(
+					AddDebugLogLineN(logPartFile, CFormat(
 						wxT("Finished part %u of '%s'")) % partNumber % GetFileName());
 				}
 				
@@ -3093,7 +3086,7 @@ void CPartFile::FlushBuffer(bool fromAICHRecoveryDataAvailable)
 				// remove from corrupted list
 				EraseFirstValue(m_corrupted_list, partNumber);
 				
-				AddLogLineM(true, CFormat( _("ICH: Recovered corrupted part %i for %s -> Saved bytes: %s") )
+				AddLogLineC(CFormat( _("ICH: Recovered corrupted part %i for %s -> Saved bytes: %s") )
 					% partNumber
 					% GetFileName()
 					% CastItoXBytes(uMissingInPart));
@@ -3127,7 +3120,7 @@ bool CPartFile::ReadData(CFileArea & area, uint64 offset, uint32 toread)
 {
 	// Sanity check
 	if (offset + toread > GetFileSize()) {
-		AddDebugLogLineM(false, logPartFile, CFormat(wxT("tried to read %d bytes past eof of %s")) 
+		AddDebugLogLineN(logPartFile, CFormat(wxT("tried to read %d bytes past eof of %s"))
 			% (offset + toread - GetFileSize()) % GetFileName());
 		wxFAIL;
 		return false;
@@ -3234,7 +3227,7 @@ uint64 CPartFile::GetNeededSpace()
 	
 		return GetFileSize() - length;
 	} catch (const CIOFailureException& e) {
-		AddDebugLogLineM(true, logPartFile,
+		AddDebugLogLineC(logPartFile,
 			CFormat(wxT("Error while retrieving file-length (%s): %s"))
 				% m_PartPath % e.what());
 		SetStatus(PS_ERROR);
@@ -3266,19 +3259,19 @@ void CPartFile::RequestAICHRecovery(uint16 nPart)
 
 	if (	!m_pAICHHashSet->HasValidMasterHash() ||
 		(m_pAICHHashSet->GetStatus() != AICH_TRUSTED && m_pAICHHashSet->GetStatus() != AICH_VERIFIED)){
-		AddDebugLogLineM( false, logAICHRecovery, wxT("Unable to request AICH Recoverydata because we have no trusted Masterhash") );
+		AddDebugLogLineN( logAICHRecovery, wxT("Unable to request AICH Recoverydata because we have no trusted Masterhash") );
 		return;
 	}
 	if (GetPartSize(nPart) <= EMBLOCKSIZE)
 		return;
 	if (CAICHHashSet::IsClientRequestPending(this, nPart)){
-		AddDebugLogLineM( false, logAICHRecovery, wxT("RequestAICHRecovery: Already a request for this part pending"));
+		AddDebugLogLineN( logAICHRecovery, wxT("RequestAICHRecovery: Already a request for this part pending"));
 		return;
 	}
 
 	// first check if we have already the recoverydata, no need to rerequest it then
 	if (m_pAICHHashSet->IsPartDataAvailable(nPart*PARTSIZE)){
-		AddDebugLogLineM( false, logAICHRecovery, wxT("Found PartRecoveryData in memory"));
+		AddDebugLogLineN( logAICHRecovery, wxT("Found PartRecoveryData in memory"));
 		AICHRecoveryDataAvailable(nPart);
 		return;
 	}
@@ -3303,7 +3296,7 @@ void CPartFile::RequestAICHRecovery(uint16 nPart)
 		}
 	}
 	if ((cAICHClients | cAICHLowIDClients) == 0){
-		AddDebugLogLineM( false, logAICHRecovery, wxT("Unable to request AICH Recoverydata because found no client who supports it and has the same hash as the trusted one"));
+		AddDebugLogLineN( logAICHRecovery, wxT("Unable to request AICH Recoverydata because found no client who supports it and has the same hash as the trusted one"));
 		return;
 	}
 	uint32 nSeclectedClient;
@@ -3337,7 +3330,7 @@ void CPartFile::RequestAICHRecovery(uint16 nPart)
 		return;
 	}
 
-	AddDebugLogLineM( false, logAICHRecovery, CFormat( wxT("Requesting AICH Hash (%s) form client %s") ) % ( cAICHClients ? wxT("HighId") : wxT("LowID") ) % pClient->GetClientFullInfo() );
+	AddDebugLogLineN( logAICHRecovery, CFormat( wxT("Requesting AICH Hash (%s) form client %s") ) % ( cAICHClients ? wxT("HighId") : wxT("LowID") ) % pClient->GetClientFullInfo() );
 	pClient->SendAICHRequest(this, nPart);
 	
 }
@@ -3353,9 +3346,8 @@ void CPartFile::AICHRecoveryDataAvailable(uint16 nPart)
 	FlushBuffer(true);
 	uint32 length = GetPartSize(nPart);
 	// if the part was already ok, it would now be complete
-	if (IsComplete(nPart)){
-		AddDebugLogLineM( false, logAICHRecovery,
-			wxString::Format( wxT("Processing AICH Recovery data: The part (%u) is already complete, canceling"), nPart ) );
+	if (IsComplete(nPart)) {
+		AddDebugLogLineN(logAICHRecovery, CFormat(wxT("Processing AICH Recovery data: The part (%u) is already complete, canceling")) % nPart);
 		return;
 	}
 	
@@ -3363,7 +3355,7 @@ void CPartFile::AICHRecoveryDataAvailable(uint16 nPart)
 
 	CAICHHashTree* pVerifiedHash = m_pAICHHashSet->m_pHashTree.FindHash(nPart*PARTSIZE, length);
 	if (pVerifiedHash == NULL || !pVerifiedHash->GetHashValid()){
-		AddDebugLogLineM( true, logAICHRecovery, wxT("Processing AICH Recovery data: Unable to get verified hash from hashset (should never happen)") );
+		AddDebugLogLineC( logAICHRecovery, wxT("Processing AICH Recovery data: Unable to get verified hash from hashset (should never happen)") );
 		wxFAIL;
 		return;
 	}
@@ -3371,7 +3363,7 @@ void CPartFile::AICHRecoveryDataAvailable(uint16 nPart)
 	try {
 		CreateHashFromFile(m_hpartfile, PARTSIZE * nPart, length, NULL, &htOurHash);
 	} catch (const CIOFailureException& e) {
-		AddDebugLogLineM(true, logAICHRecovery,
+		AddDebugLogLineC(logAICHRecovery,
 			CFormat(wxT("IO failure while hashing part-file '%s': %s"))
 				% m_hpartfile.GetFilePath() % e.what());
 		SetStatus(PS_ERROR);
@@ -3379,7 +3371,7 @@ void CPartFile::AICHRecoveryDataAvailable(uint16 nPart)
 	}
 	
 	if (!htOurHash.GetHashValid()){
-		AddDebugLogLineM( false, logAICHRecovery, wxT("Processing AICH Recovery data: Failed to retrieve AICH Hashset of corrupt part") );
+		AddDebugLogLineN( logAICHRecovery, wxT("Processing AICH Recovery data: Failed to retrieve AICH Hashset of corrupt part") );
 		wxFAIL;
 		return;
 	}
@@ -3408,30 +3400,29 @@ void CPartFile::AICHRecoveryDataAvailable(uint16 nPart)
 	m_CorruptionBlackBox->EvaluateData();
 
 	// ok now some sanity checks
-	if (IsComplete(nPart)){
-		// this is a bad, but it could probably happen under some rare circumstances
-		// make sure that MD4 agrres to this fact too
-		if (!HashSinglePart(nPart)){
-			AddDebugLogLineM( false, logAICHRecovery, 
-				wxString::Format(wxT("Processing AICH Recovery data: The part (%u) got completed while recovering - but MD4 says it corrupt! Setting hashset to error state, deleting part"), nPart));
+	if (IsComplete(nPart)) {
+		// this is bad, but it could probably happen under some rare circumstances
+		// make sure that MD4 agrees to this fact too
+		if (!HashSinglePart(nPart)) {
+			AddDebugLogLineN(logAICHRecovery, 
+				CFormat(wxT("Processing AICH Recovery data: The part (%u) got completed while recovering - but MD4 says it corrupt! Setting hashset to error state, deleting part")) % nPart);
 			// now we are fu... unhappy
 			m_pAICHHashSet->SetStatus(AICH_ERROR);
 			AddGap(nPart);
 			wxFAIL;
 			return;
-		}
-		else{
-			AddDebugLogLineM( false, logAICHRecovery, wxString::Format( 
-				wxT("Processing AICH Recovery data: The part (%u) got completed while recovering and MD4 agrees"), nPart) );
-			if (status == PS_EMPTY && theApp->IsRunning()){
-				if (GetHashCount() == GetED2KPartHashCount() && !m_hashsetneeded){
+		} else {
+			AddDebugLogLineN(logAICHRecovery,
+				CFormat(wxT("Processing AICH Recovery data: The part (%u) got completed while recovering and MD4 agrees")) % nPart);
+			if (status == PS_EMPTY && theApp->IsRunning()) {
+				if (GetHashCount() == GetED2KPartHashCount() && !m_hashsetneeded) {
 					// Successfully recovered part, make it available for sharing
 					SetStatus(PS_READY);
 					theApp->sharedfiles->SafeAddKFile(this);
 				}
 			}
 
-			if (theApp->IsRunning()){
+			if (theApp->IsRunning()) {
 				// Is this file finished?
 				if (m_gaplist.IsComplete()) {
 					CompleteFile(false);
@@ -3446,7 +3437,7 @@ void CPartFile::AICHRecoveryDataAvailable(uint16 nPart)
 	SavePartFile();
 	
 	// make sure the user appreciates our great recovering work :P
-	AddDebugLogLineM( true, logAICHRecovery, CFormat( 
+	AddDebugLogLineC( logAICHRecovery, CFormat(
 		wxT("AICH successfully recovered %s of %s from part %u for %s") )
 		% CastItoXBytes(nRecovered) 
 		% CastItoXBytes(length)
@@ -3555,7 +3546,7 @@ void CPartFile::GetRatingAndComments(FileRatingList & list) const
 	for ( ; it != m_SrcList.end(); ++it ) {
 		CUpDownClient *cur_src = *it;
 		if (cur_src->GetFileComment().Length()>0 || cur_src->GetFileRating()>0) {
-			// AddDebugLogLineM(false, logPartFile, wxString(wxT("found a comment for ")) << GetFileName());
+			// AddDebugLogLineN(logPartFile, wxString(wxT("found a comment for ")) << GetFileName());
 			list.push_back(SFileRating(*cur_src));
 		}
 	}
@@ -3767,8 +3758,8 @@ wxString CPartFile::GetFeedback() const
 {
 	wxString retval = CKnownFile::GetFeedback();
 	if (GetStatus() != PS_COMPLETE) {
-		retval += wxString(_("Downloaded")) + wxT(": ") + CastItoXBytes(GetCompletedSize()) + wxString::Format(wxT(" (%.2f%%)\n"), GetPercentCompleted())
-			+ _("Sources") + CFormat(wxT(": %u\n")) % GetSourceCount();
+		retval += CFormat(wxT("%s: %s (%.2f%%)\n%s: %u\n"))
+			% _("Downloaded") % CastItoXBytes(GetCompletedSize()) % GetPercentCompleted() % _("Sources") % GetSourceCount();
 	}
 	return retval + _("Status") + wxT(": ") + getPartfileStatus() + wxT("\n");
 }
@@ -3784,72 +3775,92 @@ sint32 CPartFile::getTimeRemaining() const
 
 bool CPartFile::PreviewAvailable()
 {
+	const uint64 minSizeForPreview = 256 * 1024;
 	FileType type = GetFiletype(GetFileName());
 
-	return (((type == ftVideo) || (type == ftAudio)) && IsComplete(0, 256*1024));
+	return (type == ftVideo || type == ftAudio) &&
+	       GetFileSize() >= minSizeForPreview &&
+	       IsComplete(0, minSizeForPreview);
 }
 
 bool CPartFile::CheckShowItemInGivenCat(int inCategory)
 {
-	// easy normal cases
-	bool IsInCat;
-	bool IsNotFiltered = true;
+	// first check if item belongs in this cat in principle
+	if (inCategory > 0 && inCategory != GetCategory()) {
+		return false;
+	}
 
-	IsInCat = ((inCategory==0) || (inCategory>0 && inCategory==GetCategory()));
+	// if yes apply filter
+	bool show = true;
 
-	switch (thePrefs::GetAllcatType()) {
-		case 1:
-			IsNotFiltered = GetCategory() == 0 || inCategory > 0;
+	switch (thePrefs::GetAllcatFilter()) {
+		case acfAllOthers:
+			show = GetCategory() == 0 || inCategory > 0;
 			break;
-		case 2:
-			IsNotFiltered = IsPartFile();
+		case acfIncomplete:
+			show = IsPartFile();
 			break;
-		case 3:
-			IsNotFiltered = !IsPartFile();
+		case acfCompleted:
+			show = !IsPartFile();
 			break;
-		case 4:
-			IsNotFiltered = 
+		case acfWaiting:
+			show = 
 				(GetStatus() == PS_READY || GetStatus() == PS_EMPTY) &&
 				GetTransferingSrcCount() == 0;
 			break;
-		case 5:
-			IsNotFiltered =
-				(GetStatus() == PS_READY || GetStatus()==PS_EMPTY) &&
+		case acfDownloading:
+			show =
+				(GetStatus() == PS_READY || GetStatus() == PS_EMPTY) &&
 				GetTransferingSrcCount() > 0;
 			break;
-		case 6:
-			IsNotFiltered = GetStatus() == PS_ERROR;
+		case acfErroneous:
+			show = GetStatus() == PS_ERROR;
 			break;
-		case 7:
-			IsNotFiltered = GetStatus() == PS_PAUSED && !IsStopped();
+		case acfPaused:
+			show = GetStatus() == PS_PAUSED && !IsStopped();
 			break;
-		case 8:
-			IsNotFiltered = IsStopped();
+		case acfStopped:
+			show = IsStopped();
 			break;
-		case 9:
-			IsNotFiltered = GetFiletype(GetFileName()) == ftVideo;
+		case acfVideo:
+			show = GetFiletype(GetFileName()) == ftVideo;
 			break;
-		case 10:
-			IsNotFiltered = GetFiletype(GetFileName()) == ftAudio;
+		case acfAudio:
+			show = GetFiletype(GetFileName()) == ftAudio;
 			break;
-		case 11:
-			IsNotFiltered = GetFiletype(GetFileName()) == ftArchive;
+		case acfArchive:
+			show = GetFiletype(GetFileName()) == ftArchive;
 			break;
-		case 12:
-			IsNotFiltered = GetFiletype(GetFileName()) == ftCDImage;
+		case acfCDImages:
+			show = GetFiletype(GetFileName()) == ftCDImage;
 			break;
-		case 13:
-			IsNotFiltered = GetFiletype(GetFileName()) == ftPicture;
+		case acfPictures:
+			show = GetFiletype(GetFileName()) == ftPicture;
 			break;
-		case 14:
-			IsNotFiltered = GetFiletype(GetFileName()) == ftText;
+		case acfText:
+			show = GetFiletype(GetFileName()) == ftText;
 			break;
-		case 15:
-			IsNotFiltered = !IsStopped() && GetStatus() != PS_PAUSED;
+		case acfActive:
+			show = !IsStopped() && GetStatus() != PS_PAUSED;
+			break;
+		default:
+			show = true;
 			break;
 	}
 	
-	return IsNotFiltered && IsInCat;
+	return show;
+}
+
+
+void CPartFile::RemoveCategory(uint8 cat)
+{
+	if (m_category == cat) {
+		// Reset the category
+		m_category = 0;
+	} else if (m_category > cat) {
+		// Set to the new position of the original category
+		m_category--;
+	}
 }
 
 
@@ -3990,7 +4001,7 @@ void CPartFile::AllocationFinished()
 {
 	// see if it can be opened
 	if (!m_hpartfile.Open(m_PartPath, CFile::read_write)) {
-		AddLogLineM(false, CFormat(_("ERROR: Failed to open partfile '%s'")) % GetFullName());
+		AddLogLineN(CFormat(_("ERROR: Failed to open partfile '%s'")) % GetFullName());
 		SetStatus(PS_ERROR);
 	}
 	// then close the handle again

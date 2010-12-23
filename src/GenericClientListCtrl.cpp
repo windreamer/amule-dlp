@@ -46,6 +46,7 @@
 #include "SharedFileList.h"	// Needed for CSharedFileList
 #include "TerminationProcess.h"	// Needed for CTerminationProcess
 #include "updownclient.h"	// Needed for CUpDownClient
+#include "FriendList.h"
 
 struct ClientCtrlItem_Struct
 {
@@ -94,15 +95,16 @@ private:
 #define m_ImageList theApp->amuledlg->m_imagelist
 
 BEGIN_EVENT_TABLE(CGenericClientListCtrl, CMuleListCtrl)
-	EVT_LIST_ITEM_ACTIVATED(ID_CLIENTLIST,	CGenericClientListCtrl::OnItemActivated)
-	EVT_LIST_ITEM_RIGHT_CLICK(ID_CLIENTLIST, CGenericClientListCtrl::OnMouseRightClick)
-	EVT_LIST_ITEM_MIDDLE_CLICK(ID_CLIENTLIST, CGenericClientListCtrl::OnMouseMiddleClick)
+	EVT_LIST_ITEM_ACTIVATED(wxID_ANY,	CGenericClientListCtrl::OnItemActivated)
+	EVT_LIST_ITEM_RIGHT_CLICK(wxID_ANY, CGenericClientListCtrl::OnMouseRightClick)
+	EVT_LIST_ITEM_MIDDLE_CLICK(wxID_ANY, CGenericClientListCtrl::OnMouseMiddleClick)
 
 	EVT_CHAR( CGenericClientListCtrl::OnKeyPressed )
 
 	EVT_MENU( MP_CHANGE2FILE,		CGenericClientListCtrl::OnSwapSource )
 	EVT_MENU( MP_SHOWLIST,			CGenericClientListCtrl::OnViewFiles )
 	EVT_MENU( MP_ADDFRIEND,			CGenericClientListCtrl::OnAddFriend )
+	EVT_MENU( MP_FRIENDSLOT,		CGenericClientListCtrl::OnSetFriendslot )
 	EVT_MENU( MP_SENDMESSAGE,		CGenericClientListCtrl::OnSendMessage )
 	EVT_MENU( MP_DETAIL,			CGenericClientListCtrl::OnViewClientInfo )
 END_EVENT_TABLE()
@@ -134,6 +136,62 @@ m_columndata(0, NULL)
 	m_clientcount = 0;
 }
 
+wxString CGenericClientListCtrl::TranslateCIDToName(GenericColumnEnum cid)
+{
+	wxString name = wxEmptyString;
+
+	switch (cid) {
+		case ColumnUserName:
+			name = wxT("N");
+			break;
+		case ColumnUserDownloaded:
+			name = wxT("D");
+			break;
+		case ColumnUserUploaded:
+			name = wxT("U");
+			break;
+		case ColumnUserSpeedDown:
+			name = wxT("S");
+			break;
+		case ColumnUserSpeedUp:
+			name = wxT("s");
+			break;
+		case ColumnUserProgress:
+			name = wxT("P");
+			break;
+		case ColumnUserAvailable:
+			name = wxT("A");
+			break;
+		case ColumnUserVersion:
+			name = wxT("V");
+			break;
+		case ColumnUserQueueRankLocal:
+			name = wxT("Q");
+			break;
+		case ColumnUserQueueRankRemote:
+			name = wxT("q");
+			break;
+		case ColumnUserOrigin:
+			name = wxT("O");
+			break;
+		case ColumnUserFileNameDownload:
+			name = wxT("F");
+			break;
+		case ColumnUserFileNameUpload:
+			name = wxT("f");
+			break;
+		case ColumnUserFileNameDownloadRemote:
+			name = wxT("R");
+			break;
+		case ColumnInvalid:
+		default:
+			wxASSERT(0);
+			break;
+	}
+
+	return name;
+}
+
 void CGenericClientListCtrl::InitColumnData()
 {
 	if (!m_columndata.n_columns) {
@@ -141,7 +199,7 @@ void CGenericClientListCtrl::InitColumnData()
 	}
 	
 	for (int i = 0; i < m_columndata.n_columns; ++i) { 
-		InsertColumn( i, wxGetTranslation(m_columndata.columns[i].name), wxLIST_FORMAT_LEFT, m_columndata.columns[i].width);
+		InsertColumn( i, wxGetTranslation(m_columndata.columns[i].title), wxLIST_FORMAT_LEFT, m_columndata.columns[i].width, TranslateCIDToName(m_columndata.columns[i].cid));
 	}
 
 	LoadSettings();	
@@ -290,12 +348,12 @@ void CGenericClientListCtrl::ShowSources( const CKnownFileVector& files )
 {	
 	Freeze();
 	
-	// The stored vector is sorted, as it the received one, so we can use binary_search
+	// The stored vector is sorted, as is the received one, so we can use binary_search
 
 	for (unsigned i = 0; i < m_knownfiles.size(); ++i) {
 		// Files that are not in the new list must have show set to false.
 		if (!std::binary_search(files.begin(), files.end(), m_knownfiles[i])) {
-			m_knownfiles[i]->SetShowSources( false );
+			SetShowSources(m_knownfiles[i], false);
 		}
 	}
 	
@@ -304,7 +362,7 @@ void CGenericClientListCtrl::ShowSources( const CKnownFileVector& files )
 	// but this must be reviewed if that fact changes.
 
 	for (unsigned i = 0; i < files.size(); ++i) {
-		files[i]->SetShowSources( true );
+		SetShowSources(files[i], true);
 	}
 	
 	// We must cleanup sources that are not in the received files. 
@@ -416,15 +474,15 @@ ItemList GetSelectedItems( CGenericClientListCtrl* list )
 
 void CGenericClientListCtrl::OnSwapSource( wxCommandEvent& WXUNUSED(event) )
 {
-	
-	for (unsigned i = 0; i < m_knownfiles.size(); ++i) {
-		wxCHECK_RET(m_knownfiles[i]->IsPartFile(), wxT("File is not a partfile when swapping sources"));
-	}
-
 	ItemList sources = ::GetSelectedItems( this );
 	
 	for ( ItemList::iterator it = sources.begin(); it != sources.end(); ++it ) {
-		(*it)->GetSource()->SwapToAnotherFile( true, false, false,  dynamic_cast<CPartFile*>((*it)->GetOwner()));
+		CKnownFile * kf = (*it)->GetOwner();
+		if (!kf->IsPartFile()) {
+			wxFAIL_MSG(wxT("File is not a partfile when swapping sources"));
+			continue;
+		}
+		(*it)->GetSource()->SwapToAnotherFile( true, false, false,  dynamic_cast<CPartFile*>(kf));
 	}
 }
 
@@ -446,10 +504,26 @@ void CGenericClientListCtrl::OnAddFriend( wxCommandEvent& WXUNUSED(event) )
 	for ( ItemList::iterator it = sources.begin(); it != sources.end(); ++it ) {
 		CUpDownClient* client = (*it)->GetSource();
 		if (client->IsFriend()) {
-			theApp->amuledlg->m_chatwnd->RemoveFriend(client->GetUserHash(), client->GetIP(), client->GetUserPort());
+			theApp->friendlist->RemoveFriend(client->GetFriend());
 		} else {
-			theApp->amuledlg->m_chatwnd->AddFriend( client );
+			theApp->friendlist->AddFriend( client );
 		}
+	}
+}
+
+
+void CGenericClientListCtrl::OnSetFriendslot(wxCommandEvent& evt)
+{
+	ItemList sources = ::GetSelectedItems( this );
+
+	ItemList::iterator it = sources.begin(); 
+	if (it != sources.end()) {
+		CUpDownClient* client = (*it)->GetSource();
+		theApp->friendlist->SetFriendSlot(client->GetFriend(), evt.IsChecked());
+		it++;
+	}
+	if (it != sources.end()) {
+		wxMessageBox(_("You are not allowed to set more than one friendslot.\n Only one slot was assigned."), _("Multiple selection"), wxOK | wxICON_ERROR, this);
 	}
 }
 
@@ -507,6 +581,15 @@ void CGenericClientListCtrl::OnMouseRightClick(wxListEvent& evt)
 	m_menu = new wxMenu(wxT("Clients"));
 	m_menu->Append(MP_DETAIL, _("Show &Details"));
 	m_menu->Append(MP_ADDFRIEND, client->IsFriend() ? _("Remove from friends") : _("Add to Friends"));
+
+	m_menu->AppendCheckItem(MP_FRIENDSLOT, _("Establish Friend Slot"));
+	if (client->IsFriend()) {
+		m_menu->Enable(MP_FRIENDSLOT, true);
+		m_menu->Check(MP_FRIENDSLOT, client->GetFriendSlot());
+	} else {
+		m_menu->Enable(MP_FRIENDSLOT, false);
+	}
+
 	m_menu->Append(MP_SHOWLIST, _("View Files"));
 	m_menu->Append(MP_SENDMESSAGE, _("Send message"));
 	
@@ -584,8 +667,17 @@ void CGenericClientListCtrl::OnDrawItem(
 	dc->SetPen(*wxTRANSPARENT_PEN);
 
 	// Various constant values we use
-	const int iTextOffset = ( rect.GetHeight() - dc->GetCharHeight() ) / 2;
-	const int iOffset = 4;
+	const int iTextOffset = (( rect.GetHeight() - dc->GetCharHeight() ) / 2) + 1 /* Fixes rounding in the centering math, much easier than floor() */;
+	const int iOffset = 2;
+	wxASSERT(m_ImageList.GetImageCount() > 0);
+	int imageListBitmapYOffset = 0;
+	int imageListBitmapXSize = 0;
+	if (m_ImageList.GetSize(0, imageListBitmapXSize, imageListBitmapYOffset)) {
+		imageListBitmapXSize += 2; // Padding.
+		imageListBitmapYOffset = ((rect.GetHeight() - imageListBitmapYOffset) / 2) + 1 /* Fixes rounding like above */;
+	} else {
+		wxASSERT(0);
+	}
 
 	wxRect cur_rec( iOffset, rect.y, 0, rect.height );
 	
@@ -597,17 +689,11 @@ void CGenericClientListCtrl::OnDrawItem(
 			// Make a copy of the current rectangle so we can apply specific tweaks
 			wxRect target_rec = cur_rec;
 			target_rec.width = columnwidth - 2*iOffset;
-			
+
 			GenericColumnEnum cid = m_columndata.columns[i].cid;
 			
-			if ( cid != ColumnUserProgress ) {
-				// Text column
-				// will ensure that text is about in the middle ;)
-				target_rec.y += iTextOffset;
-			}
-
 			// Draw the item
-			DrawClientItem(dc, cid, target_rec, content);
+			DrawClientItem(dc, cid, target_rec, content, iTextOffset, imageListBitmapYOffset, imageListBitmapXSize);
 		}
 		
 		// Increment to the next column
@@ -615,8 +701,7 @@ void CGenericClientListCtrl::OnDrawItem(
 	}
 }
 
-void CGenericClientListCtrl::DrawClientItem(
-	wxDC* dc, int nColumn, const wxRect& rect, ClientCtrlItem_Struct* item ) const
+void CGenericClientListCtrl::DrawClientItem(wxDC* dc, int nColumn, const wxRect& rect, ClientCtrlItem_Struct* item, int iTextOffset, int iBitmapOffset, int iBitmapXSize ) const
 {
 	wxDCClipper clipper( *dc, rect.GetX(), rect.GetY(), rect.GetWidth(), rect.GetHeight() );
 	wxString buffer;
@@ -626,13 +711,13 @@ void CGenericClientListCtrl::DrawClientItem(
 	switch (nColumn) {
 		// Client name + various icons
 		case ColumnUserName: {
-			wxRect cur_rec = rect;
-			// +3 is added by OnDrawItem()... so take it off
-			// Kry - eMule says +1, so I'm trusting it
-			wxPoint point( cur_rec.GetX(), cur_rec.GetY()+1 );
+			// Point will get shifted per drawing.
+
+			wxPoint point( rect.GetX(), rect.GetY() );
+
+			uint8 image = Client_Grey_Smiley;
 
 			if (item->GetType() != A4AF_SOURCE) {
-				uint8 image = 0;
 				
 				switch (client->GetDownloadState()) {
 					case DS_CONNECTING:
@@ -654,23 +739,23 @@ void CGenericClientListCtrl::DrawClientItem(
 						break;
 					case DS_NONEEDEDPARTS:
 					case DS_LOWTOLOWIP:
-						image = Client_Grey_Smiley;
+						image = Client_Grey_Smiley; // Redundant
 						break;
 					default: // DS_NONE i.e.
 						image = Client_White_Smiley;
 					}
 
-					m_ImageList.Draw(image, *dc, point.x, point.y,
-						wxIMAGELIST_DRAW_TRANSPARENT);
 				} else {
-					m_ImageList.Draw(Client_Grey_Smiley, *dc, point.x, point.y,
-						wxIMAGELIST_DRAW_TRANSPARENT);
+					// Default (Client_Grey_Smiley)
 				}
 
-				cur_rec.x += 20;
-				wxPoint point2( cur_rec.GetX(), cur_rec.GetY() + 1 );
+				m_ImageList.Draw(image, *dc, point.x, point.y + iBitmapOffset, wxIMAGELIST_DRAW_TRANSPARENT);
 
-				uint8 clientImage;
+				// Next
+
+				point.x += iBitmapXSize; 
+
+				uint8 clientImage = Client_Unknown;
 				
 				if ( client->IsFriend() ) {
 					clientImage = Client_Friend_Smiley;
@@ -706,86 +791,96 @@ void CGenericClientListCtrl::DrawClientItem(
 							// cDonkey, Compatible, Unknown
 							// No icon for those yet.
 							// Using the eMule one + '?'
-							clientImage = Client_Unknown;
+							// Which is a faillback to the default (Client_Unknown)
 							break;
 					}
 				}
 
-				m_ImageList.Draw(clientImage, *dc, point2.x, point.y,
-					wxIMAGELIST_DRAW_TRANSPARENT);
+				int realY = point.y + iBitmapOffset;
+				m_ImageList.Draw(clientImage, *dc, point.x, realY, wxIMAGELIST_DRAW_TRANSPARENT);
 
 				if (client->GetScoreRatio() > 1) {
 					// Has credits, draw the gold star
-					m_ImageList.Draw(Client_CreditsYellow_Smiley, *dc, point2.x, point.y, 
+					m_ImageList.Draw(Client_CreditsYellow_Smiley, *dc, point.x, realY, 
 						wxIMAGELIST_DRAW_TRANSPARENT );
 				}	else if ( !client->ExtProtocolAvailable() ) {
 					// No Ext protocol -> Draw the '-'
-					m_ImageList.Draw(Client_ExtendedProtocol_Smiley, *dc, point2.x, point.y,
+					m_ImageList.Draw(Client_ExtendedProtocol_Smiley, *dc, point.x, realY,
 						wxIMAGELIST_DRAW_TRANSPARENT);
 				}
 
 				if (client->IsIdentified()) {
 					// the 'v'
-					m_ImageList.Draw(Client_SecIdent_Smiley, *dc, point2.x, point.y,
+					m_ImageList.Draw(Client_SecIdent_Smiley, *dc, point.x, realY,
 						wxIMAGELIST_DRAW_TRANSPARENT);					
 				} else if (client->IsBadGuy()) {
 					// the 'X'
-					m_ImageList.Draw(Client_BadGuy_Smiley, *dc, point2.x, point.y,
+					m_ImageList.Draw(Client_BadGuy_Smiley, *dc, point.x, realY,
 						wxIMAGELIST_DRAW_TRANSPARENT);					
 				}
 							
 				if (client->GetObfuscationStatus() == OBST_ENABLED) {
 					// the "¿" except it's a key
-					m_ImageList.Draw(Client_Encryption_Smiley, *dc, point2.x, point.y,
+					m_ImageList.Draw(Client_Encryption_Smiley, *dc, point.x, realY,
 						wxIMAGELIST_DRAW_TRANSPARENT);					
 				}				
 				
+				// Next
+
+				point.x += iBitmapXSize; 
+
 				wxString userName;
 #ifdef ENABLE_IP2COUNTRY
-				// Draw the flag
-				const CountryData& countrydata = theApp->amuledlg->m_IP2Country->GetCountryData(client->GetFullIP());
-				dc->DrawBitmap(countrydata.Flag,
-					rect.x + 40, rect.y + 5,
-					wxIMAGELIST_DRAW_TRANSPARENT != 0);
+				if (theApp->amuledlg->m_IP2Country->IsEnabled() && thePrefs::IsGeoIPEnabled()) {
+					// Draw the flag. Size can't be precached.
+					const CountryData& countrydata = theApp->amuledlg->m_IP2Country->GetCountryData(client->GetFullIP());
+
+					realY = point.y + (rect.GetHeight() - countrydata.Flag.GetHeight())/2 + 1 /* floor() */;
+
+					dc->DrawBitmap(countrydata.Flag,
+						point.x, realY,
+						true);
 				
-				userName << countrydata.Name;
+					userName << countrydata.Name;
 				
-				userName << wxT(" - ");
+					userName << wxT(" - ");
+
+					point.x += countrydata.Flag.GetWidth() + 2 /*Padding*/;
+				}
 #endif // ENABLE_IP2COUNTRY
 				if (client->GetUserName().IsEmpty()) {
 					userName << wxT("?");
 				} else {
 					userName << client->GetUserName();
 				}
-				dc->DrawText(userName, rect.GetX() + 60, rect.GetY());
+
+				dc->DrawText(userName, point.x, rect.GetY() + iTextOffset);
 			}
 			break;
 
 		case ColumnUserDownloaded:
 			if (item->GetType() != A4AF_SOURCE && client->GetTransferredDown()) {
 				buffer = CastItoXBytes(client->GetTransferredDown());
-				dc->DrawText(buffer, rect.GetX(), rect.GetY());
+				dc->DrawText(buffer, rect.GetX(), rect.GetY() + iTextOffset);
 			}
 			break;
 		case ColumnUserUploaded:
 			if (item->GetType() != A4AF_SOURCE && client->GetTransferredUp()) {
 				buffer = CastItoXBytes(client->GetTransferredUp());
-				dc->DrawText(buffer, rect.GetX(), rect.GetY());
+				dc->DrawText(buffer, rect.GetX(), rect.GetY() + iTextOffset);
 			}
 			break;
 		case ColumnUserSpeedDown:
 			if (item->GetType() != A4AF_SOURCE && client->GetKBpsDown() > 0.001) {
-				buffer = wxString::Format(wxT("%.1f "),
-						client->GetKBpsDown()) + _("kB/s");
-				dc->DrawText(buffer, rect.GetX(), rect.GetY());
+				buffer = CFormat(_("%.1f kB/s")) % client->GetKBpsDown();
+				dc->DrawText(buffer, rect.GetX(), rect.GetY() + iTextOffset);
 			}
 			break;
 		case ColumnUserSpeedUp:
 			// Datarate is in bytes.
 			if (item->GetType() != A4AF_SOURCE && client->GetUploadDatarate() > 1024) {
-				buffer = wxString::Format(wxT("%.1f "),
-						client->GetUploadDatarate() / 1024.0f) + _("kB/s");
-				dc->DrawText(buffer, rect.GetX(), rect.GetY());
+				buffer = CFormat(_("%.1f kB/s")) % (client->GetUploadDatarate() / 1024.0);
+				dc->DrawText(buffer, rect.GetX(), rect.GetY() + iTextOffset);
 			}
 			break;
 		case ColumnUserProgress:
@@ -861,16 +956,23 @@ void CGenericClientListCtrl::DrawClientItem(
 			}
 			break;
 
+		case ColumnUserAvailable: {
+				if ( client->GetUpPartCount() ) {
+					DrawStatusBar( client, dc, rect );
+				}
+				break;
+			}
+
 		case ColumnUserVersion: {
-				dc->DrawText(client->GetClientVerString(), rect.GetX(), rect.GetY());
+				dc->DrawText(client->GetClientVerString(), rect.GetX(), rect.GetY() + iTextOffset);
 				break;
 			}
 
 		case ColumnUserQueueRankRemote: {
+			sint16 qrDiff = 0;
+			wxColour savedColour = dc->GetTextForeground();	
 			// We only show the queue rank for sources actually queued for that file
 			if (	item->GetType() != A4AF_SOURCE && client->GetDownloadState() == DS_ONQUEUE ) {
-				sint16 qrDiff = 0;
-				wxColour savedColour = dc->GetTextForeground();					
 				if (client->IsRemoteQueueFull()) {
 					buffer = _("Queue Full");
 				} else {
@@ -886,15 +988,27 @@ void CGenericClientListCtrl::DrawClientItem(
 						if ( qrDiff > 0 ) {
 							dc->SetTextForeground(*wxRED);
 						}
-						buffer = wxString::Format(_("QR: %u (%i)"), client->GetRemoteQueueRank(), qrDiff);
+						buffer = CFormat(_("On Queue: %u (%i)")) % client->GetRemoteQueueRank() % qrDiff;
 					} else {
-						buffer = _("QR: ???");
+						buffer = _("On Queue");
 					}
 				}
-				dc->DrawText(buffer, rect.GetX(), rect.GetY());
-				if (qrDiff) {
-					dc->SetTextForeground(savedColour);
+			} else {
+				if (item->GetType() != A4AF_SOURCE) {
+					buffer = DownloadStateToStr( client->GetDownloadState(), 
+						client->IsRemoteQueueFull() );
+				} else {
+					buffer = _("Asked for another file");
+					if (	client->GetRequestFile() &&
+						client->GetRequestFile()->GetFileName().IsOk()) {
+						buffer += CFormat(wxT(" (%s)")) 
+							% client->GetRequestFile()->GetFileName();
+					}
 				}
+			}
+			dc->DrawText(buffer, rect.GetX(), rect.GetY() + iTextOffset);
+			if (qrDiff) {
+				dc->SetTextForeground(savedColour);
 			}
 			break;
 		}
@@ -905,34 +1019,22 @@ void CGenericClientListCtrl::DrawClientItem(
 					if (nRank == 0) {
 						buffer = _("Waiting for upload slot");
 					} else {
-						buffer = wxString::Format(_("QR: %u"), nRank);
+						buffer = CFormat(_("On Queue: %u")) % nRank;
 					}
 				} else if (client->GetUploadState() == US_UPLOADING) {
 					buffer = _("Uploading");
 				} else {
 					buffer = _("None");
 				}
-				dc->DrawText(buffer, rect.GetX(), rect.GetY());
-			}
-			break;
-		case ColumnUserStatus:
-			if (item->GetType() != A4AF_SOURCE) {
-				buffer = DownloadStateToStr( client->GetDownloadState(), 
-					client->IsRemoteQueueFull() );
 			} else {
 				buffer = _("Asked for another file");
-				if (	client->GetRequestFile() &&
-					client->GetRequestFile()->GetFileName().IsOk()) {
-					buffer += CFormat(wxT(" (%s)")) 
-						% client->GetRequestFile()->GetFileName();
-				}
 			}
-			dc->DrawText(buffer, rect.GetX(), rect.GetY());
+			dc->DrawText(buffer, rect.GetX(), rect.GetY() + iTextOffset);
 			break;
 		// Source comes from?
 		case ColumnUserOrigin: {
 			buffer = wxGetTranslation(OriginToText(client->GetSourceFrom()));
-			dc->DrawText(buffer, rect.GetX(), rect.GetY());
+			dc->DrawText(buffer, rect.GetX(), rect.GetY() + iTextOffset);
 			break;
 		}
 		// Local file name to identify on multi select
@@ -941,9 +1043,10 @@ void CGenericClientListCtrl::DrawClientItem(
 			if (pf) {
 				buffer = pf->GetFileName().GetPrintable();
 			} else {
-				buffer = wxT("???");
+				buffer = _("Unknown");
+				buffer = wxT("[") + buffer + wxT("]");
 			}
-			dc->DrawText(buffer, rect.GetX(), rect.GetY());
+			dc->DrawText(buffer, rect.GetX(), rect.GetY() + iTextOffset);
 			break;
 		}
 		case ColumnUserFileNameUpload: {
@@ -951,9 +1054,30 @@ void CGenericClientListCtrl::DrawClientItem(
 			if (kf) {
 				buffer = kf->GetFileName().GetPrintable();
 			} else {
-				buffer = wxT("???");
+				buffer = _("Unknown");
+				buffer = wxT("[") + buffer + wxT("]");
 			}
-			dc->DrawText(buffer, rect.GetX(), rect.GetY());
+			dc->DrawText(buffer, rect.GetX(), rect.GetY() + iTextOffset);
+			break;
+		}
+		case ColumnUserFileNameDownloadRemote: {
+			bool nameMissmatch = false;
+			wxColour savedColour = dc->GetTextForeground();
+			if (client->GetClientFilename().IsEmpty()) {
+				buffer = _("Unknown");
+				buffer = wxT("[") + buffer + wxT("]");
+			} else {
+				buffer = client->GetClientFilename();
+				const CPartFile * pf = client->GetRequestFile();
+				if (pf && (pf->GetFileName().GetPrintable().CmpNoCase(buffer) != 0)) {
+					nameMissmatch = true;
+					dc->SetTextForeground(*wxRED);
+				}
+			}
+			dc->DrawText(buffer, rect.GetX(), rect.GetY() + iTextOffset);
+			if (nameMissmatch) {
+				dc->SetTextForeground(savedColour);
+			}
 			break;
 		}
 	}
@@ -1103,19 +1227,6 @@ int CGenericClientListCtrl::Compare(
 			}
 		}
 
-		// Sort by state
-		case ColumnUserStatus: {
-			if (client1->GetDownloadState() == client2->GetDownloadState()) {
-				return CmpAny(
-					client1->IsRemoteQueueFull(),
-					client2->IsRemoteQueueFull() );
-			} else {
-				return CmpAny(
-					client1->GetDownloadState(),
-					client2->GetDownloadState() );
-			}
-		}
-
 		// Source of source ;)
 		case ColumnUserOrigin:
 			return CmpAny(client1->GetSourceFrom(), client2->GetSourceFrom());
@@ -1148,6 +1259,10 @@ int CGenericClientListCtrl::Compare(
 			return CmpAny(buffer1, buffer2);
 		}
 
+		case ColumnUserFileNameDownloadRemote: {
+			return CmpAny(client1->GetClientFilename(), client2->GetClientFilename());
+		}
+
 		default:
 			return 0;
 	}
@@ -1160,9 +1275,7 @@ void CGenericClientListCtrl::ShowSourcesCount( int diff )
 	wxStaticText* label = CastByID( ID_CLIENTCOUNT, GetParent(), wxStaticText );
 
 	if (label) {	
-		wxString str = wxString::Format(wxT("%i"), m_clientcount );
-
-		label->SetLabel( str );
+		label->SetLabel(CFormat(wxT("%i")) % m_clientcount);
 		label->GetParent()->Layout();
 	}
 }
@@ -1236,6 +1349,62 @@ void CGenericClientListCtrl::DrawSourceStatusBar(
 	}
 
 	s_StatusBar.Draw(dc, rect.x, rect.y, bFlat);
+}
+
+static const CMuleColour crUnavailable(240, 240, 240);
+static const CMuleColour crFlatUnavailable(224, 224, 224);
+
+static const CMuleColour crAvailable(104, 104, 104);
+static const CMuleColour crFlatAvailable(0, 0, 0);
+
+void CGenericClientListCtrl::DrawStatusBar( const CUpDownClient* client, wxDC* dc, const wxRect& rect1 ) const
+{
+	wxRect rect = rect1;
+	rect.y		+= 1;
+	rect.height	-= 2;
+
+	wxPen   old_pen   = dc->GetPen();
+	wxBrush old_brush = dc->GetBrush();
+	bool bFlat = thePrefs::UseFlatBar();
+
+	wxRect barRect = rect;
+	if (!bFlat) { // round bar has a black border, the bar itself is 1 pixel less on each border
+		barRect.x ++;
+		barRect.y ++;
+		barRect.height -= 2;
+		barRect.width -= 2;
+	}
+	static CBarShader s_StatusBar(16);
+
+	uint32 partCount = client->GetUpPartCount();
+
+	// Seems the partfile in the client object is not necessarily valid when bar is drawn for the first time.
+	// Keep it simple and make all parts same size.
+	s_StatusBar.SetFileSize(partCount * PARTSIZE);
+	s_StatusBar.SetHeight(barRect.height);
+	s_StatusBar.SetWidth(barRect.width);
+	s_StatusBar.Set3dDepth( thePrefs::Get3DDepth() );
+
+	uint64 uEnd = 0;
+	for ( uint64 i = 0; i < partCount; i++ ) {
+		uint64 uStart = PARTSIZE * i;
+		uEnd = uStart + PARTSIZE - 1;
+
+		s_StatusBar.FillRange(uStart, uEnd, client->IsUpPartAvailable(i) ? (bFlat ? crFlatAvailable : crAvailable) : (bFlat ? crFlatUnavailable : crUnavailable));
+	}
+	// fill the rest (if partStatus is empty)
+	s_StatusBar.FillRange(uEnd + 1, partCount * PARTSIZE - 1, bFlat ? crFlatUnavailable : crUnavailable);
+	s_StatusBar.Draw(dc, barRect.x, barRect.y, bFlat);
+
+	if (!bFlat) {
+		// Draw black border
+		dc->SetPen( *wxBLACK_PEN );
+		dc->SetBrush( *wxTRANSPARENT_BRUSH );
+		dc->DrawRectangle(rect);
+	}
+
+	dc->SetPen( old_pen );
+	dc->SetBrush( old_brush );
 }
 
 // File_checked_for_headers

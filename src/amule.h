@@ -173,7 +173,9 @@ public:
 
 	virtual bool	OnInit();
 	int		OnExit();
+#if wxUSE_ON_FATAL_EXCEPTION
 	void		OnFatalException();
+#endif
 	bool		ReinitializeNetwork(wxString *msg);
 
 	// derived classes may override those
@@ -205,6 +207,8 @@ public:
 	bool IsFirewalledKad() const;
 	// Check Kad state (UDP)
 	bool IsFirewalledKadUDP() const;
+	// Check Kad state (LAN mode)
+	bool IsKadRunningInLanMode() const;
 	// Kad stats
 	uint32	GetKadUsers() const;
 	uint32	GetKadFiles() const;

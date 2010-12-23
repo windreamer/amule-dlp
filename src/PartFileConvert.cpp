@@ -126,16 +126,16 @@ void CPartFileConvert::StartThread()
 	
 		switch ( s_convertPfThread->Create() ) {
 			case wxTHREAD_NO_ERROR:
-				AddDebugLogLineM( false, logPfConvert, wxT("A new thread has been created.") );
+				AddDebugLogLineN( logPfConvert, wxT("A new thread has been created.") );
 				break;
 			case wxTHREAD_RUNNING:
-				AddDebugLogLineM( true, logPfConvert, wxT("Error, attempt to create an already running thread!") );
+				AddDebugLogLineC( logPfConvert, wxT("Error, attempt to create an already running thread!") );
 				break;
 			case wxTHREAD_NO_RESOURCE:
-				AddDebugLogLineM( true, logPfConvert, wxT("Error, attempt to create a thread without resources!") );
+				AddDebugLogLineC( logPfConvert, wxT("Error, attempt to create a thread without resources!") );
 				break;
 			default:
-				AddDebugLogLineM( true, logPfConvert, wxT("Error, unknown error attempting to create a thread!") );
+				AddDebugLogLineC( logPfConvert, wxT("Error, unknown error attempting to create a thread!") );
 		}
 
 		// The thread shouldn't hog the CPU, as it will already be hogging the HD
@@ -197,7 +197,7 @@ wxThread::ExitCode CPartFileConvert::Entry()
 
 			Notify_ConvertUpdateJobInfo(s_pfconverting);
 
-			AddLogLineM(true, CFormat(_("Importing %s: %s")) % s_pfconverting->folder % GetConversionState(s_pfconverting->state));
+			AddLogLineC(CFormat(_("Importing %s: %s")) % s_pfconverting->folder % GetConversionState(s_pfconverting->state));
 
 			if (TestDestroy()) {
 				wxMutexLocker lock(s_mutex);
@@ -216,7 +216,7 @@ wxThread::ExitCode CPartFileConvert::Entry()
 		theApp->sharedfiles->PublishNextTurn();
 	}
 
-	AddDebugLogLineM(false, logPfConvert, wxT("No more jobs on queue, exiting from thread."));
+	AddDebugLogLineN(logPfConvert, wxT("No more jobs on queue, exiting from thread."));
 
 	s_convertPfThread = NULL;
 
@@ -324,7 +324,7 @@ ConvStatus CPartFileConvert::performConvertToeMule(const CPath& fileName)
 			while (filename.IsOk()) {
 				// stats
 				++curindex;
-				buffer = wxString::Format(_("Loading data from old download file (%u of %u)"), curindex, partfilecount);
+				buffer = CFormat(_("Loading data from old download file (%u of %u)")) % curindex % partfilecount;
 
 				Notify_ConvertUpdateProgress(10 + (curindex * stepperpart), buffer);
 
@@ -344,7 +344,7 @@ ConvStatus CPartFileConvert::performConvertToeMule(const CPath& fileName)
 				inputfile.Read(ba, toReadWrite);
 				inputfile.Close();
 
-				buffer = wxString::Format(_("Saving data block into new single download file (%u of %u)"), curindex, partfilecount);
+				buffer = CFormat(_("Saving data block into new single download file (%u of %u)")) % curindex % partfilecount;
 
 				Notify_ConvertUpdateProgress(10 + (curindex * stepperpart), buffer);
 
@@ -355,7 +355,7 @@ ConvStatus CPartFileConvert::performConvertToeMule(const CPath& fileName)
 			}
 			delete[] ba;
 		} catch (const CSafeIOException& e) {
-			AddDebugLogLineM(true, logPfConvert, wxT("IO error while converting partfiles: ") + e.what());
+			AddDebugLogLineC(logPfConvert, wxT("IO error while converting partfiles: ") + e.what());
 			
 			delete[] ba;
 			file->Delete();

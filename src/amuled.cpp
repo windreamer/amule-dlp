@@ -494,7 +494,7 @@ int CDaemonAppTraits::WaitForChild(wxExecuteData &execData)
 		result = AmuleWaitPid(execData.pid, &status, 0, &msg);
 		if (result == -1 || (!WIFEXITED(status) && !WIFSIGNALED(status))) {
 			msg << wxT(" Waiting for subprocess termination failed.");
-			AddDebugLogLineM(false, logGeneral, msg);			
+			AddDebugLogLineN(logGeneral, msg);
 		}	
 	} else {
 		/** wxEXEC_ASYNC */
@@ -521,7 +521,7 @@ int CDaemonAppTraits::WaitForChild(wxExecuteData &execData)
 	}
 
 	// Log our passage here
-	AddDebugLogLineM(false, logGeneral, msg);
+	AddDebugLogLineN(logGeneral, msg);
 
 	return status;
 }
@@ -559,7 +559,7 @@ void OnSignalChildHandler(int /*signal*/, siginfo_t *siginfo, void * /*ucontext*
 	}
 
 	// Log our passage here
-	AddDebugLogLineM(false, logGeneral, msg);
+	AddDebugLogLineN(logGeneral, msg);
 }
 
 
@@ -618,10 +618,10 @@ pid_t AmuleWaitPid(pid_t pid, int *status, int options, wxString *msg)
 int CamuleDaemonApp::OnRun()
 {
 	if (!thePrefs::AcceptExternalConnections()) {
-		AddLogLineMS(true, _("ERROR: aMule daemon cannot be used when external connections are disabled. To enable External Connections, use either a normal aMule, start amuled with the option --ec-config or set the key \"AcceptExternalConnections\" to 1 in the file ~/.aMule/amule.conf"));
+		AddLogLineCS(_("ERROR: aMule daemon cannot be used when external connections are disabled. To enable External Connections, use either a normal aMule, start amuled with the option --ec-config or set the key \"AcceptExternalConnections\" to 1 in the file ~/.aMule/amule.conf"));
 		return 0;
 	} else if (thePrefs::ECPassword().IsEmpty()) {
-		AddLogLineMS(true, _("ERROR: A valid password is required to use external connections, and aMule daemon cannot be used without external connections. To run aMule deamon, you must set the \"ECPassword\" field in the file ~/.aMule/amule.conf with an appropriate value. Execute amuled with the flag --ec-config to set the password. More information can be found at http://wiki.amule.org"));
+		AddLogLineCS(_("ERROR: A valid password is required to use external connections, and aMule daemon cannot be used without external connections. To run aMule deamon, you must set the \"ECPassword\" field in the file ~/.aMule/amule.conf with an appropriate value. Execute amuled with the flag --ec-config to set the password. More information can be found at http://wiki.amule.org"));
 		return 0;
 	}
 
@@ -629,7 +629,6 @@ int CamuleDaemonApp::OnRun()
 	// strerror_r() buffer
 	const int ERROR_BUFFER_LEN = 256;
 	char errorBuffer[ERROR_BUFFER_LEN];
-	wxString msg;
 
 	// Process the return code of dead children so that we do not create 
 	// zombies. wxBase does not implement wxProcess callbacks, so no one
@@ -644,15 +643,9 @@ int CamuleDaemonApp::OnRun()
 	ret = sigaction(SIGCHLD, &m_newSignalChildAction, NULL);
 	if (ret == -1) {
 		strerror_r(errno, errorBuffer, ERROR_BUFFER_LEN);
-		msg << wxT("CamuleDaemonApp::OnRun(): "
-			"Installation of SIGCHLD callback with sigaction() failed: ") <<
-			char2unicode(errorBuffer) <<
-			wxT(".");
-		AddLogLineM(true, msg);
+		AddDebugLogLineC(logStandard, wxString(wxT("CamuleDaemonApp::OnRun(): Installation of SIGCHLD callback with sigaction() failed: ")) << char2unicode(errorBuffer) << wxT("."));
 	} else {
-		msg << wxT("CamuleDaemonApp::OnRun(): Installation of SIGCHLD "
-			"callback with sigaction() succeeded.");
-		AddDebugLogLineM(false, logGeneral, msg);
+		AddDebugLogLineN(logGeneral, wxT("CamuleDaemonApp::OnRun(): Installation of SIGCHLD callback with sigaction() succeeded."));
 	}
 #endif // __WXMSW__
 	
@@ -688,7 +681,7 @@ bool CamuleDaemonApp::OnInit()
 	AddLogLineNS(_("amuled: OnInit - starting timer"));
 	core_timer = new CTimer(this,ID_CORE_TIMER_EVENT);
 	core_timer->Start(CORE_TIMER_PERIOD);
-	glob_prefs->GetCategory(0)->title = GetCatTitle(thePrefs::GetAllcatType());
+	glob_prefs->GetCategory(0)->title = GetCatTitle(thePrefs::GetAllcatFilter());
 	glob_prefs->GetCategory(0)->path = thePrefs::GetIncomingDir();
 	
 	return true;
@@ -725,7 +718,7 @@ int CamuleDaemonApp::InitGui(bool ,wxString &)
 		// can easily manage the process
 		//
 		if (!m_PidFile.IsEmpty()) {
-			wxString temp = wxString::Format(wxT("%d\n"), pid);
+			wxString temp = CFormat(wxT("%d\n")) % pid;
 			wxFFile ff(m_PidFile, wxT("w"));
 			if (!ff.Error()) {
 				ff.Write(temp);
@@ -768,11 +761,11 @@ int CamuleDaemonApp::OnExit()
 		msg << wxT("CamuleDaemonApp::OnRun(): second sigaction() failed: ") <<
 			char2unicode(errorBuffer) <<
 			wxT(".");
-		AddLogLineM(true, msg);
+		AddDebugLogLineC(logStandard, msg);
 	} else {
 		msg << wxT("CamuleDaemonApp::OnRun(): Uninstallation of SIGCHLD "
 			"callback with sigaction() succeeded.");
-		AddDebugLogLineM(false, logGeneral, msg);
+		AddDebugLogLineN(logGeneral, msg);
 	}
 #endif // __WXMSW__
 	

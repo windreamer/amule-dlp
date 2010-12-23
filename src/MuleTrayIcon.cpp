@@ -38,39 +38,15 @@
 #include <wx/menu.h>
 
 #include "amule.h" 			// Needed for theApp
-#include "amuleDlg.h" 			// Needed for IsShown
-#include "Preferences.h"		// Needed for thePrefs
-#include "ServerConnect.h"		// Needed for CServerConnect
+#include "amuleDlg.h" 		// Needed for IsShown
+#include "Preferences.h"	// Needed for thePrefs
+#include "ServerConnect.h"	// Needed for CServerConnect
 #include "Server.h"			// Needed for CServer
-#include "StatisticsDlg.h"		// Needed for CStatisticsDlg::getColors()
-#include "Statistics.h"			// Needed for theStats
-#include <common/Format.h>			// Needed for CFormat
+#include "StatisticsDlg.h"	// Needed for CStatisticsDlg::getColors()
+#include "Statistics.h"		// Needed for theStats
+#include <common/Format.h>	// Needed for CFormat
 #include "Logger.h"
-
-
-// Pop-up menu clickable entries
-enum {
-	TRAY_MENU_INFO = 0,
-	TRAY_MENU_CLIENTINFO=0,
-	TRAY_MENU_CLIENTINFO_ITEM = 13007,
-	TRAY_MENU_DISCONNECT,
-	TRAY_MENU_CONNECT,
-	TRAY_MENU_HIDE,
-	TRAY_MENU_SHOW,
-	TRAY_MENU_EXIT,
-	UPLOAD_ITEM1=12340,
-	UPLOAD_ITEM2=12341,
-	UPLOAD_ITEM3=12342,
-	UPLOAD_ITEM4=12343,
-	UPLOAD_ITEM5=12344,
-	UPLOAD_ITEM6=12345,
-	DOWNLOAD_ITEM1=54320,
-	DOWNLOAD_ITEM2=54321,
-	DOWNLOAD_ITEM3=54322,
-	DOWNLOAD_ITEM4=54323,
-	DOWNLOAD_ITEM5=54324,
-	DOWNLOAD_ITEM6=54325
-};
+#include <common/MenuIDs.h>	// Needed to access menu item constants
 
 /****************************************************/
 /******************* Event Table ********************/
@@ -103,7 +79,7 @@ END_EVENT_TABLE()
 
 long GetSpeedFromString(wxString label){
 	long temp;
-	label.Replace(wxT("kB/s"),wxT(""),TRUE);
+	label.Replace(_("kB/s"),wxT(""),TRUE);
 	label.Trim(FALSE);
 	label.Trim(TRUE);
 	label.ToLong(&temp);
@@ -325,7 +301,7 @@ wxMenu* CMuleTrayIcon::CreatePopupMenu()
 		label += _("UL: None");
 	}
 	else { 
-		label += wxString::Format(_("UL: %u"), max_upload);
+		label += CFormat(_("UL: %u")) % max_upload;
 	}
 	label += wxT(", ");
 
@@ -335,13 +311,13 @@ wxMenu* CMuleTrayIcon::CreatePopupMenu()
 		label += _("DL: None");
 	}
 	else {
-		label += wxString::Format(_("DL: %u"), max_download);
+		label += CFormat(_("DL: %u")) % max_download;
 	}
 
 	traymenu->Append(TRAY_MENU_INFO, label);
-	label = wxString::Format(_("Download speed: %.1f"), theStats::GetDownloadRate() / 1024.0);
+	label = CFormat(_("Download speed: %.1f")) % (theStats::GetDownloadRate() / 1024.0);
 	traymenu->Append(TRAY_MENU_INFO, label);
-	label = wxString::Format(_("Upload speed: %.1f"), theStats::GetUploadRate() / 1024.0);
+	label = CFormat(_("Upload speed: %.1f")) % (theStats::GetUploadRate() / 1024.0);
 	traymenu->Append(TRAY_MENU_INFO, label);
 	traymenu->AppendSeparator();
 
@@ -361,8 +337,7 @@ wxMenu* CMuleTrayIcon::CreatePopupMenu()
 		wxString temp = _("ClientID: ");
 		
 		if (theApp->IsConnectedED2K()) {
-			unsigned long id = theApp->GetED2KID();
-			temp += wxString::Format(wxT("%lu"), id);
+			temp += CFormat(wxT("%u")) % theApp->GetED2KID();
 		} else {
 			temp += _("Not connected");
 		}
@@ -486,7 +461,7 @@ wxMenu* CMuleTrayIcon::CreatePopupMenu()
 			
 		for ( int i = 0; i < 5; i++ ) {
 			unsigned int tempspeed = (unsigned int)((double)max_ul_speed / 5) * (5 - i);
-			wxString temp = wxString::Format(wxT("%u kB/s"), tempspeed);
+			wxString temp = CFormat(wxT("%u %s")) % tempspeed % _("kB/s");
 			UploadSpeedMenu->Append((int)UPLOAD_ITEM1+i+1,temp);
 		}
 	}
@@ -507,7 +482,7 @@ wxMenu* CMuleTrayIcon::CreatePopupMenu()
 	
 		for ( int i = 0; i < 5; i++ ) {
 			unsigned int tempspeed = (unsigned int)((double)max_dl_speed / 5) * (5 - i);
-			wxString temp = wxString::Format(wxT("%d kB/s"), tempspeed);
+			wxString temp = CFormat(wxT("%d %s")) % tempspeed % _("kB/s");
 			DownloadSpeedMenu->Append((int)DOWNLOAD_ITEM1+i+1,temp);
 		}
 	}

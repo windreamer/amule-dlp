@@ -317,18 +317,17 @@ void CaMuleExternalConnector::GetCommand(const wxString &prompt, char* buffer, s
 		m_InputLine = text;
 #else
 		Show(prompt + wxT("$ "));
-		fflush(stdin);
-		if (fgets(buffer, buffer_size, stdin)){}	// prevent GCC warning
-		const char *text = buffer;
+		const char *text = fgets(buffer, buffer_size, stdin);	// == buffer if ok, NULL if eof
 #endif /* HAVE_LIBREADLINE */
 		if ( text ) {
 			size_t len = strlen(text);
-			if (len > buffer_size - 2) {
-				len = buffer_size - 2;
+			if (len > buffer_size - 1) {
+				len = buffer_size - 1;
 			}
-			strncpy(buffer, text, len);
-			buffer[len] = '\n';
-			buffer[len + 1] = 0;
+			if (buffer != text) {
+				strncpy(buffer, text, len);
+			}
+			buffer[len] = 0;
 		} else {
 			strncpy(buffer, "quit", buffer_size);
 		}
@@ -567,8 +566,10 @@ void CaMuleExternalConnector::SaveConfigFile()
 bool CaMuleExternalConnector::OnInit()
 {
 #ifndef __WXMSW__
-	// catch fatal exceptions
-	wxHandleFatalExceptions(true);
+	#if wxUSE_ON_FATAL_EXCEPTION
+		// catch fatal exceptions
+		wxHandleFatalExceptions(true);
+	#endif
 #endif
 
 	m_strFullVersion = strdup((const char *)unicode2char(GetMuleVersion()));
@@ -624,6 +625,7 @@ wxAppTraits* CaMuleExternalConnector::CreateTraits()
 
 #endif
 
+#if wxUSE_ON_FATAL_EXCEPTION
 // Gracefully handle fatal exceptions and print backtrace if possible
 void CaMuleExternalConnector::OnFatalException()
 {
@@ -644,6 +646,7 @@ void CaMuleExternalConnector::OnFatalException()
 	
 	fprintf(stderr, "\n--------------------------------------------------------------------------------\n");	
 }
+#endif
 
 #ifdef __WXDEBUG__
 void CaMuleExternalConnector::OnAssertFailure(const wxChar *file, int line, const wxChar *func, const wxChar *cond, const wxChar *msg)

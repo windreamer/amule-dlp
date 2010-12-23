@@ -146,8 +146,10 @@ protected:
 	CAbstractFile& operator=(const CAbstractFile);
 
 	CMD4Hash	m_abyFileHash;
-	wxString	m_strComment;
-	int8		m_iRating;
+	// comment/rating are read from the config and cached in these variables,
+	// so make the mutable to allow GetFileComment() to be a const method
+	mutable	wxString	m_strComment;
+	mutable	int8		m_iRating;
 	bool		m_hasComment;
 	int8		m_iUserRating;
 	ArrayOfCTag	m_taglist;
@@ -176,8 +178,11 @@ public:
 	void SetFilePath(const CPath& filePath);
 	const CPath& GetFilePath() const { return m_filePath; }
 
-	virtual	bool	IsPartFile() const	{return false;}
-	virtual bool	IsCPartFile() const	{ return false; }
+	// virtual functions for CKnownFile and CPartFile:
+	virtual	bool	IsPartFile() const	{return false;}		// true if not completed
+	virtual bool	IsCompleted() const	{ return true; }	// true if completed
+	virtual bool	IsCPartFile() const	{ return false; }	// true if it's a CPartFile
+
 	virtual bool	LoadFromFile(const CFileDataIO* file);	//load date, hashset and tags from a .met file
 	virtual uint8	GetStatus(bool WXUNUSED(ignorepause) = false) const { return PS_COMPLETE; }
 	bool	WriteToFile(CFileDataIO* file);
@@ -218,11 +223,10 @@ public:
 	void	RemoveUploadingClient(CUpDownClient* client);
 
 	// comment
-	const wxString&	GetFileComment() { if (!m_bCommentLoaded) LoadComment(); return m_strComment; }
-	int8	GetFileRating() 		{ if (!m_bCommentLoaded) LoadComment(); return m_iRating; }
+	const wxString&	GetFileComment()	const	{ if (!m_bCommentLoaded) LoadComment(); return m_strComment; }
+	int8	GetFileRating() 			const	{ if (!m_bCommentLoaded) LoadComment(); return m_iRating; }
 
-	void	SetFileComment(const wxString& strNewComment);
-	void	SetFileRating(int8 iNewRating);
+	void	SetFileCommentRating(const wxString& strNewComment, int8 iNewRating);
 	void	SetPublishedED2K( bool val );
 	bool	GetPublishedED2K() const	{return m_PublishedED2K;}
 
@@ -292,7 +296,9 @@ public:
 	virtual wxString GetFeedback() const;
 
 	void	SetShowSources( bool val )	{ m_showSources = val; }
-	bool	ShowSources()				const { return m_showSources; }
+	bool	ShowSources() const			{ return m_showSources; }
+	void	SetShowPeers( bool val )	{ m_showPeers = val; }
+	bool	ShowPeers()	const			{ return m_showPeers; }
 
 #ifdef CLIENT_GUI
 	CKnownFile(CEC_SharedFile_Tag *);
@@ -319,14 +325,14 @@ protected:
 
 	bool	LoadTagsFromFile(const CFileDataIO* file);
 	bool	LoadDateFromFile(const CFileDataIO* file);
-	void	LoadComment();//comment
+	void	LoadComment() const;
 	ArrayOfCMD4Hash m_hashlist;
 	CPath	m_filePath;
 
 	static void CreateHashFromFile(class CFileAutoClose& file, uint64 offset, uint32 Length, CMD4Hash* Output, CAICHHashTree* pShaHashOut);
 	static void CreateHashFromInput(const byte* input, uint32 Length, CMD4Hash* Output, CAICHHashTree* pShaHashOut);
 
-	bool	m_bCommentLoaded;
+	mutable bool	m_bCommentLoaded;
 	uint16	m_iPartCount;
 	uint16  m_iED2KPartCount;
 	uint16	m_iED2KPartHashCount;
@@ -343,6 +349,7 @@ protected:
 	uint32	m_lastBuddyIP;
 
 	bool	m_showSources;
+	bool	m_showPeers;
 private:
 	/** Common initializations for constructors. */
 	void Init();

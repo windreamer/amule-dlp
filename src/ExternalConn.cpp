@@ -44,13 +44,14 @@
 #include "UploadQueue.h"	// Needed for CUploadQueue
 #include "amule.h"		// Needed for theApp
 #include "SearchList.h"		// Needed for GetSearchResults
-#include "IPFilter.h"		// Needed for CIPFilter
 #include "ClientList.h"
 #include "Preferences.h"	// Needed for CPreferences
 #include "Logger.h"
 #include "GuiEvents.h"		// Needed for Notify_* macros
 #include "Statistics.h"		// Needed for theStats
 #include "KnownFileList.h"	// Needed for CKnownFileList
+#include "Friend.h"
+#include "FriendList.h"
 #include "RandomFunctions.h"
 #include "kademlia/kademlia/Kademlia.h"
 #include "kademlia/kademlia/UDPFirewallTester.h"
@@ -81,7 +82,7 @@ public:
 
 	virtual void SetShared() { }
 	virtual bool IsShared() { return true; }
-	virtual bool IsDownload() { return m_file->IsPartFile(); }
+	virtual bool IsPartFile_Encoder() { return false; }
 	const CKnownFile * GetFile() { return m_file; }
 };
 
@@ -126,7 +127,7 @@ public:
 
 	virtual void SetShared() { m_shared = true; }
 	virtual bool IsShared() { return m_shared; }
-	virtual bool IsDownload() { return true; }
+	virtual bool IsPartFile_Encoder() { return true; }
 };
 
 class CFileEncoderMap : public std::map<uint32, CKnownFile_Encoder*> {
@@ -151,7 +152,7 @@ void CFileEncoderMap::UpdateEncoders()
 	IDSet curr_files, dead_files;
 	// Downloads
 	std::vector<CPartFile*> downloads;
-	theApp->downloadqueue->CopyFileList(downloads);
+	theApp->downloadqueue->CopyFileList(downloads, true);
 	for (uint32 i = downloads.size(); i--;) {
 		uint32 id = downloads[i]->ECID();
 		curr_files.insert(id);
@@ -164,7 +165,9 @@ void CFileEncoderMap::UpdateEncoders()
 	theApp->sharedfiles->CopyFileList(shares);
 	for (uint32 i = shares.size(); i--;) {
 		uint32 id = shares[i]->ECID();
-		if (shares[i]->IsPartFile()) {	// we already have it
+		// Check if it is already there.
+		// The curr_files.count(id) is enough, the IsCPartFile() is just a speedup.
+		if (shares[i]->IsCPartFile() && curr_files.count(id)) {
 			(*this)[id]->SetShared();
 			continue;
 		}
@@ -203,6 +206,8 @@ public:
 	virtual void OnLost();
 
 	virtual void WriteDoneAndQueueEmpty();
+
+	void	ResetLog() { m_LoggerAccess.Reset(); }
 private:
 	ECNotifier *m_ec_notifier;
 
@@ -252,7 +257,7 @@ const CECPacket *CECServerSocket::OnPacketReceived(const CECPacket *packet, uint
 
 	if (m_conn_state == CONN_FAILED) {
 		// Client didn't close the socket when authentication failed.
-		AddLogLineM(false, _("Client sent packet after authentication failed."));
+		AddLogLineN(_("Client sent packet after authentication failed."));
 		CloseSocket();
 	}
 
@@ -270,7 +275,7 @@ const CECPacket *CECServerSocket::OnPacketReceived(const CECPacket *packet, uint
 
 void CECServerSocket::OnLost()
 {
-	AddLogLineM(false,_("External connection closed."));
+	AddLogLineN(_("External connection closed."));
 	theApp->ECServerHandler->m_ec_notifier->Remove_EC_Client(this);
 	DestroySocket();
 }
@@ -309,7 +314,7 @@ ExternalConn::ExternalConn(amuleIPV4Address addr, wxString *msg)
 		// We must have a valid password, otherwise we will not allow EC connections
 		if (thePrefs::ECPassword().IsEmpty()) {
 			*msg += wxT("External connections disabled due to empty password!\n");
-			AddLogLineM(true, _("External connections disabled due to empty password!"));
+			AddLogLineC(_("External connections disabled due to empty password!"));
 			return;
 		}
 		
@@ -322,19 +327,17 @@ ExternalConn::ExternalConn(amuleIPV4Address addr, wxString *msg)
 		int port = addr.Service();
 		wxString ip = addr.IPAddress();
 		if (m_ECServer->Ok()) {
-			msgLocal = wxT("*** TCP socket (ECServer) listening on ") + ip + 
-				wxString::Format(wxT(":%d"), port);
+			msgLocal = CFormat(wxT("*** TCP socket (ECServer) listening on %s:%d")) % ip % port;
 			*msg += msgLocal + wxT("\n");
-			AddLogLineM(false, msgLocal);
+			AddLogLineN(msgLocal);
 		} else {
-			msgLocal = wxT("Could not listen for external connections at ") + ip + 
-				wxString::Format(wxT(":%d!"), port);
+			msgLocal = CFormat(wxT("Could not listen for external connections at %s:%d!")) % ip % port;
 			*msg += msgLocal + wxT("\n");
-			AddLogLineM(false, msgLocal);
+			AddLogLineN(msgLocal);
 		}
 	} else {
 		*msg += wxT("External connections disabled in config file\n");
-		AddLogLineM(false,_("External connections disabled in config file"));
+		AddLogLineN(_("External connections disabled in config file"));
 	}
 	m_ec_notifier = new ECNotifier();
 }
@@ -364,7 +367,7 @@ void ExternalConn::RemoveSocket(CECServerSocket *s)
 
 void ExternalConn::KillAllSockets()
 {
-	AddDebugLogLineM(false, logGeneral,
+	AddDebugLogLineN(logGeneral,
 		CFormat(wxT("ExternalConn::KillAllSockets(): %d sockets to destroy.")) %
 			socket_list.size());
 	SocketSet::iterator it = socket_list.begin();
@@ -372,6 +375,16 @@ void ExternalConn::KillAllSockets()
 		CECServerSocket *s = *(it++);
 		s->Close();
 		s->Destroy();
+	}
+}
+
+
+void ExternalConn::ResetAllLogs()
+{
+	SocketSet::iterator it = socket_list.begin();
+	while (it != socket_list.end()) {
+		CECServerSocket *s = *(it++);
+		s->ResetLog();
 	}
 }
 
@@ -384,10 +397,10 @@ void ExternalConn::OnServerEvent(wxSocketEvent& WXUNUSED(event))
 	// non-blocking accept (although if we got here, there
 	// should ALWAYS be a pending connection).
 	if ( m_ECServer->AcceptWith(*sock, false) ) {
-		AddLogLineM(false, _("New external connection accepted"));
+		AddLogLineN(_("New external connection accepted"));
 	} else {
 		delete sock;
-		AddLogLineM(false, _("ERROR: couldn't accept a new external connection"));
+		AddLogLineN(_("ERROR: couldn't accept a new external connection"));
 	}
 	
 }
@@ -405,7 +418,7 @@ const CECPacket *CECServerSocket::Authenticate(const CECPacket *request)
 
 	// Password must be specified if we are to allow remote connections
 	if ( thePrefs::ECPassword().IsEmpty() ) {
-		AddLogLineM(true, _("External connection refused due to empty password in preferences!"));	
+		AddLogLineC(_("External connection refused due to empty password in preferences!"));	
 		
 		return new CECPacket(EC_OP_AUTH_FAIL);
 	}
@@ -414,7 +427,7 @@ const CECPacket *CECServerSocket::Authenticate(const CECPacket *request)
 		const CECTag *clientName = request->GetTagByName(EC_TAG_CLIENT_NAME);
 		const CECTag *clientVersion = request->GetTagByName(EC_TAG_CLIENT_VERSION);
 		
-		AddLogLineM(false, CFormat( _("Connecting client: %s %s") )
+		AddLogLineN(CFormat( _("Connecting client: %s %s") )
 			% ( clientName ? clientName->GetStringData() : wxString(_("Unknown")) )
 			% ( clientVersion ? clientVersion->GetStringData() : wxString(_("Unknown version")) ) );
 		const CECTag *protocol = request->GetTagByName(EC_TAG_PROTOCOL_VERSION);
@@ -458,7 +471,8 @@ const CECPacket *CECServerSocket::Authenticate(const CECPacket *request)
 					% (m_haveNotificationSupport ? wxT("yes") : wxT("no")));
 			} else {
 				response = new CECPacket(EC_OP_AUTH_FAIL);
-				response->AddTag(CECTag(EC_TAG_STRING, wxTRANSLATE("Invalid protocol version.") + wxString::Format(wxT("( %i != %i )"),proto_version,EC_CURRENT_PROTOCOL_VERSION)));
+				response->AddTag(CECTag(EC_TAG_STRING, wxTRANSLATE("Invalid protocol version.")
+					+ CFormat(wxT("( %i != %i )")) % proto_version % EC_CURRENT_PROTOCOL_VERSION));
 			}
 		} else {
 			response = new CECPacket(EC_OP_AUTH_FAIL);
@@ -493,7 +507,7 @@ const CECPacket *CECServerSocket::Authenticate(const CECPacket *request)
 
 				response = new CECPacket(EC_OP_AUTH_FAIL);
 				response->AddTag(CECTag(EC_TAG_STRING, err));
-				AddLogLineM(false, wxGetTranslation(err));
+				AddLogLineN(wxGetTranslation(err));
 			}
 		}
 	} else {
@@ -503,7 +517,7 @@ const CECPacket *CECServerSocket::Authenticate(const CECPacket *request)
 	
 	if (response->GetOpCode() == EC_OP_AUTH_OK) {
 		m_conn_state = CONN_ESTABLISHED;
-		AddLogLineM(false, _("Access granted."));
+		AddLogLineN(_("Access granted."));
 		// Establish notification handler if client supports it
 		if (HaveNotificationSupport()) {
 			theApp->ECServerHandler->m_ec_notifier->Add_EC_Client(this);
@@ -511,12 +525,12 @@ const CECPacket *CECServerSocket::Authenticate(const CECPacket *request)
 	} else if (response->GetOpCode() == EC_OP_AUTH_FAIL) {
 		// Log message sent to client
 		if (response->GetFirstTagSafe()->IsString()) {
-			AddLogLineM(false, CFormat(_("Sent error message \"%s\" to client.")) % wxGetTranslation(response->GetFirstTagSafe()->GetStringData()));
+			AddLogLineN(CFormat(_("Sent error message \"%s\" to client.")) % wxGetTranslation(response->GetFirstTagSafe()->GetStringData()));
 		}
 		// Access denied!
 		amuleIPV4Address address;
 		GetPeer(address);
-		AddLogLineM(false, CFormat(_("Unauthorized access attempt from %s. Connection closed.")) % address.IPAddress() );
+		AddLogLineN(CFormat(_("Unauthorized access attempt from %s. Connection closed.")) % address.IPAddress() );
 		m_conn_state = CONN_FAILED;
 	}
 
@@ -576,6 +590,7 @@ static CECPacket *Get_EC_Response_StatRequest(const CECPacket *request, CLoggerA
 				response->AddTag(CECTag(EC_TAG_STATS_KAD_INDEXED_NOTES, Kademlia::CKademlia::GetIndexed()->m_totalIndexNotes));
 				response->AddTag(CECTag(EC_TAG_STATS_KAD_INDEXED_LOAD, Kademlia::CKademlia::GetIndexed()->m_totalIndexLoad));
 				response->AddTag(CECTag(EC_TAG_STATS_KAD_IP_ADRESS, wxUINT32_SWAP_ALWAYS(Kademlia::CKademlia::GetPrefs()->GetIPAddress())));
+				response->AddTag(CECTag(EC_TAG_STATS_KAD_IN_LAN_MODE, Kademlia::CKademlia::IsRunningInLANMode()));
 				response->AddTag(CECTag(EC_TAG_STATS_BUDDY_STATUS, theApp->clientlist->GetBuddyStatus()));
 				uint32 BuddyIP = 0;
 				uint16 BuddyPort = 0;
@@ -634,7 +649,10 @@ static CECPacket *Get_EC_Response_GetUpdate(CFileEncoderMap &encoders, CObjTagMa
 	for (CFileEncoderMap::iterator it = encoders.begin(); it != encoders.end(); ++it) {
 		const CKnownFile *cur_file = it->second->GetFile();
 		CValueMap &valuemap = tagmap.GetValueMap(cur_file->ECID());
-		if (cur_file->IsCPartFile()) {
+		// Completed cleared Partfiles are still stored as CPartfile,
+		// but encoded as KnownFile, so we have to check the encoder type
+		// instead of the file type.
+		if (it->second->IsPartFile_Encoder()) {
 			CEC_PartFile_Tag filetag((const CPartFile*) cur_file, EC_DETAIL_INC_UPDATE, &valuemap);
 			// Add information if partfile is shared
 			filetag.AddTag(EC_TAG_PARTFILE_SHARED, it->second->IsShared(), &valuemap);
@@ -649,6 +667,7 @@ static CECPacket *Get_EC_Response_GetUpdate(CFileEncoderMap &encoders, CObjTagMa
 			response->AddTag(filetag);
 		}
 	}
+
 	// Add clients
 	CECEmptyTag clients(EC_TAG_CLIENT);
 	const CClientList::IDMap& clientList = theApp->clientlist->GetClientList();
@@ -658,6 +677,26 @@ static CECPacket *Get_EC_Response_GetUpdate(CFileEncoderMap &encoders, CObjTagMa
 		clients.AddTag(CEC_UpDownClient_Tag(cur_client, EC_DETAIL_INC_UPDATE, &valuemap));
 	}
 	response->AddTag(clients);
+
+	// Add servers
+	CECEmptyTag servers(EC_TAG_SERVER);
+	std::vector<const CServer*> serverlist = theApp->serverlist->CopySnapshot();
+	uint32 nrServers = serverlist.size();
+	for (uint32 i = 0; i < nrServers; i++) {
+		const CServer* cur_server = serverlist[i];
+		CValueMap &valuemap = tagmap.GetValueMap(cur_server->ECID());
+		servers.AddTag(CEC_Server_Tag(cur_server, &valuemap));
+	}
+	response->AddTag(servers);
+
+	// Add friends
+	CECEmptyTag friends(EC_TAG_FRIEND);
+	for (CFriendList::const_iterator it = theApp->friendlist->begin(); it != theApp->friendlist->end(); it++) {
+		const CFriend* cur_friend = *it;
+		CValueMap &valuemap = tagmap.GetValueMap(cur_friend->ECID());
+		friends.AddTag(CEC_Friend_Tag(cur_friend, &valuemap));
+	}
+	response->AddTag(friends);
 
 	return response;
 }
@@ -743,7 +782,7 @@ static CECPacket *Get_EC_Response_PartFile_Cmd(const CECPacket *request)
 		CPartFile *pfile = theApp->downloadqueue->GetFileByID( hash );
 		
 		if ( !pfile ) {
-			AddLogLineM(false,CFormat(_("Remote PartFile command failed: FileHash not found: %s")) % hash.Encode());
+			AddLogLineN(CFormat(_("Remote PartFile command failed: FileHash not found: %s")) % hash.Encode());
 			response = new CECPacket(EC_OP_FAILED);
 			response->AddTag(CECTag(EC_TAG_STRING, CFormat(wxString(wxTRANSLATE("FileHash not found: %s"))) % hash.Encode()));
 			//return response;
@@ -751,29 +790,13 @@ static CECPacket *Get_EC_Response_PartFile_Cmd(const CECPacket *request)
 		}
 		switch (request->GetOpCode()) {
 			case EC_OP_PARTFILE_SWAP_A4AF_THIS:
-				if ((pfile->GetStatus(false) == PS_READY) ||
-					(pfile->GetStatus(false) == PS_EMPTY)) {
-					CKnownFile::SourceSet::const_iterator it = pfile->GetA4AFList().begin();
-					while ( it != pfile->GetA4AFList().end() ) {
-						CUpDownClient *cur_source = *it++;
-						
-						cur_source->SwapToAnotherFile(true, false, false, pfile);
-					}
-				}
+				CoreNotify_PartFile_Swap_A4AF(pfile);
 				break;
 			case EC_OP_PARTFILE_SWAP_A4AF_THIS_AUTO:
-				pfile->SetA4AFAuto(!pfile->IsA4AFAuto());
+				CoreNotify_PartFile_Swap_A4AF_Auto(pfile);
 				break;
 			case EC_OP_PARTFILE_SWAP_A4AF_OTHERS:
-				if ((pfile->GetStatus(false) == PS_READY) ||
-				    (pfile->GetStatus(false) == PS_EMPTY)) {
-					CKnownFile::SourceSet::const_iterator it = pfile->GetSourceList().begin();
-					while ( it != pfile->GetSourceList().end() ) {
-						CUpDownClient* cur_source = *it++;
-
-						cur_source->SwapToAnotherFile(false, false, false, NULL);
-					}
-				}
+				CoreNotify_PartFile_Swap_A4AF_Others(pfile);
 				break;
 			case EC_OP_PARTFILE_PAUSE:
 				pfile->PauseFile();
@@ -846,7 +869,7 @@ static CECPacket *Get_EC_Response_Server_Add(const CECPacket *request)
 static CECPacket *Get_EC_Response_Server(const CECPacket *request)
 {
 	CECPacket *response = NULL;
-	const CECTag *srv_tag = request->GetFirstTagSafe();
+	const CECTag *srv_tag = request->GetTagByName(EC_TAG_SERVER);
 	CServer *srv = 0;
 	if ( srv_tag ) {
 		srv = theApp->serverlist->GetServerByIPTCP(srv_tag->GetIPv4Data().IP(), srv_tag->GetIPv4Data().m_port);
@@ -894,6 +917,78 @@ static CECPacket *Get_EC_Response_Server(const CECPacket *request)
 	}
 	return response;
 }
+
+
+static CECPacket *Get_EC_Response_Friend(const CECPacket *request)
+{
+	CECPacket *response = NULL;
+	const CECTag *tag = request->GetTagByName(EC_TAG_FRIEND_ADD);
+	if (tag) {
+		const CECTag *subtag = tag->GetTagByName(EC_TAG_CLIENT);
+		if (subtag) {
+			CUpDownClient * client = theApp->clientlist->FindClientByECID(subtag->GetInt());
+			if (client) {
+				theApp->friendlist->AddFriend(client);
+				response = new CECPacket(EC_OP_NOOP);
+			}
+		} else {
+			const CECTag *hashtag	= tag->GetTagByName(EC_TAG_FRIEND_HASH);
+			const CECTag *iptag		= tag->GetTagByName(EC_TAG_FRIEND_IP);
+			const CECTag *porttag	= tag->GetTagByName(EC_TAG_FRIEND_PORT);
+			const CECTag *nametag	= tag->GetTagByName(EC_TAG_FRIEND_NAME);
+			if (hashtag && iptag && porttag && nametag) {
+				theApp->friendlist->AddFriend(hashtag->GetMD4Data(), iptag->GetInt(), porttag->GetInt(), nametag->GetStringData());
+				response = new CECPacket(EC_OP_NOOP);
+			}
+		}
+	} else if ((tag = request->GetTagByName(EC_TAG_FRIEND_REMOVE))) {
+		const CECTag *subtag = tag->GetTagByName(EC_TAG_FRIEND);
+		if (subtag) {
+			CFriend * Friend = theApp->friendlist->FindFriend(subtag->GetInt());
+			if (Friend) {
+				theApp->friendlist->RemoveFriend(Friend);
+				response = new CECPacket(EC_OP_NOOP);
+			}
+		}
+	} else if ((tag = request->GetTagByName(EC_TAG_FRIEND_FRIENDSLOT))) {
+		const CECTag *subtag = tag->GetTagByName(EC_TAG_FRIEND);
+		if (subtag) {
+			CFriend * Friend = theApp->friendlist->FindFriend(subtag->GetInt());
+			if (Friend) {
+				theApp->friendlist->SetFriendSlot(Friend, tag->GetInt() != 0);
+				response = new CECPacket(EC_OP_NOOP);
+			}
+		}
+	} else if ((tag = request->GetTagByName(EC_TAG_FRIEND_SHARED))) {
+		response = new CECPacket(EC_OP_FAILED);
+		response->AddTag(CECTag(EC_TAG_STRING, wxT("Request shared files list not implemented yet.")));
+#if 0
+		// This works fine - but there is no way atm to transfer the results to amulegui, so disable it for now.
+
+		const CECTag *subtag = tag->GetTagByName(EC_TAG_FRIEND);
+		if (subtag) {
+			CFriend * Friend = theApp->friendlist->FindFriend(subtag->GetInt());
+			if (Friend) {
+				theApp->friendlist->RequestSharedFileList(Friend);
+				response = new CECPacket(EC_OP_NOOP);
+			}
+		} else if ((subtag = tag->GetTagByName(EC_TAG_CLIENT))) {
+			CUpDownClient * client = theApp->clientlist->FindClientByECID(subtag->GetInt());
+			if (client) {
+				client->RequestSharedFileList();
+				response = new CECPacket(EC_OP_NOOP);
+			}
+		}
+#endif
+	}
+
+	if (!response) {
+		response = new CECPacket(EC_OP_FAILED);
+		response->AddTag(CECTag(EC_TAG_STRING, wxTRANSLATE("OOPS! OpCode processing error!")));
+	}
+	return response;
+}
+
 
 static CECPacket *Get_EC_Response_Search_Results(const CECPacket *request)
 {
@@ -955,7 +1050,7 @@ static CECPacket *Get_EC_Response_Search_Results_Download(const CECPacket *reque
 static CECPacket *Get_EC_Response_Search_Stop(const CECPacket *WXUNUSED(request))
 {
 	CECPacket *reply = new CECPacket(EC_OP_MISC_DATA);
-	theApp->searchlist->StopGlobalSearch();
+	theApp->searchlist->StopSearch();
 	return reply;
 }
 
@@ -1231,7 +1326,7 @@ CECPacket *CECServerSocket::ProcessRequest2(const CECPacket *request)
 		case EC_OP_SHUTDOWN:
 			if (!theApp->IsOnShutDown()) {
 				response = new CECPacket(EC_OP_NOOP);
-				AddLogLineM(true, _("External Connection: shutdown requested"));
+				AddLogLineC(_("External Connection: shutdown requested"));
 #ifndef AMULE_DAEMON
 				{
 					wxCloseEvent evt;
@@ -1255,7 +1350,7 @@ CECPacket *CECServerSocket::ProcessRequest2(const CECPacket *request)
 				if (cattag) {
 					category = cattag->GetInt();
 				}
-				AddLogLineM(true, CFormat(_("ExternalConn: adding link '%s'.")) % link);
+				AddLogLineC(CFormat(_("ExternalConn: adding link '%s'.")) % link);
 				if ( theApp->downloadqueue->AddLink(link, category) ) {
 					response = new CECPacket(EC_OP_NOOP);
 				} else {
@@ -1303,7 +1398,6 @@ CECPacket *CECServerSocket::ProcessRequest2(const CECPacket *request)
 		case EC_OP_PARTFILE_REMOVE_NO_NEEDED:
 		case EC_OP_PARTFILE_REMOVE_FULL_QUEUE:
 		case EC_OP_PARTFILE_REMOVE_HIGH_QUEUE:
-		case EC_OP_PARTFILE_CLEANUP_SOURCES:
 		case EC_OP_PARTFILE_SWAP_A4AF_THIS:
 		case EC_OP_PARTFILE_SWAP_A4AF_THIS_AUTO:
 		case EC_OP_PARTFILE_SWAP_A4AF_OTHERS:
@@ -1350,7 +1444,40 @@ CECPacket *CECServerSocket::ProcessRequest2(const CECPacket *request)
 
 			break;
 		}
-
+		case EC_OP_CLEAR_COMPLETED: {
+			ListOfUInts32 toClear;
+			for (CECTag::const_iterator it = request->begin(); it != request->end(); it++) {
+				if (it->GetTagName() == EC_TAG_ECID) {
+					toClear.push_back(it->GetInt());
+				}
+			}
+			theApp->downloadqueue->ClearCompleted(toClear);
+			response = new CECPacket(EC_OP_NOOP);
+			break;
+		}
+		case EC_OP_CLIENT_SWAP_TO_ANOTHER_FILE: {
+			theApp->sharedfiles->Reload();
+			uint32 idClient = request->GetTagByNameSafe(EC_TAG_CLIENT)->GetInt();
+			CUpDownClient * client = theApp->clientlist->FindClientByECID(idClient);
+			CMD4Hash idFile = request->GetTagByNameSafe(EC_TAG_PARTFILE)->GetMD4Data();
+			CPartFile * file = theApp->downloadqueue->GetFileByID(idFile);
+			if (client && file) {
+				client->SwapToAnotherFile( true, false, false, file);
+			}
+			response = new CECPacket(EC_OP_NOOP);
+			break;
+		}
+		case EC_OP_SHARED_FILE_SET_COMMENT: {
+			CMD4Hash hash = request->GetTagByNameSafe(EC_TAG_KNOWNFILE)->GetMD4Data();
+			CKnownFile * file = theApp->sharedfiles->GetFileByID(hash);
+			if (file) {
+				wxString newComment = request->GetTagByNameSafe(EC_TAG_KNOWNFILE_COMMENT)->GetStringData();
+				uint8 newRating = request->GetTagByNameSafe(EC_TAG_KNOWNFILE_RATING)->GetInt();
+				CoreNotify_KnownFile_Comment_Set(file, newComment, newRating);
+			}
+			response = new CECPacket(EC_OP_NOOP);
+			break;
+		}
 
 		//
 		// Server commands
@@ -1391,11 +1518,34 @@ CECPacket *CECServerSocket::ProcessRequest2(const CECPacket *request)
 			response = new CECPacket(EC_OP_NOOP);
 			break;
 		}
+		case EC_OP_SERVER_SET_STATIC_PRIO: {
+			uint32 ecid = request->GetTagByNameSafe(EC_TAG_SERVER)->GetInt();
+			CServer * server = theApp->serverlist->GetServerByECID(ecid);
+			if (server) {
+				const CECTag * staticTag = request->GetTagByName(EC_TAG_SERVER_STATIC);
+				if (staticTag) {
+					theApp->serverlist->SetStaticServer(server, staticTag->GetInt() > 0);
+				}
+				const CECTag * prioTag = request->GetTagByName(EC_TAG_SERVER_PRIO);
+				if (prioTag) {
+					theApp->serverlist->SetServerPrio(server, prioTag->GetInt());
+				}
+			}
+			response = new CECPacket(EC_OP_NOOP);
+			break;
+		}
+		//
+		// Friends
+		//
+		case EC_OP_FRIEND:
+			response = Get_EC_Response_Friend(request);
+			break;
+
 		//
 		// IPFilter
 		//
 		case EC_OP_IPFILTER_RELOAD:
-			theApp->ipfilter->Reload();
+			NotifyAlways_IPFilter_Reload();
 			response = new CECPacket(EC_OP_NOOP);
 			break;
 
@@ -1404,7 +1554,7 @@ CECPacket *CECServerSocket::ProcessRequest2(const CECPacket *request)
 			if (url.IsEmpty()) {
 				url = thePrefs::IPFilterURL();
 			}
-			theApp->ipfilter->Update(url);
+			NotifyAlways_IPFilter_Update(url);
 			response = new CECPacket(EC_OP_NOOP);
 			break;
 		}
@@ -1503,11 +1653,19 @@ CECPacket *CECServerSocket::ProcessRequest2(const CECPacket *request)
 		// Logging
 		//
 		case EC_OP_ADDLOGLINE:
-			AddLogLineM( (request->GetTagByName(EC_TAG_LOG_TO_STATUS) != NULL), request->GetTagByNameSafe(EC_TAG_STRING)->GetStringData() );
+			if (request->GetTagByName(EC_TAG_LOG_TO_STATUS) != NULL) {
+				AddLogLineC(request->GetTagByNameSafe(EC_TAG_STRING)->GetStringData());
+			} else {
+				AddLogLineN(request->GetTagByNameSafe(EC_TAG_STRING)->GetStringData());
+			}
 			response = new CECPacket(EC_OP_NOOP);
 			break;
 		case EC_OP_ADDDEBUGLOGLINE:
-			AddDebugLogLineM( (request->GetTagByName(EC_TAG_LOG_TO_STATUS) != NULL), logGeneral, request->GetTagByNameSafe(EC_TAG_STRING)->GetStringData() );
+			if (request->GetTagByName(EC_TAG_LOG_TO_STATUS) != NULL) {
+				AddDebugLogLineC(logGeneral, request->GetTagByNameSafe(EC_TAG_STRING)->GetStringData());
+			} else {
+				AddDebugLogLineN(logGeneral, request->GetTagByNameSafe(EC_TAG_STRING)->GetStringData());
+			}
 			response = new CECPacket(EC_OP_NOOP);
 			break;
 		case EC_OP_GET_LOG:
@@ -1658,7 +1816,7 @@ CECPacket *CECServerSocket::ProcessRequest2(const CECPacket *request)
 			break;
 	}
 	if (!response) {
-		AddLogLineM(false, wxString::Format(_("External Connection: invalid opcode received: %#x"), request->GetOpCode()));
+		AddLogLineN(CFormat(_("External Connection: invalid opcode received: %#x")) % request->GetOpCode());
 		wxFAIL;
 		response = new CECPacket(EC_OP_FAILED);
 		response->AddTag(CECTag(EC_TAG_STRING, wxTRANSLATE("Invalid opcode (wrong protocol version?)")));

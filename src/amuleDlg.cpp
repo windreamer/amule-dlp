@@ -67,6 +67,7 @@
 #include "ServerConnect.h"	// Needed for CServerConnect
 #include "ServerWnd.h"		// Needed for CServerWnd
 #include "SharedFilesWnd.h"	// Needed for CSharedFilesWnd
+#include "SharedFilePeersListCtrl.h" // Needed for CSharedFilePeersListCtrl
 #include "Statistics.h"		// Needed for theStats
 #include "StatisticsDlg.h"	// Needed for CStatisticsDlg
 #include "TerminationProcess.h"	// Needed for CTerminationProcess
@@ -230,14 +231,14 @@ m_clientSkinNames(CLIENT_SKIN_SIZE)
 	SetSizer(s_main, true);
 
 	m_serverwnd = new CServerWnd(p_cnt, m_srv_split_pos);
-	AddLogLineM(false, wxEmptyString);
-	AddLogLineM(false, wxT(" - ") +
+	AddLogLineN(wxEmptyString);
+	AddLogLineN(wxT(" - ") +
 		CFormat(_("This is aMule %s based on eMule.")) % GetMuleVersion());
-	AddLogLineM(false, wxT("   ") +
+	AddLogLineN(wxT("   ") +
 		CFormat(_("Running on %s")) % wxGetOsDescription());
-	AddLogLineM(false, wxT(" - ") +
+	AddLogLineN(wxT(" - ") +
 		wxString(_("Visit http://www.amule.org to check if a new version is available.")));
-	AddLogLineM(false, wxEmptyString);
+	AddLogLineN(wxEmptyString);
 
 #ifdef ENABLE_IP2COUNTRY
 	m_GeoIPavailable = true;
@@ -262,7 +263,7 @@ m_clientSkinNames(CLIENT_SKIN_SIZE)
 	// Create the GUI timer
 	gui_timer=new wxTimer(this,ID_GUI_TIMER_EVENT);
 	if (!gui_timer) {
-		AddLogLineM(false, _("FATAL ERROR: Failed to create Timer"));
+		AddLogLineN(_("FATAL ERROR: Failed to create Timer"));
 		exit(1);
 	}
 
@@ -277,7 +278,7 @@ m_clientSkinNames(CLIENT_SKIN_SIZE)
 		(dlg_size.y != DEFAULT_SIZE_Y) );
 	if (!LoadGUIPrefs(override_where, override_size)) {
 		// Prefs not loaded for some reason, exit
-		AddLogLineM( true, wxT("Error! Unable to load Preferences") );
+		AddLogLineC(wxT("Error! Unable to load Preferences") );
 		return;
 	}
 
@@ -471,7 +472,7 @@ void CamuleDlg::OnToolBarButton(wxCommandEvent& ev)
 
 				// This shouldn't happen, but just in case
 				default:
-					AddLogLineM( true, wxT("Unknown button triggered CamuleApp::OnToolBarButton().") );
+					AddLogLineC(wxT("Unknown button triggered CamuleApp::OnToolBarButton().") );
 					break;
 			}
 		}
@@ -565,7 +566,7 @@ void CamuleDlg::OnBnConnect(wxCommandEvent& WXUNUSED(evt))
 			}
 		} else {		
 			//connect if not currently connected
-			AddLogLineM(true, _("Connecting"));
+			AddLogLineC(_("Connecting"));
 			theApp->serverconnect->ConnectToAnyServer();
 		}
 	} else {
@@ -614,17 +615,13 @@ void CamuleDlg::AddLogLine(const wxString& line)
 	wxTextCtrl* ct = CastByID( ID_LOGVIEW, m_serverwnd, wxTextCtrl );
 	if ( ct ) {
 		// Bold critical log-lines
-		// to enable this on Windows control has to be changed to wxTE_RICH2 in muuli
-#ifdef __WXMSW__
-		ct->AppendText(line); // keep the leading "!" if it can't be bolded
-#else
+		// Works in Windows too thanks to wxTE_RICH2 style in muuli
 		wxTextAttr style = ct->GetDefaultStyle();
 		wxFont font = style.GetFont();
 		font.SetWeight(addtostatusbar ? wxFONTWEIGHT_BOLD : wxFONTWEIGHT_NORMAL);
 		style.SetFont(font);
 		ct->SetDefaultStyle(style);
 		ct->AppendText(bufferline);
-#endif
 		ct->ShowPosition( ct->GetLastPosition() - 1 );
 	}
 	
@@ -850,9 +847,9 @@ void CamuleDlg::ShowTransferRate()
 	wxString buffer;
 	if( thePrefs::ShowOverhead() )
 	{
-		buffer = wxString::Format(_("Up: %.1f(%.1f) | Down: %.1f(%.1f)"), kBpsUp, theStats::GetUpOverheadRate() / 1024.0, kBpsDown, theStats::GetDownOverheadRate() / 1024.0);
+		buffer = CFormat(_("Up: %.1f(%.1f) | Down: %.1f(%.1f)")) % kBpsUp % (theStats::GetUpOverheadRate() / 1024.0) % kBpsDown % (theStats::GetDownOverheadRate() / 1024.0);
 	} else {
-		buffer = wxString::Format(_("Up: %.1f | Down: %.1f"), kBpsUp, kBpsDown);
+		buffer = CFormat(_("Up: %.1f | Down: %.1f")) % kBpsUp % kBpsDown;
 	}
 	buffer.Truncate(50); // Max size 50
 
@@ -862,7 +859,7 @@ void CamuleDlg::ShowTransferRate()
 
 	// Show upload/download speed in title
 	if (thePrefs::GetShowRatesOnTitle()) {
-		wxString UpDownSpeed = wxString::Format(wxT("Up: %.1f | Down: %.1f"), kBpsUp, kBpsDown);
+		wxString UpDownSpeed = CFormat(wxT("Up: %.1f | Down: %.1f")) % kBpsUp % kBpsDown;
 		if (thePrefs::GetShowRatesOnTitle() == 1) {
 			SetTitle(theApp->m_FrameTitle + wxT(" -- ") + UpDownSpeed);
 		} else {
@@ -1084,7 +1081,7 @@ void CamuleDlg::OnGUITimer(wxTimerEvent& WXUNUSED(evt))
 {
 	// Former TimerProc section
 
-	static uint32	msPrev1, msPrev5, msPrevStats;
+	static uint32	msPrev1, msPrev5;
 
 	uint32 			msCur = theStats::GetUptimeMillis();
 
@@ -1094,7 +1091,7 @@ void CamuleDlg::OnGUITimer(wxTimerEvent& WXUNUSED(evt))
 	}
 
 #ifndef CLIENT_GUI
-	static uint32 msPrevGraph;
+	static uint32 msPrevGraph, msPrevStats;
 	int msGraphUpdate = thePrefs::GetTrafficOMeterInterval() * 1000;
 	if ((msGraphUpdate > 0)  && ((msCur / msGraphUpdate) > (msPrevGraph / msGraphUpdate))) {
 		// trying to get the graph shifts evenly spaced after a change in the update period
@@ -1105,9 +1102,6 @@ void CamuleDlg::OnGUITimer(wxTimerEvent& WXUNUSED(evt))
 		m_statisticswnd->UpdateStatGraphs(theStats::GetPeakConnections(), update);
 		m_kademliawnd->UpdateGraph(update);
 	}
-#else
-	//#warning TODO: CORE/GUI -- EC needed
-#endif
 	
 	int sStatsUpdate = thePrefs::GetStatsInterval();
 	if ((sStatsUpdate > 0) && ((int)(msCur - msPrevStats) > sStatsUpdate*1000)) {
@@ -1116,6 +1110,7 @@ void CamuleDlg::OnGUITimer(wxTimerEvent& WXUNUSED(evt))
 			m_statisticswnd->ShowStatistics();
 		}
 	}
+#endif
 
 	if (msCur-msPrev5 > 5000) {  // every 5 seconds
 		msPrev5 = msCur;
@@ -1125,6 +1120,8 @@ void CamuleDlg::OnGUITimer(wxTimerEvent& WXUNUSED(evt))
 		}
 		if (thePrefs::AutoSortDownload()) {
 			m_transferwnd->downloadlistctrl->SortList();
+			m_transferwnd->clientlistctrl->SortList();
+			m_sharedfileswnd->peerslistctrl->SortList();
 		}
 	}
 	
@@ -1229,12 +1226,12 @@ bool CamuleDlg::Check_and_Init_Skin()
 
 	m_skinFileName.Assign(skinFileName);
 	if (!m_skinFileName.FileExists()) {
-		AddLogLineM(true, CFormat(
+		AddLogLineC(CFormat(
 			_("Skin directory '%s' does not exist")) %
 			skinFileName );
 		ret = false;
 	} else if (!m_skinFileName.IsFileReadable()) {
-		AddLogLineM(true, CFormat(
+		AddLogLineC(CFormat(
 			_("WARNING: Unable to open skin file '%s' for read")) %
 			skinFileName);
 		ret = false;
@@ -1267,14 +1264,12 @@ void CamuleDlg::Add_Skin_Icon(
 		if ( it != cat.end() ) {
 			zip.OpenEntry(*it->second);
 			if ( !new_image.LoadFile(zip,wxBITMAP_TYPE_PNG) ) {
-				AddLogLineM(false,
-					wxT("Warning: Error loading icon for ") +
+				AddLogLineN(wxT("Warning: Error loading icon for ") +
 						iconName);
 				useSkins = false;
 			}
 		}else {
-				AddLogLineM(false,
-					wxT("Warning: Can't load icon for ") +
+				AddLogLineN(wxT("Warning: Can't load icon for ") +
 						iconName);
 				useSkins = false;
 		}
@@ -1448,7 +1443,9 @@ void CamuleDlg::DoNetworkRearrange()
 	}
 
 	if (thePrefs::GetNetworkED2K()) {
+#ifndef CLIENT_GUI
 		logs_notebook->AddPage(m_logpages[1].page, m_logpages[1].name);
+#endif
 		logs_notebook->AddPage(m_logpages[2].page, m_logpages[2].name);
 	}
 		

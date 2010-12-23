@@ -49,19 +49,20 @@ enum GenericColumnEnum {
 	ColumnUserSpeedDown,
 	ColumnUserSpeedUp,
 	ColumnUserProgress,
+	ColumnUserAvailable,
 	ColumnUserVersion,
 	ColumnUserQueueRankLocal,
 	ColumnUserQueueRankRemote,
-	ColumnUserStatus,
 	ColumnUserOrigin,
 	ColumnUserFileNameDownload,
 	ColumnUserFileNameUpload,
+	ColumnUserFileNameDownloadRemote,
 	ColumnInvalid
 };
 
 struct CGenericClientListCtrlColumn {
 	GenericColumnEnum cid;
-	wxString name;
+	wxString title;
 	int width;
 };
 
@@ -175,7 +176,7 @@ private:
 	/**
 	 * Draws a client item.
 	 */
-	void	DrawClientItem( wxDC* dc, int nColumn, const wxRect& rect, ClientCtrlItem_Struct* item ) const;
+	void	DrawClientItem( wxDC* dc, int nColumn, const wxRect& rect, ClientCtrlItem_Struct* item, int iTextOffset, int iBitmapOffset, int iBitmapXSize ) const;
 
 	/**
 	 * Draws the download status (chunk) bar for a client.
@@ -183,10 +184,26 @@ private:
 	void	DrawSourceStatusBar( const CUpDownClient* source, wxDC* dc, const wxRect& rect, bool  bFlat) const;
 
 	/**
+	  * Draaws the file parts bar for a client.
+	  */
+	void	DrawStatusBar( const CUpDownClient* client, wxDC* dc, const wxRect& rect1 ) const;
+
+	/**
 	 * @see CMuleListCtrl::GetTTSText
 	 * Just a dummy
 	 */
 	virtual wxString GetTTSText(unsigned) const { return wxEmptyString; }
+
+	/**
+	 * Set "show sources" or "show peers" flag in Known File
+	 */
+	virtual void SetShowSources(CKnownFile *, bool) const = 0;
+
+	/**
+	 * Translate the CID to a unique string for saving column sizes
+	 * @see CMuleListCtrl::InsertColumn
+	 */
+	wxString TranslateCIDToName(GenericColumnEnum cid);
 
 	static int Compare( const CUpDownClient* client1, const CUpDownClient* client2, long lParamColumnSort);
 	
@@ -194,6 +211,7 @@ private:
 	void	OnSwapSource( wxCommandEvent& event );
 	void	OnViewFiles( wxCommandEvent& event );
 	void	OnAddFriend( wxCommandEvent& event );
+	void	OnSetFriendslot( wxCommandEvent& event );
 	void	OnSendMessage( wxCommandEvent& event );
 	void	OnViewClientInfo( wxCommandEvent& event );
 

@@ -413,8 +413,7 @@ void CSearchDlg::CreateNewTab(const wxString& searchString, wxUIntPtr nSearchID)
 
 void CSearchDlg::OnBnClickedStop(wxCommandEvent& WXUNUSED(evt))
 {
-	theApp->searchlist->StopGlobalSearch();
-	theApp->searchlist->StopKadSearch();
+	theApp->searchlist->StopSearch();
 	ResetControls();
 }
 
@@ -524,7 +523,7 @@ void CSearchDlg::StartNewSearch()
 		case 6:	params.typeText = ED2KFTSTR_DOCUMENT;	break;
 		case 7:	params.typeText = ED2KFTSTR_VIDEO;	break;
 		default:
-			AddDebugLogLineM( true, logGeneral,
+			AddDebugLogLineC( logGeneral,
 				CFormat( wxT("Warning! Unknown search-category (%s) selected!") )
 					% params.typeText
 			);
@@ -589,9 +588,9 @@ void CSearchDlg::UpdateHitCount(CSearchListCtrl* page)
 				size_t hidden = page->GetHiddenItemCount();
 
 				if (hidden) {
-					searchtxt += wxString::Format(wxT(" (%u/%u)"), shown, shown + hidden);
+					searchtxt += CFormat(wxT(" (%u/%u)")) % shown % (shown + hidden);
 				} else {
-					searchtxt += wxString::Format(wxT(" (%u)"), shown);
+					searchtxt += CFormat(wxT(" (%u)")) % shown;
 				}
 
 				m_notebook->SetPageText(i, searchtxt);

@@ -136,6 +136,7 @@ public:
 	bool Parse_Command(const wxString& buffer);
 	void GetCommand(const wxString &prompt, char* buffer, size_t buffer_size);
 	const CECPacket *SendRecvMsg_v2(const CECPacket *request) { return m_ECClient->SendRecvPacket(request); }
+	void SendPacket(const CECPacket *request) { m_ECClient->SendPacket(request); }
 	void ConnectAndRun(const wxString &ProgName, const wxString& ProgVersion);
 	void ShowGreet();
 
@@ -145,8 +146,10 @@ public:
 	void OnInitCmdLine(wxCmdLineParser& amuleweb_parser, const char* appname);
 	bool OnCmdLineParsed(wxCmdLineParser& parser);
 
+#if wxUSE_ON_FATAL_EXCEPTION
 	// Exception and assert handling
 	void OnFatalException();
+#endif
 #ifdef __WXDEBUG__
 	void OnAssertFailure(const wxChar *file, int line, const wxChar *func, const wxChar *cond, const wxChar *msg);
 #endif
