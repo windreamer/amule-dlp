@@ -13922,7 +13922,7 @@ fi
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for bfd" >&5
 $as_echo_n "checking for bfd... " >&6; }
 	result=no
-	for bfd_ldadd in "" "${LIBINTL}"; do
+	for bfd_ldadd in "" "${LIBINTL}" "-ldl" "-ldl ${LIBINTL}"; do
 		mule_backup_LIBS="$LIBS"
 		mule_backup_LDFLAGS="$LDFLAGS"
 		LIBS="-lbfd -liberty ${bfd_ldadd} ${ZLIB_LIBS} $LIBS"
