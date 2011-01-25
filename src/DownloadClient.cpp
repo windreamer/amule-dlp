@@ -23,7 +23,7 @@
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301, USA
 //
 
-#include "updownclient.h"	// Interface declarations
+#include "updownclient.h"		// Needed for CUpDownClient
 
 #include <protocol/Protocols.h>
 #include <protocol/ed2k/Client2Client/TCP.h>
@@ -1385,12 +1385,12 @@ void CUpDownClient::UpdateDisplayedInfo(bool force)
 					break;
 			}
 			
-			Notify_SourceCtrlUpdateSource(this, type );
+			Notify_SourceCtrlUpdateSource(ECID(), type );
 		}
 
 		// Shared files view
 		if (m_uploadingfile && m_uploadingfile->ShowPeers()) {
-			Notify_SharedCtrlRefreshClient(this, AVAILABLE_SOURCE);
+			Notify_SharedCtrlRefreshClient(ECID(), AVAILABLE_SOURCE);
 		}
 				
 		m_lastRefreshedDLDisplay = curTick;
@@ -1488,7 +1488,7 @@ bool CUpDownClient::SwapToAnotherFile(bool bIgnoreNoNeeded, bool ignoreSuspensio
 			
 			// remove this client from the A4AF list of our new m_reqfile
 			if ( SwapTo->RemoveA4AFSource( this ) ) {
-				Notify_SourceCtrlRemoveSource(this, SwapTo);
+				Notify_SourceCtrlRemoveSource(ECID(), SwapTo);
 			}
 
 			m_reqfile->RemoveDownloadingSource( this );
@@ -1503,9 +1503,9 @@ bool CUpDownClient::SwapToAnotherFile(bool bIgnoreNoNeeded, bool ignoreSuspensio
 				// Avoid swapping to this file for a while
 				m_A4AF_list[m_reqfile].timestamp = ::GetTickCount(); 
 							
-				Notify_SourceCtrlAddSource(m_reqfile, this, A4AF_SOURCE);
+				Notify_SourceCtrlAddSource(m_reqfile, CCLIENTREF(this, wxT("CUpDownClient::SwapToAnotherFile Notify_SourceCtrlAddSource 1")), A4AF_SOURCE);
 			} else {
-				Notify_SourceCtrlRemoveSource( this, m_reqfile );
+				Notify_SourceCtrlRemoveSource(ECID(), m_reqfile);
 			}
 		
 			SetDownloadState(DS_NONE);
@@ -1520,7 +1520,7 @@ bool CUpDownClient::SwapToAnotherFile(bool bIgnoreNoNeeded, bool ignoreSuspensio
 
 			SwapTo->AddSource( this );
 		
-			Notify_SourceCtrlAddSource(SwapTo, this, UNAVAILABLE_SOURCE);
+			Notify_SourceCtrlAddSource(SwapTo, CCLIENTREF(this, wxT("CUpDownClient::SwapToAnotherFile Notify_SourceCtrlAddSource 2")), UNAVAILABLE_SOURCE);
 
 			// Remove the new reqfile from the list of other files
 			m_A4AF_list.erase( target );
@@ -1600,7 +1600,7 @@ void CUpDownClient::SetReqFileAICHHash(CAICHHash* val){
 void CUpDownClient::SendAICHRequest(CPartFile* pForFile, uint16 nPart){
 	CAICHRequestedData request;
 	request.m_nPart = nPart;
-	request.m_pClient = this;
+	request.m_pClient.Link(this CLIENT_DEBUGSTRING("CUpDownClient::SendAICHRequest"));
 	request.m_pPartFile = pForFile;
 	CAICHHashSet::m_liRequestedData.push_back(request);
 	m_fAICHRequested = TRUE;
@@ -1631,7 +1631,7 @@ void CUpDownClient::ProcessAICHAnswer(const byte* packet, uint32 size)
 	CPartFile* pPartFile = theApp->downloadqueue->GetFileByID(hash);
 	CAICHRequestedData request = CAICHHashSet::GetAICHReqDetails(this);
 	uint16 nPart = data.ReadUInt16();
-	if (pPartFile != NULL && request.m_pPartFile == pPartFile && request.m_pClient == this && nPart == request.m_nPart){
+	if (pPartFile != NULL && request.m_pPartFile == pPartFile && request.m_pClient.GetClient() == this && nPart == request.m_nPart){
 		CAICHHash ahMasterHash(&data);
 		if ( (pPartFile->GetAICHHashset()->GetStatus() == AICH_TRUSTED || pPartFile->GetAICHHashset()->GetStatus() == AICH_VERIFIED)
 			 && ahMasterHash == pPartFile->GetAICHHashset()->GetMasterHash())

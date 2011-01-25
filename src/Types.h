@@ -111,7 +111,6 @@ typedef uint8_t		byte;
 
 
 class CKnownFile;
-class CUpDownClient;
 
 //! Various common list-types.
 //@{ 
@@ -119,7 +118,6 @@ class CUpDownClient;
 typedef std::list<wxString> CStringList;
 #endif
 typedef std::list<CKnownFile*> CKnownFilePtrList;
-typedef std::list<CUpDownClient*> CClientPtrList;
 //@}
 
 typedef std::vector<uint8>  ArrayOfUInts8;
@@ -144,14 +142,16 @@ static const wxString EmptyString = wxEmptyString;
 #endif
 
 
-#ifdef __WXMSW__
+#ifdef _WIN32			// Used in non-wx-apps too (ed2k), so don't use __WXMSW__ here !
 #ifdef _MSC_VER
 	#define NOMINMAX
 	#include <windows.h> // Needed for RECT  // Do_not_auto_remove
-#endif
+#else
 	#include <windef.h>	// Needed for RECT  // Do_not_auto_remove
 	#include <wingdi.h>	// Do_not_auto_remove
 	#include <winuser.h>	// Do_not_auto_remove
+	#include <winbase.h> // Do_not_auto_remove
+#endif
 	// Windows compilers don't have these constants
 	#ifndef W_OK
 		enum
@@ -162,15 +162,18 @@ static const wxString EmptyString = wxEmptyString;
 			R_OK = 4    //          read
 		};
 	#endif // W_OK
-	#include <wx/msw/winundef.h>	// Do_not_auto_remove
-#elif !defined(_MSC_VER)
+	#ifdef __WXMSW__
+		#include <wx/msw/winundef.h>	// Do_not_auto_remove
+	#endif
+	#undef GetUserName
+#else // _WIN32
 	typedef struct sRECT {
 	  uint32 left;
 	  uint32 top;
 	  uint32 right;
 	  uint32 bottom;
 	} RECT;
-#endif /* __WXMSW__ */
+#endif /* _WIN32 */
 
 
 #endif /* TYPES_H */

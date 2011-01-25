@@ -169,6 +169,7 @@ void CDownloadQueue::LoadMetFiles(const CPath& path)
 
 		DoSortByPriority();
 		CheckDiskspace( path );
+		Notify_ShowUpdateCatTabTitles();
 	}
 }
 
@@ -644,14 +645,14 @@ void CDownloadQueue::CheckAndAddSource(CPartFile* sender, CUpDownClient* source)
 
 		CClientList::SourceList::iterator it = found.begin();
 		for ( ; it != found.end(); it++ ) {
-			CKnownFile* file = (*it)->GetRequestFile();
+			CKnownFile* file = it->GetRequestFile();
 
 			// Only check files on the download-queue
 			if ( file ) {
 				// Is the found source queued for something else?
 				if (  file != sender ) {
 					// Try to add a request for the other file
-					if ( (*it)->AddRequestForAnotherFile(sender)) {
+					if ( it->GetClient()->AddRequestForAnotherFile(sender)) {
 						// Add it to downloadlistctrl
 						Notify_SourceCtrlAddSource(sender, *it, A4AF_SOURCE);
 					}
@@ -689,7 +690,7 @@ void CDownloadQueue::CheckAndAddSource(CPartFile* sender, CUpDownClient* source)
 				sender->UpdateFileRatingCommentAvail();
 			}
 			
-			Notify_SourceCtrlAddSource(sender, source, UNAVAILABLE_SOURCE);
+			Notify_SourceCtrlAddSource(sender, CCLIENTREF(source, wxT("CDownloadQueue::CheckAndAddSource Notify_SourceCtrlAddSource 1")), UNAVAILABLE_SOURCE);
 		}
 	} else {
 		// Unknown client, add it to the clients list
@@ -702,7 +703,7 @@ void CDownloadQueue::CheckAndAddSource(CPartFile* sender, CUpDownClient* source)
 			sender->UpdateFileRatingCommentAvail();
 		}
 	
-		Notify_SourceCtrlAddSource(sender, source, UNAVAILABLE_SOURCE);
+		Notify_SourceCtrlAddSource(sender, CCLIENTREF(source, wxT("CDownloadQueue::CheckAndAddSource Notify_SourceCtrlAddSource 2")), UNAVAILABLE_SOURCE);
 	}
 }
 
@@ -747,7 +748,7 @@ void CDownloadQueue::CheckAndAddKnownSource(CPartFile* sender,CUpDownClient* sou
 	if ( file ) {
 		if ( file != sender ) {
 			if ( source->AddRequestForAnotherFile( sender ) ) {
-				Notify_SourceCtrlAddSource( sender, source, A4AF_SOURCE );
+				Notify_SourceCtrlAddSource( sender, CCLIENTREF(source, wxT("CDownloadQueue::CheckAndAddKnownSource Notify_SourceCtrlAddSource 1")), A4AF_SOURCE );
 			}
 		}
 	} else {
@@ -759,7 +760,7 @@ void CDownloadQueue::CheckAndAddKnownSource(CPartFile* sender,CUpDownClient* sou
 
 		source->SetSourceFrom(SF_PASSIVE);
 		sender->AddSource( source );
-		Notify_SourceCtrlAddSource( sender, source, UNAVAILABLE_SOURCE);
+		Notify_SourceCtrlAddSource( sender, CCLIENTREF(source, wxT("CDownloadQueue::CheckAndAddKnownSource Notify_SourceCtrlAddSource 2")), UNAVAILABLE_SOURCE);
 	}
 }
 
@@ -776,7 +777,7 @@ bool CDownloadQueue::RemoveSource(CUpDownClient* toremove, bool	WXUNUSED(updatew
 		if ( cur_file->DelSource( toremove ) ) {
 			
 			// Remove from sourcelist widget
-			Notify_SourceCtrlRemoveSource(toremove, cur_file);
+			Notify_SourceCtrlRemoveSource(toremove->ECID(), cur_file);
 			
 			cur_file->RemoveDownloadingSource(toremove);
 			removed = true;
@@ -844,8 +845,8 @@ CUpDownClient* CDownloadQueue::GetDownloadClientByIP_UDP(uint32 dwIP, uint16 nUD
 		const CKnownFile::SourceSet& set = m_filelist[i]->GetSourceList();
 		
 		for ( CKnownFile::SourceSet::const_iterator it = set.begin(); it != set.end(); it++ ) {
-			if ( (*it)->GetIP() == dwIP && (*it)->GetUDPPort() == nUDPPort ) {
-				return *it;
+			if ( it->GetIP() == dwIP && it->GetUDPPort() == nUDPPort ) {
+				return it->GetClient();
 			}
 		}
 	}

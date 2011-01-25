@@ -43,7 +43,6 @@
 #include "Preferences.h"
 #include "SharedFileList.h"	// Needed for CSharedFileList
 #include "TerminationProcess.h"	// Needed for CTerminationProcess
-#include "updownclient.h"	// Needed for CUpDownClient
 #include "TransferWnd.h"
 #include "SourceListCtrl.h"
 
@@ -488,6 +487,7 @@ void CDownloadListCtrl::OnSetCategory( wxCommandEvent& event )
 	OnItemSelectionChanged(ev);	// clear clients that may have been shown
 
 	ChangeCategory( m_category );	// This only updates the visibility of the clear completed button
+	theApp->amuledlg->m_transferwnd->UpdateCatTabTitles();
 }
 
 
@@ -1189,11 +1189,11 @@ int CDownloadListCtrl::Compare( const CPartFile* file1, const CPartFile* file2, 
 			if (file2->getTimeRemaining() == -1) {
 				result = 0;
 			} else {
-				result = -1;
+				result = 1;
 			}
 		} else {
 			if (file2->getTimeRemaining() == -1) {
-				result = 1;
+				result = -1;
 			} else {
 				result = CmpAny(
 					file1->getTimeRemaining(),

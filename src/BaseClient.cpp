@@ -137,7 +137,7 @@ CUpDownClient::CUpDownClient(uint16 in_port, uint32 in_userid, uint32 in_serveri
 
 	if (checkfriend) {
 		if ((m_Friend = theApp->friendlist->FindFriend(CMD4Hash(), m_dwUserIP, m_nUserPort)) != NULL){
-			m_Friend->LinkClient(this);
+			m_Friend->LinkClient(CCLIENTREF(this, wxT("CUpDownClient::CUpDownClient m_Friend->LinkClient")));
 		} else{
 			// avoid that an unwanted client instance keeps a friend slot
 			m_bFriendSlot = false;
@@ -148,6 +148,10 @@ CUpDownClient::CUpDownClient(uint16 in_port, uint32 in_userid, uint32 in_serveri
 
 void CUpDownClient::Init()
 {
+	m_linked = 0;
+#ifdef DEBUG_ZOMBIE_CLIENTS
+	m_linkedDebug = false;
+#endif
 	m_bAddNextConnect = false;
 	credits = NULL;
 	m_byChatstate = MS_NONE;
@@ -300,9 +304,6 @@ CUpDownClient::~CUpDownClient()
 	}
 	#endif	
 	
-	// For security, remove it from the lists unconditionally.
-	Notify_SharedCtrlRemoveClient((CKnownFile*)NULL, this);
-	Notify_SourceCtrlRemoveSource(this, (CPartFile*)NULL);
 	
 	if (m_lastClientSoft == SO_UNKNOWN) {
 		theStats::RemoveUnknownClient();
@@ -313,19 +314,6 @@ CUpDownClient::~CUpDownClient()
 	// Indicate that we are not anymore on stats
 	m_lastClientSoft = (uint32)(-1);
 	
-
-	if (IsAICHReqPending()){
-		m_fAICHRequested = FALSE;
-		CAICHHashSet::ClientAICHRequestFailed(this);
-	}
-
-	//theApp->clientlist->RemoveClient(this, wxT("Destructing client object"));
-	
-	if (m_Friend) {
-		m_Friend->UnLinkClient();	// this notifies
-		m_Friend = NULL;
-	}
-
 	// The socket should have been removed in Safe_Delete, but it
 	// doesn't hurt to have an extra check.
 	if (m_socket) {
@@ -334,34 +322,15 @@ CUpDownClient::~CUpDownClient()
 		SetSocket(NULL);
 	}
 
-
 	ClearUploadBlockRequests();
 	ClearDownloadBlockRequests();
 
 	DeleteContents(m_WaitingPackets_list);
 	
-	if (m_iRating>0 || !m_strComment.IsEmpty()) {
-		m_iRating = 0;
-		m_strComment.Clear();
-		if (m_reqfile) {
-			m_reqfile->UpdateFileRatingCommentAvail();
-		}
-	}
-
-	// Ensure that source-counts gets updated in case
-	// of a source not on the download-queue
-	SetRequestFile( NULL );
-
-	SetUploadFileID(NULL);
-
-	if (m_pReqFileAICHHash != NULL) {
-		delete m_pReqFileAICHHash;
-		m_pReqFileAICHHash = NULL;
-	}
-
 	// Allow detection of deleted clients that didn't go through Safe_Delete
  	m_clientState = CS_DYING;
 }
+
 
 void CUpDownClient::ClearHelloProperties()
 {
@@ -417,7 +386,16 @@ void CUpDownClient::Safe_Delete()
 		return;
 	}
 
+	// If called from background, post an event to process it in main thread
+	if (!wxThread::IsMain()) {
+		CoreNotify_Client_Delete(CCLIENTREF(this, wxT("CUpDownClient::Safe_Delete CoreNotify_Client_Delete")));
+		return;
+	}
+
  	m_clientState = CS_DYING;
+
+	// Make sure client doesn't get deleted until this method is finished
+	CClientRef ref(CCLIENTREF(this, wxT("CUpDownClient::Safe_Delete reflocker")));
 
 	// Close the socket to avoid any more connections and related events
 	if ( m_socket ) {
@@ -426,12 +404,57 @@ void CUpDownClient::Safe_Delete()
 		SetSocket(NULL);
 	}
 
-	// Schedule the client for deletion if we still have the clientlist
+	// Remove the client from the clientlist if we still have it
 	if ( theApp->clientlist ) {
-		theApp->clientlist->AddToDeleteQueue( this );
-	} else {
-		delete this;
+		theApp->clientlist->RemoveClient( this );
 	}
+
+	// Doing what RemoveClient used to do. Just to be sure...
+	if (theApp->uploadqueue) {
+		theApp->uploadqueue->RemoveFromUploadQueue(this);
+		theApp->uploadqueue->RemoveFromWaitingQueue(this);
+	}
+	if (theApp->downloadqueue) {
+		theApp->downloadqueue->RemoveSource(this);
+	}
+
+	// For security, remove it from the lists unconditionally.
+	Notify_SharedCtrlRemoveClient(ECID(), (CKnownFile*)NULL);
+	Notify_SourceCtrlRemoveSource(ECID(), (CPartFile*)NULL);
+
+	if (IsAICHReqPending()){
+		m_fAICHRequested = FALSE;
+		CAICHHashSet::ClientAICHRequestFailed(this);
+	}
+
+	if (m_Friend) {
+		m_Friend->UnLinkClient();	// this notifies
+		m_Friend = NULL;
+	}
+
+	if (m_iRating>0 || !m_strComment.IsEmpty()) {
+		m_iRating = 0;
+		m_strComment.Clear();
+		if (m_reqfile) {
+			m_reqfile->UpdateFileRatingCommentAvail();
+		}
+	}
+
+	// Ensure that source-counts gets updated in case
+	// of a source not on the download-queue
+	SetRequestFile( NULL );
+
+	SetUploadFileID(NULL);
+
+	delete m_pReqFileAICHHash;
+	m_pReqFileAICHHash = NULL;
+
+#ifdef DEBUG_ZOMBIE_CLIENTS
+	if (m_linked > 1) {
+		AddLogLineC(CFormat(wxT("Client %d still linked in %d places: %s")) % ECID() % (m_linked - 1) % GetLinkedFrom());
+		m_linkedDebug = true;
+	}
+#endif
 }
 
 
@@ -732,7 +755,7 @@ bool CUpDownClient::ProcessHelloTypePacket(const CMemFile& data)
 	}
 
 	if ((m_Friend = theApp->friendlist->FindFriend(m_UserHash, m_dwUserIP, m_nUserPort)) != NULL){
-		m_Friend->LinkClient(this);
+		m_Friend->LinkClient(CCLIENTREF(this, wxT("CUpDownClient::ProcessHelloTypePacket m_Friend->LinkClient")));
 	} else{
 		// avoid that an unwanted client instance keeps a friend slot
 		SetFriendSlot(false);
@@ -1465,8 +1488,8 @@ bool CUpDownClient::Disconnected(const wxString& strReason, bool bFromSocket)
 			m_Friend->UnLinkClient();	// this notifies
 		}
 	} else {
-		Notify_SharedCtrlRefreshClient( this, peer_type);
-		Notify_SourceCtrlUpdateSource( this, source_type);
+		Notify_SharedCtrlRefreshClient(ECID(), peer_type);
+		Notify_SourceCtrlUpdateSource(ECID(), source_type);
 		
 		m_fHashsetRequesting = 0;
 		SetSentCancelTransfer(0);
@@ -1542,7 +1565,7 @@ bool CUpDownClient::TryToConnect(bool bIgnoreMaxCon)
 	}
 
 	if (HasLowID()) {
-		if (!theApp->CanDoCallback(this)) {
+		if (!theApp->CanDoCallback(GetServerIP(), GetServerPort())) {
 			//We cannot do a callback!
 			if (GetDownloadState() == DS_CONNECTING) {
 				SetDownloadState(DS_LOWTOLOWIP);
@@ -2986,6 +3009,36 @@ void CUpDownClient::SetConnectOptions(uint8_t options, bool encryption, bool cal
 	SetCryptLayerRequires((options & 0x04) != 0 && encryption);
 	SetDirectUDPCallbackSupport((options & 0x08) != 0 && callback);
 }
+
+
+#ifdef DEBUG_ZOMBIE_CLIENTS
+void CUpDownClient::Unlink(const wxString& from)
+{
+	std::multiset<wxString>::iterator it = m_linkedFrom.find(from);
+	if (it != m_linkedFrom.end()) {
+		m_linkedFrom.erase(it);
+	}
+	m_linked--;
+	if (!m_linked) {
+		if (m_linkedDebug) {
+			AddLogLineN(CFormat(wxT("Last reference to client %d %p unlinked, delete it.")) % ECID() % this);
+		}
+		delete this;
+	}
+}
+
+#else
+
+void CUpDownClient::Unlink()
+{
+	m_linked--;
+	if (!m_linked) {
+		delete this;
+	}
+}
+#endif
+
+
 // File_checked_for_headers
 
 bool CUpDownClient::DLPCheck(){

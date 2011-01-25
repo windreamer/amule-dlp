@@ -34,9 +34,7 @@
 #include "DeadSourceList.h"	// Needed for CDeadSourceList
 #include "GapList.h"
 
-
 class CSearchFile;
-class CUpDownClient;
 class CMemFile;
 class CFileDataIO;
 class CED2KFileLink;
@@ -394,8 +392,8 @@ public:
 	bool IsLocalSrcRequestQueued() const		{ return m_localSrcReqQueued; }
 	void SetLocalSrcRequestQueued(bool value) 	{ m_localSrcReqQueued = value; }
 
-	void AddA4AFSource(CUpDownClient* src)		{ m_A4AFsrclist.insert(src); }
-	bool RemoveA4AFSource(CUpDownClient* src)	{ return (m_A4AFsrclist.erase(src) > 0); }
+	void AddA4AFSource(CUpDownClient* src)		{ m_A4AFsrclist.insert(CCLIENTREF(src, wxT("A4AFSource"))); }
+	bool RemoveA4AFSource(CUpDownClient* src)	{ return (m_A4AFsrclist.erase(CCLIENTREF(src, wxEmptyString)) > 0); }
 
 	uint32 GetLastSearchTime() const			{ return m_lastsearchtime; }
 	void SetLastSearchTime(uint32 time)			{ m_lastsearchtime = time; }
@@ -424,7 +422,7 @@ public:
 
 private:
 	/* downloading sources list */
-	CClientPtrList m_downloadingSourcesList;
+	CClientRefList m_downloadingSourcesList;
 
 	/* Kad Stuff */
 	uint32	m_LastSearchTimeKad;
