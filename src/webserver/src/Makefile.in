@@ -85,15 +85,36 @@ DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
 am__mv = mv -f
+AM_V_lt = $(am__v_lt_$(V))
+am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
+am__v_lt_0 = --silent
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+AM_V_CC = $(am__v_CC_$(V))
+am__v_CC_ = $(am__v_CC_$(AM_DEFAULT_VERBOSITY))
+am__v_CC_0 = @echo "  CC    " $@;
+AM_V_at = $(am__v_at_$(V))
+am__v_at_ = $(am__v_at_$(AM_DEFAULT_VERBOSITY))
+am__v_at_0 = @
 CCLD = $(CC)
 LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
+AM_V_CCLD = $(am__v_CCLD_$(V))
+am__v_CCLD_ = $(am__v_CCLD_$(AM_DEFAULT_VERBOSITY))
+am__v_CCLD_0 = @echo "  CCLD  " $@;
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+AM_V_CXX = $(am__v_CXX_$(V))
+am__v_CXX_ = $(am__v_CXX_$(AM_DEFAULT_VERBOSITY))
+am__v_CXX_0 = @echo "  CXX   " $@;
 CXXLD = $(CXX)
 CXXLINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
 	-o $@
+AM_V_CXXLD = $(am__v_CXXLD_$(V))
+am__v_CXXLD_ = $(am__v_CXXLD_$(AM_DEFAULT_VERBOSITY))
+am__v_CXXLD_0 = @echo "  CXXLD " $@;
+AM_V_GEN = $(am__v_GEN_$(V))
+am__v_GEN_ = $(am__v_GEN_$(AM_DEFAULT_VERBOSITY))
+am__v_GEN_0 = @echo "  GEN   " $@;
 SOURCES = $(amuleweb_SOURCES) $(nodist_amuleweb_SOURCES)
 DIST_SOURCES = $(amuleweb_SOURCES)
 HEADERS = $(noinst_HEADERS)
@@ -109,6 +130,7 @@ AMULECMD_MANPAGES = @AMULECMD_MANPAGES@
 AMULEWEB_DEFS = @AMULEWEB_DEFS@
 AMULE_DAEMON_MANPAGES = @AMULE_DAEMON_MANPAGES@
 AMULE_GUI_MANPAGES = @AMULE_GUI_MANPAGES@
+AM_DEFAULT_VERBOSITY = @AM_DEFAULT_VERBOSITY@
 AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -438,7 +460,7 @@ clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
 amuleweb$(EXEEXT): $(amuleweb_OBJECTS) $(amuleweb_DEPENDENCIES) 
 	@rm -f amuleweb$(EXEEXT)
-	$(amuleweb_LINK) $(amuleweb_OBJECTS) $(amuleweb_LDADD) $(LIBS)
+	$(AM_V_CXXLD)$(amuleweb_LINK) $(amuleweb_OBJECTS) $(amuleweb_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -462,225 +484,257 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuleweb-php_syntree.Po@am__quote@
 
 .c.o:
-@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(COMPILE) -c $<
 
 .c.obj:
-@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(COMPILE) -c `$(CYGPATH_W) '$<'`
 
 amuleweb-php_parser.o: php_parser.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CFLAGS) $(CFLAGS) -MT amuleweb-php_parser.o -MD -MP -MF $(DEPDIR)/amuleweb-php_parser.Tpo -c -o amuleweb-php_parser.o `test -f 'php_parser.c' || echo '$(srcdir)/'`php_parser.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/amuleweb-php_parser.Tpo $(DEPDIR)/amuleweb-php_parser.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CFLAGS) $(CFLAGS) -MT amuleweb-php_parser.o -MD -MP -MF $(DEPDIR)/amuleweb-php_parser.Tpo -c -o amuleweb-php_parser.o `test -f 'php_parser.c' || echo '$(srcdir)/'`php_parser.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuleweb-php_parser.Tpo $(DEPDIR)/amuleweb-php_parser.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='php_parser.c' object='amuleweb-php_parser.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CFLAGS) $(CFLAGS) -c -o amuleweb-php_parser.o `test -f 'php_parser.c' || echo '$(srcdir)/'`php_parser.c
 
 amuleweb-php_parser.obj: php_parser.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CFLAGS) $(CFLAGS) -MT amuleweb-php_parser.obj -MD -MP -MF $(DEPDIR)/amuleweb-php_parser.Tpo -c -o amuleweb-php_parser.obj `if test -f 'php_parser.c'; then $(CYGPATH_W) 'php_parser.c'; else $(CYGPATH_W) '$(srcdir)/php_parser.c'; fi`
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/amuleweb-php_parser.Tpo $(DEPDIR)/amuleweb-php_parser.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CFLAGS) $(CFLAGS) -MT amuleweb-php_parser.obj -MD -MP -MF $(DEPDIR)/amuleweb-php_parser.Tpo -c -o amuleweb-php_parser.obj `if test -f 'php_parser.c'; then $(CYGPATH_W) 'php_parser.c'; else $(CYGPATH_W) '$(srcdir)/php_parser.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuleweb-php_parser.Tpo $(DEPDIR)/amuleweb-php_parser.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='php_parser.c' object='amuleweb-php_parser.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CFLAGS) $(CFLAGS) -c -o amuleweb-php_parser.obj `if test -f 'php_parser.c'; then $(CYGPATH_W) 'php_parser.c'; else $(CYGPATH_W) '$(srcdir)/php_parser.c'; fi`
 
 amuleweb-php_lexer.o: php_lexer.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CFLAGS) $(CFLAGS) -MT amuleweb-php_lexer.o -MD -MP -MF $(DEPDIR)/amuleweb-php_lexer.Tpo -c -o amuleweb-php_lexer.o `test -f 'php_lexer.c' || echo '$(srcdir)/'`php_lexer.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/amuleweb-php_lexer.Tpo $(DEPDIR)/amuleweb-php_lexer.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CFLAGS) $(CFLAGS) -MT amuleweb-php_lexer.o -MD -MP -MF $(DEPDIR)/amuleweb-php_lexer.Tpo -c -o amuleweb-php_lexer.o `test -f 'php_lexer.c' || echo '$(srcdir)/'`php_lexer.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuleweb-php_lexer.Tpo $(DEPDIR)/amuleweb-php_lexer.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='php_lexer.c' object='amuleweb-php_lexer.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CFLAGS) $(CFLAGS) -c -o amuleweb-php_lexer.o `test -f 'php_lexer.c' || echo '$(srcdir)/'`php_lexer.c
 
 amuleweb-php_lexer.obj: php_lexer.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CFLAGS) $(CFLAGS) -MT amuleweb-php_lexer.obj -MD -MP -MF $(DEPDIR)/amuleweb-php_lexer.Tpo -c -o amuleweb-php_lexer.obj `if test -f 'php_lexer.c'; then $(CYGPATH_W) 'php_lexer.c'; else $(CYGPATH_W) '$(srcdir)/php_lexer.c'; fi`
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/amuleweb-php_lexer.Tpo $(DEPDIR)/amuleweb-php_lexer.Po
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CFLAGS) $(CFLAGS) -MT amuleweb-php_lexer.obj -MD -MP -MF $(DEPDIR)/amuleweb-php_lexer.Tpo -c -o amuleweb-php_lexer.obj `if test -f 'php_lexer.c'; then $(CYGPATH_W) 'php_lexer.c'; else $(CYGPATH_W) '$(srcdir)/php_lexer.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuleweb-php_lexer.Tpo $(DEPDIR)/amuleweb-php_lexer.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='php_lexer.c' object='amuleweb-php_lexer.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CFLAGS) $(CFLAGS) -c -o amuleweb-php_lexer.obj `if test -f 'php_lexer.c'; then $(CYGPATH_W) 'php_lexer.c'; else $(CYGPATH_W) '$(srcdir)/php_lexer.c'; fi`
 
 .cpp.o:
-@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ $<
 
 .cpp.obj:
-@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 amuleweb-WebServer.o: WebServer.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-WebServer.o -MD -MP -MF $(DEPDIR)/amuleweb-WebServer.Tpo -c -o amuleweb-WebServer.o `test -f 'WebServer.cpp' || echo '$(srcdir)/'`WebServer.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuleweb-WebServer.Tpo $(DEPDIR)/amuleweb-WebServer.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-WebServer.o -MD -MP -MF $(DEPDIR)/amuleweb-WebServer.Tpo -c -o amuleweb-WebServer.o `test -f 'WebServer.cpp' || echo '$(srcdir)/'`WebServer.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuleweb-WebServer.Tpo $(DEPDIR)/amuleweb-WebServer.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='WebServer.cpp' object='amuleweb-WebServer.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-WebServer.o `test -f 'WebServer.cpp' || echo '$(srcdir)/'`WebServer.cpp
 
 amuleweb-WebServer.obj: WebServer.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-WebServer.obj -MD -MP -MF $(DEPDIR)/amuleweb-WebServer.Tpo -c -o amuleweb-WebServer.obj `if test -f 'WebServer.cpp'; then $(CYGPATH_W) 'WebServer.cpp'; else $(CYGPATH_W) '$(srcdir)/WebServer.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuleweb-WebServer.Tpo $(DEPDIR)/amuleweb-WebServer.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-WebServer.obj -MD -MP -MF $(DEPDIR)/amuleweb-WebServer.Tpo -c -o amuleweb-WebServer.obj `if test -f 'WebServer.cpp'; then $(CYGPATH_W) 'WebServer.cpp'; else $(CYGPATH_W) '$(srcdir)/WebServer.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuleweb-WebServer.Tpo $(DEPDIR)/amuleweb-WebServer.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='WebServer.cpp' object='amuleweb-WebServer.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-WebServer.obj `if test -f 'WebServer.cpp'; then $(CYGPATH_W) 'WebServer.cpp'; else $(CYGPATH_W) '$(srcdir)/WebServer.cpp'; fi`
 
 amuleweb-WebInterface.o: WebInterface.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-WebInterface.o -MD -MP -MF $(DEPDIR)/amuleweb-WebInterface.Tpo -c -o amuleweb-WebInterface.o `test -f 'WebInterface.cpp' || echo '$(srcdir)/'`WebInterface.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuleweb-WebInterface.Tpo $(DEPDIR)/amuleweb-WebInterface.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-WebInterface.o -MD -MP -MF $(DEPDIR)/amuleweb-WebInterface.Tpo -c -o amuleweb-WebInterface.o `test -f 'WebInterface.cpp' || echo '$(srcdir)/'`WebInterface.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuleweb-WebInterface.Tpo $(DEPDIR)/amuleweb-WebInterface.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='WebInterface.cpp' object='amuleweb-WebInterface.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-WebInterface.o `test -f 'WebInterface.cpp' || echo '$(srcdir)/'`WebInterface.cpp
 
 amuleweb-WebInterface.obj: WebInterface.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-WebInterface.obj -MD -MP -MF $(DEPDIR)/amuleweb-WebInterface.Tpo -c -o amuleweb-WebInterface.obj `if test -f 'WebInterface.cpp'; then $(CYGPATH_W) 'WebInterface.cpp'; else $(CYGPATH_W) '$(srcdir)/WebInterface.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuleweb-WebInterface.Tpo $(DEPDIR)/amuleweb-WebInterface.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-WebInterface.obj -MD -MP -MF $(DEPDIR)/amuleweb-WebInterface.Tpo -c -o amuleweb-WebInterface.obj `if test -f 'WebInterface.cpp'; then $(CYGPATH_W) 'WebInterface.cpp'; else $(CYGPATH_W) '$(srcdir)/WebInterface.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuleweb-WebInterface.Tpo $(DEPDIR)/amuleweb-WebInterface.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='WebInterface.cpp' object='amuleweb-WebInterface.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-WebInterface.obj `if test -f 'WebInterface.cpp'; then $(CYGPATH_W) 'WebInterface.cpp'; else $(CYGPATH_W) '$(srcdir)/WebInterface.cpp'; fi`
 
 amuleweb-WebSocket.o: WebSocket.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-WebSocket.o -MD -MP -MF $(DEPDIR)/amuleweb-WebSocket.Tpo -c -o amuleweb-WebSocket.o `test -f 'WebSocket.cpp' || echo '$(srcdir)/'`WebSocket.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuleweb-WebSocket.Tpo $(DEPDIR)/amuleweb-WebSocket.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-WebSocket.o -MD -MP -MF $(DEPDIR)/amuleweb-WebSocket.Tpo -c -o amuleweb-WebSocket.o `test -f 'WebSocket.cpp' || echo '$(srcdir)/'`WebSocket.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuleweb-WebSocket.Tpo $(DEPDIR)/amuleweb-WebSocket.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='WebSocket.cpp' object='amuleweb-WebSocket.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-WebSocket.o `test -f 'WebSocket.cpp' || echo '$(srcdir)/'`WebSocket.cpp
 
 amuleweb-WebSocket.obj: WebSocket.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-WebSocket.obj -MD -MP -MF $(DEPDIR)/amuleweb-WebSocket.Tpo -c -o amuleweb-WebSocket.obj `if test -f 'WebSocket.cpp'; then $(CYGPATH_W) 'WebSocket.cpp'; else $(CYGPATH_W) '$(srcdir)/WebSocket.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuleweb-WebSocket.Tpo $(DEPDIR)/amuleweb-WebSocket.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-WebSocket.obj -MD -MP -MF $(DEPDIR)/amuleweb-WebSocket.Tpo -c -o amuleweb-WebSocket.obj `if test -f 'WebSocket.cpp'; then $(CYGPATH_W) 'WebSocket.cpp'; else $(CYGPATH_W) '$(srcdir)/WebSocket.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuleweb-WebSocket.Tpo $(DEPDIR)/amuleweb-WebSocket.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='WebSocket.cpp' object='amuleweb-WebSocket.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-WebSocket.obj `if test -f 'WebSocket.cpp'; then $(CYGPATH_W) 'WebSocket.cpp'; else $(CYGPATH_W) '$(srcdir)/WebSocket.cpp'; fi`
 
 amuleweb-ExternalConnector.o: $(top_srcdir)/src/ExternalConnector.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-ExternalConnector.o -MD -MP -MF $(DEPDIR)/amuleweb-ExternalConnector.Tpo -c -o amuleweb-ExternalConnector.o `test -f '$(top_srcdir)/src/ExternalConnector.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/ExternalConnector.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuleweb-ExternalConnector.Tpo $(DEPDIR)/amuleweb-ExternalConnector.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-ExternalConnector.o -MD -MP -MF $(DEPDIR)/amuleweb-ExternalConnector.Tpo -c -o amuleweb-ExternalConnector.o `test -f '$(top_srcdir)/src/ExternalConnector.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/ExternalConnector.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuleweb-ExternalConnector.Tpo $(DEPDIR)/amuleweb-ExternalConnector.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/ExternalConnector.cpp' object='amuleweb-ExternalConnector.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-ExternalConnector.o `test -f '$(top_srcdir)/src/ExternalConnector.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/ExternalConnector.cpp
 
 amuleweb-ExternalConnector.obj: $(top_srcdir)/src/ExternalConnector.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-ExternalConnector.obj -MD -MP -MF $(DEPDIR)/amuleweb-ExternalConnector.Tpo -c -o amuleweb-ExternalConnector.obj `if test -f '$(top_srcdir)/src/ExternalConnector.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/ExternalConnector.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/ExternalConnector.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuleweb-ExternalConnector.Tpo $(DEPDIR)/amuleweb-ExternalConnector.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-ExternalConnector.obj -MD -MP -MF $(DEPDIR)/amuleweb-ExternalConnector.Tpo -c -o amuleweb-ExternalConnector.obj `if test -f '$(top_srcdir)/src/ExternalConnector.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/ExternalConnector.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/ExternalConnector.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuleweb-ExternalConnector.Tpo $(DEPDIR)/amuleweb-ExternalConnector.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/ExternalConnector.cpp' object='amuleweb-ExternalConnector.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-ExternalConnector.obj `if test -f '$(top_srcdir)/src/ExternalConnector.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/ExternalConnector.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/ExternalConnector.cpp'; fi`
 
 amuleweb-OtherFunctions.o: $(top_srcdir)/src/OtherFunctions.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-OtherFunctions.o -MD -MP -MF $(DEPDIR)/amuleweb-OtherFunctions.Tpo -c -o amuleweb-OtherFunctions.o `test -f '$(top_srcdir)/src/OtherFunctions.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/OtherFunctions.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuleweb-OtherFunctions.Tpo $(DEPDIR)/amuleweb-OtherFunctions.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-OtherFunctions.o -MD -MP -MF $(DEPDIR)/amuleweb-OtherFunctions.Tpo -c -o amuleweb-OtherFunctions.o `test -f '$(top_srcdir)/src/OtherFunctions.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/OtherFunctions.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuleweb-OtherFunctions.Tpo $(DEPDIR)/amuleweb-OtherFunctions.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/OtherFunctions.cpp' object='amuleweb-OtherFunctions.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-OtherFunctions.o `test -f '$(top_srcdir)/src/OtherFunctions.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/OtherFunctions.cpp
 
 amuleweb-OtherFunctions.obj: $(top_srcdir)/src/OtherFunctions.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-OtherFunctions.obj -MD -MP -MF $(DEPDIR)/amuleweb-OtherFunctions.Tpo -c -o amuleweb-OtherFunctions.obj `if test -f '$(top_srcdir)/src/OtherFunctions.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/OtherFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/OtherFunctions.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuleweb-OtherFunctions.Tpo $(DEPDIR)/amuleweb-OtherFunctions.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-OtherFunctions.obj -MD -MP -MF $(DEPDIR)/amuleweb-OtherFunctions.Tpo -c -o amuleweb-OtherFunctions.obj `if test -f '$(top_srcdir)/src/OtherFunctions.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/OtherFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/OtherFunctions.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuleweb-OtherFunctions.Tpo $(DEPDIR)/amuleweb-OtherFunctions.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/OtherFunctions.cpp' object='amuleweb-OtherFunctions.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-OtherFunctions.obj `if test -f '$(top_srcdir)/src/OtherFunctions.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/OtherFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/OtherFunctions.cpp'; fi`
 
 amuleweb-RLE.o: $(top_srcdir)/src/RLE.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-RLE.o -MD -MP -MF $(DEPDIR)/amuleweb-RLE.Tpo -c -o amuleweb-RLE.o `test -f '$(top_srcdir)/src/RLE.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/RLE.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuleweb-RLE.Tpo $(DEPDIR)/amuleweb-RLE.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-RLE.o -MD -MP -MF $(DEPDIR)/amuleweb-RLE.Tpo -c -o amuleweb-RLE.o `test -f '$(top_srcdir)/src/RLE.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/RLE.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuleweb-RLE.Tpo $(DEPDIR)/amuleweb-RLE.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/RLE.cpp' object='amuleweb-RLE.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-RLE.o `test -f '$(top_srcdir)/src/RLE.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/RLE.cpp
 
 amuleweb-RLE.obj: $(top_srcdir)/src/RLE.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-RLE.obj -MD -MP -MF $(DEPDIR)/amuleweb-RLE.Tpo -c -o amuleweb-RLE.obj `if test -f '$(top_srcdir)/src/RLE.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/RLE.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/RLE.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuleweb-RLE.Tpo $(DEPDIR)/amuleweb-RLE.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-RLE.obj -MD -MP -MF $(DEPDIR)/amuleweb-RLE.Tpo -c -o amuleweb-RLE.obj `if test -f '$(top_srcdir)/src/RLE.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/RLE.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/RLE.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuleweb-RLE.Tpo $(DEPDIR)/amuleweb-RLE.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/RLE.cpp' object='amuleweb-RLE.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-RLE.obj `if test -f '$(top_srcdir)/src/RLE.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/RLE.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/RLE.cpp'; fi`
 
 amuleweb-NetworkFunctions.o: $(top_srcdir)/src/NetworkFunctions.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-NetworkFunctions.o -MD -MP -MF $(DEPDIR)/amuleweb-NetworkFunctions.Tpo -c -o amuleweb-NetworkFunctions.o `test -f '$(top_srcdir)/src/NetworkFunctions.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/NetworkFunctions.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuleweb-NetworkFunctions.Tpo $(DEPDIR)/amuleweb-NetworkFunctions.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-NetworkFunctions.o -MD -MP -MF $(DEPDIR)/amuleweb-NetworkFunctions.Tpo -c -o amuleweb-NetworkFunctions.o `test -f '$(top_srcdir)/src/NetworkFunctions.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/NetworkFunctions.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuleweb-NetworkFunctions.Tpo $(DEPDIR)/amuleweb-NetworkFunctions.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/NetworkFunctions.cpp' object='amuleweb-NetworkFunctions.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-NetworkFunctions.o `test -f '$(top_srcdir)/src/NetworkFunctions.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/NetworkFunctions.cpp
 
 amuleweb-NetworkFunctions.obj: $(top_srcdir)/src/NetworkFunctions.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-NetworkFunctions.obj -MD -MP -MF $(DEPDIR)/amuleweb-NetworkFunctions.Tpo -c -o amuleweb-NetworkFunctions.obj `if test -f '$(top_srcdir)/src/NetworkFunctions.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/NetworkFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/NetworkFunctions.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuleweb-NetworkFunctions.Tpo $(DEPDIR)/amuleweb-NetworkFunctions.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-NetworkFunctions.obj -MD -MP -MF $(DEPDIR)/amuleweb-NetworkFunctions.Tpo -c -o amuleweb-NetworkFunctions.obj `if test -f '$(top_srcdir)/src/NetworkFunctions.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/NetworkFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/NetworkFunctions.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuleweb-NetworkFunctions.Tpo $(DEPDIR)/amuleweb-NetworkFunctions.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/NetworkFunctions.cpp' object='amuleweb-NetworkFunctions.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-NetworkFunctions.obj `if test -f '$(top_srcdir)/src/NetworkFunctions.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/NetworkFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/NetworkFunctions.cpp'; fi`
 
 amuleweb-LoggerConsole.o: $(top_srcdir)/src/LoggerConsole.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-LoggerConsole.o -MD -MP -MF $(DEPDIR)/amuleweb-LoggerConsole.Tpo -c -o amuleweb-LoggerConsole.o `test -f '$(top_srcdir)/src/LoggerConsole.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/LoggerConsole.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuleweb-LoggerConsole.Tpo $(DEPDIR)/amuleweb-LoggerConsole.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-LoggerConsole.o -MD -MP -MF $(DEPDIR)/amuleweb-LoggerConsole.Tpo -c -o amuleweb-LoggerConsole.o `test -f '$(top_srcdir)/src/LoggerConsole.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/LoggerConsole.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuleweb-LoggerConsole.Tpo $(DEPDIR)/amuleweb-LoggerConsole.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/LoggerConsole.cpp' object='amuleweb-LoggerConsole.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-LoggerConsole.o `test -f '$(top_srcdir)/src/LoggerConsole.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/LoggerConsole.cpp
 
 amuleweb-LoggerConsole.obj: $(top_srcdir)/src/LoggerConsole.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-LoggerConsole.obj -MD -MP -MF $(DEPDIR)/amuleweb-LoggerConsole.Tpo -c -o amuleweb-LoggerConsole.obj `if test -f '$(top_srcdir)/src/LoggerConsole.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/LoggerConsole.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/LoggerConsole.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuleweb-LoggerConsole.Tpo $(DEPDIR)/amuleweb-LoggerConsole.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-LoggerConsole.obj -MD -MP -MF $(DEPDIR)/amuleweb-LoggerConsole.Tpo -c -o amuleweb-LoggerConsole.obj `if test -f '$(top_srcdir)/src/LoggerConsole.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/LoggerConsole.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/LoggerConsole.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuleweb-LoggerConsole.Tpo $(DEPDIR)/amuleweb-LoggerConsole.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/LoggerConsole.cpp' object='amuleweb-LoggerConsole.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-LoggerConsole.obj `if test -f '$(top_srcdir)/src/LoggerConsole.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/LoggerConsole.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/LoggerConsole.cpp'; fi`
 
 amuleweb-UPnPBase.o: $(top_srcdir)/src/UPnPBase.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-UPnPBase.o -MD -MP -MF $(DEPDIR)/amuleweb-UPnPBase.Tpo -c -o amuleweb-UPnPBase.o `test -f '$(top_srcdir)/src/UPnPBase.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/UPnPBase.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuleweb-UPnPBase.Tpo $(DEPDIR)/amuleweb-UPnPBase.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-UPnPBase.o -MD -MP -MF $(DEPDIR)/amuleweb-UPnPBase.Tpo -c -o amuleweb-UPnPBase.o `test -f '$(top_srcdir)/src/UPnPBase.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/UPnPBase.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuleweb-UPnPBase.Tpo $(DEPDIR)/amuleweb-UPnPBase.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/UPnPBase.cpp' object='amuleweb-UPnPBase.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-UPnPBase.o `test -f '$(top_srcdir)/src/UPnPBase.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/UPnPBase.cpp
 
 amuleweb-UPnPBase.obj: $(top_srcdir)/src/UPnPBase.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-UPnPBase.obj -MD -MP -MF $(DEPDIR)/amuleweb-UPnPBase.Tpo -c -o amuleweb-UPnPBase.obj `if test -f '$(top_srcdir)/src/UPnPBase.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/UPnPBase.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/UPnPBase.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuleweb-UPnPBase.Tpo $(DEPDIR)/amuleweb-UPnPBase.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-UPnPBase.obj -MD -MP -MF $(DEPDIR)/amuleweb-UPnPBase.Tpo -c -o amuleweb-UPnPBase.obj `if test -f '$(top_srcdir)/src/UPnPBase.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/UPnPBase.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/UPnPBase.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuleweb-UPnPBase.Tpo $(DEPDIR)/amuleweb-UPnPBase.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/UPnPBase.cpp' object='amuleweb-UPnPBase.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-UPnPBase.obj `if test -f '$(top_srcdir)/src/UPnPBase.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/UPnPBase.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/UPnPBase.cpp'; fi`
 
 amuleweb-php_syntree.o: php_syntree.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-php_syntree.o -MD -MP -MF $(DEPDIR)/amuleweb-php_syntree.Tpo -c -o amuleweb-php_syntree.o `test -f 'php_syntree.cpp' || echo '$(srcdir)/'`php_syntree.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuleweb-php_syntree.Tpo $(DEPDIR)/amuleweb-php_syntree.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-php_syntree.o -MD -MP -MF $(DEPDIR)/amuleweb-php_syntree.Tpo -c -o amuleweb-php_syntree.o `test -f 'php_syntree.cpp' || echo '$(srcdir)/'`php_syntree.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuleweb-php_syntree.Tpo $(DEPDIR)/amuleweb-php_syntree.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='php_syntree.cpp' object='amuleweb-php_syntree.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-php_syntree.o `test -f 'php_syntree.cpp' || echo '$(srcdir)/'`php_syntree.cpp
 
 amuleweb-php_syntree.obj: php_syntree.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-php_syntree.obj -MD -MP -MF $(DEPDIR)/amuleweb-php_syntree.Tpo -c -o amuleweb-php_syntree.obj `if test -f 'php_syntree.cpp'; then $(CYGPATH_W) 'php_syntree.cpp'; else $(CYGPATH_W) '$(srcdir)/php_syntree.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuleweb-php_syntree.Tpo $(DEPDIR)/amuleweb-php_syntree.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-php_syntree.obj -MD -MP -MF $(DEPDIR)/amuleweb-php_syntree.Tpo -c -o amuleweb-php_syntree.obj `if test -f 'php_syntree.cpp'; then $(CYGPATH_W) 'php_syntree.cpp'; else $(CYGPATH_W) '$(srcdir)/php_syntree.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuleweb-php_syntree.Tpo $(DEPDIR)/amuleweb-php_syntree.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='php_syntree.cpp' object='amuleweb-php_syntree.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-php_syntree.obj `if test -f 'php_syntree.cpp'; then $(CYGPATH_W) 'php_syntree.cpp'; else $(CYGPATH_W) '$(srcdir)/php_syntree.cpp'; fi`
 
 amuleweb-php_amule_lib.o: php_amule_lib.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-php_amule_lib.o -MD -MP -MF $(DEPDIR)/amuleweb-php_amule_lib.Tpo -c -o amuleweb-php_amule_lib.o `test -f 'php_amule_lib.cpp' || echo '$(srcdir)/'`php_amule_lib.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuleweb-php_amule_lib.Tpo $(DEPDIR)/amuleweb-php_amule_lib.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-php_amule_lib.o -MD -MP -MF $(DEPDIR)/amuleweb-php_amule_lib.Tpo -c -o amuleweb-php_amule_lib.o `test -f 'php_amule_lib.cpp' || echo '$(srcdir)/'`php_amule_lib.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuleweb-php_amule_lib.Tpo $(DEPDIR)/amuleweb-php_amule_lib.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='php_amule_lib.cpp' object='amuleweb-php_amule_lib.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-php_amule_lib.o `test -f 'php_amule_lib.cpp' || echo '$(srcdir)/'`php_amule_lib.cpp
 
 amuleweb-php_amule_lib.obj: php_amule_lib.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-php_amule_lib.obj -MD -MP -MF $(DEPDIR)/amuleweb-php_amule_lib.Tpo -c -o amuleweb-php_amule_lib.obj `if test -f 'php_amule_lib.cpp'; then $(CYGPATH_W) 'php_amule_lib.cpp'; else $(CYGPATH_W) '$(srcdir)/php_amule_lib.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuleweb-php_amule_lib.Tpo $(DEPDIR)/amuleweb-php_amule_lib.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-php_amule_lib.obj -MD -MP -MF $(DEPDIR)/amuleweb-php_amule_lib.Tpo -c -o amuleweb-php_amule_lib.obj `if test -f 'php_amule_lib.cpp'; then $(CYGPATH_W) 'php_amule_lib.cpp'; else $(CYGPATH_W) '$(srcdir)/php_amule_lib.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuleweb-php_amule_lib.Tpo $(DEPDIR)/amuleweb-php_amule_lib.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='php_amule_lib.cpp' object='amuleweb-php_amule_lib.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-php_amule_lib.obj `if test -f 'php_amule_lib.cpp'; then $(CYGPATH_W) 'php_amule_lib.cpp'; else $(CYGPATH_W) '$(srcdir)/php_amule_lib.cpp'; fi`
 
 amuleweb-php_core_lib.o: php_core_lib.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-php_core_lib.o -MD -MP -MF $(DEPDIR)/amuleweb-php_core_lib.Tpo -c -o amuleweb-php_core_lib.o `test -f 'php_core_lib.cpp' || echo '$(srcdir)/'`php_core_lib.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuleweb-php_core_lib.Tpo $(DEPDIR)/amuleweb-php_core_lib.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-php_core_lib.o -MD -MP -MF $(DEPDIR)/amuleweb-php_core_lib.Tpo -c -o amuleweb-php_core_lib.o `test -f 'php_core_lib.cpp' || echo '$(srcdir)/'`php_core_lib.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuleweb-php_core_lib.Tpo $(DEPDIR)/amuleweb-php_core_lib.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='php_core_lib.cpp' object='amuleweb-php_core_lib.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-php_core_lib.o `test -f 'php_core_lib.cpp' || echo '$(srcdir)/'`php_core_lib.cpp
 
 amuleweb-php_core_lib.obj: php_core_lib.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-php_core_lib.obj -MD -MP -MF $(DEPDIR)/amuleweb-php_core_lib.Tpo -c -o amuleweb-php_core_lib.obj `if test -f 'php_core_lib.cpp'; then $(CYGPATH_W) 'php_core_lib.cpp'; else $(CYGPATH_W) '$(srcdir)/php_core_lib.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/amuleweb-php_core_lib.Tpo $(DEPDIR)/amuleweb-php_core_lib.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -MT amuleweb-php_core_lib.obj -MD -MP -MF $(DEPDIR)/amuleweb-php_core_lib.Tpo -c -o amuleweb-php_core_lib.obj `if test -f 'php_core_lib.cpp'; then $(CYGPATH_W) 'php_core_lib.cpp'; else $(CYGPATH_W) '$(srcdir)/php_core_lib.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuleweb-php_core_lib.Tpo $(DEPDIR)/amuleweb-php_core_lib.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='php_core_lib.cpp' object='amuleweb-php_core_lib.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuleweb_CPPFLAGS) $(CPPFLAGS) $(amuleweb_CXXFLAGS) $(CXXFLAGS) -c -o amuleweb-php_core_lib.obj `if test -f 'php_core_lib.cpp'; then $(CYGPATH_W) 'php_core_lib.cpp'; else $(CYGPATH_W) '$(srcdir)/php_core_lib.cpp'; fi`

@@ -106,11 +106,26 @@ DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
 am__mv = mv -f
+AM_V_lt = $(am__v_lt_$(V))
+am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
+am__v_lt_0 = --silent
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+AM_V_CXX = $(am__v_CXX_$(V))
+am__v_CXX_ = $(am__v_CXX_$(AM_DEFAULT_VERBOSITY))
+am__v_CXX_0 = @echo "  CXX   " $@;
+AM_V_at = $(am__v_at_$(V))
+am__v_at_ = $(am__v_at_$(AM_DEFAULT_VERBOSITY))
+am__v_at_0 = @
 CXXLD = $(CXX)
 CXXLINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
 	-o $@
+AM_V_CXXLD = $(am__v_CXXLD_$(V))
+am__v_CXXLD_ = $(am__v_CXXLD_$(AM_DEFAULT_VERBOSITY))
+am__v_CXXLD_0 = @echo "  CXXLD " $@;
+AM_V_GEN = $(am__v_GEN_$(V))
+am__v_GEN_ = $(am__v_GEN_$(AM_DEFAULT_VERBOSITY))
+am__v_GEN_0 = @echo "  GEN   " $@;
 SOURCES = $(plasma_applet_plasmamule_so_SOURCES) \
 	$(nodist_plasma_applet_plasmamule_so_SOURCES) \
 	$(plasma_engine_plasmamule_so_SOURCES) \
@@ -160,6 +175,7 @@ AMULECMD_MANPAGES = @AMULECMD_MANPAGES@
 AMULEWEB_DEFS = @AMULEWEB_DEFS@
 AMULE_DAEMON_MANPAGES = @AMULE_DAEMON_MANPAGES@
 AMULE_GUI_MANPAGES = @AMULE_GUI_MANPAGES@
+AM_DEFAULT_VERBOSITY = @AM_DEFAULT_VERBOSITY@
 AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -503,13 +519,13 @@ clean-modulesPROGRAMS:
 	-test -z "$(modules_PROGRAMS)" || rm -f $(modules_PROGRAMS)
 plasma-applet-plasmamule.so$(EXEEXT): $(plasma_applet_plasmamule_so_OBJECTS) $(plasma_applet_plasmamule_so_DEPENDENCIES) 
 	@rm -f plasma-applet-plasmamule.so$(EXEEXT)
-	$(plasma_applet_plasmamule_so_LINK) $(plasma_applet_plasmamule_so_OBJECTS) $(plasma_applet_plasmamule_so_LDADD) $(LIBS)
+	$(AM_V_CXXLD)$(plasma_applet_plasmamule_so_LINK) $(plasma_applet_plasmamule_so_OBJECTS) $(plasma_applet_plasmamule_so_LDADD) $(LIBS)
 plasma-engine-plasmamule.so$(EXEEXT): $(plasma_engine_plasmamule_so_OBJECTS) $(plasma_engine_plasmamule_so_DEPENDENCIES) 
 	@rm -f plasma-engine-plasmamule.so$(EXEEXT)
-	$(plasma_engine_plasmamule_so_LINK) $(plasma_engine_plasmamule_so_OBJECTS) $(plasma_engine_plasmamule_so_LDADD) $(LIBS)
+	$(AM_V_CXXLD)$(plasma_engine_plasmamule_so_LINK) $(plasma_engine_plasmamule_so_OBJECTS) $(plasma_engine_plasmamule_so_LDADD) $(LIBS)
 plasmamule-engine-feeder$(EXEEXT): $(plasmamule_engine_feeder_OBJECTS) $(plasmamule_engine_feeder_DEPENDENCIES) 
 	@rm -f plasmamule-engine-feeder$(EXEEXT)
-	$(plasmamule_engine_feeder_LINK) $(plasmamule_engine_feeder_OBJECTS) $(plasmamule_engine_feeder_LDADD) $(LIBS)
+	$(AM_V_CXXLD)$(plasmamule_engine_feeder_LINK) $(plasmamule_engine_feeder_OBJECTS) $(plasmamule_engine_feeder_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -525,99 +541,113 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/plasmamule_engine_feeder-plasmamule-engine-feeder.Po@am__quote@
 
 .cpp.o:
-@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ $<
 
 .cpp.obj:
-@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 plasma_applet_plasmamule_so-plasma-applet-plasmamule.o: plasma-applet-plasmamule.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_applet_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -MT plasma_applet_plasmamule_so-plasma-applet-plasmamule.o -MD -MP -MF $(DEPDIR)/plasma_applet_plasmamule_so-plasma-applet-plasmamule.Tpo -c -o plasma_applet_plasmamule_so-plasma-applet-plasmamule.o `test -f 'plasma-applet-plasmamule.cpp' || echo '$(srcdir)/'`plasma-applet-plasmamule.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/plasma_applet_plasmamule_so-plasma-applet-plasmamule.Tpo $(DEPDIR)/plasma_applet_plasmamule_so-plasma-applet-plasmamule.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_applet_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -MT plasma_applet_plasmamule_so-plasma-applet-plasmamule.o -MD -MP -MF $(DEPDIR)/plasma_applet_plasmamule_so-plasma-applet-plasmamule.Tpo -c -o plasma_applet_plasmamule_so-plasma-applet-plasmamule.o `test -f 'plasma-applet-plasmamule.cpp' || echo '$(srcdir)/'`plasma-applet-plasmamule.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/plasma_applet_plasmamule_so-plasma-applet-plasmamule.Tpo $(DEPDIR)/plasma_applet_plasmamule_so-plasma-applet-plasmamule.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='plasma-applet-plasmamule.cpp' object='plasma_applet_plasmamule_so-plasma-applet-plasmamule.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_applet_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -c -o plasma_applet_plasmamule_so-plasma-applet-plasmamule.o `test -f 'plasma-applet-plasmamule.cpp' || echo '$(srcdir)/'`plasma-applet-plasmamule.cpp
 
 plasma_applet_plasmamule_so-plasma-applet-plasmamule.obj: plasma-applet-plasmamule.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_applet_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -MT plasma_applet_plasmamule_so-plasma-applet-plasmamule.obj -MD -MP -MF $(DEPDIR)/plasma_applet_plasmamule_so-plasma-applet-plasmamule.Tpo -c -o plasma_applet_plasmamule_so-plasma-applet-plasmamule.obj `if test -f 'plasma-applet-plasmamule.cpp'; then $(CYGPATH_W) 'plasma-applet-plasmamule.cpp'; else $(CYGPATH_W) '$(srcdir)/plasma-applet-plasmamule.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/plasma_applet_plasmamule_so-plasma-applet-plasmamule.Tpo $(DEPDIR)/plasma_applet_plasmamule_so-plasma-applet-plasmamule.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_applet_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -MT plasma_applet_plasmamule_so-plasma-applet-plasmamule.obj -MD -MP -MF $(DEPDIR)/plasma_applet_plasmamule_so-plasma-applet-plasmamule.Tpo -c -o plasma_applet_plasmamule_so-plasma-applet-plasmamule.obj `if test -f 'plasma-applet-plasmamule.cpp'; then $(CYGPATH_W) 'plasma-applet-plasmamule.cpp'; else $(CYGPATH_W) '$(srcdir)/plasma-applet-plasmamule.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/plasma_applet_plasmamule_so-plasma-applet-plasmamule.Tpo $(DEPDIR)/plasma_applet_plasmamule_so-plasma-applet-plasmamule.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='plasma-applet-plasmamule.cpp' object='plasma_applet_plasmamule_so-plasma-applet-plasmamule.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_applet_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -c -o plasma_applet_plasmamule_so-plasma-applet-plasmamule.obj `if test -f 'plasma-applet-plasmamule.cpp'; then $(CYGPATH_W) 'plasma-applet-plasmamule.cpp'; else $(CYGPATH_W) '$(srcdir)/plasma-applet-plasmamule.cpp'; fi`
 
 plasma_applet_plasmamule_so-plasmamule-dbus.o: plasmamule-dbus.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_applet_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -MT plasma_applet_plasmamule_so-plasmamule-dbus.o -MD -MP -MF $(DEPDIR)/plasma_applet_plasmamule_so-plasmamule-dbus.Tpo -c -o plasma_applet_plasmamule_so-plasmamule-dbus.o `test -f 'plasmamule-dbus.cpp' || echo '$(srcdir)/'`plasmamule-dbus.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/plasma_applet_plasmamule_so-plasmamule-dbus.Tpo $(DEPDIR)/plasma_applet_plasmamule_so-plasmamule-dbus.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_applet_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -MT plasma_applet_plasmamule_so-plasmamule-dbus.o -MD -MP -MF $(DEPDIR)/plasma_applet_plasmamule_so-plasmamule-dbus.Tpo -c -o plasma_applet_plasmamule_so-plasmamule-dbus.o `test -f 'plasmamule-dbus.cpp' || echo '$(srcdir)/'`plasmamule-dbus.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/plasma_applet_plasmamule_so-plasmamule-dbus.Tpo $(DEPDIR)/plasma_applet_plasmamule_so-plasmamule-dbus.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='plasmamule-dbus.cpp' object='plasma_applet_plasmamule_so-plasmamule-dbus.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_applet_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -c -o plasma_applet_plasmamule_so-plasmamule-dbus.o `test -f 'plasmamule-dbus.cpp' || echo '$(srcdir)/'`plasmamule-dbus.cpp
 
 plasma_applet_plasmamule_so-plasmamule-dbus.obj: plasmamule-dbus.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_applet_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -MT plasma_applet_plasmamule_so-plasmamule-dbus.obj -MD -MP -MF $(DEPDIR)/plasma_applet_plasmamule_so-plasmamule-dbus.Tpo -c -o plasma_applet_plasmamule_so-plasmamule-dbus.obj `if test -f 'plasmamule-dbus.cpp'; then $(CYGPATH_W) 'plasmamule-dbus.cpp'; else $(CYGPATH_W) '$(srcdir)/plasmamule-dbus.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/plasma_applet_plasmamule_so-plasmamule-dbus.Tpo $(DEPDIR)/plasma_applet_plasmamule_so-plasmamule-dbus.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_applet_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -MT plasma_applet_plasmamule_so-plasmamule-dbus.obj -MD -MP -MF $(DEPDIR)/plasma_applet_plasmamule_so-plasmamule-dbus.Tpo -c -o plasma_applet_plasmamule_so-plasmamule-dbus.obj `if test -f 'plasmamule-dbus.cpp'; then $(CYGPATH_W) 'plasmamule-dbus.cpp'; else $(CYGPATH_W) '$(srcdir)/plasmamule-dbus.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/plasma_applet_plasmamule_so-plasmamule-dbus.Tpo $(DEPDIR)/plasma_applet_plasmamule_so-plasmamule-dbus.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='plasmamule-dbus.cpp' object='plasma_applet_plasmamule_so-plasmamule-dbus.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_applet_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -c -o plasma_applet_plasmamule_so-plasmamule-dbus.obj `if test -f 'plasmamule-dbus.cpp'; then $(CYGPATH_W) 'plasmamule-dbus.cpp'; else $(CYGPATH_W) '$(srcdir)/plasmamule-dbus.cpp'; fi`
 
 plasma_engine_plasmamule_so-plasma-engine-plasmamule.o: plasma-engine-plasmamule.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_engine_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -MT plasma_engine_plasmamule_so-plasma-engine-plasmamule.o -MD -MP -MF $(DEPDIR)/plasma_engine_plasmamule_so-plasma-engine-plasmamule.Tpo -c -o plasma_engine_plasmamule_so-plasma-engine-plasmamule.o `test -f 'plasma-engine-plasmamule.cpp' || echo '$(srcdir)/'`plasma-engine-plasmamule.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/plasma_engine_plasmamule_so-plasma-engine-plasmamule.Tpo $(DEPDIR)/plasma_engine_plasmamule_so-plasma-engine-plasmamule.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_engine_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -MT plasma_engine_plasmamule_so-plasma-engine-plasmamule.o -MD -MP -MF $(DEPDIR)/plasma_engine_plasmamule_so-plasma-engine-plasmamule.Tpo -c -o plasma_engine_plasmamule_so-plasma-engine-plasmamule.o `test -f 'plasma-engine-plasmamule.cpp' || echo '$(srcdir)/'`plasma-engine-plasmamule.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/plasma_engine_plasmamule_so-plasma-engine-plasmamule.Tpo $(DEPDIR)/plasma_engine_plasmamule_so-plasma-engine-plasmamule.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='plasma-engine-plasmamule.cpp' object='plasma_engine_plasmamule_so-plasma-engine-plasmamule.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_engine_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -c -o plasma_engine_plasmamule_so-plasma-engine-plasmamule.o `test -f 'plasma-engine-plasmamule.cpp' || echo '$(srcdir)/'`plasma-engine-plasmamule.cpp
 
 plasma_engine_plasmamule_so-plasma-engine-plasmamule.obj: plasma-engine-plasmamule.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_engine_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -MT plasma_engine_plasmamule_so-plasma-engine-plasmamule.obj -MD -MP -MF $(DEPDIR)/plasma_engine_plasmamule_so-plasma-engine-plasmamule.Tpo -c -o plasma_engine_plasmamule_so-plasma-engine-plasmamule.obj `if test -f 'plasma-engine-plasmamule.cpp'; then $(CYGPATH_W) 'plasma-engine-plasmamule.cpp'; else $(CYGPATH_W) '$(srcdir)/plasma-engine-plasmamule.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/plasma_engine_plasmamule_so-plasma-engine-plasmamule.Tpo $(DEPDIR)/plasma_engine_plasmamule_so-plasma-engine-plasmamule.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_engine_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -MT plasma_engine_plasmamule_so-plasma-engine-plasmamule.obj -MD -MP -MF $(DEPDIR)/plasma_engine_plasmamule_so-plasma-engine-plasmamule.Tpo -c -o plasma_engine_plasmamule_so-plasma-engine-plasmamule.obj `if test -f 'plasma-engine-plasmamule.cpp'; then $(CYGPATH_W) 'plasma-engine-plasmamule.cpp'; else $(CYGPATH_W) '$(srcdir)/plasma-engine-plasmamule.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/plasma_engine_plasmamule_so-plasma-engine-plasmamule.Tpo $(DEPDIR)/plasma_engine_plasmamule_so-plasma-engine-plasmamule.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='plasma-engine-plasmamule.cpp' object='plasma_engine_plasmamule_so-plasma-engine-plasmamule.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_engine_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -c -o plasma_engine_plasmamule_so-plasma-engine-plasmamule.obj `if test -f 'plasma-engine-plasmamule.cpp'; then $(CYGPATH_W) 'plasma-engine-plasmamule.cpp'; else $(CYGPATH_W) '$(srcdir)/plasma-engine-plasmamule.cpp'; fi`
 
 plasma_engine_plasmamule_so-qt-emc.o: qt-emc.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_engine_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -MT plasma_engine_plasmamule_so-qt-emc.o -MD -MP -MF $(DEPDIR)/plasma_engine_plasmamule_so-qt-emc.Tpo -c -o plasma_engine_plasmamule_so-qt-emc.o `test -f 'qt-emc.cpp' || echo '$(srcdir)/'`qt-emc.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/plasma_engine_plasmamule_so-qt-emc.Tpo $(DEPDIR)/plasma_engine_plasmamule_so-qt-emc.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_engine_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -MT plasma_engine_plasmamule_so-qt-emc.o -MD -MP -MF $(DEPDIR)/plasma_engine_plasmamule_so-qt-emc.Tpo -c -o plasma_engine_plasmamule_so-qt-emc.o `test -f 'qt-emc.cpp' || echo '$(srcdir)/'`qt-emc.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/plasma_engine_plasmamule_so-qt-emc.Tpo $(DEPDIR)/plasma_engine_plasmamule_so-qt-emc.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='qt-emc.cpp' object='plasma_engine_plasmamule_so-qt-emc.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_engine_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -c -o plasma_engine_plasmamule_so-qt-emc.o `test -f 'qt-emc.cpp' || echo '$(srcdir)/'`qt-emc.cpp
 
 plasma_engine_plasmamule_so-qt-emc.obj: qt-emc.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_engine_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -MT plasma_engine_plasmamule_so-qt-emc.obj -MD -MP -MF $(DEPDIR)/plasma_engine_plasmamule_so-qt-emc.Tpo -c -o plasma_engine_plasmamule_so-qt-emc.obj `if test -f 'qt-emc.cpp'; then $(CYGPATH_W) 'qt-emc.cpp'; else $(CYGPATH_W) '$(srcdir)/qt-emc.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/plasma_engine_plasmamule_so-qt-emc.Tpo $(DEPDIR)/plasma_engine_plasmamule_so-qt-emc.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_engine_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -MT plasma_engine_plasmamule_so-qt-emc.obj -MD -MP -MF $(DEPDIR)/plasma_engine_plasmamule_so-qt-emc.Tpo -c -o plasma_engine_plasmamule_so-qt-emc.obj `if test -f 'qt-emc.cpp'; then $(CYGPATH_W) 'qt-emc.cpp'; else $(CYGPATH_W) '$(srcdir)/qt-emc.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/plasma_engine_plasmamule_so-qt-emc.Tpo $(DEPDIR)/plasma_engine_plasmamule_so-qt-emc.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='qt-emc.cpp' object='plasma_engine_plasmamule_so-qt-emc.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasma_engine_plasmamule_so_CXXFLAGS) $(CXXFLAGS) -c -o plasma_engine_plasmamule_so-qt-emc.obj `if test -f 'qt-emc.cpp'; then $(CYGPATH_W) 'qt-emc.cpp'; else $(CYGPATH_W) '$(srcdir)/qt-emc.cpp'; fi`
 
 plasmamule_engine_feeder-plasmamule-engine-feeder.o: plasmamule-engine-feeder.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasmamule_engine_feeder_CXXFLAGS) $(CXXFLAGS) -MT plasmamule_engine_feeder-plasmamule-engine-feeder.o -MD -MP -MF $(DEPDIR)/plasmamule_engine_feeder-plasmamule-engine-feeder.Tpo -c -o plasmamule_engine_feeder-plasmamule-engine-feeder.o `test -f 'plasmamule-engine-feeder.cpp' || echo '$(srcdir)/'`plasmamule-engine-feeder.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/plasmamule_engine_feeder-plasmamule-engine-feeder.Tpo $(DEPDIR)/plasmamule_engine_feeder-plasmamule-engine-feeder.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasmamule_engine_feeder_CXXFLAGS) $(CXXFLAGS) -MT plasmamule_engine_feeder-plasmamule-engine-feeder.o -MD -MP -MF $(DEPDIR)/plasmamule_engine_feeder-plasmamule-engine-feeder.Tpo -c -o plasmamule_engine_feeder-plasmamule-engine-feeder.o `test -f 'plasmamule-engine-feeder.cpp' || echo '$(srcdir)/'`plasmamule-engine-feeder.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/plasmamule_engine_feeder-plasmamule-engine-feeder.Tpo $(DEPDIR)/plasmamule_engine_feeder-plasmamule-engine-feeder.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='plasmamule-engine-feeder.cpp' object='plasmamule_engine_feeder-plasmamule-engine-feeder.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasmamule_engine_feeder_CXXFLAGS) $(CXXFLAGS) -c -o plasmamule_engine_feeder-plasmamule-engine-feeder.o `test -f 'plasmamule-engine-feeder.cpp' || echo '$(srcdir)/'`plasmamule-engine-feeder.cpp
 
 plasmamule_engine_feeder-plasmamule-engine-feeder.obj: plasmamule-engine-feeder.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasmamule_engine_feeder_CXXFLAGS) $(CXXFLAGS) -MT plasmamule_engine_feeder-plasmamule-engine-feeder.obj -MD -MP -MF $(DEPDIR)/plasmamule_engine_feeder-plasmamule-engine-feeder.Tpo -c -o plasmamule_engine_feeder-plasmamule-engine-feeder.obj `if test -f 'plasmamule-engine-feeder.cpp'; then $(CYGPATH_W) 'plasmamule-engine-feeder.cpp'; else $(CYGPATH_W) '$(srcdir)/plasmamule-engine-feeder.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/plasmamule_engine_feeder-plasmamule-engine-feeder.Tpo $(DEPDIR)/plasmamule_engine_feeder-plasmamule-engine-feeder.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasmamule_engine_feeder_CXXFLAGS) $(CXXFLAGS) -MT plasmamule_engine_feeder-plasmamule-engine-feeder.obj -MD -MP -MF $(DEPDIR)/plasmamule_engine_feeder-plasmamule-engine-feeder.Tpo -c -o plasmamule_engine_feeder-plasmamule-engine-feeder.obj `if test -f 'plasmamule-engine-feeder.cpp'; then $(CYGPATH_W) 'plasmamule-engine-feeder.cpp'; else $(CYGPATH_W) '$(srcdir)/plasmamule-engine-feeder.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/plasmamule_engine_feeder-plasmamule-engine-feeder.Tpo $(DEPDIR)/plasmamule_engine_feeder-plasmamule-engine-feeder.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='plasmamule-engine-feeder.cpp' object='plasmamule_engine_feeder-plasmamule-engine-feeder.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasmamule_engine_feeder_CXXFLAGS) $(CXXFLAGS) -c -o plasmamule_engine_feeder-plasmamule-engine-feeder.obj `if test -f 'plasmamule-engine-feeder.cpp'; then $(CYGPATH_W) 'plasmamule-engine-feeder.cpp'; else $(CYGPATH_W) '$(srcdir)/plasmamule-engine-feeder.cpp'; fi`
 
 plasmamule_engine_feeder-plasmamule-dbus.o: plasmamule-dbus.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasmamule_engine_feeder_CXXFLAGS) $(CXXFLAGS) -MT plasmamule_engine_feeder-plasmamule-dbus.o -MD -MP -MF $(DEPDIR)/plasmamule_engine_feeder-plasmamule-dbus.Tpo -c -o plasmamule_engine_feeder-plasmamule-dbus.o `test -f 'plasmamule-dbus.cpp' || echo '$(srcdir)/'`plasmamule-dbus.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/plasmamule_engine_feeder-plasmamule-dbus.Tpo $(DEPDIR)/plasmamule_engine_feeder-plasmamule-dbus.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasmamule_engine_feeder_CXXFLAGS) $(CXXFLAGS) -MT plasmamule_engine_feeder-plasmamule-dbus.o -MD -MP -MF $(DEPDIR)/plasmamule_engine_feeder-plasmamule-dbus.Tpo -c -o plasmamule_engine_feeder-plasmamule-dbus.o `test -f 'plasmamule-dbus.cpp' || echo '$(srcdir)/'`plasmamule-dbus.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/plasmamule_engine_feeder-plasmamule-dbus.Tpo $(DEPDIR)/plasmamule_engine_feeder-plasmamule-dbus.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='plasmamule-dbus.cpp' object='plasmamule_engine_feeder-plasmamule-dbus.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasmamule_engine_feeder_CXXFLAGS) $(CXXFLAGS) -c -o plasmamule_engine_feeder-plasmamule-dbus.o `test -f 'plasmamule-dbus.cpp' || echo '$(srcdir)/'`plasmamule-dbus.cpp
 
 plasmamule_engine_feeder-plasmamule-dbus.obj: plasmamule-dbus.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasmamule_engine_feeder_CXXFLAGS) $(CXXFLAGS) -MT plasmamule_engine_feeder-plasmamule-dbus.obj -MD -MP -MF $(DEPDIR)/plasmamule_engine_feeder-plasmamule-dbus.Tpo -c -o plasmamule_engine_feeder-plasmamule-dbus.obj `if test -f 'plasmamule-dbus.cpp'; then $(CYGPATH_W) 'plasmamule-dbus.cpp'; else $(CYGPATH_W) '$(srcdir)/plasmamule-dbus.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/plasmamule_engine_feeder-plasmamule-dbus.Tpo $(DEPDIR)/plasmamule_engine_feeder-plasmamule-dbus.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasmamule_engine_feeder_CXXFLAGS) $(CXXFLAGS) -MT plasmamule_engine_feeder-plasmamule-dbus.obj -MD -MP -MF $(DEPDIR)/plasmamule_engine_feeder-plasmamule-dbus.Tpo -c -o plasmamule_engine_feeder-plasmamule-dbus.obj `if test -f 'plasmamule-dbus.cpp'; then $(CYGPATH_W) 'plasmamule-dbus.cpp'; else $(CYGPATH_W) '$(srcdir)/plasmamule-dbus.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/plasmamule_engine_feeder-plasmamule-dbus.Tpo $(DEPDIR)/plasmamule_engine_feeder-plasmamule-dbus.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='plasmamule-dbus.cpp' object='plasmamule_engine_feeder-plasmamule-dbus.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(plasmamule_engine_feeder_CXXFLAGS) $(CXXFLAGS) -c -o plasmamule_engine_feeder-plasmamule-dbus.obj `if test -f 'plasmamule-dbus.cpp'; then $(CYGPATH_W) 'plasmamule-dbus.cpp'; else $(CYGPATH_W) '$(srcdir)/plasmamule-dbus.cpp'; fi`
