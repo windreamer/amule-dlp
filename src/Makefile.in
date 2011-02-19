@@ -165,11 +165,11 @@ am__objects_1 = amule-amule.$(OBJEXT) amule-BaseClient.$(OBJEXT) \
 	amule-ExternalConn.$(OBJEXT) amule-FriendList.$(OBJEXT) \
 	amule-IPFilter.$(OBJEXT) amule-KnownFileList.$(OBJEXT) \
 	amule-ListenSocket.$(OBJEXT) amule-MuleUDPSocket.$(OBJEXT) \
-	amule-PartFileConvert.$(OBJEXT) amule-SearchFile.$(OBJEXT) \
-	amule-SearchList.$(OBJEXT) amule-ServerConnect.$(OBJEXT) \
-	amule-ServerList.$(OBJEXT) amule-ServerSocket.$(OBJEXT) \
-	amule-ServerUDPSocket.$(OBJEXT) amule-SHAHashSet.$(OBJEXT) \
-	amule-SharedFileList.$(OBJEXT) amule-ThreadTasks.$(OBJEXT) \
+	amule-SearchFile.$(OBJEXT) amule-SearchList.$(OBJEXT) \
+	amule-ServerConnect.$(OBJEXT) amule-ServerList.$(OBJEXT) \
+	amule-ServerSocket.$(OBJEXT) amule-ServerUDPSocket.$(OBJEXT) \
+	amule-SHAHashSet.$(OBJEXT) amule-SharedFileList.$(OBJEXT) \
+	amule-ThreadTasks.$(OBJEXT) \
 	amule-UploadBandwidthThrottler.$(OBJEXT) \
 	amule-UploadClient.$(OBJEXT) amule-UploadQueue.$(OBJEXT) \
 	amule-Indexed.$(OBJEXT) amule-Kademlia.$(OBJEXT) \
@@ -186,10 +186,10 @@ am__objects_2 = amule-amule-gui.$(OBJEXT) amule-amuleDlg.$(OBJEXT) \
 	amule-ClientDetailDialog.$(OBJEXT) \
 	amule-DirectoryTreeCtrl.$(OBJEXT) \
 	amule-FileDetailDialog.$(OBJEXT) amule-KadDlg.$(OBJEXT) \
-	amule-OScopeCtrl.$(OBJEXT) amule-PartFileConvertDlg.$(OBJEXT) \
-	amule-PrefsUnifiedDlg.$(OBJEXT) amule-SearchDlg.$(OBJEXT) \
-	amule-ServerWnd.$(OBJEXT) amule-SharedFilesWnd.$(OBJEXT) \
-	amule-StatisticsDlg.$(OBJEXT) amule-SearchListCtrl.$(OBJEXT) \
+	amule-OScopeCtrl.$(OBJEXT) amule-PrefsUnifiedDlg.$(OBJEXT) \
+	amule-SearchDlg.$(OBJEXT) amule-ServerWnd.$(OBJEXT) \
+	amule-SharedFilesWnd.$(OBJEXT) amule-StatisticsDlg.$(OBJEXT) \
+	amule-SearchListCtrl.$(OBJEXT) \
 	amule-DownloadListCtrl.$(OBJEXT) \
 	amule-SourceListCtrl.$(OBJEXT) \
 	amule-SharedFilePeersListCtrl.$(OBJEXT) \
@@ -206,7 +206,9 @@ am__objects_3 = amule-amuleAppCommon.$(OBJEXT) \
 	amule-Statistics.$(OBJEXT) amule-StatTree.$(OBJEXT) \
 	amule-UserEvents.$(OBJEXT)
 am_amule_OBJECTS = amule-CaptchaDialog.$(OBJEXT) \
-	amule-CaptchaGenerator.$(OBJEXT) $(am__objects_1) \
+	amule-CaptchaGenerator.$(OBJEXT) \
+	amule-PartFileConvert.$(OBJEXT) \
+	amule-PartFileConvertDlg.$(OBJEXT) $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3)
 amule_OBJECTS = $(am_amule_OBJECTS)
 am__DEPENDENCIES_1 =
@@ -240,11 +242,11 @@ am__objects_4 = amuled-amule.$(OBJEXT) amuled-BaseClient.$(OBJEXT) \
 	amuled-ExternalConn.$(OBJEXT) amuled-FriendList.$(OBJEXT) \
 	amuled-IPFilter.$(OBJEXT) amuled-KnownFileList.$(OBJEXT) \
 	amuled-ListenSocket.$(OBJEXT) amuled-MuleUDPSocket.$(OBJEXT) \
-	amuled-PartFileConvert.$(OBJEXT) amuled-SearchFile.$(OBJEXT) \
-	amuled-SearchList.$(OBJEXT) amuled-ServerConnect.$(OBJEXT) \
-	amuled-ServerList.$(OBJEXT) amuled-ServerSocket.$(OBJEXT) \
-	amuled-ServerUDPSocket.$(OBJEXT) amuled-SHAHashSet.$(OBJEXT) \
-	amuled-SharedFileList.$(OBJEXT) amuled-ThreadTasks.$(OBJEXT) \
+	amuled-SearchFile.$(OBJEXT) amuled-SearchList.$(OBJEXT) \
+	amuled-ServerConnect.$(OBJEXT) amuled-ServerList.$(OBJEXT) \
+	amuled-ServerSocket.$(OBJEXT) amuled-ServerUDPSocket.$(OBJEXT) \
+	amuled-SHAHashSet.$(OBJEXT) amuled-SharedFileList.$(OBJEXT) \
+	amuled-ThreadTasks.$(OBJEXT) \
 	amuled-UploadBandwidthThrottler.$(OBJEXT) \
 	amuled-UploadClient.$(OBJEXT) amuled-UploadQueue.$(OBJEXT) \
 	amuled-Indexed.$(OBJEXT) amuled-Kademlia.$(OBJEXT) \
@@ -278,7 +280,6 @@ am__objects_6 = amulegui-amule-gui.$(OBJEXT) \
 	amulegui-DirectoryTreeCtrl.$(OBJEXT) \
 	amulegui-FileDetailDialog.$(OBJEXT) amulegui-KadDlg.$(OBJEXT) \
 	amulegui-OScopeCtrl.$(OBJEXT) \
-	amulegui-PartFileConvertDlg.$(OBJEXT) \
 	amulegui-PrefsUnifiedDlg.$(OBJEXT) \
 	amulegui-SearchDlg.$(OBJEXT) amulegui-ServerWnd.$(OBJEXT) \
 	amulegui-SharedFilesWnd.$(OBJEXT) \
@@ -702,7 +703,6 @@ core_sources = \
 	KnownFileList.cpp \
 	ListenSocket.cpp \
 	MuleUDPSocket.cpp \
-	PartFileConvert.cpp \
 	SearchFile.cpp \
 	SearchList.cpp \
 	ServerConnect.cpp \
@@ -740,7 +740,6 @@ gui_sources = \
 	FileDetailDialog.cpp \
 	KadDlg.cpp \
 	OScopeCtrl.cpp \
-	PartFileConvertDlg.cpp \
 	PrefsUnifiedDlg.cpp \
 	SearchDlg.cpp \
 	ServerWnd.cpp \
@@ -803,6 +802,8 @@ amulegui_SOURCES = \
 amule_SOURCES = \
 	CaptchaDialog.cpp \
 	CaptchaGenerator.cpp \
+	PartFileConvert.cpp \
+	PartFileConvertDlg.cpp \
 	$(core_sources) \
 	$(gui_sources) \
 	$(ec_sources) \
@@ -1239,7 +1240,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-MuleUDPSocket.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-PacketTracking.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-PartFile.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-PartFileConvert.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-Preferences.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-Prefs.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amuled-Proxy.Po@am__quote@
@@ -1289,7 +1289,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-MuleTrayIcon.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-OScopeCtrl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-PartFile.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-PartFileConvertDlg.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-Preferences.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-PrefsUnifiedDlg.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/amulegui-Proxy.Po@am__quote@
@@ -2162,6 +2161,38 @@ amule-CaptchaGenerator.obj: CaptchaGenerator.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-CaptchaGenerator.obj `if test -f 'CaptchaGenerator.cpp'; then $(CYGPATH_W) 'CaptchaGenerator.cpp'; else $(CYGPATH_W) '$(srcdir)/CaptchaGenerator.cpp'; fi`
 
+amule-PartFileConvert.o: PartFileConvert.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-PartFileConvert.o -MD -MP -MF $(DEPDIR)/amule-PartFileConvert.Tpo -c -o amule-PartFileConvert.o `test -f 'PartFileConvert.cpp' || echo '$(srcdir)/'`PartFileConvert.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amule-PartFileConvert.Tpo $(DEPDIR)/amule-PartFileConvert.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='PartFileConvert.cpp' object='amule-PartFileConvert.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-PartFileConvert.o `test -f 'PartFileConvert.cpp' || echo '$(srcdir)/'`PartFileConvert.cpp
+
+amule-PartFileConvert.obj: PartFileConvert.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-PartFileConvert.obj -MD -MP -MF $(DEPDIR)/amule-PartFileConvert.Tpo -c -o amule-PartFileConvert.obj `if test -f 'PartFileConvert.cpp'; then $(CYGPATH_W) 'PartFileConvert.cpp'; else $(CYGPATH_W) '$(srcdir)/PartFileConvert.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amule-PartFileConvert.Tpo $(DEPDIR)/amule-PartFileConvert.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='PartFileConvert.cpp' object='amule-PartFileConvert.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-PartFileConvert.obj `if test -f 'PartFileConvert.cpp'; then $(CYGPATH_W) 'PartFileConvert.cpp'; else $(CYGPATH_W) '$(srcdir)/PartFileConvert.cpp'; fi`
+
+amule-PartFileConvertDlg.o: PartFileConvertDlg.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-PartFileConvertDlg.o -MD -MP -MF $(DEPDIR)/amule-PartFileConvertDlg.Tpo -c -o amule-PartFileConvertDlg.o `test -f 'PartFileConvertDlg.cpp' || echo '$(srcdir)/'`PartFileConvertDlg.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amule-PartFileConvertDlg.Tpo $(DEPDIR)/amule-PartFileConvertDlg.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='PartFileConvertDlg.cpp' object='amule-PartFileConvertDlg.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-PartFileConvertDlg.o `test -f 'PartFileConvertDlg.cpp' || echo '$(srcdir)/'`PartFileConvertDlg.cpp
+
+amule-PartFileConvertDlg.obj: PartFileConvertDlg.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-PartFileConvertDlg.obj -MD -MP -MF $(DEPDIR)/amule-PartFileConvertDlg.Tpo -c -o amule-PartFileConvertDlg.obj `if test -f 'PartFileConvertDlg.cpp'; then $(CYGPATH_W) 'PartFileConvertDlg.cpp'; else $(CYGPATH_W) '$(srcdir)/PartFileConvertDlg.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amule-PartFileConvertDlg.Tpo $(DEPDIR)/amule-PartFileConvertDlg.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='PartFileConvertDlg.cpp' object='amule-PartFileConvertDlg.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-PartFileConvertDlg.obj `if test -f 'PartFileConvertDlg.cpp'; then $(CYGPATH_W) 'PartFileConvertDlg.cpp'; else $(CYGPATH_W) '$(srcdir)/PartFileConvertDlg.cpp'; fi`
+
 amule-amule.o: amule.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-amule.o -MD -MP -MF $(DEPDIR)/amule-amule.Tpo -c -o amule-amule.o `test -f 'amule.cpp' || echo '$(srcdir)/'`amule.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amule-amule.Tpo $(DEPDIR)/amule-amule.Po
@@ -2481,22 +2512,6 @@ amule-MuleUDPSocket.obj: MuleUDPSocket.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='MuleUDPSocket.cpp' object='amule-MuleUDPSocket.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-MuleUDPSocket.obj `if test -f 'MuleUDPSocket.cpp'; then $(CYGPATH_W) 'MuleUDPSocket.cpp'; else $(CYGPATH_W) '$(srcdir)/MuleUDPSocket.cpp'; fi`
-
-amule-PartFileConvert.o: PartFileConvert.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-PartFileConvert.o -MD -MP -MF $(DEPDIR)/amule-PartFileConvert.Tpo -c -o amule-PartFileConvert.o `test -f 'PartFileConvert.cpp' || echo '$(srcdir)/'`PartFileConvert.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amule-PartFileConvert.Tpo $(DEPDIR)/amule-PartFileConvert.Po
-@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='PartFileConvert.cpp' object='amule-PartFileConvert.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-PartFileConvert.o `test -f 'PartFileConvert.cpp' || echo '$(srcdir)/'`PartFileConvert.cpp
-
-amule-PartFileConvert.obj: PartFileConvert.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-PartFileConvert.obj -MD -MP -MF $(DEPDIR)/amule-PartFileConvert.Tpo -c -o amule-PartFileConvert.obj `if test -f 'PartFileConvert.cpp'; then $(CYGPATH_W) 'PartFileConvert.cpp'; else $(CYGPATH_W) '$(srcdir)/PartFileConvert.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amule-PartFileConvert.Tpo $(DEPDIR)/amule-PartFileConvert.Po
-@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='PartFileConvert.cpp' object='amule-PartFileConvert.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-PartFileConvert.obj `if test -f 'PartFileConvert.cpp'; then $(CYGPATH_W) 'PartFileConvert.cpp'; else $(CYGPATH_W) '$(srcdir)/PartFileConvert.cpp'; fi`
 
 amule-SearchFile.o: SearchFile.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-SearchFile.o -MD -MP -MF $(DEPDIR)/amule-SearchFile.Tpo -c -o amule-SearchFile.o `test -f 'SearchFile.cpp' || echo '$(srcdir)/'`SearchFile.cpp
@@ -3057,22 +3072,6 @@ amule-OScopeCtrl.obj: OScopeCtrl.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='OScopeCtrl.cpp' object='amule-OScopeCtrl.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-OScopeCtrl.obj `if test -f 'OScopeCtrl.cpp'; then $(CYGPATH_W) 'OScopeCtrl.cpp'; else $(CYGPATH_W) '$(srcdir)/OScopeCtrl.cpp'; fi`
-
-amule-PartFileConvertDlg.o: PartFileConvertDlg.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-PartFileConvertDlg.o -MD -MP -MF $(DEPDIR)/amule-PartFileConvertDlg.Tpo -c -o amule-PartFileConvertDlg.o `test -f 'PartFileConvertDlg.cpp' || echo '$(srcdir)/'`PartFileConvertDlg.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amule-PartFileConvertDlg.Tpo $(DEPDIR)/amule-PartFileConvertDlg.Po
-@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='PartFileConvertDlg.cpp' object='amule-PartFileConvertDlg.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-PartFileConvertDlg.o `test -f 'PartFileConvertDlg.cpp' || echo '$(srcdir)/'`PartFileConvertDlg.cpp
-
-amule-PartFileConvertDlg.obj: PartFileConvertDlg.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-PartFileConvertDlg.obj -MD -MP -MF $(DEPDIR)/amule-PartFileConvertDlg.Tpo -c -o amule-PartFileConvertDlg.obj `if test -f 'PartFileConvertDlg.cpp'; then $(CYGPATH_W) 'PartFileConvertDlg.cpp'; else $(CYGPATH_W) '$(srcdir)/PartFileConvertDlg.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amule-PartFileConvertDlg.Tpo $(DEPDIR)/amule-PartFileConvertDlg.Po
-@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='PartFileConvertDlg.cpp' object='amule-PartFileConvertDlg.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -c -o amule-PartFileConvertDlg.obj `if test -f 'PartFileConvertDlg.cpp'; then $(CYGPATH_W) 'PartFileConvertDlg.cpp'; else $(CYGPATH_W) '$(srcdir)/PartFileConvertDlg.cpp'; fi`
 
 amule-PrefsUnifiedDlg.o: PrefsUnifiedDlg.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amule_CPPFLAGS) $(CPPFLAGS) $(amule_CXXFLAGS) $(CXXFLAGS) -MT amule-PrefsUnifiedDlg.o -MD -MP -MF $(DEPDIR)/amule-PrefsUnifiedDlg.Tpo -c -o amule-PrefsUnifiedDlg.o `test -f 'PrefsUnifiedDlg.cpp' || echo '$(srcdir)/'`PrefsUnifiedDlg.cpp
@@ -3970,22 +3969,6 @@ amuled-MuleUDPSocket.obj: MuleUDPSocket.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-MuleUDPSocket.obj `if test -f 'MuleUDPSocket.cpp'; then $(CYGPATH_W) 'MuleUDPSocket.cpp'; else $(CYGPATH_W) '$(srcdir)/MuleUDPSocket.cpp'; fi`
 
-amuled-PartFileConvert.o: PartFileConvert.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-PartFileConvert.o -MD -MP -MF $(DEPDIR)/amuled-PartFileConvert.Tpo -c -o amuled-PartFileConvert.o `test -f 'PartFileConvert.cpp' || echo '$(srcdir)/'`PartFileConvert.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuled-PartFileConvert.Tpo $(DEPDIR)/amuled-PartFileConvert.Po
-@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='PartFileConvert.cpp' object='amuled-PartFileConvert.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-PartFileConvert.o `test -f 'PartFileConvert.cpp' || echo '$(srcdir)/'`PartFileConvert.cpp
-
-amuled-PartFileConvert.obj: PartFileConvert.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-PartFileConvert.obj -MD -MP -MF $(DEPDIR)/amuled-PartFileConvert.Tpo -c -o amuled-PartFileConvert.obj `if test -f 'PartFileConvert.cpp'; then $(CYGPATH_W) 'PartFileConvert.cpp'; else $(CYGPATH_W) '$(srcdir)/PartFileConvert.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuled-PartFileConvert.Tpo $(DEPDIR)/amuled-PartFileConvert.Po
-@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='PartFileConvert.cpp' object='amuled-PartFileConvert.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -c -o amuled-PartFileConvert.obj `if test -f 'PartFileConvert.cpp'; then $(CYGPATH_W) 'PartFileConvert.cpp'; else $(CYGPATH_W) '$(srcdir)/PartFileConvert.cpp'; fi`
-
 amuled-SearchFile.o: SearchFile.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amuled_CPPFLAGS) $(CPPFLAGS) $(amuled_CXXFLAGS) $(CXXFLAGS) -MT amuled-SearchFile.o -MD -MP -MF $(DEPDIR)/amuled-SearchFile.Tpo -c -o amuled-SearchFile.o `test -f 'SearchFile.cpp' || echo '$(srcdir)/'`SearchFile.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amuled-SearchFile.Tpo $(DEPDIR)/amuled-SearchFile.Po
@@ -4817,22 +4800,6 @@ amulegui-OScopeCtrl.obj: OScopeCtrl.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='OScopeCtrl.cpp' object='amulegui-OScopeCtrl.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-OScopeCtrl.obj `if test -f 'OScopeCtrl.cpp'; then $(CYGPATH_W) 'OScopeCtrl.cpp'; else $(CYGPATH_W) '$(srcdir)/OScopeCtrl.cpp'; fi`
-
-amulegui-PartFileConvertDlg.o: PartFileConvertDlg.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-PartFileConvertDlg.o -MD -MP -MF $(DEPDIR)/amulegui-PartFileConvertDlg.Tpo -c -o amulegui-PartFileConvertDlg.o `test -f 'PartFileConvertDlg.cpp' || echo '$(srcdir)/'`PartFileConvertDlg.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amulegui-PartFileConvertDlg.Tpo $(DEPDIR)/amulegui-PartFileConvertDlg.Po
-@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='PartFileConvertDlg.cpp' object='amulegui-PartFileConvertDlg.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-PartFileConvertDlg.o `test -f 'PartFileConvertDlg.cpp' || echo '$(srcdir)/'`PartFileConvertDlg.cpp
-
-amulegui-PartFileConvertDlg.obj: PartFileConvertDlg.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-PartFileConvertDlg.obj -MD -MP -MF $(DEPDIR)/amulegui-PartFileConvertDlg.Tpo -c -o amulegui-PartFileConvertDlg.obj `if test -f 'PartFileConvertDlg.cpp'; then $(CYGPATH_W) 'PartFileConvertDlg.cpp'; else $(CYGPATH_W) '$(srcdir)/PartFileConvertDlg.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/amulegui-PartFileConvertDlg.Tpo $(DEPDIR)/amulegui-PartFileConvertDlg.Po
-@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='PartFileConvertDlg.cpp' object='amulegui-PartFileConvertDlg.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -c -o amulegui-PartFileConvertDlg.obj `if test -f 'PartFileConvertDlg.cpp'; then $(CYGPATH_W) 'PartFileConvertDlg.cpp'; else $(CYGPATH_W) '$(srcdir)/PartFileConvertDlg.cpp'; fi`
 
 amulegui-PrefsUnifiedDlg.o: PrefsUnifiedDlg.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(amulegui_CPPFLAGS) $(CPPFLAGS) $(amulegui_CXXFLAGS) $(CXXFLAGS) -MT amulegui-PrefsUnifiedDlg.o -MD -MP -MF $(DEPDIR)/amulegui-PrefsUnifiedDlg.Tpo -c -o amulegui-PrefsUnifiedDlg.o `test -f 'PrefsUnifiedDlg.cpp' || echo '$(srcdir)/'`PrefsUnifiedDlg.cpp
