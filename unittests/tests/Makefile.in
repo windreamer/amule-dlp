@@ -70,14 +70,15 @@ am__EXEEXT_1 = CUInt128Test$(EXEEXT) RangeMapTest$(EXEEXT) \
 	NetworkFunctionsTest$(EXEEXT) FileDataIOTest$(EXEEXT) \
 	PathTest$(EXEEXT) TextFileTest$(EXEEXT) CTagTest$(EXEEXT)
 am_CTagTest_OBJECTS = CTagTest.$(OBJEXT) SafeFile.$(OBJEXT) \
-	MemFile.$(OBJEXT) Tag.$(OBJEXT) Format.$(OBJEXT)
+	MemFile.$(OBJEXT) Tag.$(OBJEXT) Format.$(OBJEXT) \
+	strerror_r.$(OBJEXT)
 CTagTest_OBJECTS = $(am_CTagTest_OBJECTS)
 CTagTest_LDADD = $(LDADD)
 am__DEPENDENCIES_1 =
 CTagTest_DEPENDENCIES = $(am__DEPENDENCIES_1) \
 	../muleunit/libmuleunit.a
 am_CUInt128Test_OBJECTS = CUInt128Test.$(OBJEXT) UInt128.$(OBJEXT) \
-	Format.$(OBJEXT)
+	Format.$(OBJEXT) strerror_r.$(OBJEXT)
 CUInt128Test_OBJECTS = $(am_CUInt128Test_OBJECTS)
 CUInt128Test_LDADD = $(LDADD)
 CUInt128Test_DEPENDENCIES = $(am__DEPENDENCIES_1) \
@@ -85,12 +86,13 @@ CUInt128Test_DEPENDENCIES = $(am__DEPENDENCIES_1) \
 am_FileDataIOTest_OBJECTS = FileDataIOTest.$(OBJEXT) \
 	SafeFile.$(OBJEXT) CFile.$(OBJEXT) MemFile.$(OBJEXT) \
 	UInt128.$(OBJEXT) StringFunctions.$(OBJEXT) Tag.$(OBJEXT) \
-	Path.$(OBJEXT) Format.$(OBJEXT)
+	Path.$(OBJEXT) Format.$(OBJEXT) strerror_r.$(OBJEXT)
 FileDataIOTest_OBJECTS = $(am_FileDataIOTest_OBJECTS)
 FileDataIOTest_LDADD = $(LDADD)
 FileDataIOTest_DEPENDENCIES = $(am__DEPENDENCIES_1) \
 	../muleunit/libmuleunit.a
-am_FormatTest_OBJECTS = FormatTest.$(OBJEXT) Format.$(OBJEXT)
+am_FormatTest_OBJECTS = FormatTest.$(OBJEXT) Format.$(OBJEXT) \
+	strerror_r.$(OBJEXT)
 FormatTest_OBJECTS = $(am_FormatTest_OBJECTS)
 FormatTest_LDADD = $(LDADD)
 FormatTest_DEPENDENCIES = $(am__DEPENDENCIES_1) \
@@ -134,14 +136,24 @@ am__mv = mv -f
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
 am__v_lt_0 = --silent
+COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
+	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+AM_V_CC = $(am__v_CC_$(V))
+am__v_CC_ = $(am__v_CC_$(AM_DEFAULT_VERBOSITY))
+am__v_CC_0 = @echo "  CC    " $@;
+AM_V_at = $(am__v_at_$(V))
+am__v_at_ = $(am__v_at_$(AM_DEFAULT_VERBOSITY))
+am__v_at_0 = @
+CCLD = $(CC)
+LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
+AM_V_CCLD = $(am__v_CCLD_$(V))
+am__v_CCLD_ = $(am__v_CCLD_$(AM_DEFAULT_VERBOSITY))
+am__v_CCLD_0 = @echo "  CCLD  " $@;
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
 AM_V_CXX = $(am__v_CXX_$(V))
 am__v_CXX_ = $(am__v_CXX_$(AM_DEFAULT_VERBOSITY))
 am__v_CXX_0 = @echo "  CXX   " $@;
-AM_V_at = $(am__v_at_$(V))
-am__v_at_ = $(am__v_at_$(AM_DEFAULT_VERBOSITY))
-am__v_at_0 = @
 CXXLD = $(CXX)
 CXXLINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
 	-o $@
@@ -400,13 +412,13 @@ LDADD = $(WXBASE_LIBS) ../muleunit/libmuleunit.a
 MAINTAINERCLEANFILES = Makefile.in
 
 # Tests for the CUInt128 class
-CUInt128Test_SOURCES = CUInt128Test.cpp $(top_srcdir)/src/kademlia/utils/UInt128.cpp $(top_srcdir)/src/libs/common/Format.cpp
+CUInt128Test_SOURCES = CUInt128Test.cpp $(top_srcdir)/src/kademlia/utils/UInt128.cpp $(top_srcdir)/src/libs/common/Format.cpp $(top_srcdir)/src/libs/common/strerror_r.c
 
 # Tests for the CRangeMap class
 RangeMapTest_SOURCES = RangeMapTest.cpp
 
 # Tests for the CFormat class
-FormatTest_SOURCES = FormatTest.cpp $(top_srcdir)/src/libs/common/Format.cpp
+FormatTest_SOURCES = FormatTest.cpp $(top_srcdir)/src/libs/common/Format.cpp $(top_srcdir)/src/libs/common/strerror_r.c
 
 # Tests for the various string functions.
 StringFunctionsTest_SOURCES = StringFunctionsTest.cpp $(top_srcdir)/src/libs/common/StringFunctions.cpp $(top_srcdir)/src/libs/common/Path.cpp
@@ -419,7 +431,7 @@ NetworkFunctionsTest_SOURCES = NetworkFunctionsTest.cpp $(top_srcdir)/src/Networ
 NetworkFunctionsTest_CPPFLAGS = $(AM_CPPFLAGS) -DEC_REMOTE # Needed to avoid compiling the http-thread
 
 # Tests for the classes that implement the CFileDataIO interface
-FileDataIOTest_SOURCES = FileDataIOTest.cpp $(top_srcdir)/src/SafeFile.cpp $(top_srcdir)/src/CFile.cpp $(top_srcdir)/src/MemFile.cpp $(top_srcdir)/src/kademlia/utils/UInt128.cpp $(top_srcdir)/src/libs/common/StringFunctions.cpp $(top_srcdir)/src/Tag.cpp $(top_srcdir)/src/libs/common/Path.cpp $(top_srcdir)/src/libs/common/Format.cpp
+FileDataIOTest_SOURCES = FileDataIOTest.cpp $(top_srcdir)/src/SafeFile.cpp $(top_srcdir)/src/CFile.cpp $(top_srcdir)/src/MemFile.cpp $(top_srcdir)/src/kademlia/utils/UInt128.cpp $(top_srcdir)/src/libs/common/StringFunctions.cpp $(top_srcdir)/src/Tag.cpp $(top_srcdir)/src/libs/common/Path.cpp $(top_srcdir)/src/libs/common/Format.cpp $(top_srcdir)/src/libs/common/strerror_r.c
 
 # Tests for the CPath class
 PathTest_SOURCES = PathTest.cpp $(top_srcdir)/src/libs/common/Path.cpp $(top_srcdir)/src/libs/common/StringFunctions.cpp
@@ -429,11 +441,11 @@ TextFileTest_SOURCES = TextFileTest.cpp $(top_srcdir)/src/libs/common/Path.cpp $
 TextFileTest_CPPFLAGS = $(AM_CPPFLAGS) -DSRCDIR="$(srcdir)" 
 
 # Tests for the CTag class
-CTagTest_SOURCES = CTagTest.cpp  $(top_srcdir)/src/SafeFile.cpp  $(top_srcdir)/src/MemFile.cpp $(top_srcdir)/src/Tag.cpp $(top_srcdir)/src/libs/common/Format.cpp
+CTagTest_SOURCES = CTagTest.cpp  $(top_srcdir)/src/SafeFile.cpp  $(top_srcdir)/src/MemFile.cpp $(top_srcdir)/src/Tag.cpp $(top_srcdir)/src/libs/common/Format.cpp $(top_srcdir)/src/libs/common/strerror_r.c
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .cpp .o .obj
+.SUFFIXES: .c .cpp .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -522,6 +534,39 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/TextFileTest-TextFile.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/TextFileTest-TextFileTest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/UInt128.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/strerror_r.Po@am__quote@
+
+.c.o:
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(COMPILE) -c $<
+
+.c.obj:
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(COMPILE) -c `$(CYGPATH_W) '$<'`
+
+strerror_r.o: $(top_srcdir)/src/libs/common/strerror_r.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT strerror_r.o -MD -MP -MF $(DEPDIR)/strerror_r.Tpo -c -o strerror_r.o `test -f '$(top_srcdir)/src/libs/common/strerror_r.c' || echo '$(srcdir)/'`$(top_srcdir)/src/libs/common/strerror_r.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/strerror_r.Tpo $(DEPDIR)/strerror_r.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$(top_srcdir)/src/libs/common/strerror_r.c' object='strerror_r.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o strerror_r.o `test -f '$(top_srcdir)/src/libs/common/strerror_r.c' || echo '$(srcdir)/'`$(top_srcdir)/src/libs/common/strerror_r.c
+
+strerror_r.obj: $(top_srcdir)/src/libs/common/strerror_r.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT strerror_r.obj -MD -MP -MF $(DEPDIR)/strerror_r.Tpo -c -o strerror_r.obj `if test -f '$(top_srcdir)/src/libs/common/strerror_r.c'; then $(CYGPATH_W) '$(top_srcdir)/src/libs/common/strerror_r.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/libs/common/strerror_r.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/strerror_r.Tpo $(DEPDIR)/strerror_r.Po
+@am__fastdepCC_FALSE@	$(AM_V_CC) @AM_BACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$(top_srcdir)/src/libs/common/strerror_r.c' object='strerror_r.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o strerror_r.obj `if test -f '$(top_srcdir)/src/libs/common/strerror_r.c'; then $(CYGPATH_W) '$(top_srcdir)/src/libs/common/strerror_r.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/libs/common/strerror_r.c'; fi`
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
