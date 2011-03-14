@@ -86,6 +86,9 @@ CTransferWnd::CTransferWnd( wxWindow* pParent )
 	downloadlistctrl = CastChild( wxT("downloadList"), CDownloadListCtrl );
 	clientlistctrl   = CastChild( ID_CLIENTLIST, CSourceListCtrl );
 	m_dlTab          = CastChild( ID_CATEGORIES, CMuleNotebook );
+
+	// Set disabled image for clear complete button
+	CastChild(ID_BTNCLRCOMPL, wxBitmapButton)->SetBitmapDisabled(amuleDlgImages(34));
 	
 	// We want to use our own popup
 	m_dlTab->SetPopupHandler( this );
@@ -231,6 +234,10 @@ void CTransferWnd::OnSetCatPriority( wxCommandEvent& event )
 
 void CTransferWnd::OnAddCategory(wxCommandEvent& WXUNUSED(event))
 {
+	if (theApp->glob_prefs->GetCatCount() >= 99) {
+		wxMessageBox(_("Only 99 categories are supported."), _("Too many categories!"), wxOK | wxICON_EXCLAMATION);
+		return;
+	}
 	CCatDialog dialog( this,
 	// Allow browse?
 #ifdef CLIENT_GUI	
@@ -313,18 +320,6 @@ void CTransferWnd::OnSetDefaultCat( wxCommandEvent& event )
 	theApp->glob_prefs->SaveCats();
 	
 	downloadlistctrl->SortList();
-}
-
-
-void CTransferWnd::ShowQueueCount(uint32 /*number*/)
-{
-#if 0
-	wxString str = CFormat(wxT("%u (%u %s)")) % number % theStats::GetBannedCount() % _("Banned");
-	wxStaticText* label = CastChild( ID_CLIENTCOUNT, wxStaticText );
-	
-	label->SetLabel( str );
-	label->GetParent()->Layout();
-#endif
 }
 
 

@@ -88,6 +88,7 @@ BEGIN_EVENT_TABLE(PrefsUnifiedDlg,wxDialog)
 	EVT_CHECKBOX(IDC_ENFORCE_PO_INCOMING,	PrefsUnifiedDlg::OnCheckBoxChange)
 	EVT_CHECKBOX(IDC_SHOWRATEONTITLE,	PrefsUnifiedDlg::OnCheckBoxChange)
 	EVT_CHECKBOX(IDC_NETWORKED2K,		PrefsUnifiedDlg::OnCheckBoxChange)
+	EVT_CHECKBOX(IDC_NETWORKKAD,		PrefsUnifiedDlg::OnCheckBoxChange)
 
 	EVT_BUTTON(ID_PREFS_OK_TOP,		PrefsUnifiedDlg::OnOk)
 	EVT_BUTTON(ID_PREFS_CANCEL_TOP,		PrefsUnifiedDlg::OnCancel)
@@ -264,6 +265,11 @@ wxDialog(parent, -1, _("Preferences"),
 						USEREVENTS_FIRST_ID + idx * USEREVENTS_IDS_PER_EVENT);
 					switch (idx) {
 						USEREVENTS_EVENTLIST()
+						/* This macro expands to handle all user event types. Here is an example:
+						   case CUserEvents::NewChatSession: {
+						       CreateEventPanels(idx, wxString(wxT("\n %SENDER - ")) + wxTRANSLATE("Message sender."), Widget);
+						       break;
+						   } */							
 					}
 				}
 			}
@@ -420,6 +426,7 @@ bool PrefsUnifiedDlg::TransferToWindow()
 	FindWindow( IDC_MINDISKSPACE )->Enable( thePrefs::IsCheckDiskspaceEnabled() );
 	FindWindow( IDC_OSDIR )->Enable( thePrefs::IsOnlineSignatureEnabled() );
 	FindWindow( IDC_OSUPDATE )->Enable( thePrefs::IsOnlineSignatureEnabled() );
+	FindWindow( IDC_UDPENABLE )->Enable( !thePrefs::GetNetworkKademlia());
 	FindWindow( IDC_UDPPORT )->Enable( thePrefs::s_UDPEnable );
 	FindWindow( IDC_SERVERRETRIES )->Enable( thePrefs::DeadServer() );
 	FindWindow( IDC_STARTNEXTFILE_SAME )->Enable(thePrefs::StartNextFile());
@@ -472,10 +479,11 @@ bool PrefsUnifiedDlg::TransferToWindow()
 #ifndef ENABLE_UPNP
 	FindWindow(IDC_UPNP_ENABLED)->Enable(false);	
 	FindWindow(IDC_UPNPTCPPORT)->Enable(false);
+	FindWindow(IDC_UPNPTCPPORTTEXT)->Enable(false);
 	thePrefs::SetUPnPEnabled(false);
-	// TODO: grey out "UPnP TCP Port", "Webserver UPnP TCP Port"
 	FindWindow(IDC_UPNP_WEBSERVER_ENABLED)->Enable(false);	
 	FindWindow(IDC_WEBUPNPTCPPORT)->Enable(false);
+	FindWindow(IDC_WEBUPNPTCPPORTTEXT)->Enable(false);
 	thePrefs::SetUPnPWebServerEnabled(false);
 	FindWindow(IDC_UPNP_EC_ENABLED)->Enable(false);
 	thePrefs::SetUPnPECEnabled(false);
@@ -766,6 +774,20 @@ void PrefsUnifiedDlg::OnCheckBoxChange(wxCommandEvent& event)
 		case IDC_UDPENABLE:
 			FindWindow( IDC_UDPPORT )->Enable(value);
 			break;
+
+		case IDC_NETWORKKAD: {
+			wxCheckBox * udpPort = (wxCheckBox *) FindWindow(IDC_UDPENABLE);
+			if (value) {
+				// Kad enabled: disable check box, turn UDP on, enable port spin control
+				udpPort->Enable(false);
+				udpPort->SetValue(true);
+				FindWindow(IDC_UDPPORT)->Enable(true);
+			} else {
+				// Kad disabled: enable check box
+				udpPort->Enable(true);
+			}
+			break;
+		}
 
 		case IDC_CHECKDISKSPACE:
 			FindWindow( IDC_MINDISKSPACE )->Enable(value);

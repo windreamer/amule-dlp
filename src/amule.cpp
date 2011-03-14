@@ -370,7 +370,7 @@ bool CamuleApp::OnInit()
 {
 #if wxUSE_MEMORY_TRACING
 	// any text before call of Localize_mule needs not to be translated.
-	AddLogLineNS(wxT("Checkpoint set on app init for memory debug"));
+	AddLogLineNS(wxT("Checkpoint set on app init for memory debug"));	// debug output
 	wxDebugContext::SetCheckpoint();
 #endif
 
@@ -1283,7 +1283,7 @@ void CamuleApp::OnFinishedHashing(CHashingEvent& evt)
 		static int filecount;
 		static uint64 bytecount;
 
-		if (knownfiles->SafeAddKFile(result)) {
+		if (knownfiles->SafeAddKFile(result, true)) {
 			AddDebugLogLineN(logKnownFiles,
 				CFormat(wxT("Safe adding file to sharedlist: %s")) % result->GetFileName());
 			sharedfiles->SafeAddKFile(result);
@@ -1315,18 +1315,15 @@ void CamuleApp::OnFinishedAICHHashing(CHashingEvent& evt)
 	CKnownFile* owner = const_cast<CKnownFile*>(evt.GetOwner());
 	CScopedPtr<CKnownFile> result(evt.GetResult());
 	
-	// Check that the owner is still valid
-	if (knownfiles->IsKnownFile(owner)) {
-		if (result->GetAICHHashset()->GetStatus() == AICH_HASHSETCOMPLETE) {
-			CAICHHashSet* oldSet = owner->GetAICHHashset();
-			CAICHHashSet* newSet = result->GetAICHHashset();
+	if (result->GetAICHHashset()->GetStatus() == AICH_HASHSETCOMPLETE) {
+		CAICHHashSet* oldSet = owner->GetAICHHashset();
+		CAICHHashSet* newSet = result->GetAICHHashset();
 
-			owner->SetAICHHashset(newSet);
-			newSet->SetOwner(owner);
+		owner->SetAICHHashset(newSet);
+		newSet->SetOwner(owner);
 
-			result->SetAICHHashset(oldSet);
-			oldSet->SetOwner(result.get());
-		}
+		result->SetAICHHashset(oldSet);
+		oldSet->SetOwner(result.get());
 	}
 }
 
@@ -1370,7 +1367,7 @@ void CamuleApp::OnFinishedAllocation(CAllocFinishedEvent& evt)
 
 void CamuleApp::OnNotifyEvent(CMuleGUIEvent& evt)
 {
-#if defined(AMULE_DAEMON)
+#ifdef AMULE_DAEMON
 	evt.Notify();
 #else
 	if (theApp->amuledlg) {

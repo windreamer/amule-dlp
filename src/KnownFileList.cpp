@@ -32,6 +32,7 @@
 #include "PartFile.h"		// Needed for CPartFile
 #include "amule.h"
 #include "Logger.h"
+#include "MemFile.h"
 #include "ScopedPtr.h"
 #include "SearchList.h"		// Needed for UpdateSearchFileByHash
 #include <common/Format.h>
@@ -230,29 +231,6 @@ CKnownFile *CKnownFileList::IsOnDuplicates(
 }
 
 
-bool CKnownFileList::IsKnownFile(const CKnownFile *file) 
-{
-	wxCHECK(file, false);
-
-	wxMutexLocker sLock(list_mut);
-
-	// For the map, search with the key
-	const CMD4Hash &key = file->GetFileHash();
-	CKnownFileMap::const_iterator itMap = m_knownFileMap.find(key);
-	if (itMap != m_knownFileMap.end()) {
-		return true;
-	}
-	// For the list, we have to iterate to search
-	for (KnownFileList::iterator it = m_duplicateFileList.begin();
-	     it != m_duplicateFileList.end(); ++it) {
-		if (*it == file) {
-			return true;
-		}
-	}
-	return false;
-}
-
-
 CKnownFile* CKnownFileList::FindKnownFileByID(const CMD4Hash& hash)
 {
 	wxMutexLocker sLock(list_mut);
@@ -269,12 +247,12 @@ CKnownFile* CKnownFileList::FindKnownFileByID(const CMD4Hash& hash)
 }
 
 
-bool CKnownFileList::SafeAddKFile(CKnownFile* toadd)
+bool CKnownFileList::SafeAddKFile(CKnownFile* toadd, bool afterHashing)
 {
 	bool ret;
 	{
 		wxMutexLocker sLock(list_mut);
-		ret = Append(toadd);
+		ret = Append(toadd, afterHashing);
 	}
 	if (ret) {
 		theApp->searchlist->UpdateSearchFileByHash(toadd->GetFileHash());
@@ -283,7 +261,7 @@ bool CKnownFileList::SafeAddKFile(CKnownFile* toadd)
 }
 
 
-bool CKnownFileList::Append(CKnownFile *Record)
+bool CKnownFileList::Append(CKnownFile *Record, bool afterHashing)
 {
 	if (Record->GetFileSize() > 0) {
 		const CMD4Hash& tkey = Record->GetFileHash();
@@ -292,21 +270,34 @@ bool CKnownFileList::Append(CKnownFile *Record)
 			m_knownFileMap[tkey] = Record;			
 			return true;
 		} else {
-			it->second;
-			time_t in_date =  it->second->GetLastChangeDatetime();
-			uint64 in_size =  it->second->GetFileSize();
-			CPath filename = it->second->GetFileName();
+			CKnownFile *existing = it->second;
+			time_t in_date = existing->GetLastChangeDatetime();
+			uint64 in_size = existing->GetFileSize();
+			CPath filename = existing->GetFileName();
 			if (KnownFileMatches(Record, filename, in_date, in_size) ||
 			    IsOnDuplicates(filename, in_date, in_size)) {
 				// The file is already on the list, ignore it.
 				return false;
 			} else {
+				if (afterHashing && in_size == Record->GetFileSize()) {
+					// We just hashed a "new" shared file and find it's already known under a different name or date.
+					// Guess what - it was probably renamed or touched.
+					// So copy over all properties from the existing known file and just keep name/date.
+					time_t newDate = Record->GetLastChangeDatetime();
+					CPath newName = Record->GetFileName();
+					CMemFile f;
+					existing->WriteToFile(&f);
+					f.Reset();
+					Record->LoadFromFile(&f);
+					Record->SetLastChangeDatetime(newDate);
+					Record->SetFileName(newName);
+				}
 				// The file is a duplicated hash. Add THE OLD ONE to the duplicates list.
-				m_duplicateFileList.push_back(m_knownFileMap[tkey]);
-				// Is this thread-safe? If John is not sure and I'm not sure either...
+				// (This is used when reading the known file list where the duplicates are stored in front.)
+				m_duplicateFileList.push_back(existing);
 				if (theApp->sharedfiles) {
 					// Removing the old kad keywords created with the old filename
-					theApp->sharedfiles->RemoveKeywords(it->second);
+					theApp->sharedfiles->RemoveKeywords(existing);
 				}
 				m_knownFileMap[tkey] = Record;	
 				return true;

@@ -183,6 +183,7 @@ bool 		CPreferences::s_AcceptExternalConnections;
 wxString	CPreferences::s_ECAddr;
 uint32		CPreferences::s_ECPort;
 wxString	CPreferences::s_ECPassword;
+bool		CPreferences::s_TransmitOnlyUploadingClients;
 bool		CPreferences::s_IPFilterClients;
 bool		CPreferences::s_IPFilterServers;
 bool		CPreferences::s_UseSrcSeeds;
@@ -240,6 +241,8 @@ bool CPreferences::s_DLPCheckVeryCDMod;
 bool CPreferences::s_DLPCheckGhostMod;
 unsigned int CPreferences::s_DLPCheckMask;
 bool		CPreferences::s_preventSleepWhileDownloading;
+wxString 	CPreferences::s_StatsServerName;
+wxString 	CPreferences::s_StatsServerURL;
 
 /**
  * Template Cfg class for connecting with widgets.
@@ -361,7 +364,7 @@ class Cfg_Str : public Cfg_Tmpl<wxString>
 {
 public:
 	/** Constructor. */
-	Cfg_Str( const wxString& keyname, wxString& value, const wxString& defaultVal = wxEmptyString )
+	Cfg_Str( const wxString& keyname, wxString& value, const wxString& defaultVal = EmptyString )
 	 : Cfg_Tmpl<wxString>( keyname, value, defaultVal )
 	{}
 
@@ -386,7 +389,7 @@ public:
 class Cfg_Str_Encrypted : public Cfg_Str
 {
 public:
-	Cfg_Str_Encrypted( const wxString& keyname, wxString& value, const wxString& defaultVal = wxEmptyString )
+	Cfg_Str_Encrypted( const wxString& keyname, wxString& value, const wxString& defaultVal = EmptyString )
 	 : Cfg_Str( keyname, value, defaultVal )
 	{}
 
@@ -416,7 +419,7 @@ class Cfg_Path : public Cfg_Str
 {
 public:
 	/** Constructor. */
-	Cfg_Path(const wxString& keyname, CPath& value, const wxString& defaultVal = wxEmptyString )
+	Cfg_Path(const wxString& keyname, CPath& value, const wxString& defaultVal = EmptyString )
 	 : Cfg_Str(keyname, m_temp_path, defaultVal)
 	 , m_real_path(value)
 	{}
@@ -856,7 +859,7 @@ void Cfg_Lang_Base::UpdateChoice(int) {}	// dummy
 class Cfg_Skin : public Cfg_Str
 {
 public:
-	Cfg_Skin( const wxString& keyname, wxString& value, const wxString& defaultVal = wxEmptyString )
+	Cfg_Skin( const wxString& keyname, wxString& value, const wxString& defaultVal = EmptyString )
 		: Cfg_Str( keyname, value, defaultVal ),
 		  m_is_skin(false)
 	{}
@@ -1314,6 +1317,11 @@ void CPreferences::BuildItemList( const wxString& appdir )
 	wxConfigBase::Get()->DeleteEntry(wxT("/eMule/GeoIPUpdateUrl")); // get rid of the old one for a while
 
 	s_MiscList.push_back( new Cfg_Str( wxT("/WebServer/Path"),				s_sWebPath, wxT("amuleweb") ) );
+
+	s_MiscList.push_back( new Cfg_Str( wxT("/eMule/StatsServerName"),		s_StatsServerName,	wxT("Shorty's ED2K stats") ) );
+	s_MiscList.push_back( new Cfg_Str( wxT("/eMule/StatsServerURL"),		s_StatsServerURL,	wxT("http://ed2k.shortypower.dyndns.org/?hash=") ) );
+
+	s_MiscList.push_back( new Cfg_Bool( wxT("/ExternalConnect/TransmitOnlyUploadingClients"),	s_TransmitOnlyUploadingClients, false ) );
 
 #ifndef AMULE_DAEMON
 	// Colors have been moved from global prefs to CStatisticsDlg

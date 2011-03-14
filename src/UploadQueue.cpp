@@ -56,6 +56,7 @@
 #include <common/Format.h>
 #include "UploadBandwidthThrottler.h"
 #include "GuiEvents.h"		// Needed for Notify_*
+#include "ListenSocket.h"
 
 
 //TODO rewrite the whole networkcode, use overlapped sockets
@@ -73,8 +74,6 @@ CUploadQueue::CUploadQueue()
 CUpDownClient* CUploadQueue::SortGetBestClient(bool sortonly)
 {
 	CUpDownClient* newclient = NULL;
-	// Track if we purged any clients from the queue, as to only send one notify in total
-	bool purged = false;
 	uint32 tick = GetTickCount();
 	m_lastSort = tick;
 	CClientRefList::iterator it = m_waitinglist.begin();
@@ -85,7 +84,6 @@ CUpDownClient* CUploadQueue::SortGetBestClient(bool sortonly)
 		// clear dead clients
 		if (tick - cur_client->GetLastUpRequest() > MAX_PURGEQUEUETIME 
 			|| !theApp->sharedfiles->GetFileByID(cur_client->GetUploadFileID())) {
-			purged = true;
 			cur_client->ClearWaitStartTime();
 			RemoveFromWaitingQueue(it2);
 			if (!cur_client->GetSocket()) {
@@ -147,11 +145,6 @@ CUpDownClient* CUploadQueue::SortGetBestClient(bool sortonly)
 				}
 			}
 		}
-	}
-
-	// Update the count on GUI if any clients were purged
-	if (purged || (newclient && !sortonly)) {
-		Notify_ShowQueueCount(m_waitinglist.size());
 	}
 
 #ifdef __DEBUG__
@@ -235,7 +228,10 @@ void CUploadQueue::Process()
 	//  but the cost for that outweights the benefit. As it is, a slot will be freed
 	//  even if it can't be taken because all of the queue is LowID. But just one,
 	//  and the kicked client will instantly get it back if he has HighID.)
-	if (m_waitinglist.empty() || tick - m_nLastStartUpload < 1000) {
+	// Also, if we are running out of sockets, don't add new clients, but also don't kick existing ones,
+	// or uploading will cease right away.
+	if (m_waitinglist.empty() || tick - m_nLastStartUpload < 1000
+		|| theApp->listensocket->TooManySockets()) {
 		m_allowKicking = false;
 	// Already a slot free, try to fill it
 	} else if (m_uploadinglist.size() < GetMaxSlots()) {
@@ -491,7 +487,9 @@ void CUploadQueue::AddClientToQueue(CUpDownClient* client)
 	uint32 tick = GetTickCount();
 	client->ClearWaitStartTime();
 	// if possible start upload right away
-	if (m_waitinglist.empty() && tick - m_nLastStartUpload >= 1000 && m_uploadinglist.size() < GetMaxSlots()) {
+	if (m_waitinglist.empty() && tick - m_nLastStartUpload >= 1000 
+		&& m_uploadinglist.size() < GetMaxSlots()
+		 && !theApp->listensocket->TooManySockets()) {
 		AddUpNextClient(client);
 		m_nLastStartUpload = tick;
 	} else {
@@ -628,9 +626,6 @@ uint16 CUploadQueue::SuspendUpload(const CMD4Hash& filehash, bool terminate)
 			removed++;
 		}
 	}
-	if (removed) {
-		Notify_ShowQueueCount(m_waitinglist.size());
-	}
 	return removed;
 }
 
@@ -643,7 +638,6 @@ bool CUploadQueue::RemoveFromWaitingQueue(CUpDownClient* client)
 		CClientRefList::iterator it1 = it++;
 		if (it1->GetClient() == client) {
 			RemoveFromWaitingQueue(it1);
-			Notify_ShowQueueCount(m_waitinglist.size());
 			// update ranks of remaining queue
 			while (it != m_waitinglist.end()) {
 				it->GetClient()->SetUploadQueueWaitingPosition(rank++);

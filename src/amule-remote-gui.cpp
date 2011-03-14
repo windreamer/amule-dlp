@@ -172,7 +172,6 @@ void CamuleRemoteGuiApp::OnPollTimer(wxTimerEvent&)
 		} else if (amuledlg->m_transferwnd->IsShown()) {
 			// update both downloads and shared files
 			knownfiles->DoRequery(EC_OP_GET_UPDATE, EC_TAG_KNOWNFILE);
-			amuledlg->m_transferwnd->ShowQueueCount(theStats::GetWaitingUserCount());
 		} else if (amuledlg->m_searchwnd->IsShown()) {
 			if (searchlist->m_curr_search != -1) {
 				searchlist->DoRequery(EC_OP_SEARCH_RESULTS, EC_TAG_SEARCHFILE);
@@ -1976,7 +1975,20 @@ m_kadPublishInfo(0)
 	SetFileSize(tag->SizeFull());
 	
 	m_searchID = theApp->searchlist->m_curr_search;
+	uint32 parentID = tag->ParentID();
+	if (parentID) {
+		CSearchFile * parent = theApp->searchlist->GetByID(parentID);
+		if (parent) {
+			parent->AddChild(this);
+		}
+	}
+}
 
+
+void CSearchFile::AddChild(CSearchFile* file)
+{
+	m_children.push_back(file);
+	file->m_parent = this;
 }
 
 

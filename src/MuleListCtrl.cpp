@@ -232,13 +232,21 @@ void CMuleListCtrl::LoadSettings()
 	} else {
 		// Sort orders
 		wxStringTokenizer tokens(sortOrders, wxT(","));
+		// Sort orders are stored in order primary, secondary, ...
+		// We want to apply them with SetSorting(), so we have to apply them in reverse order,
+		// so that the primary order is applied last and wins.
+		// Read them with tokenizer and store them in a list in reverse order.
+		CStringList tokenList;
 		while (tokens.HasMoreTokens()) {
-			wxString token = tokens.GetNextToken();
+			tokenList.push_front(tokens.GetNextToken());
+		}
+		for (CStringList::iterator it = tokenList.begin(); it != tokenList.end(); it++) {
+			wxString token = *it;
 			wxString name = token.BeforeFirst(wxT(':'));
 			long order = StrToLong(token.AfterFirst(wxT(':')).BeforeLast(wxT(':')));
 			long alt = StrToLong(token.AfterLast(wxT(':')));
 			int col = GetColumnIndex(name);
-			if (col > 0) {
+			if (col >= 0) {
 				SetSorting(col, (order ? SORT_DES : 0) | (alt ? SORT_ALT : 0));
 			}
 		}
@@ -321,16 +329,19 @@ long CMuleListCtrl::GetInsertPos(wxUIntPtr data)
 	int Min = 0;
 	int Max = GetItemCount();
 
-	// Only do this if there are any items and a sorter function
+	// Only do this if there are any items and a sorter function.
+	// Otherwise insert at end.
 	if (Max && m_sort_func) {
-		// This search will narrow down the best place to position the new
-		// item. The result will be the item after that position, which is
-		// the format expected by the insertion function.
+		// This search will find the place to position the new item
+		// so it matches current sorting.
+		// The result will be the position the new item will have
+		// after insertion, which is the format expected by the InsertItem function.
+		// If the item equals another item it will be inserted after it.
 		do {
 			int cur_pos = ( Max - Min ) / 2 + Min;
 			int cmp = CompareItems(data, GetItemData(cur_pos));
 			
-			// Value is lesser than the one at the current pos
+			// Value is less than the one at the current pos
 			if ( cmp < 0 ) {
 				Max = cur_pos;
 			} else {
@@ -341,7 +352,6 @@ long CMuleListCtrl::GetInsertPos(wxUIntPtr data)
 
 	return Max;
 }
-
 
 
 int CMuleListCtrl::CompareItems(wxUIntPtr item1, wxUIntPtr item2)
@@ -381,10 +391,33 @@ void CMuleListCtrl::SortList()
 
 		m_isSorting = true;
 	
+		MuleSortData sortdata(m_sort_orders, m_sort_func);
+
+		// In many cases control already has correct order, and sorting causes nasty flickering.
+		// Make one pass through it to check if sorting is necessary at all.
+		int nrItems = GetItemCount();
+		bool clean = true;
+		long lastItemdata = 0;
+		if (nrItems > 1) {
+			lastItemdata = GetItemData(0);
+		}
+		for (int i = 1; i < nrItems; i++) {
+			long nextItemdata = GetItemData(i);
+			if (SortProc(lastItemdata, nextItemdata, (long int)&sortdata) > 0) {
+				// ok - we need to sort
+				clean = false;
+				break;
+			}
+			lastItemdata = nextItemdata;
+		}
+		if (clean) {
+			// no need to sort
+			m_isSorting = false;
+			return;
+		}
+
 		// Positions are likely to be invalid after sorting.
 		ResetTTS();
-		
-		MuleSortData sortdata(m_sort_orders, m_sort_func);
 		
 		// Store the current selected items
 		ItemDataList selectedItems = GetSelectedItems();

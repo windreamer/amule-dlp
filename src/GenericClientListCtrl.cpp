@@ -139,7 +139,7 @@ m_columndata(0, NULL)
 
 wxString CGenericClientListCtrl::TranslateCIDToName(GenericColumnEnum cid)
 {
-	wxString name = wxEmptyString;
+	wxString name;
 
 	switch (cid) {
 		case ColumnUserName:
@@ -186,7 +186,7 @@ wxString CGenericClientListCtrl::TranslateCIDToName(GenericColumnEnum cid)
 			break;
 		case ColumnInvalid:
 		default:
-			wxASSERT(0);
+			wxFAIL;
 			break;
 	}
 
@@ -677,7 +677,7 @@ void CGenericClientListCtrl::OnDrawItem(
 		imageListBitmapXSize += 2; // Padding.
 		imageListBitmapYOffset = ((rect.GetHeight() - imageListBitmapYOffset) / 2) + 1 /* Fixes rounding like above */;
 	} else {
-		wxASSERT(0);
+		wxFAIL;
 	}
 
 	wxRect cur_rec( iOffset, rect.y, 0, rect.height );

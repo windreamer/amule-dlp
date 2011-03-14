@@ -472,7 +472,7 @@ const CECPacket *CECServerSocket::Authenticate(const CECPacket *request)
 			} else {
 				response = new CECPacket(EC_OP_AUTH_FAIL);
 				response->AddTag(CECTag(EC_TAG_STRING, wxTRANSLATE("Invalid protocol version.")
-					+ CFormat(wxT("( %i != %i )")) % proto_version % EC_CURRENT_PROTOCOL_VERSION));
+					+ CFormat(wxT("( %#.4x != %#.4x )")) % proto_version % (uint16_t)EC_CURRENT_PROTOCOL_VERSION));
 			}
 		} else {
 			response = new CECPacket(EC_OP_AUTH_FAIL);
@@ -671,8 +671,14 @@ static CECPacket *Get_EC_Response_GetUpdate(CFileEncoderMap &encoders, CObjTagMa
 	// Add clients
 	CECEmptyTag clients(EC_TAG_CLIENT);
 	const CClientList::IDMap& clientList = theApp->clientlist->GetClientList();
+	bool onlyTransmittingClients = thePrefs::IsTransmitOnlyUploadingClients();
 	for (CClientList::IDMap::const_iterator it = clientList.begin(); it != clientList.end(); it++) {
 		const CUpDownClient* cur_client = it->second.GetClient();
+		if (onlyTransmittingClients && !cur_client->IsDownloading()) {
+			// For poor CPU cores only transmit uploading clients. This will save a lot of CPU.
+			// Set ExternalConnect/TransmitOnlyUploadingClients to 1 for it.
+			continue;
+		}
 		CValueMap &valuemap = tagmap.GetValueMap(cur_client->ECID());
 		clients.AddTag(CEC_UpDownClient_Tag(cur_client, EC_DETAIL_INC_UPDATE, &valuemap));
 	}
@@ -1021,7 +1027,7 @@ static CECPacket *Get_EC_Response_Search_Results(CObjTagMap &tagmap)
 		CSearchFile* sf = *it++;
 		CValueMap &valuemap = tagmap.GetValueMap(sf->ECID());
 		response->AddTag(CEC_SearchFile_Tag(sf, EC_DETAIL_INC_UPDATE, &valuemap));
-		/* Here we could add the children, if amulegui were able to merge them.
+		// Add the children
 		if (sf->HasChildren()) {
 			const CSearchResultList& children = sf->GetChildren();
 			for (size_t i = 0; i < children.size(); ++i) {
@@ -1030,7 +1036,6 @@ static CECPacket *Get_EC_Response_Search_Results(CObjTagMap &tagmap)
 				response->AddTag(CEC_SearchFile_Tag(sfc, EC_DETAIL_INC_UPDATE, &valuemap1));
 			}
 		}
-		*/
 	}
 	return response;
 }

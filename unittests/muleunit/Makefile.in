@@ -63,6 +63,12 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 LIBRARIES = $(noinst_LIBRARIES)
 ARFLAGS = cru
+AM_V_AR = $(am__v_AR_$(V))
+am__v_AR_ = $(am__v_AR_$(AM_DEFAULT_VERBOSITY))
+am__v_AR_0 = @echo "  AR    " $@;
+AM_V_at = $(am__v_at_$(V))
+am__v_at_ = $(am__v_at_$(AM_DEFAULT_VERBOSITY))
+am__v_at_0 = @
 libmuleunit_a_AR = $(AR) $(ARFLAGS)
 libmuleunit_a_LIBADD =
 am_libmuleunit_a_OBJECTS = libmuleunit_a-test.$(OBJEXT) \
@@ -75,15 +81,33 @@ DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
 am__mv = mv -f
+AM_V_lt = $(am__v_lt_$(V))
+am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
+am__v_lt_0 = --silent
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+AM_V_CXX = $(am__v_CXX_$(V))
+am__v_CXX_ = $(am__v_CXX_$(AM_DEFAULT_VERBOSITY))
+am__v_CXX_0 = @echo "  CXX   " $@;
 CXXLD = $(CXX)
 CXXLINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
 	-o $@
+AM_V_CXXLD = $(am__v_CXXLD_$(V))
+am__v_CXXLD_ = $(am__v_CXXLD_$(AM_DEFAULT_VERBOSITY))
+am__v_CXXLD_0 = @echo "  CXXLD " $@;
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+AM_V_CC = $(am__v_CC_$(V))
+am__v_CC_ = $(am__v_CC_$(AM_DEFAULT_VERBOSITY))
+am__v_CC_0 = @echo "  CC    " $@;
 CCLD = $(CC)
 LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
+AM_V_CCLD = $(am__v_CCLD_$(V))
+am__v_CCLD_ = $(am__v_CCLD_$(AM_DEFAULT_VERBOSITY))
+am__v_CCLD_0 = @echo "  CCLD  " $@;
+AM_V_GEN = $(am__v_GEN_$(V))
+am__v_GEN_ = $(am__v_GEN_$(AM_DEFAULT_VERBOSITY))
+am__v_GEN_0 = @echo "  GEN   " $@;
 SOURCES = $(libmuleunit_a_SOURCES)
 DIST_SOURCES = $(libmuleunit_a_SOURCES)
 ETAGS = etags
@@ -98,6 +122,7 @@ AMULECMD_MANPAGES = @AMULECMD_MANPAGES@
 AMULEWEB_DEFS = @AMULEWEB_DEFS@
 AMULE_DAEMON_MANPAGES = @AMULE_DAEMON_MANPAGES@
 AMULE_GUI_MANPAGES = @AMULE_GUI_MANPAGES@
+AM_DEFAULT_VERBOSITY = @AM_DEFAULT_VERBOSITY@
 AR = @AR@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
@@ -361,9 +386,9 @@ $(am__aclocal_m4_deps):
 clean-noinstLIBRARIES:
 	-test -z "$(noinst_LIBRARIES)" || rm -f $(noinst_LIBRARIES)
 libmuleunit.a: $(libmuleunit_a_OBJECTS) $(libmuleunit_a_DEPENDENCIES) 
-	-rm -f libmuleunit.a
-	$(libmuleunit_a_AR) libmuleunit.a $(libmuleunit_a_OBJECTS) $(libmuleunit_a_LIBADD)
-	$(RANLIB) libmuleunit.a
+	$(AM_V_at)-rm -f libmuleunit.a
+	$(AM_V_AR)$(libmuleunit_a_AR) libmuleunit.a $(libmuleunit_a_OBJECTS) $(libmuleunit_a_LIBADD)
+	$(AM_V_at)$(RANLIB) libmuleunit.a
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -379,99 +404,113 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmuleunit_a-testregistry.Po@am__quote@
 
 .cpp.o:
-@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ $<
 
 .cpp.obj:
-@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 libmuleunit_a-test.o: test.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleunit_a-test.o -MD -MP -MF $(DEPDIR)/libmuleunit_a-test.Tpo -c -o libmuleunit_a-test.o `test -f 'test.cpp' || echo '$(srcdir)/'`test.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleunit_a-test.Tpo $(DEPDIR)/libmuleunit_a-test.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleunit_a-test.o -MD -MP -MF $(DEPDIR)/libmuleunit_a-test.Tpo -c -o libmuleunit_a-test.o `test -f 'test.cpp' || echo '$(srcdir)/'`test.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libmuleunit_a-test.Tpo $(DEPDIR)/libmuleunit_a-test.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='test.cpp' object='libmuleunit_a-test.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -c -o libmuleunit_a-test.o `test -f 'test.cpp' || echo '$(srcdir)/'`test.cpp
 
 libmuleunit_a-test.obj: test.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleunit_a-test.obj -MD -MP -MF $(DEPDIR)/libmuleunit_a-test.Tpo -c -o libmuleunit_a-test.obj `if test -f 'test.cpp'; then $(CYGPATH_W) 'test.cpp'; else $(CYGPATH_W) '$(srcdir)/test.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleunit_a-test.Tpo $(DEPDIR)/libmuleunit_a-test.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleunit_a-test.obj -MD -MP -MF $(DEPDIR)/libmuleunit_a-test.Tpo -c -o libmuleunit_a-test.obj `if test -f 'test.cpp'; then $(CYGPATH_W) 'test.cpp'; else $(CYGPATH_W) '$(srcdir)/test.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libmuleunit_a-test.Tpo $(DEPDIR)/libmuleunit_a-test.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='test.cpp' object='libmuleunit_a-test.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -c -o libmuleunit_a-test.obj `if test -f 'test.cpp'; then $(CYGPATH_W) 'test.cpp'; else $(CYGPATH_W) '$(srcdir)/test.cpp'; fi`
 
 libmuleunit_a-main.o: main.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleunit_a-main.o -MD -MP -MF $(DEPDIR)/libmuleunit_a-main.Tpo -c -o libmuleunit_a-main.o `test -f 'main.cpp' || echo '$(srcdir)/'`main.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleunit_a-main.Tpo $(DEPDIR)/libmuleunit_a-main.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleunit_a-main.o -MD -MP -MF $(DEPDIR)/libmuleunit_a-main.Tpo -c -o libmuleunit_a-main.o `test -f 'main.cpp' || echo '$(srcdir)/'`main.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libmuleunit_a-main.Tpo $(DEPDIR)/libmuleunit_a-main.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='main.cpp' object='libmuleunit_a-main.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -c -o libmuleunit_a-main.o `test -f 'main.cpp' || echo '$(srcdir)/'`main.cpp
 
 libmuleunit_a-main.obj: main.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleunit_a-main.obj -MD -MP -MF $(DEPDIR)/libmuleunit_a-main.Tpo -c -o libmuleunit_a-main.obj `if test -f 'main.cpp'; then $(CYGPATH_W) 'main.cpp'; else $(CYGPATH_W) '$(srcdir)/main.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleunit_a-main.Tpo $(DEPDIR)/libmuleunit_a-main.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleunit_a-main.obj -MD -MP -MF $(DEPDIR)/libmuleunit_a-main.Tpo -c -o libmuleunit_a-main.obj `if test -f 'main.cpp'; then $(CYGPATH_W) 'main.cpp'; else $(CYGPATH_W) '$(srcdir)/main.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libmuleunit_a-main.Tpo $(DEPDIR)/libmuleunit_a-main.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='main.cpp' object='libmuleunit_a-main.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -c -o libmuleunit_a-main.obj `if test -f 'main.cpp'; then $(CYGPATH_W) 'main.cpp'; else $(CYGPATH_W) '$(srcdir)/main.cpp'; fi`
 
 libmuleunit_a-testcase.o: testcase.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleunit_a-testcase.o -MD -MP -MF $(DEPDIR)/libmuleunit_a-testcase.Tpo -c -o libmuleunit_a-testcase.o `test -f 'testcase.cpp' || echo '$(srcdir)/'`testcase.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleunit_a-testcase.Tpo $(DEPDIR)/libmuleunit_a-testcase.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleunit_a-testcase.o -MD -MP -MF $(DEPDIR)/libmuleunit_a-testcase.Tpo -c -o libmuleunit_a-testcase.o `test -f 'testcase.cpp' || echo '$(srcdir)/'`testcase.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libmuleunit_a-testcase.Tpo $(DEPDIR)/libmuleunit_a-testcase.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='testcase.cpp' object='libmuleunit_a-testcase.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -c -o libmuleunit_a-testcase.o `test -f 'testcase.cpp' || echo '$(srcdir)/'`testcase.cpp
 
 libmuleunit_a-testcase.obj: testcase.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleunit_a-testcase.obj -MD -MP -MF $(DEPDIR)/libmuleunit_a-testcase.Tpo -c -o libmuleunit_a-testcase.obj `if test -f 'testcase.cpp'; then $(CYGPATH_W) 'testcase.cpp'; else $(CYGPATH_W) '$(srcdir)/testcase.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleunit_a-testcase.Tpo $(DEPDIR)/libmuleunit_a-testcase.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleunit_a-testcase.obj -MD -MP -MF $(DEPDIR)/libmuleunit_a-testcase.Tpo -c -o libmuleunit_a-testcase.obj `if test -f 'testcase.cpp'; then $(CYGPATH_W) 'testcase.cpp'; else $(CYGPATH_W) '$(srcdir)/testcase.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libmuleunit_a-testcase.Tpo $(DEPDIR)/libmuleunit_a-testcase.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='testcase.cpp' object='libmuleunit_a-testcase.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -c -o libmuleunit_a-testcase.obj `if test -f 'testcase.cpp'; then $(CYGPATH_W) 'testcase.cpp'; else $(CYGPATH_W) '$(srcdir)/testcase.cpp'; fi`
 
 libmuleunit_a-testregistry.o: testregistry.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleunit_a-testregistry.o -MD -MP -MF $(DEPDIR)/libmuleunit_a-testregistry.Tpo -c -o libmuleunit_a-testregistry.o `test -f 'testregistry.cpp' || echo '$(srcdir)/'`testregistry.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleunit_a-testregistry.Tpo $(DEPDIR)/libmuleunit_a-testregistry.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleunit_a-testregistry.o -MD -MP -MF $(DEPDIR)/libmuleunit_a-testregistry.Tpo -c -o libmuleunit_a-testregistry.o `test -f 'testregistry.cpp' || echo '$(srcdir)/'`testregistry.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libmuleunit_a-testregistry.Tpo $(DEPDIR)/libmuleunit_a-testregistry.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='testregistry.cpp' object='libmuleunit_a-testregistry.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -c -o libmuleunit_a-testregistry.o `test -f 'testregistry.cpp' || echo '$(srcdir)/'`testregistry.cpp
 
 libmuleunit_a-testregistry.obj: testregistry.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleunit_a-testregistry.obj -MD -MP -MF $(DEPDIR)/libmuleunit_a-testregistry.Tpo -c -o libmuleunit_a-testregistry.obj `if test -f 'testregistry.cpp'; then $(CYGPATH_W) 'testregistry.cpp'; else $(CYGPATH_W) '$(srcdir)/testregistry.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleunit_a-testregistry.Tpo $(DEPDIR)/libmuleunit_a-testregistry.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleunit_a-testregistry.obj -MD -MP -MF $(DEPDIR)/libmuleunit_a-testregistry.Tpo -c -o libmuleunit_a-testregistry.obj `if test -f 'testregistry.cpp'; then $(CYGPATH_W) 'testregistry.cpp'; else $(CYGPATH_W) '$(srcdir)/testregistry.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libmuleunit_a-testregistry.Tpo $(DEPDIR)/libmuleunit_a-testregistry.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='testregistry.cpp' object='libmuleunit_a-testregistry.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -c -o libmuleunit_a-testregistry.obj `if test -f 'testregistry.cpp'; then $(CYGPATH_W) 'testregistry.cpp'; else $(CYGPATH_W) '$(srcdir)/testregistry.cpp'; fi`
 
 libmuleunit_a-MuleDebug.o: $(top_srcdir)/src/libs/common/MuleDebug.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleunit_a-MuleDebug.o -MD -MP -MF $(DEPDIR)/libmuleunit_a-MuleDebug.Tpo -c -o libmuleunit_a-MuleDebug.o `test -f '$(top_srcdir)/src/libs/common/MuleDebug.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/libs/common/MuleDebug.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleunit_a-MuleDebug.Tpo $(DEPDIR)/libmuleunit_a-MuleDebug.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleunit_a-MuleDebug.o -MD -MP -MF $(DEPDIR)/libmuleunit_a-MuleDebug.Tpo -c -o libmuleunit_a-MuleDebug.o `test -f '$(top_srcdir)/src/libs/common/MuleDebug.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/libs/common/MuleDebug.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libmuleunit_a-MuleDebug.Tpo $(DEPDIR)/libmuleunit_a-MuleDebug.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/libs/common/MuleDebug.cpp' object='libmuleunit_a-MuleDebug.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -c -o libmuleunit_a-MuleDebug.o `test -f '$(top_srcdir)/src/libs/common/MuleDebug.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/libs/common/MuleDebug.cpp
 
 libmuleunit_a-MuleDebug.obj: $(top_srcdir)/src/libs/common/MuleDebug.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleunit_a-MuleDebug.obj -MD -MP -MF $(DEPDIR)/libmuleunit_a-MuleDebug.Tpo -c -o libmuleunit_a-MuleDebug.obj `if test -f '$(top_srcdir)/src/libs/common/MuleDebug.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/libs/common/MuleDebug.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/libs/common/MuleDebug.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleunit_a-MuleDebug.Tpo $(DEPDIR)/libmuleunit_a-MuleDebug.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleunit_a-MuleDebug.obj -MD -MP -MF $(DEPDIR)/libmuleunit_a-MuleDebug.Tpo -c -o libmuleunit_a-MuleDebug.obj `if test -f '$(top_srcdir)/src/libs/common/MuleDebug.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/libs/common/MuleDebug.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/libs/common/MuleDebug.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libmuleunit_a-MuleDebug.Tpo $(DEPDIR)/libmuleunit_a-MuleDebug.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/libs/common/MuleDebug.cpp' object='libmuleunit_a-MuleDebug.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -c -o libmuleunit_a-MuleDebug.obj `if test -f '$(top_srcdir)/src/libs/common/MuleDebug.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/libs/common/MuleDebug.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/libs/common/MuleDebug.cpp'; fi`
 
 libmuleunit_a-StringFunctions.o: $(top_srcdir)/src/libs/common/StringFunctions.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleunit_a-StringFunctions.o -MD -MP -MF $(DEPDIR)/libmuleunit_a-StringFunctions.Tpo -c -o libmuleunit_a-StringFunctions.o `test -f '$(top_srcdir)/src/libs/common/StringFunctions.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/libs/common/StringFunctions.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleunit_a-StringFunctions.Tpo $(DEPDIR)/libmuleunit_a-StringFunctions.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleunit_a-StringFunctions.o -MD -MP -MF $(DEPDIR)/libmuleunit_a-StringFunctions.Tpo -c -o libmuleunit_a-StringFunctions.o `test -f '$(top_srcdir)/src/libs/common/StringFunctions.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/libs/common/StringFunctions.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libmuleunit_a-StringFunctions.Tpo $(DEPDIR)/libmuleunit_a-StringFunctions.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/libs/common/StringFunctions.cpp' object='libmuleunit_a-StringFunctions.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -c -o libmuleunit_a-StringFunctions.o `test -f '$(top_srcdir)/src/libs/common/StringFunctions.cpp' || echo '$(srcdir)/'`$(top_srcdir)/src/libs/common/StringFunctions.cpp
 
 libmuleunit_a-StringFunctions.obj: $(top_srcdir)/src/libs/common/StringFunctions.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleunit_a-StringFunctions.obj -MD -MP -MF $(DEPDIR)/libmuleunit_a-StringFunctions.Tpo -c -o libmuleunit_a-StringFunctions.obj `if test -f '$(top_srcdir)/src/libs/common/StringFunctions.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/libs/common/StringFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/libs/common/StringFunctions.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmuleunit_a-StringFunctions.Tpo $(DEPDIR)/libmuleunit_a-StringFunctions.Po
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -MT libmuleunit_a-StringFunctions.obj -MD -MP -MF $(DEPDIR)/libmuleunit_a-StringFunctions.Tpo -c -o libmuleunit_a-StringFunctions.obj `if test -f '$(top_srcdir)/src/libs/common/StringFunctions.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/libs/common/StringFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/libs/common/StringFunctions.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libmuleunit_a-StringFunctions.Tpo $(DEPDIR)/libmuleunit_a-StringFunctions.Po
+@am__fastdepCXX_FALSE@	$(AM_V_CXX) @AM_BACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_srcdir)/src/libs/common/StringFunctions.cpp' object='libmuleunit_a-StringFunctions.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmuleunit_a_CPPFLAGS) $(CPPFLAGS) $(libmuleunit_a_CXXFLAGS) $(CXXFLAGS) -c -o libmuleunit_a-StringFunctions.obj `if test -f '$(top_srcdir)/src/libs/common/StringFunctions.cpp'; then $(CYGPATH_W) '$(top_srcdir)/src/libs/common/StringFunctions.cpp'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/src/libs/common/StringFunctions.cpp'; fi`

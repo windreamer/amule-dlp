@@ -38,7 +38,7 @@ class CKnownFileList
 public:
 	CKnownFileList();
 	~CKnownFileList();
-	bool	SafeAddKFile(CKnownFile* toadd);
+	bool	SafeAddKFile(CKnownFile* toadd, bool afterHashing = false);
 	bool	Init();
 	void	Save();
 	void	Clear();
@@ -47,7 +47,6 @@ public:
 		time_t in_date,
 		uint64 in_size);
 	CKnownFile* FindKnownFileByID(const CMD4Hash& hash);
-	bool	IsKnownFile(const CKnownFile* file);
 	void	PrepareIndex();
 	void	ReleaseIndex();
 
@@ -58,7 +57,7 @@ public:
 private:
 	wxMutex	list_mut;
 
-	bool	Append(CKnownFile*);
+	bool	Append(CKnownFile*, bool afterHashing = false);
 
 	CKnownFile *IsOnDuplicates(
 		const CPath& filename,
